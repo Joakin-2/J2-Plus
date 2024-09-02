@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="yt/yt.png" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #121212; /* Dark background color */
+        color: #fff; /* Text color */
+    }
+    header {
+        background-color: #1f1f1f; /* YouTube red */
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .video {
+        margin: 10px;
+        width: 120px;
+        background-color: #333; /* Darker background */
+        padding: 10px;
+        border-radius: 10px;
+        color: #fff; /* Text color */
+        text-decoration: none; /* Remove underline from anchor */
+    }
+    .video img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    .video h2 {
+        margin: 5px 0;
+    }
+    .video p {
+        margin: 0;
+    }
+    .channel-logo {
+        display: block;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .channel-logo img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    /* Hover effect */
+    .video:hover {
+        background-color: #444;
+    }
+
+    h1 {
+        font-size: 18px; /* Tamanho do h1 */
+    }
+
+    h2 {
+        font-size: 16px; /* Tamanho do h2 */
+    }
+    
+    p {
+        font-size: 11px; /* Tamanho do p */
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 770px) {
+        .video {
+            width: 150px;
+        }
+    }
+
+</style>
+</head>
+<body>
+    <header>
+        <h1 style="display: flex; align-items: center;">Productive Youtube <img src="yt/yt.png" alt="YouTube Icon" style="width: 44px; height: auto; margin-left: 10px;"></h1>
+    </header>       
+    <div class="container">
+        <a href="https://www.youtube.com/@saxworldwide/videos" class="video">
+            <img src="yt/sax-video.jpeg" alt="Video 1">
+            <h2>SAX</h2>
+            <p>Welcome to the SAX Youtube Channel!</p>
+            <div class="channel-logo"><img src="yt/sax.jpg" alt="SAX"></div>
+        </a>
+        <a href="https://www.youtube.com/@IsraelSubira" class="video">
+            <img src="yt/isra-video.jpeg" alt="Video 1">
+            <h2>Isra</h2>
+            <p>Você já ouviu as boas novas?</p>
+            <div class="channel-logo"><img src="yt/isra.jpg" alt="SAX"></div>
+        </a>
+        <a href="https://www.youtube.com/c/@VidadeFé/videos" class="video">
+            <img src="yt/fé-video.jpeg" alt="Video 2">
+            <h2>Vida de Fé</h2>
+            <p>Olá, seja muito bem-vindo ao canal Vida de Fé!</p>
+            <div class="channel-logo"><img src="yt/fé.jpg" alt="Channel 2"></div>
+        </a>
+        <a href="https://www.youtube.com/@jesus_copy/videos" class="video">
+            <img src="yt/jesuscopy-video.jpeg" alt="video 2">
+            <h2>JesusCopy </h2>
+            <p>Jesuscopy é um movimento que ensina como ser cópias de Jesus</p>
+            <div class="channel-logo"><img src="yt/jesuscopy.jpg" alt="video 2"></div>
+        </a>
+    </div>
+    <div class="container">
+        <a href="https://www.youtube.com/@Pinhotube" class="video">
+            <img src="yt/pinho-video.jpeg" alt="Video 2">
+            <h2>Pinho</h2>
+            <p>Minha missão é ajudar as pessoas.</p>
+            <div class="channel-logo"><img src="yt/pinho.jpg" alt="Channel 2"></div>
+        </a>
+        <a href="https://www.youtube.com/@JuniorKuyava/videos" class="video">
+            <img src="yt/vida-video.jpeg" alt="Video 2">
+            <h2>Vida Simples</h2>
+            <p>Compartilho a minha busca por uma vida intencional.</p>
+            <div class="channel-logo"><img src="yt/vida.jpg" alt="Channel 2"></div>
+        </a>
+        <a href="https://www.youtube.com/@republicacoisadenerd/videos" class="video">
+            <img src="yt/nerd-video.jpeg" alt="Video 1">
+            <h2>Leon e Nilce</h2>
+            <p>Neste canal atendemos os pedidos da comunidade.</p>
+            <div class="channel-logo"><img src="yt/nerd.jpg" alt="SAX"></div>
+        </a>
+        <a href="https://www.youtube.com/@FelipeFigueira" class="video">
+            <img src="yt/trade-video.jpeg" alt="video 2">
+            <h2>Felipe Figueira</h2>
+            <p>Aprenda a Ganhar Dinheiro Investindo.</p>
+            <div class="channel-logo"><img src="yt/trade.jpg" alt="video 2"></div>
+        </a>
+    </div>
+    <div class="container">
+        <a href="https://www.youtube.com/@liveirao/videos" class="video">
+            <img src="yt/levi-video.jpeg" alt="video 1">
+            <h2>Liveirão</h2>
+            <p>Em busca de contemplar a verdade</p>
+            <div class="channel-logo"><img src="yt/levi.jpg" alt="video 1"></div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=upTSY5pNV8Q&list=PLXVq6PJUegfxSySK6JrVEVtq2RBBTG-2L" class="video">
+            <img src="yt/serio-video.jpg" alt="video 1">
+            <h2>Fala Sério</h2>
+            <p>Vídeos surpreendentemente interessantes</p>
+            <div class="channel-logo"><img src="yt/serio.jpg" alt="video 1"></div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=GXqUXJKg7K4&list=PLJC6MSkiDOlHpmnU8InCnbW_bMwScK6WW" class="video">
+            <img src="yt/ciencia-video.jpg" alt="video 2">
+            <h2>Ciência Todo Dia</h2>
+            <p>Mantendo seu cérebro sempre ativo!</p>
+            <div class="channel-logo"><img src="yt/ciencia.jpg" alt="video 2"></div>
+        </a>
+        <a href="https://www.youtube.com/user/fatosdesconhecidos/videos" class="video">
+            <img src="yt/fatos-video.jpeg" alt="Video 1">
+            <h2>Fatos Desconhecidos</h2>
+            <p>A Fatos Desconhecidos começou no ano de 2010.</p>
+            <div class="channel-logo"><img src="yt/fatos.jpg" alt="SAX"></div>
+        </a>
+    </div>
+    <div class="container">
+        <a href="https://www.youtube.com/watch?v=upTSY5pNV8Q&list=PLXVq6PJUegfxSySK6JrVEVtq2RBBTG-2L" class="video">
+            <img src="yt/fnaf-video.jpeg" alt="video 1">
+            <h2>FnF Doom</h2>
+            <p>Com Gruzinho</p>
+            <div class="channel-logo"><img src="yt/gru.jpg" alt="video 1"></div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=GXqUXJKg7K4&list=PLJC6MSkiDOlHpmnU8InCnbW_bMwScK6WW" class="video">
+            <img src="yt/mineiro-video.jpeg" alt="video 2">
+            <h2>Mineiro Aranha</h2>
+            <p>Com Gruzinho</p>
+            <div class="channel-logo"><img src="yt/gru.jpg" alt="video 2"></div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=Bm2pYXJS9_o&list=PL86335E6uxZ9Ih05mrtF21_LnuAqanVoW&ab_channel=PaiTroll" class="video">
+            <img src="yt/mario-vdeo.jpeg" alt="video 1">
+            <h2>Super Mario Maker</h2>
+            <p>FUI TORTURADO SEM DÓ!</p>
+            <div class="channel-logo"><img src="yt/paitrol.jpg" alt="video 1"></div>
+        </a>
+        <a href="https://www.youtube.com/c/La%C3%A9rcioRefundini/videos" class="video">
+            <img src="yt/lala-video.jpeg" alt="Video 1">
+            <h2>Laércio Refundini</h2>
+            <p>Laércio Refundini é Personal Trainer.</p>
+            <div class="channel-logo"><img src="yt/lala.jpg" alt="SAX"></div>
+        </a>
+    </div>
+    <div class="container">
+        <a href="https://drive.google.com/drive/u/4/folders/1d7MVyG2ZSvt58nlbZ_6CoMnd_FGQc6Fi" class="video">
+            <img src="yt/memes-video.jpeg" alt="video 1">
+            <h2>Memes</h2>
+            <p>Tipos de carinahs são</p>
+            <div class="channel-logo"><img src="yt/photo.jpg" alt="video 1"></div>
+        </a>
+        <a href="https://www.instagram.com/miguel.insights/?theme=dark" class="video">
+            <img src="yt/you-video.jpeg" alt="Video 1">
+            <h2>Miguel Insights</h2>
+            <p>Entusiasta do Crescimento 🌱</p>
+            <div class="channel-logo"><img src="yt/you.jpg" alt="SAX"></div>
+        </a>
+        <a href="https://www.youtube.com/feed/subscriptions" class="video">
+            <img src="yt/inscri-video.jpeg" alt="video 2">
+            <h2>Inscrições</h2>
+            <p>Mais recentes</p>
+            <div class="channel-logo"><img src="yt/eu.jpg" alt="video 2"></div>
+        </a>
+        <a href="https://www.youtube.com/video?list=WL" class="video">
+            <img src="yt/maistarde-video.jpeg" alt="video 1">
+            <h2>Assistir Mais Tarde</h2>
+            <p>Mais recentes</p>
+            <div class="channel-logo"><img src="yt/eu.jpg" alt="video 1"></div>
+        </a>
+    </div>
+</body>
+</html>

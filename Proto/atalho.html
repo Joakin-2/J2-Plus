@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atalhos</title>
+    <!-- Link Font Awesome library (replace with your own link if necessary) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            display: flex; /* Add flex display */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full height of viewport */
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start; /* Align items to the top */
+            flex-wrap: wrap; /* Allow wrapping of columns */
+            padding: 20px; /* Add padding to the container */
+            margin-left: 10%;
+        }
+
+        .column {
+            flex: 1; /* Each column takes equal width */
+            max-width: 45%; /* Maximum width for each column */
+        }
+
+        .botao {
+        background-color: #4c87af;
+        color: white;
+        border: none;
+        padding: 40px 0; /* Adjusted padding for equal button size */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        width: 500px; /* Make buttons fill the entire width of their container */
+        font-size: 24px;
+        margin: 20px 0; /* Added margin for space between buttons */
+        cursor: pointer; /* Corrigido de poSites para pointer */
+        border-radius: 8px;
+    }
+
+        .mensagem {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="column">
+            <button class="botao" onclick="redirecionar('CMSP')"><i class="fas fa-school"></i> CMSP</button>
+            <button class="botao" onclick="redirecionar('Sites')"><i class="fas fa-globe"></i> Sites</button>
+            <button class="botao" onclick="redirecionar('JokGym')"><i class="fas fa-dumbbell"></i> JokGym</button>
+            <button class="botao" onclick="redirecionar('Music Place')"><i class="fas fa-music"></i> Music Place</button>
+        </div>
+        <div class="column">
+            <button class="botao" onclick="redirecionar('Chainers')"><i class="fas fa-gamepad"></i> Chainers</button>
+            <button class="botao" onclick="redirecionar('Background')"><i class="fas fa-image"></i> Background</button>
+            <button class="botao" onclick="redirecionar('+ Habilidades')"> + Habilidades</button>
+            <button class="botao" onclick="redirecionar('Produtividade')"><i class="fas fa-graduation-cap"></i> Produtividade</button>
+        </div>
+    </div>
+
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'CMSP':
+                    window.close('atalho.html');
+                    window.open('https://cmspweb.ip.tv/');
+                    break;
+                case 'Sites':
+                    window.close('atalho.html');
+                    window.open('https://loop.microsoft.com');
+                    window.open('https://keep.google.com/u/4/#home');
+                    window.open('https://mail.google.com/mail/u/4/?ogbl#inbox');
+                    window.open('https://www.google.com.br/webhp?authuser=4');
+                    break;
+                case 'JokGym':
+                    window.close('atalho.html');
+                    window.open('https://j2plus.netlify.app/gym/');
+                    break;
+                case 'Music Place':
+                    window.close('atalho.html');
+                    window.open('https://j2plus.netlify.app/sax/');
+                    break;
+                case 'Chainers':
+                    window.close('atalho.html');
+                    window.open('https://chainers.io/game/farm');
+                    window.open('https://chainers.io/game');
+                    break;
+                case 'Background':
+                    window.close('atalho.html');
+                    window.open('https://j2plus.netlify.app/back/');
+                    break;
+                case '+ Habilidades':
+                    window.close('atalho.html');
+                    window.open('https://www.youtube.com/watch?v=IN5g35oUHNM&list=WL&index=5&ab_channel=LinguagemdoMundo');
+                    window.open('https://www.youtube.com/watch?v=cYI8G02ELSo&list=WL&index=6&t=19s&ab_channel=LinguagemdoMundo');
+                    window.open('https://www.youtube.com/watch?v=P1j1YWC6RYI&list=WL&index=7&ab_channel=Babisan%7CHoradoJapon%C3%AAs');
+                    break;
+                case 'Produtividade':
+                    window.close('atalho.html');
+                    window.open('https://www.youtube.com/@liveirao/videos');
+                    window.open('https://www.youtube.com/@mbcnate/videos');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

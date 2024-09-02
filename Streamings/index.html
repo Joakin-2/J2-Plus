@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J2 Streaming</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="video-background">
+            <video autoplay muted loop>
+                <source src="load.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos HTML5.
+            </video>
+        </div>
+    </div>
+    <header>
+        <h1>J2 Streaming</h1>
+    </header>
+    <main>
+        <section class="carousel">
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="1.jpg" alt="Cartaz 1">
+                    <img src="2.jpg" alt="Cartaz 2">
+                    <img src="3.jpg" alt="Cartaz 3">
+                    <img src="4.jpg" alt="Cartaz 4">
+                </div>
+            </div>
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </section>
+        <section class="video-selection">
+            <div class="video-card" onclick="openSite('https://www.band.uol.com.br/ao-vivo')">
+                <div class="video-thumbnail">
+                    <img src="band.jpeg" alt="Band Play">
+                </div>
+                <h2>Band Play</h2>
+            </div>
+            <div class="video-card" onclick="openSite('https://www.disneyplus.com')">
+                <div class="video-thumbnail">
+                    <img src="disneyplus.jpeg" alt="Disney Plus">
+                </div>
+                <h2>Disney Plus</h2>
+            </div>
+            <div class="video-card" onclick="openSite('https://redecanais.dev/')">
+                <div class="video-thumbnail">
+                    <img src="rede.jpeg" alt="Rede Canais">
+                </div>
+                <h2>Rede Canais</h2>
+            </div>
+            <div class="video-card" onclick="openSite('https://watch.thechosen.tv/')">
+                <div class="video-thumbnail">
+                    <img src="thechosen.jpg" alt="The Chosen">
+                </div>
+                <h2>The Chosen</h2>
+            </div>
+        </section>
+        <section2 class="video-selection">
+            <div class="video-card" onclick="openSite('https://globoplay.globo.com')">
+                <div class="video-thumbnail">
+                    <img src="globoplay.jpeg" alt="Globo Play">
+                </div>
+                <h2>Globo Play</h2>
+            </div>
+            <div class="video-card" onclick="openSite('https://www.netflix.com')">
+                <div class="video-thumbnail">
+                    <img src="netflix.jpg" alt="Netflix">
+                </div>
+                <h2>Netflix</h2>
+            </div>
+            <div class="video-card" onclick="openSite('Yt/index.html')">
+                <div class="video-thumbnail">
+                    <img src="youtube.jpg" alt="Youtube">
+                </div>
+                <h2>Youtube</h2>
+            </div>
+            <div class="video-card" onclick="openSite('https://www.sbt.com.br/ao-vivo')">
+                <div class="video-thumbnail">
+                    <img src="sbt.png" alt="SBT">
+                </div>
+                <h2>SBT</h2>
+            </div>
+        </section2>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoajuda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remover margens padrão */
+            padding: 0; /* Remover preenchimento padrão */
+            background-color: #000000; /* Cor de fundo */
+            height: 100vh; /* Altura total da janela */
+            display: flex; /* Usar flexbox para centralização */
+            justify-content: center; /* Centralizar horizontalmente */
+            align-items: center; /* Centralizar verticalmente */
+        }
+
+        .dark-box {
+            background-color: #333; /* Cor de fundo cinza escuro */
+            color: white; /* Cor do texto branco */
+            padding: 20px; /* Preenchimento ao redor do conteúdo */
+            border-radius: 8px; /* Cantos arredondados */
+            width: 60%; /* Ajustar largura conforme necessário */
+            max-width: 600px; /* Largura máxima */
+            box-sizing: border-box; /* Incluir preenchimento e borda na largura total */
+        }
+
+        .text-input {
+            width: 200%; /* Largura total */
+            height: 300px; /* Altura do textarea */
+            font-size: 18px; /* Tamanho da fonte */
+            border: none; /* Remover borda */
+            background-color: transparent; /* Fundo transparente */
+            color: white; /* Cor do texto */
+            resize: none; /* Prevenir redimensionamento */
+            outline: none; /* Remover contorno padrão */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dark-box">
+        <textarea id="text-input" class="text-input" placeholder="Escreva algo..."></textarea>
+    </div>
+
+    <script>
+        // Obter o elemento textarea
+        var textarea = document.getElementById('text-input');
+
+        // Carregar o conteúdo salvo do armazenamento local quando a página carrega
+        textarea.value = localStorage.getItem('savedAnnotations') || ''; // Usar 'savedAnnotations' como chave
+
+        // Salvar o conteúdo no armazenamento local sempre que mudar
+        textarea.addEventListener('input', function() {
+            localStorage.setItem('savedAnnotations', textarea.value); // Usar 'savedAnnotations' como chave
+        });
+    </script>
+
+</body>
+</html>

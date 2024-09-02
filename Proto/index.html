@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="ícone.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proto</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #000000;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Center horizontally */
+        align-items: center;
+        height: 100vh;
+    }
+
+    .column {
+        flex: 0 0 22.22%; /* Three columns */
+        max-width: 22.22%;
+        padding: 0 15px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .botao {
+        background-color: #4c87af;
+        color: white;
+        border: none;
+        padding: 40px 0; /* Adjusted padding for equal button size */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        width: 400px; /* Make buttons fill the entire width of their container */
+        font-size: 24px;
+        margin: 20px 0; /* Added margin for space between buttons */
+        cursor: pointer; /* Corrigido de poSites para pointer */
+        border-radius: 8px;
+    }
+    .mensagem {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+    input[type="text"] {
+        width: 80%;
+        padding: 12px;
+        margin-bottom: 21px;
+        font-size: 18px;
+        border-radius: 8px;
+        background-color: #333; /* Dark gray background color */
+        color: white; /* White text color */
+        border: 2px solid #ccc;
+    }
+</style>
+</head>
+<body>
+<div class="container"> <!-- Added container div -->
+  <div class="column">
+    <br>
+    <br>
+    <br>
+    <br>
+    <button class="botao" onclick="modoFoco()">Focus Mode</button>
+    <button class="botao" onclick="abrirSitesTrabalho()">Work Sites</button>
+    <button class="botao" onclick="abrirMonitorHabitos()">Monitor Habitos</button>
+  </div>
+  <div class="column">
+    <input type="text" id="secretInput" placeholder="Add a code" onkeypress="checkEnter(event)">
+    <button class="botao" onclick="diarios()">Uso Diário</button>
+    <button class="botao" onclick="insta()">instagram</button>
+    <button class="botao" onclick="zap()">WhatsApp</button>
+  </div>
+  <div class="column">
+    <br>
+    <br>
+    <br>
+    <br>
+    <button class="botao" onclick="atalhos()">Atalhos</button>
+    <button class="botao" onclick="conselho()">Conselho</button>
+    <button class="botao" onclick="abrirRenovacao()">Renovação</button>
+    <!-- Add more buttons for other functionalities -->
+  </div>
+</div> <!-- Added container div -->
+
+<script>
+    function checkTimeAndOpenWebsite() {
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      var seconds = now.getSeconds();
+    
+      // Check if it's 10:00:00 AM or 2:00:00 PM
+      if ((hours === 10 && minutes === 0 && seconds === 0) || (hours === 14 && minutes === 0 && seconds === 0)) {
+          // Check if it's 10:00:00 AM, open the first website
+          if (hours === 10) {
+            window.open("https://j2plus.netlify.app/gym/");
+          }
+          // Check if it's 2:00:00 PM, open the second website
+          else if (hours === 14) {
+            window.open("https://j2plus.netlify.app/sax/");
+          }
+        }
+      // Check if it's 05:30:00 AM
+      else if (hours === 5 && minutes === 30 && seconds === 0) {
+        window.open("acorda.html");
+      }
+      // Check if it's 21:00:00 PM
+      else if (hours === 21 && minutes === 00 && seconds === 0) {
+        diarios();
+      }
+      // Check if it's 11:30:00 PM
+      else if (hours === 23 && minutes === 30 && seconds === 0) {
+        window.open('https://i.pinimg.com/originals/3e/12/68/3e1268c9276adadd76d20b5cfd1c3381.jpg', 'Janela1');
+      }
+    }
+
+    // Check the time every second
+    setInterval(checkTimeAndOpenWebsite, 1000);
+
+    function openAllSites() {
+        var sites = [
+            "https://www.tiktok.com/",
+            "https://www.reddit.com/",
+            "https://twitter.com/home",
+            "https://www.facebook.com/",
+            "https://www.instagram.com/?theme=dark"
+        ];
+
+        sites.forEach(function(site) {
+            window.open(site);
+        });
+    }
+
+    function insta() {
+      // Replace with appropriate WhatsApp URL
+      window.open("https://www.instagram.com/");
+    }
+
+    function zap() {
+      // Replace with appropriate WhatsApp URL
+      window.open("https://web.whatsapp.com/");
+    }
+
+    function conselho() {
+      // Replace with appropriate Monitor de Habitos URL
+      window.open("https://j2plus.netlify.app/conselho/");
+    }
+
+    function abrirMonitorHabitos() {
+      // Replace with appropriate Monitor de Habitos URL
+      window.open("https://j2plus.netlify.app/monitor%20de%20h%C3%A1bitos/");
+    }
+    
+    function modoFoco() {
+      // Replace with appropriate URL for focus mode
+      window.open("https://j2plus.netlify.app/works/foco");
+    }
+
+    function abrirRenovacao() {
+      // Replace with appropriate URL for focus mode
+      window.open("crist.html");
+    }
+    
+    function game() {
+      // Replace with appropriate URL for games
+      window.open("https://j2plus.netlify.app/back/games%20states/games.html");
+    }
+    
+    function abrirSitesTrabalho() {
+      // Replace with appropriate URL for work sites
+      window.open("https://j2plus.netlify.app/works/");
+    }
+    
+    function atalhos() {
+      // Replace with appropriate URL for shortcuts
+      window.open("atalho.html");
+    }
+    
+    function assistirMaisTarde() {
+      // Replace with the URL for the "Watch Later" playlist on YouTube
+      window.open("https://www.youtube.com/playlist?list=WL");
+    }
+    
+    function diarios() {
+      // Replace with appropriate URL for opening diarios
+      window.open("https://keep.google.com/u/4/#NOTE/1lxsok0TJ_ko5PdXoxxx8Y7ggYXKjow9HdY9uizqrNf0-StbCOMVeRef7xWY6cg");
+      window.open("https://www.google.com.br/webhp?authuser=4");
+      window.open("https://chainers.io/game/pt");
+      window.open("https://chainers.io/game/pt/farm?startGame=true");
+      window.open("https://mail.google.com/mail/u/4/?ogbl#inbox");
+      window.open("https://mail.google.com/mail/u/3/#inbox");
+      window.open("https://cmspweb.ip.tv/");
+    }
+    
+    function memes() {
+      // Replace with appropriate URL for opening Memes
+      window.open("https://drive.google.com/drive/u/4/folders/1d7MVyG2ZSvt58nlbZ_6CoMnd_FGQc6Fi");
+    }
+
+    function checkEnter(event) {
+        if (event.keyCode === 13) {
+            // If the Enter key is pressed, call the checkInput function
+            checkInput();
+        }
+    }
+
+    function checkInput() {
+      var input = document.getElementById("secretInput").value;
+      var secretWord1 = "cubo";
+      var secretWord2 = "cmsp";
+      var secretWord3 = "farm";
+      var secretWord4 = "game";
+      var secretWord5 = "leer";
+      var secretWord6 = "help";
+      if (input.toLowerCase() === secretWord1) {
+        // Open the secret page when the secret word is typed
+        window.open("https://drive.google.com/file/d/11c5ey5o4GKF9u1BqVd7WXL_iGFZ6WH0-/view?usp=sharing");
+      }
+      if (input.toLowerCase() === secretWord2) {
+        // Open the secret page when the secret word is typed
+        window.open("https://cmspweb.ip.tv/");
+      }
+      if (input.toLowerCase() === secretWord3) {
+        // Open the secret page when the secret word is typed
+        window.open("https://chainers.io/game/pt");
+        window.open("https://chainers.io/game/pt/farm?startGame=true");
+      }
+      if (input.toLowerCase() === secretWord4) {
+        // Open the secret page when the secret word is typed
+        window.open("https://j2plus.netlify.app/back/games%20states/games.html");
+      }
+      if (input.toLowerCase() === secretWord5) {
+        // Open the secret page when the secret word is typed
+        window.open("https://j2plus.netlify.app/works/ler");
+      }
+      if (input.toLowerCase() === secretWord6) {
+        // Open the secret page when the secret word is typed
+        window.open("ajuda.html");
+      }
+    }
+    // Add more JavaScript functions for other functionalities
+</script>
+</body>
+</html>

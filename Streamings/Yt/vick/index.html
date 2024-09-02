@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="yt/yt.png" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #121212; /* Dark background color */
+        color: #fff; /* Text color */
+    }
+    header {
+        background-color: #1f1f1f; /* YouTube red */
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Button styles */
+    .button {
+        display: inline-block;
+        background-color: transparent;
+        border: none;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+        padding: 0;
+        text-align: inherit;
+        text-decoration: none; /* Remove underline */
+    }
+
+    .button:hover {
+        text-decoration: none; /* Remove underline on hover */
+        color: #ccc;
+    }
+    .video {
+        position: relative;
+        margin: 20px;
+        width: 250px;
+        background-color: #333; /* Darker background */
+        padding: 10px;
+        border-radius: 10px;
+        color: #fff; /* Text color */
+        text-decoration: none; /* Remove underline from anchor */
+    }
+    .video img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    .video h2 {
+        margin: 5px 0;
+    }
+    .video p {
+        margin: 0;
+    }
+    .channel-logo {
+        display: block;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .channel-logo img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    /* Hover effect */
+    .video:hover {
+        background-color: #444;
+    }
+    /* Password protection overlay */
+    .password-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-radius: 10px;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .password-overlay.active {
+        visibility: visible;
+        opacity: 1;
+    }
+    .password-overlay p {
+        font-size: 18px;
+        margin: 0;
+    }
+    .password-overlay .input-group {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .password-overlay input {
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #555;
+        border-radius: 5px;
+        background: #1f1f1f;
+        color: #fff;
+        width: 150px; /* Adjust width as needed */
+        margin-right: 10px; /* Space between input and button */
+    }
+    .password-overlay button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #ff0000; /* YouTube red */
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+    .password-overlay button:hover {
+        background-color: #cc0000; /* Darker red */
+    }
+    .password-overlay #error-message {
+        color: #ff0000; /* Red color for errors */
+        margin-top: 10px;
+    }
+    /* Media Queries */
+    @media screen and (max-width: 770px) {
+        .video {
+            width: 200px;
+        }
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1 style="display: flex; align-items: center;">YouTube <img src="yt/yt.png" alt="YouTube Icon" style="width: 44px; height: auto; margin-left: 10px;"></h1>
+    </header> 
+    <div class="container">
+        <a href="https://www.youtube.com/@ClarifiedTutorials/videos" class="video">
+            <img src="yt/clarinete-video.jpeg" alt="Video 1">
+            <h2>Clarinete</h2>
+            <p>Learn your favorite songs on clarinet with Clarified.</p>
+            <div class="channel-logo"><img src="yt/clarinete.jpg" alt="Clarinete"></div>
+        </a>
+        <a href="https://www.youtube.com/@CrescendocomLuluca/videos" class="video" id="protected-link">
+            <img src="yt/lulu-video.jpeg" alt="Video 2">
+            <h2>Luluca</h2>
+            <p>Eu sou a Luíza, mas todos me chamam de Luluca. </p>
+            <div class="channel-logo"><img src="yt/lulu.jpg" alt="Channel 2"></div>
+            <div class="password-overlay" id="password-overlay">
+                <p>Coloque a Senha:</p>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Digite...">
+                    <button onclick="checkPassword()">Ok</button>
+                </div>
+                <p id="error-message"></p>
+            </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=yrfTfLCkkIs&list=PLaTsGi-8kphs9nv17vtqIlMFVfoYq2xLz" class="video">
+            <img src="yt/graca-video.jpeg" alt="Video 1">
+            <h2>Turma da Graça</h2>
+            <p>Desenhos animados, clipes musicais e contação de histórias com base no ensino cristão.</p>
+            <div class="channel-logo"><img src="yt/graca.jpg" alt="SAX"></div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=UokQE_0aAAw&list=PL2QsKBPEpEf1cILcgQQBegdFPc-Ftad2O" class="video">
+            <img src="yt/incri-video.jpeg" alt="Video 2">
+            <h2>INCRÍVEL</h2>
+            <p>Este é um site dedicado à imaginação e à criatividade.</p>
+            <div class="channel-logo"><img src="yt/incri.jpg" alt="Channel 2"></div>
+        </a>
+    </div>
+    <div class="container">
+        <a href="https://www.youtube.com/@GBArt97/videos" class="video">
+            <img src="yt/desenho-video.jpeg" alt="Video 2">
+            <h2>GB Art</h2>
+            <p>Bem-vindo ao GB Art, canal de desenhos.</p>
+            <div class="channel-logo"><img src="yt/desenho.jpg" alt="Channel 2"></div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=zl8sTaeMbBM&list=PLZJAmFinkpbg5is878F1a3w-w-HiK_fZS" class="video">
+            <img src="yt/dese-video.jpeg" alt="Video 2">
+            <h2>CUTE WORLD</h2>
+            <p>CUTE WORLD - HOW TO DRAW - DRAW CUTE EASY  THINGS</p>
+            <div class="channel-logo"><img src="yt/dese.jpg" alt="Channel 2"></div>
+        </a>
+        <a href="https://www.youtube.com/@Slick_Slime_Sam_Portuguese/videos" class="video">
+            <img src="yt/sam-video.jpeg" alt="Video 1">
+            <h2>SLIME SAM SAPECA</h2>
+            <p>Você já viu um Slime que pode falar?</p>
+            <div class="channel-logo"><img src="yt/sam.jpg" alt="SAX"></div>
+        </a>
+        <a href="https://drive.google.com/drive/folders/1pTCgGyumOSVGoZ-zVxkk0cYLCnqejkRd" class="video">
+            <img src="yt/meme-video.jpeg" alt="video 1">
+            <h2>Memes</h2>
+            <p>Tipos de carinahs são</p>
+            <div class="channel-logo"><img src="yt/eu.png" alt="video 1"></div>
+        </a>
+    </div>
+
+    <script>
+        // Set the password for access
+        const correctPassword = '0709'; // Change this to your desired password
+
+        // Function to check password
+        function checkPassword() {
+            const passwordInput = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (passwordInput === correctPassword) {
+                window.location.href = 'https://www.youtube.com/@CrescendocomLuluca/videos'; // Redirect to the protected URL
+            } else {
+                errorMessage.textContent = 'Senha incorreta.';
+            }
+        }
+
+        // Add click event listener to the protected link
+        document.getElementById('protected-link').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            document.getElementById('password-overlay').classList.add('active'); // Show the password overlay
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renovação</title>
+    <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(0, 0, 0); /* Cor de fundo mais escura */
+            color: #fff; /* Texto em branco */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center; 
+            align-items: flex-start; /* Alinhamento no início */
+            height: 100vh;
+            text-align: center;
+            width: 80%; /* Largura do container */
+            margin: 0 auto; /* Centraliza o container na página */
+        }
+
+        .column {
+            flex: 1; /* Cada coluna ocupa igual espaço */
+            padding: 20px; /* Espaçamento interno */
+            box-sizing: border-box; /* Inclui padding e border no tamanho total */
+        }
+
+        .row {
+            display: grid; /* Utilizamos grid para organizar as imagens */
+            grid-template-columns: 1fr; /* Uma coluna para as imagens */
+            grid-gap: 20px; /* Espaço entre as colunas */
+            margin-bottom: 20px; /* Margem inferior */
+        }
+
+        .image-container {
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%; /* Garante que a imagem não ultrapasse o container */
+            height: auto; /* Altura automática para manter proporção */
+        }
+
+        .image-container2 {
+            text-align: center;
+        }
+
+        .image-container2 img {
+            max-width: 500px; /* Garante que a imagem não ultrapasse o container */
+            height: auto; /* Altura automática para manter proporção */
+        }
+
+        .botao {
+            background-color: #f8fa9a;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 20px 55px; /* Ajustado o tamanho do botão */
+            font-size: 24px;
+            margin: 10px; /* Espaçamento entre os botões */
+            cursor: pointer; 
+            border-radius: 8px;
+            transition: background-color 0.3s ease; /* Transição suave */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+        }
+
+        .botao:hover {
+            background-color: #e0e05f; /* Cor ao passar o mouse */
+        }
+
+        .mensagem {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .notes {
+            width: 100%; /* Largura total */
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            resize: vertical;
+            min-height: 250px;
+            background-color: rgb(43, 42, 42); /* Cor de fundo das notas */
+            color: white; /* Texto em branco */
+            font-size: 16px; /* Tamanho da fonte */
+            box-sizing: border-box; /* Inclui padding e border no tamanho total */
+        }
+
+        h1 {
+            color: #f8fa9a; /* Cor do título */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column">
+            <!-- Row for images -->
+            <div class="row">
+                <div class="image-container">
+                    <img src="Tabela.jpg" alt="Tabela de Estudos">
+                </div>
+            </div>
+            <!-- Notes section -->
+            <textarea id="notas" class="notes" placeholder="Anote aqui..." oninput="saveNotas()"></textarea>
+
+            <div class="buttons">
+                <button class="botao" onclick="redirecionar('Bíblia')"><i class="fas fa-book"></i> Bíblia</button>
+                <button class="botao" onclick="redirecionar('Canais')"><i class="fas fa-globe"></i> Canais</button>
+                <button class="botao" onclick="redirecionar('Memórias')"><i class="fas fa-camera"></i> Memórias</button>
+            </div>
+
+            <!-- Dicas -->
+            <div id="dicas" class="mensagem"></div>
+        </div>
+
+        <div class="column">
+            <div class="row">
+                <div class="image-container2">
+                    <img src="Cultos.png" alt="Cultos na Igreja">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para salvar notas no armazenamento local
+        function saveNotas() {
+            var notas = document.getElementById('notas').value;
+            localStorage.setItem('notas', notas); // Mudou para 'notas'
+        }
+
+        // Função para carregar notas do armazenamento local
+        function loadNotas() {
+            var savedNotas = localStorage.getItem('notas'); // Mudou para 'notas'
+            if (savedNotas) {
+                document.getElementById('notas').value = savedNotas;
+            }
+        }
+
+        // Chama a função loadNotas quando a página é carregada
+        window.onload = function() {
+            loadNotas();
+            setInterval(changeTip, 300000); // Mudar a cada 5 minutos (300000 ms)
+        };
+
+        // Array de dicas
+        var dicas = [
+            "Já fez um estudo bíblico hoje?",
+            "Já leu a bíblia hoje?",
+            "Já orou hoje?"
+        ];
+
+        // Função para mudar a dica exibida
+        function changeTip() {
+            var dicaAtual = Math.floor(Math.random() * dicas.length); // Seleciona uma dica aleatória
+            document.getElementById('dicas').textContent = dicas[dicaAtual];
+        }
+
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Bíblia':
+                    window.close('crist');
+                    window.open('https://www.bibliaonline.com.br/acf');
+                    break;
+                case 'Canais':
+                    window.close('crist');
+                    window.open('https://www.youtube.com/@IsraelSubira/videos');
+                    window.open('https://www.youtube.com/@VidadeFe/videos');
+                    window.open('https://www.youtube.com/@RodrigoSilvaArqueologia/videos');
+                    window.open('https://www.youtube.com/@prantoniojunior/videos');
+                    window.open('https://www.youtube.com/@PrOsielGomes/videos');
+                    break;
+                case 'Memórias':
+                    window.close('crist');
+                    window.open('file:///C:/Users/Luiz/OneDrive/Imagens/Igreja');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
