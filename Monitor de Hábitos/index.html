@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="icon" href="Monitor de Hábitos.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Hábitos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header-container">
+        <button id="menuBtn">Menu</button>
+        <p id="relogio"></p>
+    </header>
+
+    <div id="menuOverlay" class="menu-overlay">
+        <div class="menu-content">
+            <button id="habitosBtn">Hábitos</button>
+            <button id="refeicoesBtn">Refeições</button>
+            <button id="voltarBtn">Voltar</button>
+        </div>
+    </div>    
+
+    <h1>Monitor de Hábitos</h1>
+
+    <div style="margin-bottom: 30px;"></div>
+
+    <section class="caixa-anotacao">
+        <h3>Anotações</h3>
+        <textarea id="anotacoes3" rows="5" cols="50"></textarea>
+    </section>
+
+    <div style="margin-bottom: 30px;"></div>
+
+    <h2>Hábitos</h2>
+
+    <div id="habitosContainer" class="section-container">
+        <div id="manha" class="caixa">
+            <div class="titulo">Manhã</div>
+            <ul id="manhaHabitos">
+            </ul>
+        </div>
+        <div id="tarde" class="caixa">
+            <div class="titulo">Tarde</div>
+            <ul id="tardeHabitos">
+            </ul>
+        </div>
+        <div id="noite" class="caixa">
+            <div class="titulo">Noite</div>
+            <ul id="noiteHabitos">
+            </ul>
+        </div>
+    </div>    
+
+    <div class="button-container">
+        <button id="criarTelaModalBtn">Adicionar Hábito</button>
+        <button id="desmarcarHabitosBtn">Desmarcar Hábitos</button>
+        <button id="excluirHabitosBtn">Excluir Todos os Hábitos</button>
+    </div>    
+
+    <div style="margin-bottom: 30px;"></div>
+
+    <section class="caixa-anotacao">
+        <h3>Programados</h3>
+        <textarea id="programados" rows="5" cols="50"></textarea>
+    </section>
+
+    <div style="margin-bottom: 30px;"></div>
+
+    <div class="section-container">
+        <section class="caixa-anotacao2">
+            <h2>O que melhorar</h2>
+            <textarea id="anotacoes2" rows="5" cols="50"></textarea>
+        </section>
+
+        <section class="caixa-anotacao2">
+            <h2>O que não fazer</h2>
+            <textarea id="anotacoes" rows="5" cols="50"></textarea>
+        </section>
+    </div>
+
+    <div class="modal" id="myModal">
+        <div class="modal-conteudo">
+            <h2>Adicionar Novo Hábito</h2>
+            <input type="text" id="novoHabito" placeholder="Digite o hábito">
+            <select id="periodoHabito">
+                <option value="manha">Manhã</option>
+                <option value="tarde">Tarde</option>
+                <option value="noite">Noite</option>
+            </select>
+            <br>
+            <button id="salvarHabito">Salvar</button>
+            <button id="fecharModal">Fechar</button>
+        </div>
+    </div>    
+
+    <script src="script.js"></script>
+</body>
+</html>

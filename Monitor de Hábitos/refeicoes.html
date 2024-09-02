@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="icon" href="Monitor de Hábitos.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Hábitos</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos para as seções */
+        #anotarRefeicoes,
+        #contagemDeLiquidos {
+            width: 45%;
+            padding: 18px;
+            margin: 10px;
+        }
+        
+        #contadorDeLitros {
+    color: white;
+}
+
+legend,
+label {
+    color: white;
+}
+
+        @media (max-width: 768px) {
+            /* Ajuste para telas menores, como tablets e smartphones */
+            body {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #anotarRefeicoes,
+            #contagemDeLiquidos {
+                width: 90%;
+                margin: 10px 0;
+            }
+        }
+
+        /* Estilo para os fieldsets */
+fieldset {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Estilo para as legends */
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Estilo para os labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Estilo para os inputs de texto */
+input[type="text"] {
+    width: calc(100% - 12px); /* Leva em consideração a largura dos borders */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+/* Estilo para os botões dentro dos fieldsets */
+fieldset button {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    border: 1px solid #ddd; /* Borda com cor cinza */
+    padding: 10px 20px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor ao passar o mouse */
+    margin-top: 10px; /* Margem superior de 10px */
+    width: 300px;
+    height: 70px;
+    font-size: 20px;
+}
+
+/* Estilo para os botões dentro dos fieldsets ao passar o mouse */
+fieldset button:hover {
+    background-color: #0c0c0c;
+}
+
+#botoesControle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Ajuste conforme necessário */
+}
+
+#botoesControle button {
+    width: 48%; /* Ajuste a largura conforme necessário */
+}
+
+    </style>
+</head>
+<body>
+    <header class="header-container">
+        <button id="menuBtn">Menu</button>
+        <p id="relogio"></p>
+    </header>
+
+    <div id="menuOverlay" class="menu-overlay">
+        <div class="menu-content">
+            <button id="habitosBtn">Hábitos</button>
+            <button id="refeicoesBtn">Refeições</button>
+            <button id="voltarBtn">Voltar</button>
+        </div>
+    </div>    
+
+    <h1>Monitor de Hábitos</h1>
+
+    <div style="margin-bottom: 30px;"></div>
+
+    <div style="display: flex; justify-content: space-between; width: 90%; margin: auto;">
+        <section id="anotarRefeicoes">
+            <h2>Anotações de Refeições</h2>
+            <form id="refeicoesForm">
+                <fieldset>
+                    <legend>Manhã</legend>
+                    <label for="cafemanha">Café da Manhã (6h):</label>
+                    <input type="text" id="cafemanha" name="cafemanha" placeholder="Registre seu café da manhã">
+                    <br>
+                    <label for="lanchemanha">Lanche da Manhã (9h):</label>
+                    <input type="text" id="lanchemanha" name="lanchemanha" placeholder="Registre seu Lanche da Manhã">
+                </fieldset>
+                <fieldset>
+                    <legend>Almoço</legend>
+                    <label for="almoco">Almoço (12h):</label>
+                    <input type="text" id="almoco" name="almoco" placeholder="Registre seu almoço">
+                    <br>
+                    <label for="lanchetarde">Lanche da Tarde (15h):</label>
+                    <input type="text" id="lanchetarde" name="lanchetarde" placeholder="Registre seu lanche da tarde">
+                </fieldset>
+                <fieldset>
+                    <legend>Noite</legend>
+                    <label for="janta">Janta (18h):</label>
+                    <input type="text" id="janta" name="janta" placeholder="Registre seu jantar">
+                    <br>
+                    <label for="lanchenoite">Lanche da Noite (21h):</label>
+                    <input type="text" id="lanchenoite" name="lanchenoite" placeholder="Registre seu lanche da noite">
+                </fieldset>
+            </form>
+        </section>
+
+        <section id="contagemDeLiquidos">
+            <h2>Contagem de Água</h2>
+            <img src="agua.png" alt="Água" style="width: 200px; height: 200px; margin-top: 20px;">
+            <p id="contadorDeLitros">0/4 Litros</p>
+            <h3>(Observação: 2 Litros Recomendado | 3 Litros Ótimo | 4 Litros Perfeito)</h3>
+            <div style="margin-bottom: 20px;"></div>
+            <div id="botoesControle">
+                <button id="adicionarLitroBtn">Adicionar 1 Litro</button>
+                <button id="resetarLitroBtn">Resetar</button>
+            </div>   
+            <div style="margin-bottom: 55px;"></div>         
+            <fieldset>
+                <legend>Dicas</legend>
+                <div style="margin-bottom: 10px;"></div>
+                <label for="dicas">Recomendado comer a cada 3 horas</label>
+                <div style="margin-bottom: 30px;"></div>
+                <button id="bottomButton" onclick="window.open('https://www.youtube.com/@NutricionistaPatriciaLeite/videos', '_blank')">Receitas</button>
+            </fieldset>
+        </section>        
+    </div>
+
+    <!-- JavaScript para adicionar funcionalidade -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const habitosBtn = document.getElementById('habitosBtn');
+    const refeicoesBtn = document.getElementById('refeicoesBtn');
+    const voltarBtn = document.getElementById('voltarBtn');
+    const refeicoesForm = document.getElementById('refeicoesForm');
+    const contadorLitros = document.getElementById('contadorDeLitros');
+    const adicionarLitroBtn = document.getElementById('adicionarLitroBtn');
+    const resetarLitroBtn = document.getElementById('resetarLitroBtn');
+    const limite = 4; // Defina o limite de litros
+
+    // Função para salvar o contador no localStorage
+    function salvarContador() {
+        localStorage.setItem('contadorLitros', contadorLitros.textContent);
+    }
+
+    // Função para carregar o contador do localStorage
+    function carregarContador() {
+        const valorSalvo = localStorage.getItem('contadorLitros');
+        if (valorSalvo) {
+            contadorLitros.textContent = valorSalvo;
+        }
+    }
+
+    // Carregar contador ao carregar a página
+    carregarContador();
+
+    menuBtn.addEventListener('click', function() {
+        menuOverlay.style.display = 'block';
+    });
+
+    habitosBtn.addEventListener('click', function() {
+        window.location.href = 'index.html';
+    });
+
+    refeicoesBtn.addEventListener('click', function() {
+        window.location.href = 'refeicoes.html';
+    });
+
+    voltarBtn.addEventListener('click', function() {
+        fecharMenu();
+    });
+
+    function fecharMenu() {
+        menuOverlay.style.display = 'none';
+    }
+
+    // Função para salvar anotações no armazenamento local
+    function salvarAnotacoes() {
+        const formData = new FormData(refeicoesForm);
+        formData.forEach((value, key) => {
+            localStorage.setItem(key, value);
+        });
+    }
+
+    // Carregar anotações do armazenamento local ao carregar a página
+    function carregarAnotacoes() {
+        for (let i = 0; i < refeicoesForm.elements.length; i++) {
+            const element = refeicoesForm.elements[i];
+            const valor = localStorage.getItem(element.id);
+            if (valor) {
+                element.value = valor;
+            }
+        }
+    }
+
+    // Chamar a função de carregar anotações ao carregar a página
+    carregarAnotacoes();
+
+    // Adicionar ouvintes de eventos de entrada aos elementos <input>
+    refeicoesForm.addEventListener('input', salvarAnotacoes);
+
+    // Evento de clique para adicionar litro
+    adicionarLitroBtn.addEventListener('click', function() {
+        const valorAtual = parseInt(contadorLitros.textContent.split('/')[0]);
+        
+        if (valorAtual < limite) {
+            const novoValor = valorAtual + 1;
+            contadorLitros.textContent = `${novoValor}/${limite} Litros`;
+            // Salvar no localStorage
+            salvarContador();
+        }
+    });
+
+    // Evento de clique para resetar litro
+    resetarLitroBtn.addEventListener('click', function() {
+        contadorLitros.textContent = `0/${limite} Litros`;
+        // Salvar no localStorage
+        salvarContador();
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    function atualizarRelogio() {
+        const relogioElement = document.getElementById('relogio');
+        if (relogioElement) {
+            const agora = new Date();
+            const horas = agora.getHours().toString().padStart(2, '0');
+            const minutos = agora.getMinutes().toString().padStart(2, '0');
+            const segundos = agora.getSeconds().toString().padStart(2, '0');
+            const horario = `${horas}:${minutos}:${segundos}`;
+            relogioElement.textContent = horario;
+        }
+    }
+
+    atualizarRelogio();
+    setInterval(atualizarRelogio, 1000);
+});
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #141414;
+    text-align: center;
+    color: #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-top: 20px;
+}
+
+#menuBtn {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    border: 1px solid #ddd; /* Borda com cor cinza */
+    padding: 10px 20px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor ao passar o mouse */
+    margin-top: 10px; /* Margem superior de 10px */
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 50px;
+    left: 220px;
+    font-size: 20px;
+}
+
+#relogio {
+    position: absolute;
+    top: 48px; /* Ajuste conforme necessário */
+    right: 220px; /* Posiciona 20px a partir da borda direita */
+    font-size: 24px;
+    color: white;
+}
+
+input[type="text" i] {
+    padding: 1px 2px;
+    background-color: #2b2b2b;
+    color: white;
+}
+
+h1 {
+    margin: 20px 0;
+    color: rgb(255, 255, 255);
+}
+
+h2 {
+    margin: 20px 0;
+    color: rgb(255, 255, 255);
+}
+
+h3 {
+    margin: 20px 0;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+}
+
+.caixa-anotacao {
+    width: 840px;
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+.caixa-anotacao h2 {
+    margin-bottom: 10px;
+}
+
+.caixa-anotacao2 {
+    width: 389px;
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid #ddd;
+    padding: 25px;
+}
+
+.caixa-anotacao2 h2 {
+    margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    margin-bottom: 20px; /* Espaço abaixo do container de botões */
+}
+
+.button-container button {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    margin: 0 5px; /* Espaço entre os botões */
+    width: 288px; /* Largura dos botões */
+    height: 70px; /* Altura dos botões */
+    font-size: 20px; /* Tamanho da fonte dos botões */
+}
+
+textarea {
+    width: 90%;
+    height: 200px;
+    border: none;
+    background-color: #333;
+    color: white;
+    resize: none;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    border: 1px solid #ddd; /* Borda com cor cinza */
+    padding: 10px 20px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor ao passar o mouse */
+    margin-top: 10px; /* Margem superior de 10px */
+    width: 300px;
+    height: 70px;
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: #0c0c0c;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.modal-conteudo {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center; /* Centraliza os elementos dentro da modal */
+}
+
+.modal-conteudo h2 {
+    margin-bottom: 10px;
+}
+.modal-conteudo button {
+    margin-top: 10px; /* Espaçamento entre os elementos */
+    width: 210px;
+    height: 50px;
+    font-size: 16px;
+    padding: 5px;
+    border: none;
+}
+
+.modal-conteudo button {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    background-color: #333; /* Cor de fundo ao passar o mouse */
+}
+
+.button-container button:active {
+    background-color: #555; /* Cor de fundo ao clicar */
+}
+
+.modal-conteudo input {
+    margin-top: 10px; /* Espaçamento entre os elementos */
+    height: 40px;
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.modal-conteudo input[type="text"] {
+    width: 200px;
+}
+
+.modal-conteudo select {
+    width: 212px;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    background-color: #2b2b2b;
+    color: white;
+    border-radius: 4px;
+    margin-bottom: 10px; /* Espaço abaixo do dropdown */
+}
+
+.modal-conteudo select:focus {
+    outline: none;
+    border-color: #4CAF50; /* cor da borda ao focar */
+    box-shadow: 0 0 8px rgba(0, 128, 0, 0.5); /* sombra ao focar */
+}
+
+.modal-conteudo option {
+    background-color: #333; /* cor de fundo das opções */
+    color: white; /* cor do texto das opções */
+}
+
+/* Estilização para checkboxes */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #2196F3;
+}
+
+input[type="checkbox"]:checked::before {
+    content: "\2714";
+    font-size: 16px;
+    position: absolute;
+    top: -2px;
+    left: 3px;
+    color: white;
+}
+
+.caixa h2 {
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.section-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.caixa {
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid #555;
+    padding: 20px;
+    width: 254px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.caixa:hover {
+    transform: translateY(-5px);
+}
+
+.caixa .titulo {
+    color: #fff;
+    font-size: 24px;
+    margin-top: 10px;
+    border-bottom: 2px solid #555;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.caixa ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.caixa ul li {
+    font-size: 18px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.caixa ul li:hover {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.caixa ul li.concluido {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(16 16 16);
+    z-index: 1000;
+}
+
+.menu-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.menu-content button {
+    display: block;
+    width: 500px;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
