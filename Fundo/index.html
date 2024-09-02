@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundo</title>
+    <link rel="icon" type="image/x-icon" href="ícone.ico">
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Para evitar barras de rolagem */
+}
+
+#background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* Coloca o vídeo no fundo */
+}
+
+#background-video.purple {
+    filter: brightness(80%);
+}
+
+    </style>
+</head>
+<body>
+    <iframe id="background-video" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var iframe = document.getElementById("background-video");
+
+            var now = new Date();
+            var hour = now.getHours();
+
+            // Defina os horários de mudança dos vídeos
+            var yellowStartHour = 23; // 23h
+            var purpleStartHour = 7;  // 7h
+
+            // Verifica o horário e alterna os vídeos
+            if (hour >= yellowStartHour || hour < purpleStartHour) {
+                iframe.src = "https://www.youtube.com/embed/14hR9VSCCMs?autoplay=1&loop=1&playlist=14hR9VSCCMs";
+            } else {
+                iframe.src = "https://www.youtube.com/embed/9X5t2RpC2Jg?autoplay=1&loop=1&playlist=9X5t2RpC2Jg";
+                iframe.classList.add("purple"); // Adiciona a classe 'purple' se necessário
+            }
+
+            // Verifica a hora a cada minuto
+            setInterval(function() {
+                var now = new Date();
+                var hour = now.getHours();
+                var minutes = now.getMinutes();
+
+                // Se for 5h30, fecha a aba
+                if (hour === 5 && minutes === 30) {
+                    window.close();
+                }
+            }, 60000); // 60000ms = 1 minuto
+        });
+    </script>
+</body>
+</html>
