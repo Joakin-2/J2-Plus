@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            position: relative; /* Adicionado para posicionamento relativo */
+        }
+    
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+    
+        h1 {
+            margin-bottom: 20px;
+            color: rgb(255, 255, 255);
+        }
+    
+        #timer {
+            color: rgb(255, 255, 255);
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+    
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #833fd1;
+            color: white;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+    
+        .btn:hover {
+            background-color: #7133b8;
+        }
+    
+        #parabensMessage {
+            display: none;
+            font-size: 24px;
+            color: #333;
+        }
+
+        #backButton {
+            position: absolute; /* Alterado para absolute */
+            bottom: 10px;
+            left: 50%; /* Adicionado para centralizar horizontalmente */
+            transform: translateX(-50%); /* Adicionado para centralizar horizontalmente */
+            opacity: 0.1;
+            background-color: transparent;
+            border: none;
+            color: #FFFFFF;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #backButton:hover {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="timer">00:00</div>
+        <button class="btn" onclick="startTimer()">Start</button>
+        <br>
+        <button class="btn" onclick="stopTimer()">Stop</button>
+        <br>
+        <div id="parabensMessage">Parabéns por tirar um tempo para ler!</div>
+    </div>
+
+    <audio id="backgroundMusic" loop="">
+        <source src="music.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        var timerInterval;
+        var startTime;
+        var running = false;
+    
+        function startTimer() {
+            if (!running) {
+                startTime = new Date().getTime();
+                timerInterval = setInterval(updateTimer, 1000);
+                document.getElementById('backgroundMusic').play();
+                running = true;
+            }
+        }
+    
+        function stopTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('backgroundMusic').pause();
+            document.getElementById('timer').innerText = "00:00";
+            document.getElementById('parabensMessage').style.display = 'block';
+            running = false;
+        }
+    
+        function updateTimer() {
+            var currentTime = new Date().getTime();
+            var elapsedTime = Math.floor((currentTime - startTime) / 1000);
+    
+            var minutes = Math.floor(elapsedTime / 60);
+            var seconds = elapsedTime % 60;
+    
+            // Adiciona um zero à esquerda se o número for menor que 10
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+    
+            document.getElementById("timer").innerText = minutes + ":" + seconds;
+        }
+        
+    </script>
+</body>
+</html>

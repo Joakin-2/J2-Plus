@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo Foco</title>
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000000;
+            color: white;
+        }
+
+        #initialMessage {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        #temporizador {
+            font-size: 2em;
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #startButton {
+            font-size: 1.5em;
+            background-color: #833fd1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="initialMessage">Vamos utilizar o método Pomodoro.</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="temporizador" style="display: none;">25:00</div>
+
+    <div id="botoes">
+        <button id="startButton" style="display: none;" onclick="iniciarPomodoro()">Iniciar</button>
+    </div>
+
+    <script>
+        let tempoInicial = 25 * 60; // 25 minutos em segundos
+        let tempoDescanso = 5 * 60; // 5 minutos em segundos
+        let temporizador;
+
+        function atualizarTemporizador(segundos) {
+            const minutos = Math.floor(segundos / 60);
+            const segundosRestantes = segundos % 60;
+            document.getElementById('temporizador').innerText = `${minutos}:${segundosRestantes < 10 ? '0' : ''}${segundosRestantes}`;
+        }
+
+        function iniciarPomodoro() {
+            clearInterval(temporizador);
+            tempoInicial = 25 * 60;
+            temporizador = setInterval(function() {
+                if (tempoInicial > 0) {
+                    tempoInicial--;
+                    atualizarTemporizador(tempoInicial);
+                } else {
+                    clearInterval(temporizador);
+                    playAlarm()
+                    iniciarDescanso();
+                }
+            }, 1000);
+        }
+
+        function iniciarDescanso() {
+            clearInterval(temporizador);
+            tempoDescanso = 5 * 60; // 5 minutos em segundos (pode ajustar conforme necessário)
+            temporizador = setInterval(function() {
+                if (tempoDescanso > 0) {
+                    tempoDescanso--;
+                    atualizarTemporizador(tempoDescanso);
+                } else {
+                    clearInterval(temporizador);
+                    playAlarm()
+                    iniciarPomodoro();
+                }
+            }, 1000);
+        }
+
+        function pararTemporizador() {
+            clearInterval(temporizador);
+            atualizarTemporizador(tempoInicial);
+        }
+
+        function playAlarm() {
+            var alarmeAudio = new Audio('Alarme.wav');
+            alarmeAudio.play();
+        }
+
+        // Adicionar evento para verificar a tecla Enter
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                // Ocultar mensagem inicial e exibir o temporizador
+                document.getElementById("initialMessage").style.display = "none";
+                document.getElementById("temporizador").style.display = "block";
+                document.getElementById("startButton").style.display = "block";
+                // Iniciar automaticamente o foco
+                iniciarPomodoro(); // Chame a função desejada (iniciarPomodoro neste caso)
+            }
+        });
+
+    </script>
+
+</body>
+</html>

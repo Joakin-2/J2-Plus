@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Trabalho</title>
+    <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 40px; /* Aumenta a distância entre os botões */
+        }
+
+        .botao {
+            background-color: #833fd1;
+            color: white;
+            border: none;
+            padding: 50px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 24px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            width: 300px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .mensagem {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <button class="botao" onclick="redirecionar('Criar Livro')"><i class="fas fa-book"></i> Criar Livro</button>
+        <button class="botao" onclick="redirecionar('Criar eBook')"><i class="fas fa-file-alt"></i> Criar eBook</button>
+        <button class="botao" onclick="redirecionar('Social Mídia')"><i class="fab fa-instagram"></i> Social Mídia</button>
+        <button class="botao" onclick="redirecionar('Marketing')"><i class="fas fa-globe"></i> Marketing</button>
+    </div>
+    
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Criar Livro':
+                    window.open('https://app.leonardo.ai/ai-generations');
+                    window.open('https://www.canva.com/');
+                    window.open('https://kdp.amazon.com/pt_BR/bookshelf');
+                    window.open('https://www.ilovepdf.com/pt');
+                    window.open('https://drive.google.com/file/d/1Q-ktynj2dUxChyIKHwTIlMsAKQaINsFs/view?usp=drive_link');
+                    break;
+                case 'Criar eBook':
+                    window.open('https://chatgpt.com/c/cfd0f8f5-2aa9-421c-9d2d-49be44d79557');
+                    window.open('https://www.canva.com/design/DAF-Gy3IYpA/WSgRpWRg6tie85tpFtfCDA/edit');
+                    break;
+                case 'Social Mídia':
+                    window.open('https://chat.openai.com/');
+                    window.open('https://www.canva.com/');
+                    window.open('https://www.instagram.com/');
+                    window.open('https://business.facebook.com/latest/home?asset_id=244402432098789&business_id=954939336298894&nav_ref=media_manager_redirect_home');
+                    break;
+                case 'Marketing':
+                    window.open('https://app.hotmart.com/dashboard');
+                    window.open('https://dashboard.kiwify.com.br/');
+                    window.open('https://anuncy.com/profile/dashboard');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

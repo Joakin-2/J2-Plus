@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Contas</title>
+    <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 40px; /* Aumenta a distância entre os botões */
+        }
+
+        .botao {
+            background-color: #833fd1;
+            color: white;
+            border: none;
+            padding: 50px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 24px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            width: 300px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .mensagem {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="botao" onclick="redirecionar('Inter')"><i class="fas fa-university"></i> Inter</button>
+        <button class="botao" onclick="redirecionar('Nuivest')"><i class="fas fa-hand-holding-usd"></i> Nuivest</button>
+        <button class="botao" onclick="redirecionar('Binance')"><i class="fas fa-coins"></i> Binance</button>
+    </div>
+
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Inter':
+                    window.open('https://contadigital.inter.co/home');
+                    break;
+                case 'Nuivest':
+                    window.open('https://www.nuinvest.com.br/home');
+                    break;
+                case 'Binance':
+                    window.open('https://www.binance.com/pt-BR/my/dashboard');
+                    Window.open('https://www.binance.com/en/trading-bots')
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

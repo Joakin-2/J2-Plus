@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Investir</title>
+    <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 40px; /* Aumenta a distância entre os botões */
+        }
+
+        .botao {
+            background-color: #833fd1;
+            color: white;
+            border: none;
+            padding: 50px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 24px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            width: 300px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .mensagem {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div class="container">
+        <button class="botao" onclick="redirecionar('Anúncios')"><i class="fas fa-money-bill"></i> Anúncios</button>
+        <button class="botao" onclick="redirecionar('Day Trade')"><i class="fas fa-chart-line"></i> Day Trade</button>
+        <button class="botao" onclick="redirecionar('Home Broker')"><i class="fas fa-money-bill-alt"></i> Home Broker</button>
+        <button class="botao" onclick="redirecionar('Bolsa de Valores')"><i class="fas fa-hand-holding-usd"></i> Bolsa de Valores</button>
+    </div>
+
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Day Trade':
+                    window.open('https://br.investing.com/');
+                    window.open('https://br.tradingview.com/chart/wJjwLtXA/?symbol=BMFBOVESPA%3AIBOV');
+                    break;
+                case 'Home Broker':
+                    window.open('https://www.youtube.com/watch?v=pWM1GAiYBE0&ab_channel=FalandodeDinheiro-ChrisSouza');
+                    window.open('https://keep.google.com/u/1/#NOTE/16eKf2DG2rXDH36ylXLE5qz6BmTJ7sLiY8AcN8CFLiLBA0qSCyoK3Q9JczBb7Aw');
+                    break;
+                case 'Bolsa de Valores':
+                    window.open('https://www.youtube.com/@Laatusoficial/streams');
+                    window.open('https://www.b3.com.br/pt_br/para-voce');
+                    break;
+                case 'Anúncios':
+                    window.open('https://ads.google.com/aw/overview?ocid=1292038484&euid=889301739&__u=1365571411&uscid=1292038484&__c=7686292916&authuser=0&subid=ww-ww-xs-ip-awhc-a-ogb_cons!o2m--ahpm-0000000127-0000000000-awhp-hv-01-22');
+                    window.open('https://business.facebook.com/latest/home?nav_ref=bm_home_redirect&business_id=1094998265234232&asset_id=115913178149808');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
