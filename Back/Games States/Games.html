@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games States</title>
+    <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column; /* Alteração para empilhar os botões verticalmente */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .botao {
+            background-color: #8C52FF;
+            color: white;
+            border: none;
+            padding: 40px; /* Ajuste o tamanho dos botões conforme necessário */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px; /* Ajuste o tamanho da fonte conforme necessário */
+            margin: 10px; /* Ajuste o espaçamento entre os botões conforme necessário */
+            cursor: pointer;
+            border-radius: 8px;
+            width: 450px; /* Ajuste a largura dos botões conforme necessário */
+        }
+
+        .mensagem {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="botao" onclick="redirecionar('+ Mais')"> + Mais</button>
+        <button class="botao" onclick="redirecionar('Ticks')"><i class="fas fa-square"></i> Ticks</button>
+        <button class="botao" onclick="redirecionar('Balloon Fly')"><i class="fas fa-cloud"></i> Balloon Fly</button>
+        <button class="botao" onclick="redirecionar('Sky of Wars')"><i class="fas fa-rocket"></i> Sky of Wars</button>
+    </div>      
+
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case '+ Mais':
+                    window.close('Games.html');
+                    window.open('Outros.html');
+                    break; // Adicionei o break aqui
+                case 'Ticks':
+                    window.close('Games.html');
+                    window.open('Ticks.html');
+                    break; // Adicionei o break aqui
+                case 'Balloon Fly':
+                    window.close('Games.html');
+                    window.open('Balloon Fly.html');
+                    break; // Adicionei o break aqui
+                case 'Sky of Wars':
+                    window.close('Games.html');
+                    window.open('Sky of Wars.html');
+                    break; // Adicionei o break aqui
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

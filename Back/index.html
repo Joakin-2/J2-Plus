@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="background-video-container">
+        <video autoplay loop muted>
+            <source src="Space.mp4" type="video/mp4">
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
+    </div>
+    
+    <div id="content-container">
+        <div id="clock"></div>
+        <div id="date"></div>
+        <div id="temperature"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Função para iniciar a música
+        function iniciarMusica() {
+            var audio = new Audio('louvores.webm');
+            audio.play();
+        }
+
+        // Adiciona um ouvinte de clique ao documento para iniciar a música quando houver interação do usuário
+        document.addEventListener('click', function () {
+            iniciarMusica();
+        });
+
+        // Função para verificar a hora e iniciar a música às 22h
+        function verificarHora() {
+            var agora = new Date();
+            var horas = agora.getHours();
+            var minutos = agora.getMinutes();
+
+            // Verifica se é 22h e se a música ainda não foi iniciada
+            if (horas === 22 && !musicaIniciada) {
+                iniciarMusica();
+                musicaIniciada = true;  // Marca que a música foi iniciada
+            } else if (horas !== 22) {
+                musicaIniciada = false;  // Reinicia a variável quando não é mais 22h
+            }
+
+            // Verifica alarmes
+            if (horas === 18 && minutos === 25) {
+                tocarAlarme1();
+            } else if (horas === 23 && minutos === 0) {
+                abrirSite();  // Chama a função para abrir o site
+            } else if (horas === 23 && minutos === 30) {
+                tocarAlarme2();
+            }
+        }
+
+        function tocarAlarme1() {
+            var alarmeAudio = new Audio('Escola.wav');
+            alarmeAudio.play();
+        }
+        function tocarAlarme2() {
+            var alarmeAudio = new Audio('Dormir.wav');
+            alarmeAudio.play();
+        }
+        // Função para abrir o site
+        function abrirSite() {
+            window.open('sleep.html');
+        }
+
+        // Variável para controlar se a música já foi iniciada
+        var musicaIniciada = false;
+
+        // Adiciona um intervalo para verificar a hora a cada minuto
+        setInterval(verificarHora, 60000); // 60000 milissegundos = 1 minuto
+
+    </script>
+</body>
+</html>

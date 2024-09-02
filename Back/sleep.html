@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+    <div id="loading-screen">
+        <h2>Deixe as luzes amarelas</h2>
+    </div>
+
+    <div id="background-video-container">
+        <video id="background-video" autoplay loop>
+            <source src="rainy day.mp4" type="video/mp4">
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
+    </div>
+    
+    <div id="content-container">
+        <div id="clock"></div>
+    </div>
+
+    <script src="script1.js"></script>
+    <script>
+        // Function to start music and video
+        function startMusicAndVideo() {
+            var video = document.getElementById('background-video');
+            video.play();
+        }
+
+        // Hide loading screen and start music and video on Enter press
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                document.getElementById('loading-screen').style.display = 'none';
+                startMusicAndVideo();
+            }
+        });
+
+        // Function to check time and start music at 22:00
+        function checkTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+
+            // Check if it's 10:00 PM
+            if (hours === 22 && minutes === 0) {
+                playAlarm();
+            }
+            if (hours === 7 && minutes === 0) {
+                window.close();
+            }
+        }
+
+        // Function to play alarm
+        function playAlarm() {
+            var video = document.getElementById('background-video');
+            video.volume = 1; // Set volume to full
+            video.play();
+        }
+
+        // Variable to track if music has already started
+        var musicStarted = false;
+
+        // Check time every minute
+        setInterval(checkTime, 60000); // 60000 milliseconds = 1 minute
+    </script>
+</body>
+</html>

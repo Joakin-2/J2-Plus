@@ -1,0 +1,64 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif; /* Fonte padrão mais moderna */
+}
+
+#background-video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#content-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace; /* Fonte estética para o conteúdo */
+}
+
+body, html {
+    background-color: rgba(0, 0, 0, 0.705);
+}
+
+#clock, #date, #temperature {
+    border-radius: 15px; /* Bordas mais arredondadas */
+    padding: 20px;
+    color: #E0FFFF; /* Cor azul clara */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6); /* Sombra mais destacada */
+    backdrop-filter: blur(10px); /* Adiciona desfoque de fundo */
+}
+
+#clock {
+    font-size: 150px;
+    margin-bottom: 20px;
+}
+
+#date, #temperature {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#date {
+    font-weight: bold; /* Destaque para a data */
+}
+
+#temperature {
+    font-weight: bold; /* Destaque para a temperatura */
+}
+

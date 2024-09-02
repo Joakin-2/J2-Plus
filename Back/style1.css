@@ -1,0 +1,63 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+h2 {
+    font-family: 'Arial', sans-serif;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(252, 209, 70, 0.801); /* Adicione uma margem preta ao redor dos textos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #333; /* Cor do texto */
+    z-index: 1000; /* Garante que a tela de carregamento esteja acima de outros elementos */
+}
+
+#background-video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#content-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+body, html {
+    background-color: rgba(110, 64, 3, 0.397); /* Adicione uma margem preta ao redor dos textos */
+}
+
+#clock {
+    font-size: 140px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    padding: 10px; /* Adapte o padding conforme necessário */
+}
