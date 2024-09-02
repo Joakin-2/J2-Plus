@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Place</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loader-container">
+        <div id="loader-background">
+            <video autoplay loop muted>
+                <source src="load.mp4" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
+    </div>
+
+    <header>
+        <h1>Bem-vindo ao Music Place</h1>
+    </header>
+
+    <main>
+        <div id="top-sections">
+            <section id="report-section">
+                <h2>Relatório</h2>
+                <div id="notes-section">
+                    <h3>Anotações</h3>
+                    <textarea id="notes1" placeholder="Faça suas anotações aqui..."></textarea>
+                </div>
+                <div id="calendar-section">
+                    <h3>Calendário</h3>
+                    <div id="calendar"></div>
+                </div>
+                <section id="about-section">
+                    <h2>Sobre</h2>
+                    <p>Bem-vindo ao Music Place! Uma área feita especialmente para aprender e ensaiar com o Instrumento da sua escolha.</p>
+                </section>
+            </section>
+
+            <section id="instrument-buttons">
+                <h2>O que vamos Tocar hoje?</h2>
+                <button id="piano-button" class="instrument-button" onclick="redirecionar('Teclado')">
+                    <img src="1.png" alt="Teclado"> Teclado
+                </button>
+                
+                <button id="saxophone-button" class="instrument-button" onclick="redirecionar('Saxofone')">
+                    <img src="3.png" alt="Saxofone"> Saxofone
+                </button>
+                
+                <button id="clarinet-button" class="instrument-button" onclick="redirecionar('Clarinete')">
+                    <img src="4.png" alt="Clarinete"> Clarinete
+                </button>
+                
+                <button id="bass-button" class="instrument-button" onclick="redirecionar('Baixo')">
+                    <img src="2.png" alt="Baixo"> Baixo
+                </button>
+
+                <button id="voz-button" class="instrument-button" onclick="redirecionar('Voz')">
+                    <img src="5.png" alt="Voz"> Voz
+                </button>
+
+                <section id="cleaning-button">
+                    <h2>Limpeza de Instrumentos</h2>
+                    <button id="clean-instruments" class="clean-instruments" onclick="redirecionar('Como Limpar')">Como Limpar</button>
+                </section>
+            </section>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Teclado':
+                    window.close('index.html');
+                    window.open('teclado.html');
+                    window.open('https://www.pianoeletronico.com.br/');
+                    break;
+                case 'Saxofone':
+                    window.close('index.html');
+                    window.open('sax.html');
+                    break;
+                case 'Clarinete':
+                    window.close('index.html');
+                    window.open('clarinete.html');
+                    break;
+                case 'Baixo':
+                    window.close('index.html');
+                    window.open('baixo.html');
+                    break;
+                case 'Voz':
+                    window.close('index.html');
+                    window.open('voz.html');
+                    break;
+                case 'Como Limpar':
+                    window.close('index.html');
+                    window.open('limpar.html');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

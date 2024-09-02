@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Place</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Área de Limpeza</h1>
+    </header>
+
+    <main>
+        <section id="instrument-buttons2">
+            
+            <button id="piano-button" class="instrument-button2" onclick="redirecionar('Teclado')">Teclado</button>
+            
+            <button id="saxophone-button" class="instrument-button2" onclick="redirecionar('Saxofone')">Saxofone</button>
+            
+            <button id="clarinet-button" class="instrument-button2" onclick="redirecionar('Clarinete')">Clarinete</button>
+            
+            <button id="bass-button" class="instrument-button2" onclick="redirecionar('Baixo')">Baixo</button>
+                              
+        </section>        
+        
+    <script src="script.js"></script>
+
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Teclado':
+                    window.open('https://youtu.be/HNrAskBRvG8?si=4mE8W0nguouubmpH');
+                    break;
+                case 'Saxofone':
+                    window.open('https://youtu.be/INPBH8sbtRo?si=aSaVknzlFf_7jT0u');
+                    break;
+                case 'Clarinete':
+                    window.open('https://youtu.be/Ap3b3czkYXU?si=IHZFTChJy67Vo5hB');
+                    break;
+                case 'Baixo':
+                    window.open('https://youtu.be/eVCCizvslmo?si=oHfzGeLLrGsdP18n');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

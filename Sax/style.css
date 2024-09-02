@@ -1,0 +1,248 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+header {
+    background-color: #000000;
+    color: #ffd755;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+main {
+    margin: 30px 60px;
+}
+
+#top-sections {
+    display: flex;
+    justify-content: space-between;
+}
+
+#report-section, #instrument-buttons {
+    flex: 1;
+    margin: 10px;
+}
+
+section {
+    background-color: #2c2c2c;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+h2 {
+    color: #ffd755;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    padding: 30px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ffd755;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.botao:hover {
+    background-color: #666;
+    transform: scale(1.05);
+}
+
+#instrument-buttons2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    width: 95%;
+    height: 80%;
+}
+
+.instrument-button2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ffd755;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#instrument-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instrument-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    padding: 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ffd755;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.instrument-button img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.instrument-button:hover {
+    background-color: #666;
+    transform: scale(1.05);
+}
+
+#cleaning-button {
+    margin: 10px;
+    width: 90%;
+    padding: 5px;
+    margin: 20px auto;
+    border: none;
+    border-radius: 5px;
+}
+
+#about-section {
+    margin: 10px;
+    width: 80%;
+    padding: 5px;
+    margin: 32px auto;
+    border: none;
+    border-radius: 5px;
+}
+
+#clean-instruments {
+    display: block;
+    width: 90%;
+    padding: 20px;
+    margin: 20px auto;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ffd755;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+}
+
+#clean-instruments:hover {
+    background-color: #666;
+    transform: scale(1.05);
+}
+
+#loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    z-index: 9999;
+}
+
+#loader-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loader-background video {
+    width: 100%;
+    height: auto;
+}
+
+#notes-section, #calendar-section {
+    margin-top: 20px;
+}
+
+textarea {
+    width: 98%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ffd755;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day {
+    width: 30px;
+    height: 30px;
+    color: #ffd755;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.day-name {
+    background-color: rgb(27, 27, 27);
+    color: #ffd755;
+}
+
+.day-number {
+    background-color: #303030;
+    color: #ffffff;
+}
+
+.day.selected {
+    background-color: #3f3f3f;
+    color: #ffe893;
+}
+
+.day:hover {
+    background-color: #3f3f3f;
+}
+
+#about-section {
+    text-align: center;
+}

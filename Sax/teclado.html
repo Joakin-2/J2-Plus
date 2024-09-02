@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Place</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Área do Teclado</h1>
+    </header>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        <button class="botao" onclick="redirecionar('Timer')"><i class="fas fa-university"></i> Timer</button>
+        <button class="botao" onclick="redirecionar('Lições')"><i class="fas fa-university"></i> Lições</button>
+        <button class="botao" onclick="redirecionar('Compasso')"><i class="fas fa-university"></i> Compasso</button>
+        <button class="botao" onclick="redirecionar('Partituras')"><i class="fas fa-hand-holding-usd"></i> Partituras</button>
+    </div>
+
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Timer':
+                    window.open('Timers/timer.html');
+                    break;
+                case 'Lições':
+                    window.open('Sax Tenor Pdf.pdf');
+                    break;
+                case 'Compasso':
+                    window.open('Timers/compasso.html');
+                    break;
+                case 'Partituras':
+                    window.open('https://www.pinterest.pt/joca_14/partituras-sax/');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

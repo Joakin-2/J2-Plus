@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compasso</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        #metronome {
+            font-size: 2em;
+            background-color: #ffe893;
+            padding: 20px;
+            color: #000000;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #startButton {
+            font-size: 1.5em;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="metronome">Compasso: 00</div>
+    <button id="startButton" onclick="toggleMetronome()">Iniciar</button>
+
+    <script>
+        let metronomeValue = 1;
+        let metronomeId;
+        let isMetronomeRunning = false;
+
+        // Adiciona o beep
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let oscillator;
+
+        function createOscillator() {
+            oscillator = audioContext.createOscillator();
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(1000, audioContext.currentTime);
+            oscillator.connect(audioContext.destination);
+        }
+
+        function playBeep() {
+            createOscillator();
+            oscillator.start();
+            if (metronomeValue % 4 === 0) {
+                oscillator.stop(audioContext.currentTime + 0.3); // Beep mais longo para múltiplos de 4
+            } else {
+                oscillator.stop(audioContext.currentTime + 0.1); // Beep normal
+            }
+        }
+
+        function updateMetronome() {
+            if (isMetronomeRunning) {
+                document.getElementById("metronome").textContent = `Compasso: ${metronomeValue.toString().padStart(2, '0')}`;
+                playBeep();
+                metronomeValue = (metronomeValue % 4) + 1; // Incrementa de 1 a 4 em loop
+            }
+        }
+
+        function toggleMetronome() {
+            if (isMetronomeRunning) {
+                clearInterval(metronomeId);
+                isMetronomeRunning = false;
+                document.getElementById("startButton").textContent = "Iniciar";
+            } else {
+                metronomeValue = 1; // Defina o valor inicial do compasso para 1
+                metronomeId = setInterval(updateMetronome, 1000);
+                isMetronomeRunning = true;
+                document.getElementById("startButton").textContent = "Pausar";
+            }
+        }
+    </script>
+
+</body>
+</html>
