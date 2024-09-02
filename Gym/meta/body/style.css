@@ -1,0 +1,31 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1e1e1e; /* Cor de fundo geral do site - Tema escuro */
+    color: #fff; /* Cor do texto geral - Tema escuro */
+}
+
+.mural {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #1e1e1e; /* Cor de fundo geral do site - Tema escuro */
+}
+
+.row {
+    display: flex;
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+.photo {
+    flex: 1;
+    margin-right: 10px; /* Adjust spacing between photos */
+}
+
+.photo:last-child {
+    margin-right: 0; /* Remove right margin for the last photo in each row */
+}
+
+.photo img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Add border-radius for rounded corners */
+}

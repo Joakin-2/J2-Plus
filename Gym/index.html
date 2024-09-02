@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JokGym</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loader-container">
+        <div id="loader-background">
+            <video autoplay loop muted>
+                <source src="load.mp4" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
+    </div>
+    
+    <header>
+        <h1>Bem-vindo ao JokGym</h1>
+    </header>
+    
+    <main>
+        <section id="report-section">
+            <h2>Relatório</h2>
+            <div id="notes-section">
+                <h3>Anotações</h3>
+                <textarea id="notes" placeholder="Registre suas anotações aqui..."></textarea>
+            </div>
+            <div id="calendar-section">
+                <h3>Calendário</h3>
+                <div id="calendar"></div>
+            </div>
+        </section>
+        
+        <section id="exercise-buttons">
+            <h2>Quais exercícios vamos realizar hoje?</h2>
+        
+            <div class="row">
+                <button id="vacuum-button" class="exercise-button" onclick="redirecionar('Vácuo')">
+                    <img src="1.png" alt="Vácuo"> Vácuo
+                </button>
+        
+                <button id="weightlifting-button" class="exercise-button" onclick="redirecionar('Exercícios')">
+                    <img src="3.png" alt="Exercícios"> Exercícios
+                </button>
+            </div>
+        
+            <div class="row">
+                <button id="running-button" class="exercise-button" onclick="redirecionar('Corrida')">
+                    <img src="2.png" alt="Corrida"> Corrida
+                </button>
+        
+                <button id="stretching-button" class="exercise-button" onclick="redirecionar('Alongamento')">
+                    <img src="4.png" alt="Alongamento"> Alongamento
+                </button>
+            </div>
+
+            <div id="weight-height">
+                <label for="weight">Peso (Kg):</label>
+                <input type="text" id="weight" name="weight" placeholder="Digite seu peso...">
+                <label for="height">Altura:</label>
+                <input type="text" id="height" name="height" placeholder="Digite sua altura...">
+            </div>
+        </section>
+
+        <section id="about-section">
+            <br>
+            <br>
+            <br>
+            <h2>Sobre</h2>
+            <p>Bem-vindo ao JokGym! Um espaço dedicado a aprendizado e prática de exercícios para manter seu corpo saudável e ativo.</p>
+        </section>
+    </main>
+    
+    <script src="script.js"></script>
+    
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Vácuo':
+                    window.close('index.html');
+                    window.open('vacuo.html');
+                    break;
+                case 'Corrida':
+                    window.close('index.html');
+                    window.open('correr.html');
+                    //window.open('https://www.corridasaudavel.com.br/');
+                    break;
+                case 'Alongamento':
+                    window.close('index.html');
+                    window.open('alongar.html');
+                    break;
+                case 'Exercícios':
+                    window.close('index.html');
+                    window.open('pesos.html');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+    

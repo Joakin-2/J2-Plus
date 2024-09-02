@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mural</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS for centering the quotes */
+        footer {
+            text-align: center;
+        }
+        #quote {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="mural">
+        <div class="row">
+            <div class="photo">
+                <img src="1.jpg" alt="Photo 1">
+            </div>
+            <div class="photo">
+                <img src="2.jpg" alt="Photo 2">
+            </div>
+            <div class="photo">
+                <img src="3.jpg" alt="Photo 3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="photo">
+                <img src="4.jpg" alt="Photo 4">
+            </div>
+            <div class="photo">
+                <img src="5.jpg" alt="Photo 5">
+            </div>
+            <div class="photo">
+                <img src="6.jpg" alt="Photo 6">
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p id="quote"></p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const quotes = [
+            "Chega ser ridículo.",
+            "Você treina? nem parece.",
+            "Chama isso de shape?",
+            "5 anos pra isso.",
+            "Fracassado."
+            ];
+
+            const quoteElement = document.getElementById("quote");
+
+        // Generate a random index to select a quote from the array
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+
+        // Display the randomly selected quote
+        quoteElement.textContent = quotes[randomIndex];
+    });
+    </script>
+</body>
+</html>

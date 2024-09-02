@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 320px; /* Adicionando espaçamento nas bordas - 20px superior e inferior */
+}
+    </style>
+</head>
+<body>
+    <main>
+        <section id="weekly-schedule">
+            <br>
+            <br>
+            <br>
+            <br>
+            <h2>Programação Semanal</h2>
+            <!-- Botões dos treinos da semana -->
+            <button class="exercise-button" onclick="redirecionar('Seg')">Segunda-feira: Peito e Tríceps</button>
+            <button class="exercise-button" onclick="redirecionar('Ter')">Terça-feira: Costas e Bíceps</button>
+            <button class="exercise-button" onclick="redirecionar('Qua')">Quarta-feira: Pernas e Abdômen</button>
+            <button class="exercise-button" onclick="redirecionar('Qui')">Quinta-feira: Ombros e Trapézio</button>
+            <button class="exercise-button" onclick="redirecionar('Sex')">Sexta-feira: Alongamentos</button>
+            <button class="exercise-button" onclick="redirecionar('Sab')">Sábado: Corrida</button>
+            <button class="exercise-button" onclick="redirecionar('Dom')">Domingo: Alongamentos</button>
+            <br>
+        </section>
+        <section id="exercise-buttons">
+            <br>
+            <br>
+            <br>
+            <h2>O que vamos treinar hoje?</h2>
+
+            <div class="row2">
+                <button id="arms-button" class="exercise-button2" onclick="redirecionar('Braços')">Braços</button>
+                <button id="shoulders-button" class="exercise-button2" onclick="redirecionar('Ombros')">Ombros</button>
+            </div>
+
+            <div class="row2">
+                <button id="abs-button" class="exercise-button2" onclick="redirecionar('Abdômen')">Abdômen</button>
+                <button id="chest-button" class="exercise-button2" onclick="redirecionar('Peito')">Peito</button>
+            </div>
+
+            <div class="row2">
+                <button id="back-button" class="exercise-button2" onclick="redirecionar('Costas')">Costas</button>
+                <button id="legs-button" class="exercise-button2" onclick="redirecionar('Perna')">Perna</button>
+            </div>
+
+            <button id="meta-button" class="exercise-button" onclick="redirecionar('Meta')">Meta</button>
+                              
+        </section>        
+    </main>
+    
+    <script src="script2.js"></script>
+    
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Seg':
+                    window.open('peito/peito.html');
+                    window.open('braço/braco.html');
+                    break;
+                case 'Ter':
+                    window.open('costa/costa.html');
+                    window.open('braço/braco.html');
+                    break;
+                case 'Qua':
+                    window.open('perna/perna.html');
+                    window.open('abs/abs.html');
+                    break;
+                case 'Qui':
+                    window.open('ombro/ombros.html');
+                    break;
+                case 'Sex':
+                    window.open('alongar.html');
+                    break;
+                case 'Sab':
+                    window.open('correr.html');
+                    break;
+                case 'Dom':
+                    window.open('alongar.html');
+                    break;
+
+                case 'Meta':
+                    window.open('meta/body/mural.html');
+                    window.open('meta/meta.html');
+                    break;
+                case 'Braços':
+                    window.open('braço/braco.html');
+                    break;
+                case 'Abdômen':
+                    window.open('abs/abs.html');
+                    break;
+                case 'Peito':
+                    window.open('peito/peito.html');
+                    break;
+                case 'Costas':
+                    window.open('costa/costa.html');
+                    break;
+                case 'Ombros':
+                    window.open('ombro/ombro.html');
+                    break;
+                case 'Perna':
+                    window.open('perna/perna.html');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

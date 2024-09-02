@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sessão de Alongamentos</title>
+    <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2B2B2B;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            width: 80%;
+            max-width: 1200px;
+            background-color: #2B2B2B;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            width: 600px;
+            max-width: 800px;
+        }
+
+        .content-container {
+            flex: 2;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .botao {
+            background-color: #FFB800;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 20px; /* Ajustado para um valor igual em ambos os botões */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 24px;
+            margin: 4px;
+            cursor: pointer;
+            width: 310px;
+            border-radius: 8px;
+            margin-left: 120px;
+        }
+
+        .mensagem {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+
+        <div class="image-container">
+            <img src="alongar.jpg" alt="Imagem de Alongamento">
+        </div>
+
+        <div class="content-container">
+            <h1>Alongamentos</h1>
+
+            <p>Alongamento de quadríceps</p>
+            <p>Alongamento de pescoço</p>
+            <p>Alongamento das pernas</p>
+            <p>Alongamento de costas</p>
+            <p>Alongamento Ponte</p>
+
+            <br>
+
+            <div>
+                <button class="botao" onclick="redirecionar('Alongamento Matinal')"><i class="fas fa-sun"></i> Alongamento Matinal</button>
+            </div>
+
+            <div>
+                <button class="botao" onclick="redirecionar('Alongamento De Noite')"><i class="fas fa-moon"></i> Alongamento Noturno</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Alongamento Matinal':
+                    window.open('https://www.youtube.com/watch?v=fYOPLX49oZU&ab_channel=RenatoBatista');
+                    break;
+                case 'Alongamento De Noite':
+                    window.open('https://www.youtube.com/watch?v=VoO1Psq-eY4&ab_channel=FernandaYoga');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+
+</body>
+</html>
