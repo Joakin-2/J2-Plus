@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="Monitor de Hábitos.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saú<details></details></title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        header button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        header button:hover {
+            background-color: #555;
+        }
+
+        #menuOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .menu-content {
+            background: #fff;
+            padding: 20px;
+            margin: 15% auto;
+            width: 80%;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .menu-content button {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .menu-content button:hover {
+            background-color: #45a049;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            margin-top: 0;
+        }
+
+        .section label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .section input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .section button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .section button:hover {
+            background-color: #45a049;
+        }
+
+        #contadorDeLitros {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                width: 90%;
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="menuBtn">Menu</button>
+        <p id="relogio"></p>
+    </header>
+
+    <div id="menuOverlay">
+        <div class="menu-content">
+            <button id="medicacaoBtn">Medicação</button>
+            <button id="recomendacoesBtn">Recomendações</button>
+            <button id="diarioBtn">Diário de Saúde</button>
+            <button id="voltarBtn">Voltar</button>
+        </div>
+    </div>    
+
+    <main>
+        <h1>Saúde e Bem-Estar</h1>
+
+        <div class="section" id="medicacao">
+            <h2>Controle de Medicação</h2>
+            <form id="medicacaoForm">
+                <label for="medicamento">Medicamento:</label>
+                <input type="text" id="medicamento" name="medicamento" placeholder="Nome do medicamento">
+                <label for="dosagem">Dosagem:</label>
+                <input type="text" id="dosagem" name="dosagem" placeholder="Dosagem recomendada">
+                <label for="horario">Horário:</label>
+                <input type="text" id="horario" name="horario" placeholder="Horário para tomar o medicamento">
+                <button type="submit">Salvar</button>
+            </form>
+        </div>
+
+        <div class="section" id="recomendacoes">
+            <h2>Recomendações de Saúde</h2>
+            <p>Para manter uma vida saudável, considere as seguintes dicas:</p>
+            <ul>
+                <li>Faça refeições equilibradas e evite alimentos processados.</li>
+                <li>Beba bastante água, recomenda-se cerca de 2 litros por dia.</li>
+                <li>Pratique atividades físicas regularmente.</li>
+                <li>Durma bem e mantenha uma rotina regular de sono.</li>
+                <li>Realize exames médicos regulares e consulte seu médico.</li>
+            </ul>
+            <button onclick="window.open('https://www.youtube.com/@NutricionistaPatriciaLeite/videos', '_blank')">Receitas Saudáveis</button>
+        </div>
+
+        <div class="section" id="diario">
+            <h2>Diário de Saúde</h2>
+            <form id="diarioForm">
+                <label for="anotacoes">Anotações:</label>
+                <input type="text" id="anotacoes" name="anotacoes" placeholder="Digite suas anotações de saúde">
+                <button type="submit">Salvar</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const voltarBtn = document.getElementById('voltarBtn');
+            const medicacaoBtn = document.getElementById('medicacaoBtn');
+            const recomendacoesBtn = document.getElementById('recomendacoesBtn');
+            const diarioBtn = document.getElementById('diarioBtn');
+            const relogioElement = document.getElementById('relogio');
+
+            // Mostrar o menu
+            menuBtn.addEventListener('click', function() {
+                menuOverlay.style.display = 'block';
+            });
+
+            // Fechar o menu
+            voltarBtn.addEventListener('click', function() {
+                menuOverlay.style.display = 'none';
+            });
+
+            // Navegação do menu
+            medicacaoBtn.addEventListener('click', function() {
+                document.getElementById('medicacao').scrollIntoView();
+                menuOverlay.style.display = 'none';
+            });
+
+            recomendacoesBtn.addEventListener('click', function() {
+                document.getElementById('recomendacoes').scrollIntoView();
+                menuOverlay.style.display = 'none';
+            });
+
+            diarioBtn.addEventListener('click', function() {
+                document.getElementById('diario').scrollIntoView();
+                menuOverlay.style.display = 'none';
+            });
+
+            // Atualizar relógio
+            function atualizarRelogio() {
+                if (relogioElement) {
+                    const agora = new Date();
+                    const horas = agora.getHours().toString().padStart(2, '0');
+                    const minutos = agora.getMinutes().toString().padStart(2, '0');
+                    const segundos = agora.getSeconds().toString().padStart(2, '0');
+                    const horario = `${horas}:${minutos}:${segundos}`;
+                    relogioElement.textContent = horario;
+                }
+            }
+
+            atualizarRelogio();
+            setInterval(atualizarRelogio, 1000);
+        });
+    </script>
+</body>
+</html>
