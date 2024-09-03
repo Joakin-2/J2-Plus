@@ -56,21 +56,21 @@ function restoreMarkedDays() {
 
 // Função para salvar as anotações no localStorage
 function saveNotes() {
-    const notes = document.getElementById('notes').value;
-    localStorage.setItem('notes', notes);
+    const notes = document.getElementById('notesgym').value;
+    localStorage.setItem('notesgym', notes);
 }
 
 // Carregar as anotações salvas do localStorage, se existirem
 function loadNotes() {
-    const savedNotes = localStorage.getItem('notes');
+    const savedNotes = localStorage.getItem('notesgym');
 
     if (savedNotes) {
-        document.getElementById('notes').value = savedNotes;
+        document.getElementById('notesgym').value = savedNotes;
     }
 }
 
 // Adicionar evento para salvar automaticamente as anotações ao digitar
-document.getElementById('notes').addEventListener('input', function() {
+document.getElementById('notesgym').addEventListener('input', function() {
     saveNotes();
 });
 
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-document.getElementById("notes").addEventListener("input", function () {
+document.getElementById("notesgym").addEventListener("input", function () {
     // Salve as anotações sempre que houver uma alteração
     saveNotes();
 });
