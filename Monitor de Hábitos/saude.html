@@ -75,7 +75,7 @@
         }
 
         .section {
-            background: white;
+            background: rgb(36, 36, 36);
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
@@ -92,8 +92,20 @@
             font-weight: bold;
         }
 
+        #anotacoes_1 {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #2b2b2b;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
         .section input[type="text"] {
-            width: calc(100% - 22px);
+            width: 400px;
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
@@ -105,9 +117,24 @@
             color: white;
             border: none;
             padding: 10px 20px;
+            width: 400px;
             cursor: pointer;
             border-radius: 4px;
             font-size: 16px;
+        }
+
+        p {
+            color: white;
+            margin: 15px;
+        }
+
+        li {
+            color: white;
+            margin: 15px;
+        }
+
+        label {
+            color: white;
         }
 
         .section button:hover {
@@ -128,17 +155,7 @@
         
     </style>
 </head>
-<body>
-
-    <div id="menuOverlay">
-        <div class="menu-content">
-            <button id="medicacaoBtn">Medicação</button>
-            <button id="recomendacoesBtn">Recomendações</button>
-            <button id="diarioBtn">Diário de Saúde</button>
-            <button id="voltarBtn">Voltar</button>
-        </div>
-    </div>    
-
+<body>  
     <main>
         <h1>Saúde e Bem-Estar</h1>
 
@@ -147,14 +164,17 @@
             <form id="medicacaoForm">
                 <label for="medicamento">Medicamento:</label>
                 <input type="text" id="medicamento" name="medicamento" placeholder="Nome do medicamento">
+                <br><br>
                 <label for="dosagem">Dosagem:</label>
                 <input type="text" id="dosagem" name="dosagem" placeholder="Dosagem recomendada">
+                <br><br>
                 <label for="horario">Horário:</label>
                 <input type="text" id="horario" name="horario" placeholder="Horário para tomar o medicamento">
+                <br><br>
                 <button type="submit">Salvar</button>
             </form>
         </div>
-
+        <br>
         <div class="section" id="recomendacoes">
             <h2>Recomendações de Saúde</h2>
             <p>Para manter uma vida saudável, considere as seguintes dicas:</p>
@@ -165,14 +185,16 @@
                 <li>Durma bem e mantenha uma rotina regular de sono.</li>
                 <li>Realize exames médicos regulares e consulte seu médico.</li>
             </ul>
+            <br>
             <button onclick="window.open('https://www.youtube.com/@NutricionistaPatriciaLeite/videos', '_blank')">Receitas Saudáveis</button>
         </div>
-
+        <br>
         <div class="section" id="diario">
             <h2>Diário de Saúde</h2>
             <form id="diarioForm">
-                <label for="anotacoes">Anotações:</label>
-                <input type="text" id="anotacoes" name="anotacoes" placeholder="Digite suas anotações de saúde">
+                <label for="anotacoes_1">Anotações:</label>
+                <textarea id="anotacoes_1" placeholder="Digite aqui..."></textarea>
+                <br><br>
                 <button type="submit">Salvar</button>
             </form>
         </div>
