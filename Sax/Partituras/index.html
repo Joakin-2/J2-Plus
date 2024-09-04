@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Partituras</title>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,6 +18,10 @@
         h1 {
             color: #ffffff; /* Cor do título em branco */
             margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
         .gallery {
             display: grid;
@@ -34,11 +40,24 @@
         .gallery img:hover {
             transform: scale(1.05);
         }
+        .pdf-link {
+            color: #e0e0e0;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pdf-link i {
+            color: #ff5722; /* Cor do ícone para destaque */
+        }
     </style>
 </head>
 <body>
-    <h1>Galeria de Imagens</h1>
+    <h1><i class="fas fa-music"></i> Galeria de Imagens</h1>
     <div class="gallery">
+        <a href="Klosse - 63-66 - Sixty Exercises of Mechanism.pdf" class="pdf-link" target="_blank">
+            <i class="fas fa-file-pdf fa-3x"></i> Klosse - 63-66
+        </a>
         <img src="093.jpg" alt="Imagem 093">
         <img src="107.jpg" alt="Imagem 107">
         <img src="109.jpg" alt="Imagem 109">
@@ -49,11 +68,10 @@
         <img src="9.jpg" alt="Imagem 9">
         <img src="Altar.png" alt="Altar">
         <img src="Eterna Gratidão.jpg" alt="Eterna Gratidão">
-        <img src="Klosse - 63-66 - Sixty Exercises of Mechanism.pdf" alt="Klosse - 63-66">
         <img src="Subline e Grande Amor.jpeg" alt="Subline e Grande Amor">
         <img src="Te agradeço.jpg" alt="Te agradeço">
-        <img src="Yoshi_s Island.png" alt="Yoshi's Island">
         <img src="grato-a-ti.jpg" alt="Grato a ti">
+        <img src="Yoshi_s Island.png" alt="Yoshi's Island">
     </div>
 </body>
 </html>
