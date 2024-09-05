@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Cor de fundo escura */
+            color: #e0e0e0; /* Cor do texto clara */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Impede rolagem */
+            position: relative; /* Necessário para o efeito de neve */
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1; /* Garante que o conteúdo fique acima da neve */
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Coloca os botões em coluna */
+            gap: 20px; /* Espaço entre os botões */
+            align-items: center; /* Centraliza os botões horizontalmente */
+        }
+
+        .btn {
+            width: 150px; /* Aumenta a largura dos botões */
+            background-color: #1f1f1f; /* Cor de fundo dos botões */
+            color: #ffffff; /* Cor do texto dos botões */
+            border: none;
+            border-radius: 8px; /* Aumenta o raio para bordas mais arredondadas */
+            padding: 15px; /* Ajusta o padding */
+            font-size: 18px; /* Aumenta o tamanho da fonte */
+            text-decoration: none; /* Remove o sublinhado dos links */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adiciona sombra para destaque */
+        }
+
+        .btn:hover {
+            transform: scale(1.1); /* Aumenta o botão ao passar o mouse */
+        }
+
+        #viBtn:hover {
+            background-color: #FF7A7A; /* Efeito amarelo para o botão Note */
+        }
+
+        #pcBtn:hover {
+            background-color: #9b59b6; /* Efeito roxo para o botão PC */
+        }
+
+        #noteBtn:hover {
+            background-color: #f1c40f; /* Efeito amarelo para o botão Note */
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .snowflake {
+            position: absolute;
+            color: #ffffff;
+            font-size: 1.5em;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+            top: -10px; /* Começa um pouco acima da tela */
+        }
+
+        #transcript {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #ffcccc; /* Cor clara para o texto do status */
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="ripple-container">
+        <p id="transcript"></p>
+        <div class="button-container">
+            <a href="http://192.168.1.73:5555/" target="_blank" class="btn" id="viBtn">Vi</a>
+            <a href="http://192.168.1.66:5550/" target="_blank" class="btn" id="pcBtn">PC</a>
+            <a href="http://192.168.1.74:5000/" target="_blank" class="btn" id="noteBtn">Note</a>
+        </div>
+    </div>
+    <script>
+        // Efeito de neve
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = '.'; // Caractere de floco de neve
+            snowflake.style.left = `${Math.random() * 100}vw`; // Posição horizontal aleatória
+            snowflake.style.fontSize = `${Math.random() * 20 + 10}px`; // Tamanho aleatório
+            snowflake.style.opacity = Math.random(); // Opacidade aleatória
+
+            document.body.appendChild(snowflake);
+
+            const duration = Math.random() * 10 + 5; // Duração aleatória
+
+            snowflake.animate([
+                { transform: `translateY(-100vh)`, opacity: 1 },
+                { transform: `translateY(100vh)`, opacity: 0 }
+            ], {
+                duration: duration * 1000,
+                easing: 'linear',
+                fill: 'forwards'
+            });
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createSnowflake, 100); // Cria um floco de neve a cada 100ms
+
+        document.addEventListener('mousemove', function (e) {
+            const ripple = document.createElement('div');
+            ripple.classList.add('ripple');
+            ripple.style.left = `${e.clientX}px`;
+            ripple.style.top = `${e.clientY}px`;
+            document.body.appendChild(ripple);
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+
+        // Reconhecimento de voz
+        document.addEventListener('DOMContentLoaded', () => {
+    const transcriptEl = document.getElementById('transcript');
+
+    // Verifica se o navegador suporta Web Speech API
+    if (!('webkitSpeechRecognition' in window) || !('speechSynthesis' in window)) {
+        alert('Seu navegador não suporta as APIs necessárias. Por favor, use o Google Chrome.');
+        return;
+    }
+
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = 'pt-BR'; // Define o idioma para português
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onstart = () => {
+        transcriptEl.textContent = '';
+    };
+
+    recognition.onend = () => {
+        // Reinicia o reconhecimento se necessário
+        recognition.start();
+    };
+
+    recognition.onerror = (event) => {
+        console.error('Erro no reconhecimento de voz:', event.error);
+        transcriptEl.textContent = 'Erro no reconhecimento de voz. Tente novamente.';
+    };
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        transcriptEl.textContent = transcript;
+
+        if (transcript.includes('joaquim')) {
+            transcriptEl.textContent = 'Estão te chamando';
+            
+            // Sintetiza a fala
+            const utterance = new SpeechSynthesisUtterance('Estão te chamando');
+            utterance.lang = 'pt-BR'; // Define o idioma para português
+            speechSynthesis.speak(utterance);
+            
+            // Atualiza a página após 2 segundo
+            setTimeout(() => {
+                window.location.reload(); // Atualiza a página
+            }, 2000);
+        }
+    };
+
+    // Inicia o reconhecimento
+    recognition.start();
+});
+    </script>
+</body>
+</html>
