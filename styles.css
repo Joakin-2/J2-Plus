@@ -17,13 +17,11 @@ body {
     position: relative;
 }
 
-
-
 .menu-button {
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: #8c00ff; /* Roxo para o botão do menu */
+    background-color: #825dff; /* Roxo para o botão do menu */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -86,7 +84,7 @@ body {
 }
 
 .close-menu {
-    background-color: #8c00ff; /* Cor do botão de fechar */
+    background-color: #825dff; /* Cor do botão de fechar */
     color: #fff;
     border: none;
     padding: 20px 80px;
@@ -205,7 +203,7 @@ button {
     margin-left: 10px;
     padding: 5px 10px;
     border: none;
-    background-color: #8c00ff; /* Roxo para o botão */
+    background-color: #825dff; /* Roxo para o botão */
     color: #fff;
     border-radius: 3px;
     cursor: pointer;
