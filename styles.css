@@ -95,7 +95,7 @@ body {
 }
 
 .close-menu:hover {
-    background-color: #7811ff; /* Cor do botão de fechar ao passar o mouse */
+    background-color: #642dfc; /* Cor do botão de fechar ao passar o mouse */
 }
 
 
@@ -210,5 +210,5 @@ button {
 }
 
 button:hover {
-    background-color: #7811ff; /* Roxo mais escuro no hover */
+    background-color: #642dfc; /* Roxo mais escuro no hover */
 }
