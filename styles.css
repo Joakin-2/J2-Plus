@@ -74,13 +74,13 @@ body {
 
 .menu ul li a {
     text-decoration: none;
-    color: #8c00ff; /* Cor do link */
+    color: #825dff; /* Cor do link */
     font-size: 30px; /* Tamanho da fonte */
     transition: color 0.3s ease; /* Transição suave para a cor do link */
 }
 
 .menu ul li a:hover {
-    color: #7400f8; /* Cor do link ao passar o mouse */
+    color: #8c00ff; /* Cor do link ao passar o mouse */
 }
 
 .close-menu {
@@ -113,7 +113,7 @@ body {
     width: 200px;
     height: 200px;
     border-radius: 20%;
-    background-color: #9402f5; /* Cor de fundo do avatar */
+    background-color: #825dff; /* Cor de fundo do avatar */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,7 +124,7 @@ body {
     position: relative;
     width: 60px;
     height: 60px;
-    background-color: #9402f5; /* Cor do rosto */
+    background-color: #825dff; /* Cor do rosto */
     border-radius: 50%;
 }
 
