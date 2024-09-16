@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Cursos</title>
+    <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column; /* Muda a direção para coluna (um embaixo do outro) */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-around;
+            width: 60%;
+        }
+
+        .botao {
+            background-color: #833fd1;
+            color: white;
+            border: none;
+            padding: 50px; /* Tamanho uniforme para todos os botões */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 24px;
+            margin: 10px 10px; /* Adicionei um espaço uniforme entre os botões */
+            cursor: pointer;
+            border-radius: 8px;
+            width: 300px; /* Largura fixa para os botões */
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <button class="botao" onclick="redirecionar('mercado-livre')"><i class="fas fa-shopping-cart"></i> Mercado Livre</button>
+            <button class="botao" onclick="redirecionar('marketing-digital')"><i class="fas fa-bullhorn"></i> MKT Digital</button>
+        </div>
+        <div class="row">
+            <button class="botao" onclick="redirecionar('instagram')"><i class="fab fa-instagram"></i> Instagram</button>
+            <button class="botao" onclick="redirecionar('day-trade')"><i class="fas fa-chart-line"></i> Day Trade</button>
+        </div>
+    </div>
+</body>
+</html>

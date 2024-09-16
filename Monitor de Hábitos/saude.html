@@ -152,6 +152,15 @@
                 margin: auto;
             }
         }
+
+        .result {
+            background: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
         
     </style>
 </head>
@@ -171,8 +180,9 @@
                 <label for="horario">Horário:</label>
                 <input type="text" id="horario" name="horario" placeholder="Horário para tomar o medicamento">
                 <br><br>
-                <button type="submit">Salvar</button>
+                <button type="button" id="salvarMedicacaoBtn">Salvar</button>
             </form>
+            <div id="resultadoMedicacao" class="result"></div>
         </div>
         <br>
         <div class="section" id="recomendacoes">
@@ -202,54 +212,27 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const menuBtn = document.getElementById('menuBtn');
-            const menuOverlay = document.getElementById('menuOverlay');
-            const voltarBtn = document.getElementById('voltarBtn');
-            const medicacaoBtn = document.getElementById('medicacaoBtn');
-            const recomendacoesBtn = document.getElementById('recomendacoesBtn');
-            const diarioBtn = document.getElementById('diarioBtn');
-            const relogioElement = document.getElementById('relogio');
+            // Função para salvar e exibir os dados da medicação
+            function salvarMedicacao() {
+                // Obter os valores dos campos do formulário
+                const medicamento = document.getElementById('medicamento').value;
+                const dosagem = document.getElementById('dosagem').value;
+                const horario = document.getElementById('horario').value;
 
-            // Mostrar o menu
-            menuBtn.addEventListener('click', function() {
-                menuOverlay.style.display = 'block';
-            });
+                // Criar uma string com os resultados
+                const resultado = `
+                    <h3>Detalhes da Medicação</h3>
+                    <p><strong>Medicamento:</strong> ${medicamento}</p>
+                    <p><strong>Dosagem (ml):</strong> ${dosagem}</p>
+                    <p><strong>A cada:</strong> ${horario}</p>
+                `;
 
-            // Fechar o menu
-            voltarBtn.addEventListener('click', function() {
-                menuOverlay.style.display = 'none';
-            });
-
-            // Navegação do menu
-            medicacaoBtn.addEventListener('click', function() {
-                document.getElementById('medicacao').scrollIntoView();
-                menuOverlay.style.display = 'none';
-            });
-
-            recomendacoesBtn.addEventListener('click', function() {
-                document.getElementById('recomendacoes').scrollIntoView();
-                menuOverlay.style.display = 'none';
-            });
-
-            diarioBtn.addEventListener('click', function() {
-                document.getElementById('diario').scrollIntoView();
-                menuOverlay.style.display = 'none';
-            });
-
-            // Atualizar relógio
-            function atualizarRelogio() {
-                if (relogioElement) {
-                    const agora = new Date();
-                    const horas = agora.getHours().toString().padStart(2, '0');
-                    const minutos = agora.getMinutes().toString().padStart(2, '0');
-                    const segundos = agora.getSeconds().toString().padStart(2, '0');
-                    const horario = `${horas}:${minutos}:${segundos}`;
-                    relogioElement.textContent = horario;
-                }
+                // Exibir o resultado na div correspondente
+                document.getElementById('resultadoMedicacao').innerHTML = resultado;
             }
 
-            atualizarRelogio();
-            setInterval(atualizarRelogio, 1000);
+            // Adicionar o evento de clique ao botão de salvar
+            document.getElementById('salvarMedicacaoBtn').addEventListener('click', salvarMedicacao);
         });
     </script>
 </body>
