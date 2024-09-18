@@ -34,11 +34,11 @@
             text-decoration: none;
             display: inline-block;
             font-size: 24px;
-            margin: 4px 2px;
+            margin: 4px 10px;
             cursor: pointer;
             border-radius: 8px;
-            width: 300px;
-            height: 200px;
+            width: 60%;
+            height: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -83,7 +83,8 @@
             <button class="botao" onclick="redirecionar('Mercado')"><i class="fas fa-shopping-cart"></i> Mercado</button>
             <button class="botao" onclick="redirecionar('Pulike')"><i class="fas fa-print"></i> Pulike</button>
         </div>
-    </div>
+        <button class="botao" onclick="redirecionar('Loop')"><i class="fas fa-sync"></i> Loop</button>
+            </div>
     
     <script>
         function redirecionar(destino) {
@@ -115,6 +116,9 @@
                     break;
                 case 'Pulike':
                     window.open('https://unhideschool.com/cursos?orderby=RECENT&search=impress%C3%A3o%203d');
+                    break;
+                case 'Loop':
+                    window.open('https://loop.cloud.microsoft/');
                     break;
                 default:
                     break;
