@@ -69,8 +69,15 @@
 </style>
 </head>
 <body>
-    <header>
-        <h1 style="display: flex; align-items: center;">Productive Youtube <img src="yt/yt.png" alt="YouTube Icon" style="width: 44px; height: auto; margin-left: 10px;"></h1>
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background-color: #1f1f1f; color: #fff;">
+        <h1 style="display: flex; align-items: center; margin: 0;">
+            Productive Youtube 
+            <img src="yt/yt.png" alt="YouTube Icon" style="width: 44px; height: auto; margin-left: 10px;">
+        </h1>
+        <form action="https://www.youtube.com/results" method="GET" style="display: flex; align-items: center;">
+            <input type="text" name="search_query" placeholder="Pesquisar no YouTube" required style="padding: 10px; width: 350px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;">
+            <button type="submit" style="padding: 10px; background-color: #ff0000; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px;">Buscar</button>
+        </form>
     </header>       
     <div class="container">
         <a href="https://www.youtube.com/@saxworldwide/videos" class="video">
