@@ -61,10 +61,10 @@ body {
 
 .menu-content {
     width: 100%;
-    background-color: #1f1f1f; /* Fundo do menu */
-    border-radius: 10px; /* Cantos arredondados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para um efeito de elevação */
-    text-align: center; /* Centraliza o texto */
+    background-color: #121212;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 30%);
+    text-align: center;
 }
 
 .menu h2 {
