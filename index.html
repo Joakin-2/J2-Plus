@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>J2+</title>
     <link rel="stylesheet" href="styles.css"> <!-- CSS externo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
     <aside class="menu" id="overlayMenu" aria-hidden="true">
@@ -31,25 +33,55 @@
     
     <div class="container">
         <button class="menu-button" aria-label="Abrir menu" onclick="toggleMenu()">Menu</button>
+        <span class="clock">
+            <i class="fas fa-clock"></i> <!-- Ícone de relógio -->
+            <span id="clock">00:00</span>
+        </span>
         <br><br><br>
-    <div id="recomendacoes"></div>
-    <br><br>
-    <div class="avatar">
-        <div class="face">
-            <div class="eye left" id="olhoEsquerdo"></div>
-            <div class="eye right" id="olhoDireito"></div>
+        <div id="recomendacoes"></div>
+        <div class="avatar-container">
+            <div class="left-side">
+                <div class="temperature">
+                    <h3>Temperatura Atual</h3>
+                    <p id="temperature">-- °C</p>
+                </div>
+                <div class="stocks">
+                    <h3>Ações em Destaque</h3>
+                    <ul id="stocksList">
+                        <li>Carregando ações...</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="avatar">
+                <div class="face">
+                    <div class="eye left" id="olhoEsquerdo"></div>
+                    <div class="eye right" id="olhoDireito"></div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="weather">
+                    <h3>Previsão do Tempo</h3>
+                    <p id="weatherForecast">Carregando...</p>
+                </div>
+                <div class="news">
+                    <h3>Últimas Notícias</h3>
+                    <ul id="newsList">
+                        <li>Carregando notícias...</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-    <br><br>
+        <br><br>
         <div class="chat">
-            <main id="chatArea"></main>
-            <div id="status"></div>
-            <footer>
-                <input type="text" id="inputText" placeholder="Digite aqui..." onkeypress="handleKeyPress(event)">
-                <button id="sendButton" type="button" onclick="sendMessage()">Enviar</button>
+            <main id="chatArea" class="chat-area"></main>
+            <div id="status" class="status"></div>
+            <footer class="chat-footer">
+                <input type="text" id="inputText" class="chat-input" placeholder="Digite aqui..." onkeypress="handleKeyPress(event)">
+                <button id="sendButton" class="send-button" type="button" onclick="sendMessage()">Enviar</button>
             </footer>
-        </div>
+        </div>        
     </div>
+    
     <script src="main.js"></script> <!-- JavaScript externo -->
 </body>
 </html>

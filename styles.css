@@ -13,8 +13,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /*justify-content: center;*/
     position: relative;
+    justify-content: space-between; /* Distribui espaço entre os itens */
 }
 
 .menu-button {
@@ -27,6 +28,17 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 10px; /* Espaço entre o botão e o relógio */
+}
+
+.clock {
+    font-size: 1.2em; /* Tamanho da fonte do relógio */
+    margin-left: 70%;
+    margin-top: 2%;
+}
+
+.clock i {
+    margin-right: 5px; /* Espaço entre o ícone e o texto */
 }
 
 .menu {
@@ -97,15 +109,54 @@ body {
     background-color: #642dfc; /* Cor do botão de fechar ao passar o mouse */
 }
 
+h2, h3 {
+    color: #ffffff;
+}
 
-.chat {
-    width: 600px;
-    height: 400px;
-    border-radius: 4%;
-    border: 1px solid #333;
-    background-color: #1e1e1e;
-    box-shadow: 0 2px 5px rgb(0 0 0 / 50%);
-    margin-top: 50px;
+.temperature, .weather, .news, .stocks {
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.temperature p, .weather p, .news ul, .stocks ul {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.news ul, .stocks ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.news li, .stocks li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.news li:hover, .stocks li:hover {
+    background-color: #414141;
+}
+
+.avatar-container {
+    display: flex;
+    align-items: center; /* Alinha verticalmente os itens no centro */
+    justify-content: space-between; /* Distribui espaço entre os lados */
+}
+
+.left-side, .right-side {
+    flex: 1; /* Faz com que cada lado ocupe uma quantidade igual de espaço */
+}
+
+.avatar {
+    width: 100px; /* Largura do avatar */
+    margin: 0 40px; /* Margem para separar o avatar dos lados */
+}
+
+/* Ajustes adicionais para garantir que tudo fique alinhado corretamente */
+.temperature, .stocks, .weather, .news {
+    margin: 10px; /* Margem para espaçamento */
 }
 
 .avatar {
@@ -150,6 +201,20 @@ body {
 #status {
     display: none; /* Oculta o status por padrão */
     margin-top: 10px;
+    font-size: 0.9em; /* Tamanho da fonte */
+    color: #777; /* Cor mais clara */
+}
+
+.chat {
+    width: 600px;
+    height: 300px;
+    border: 1px solid #333;
+    background-color: #1e1e1e;
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 15px; /* Espaçamento interno */
 }
 
 #chatArea {
@@ -159,6 +224,10 @@ body {
     border-radius: 4%;
     border-top: 1px solid #333; /* Borda superior do chat */
     background-color: #2e2e2e; /* Fundo do área de chat */
+}
+
+.chat-footer {
+    display: flex; /* Flexbox para alinhamento */
 }
 
 .message {
@@ -184,28 +253,29 @@ body {
 footer {
     display: flex;
     align-items: center;
-    border-top: 1px solid #333; /* Borda superior do footer */
     padding: 10px;
     background-color: #1e1e1e; /* Fundo escuro para o footer */
 }
 
 input[type="text"] {
     flex: 1;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #444; /* Borda do campo de texto */
     background-color: #333; /* Fundo do campo de texto */
     color: #e0e0e0; /* Cor do texto no campo de texto */
     border-radius: 3px;
+    margin-right: 5px;
 }
 
 button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    border: none;
     background-color: #825dff; /* Roxo para o botão */
-    color: #fff;
-    border-radius: 3px;
-    cursor: pointer;
+    color: #fff; /* Cor do texto */
+    border: none; /* Sem borda */
+    padding: 10px 15px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor pointer */
+    transition: background-color 0.3s; /* Transição suave */
+    margin-left: 5px;
 }
 
 button:hover {
