@@ -47,7 +47,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro e transparente */
+    background-color: #1f1f1f; /* Fundo do menu */
     display: none; /* Oculto por padrão */
     justify-content: center; /* Centraliza o conteúdo horizontalmente */
     align-items: center; /* Centraliza o conteúdo verticalmente */
@@ -60,53 +60,65 @@ body {
 }
 
 .menu-content {
-    width: 100%;
-    background-color: #1f1f1f; /* Fundo do menu */
-    border-radius: 10px; /* Cantos arredondados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para um efeito de elevação */
-    text-align: center; /* Centraliza o texto */
+    width: 90%;
+    max-width: 800px;
+    border-radius: 15px;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
 }
 
-.menu h2 {
-    margin-top: 150px;
-    font-size: 40px;
-    color: #fff; /* Cor do título */
+.menu-content ul {
+    list-style: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o preenchimento padrão */
+    width: 45%; /* Largura das listas */
+    display: inline-block; /* Para que as listas fiquem lado a lado */
+    vertical-align: top; /* Alinha as listas ao topo */
 }
 
-.menu ul {
-    list-style: none; /* Remove marcadores de lista */
-    padding: 0;
-    margin: 20px 0;
+.menu-content ul li {
+    width: 100%; /* Faz cada item ocupar toda a largura disponível */
+    text-align: center; /* Centraliza o texto dentro do item */
 }
 
-.menu ul li {
-    margin-bottom: 10px;
-}
-
-.menu ul li a {
-    text-decoration: none;
-    color: #825dff; /* Cor do link */
+.menu-content ul li a {
+    display: block; /* Faz o link ocupar toda a área do item */
+    background-color: #825dff; /* Cor do botão */
+    color: #fff; /* Cor do texto */
+    border: none; /* Sem borda */
+    text-decoration: none; /* Remove sublinhado */
+    padding: 20px; /* Padding uniforme */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de mão */
     font-size: 30px; /* Tamanho da fonte */
-    transition: color 0.3s ease; /* Transição suave para a cor do link */
+    margin-top: 20px; /* Espaço acima do botão */
+    transition: background-color 0.3s; /* Transição suave ao passar o mouse */
 }
 
-.menu ul li a:hover {
-    color: #8c00ff; /* Cor do link ao passar o mouse */
+.menu-content ul li a:hover {
+    background-color: #6f4fef; /* Cor ao passar o mouse */
 }
 
 .close-menu {
     background-color: #825dff; /* Cor do botão de fechar */
     color: #fff;
     border: none;
-    padding: 20px 80px;
+    padding: 20px 100px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 30px;
     margin-top: 20px; /* Espaço acima do botão */
 }
 
 .close-menu:hover {
     background-color: #642dfc; /* Cor do botão de fechar ao passar o mouse */
+}
+
+.menu h2 {
+    margin-top: 150px;
+    font-size: 40px;
+    color: #fff; /* Cor do título */
 }
 
 h2, h3 {
