@@ -276,8 +276,7 @@ h2, h3 {
 footer {
     display: flex;
     align-items: center;
-    padding: 10px;
-    background-color: #1e1e1e; /* Fundo escuro para o footer */
+    padding: 8px;
 }
 
 input[type="text"] {
@@ -288,6 +287,27 @@ input[type="text"] {
     color: #e0e0e0; /* Cor do texto no campo de texto */
     border-radius: 3px;
     margin-right: 5px;
+}
+
+.chatg {
+    background-color: #1a1a1c; /* Roxo para o botão */
+    color: #fff; /* Cor do texto */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor pointer */
+    transition: background-color 0.3s; /* Transição suave */
+    margin-left: 5px;
+}
+
+.detalhes {
+    background-color: #121212; /* Roxo para o botão */
+    color: #fff; /* Cor do texto */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 5px 5px;
+    cursor: pointer; /* Cursor pointer */
+    transition: background-color 0.3s; /* Transição suave */
+    margin-left: 10px;
 }
 
 button {

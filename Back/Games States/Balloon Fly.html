@@ -8,33 +8,37 @@
     <style>
         /* Estilos CSS podem ser adicionados aqui */
         body {
-            margin: 0;
+            margin: 20px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             background-color: #000; /* Cor de fundo do body */
             color: #fff; /* Cor do texto */
-            height: 100vh;
+        }
+
+        h1 {
+            margin-top: 120px;
+            font-family: 'Arial', sans-serif;
+            font-size: 36px; /* Tamanho do texto do cabeçalho */
+            margin-bottom: 20px; /* Espaçamento inferior para o cabeçalho */
         }
 
         .container2 {
             display: flex; /* Coloca os botões em colunas */
             justify-content: space-around; /* Espaçamento entre as colunas */
             align-items: center; /* Alinha os botões verticalmente */
-            height: 18vh; /* Altura total da tela */
-            margin: 0 20px; /* Ajuste a margem entre as colunas */
         }
 
         .botao2 {
             background-color: #141414;
-            padding: 30px 65px;
+            padding: 10px 60px;
             font-size: 18px;
             cursor: pointer;
             border: none;
-            color: #fff; /* Cor do texto do botão */
+            color: #fff;
             border-radius: 5px;
-            margin-top: 5px; /* Adicionei margem superior ao botão */
+            margin: 10px;
         }
 
         #menu {
@@ -42,18 +46,17 @@
             padding: 20px;
             background-color: rgba(0, 0, 0, 0.7); /* Cor de fundo do menu */
             border-radius: 10px;
-            margin-bottom: 20px; /* Adicionei margem inferior */
+            margin-top: 150px; /* Adicionei margem inferior */
         }
 
         #startButton {
-            padding: 30px 40px;
+            background-color: #30e088; /* Cor de fundo do botão */
+            padding: 10px 60px;
             font-size: 18px;
             cursor: pointer;
-            background-color: #30e088; /* Cor de fundo do botão */
             border: none;
             color: #fff; /* Cor do texto do botão */
             border-radius: 5px;
-            margin-top: 450px; /* Adicionei margem superior ao botão */
         }
 
         canvas {
@@ -64,12 +67,13 @@
 </head>
 <body>
     <div id="menu">
-        <button id="startButton">Iniciar Jogo</button>
+        <h1>Baloon Fly</h1>
+        <button id="startButton">Iniciar</button>
     </div>
     <div class="container2">
         <button class="botao2" onclick="redirecionar('Voltar')" aria-label="Ir para Home"><i class="fas fa-arrow-left"></i> Voltar</button>
     </div> 
-    <canvas id="gameCanvas" width="1200" height="700"></canvas>
+    <canvas id="gameCanvas" width="1100" height="600"></canvas>
     <script src="game2.js"></script>
     <script>
         function redirecionar(destino) {

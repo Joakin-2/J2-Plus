@@ -25,8 +25,8 @@
         justify-content: center;
     }
     .video {
-        margin: 10px;
-        width: 120px;
+        margin: 20px;
+        width: 250px;
         background-color: #333; /* Darker background */
         padding: 10px;
         border-radius: 10px;
@@ -60,38 +60,25 @@
         background-color: #444;
     }
 
-    h1 {
-        font-size: 18px; /* Tamanho do h1 */
-    }
-
-    h2 {
-        font-size: 16px; /* Tamanho do h2 */
-    }
-    
-    p {
-        font-size: 11px; /* Tamanho do p */
-    }
-
     /* Media Queries */
     @media screen and (max-width: 770px) {
         .video {
-            width: 150px;
+            width: 200px;
         }
     }
-
 </style>
 </head>
 <body>
     <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background-color: #1f1f1f; color: #fff;">
-        <h1 style="display: flex; align-items: center; margin: 0;">
+        <h1 style="display: flex; align-items: center; margin-left: 120px; margin-top: 0; margin-bottom: 0;">
             Productive Youtube 
             <img src="yt/yt.png" alt="YouTube Icon" style="width: 44px; height: auto; margin-left: 10px;">
         </h1>
         <form action="https://www.youtube.com/results" method="GET" style="display: flex; align-items: center;">
-            <input type="text" name="search_query" placeholder="Pesquisar no YouTube" required style="padding: 10px; width: 300px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;">
-            <button type="submit" style="padding: 10px; background-color: #ff0000; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px;">Buscar</button>
+            <input type="text" name="search_query" placeholder="Pesquisar..." required style="padding: 10px; width: 400px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;">
+            <button type="submit" style="padding: 10px; background-color: #ff0000; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px; margin-right: 120px;">Buscar</button>
         </form>
-    </header>        
+    </header>     
     <div class="container">
         <a href="https://www.youtube.com/@saxworldwide/videos" class="video">
             <img src="yt/sax-video.jpeg" alt="Video 1">
