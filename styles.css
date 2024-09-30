@@ -223,7 +223,7 @@ h2, h3 {
 
 #status {
     display: none; /* Oculta o status por padrão */
-    margin-top: 10px;
+    margin-top: 1px;
     font-size: 0.9em; /* Tamanho da fonte */
     color: #777; /* Cor mais clara */
 }
