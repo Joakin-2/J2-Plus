@@ -192,7 +192,11 @@ function showHistory(message, response) {
     boxResponseMessage.className = 'message received';
     const chatResponse = document.createElement('p');
     chatResponse.className = 'response-message';
-    chatResponse.innerHTML = response;
+
+    // Remove asteriscos e adiciona formatação de quebras de linha
+    const cleanedResponse = response.replace(/\*/g, '').replace(/\n/g, '<br>');
+    chatResponse.innerHTML = cleanedResponse;
+
     boxResponseMessage.appendChild(chatResponse);
     historyBox.appendChild(boxResponseMessage);
 
