@@ -87,5 +87,25 @@
     </footer>
     
     <script src="main.js"></script> <!-- JavaScript externo -->
+    <script>
+        const autocompleteInput = document.getElementById('inputText');
+    
+        const suggestions = [
+            "Olá, pode me ajudar?", "Gostaria de mais informações sobre esse tópico.", "Posso fazer uma pergunta?", "Preciso de assistência.", "Você pode me enviar mais detalhes?"
+        ];
+    
+        autocompleteInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Tab') {
+                event.preventDefault(); // Evita o comportamento padrão da tecla "Tab"
+                const currentText = autocompleteInput.value.toLowerCase();
+                const suggestion = suggestions.find(s => s.toLowerCase().startsWith(currentText));
+    
+                if (suggestion) {
+                    autocompleteInput.value = suggestion; // Autocompleta a sugestão
+                }
+            }
+        });
+    </script>
+    
 </body>
 </html>
