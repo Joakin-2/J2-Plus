@@ -45,11 +45,17 @@
                     <p id="temperature">-- °C</p>
                 </div>
                 <div class="stocks">
-                    <h3>Ações em Destaque</h3>
+                    <button class="texto" onclick="toggleDropdown()">Últimas Notícias</button>
+                    <div class="dropdown-content" id="dropdownNoticias">
+                        <a href="https://www.msn.com/pt-br/channel/topic/Not%C3%ADcias/tp-Y_fdac555d-4ec2-428a-88e4-cb891ca7d5e9?ocid=msedgntp&cvid=3f0353edefc5487287d80c53e966368a&ei=29" target="_blank">MSN Notícias</a>
+                        <a href="https://br.investing.com/" target="_blank">Investing</a>
+                        <a href="https://www.youtube.com/@Laatusoficial" target="_blank">Laatus</a>
+                        <a href="https://www.toroinvestimentos.com.br/" target="_blank">Toro</a>
+                    </div>
                     <ul id="stocksList">
                         <li>Carregando ações...</li>
                     </ul>
-                </div>
+                </div>                
             </div>
             <div class="avatar">
                 <div class="face">
@@ -59,11 +65,13 @@
             </div>
             <div class="right-side">
                 <div class="weather">
-                    <h3>Previsão do Tempo</h3>
+                    <a href="https://www.msn.com/pt-br/clima/forecast/in-Jacupiranga,S%C3%A3o-Paulo?ocid=msedgntphdr&cvid=bb73bd20fe56462399e7e714692deb87&loc=eyJsIjoiSmFjdXBpcmFuZ2EiLCJyIjoiU8OjbyBQYXVsbyIsImMiOiJCcmFzaWwiLCJpIjoiQlIiLCJ0IjoxMDIsImciOiJwdC1iciIsIngiOiItNDguMDA2MDk5NzAwOTI3NzM0IiwieSI6Ii0yNC43MDM4MDAyMDE0MTYwMTYifQ%3D%3D&weadegreetype=C" target="_blank">
+                        <button class="texto">Previsão do Tempo</button>
+                      </a>                      
                     <p id="weatherForecast">Carregando...</p>
                 </div>
                 <div class="news">
-                    <h3>Últimas Notícias</h3>
+                    <button class="texto" onclick="abrirSites()">Últimas Notícias</button> 
                     <ul id="newsList">
                         <li>Carregando notícias...</li>
                     </ul>
@@ -105,6 +113,32 @@
                 }
             }
         });
+        function abrirSites() {
+            window.open('https://www.msn.com/pt-br/channel/topic/Not%C3%ADcias/tp-Y_fdac555d-4ec2-428a-88e4-cb891ca7d5e9?ocid=msedgntp&cvid=3f0353edefc5487287d80c53e966368a&ei=29', '_blank');
+            window.open('https://www.bing.com/maps/traffic?setlang=pt-br&FORM=ntptra&cvid=8e0de91695834c0c99ca877c7c74130f&ocid=msedgntp&cp=-24.695375%7E-47.974205&lvl=12.0&detectedloc=-24.7069149017334%7E-48.01025390625&detectedlocacc=3122.047119140625&trafficcontent=insights&trffeatures=clpaipredux3&trafficcontent=insights&trffeatures=clpaipredux3&ei=18', '_blank'); // Coloque o segundo site aqui
+        }
+        function toggleDropdown() {
+    var dropdown = document.getElementById("dropdownNoticias");
+    // Alterna entre mostrar e esconder o dropdown
+    if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+    } else {
+        dropdown.style.display = "block";
+    }
+}
+
+// Fechar o dropdown se clicar fora dele
+window.onclick = function(event) {
+    if (!event.target.matches('.texto')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+            }
+        }
+    }
+}
     </script>
     
 </body>
