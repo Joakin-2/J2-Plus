@@ -116,6 +116,7 @@
             <textarea id="notas" class="notes" placeholder="Anote aqui..." oninput="saveNotas()"></textarea>
 
             <div class="buttons">
+                <button class="botao" onclick="redirecionar('EBD')"><i class="fas fa-file"></i> EBD</button>
                 <button class="botao" onclick="redirecionar('Bíblia')"><i class="fas fa-book"></i> Bíblia</button>
                 <button class="botao" onclick="redirecionar('Canais')"><i class="fas fa-globe"></i> Canais</button>
                 <button class="botao" onclick="redirecionar('Memórias')"><i class="fas fa-camera"></i> Memórias</button>
@@ -170,6 +171,11 @@
 
         function redirecionar(destino) {
             switch (destino) {
+                case 'EBD':
+                    window.close('crist');
+                    window.open('https://www.bibliaonline.com.br/acf');
+                    window.open('ebd/index.html');
+                    break;
                 case 'Bíblia':
                     window.close('crist');
                     window.open('https://www.bibliaonline.com.br/acf');
