@@ -382,15 +382,15 @@
     </style>
 </head>
 <body>
-    <header style="display: flex; align-items: center; padding: 10px 20px; justify-content: center; background-color: #1f1f1f; color: #fff;">
-        <h1 style="display: flex; align-items: center; margin-top: 0; margin-bottom: 0;">
+    <header>
+        <h1 id="titulo" style="display: flex; align-items: center; cursor: pointer;">
             <img src="icone.png" alt="Icon" style="width: 44px; height: auto; margin-left: 10px; margin-right: 10px;"> 
             J2 Music
         </h1>
-        <form action="https://music.youtube.com/results" method="GET" style="display: flex; align-items: center; margin-top: 0; margin-left: 20px;">
-            <input type="text" name="search_query" placeholder="Pesquisar..." required style="padding: 10px; margin-top: 0; margin-bottom: 0; margin-left: 80px; width: 200px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;">
-            <button type="submit" style="padding: 10px; background-color: #aa72fe; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">Buscar</button>
-        </form>
+        <div id="pesquisa" style="display: none; margin-top: 10px;">
+            <input type="text" id="inputPesquisa" placeholder="Pesquisar..." style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;">
+            <button onclick="buscar()" style="height: 40px; padding: 10px; background-color: #aa72fe; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">Buscar</button>
+        </div>
     </header>
     
 
