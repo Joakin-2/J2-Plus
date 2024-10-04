@@ -60,12 +60,60 @@
         background-color: #444;
     }
 
-    /* Media Queries */
-    @media screen and (max-width: 770px) {
-        .video {
-            width: 200px;
-        }
+    /* Media Query para telas de 1024x600 */
+@media screen and (max-width: 1024px) and (max-height: 600px) {
+    body {
+        background-color: #000; /* Mudar o fundo para um preto mais escuro */
+        color: #ddd; /* Clarear um pouco o texto para maior contraste */
     }
+
+    .video {
+        width: 200px; /* Ajustar a largura dos vídeos */
+        margin: 8px;  /* Reduzir a margem dos vídeos */
+        padding: 5px;  /* Ajustar o espaçamento interno */
+    }
+
+    .video h2 {
+        margin: 4px 0;
+    }
+
+    header {
+        padding: 5px 10px; /* Reduzir o padding do cabeçalho */
+        font-size: 14px;   /* Diminuir o tamanho da fonte no cabeçalho */
+    }
+
+    h1 {
+        margin-left: 20px;
+    }
+
+    form {
+        width: 30%; /* O campo de busca ocupa 90% da tela */
+    }
+
+    button {
+        width: 80px; /* Botão ocupa toda a largura em telas menores */
+    }
+
+    /* Para navegadores baseados em WebKit (como Chrome, Safari e Edge) */
+::-webkit-scrollbar {
+    width: 10px; /* Largura da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Cor da barra de rolagem */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Cor ao passar o mouse */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #bbbbbb; /* Cor de fundo do "trilho" */
+    border-radius: 10px;
+}
+}
+
 </style>
 </head>
 <body>
