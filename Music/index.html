@@ -1124,25 +1124,17 @@
         // Adiciona um listener para eventos de controle de mídia
         document.addEventListener('keydown', handleMediaKeyEvent);
 
-        document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('form');
-        const input = document.querySelector('input[name="search_query"]');
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Evita o envio padrão do formulário
-            const query = input.value.trim();
-
-            if (query) {
-                window.location.href = `https://music.youtube.com/results?search_query=${encodeURIComponent(query)}`;
-            }
+        document.getElementById('titulo').addEventListener('click', function () {
+            const pesquisaDiv = document.getElementById('pesquisa');
+            pesquisaDiv.style.display = pesquisaDiv.style.display === 'none' ? 'flex' : 'none';
         });
 
-        input.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                form.dispatchEvent(new Event('submit'));
+        function buscar() {
+            const input = document.getElementById('inputPesquisa').value.trim();
+            if (input) {
+                window.location.href = `https://music.youtube.com/results?search_query=${encodeURIComponent(input)}`;
             }
-        });
-    });
+        }
 
     </script>
 </body>
