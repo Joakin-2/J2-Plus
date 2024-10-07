@@ -276,18 +276,19 @@ fieldset button:hover {
 
         // Faz o cálculo estimativo de calorias
         calculateButton.addEventListener("click", () => {
-            const grams = parseFloat(gramsInput.value);
+    const grams = parseFloat(gramsInput.value);
 
-            // Supondo que cada 100g de comida tenha 250 kcal (valor estimado)
-            const caloriesPer100g = 250;
-            const estimatedCalories = (grams / 100) * caloriesPer100g;
+    if (isNaN(grams) || grams <= 0) {
+        result.textContent = "Por favor, insira uma quantidade válida de gramas.";
+        return; // Saia da função se a entrada não for válida
+    }
 
-            if (isNaN(estimatedCalories) || grams <= 0) {
-                result.textContent = "Por favor, insira uma quantidade válida de gramas.";
-            } else {
-                result.textContent = `Você consumiu aproximadamente ${estimatedCalories.toFixed(2)} kcal.`;
-            }
-        });
+    // Supondo que cada 100g de comida tenha 250 kcal (valor estimado)
+    const caloriesPer100g = 250;
+    const estimatedCalories = (grams / 100) * caloriesPer100g;
+
+    result.textContent = `Você consumiu aproximadamente ${estimatedCalories.toFixed(2)} kcal.`;
+});
         document.addEventListener('DOMContentLoaded', function() {
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
