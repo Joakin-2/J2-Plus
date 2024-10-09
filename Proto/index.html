@@ -80,7 +80,7 @@
   <div class="column">
     <input type="text" id="secretInput" placeholder="Add a code" onkeypress="checkEnter(event)">
     <button class="botao" onclick="diarios()">Uso Diário</button>
-    <button class="botao" onclick="insta()">instagram</button>
+    <button class="botao" onclick="insta()">Instagram</button>
     <button class="botao" onclick="zap()">WhatsApp</button>
   </div>
   <div class="column">
@@ -118,7 +118,7 @@
         window.open("acorda.html");
       }
       // Check if it's 21:00:00 PM
-      else if (hours === 21 && minutes === 00 && seconds === 0) {
+      else if (hours === 21 && minutes === 0 && seconds === 0) {
         diarios();
       }
       // Check if it's 11:30:00 PM

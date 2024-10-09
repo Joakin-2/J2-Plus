@@ -10,13 +10,13 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #121212; /* Cor de fundo escura */
-            color: #e0e0e0; /* Cor do texto clara */
+            background-color: #121212;
+            color: #e0e0e0;
             margin: 0;
             padding: 0;
         }
         h1 {
-            color: #ffffff; /* Cor do título em branco */
+            color: #ffffff;
             margin: 20px;
             display: flex;
             justify-content: center;
@@ -32,26 +32,17 @@
         .gallery img {
             max-width: 100%;
             height: auto;
-            border: 2px solid #333; /* Borda escura para contraste */
+            border: 2px solid #333;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Sombra mais pronunciada */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
             transition: transform 0.3s ease;
+            cursor: pointer; /* Muda o cursor para indicar que a imagem é clicável */
         }
         .gallery img:hover {
             transform: scale(1.05);
         }
-        .pdf-link {
-            color: #e0e0e0;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .pdf-link i {
-            color: #ff5722; /* Cor do ícone para destaque */
-        }
         .pinterest-button {
-            background-color: #e60023; /* Cor vermelha do Pinterest */
+            background-color: #e60023;
             color: #ffffff;
             border: none;
             padding: 10px 20px;
@@ -65,7 +56,32 @@
             gap: 8px;
         }
         .pinterest-button i {
-            font-size: 20px; /* Tamanho do ícone */
+            font-size: 20px;
+        }
+        /* Estilos do modal */
+        .modal {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            z-index: 1000; /* Fica acima de outros elementos */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro com transparência */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 30px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -75,20 +91,40 @@
         <i class="fab fa-pinterest"></i> Ver no Pinterest
     </a>
     <div class="gallery">
-        <img src="093.jpg" alt="Imagem 093">
-        <img src="107.jpg" alt="Imagem 107">
-        <img src="109.jpg" alt="Imagem 109">
-        <img src="370.jpg" alt="Imagem 370">
-        <img src="459.jpg" alt="Imagem 459">
-        <img src="63.jpg" alt="Imagem 63">
-        <img src="89.jpg" alt="Imagem 89">
-        <img src="9.jpg" alt="Imagem 9">
-        <img src="Altar.png" alt="Altar">
-        <img src="grato-a-ti.jpg" alt="Grato a ti">
-        <img src="Eterna Gratidão.jpg" alt="Eterna Gratidão">
-        <img src="Subline e Grande Amor.jpeg" alt="Subline e Grande Amor">
-        <img src="Te agradeço.jpg" alt="Te agradeço">
-        <img src="Yoshi_s Island.png" alt="Yoshi's Island">
+        <img src="093.jpg" alt="Imagem 093" onclick="openModal(this)">
+        <img src="107.jpg" alt="Imagem 107" onclick="openModal(this)">
+        <img src="109.jpg" alt="Imagem 109" onclick="openModal(this)">
+        <img src="370.jpg" alt="Imagem 370" onclick="openModal(this)">
+        <img src="459.jpg" alt="Imagem 459" onclick="openModal(this)">
+        <img src="63.jpg" alt="Imagem 63" onclick="openModal(this)">
+        <img src="89.jpg" alt="Imagem 89" onclick="openModal(this)">
+        <img src="9.jpg" alt="Imagem 9" onclick="openModal(this)">
+        <img src="Altar.png" alt="Altar" onclick="openModal(this)">
+        <img src="grato-a-ti.jpg" alt="Grato a ti" onclick="openModal(this)">
+        <img src="Eterna Gratidão.jpg" alt="Eterna Gratidão" onclick="openModal(this)">
+        <img src="Subline e Grande Amor.jpeg" alt="Subline e Grande Amor" onclick="openModal(this)">
+        <img src="Te agradeço.jpg" alt="Te agradeço" onclick="openModal(this)">
+        <img src="Yoshi_s Island.png" alt="Yoshi's Island" onclick="openModal(this)">
     </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="">
+    </div>
+
+    <script>
+        function openModal(img) {
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = img.src; // Define a imagem do modal para a imagem clicada
+            modal.style.display = 'flex'; // Exibe o modal
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none'; // Esconde o modal
+        }
+    </script>
 </body>
 </html>
