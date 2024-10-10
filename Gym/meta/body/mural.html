@@ -7,17 +7,71 @@
     <title>Mural</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* CSS for centering the quotes */
+        /* CSS para centralizar as citações */
         footer {
             text-align: center;
         }
         #quote {
             display: inline-block;
         }
+        .hidden {
+            display: none;
+        }
+
+        /* Estilos para o scrollbar */
+        /* Chrome, Safari e Opera */
+        ::-webkit-scrollbar {
+            width: 10px; /* Largura do scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Cor do fundo do track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888; /* Cor do thumb */
+            border-radius: 10px; /* Bordas arredondadas */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; /* Cor do thumb ao passar o mouse */
+        }
+
+        #loginModal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0 0 0);
+            z-index: 1000;
+        }
+        #loginModal input {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+        #loginModal button {
+            padding: 10px 88px;
+            font-size: 16px;
+            background-color: yellow;
+            border-radius: 6px;
+        }
     </style>
 </head>
 <body>
-    <div class="mural">
+    <div id="loginModal">
+        <input type="password" id="passwordInput" placeholder="Digite a senha">
+        <button id="submitPasswordBtn">Entrar</button>
+        <p id="errorMessage" style="color: red;"></p>
+    </div>
+
+    <div class="mural" style="display: none;">
         <div class="row">
             <div class="photo">
                 <img src="1.jpg" alt="Photo 1">
@@ -41,27 +95,57 @@
             </div>
         </div>
     </div>
+    
     <footer>
         <p id="quote"></p>
     </footer>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const quotes = [
-            "Chega ser ridículo.",
-            "Você treina? nem parece.",
-            "Chama isso de shape?",
-            "5 anos pra isso.",
-            "Fracassado."
+                "Chega ser ridículo.",
+                "Você treina? nem parece.",
+                "Chama isso de shape?",
+                "5 anos pra isso.",
+                "Fracassado."
             ];
 
             const quoteElement = document.getElementById("quote");
+            const passwordInput = document.getElementById("passwordInput");
 
-        // Generate a random index to select a quote from the array
-        const randomIndex = Math.floor(Math.random() * quotes.length);
+            // Gerar um índice aleatório para selecionar uma citação do array
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            // Exibir a citação selecionada aleatoriamente
+            quoteElement.textContent = quotes[randomIndex];
 
-        // Display the randomly selected quote
-        quoteElement.textContent = quotes[randomIndex];
-    });
+            const correctPassword = "0709"; // Defina a senha correta aqui
+            const submitPasswordBtn = document.getElementById("submitPasswordBtn");
+            const mural = document.querySelector(".mural");
+            const loginModal = document.getElementById("loginModal");
+            const errorMessage = document.getElementById("errorMessage");
+
+            // Função para verificar a senha
+            function checkPassword() {
+                const enteredPassword = passwordInput.value;
+                if (enteredPassword === correctPassword) {
+                    loginModal.style.display = "none"; // Esconde o modal
+                    mural.style.display = "block"; // Exibe o mural
+                } else {
+                    errorMessage.textContent = "Senha incorreta. Tente novamente.";
+                    passwordInput.value = ""; // Limpa o campo de senha
+                }
+            }
+
+            // Evento de clique para verificar a senha
+            submitPasswordBtn.addEventListener("click", checkPassword);
+
+            // Evento para permitir entrada ao pressionar Enter
+            passwordInput.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    checkPassword();
+                }
+            });
+        });
     </script>
 </body>
 </html>
