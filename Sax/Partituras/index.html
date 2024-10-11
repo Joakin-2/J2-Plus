@@ -29,17 +29,26 @@
             gap: 10px;
             padding: 20px;
         }
-        .gallery img {
+        .gallery img, .gallery .pdf-icon {
             max-width: 100%;
             height: auto;
             border: 2px solid #333;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
             transition: transform 0.3s ease;
-            cursor: pointer; /* Muda o cursor para indicar que a imagem é clicável */
+            cursor: pointer;
         }
-        .gallery img:hover {
+        .gallery img:hover, .gallery .pdf-icon:hover {
             transform: scale(1.05);
+        }
+        .pdf-icon {
+            background-color: #e60023;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .pinterest-button {
             background-color: #e60023;
@@ -58,20 +67,19 @@
         .pinterest-button i {
             font-size: 20px;
         }
-        /* Estilos do modal */
         .modal {
-            display: none; /* Escondido por padrão */
+            display: none;
             position: fixed;
-            z-index: 1000; /* Fica acima de outros elementos */
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro com transparência */
+            background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
         }
-        .modal img {
+        .modal img, .modal embed {
             max-width: 90%;
             max-height: 90%;
         }
@@ -91,6 +99,10 @@
         <i class="fab fa-pinterest"></i> Ver no Pinterest
     </a>
     <div class="gallery">
+        <div class="pdf-icon" onclick="openPDFModal('311.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Hino 311</span>
+        </div>
         <img src="093.jpg" alt="Imagem 093" onclick="openModal(this)">
         <img src="107.jpg" alt="Imagem 107" onclick="openModal(this)">
         <img src="109.jpg" alt="Imagem 109" onclick="openModal(this)">
@@ -107,23 +119,39 @@
         <img src="Yoshi_s Island.png" alt="Yoshi's Island" onclick="openModal(this)">
     </div>
 
-    <!-- Modal -->
     <div class="modal" id="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <img id="modalImage" src="" alt="">
+    </div>
+
+    <div class="modal" id="pdfModal">
+        <span class="close" onclick="closePDFModal()">&times;</span>
+        <embed id="modalPDF" src="" type="application/pdf" width="90%" height="90%">
     </div>
 
     <script>
         function openModal(img) {
             const modal = document.getElementById('modal');
             const modalImage = document.getElementById('modalImage');
-            modalImage.src = img.src; // Define a imagem do modal para a imagem clicada
-            modal.style.display = 'flex'; // Exibe o modal
+            modalImage.src = img.src;
+            modal.style.display = 'flex';
         }
 
         function closeModal() {
             const modal = document.getElementById('modal');
-            modal.style.display = 'none'; // Esconde o modal
+            modal.style.display = 'none';
+        }
+
+        function openPDFModal(pdf) {
+            const pdfModal = document.getElementById('pdfModal');
+            const modalPDF = document.getElementById('modalPDF');
+            modalPDF.src = pdf;
+            pdfModal.style.display = 'flex';
+        }
+
+        function closePDFModal() {
+            const pdfModal = document.getElementById('pdfModal');
+            pdfModal.style.display = 'none';
         }
     </script>
 </body>
