@@ -14,26 +14,30 @@
 <body>
     <div class="container">
         <h1>Controle de Gastos Mensais</h1>
+
+        <br>
         
         <!-- Formulário para adicionar despesas -->
         <form id="expense-form">
-            <div class="form-group">
-                <label for="expense-name">Nome do Gasto:</label>
-                <input type="text" id="expense-name" required>
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="expense-name" style="width: 90px; margin-right: 0px; text-align: center;">Nome</label>
+                <input type="text" id="expense-name" required style="flex: 1;">
             </div>
-            <div class="form-group">
-                <label for="expense-type">Tipo:</label>
+            <br>
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="expense-type" style="width: 110px; margin-right: 0px; text-align: center;">Tipo</label>
                 <select id="expense-type" required>
                     <option value="entrada-variavel">Entrada Variável</option>
                     <option value="entrada-fixa">Entrada Fixa</option>
                     <option value="saida">Saída</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="expense-amount">Valor (R$):</label>
+            <br>
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="expense-amount" style="width: 90px; margin-right: 0px; text-align: center;">Valor (R$)</label>
                 <input type="number" id="expense-amount" step="0.01" required>
             </div>
-            <button type="submit">Adicionar Gasto</button>
+            <button type="submit" style="margin-top: 10px">Adicionar Gasto</button>
         </form>
 
         <!-- Tabela para exibir despesas -->
@@ -41,7 +45,7 @@
         <table id="expense-table">
             <thead>
                 <tr>
-                    <th>Nome do Gasto</th>
+                    <th>Nome</th>
                     <th>Tipo</th>
                     <th>Valor (R$)</th>
                     <th>Ações</th>
@@ -60,9 +64,9 @@
         <button id="download-pdf">Baixar PDF</button>
 
         <!-- Área de Anotações -->
+        <br>
         <h2>Anotações</h2>
         <div class="form-group">
-            <label for="notes">Anotações:</label>
             <textarea id="notes" rows="4" cols="50" placeholder="Digite aqui..."></textarea>
         </div>
     </div>

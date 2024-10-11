@@ -147,10 +147,10 @@ fieldset button:hover {
     background-color: #000000; /* Cor de fundo preta */
     color: white; /* Cor do texto branca */
     border: 1px solid #ddd; /* Borda com cor cinza */
-    padding: 8px 20px; /* Espaçamento interno */
+    padding: 8px 0px; /* Espaçamento interno */
     cursor: pointer; /* Cursor ao passar o mouse */
-    width: 20px;
-    height: 40px;
+    width: 40px;
+    height: 38px;
     font-size: 20px;
     border-radius: 4px;
 }
@@ -203,36 +203,56 @@ fieldset button:hover {
         <section id="anotarRefeicoes">
             <h2>Anotações de Refeições</h2>
             <form id="refeicoesForm">
-                <fieldset>
+                <fieldset style="display: flex; flex-direction: column; padding: 20px; margin-top: 52px;">
                     <legend>Manhã</legend>
-                    <label for="cafemanha">Café da Manhã (6h):</label>
-                    <input type="text" id="cafemanha" name="cafemanha" placeholder="Registre seu café da manhã">
-                    <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('cafemanha')">?</button>
-
-                    <label for="lanchemanha">Lanche da Manhã (9h):</label>
-                    <input type="text" id="lanchemanha" name="lanchemanha" placeholder="Registre seu Lanche da Manhã">
-                    <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('lanchemanha')">?</button>
-                </fieldset>                
-                <fieldset>
-                    <legend>Almoço</legend>
-                    <label for="almoco">Almoço (12h):</label>
-                    <input type="text" id="almoco" name="almoco" placeholder="Registre seu almoço">
-                    <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('almoco')">?</button>
-
-                    <label for="lanchetarde">Lanche da Tarde (15h):</label>
-                    <input type="text" id="lanchetarde" name="lanchetarde" placeholder="Registre seu lanche da tarde">
-                    <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('lanchetarde')">?</button>
+                    
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <label for="cafemanha" style="margin-right: 10px;">Café da Manhã (6h):</label>
+                        <input type="text" id="cafemanha" name="cafemanha" placeholder="Registre seu café da manhã" style="flex: 1; margin-right: 0px; margin-left: 20px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('cafemanha')" style="margin-left: 0px; margin-bottom: 10px; margin-top: 0px;">?</button>
+                    </div>
+                
+                    <div style="display: flex; align-items: center;">
+                        <label for="lanchemanha" style="margin-right: 10px;">Lanche da Manhã (9h):</label>
+                        <input type="text" id="lanchemanha" name="lanchemanha" placeholder="Registre seu Lanche da Manhã" style="flex: 1; margin-right: 0px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('lanchemanha')" style="margin-left: 0px;margin-bottom: 10px;margin-top: 0px;">?</button>
+                    </div>
                 </fieldset>
-                <fieldset>
+                        
+                
+                <fieldset style="display: flex; flex-direction: column; padding: 20px; margin-top: 30px;">
+                    <legend>Tarde</legend>
+                    
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <label for="almoco" style="margin-right: 10px;">Almoço (12h):</label>
+                        <input type="text" id="almoco" name="almoco" placeholder="Registre seu almoço" style="flex: 1;margin-right: 0px;margin-left: 70px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('almoco')" style="margin-left: 0px;margin-bottom: 10px;margin-top: 0px;">?</button>
+                    </div>
+                
+                    <div style="display: flex; align-items: center;">
+                        <label for="lanchetarde" style="margin-right: 10px;">Lanche da Tarde (15h):</label>
+                        <input type="text" id="lanchetarde" name="lanchetarde" placeholder="Registre seu lanche da tarde" style="flex: 1; margin-right: 0px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('lanchetarde')" style="margin-left: 0px;margin-bottom: 10px;margin-top: 0px;">?</button>
+                    </div>
+                </fieldset>
+                
+
+                <fieldset style="display: flex; flex-direction: column; padding: 20px; margin-top: 30px;">
                     <legend>Noite</legend>
-                    <label for="janta">Janta (18h):</label>
-                    <input type="text" id="janta" name="janta" placeholder="Registre seu jantar">
-                    <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('janta')">?</button>
-
-                    <label for="lanchenoite">Lanche da Noite (21h):</label>
-                    <input type="text" id="lanchenoite" name="lanchenoite" placeholder="Registre seu lanche da noite">
-                    <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('lanchenoite')">?</button>
+                    
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <label for="janta" style="margin-right: 10px;">Janta (18h):</label>
+                        <input type="text" id="janta" name="janta" placeholder="Registre seu jantar" style="flex: 1;margin-right: 0px;margin-left: 85px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('janta')" style="margin-left: 0px;margin-bottom: 10px;margin-top: 0px;">?</button>
+                    </div>
+                
+                    <div style="display: flex; align-items: center;">
+                        <label for="lanchenoite" style="margin-right: 10px;">Lanche da Noite (21h):</label>
+                        <input type="text" id="lanchenoite" name="lanchenoite" placeholder="Registre seu lanche da noite" style="flex: 1; margin-right: 0px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('lanchenoite')" style="margin-left: 0px;margin-bottom: 10px;margin-top: 0px;">?</button>
+                    </div>
                 </fieldset>
+                
             </form>
         </section>
 
@@ -278,53 +298,59 @@ fieldset button:hover {
         <button id="resetarTudoBtn">Resetar Tudo</button>
         <button id="closeResetButton">Fechar</button>
     </div>    
-
+    
     <script>
         const resetarLitroBtn = document.getElementById('resetarLitroBtn');
-const resetModal = document.getElementById('resetModal');
-const closeResetButton = document.getElementById('closeResetButton');
-const resetarAguaBtn = document.getElementById('resetarAguaBtn');
-const limite = 4; // Defina o limite de litros
-const contadorLitros = document.getElementById('contadorDeLitros');const resetarRefeicoesBtn = document.getElementById('resetarRefeicoesBtn');
-const resetarTudoBtn = document.getElementById('resetarTudoBtn');
+        const resetModal = document.getElementById('resetModal');
+        const closeResetButton = document.getElementById('closeResetButton');
+        const resetarAguaBtn = document.getElementById('resetarAguaBtn');
+        const limite = 4; // Defina o limite de litros
+        const contadorLitros = document.getElementById('contadorDeLitros');
+        const resetarRefeicoesBtn = document.getElementById('resetarRefeicoesBtn');
+        const resetarTudoBtn = document.getElementById('resetarTudoBtn');
+    
+        // Evento de clique para abrir o modal de reset
+        resetarLitroBtn.addEventListener('click', function() {
+            resetModal.style.display = 'block';
+        });
+    
+        // Fecha o modal de reset
+        closeResetButton.addEventListener('click', () => {
+            resetModal.style.display = 'none';
+        });
+    
+        // Resetar apenas a água
+        resetarAguaBtn.addEventListener('click', function() {
+            contadorLitros.textContent = `0/${limite} Litros`;
+            // Remover apenas o item 'litros' do localStorage
+            localStorage.removeItem('litros');
+            salvarContador(); // Salvar o novo valor no localStorage
+            resetModal.style.display = 'none';
+        });
+    
+        // Resetar apenas as refeições
+        resetarRefeicoesBtn.addEventListener('click', function() {
+            refeicoesForm.reset(); // Reseta os campos do formulário de refeições
+            localStorage.removeItem('refeicoes'); // Remove apenas as refeições do localStorage
+            resetModal.style.display = 'none';
+        });
+    
+        // Resetar tudo (água e refeições)
+        resetarTudoBtn.addEventListener('click', function() {
+            // Remover apenas as chaves relacionadas às refeições e aos litros
+            refeicoesForm.reset(); // Reseta os campos do formulário de refeições
+            localStorage.removeItem('refeicoes'); // Remove apenas as refeições do localStorage
+            contadorLitros.textContent = `0/${limite} Litros`;
+            // Remover apenas o item 'litros' do localStorage
+            localStorage.removeItem('litros');
+            salvarContador(); // Salvar o novo valor no localStorage
+            resetModal.style.display = 'none';
+        });
 
-// Evento de clique para abrir o modal de reset
-resetarLitroBtn.addEventListener('click', function() {
-    resetModal.style.display = 'block';
-});
-
-// Fecha o modal de reset
-closeResetButton.addEventListener('click', () => {
-    resetModal.style.display = 'none';
-});
-
-// Resetar apenas a água
-resetarAguaBtn.addEventListener('click', function() {
-        contadorLitros.textContent = `0/${limite} Litros`;
-        // Salvar no localStorage
-        salvarContador();
-    });
-
-// Resetar apenas as refeições
-resetarRefeicoesBtn.addEventListener('click', function() {
-    refeicoesForm.reset(); // Reseta os campos do formulário de refeições
-    localStorage.clear(); // Limpa o armazenamento local (ou você pode escolher um modo diferente)
-    resetModal.style.display = 'none';
-});
-
-// Resetar tudo
-resetarTudoBtn.addEventListener('click', function() {
-    contadorLitros.textContent = `0/${limite} Litros`;
-    salvarContador();
-    refeicoesForm.reset(); // Reseta os campos do formulário de refeições
-    localStorage.clear(); // Limpa o armazenamento local
-    resetModal.style.display = 'none';
-});
-
-function salvarContador() {
-        localStorage.setItem('contadorLitros', contadorLitros.textContent);
-    }
-
+        function salvarContador() {
+            // Salvar o valor atualizado do contador no localStorage
+            localStorage.setItem('contadorLitros', contadorLitros.textContent);
+        }
 
         const bottomButton = document.getElementById("bottomButton");
         const calculatorModal = document.getElementById("calculatorModal");
