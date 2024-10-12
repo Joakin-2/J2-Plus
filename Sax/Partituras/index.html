@@ -91,6 +91,21 @@
             font-size: 30px;
             cursor: pointer;
         }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            color: #ffffff;
+            font-size: 40px;
+            padding: 10px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -103,43 +118,60 @@
             <i class="fas fa-file-pdf"></i>
             <span style="margin-left: 8px;">Hino 311</span>
         </div>
-        <img src="093.jpg" alt="Imagem 093" onclick="openModal(this)">
-        <img src="107.jpg" alt="Imagem 107" onclick="openModal(this)">
-        <img src="109.jpg" alt="Imagem 109" onclick="openModal(this)">
-        <img src="370.jpg" alt="Imagem 370" onclick="openModal(this)">
-        <img src="459.jpg" alt="Imagem 459" onclick="openModal(this)">
-        <img src="63.jpg" alt="Imagem 63" onclick="openModal(this)">
-        <img src="89.jpg" alt="Imagem 89" onclick="openModal(this)">
-        <img src="9.jpg" alt="Imagem 9" onclick="openModal(this)">
-        <img src="Altar.png" alt="Altar" onclick="openModal(this)">
-        <img src="grato-a-ti.jpg" alt="Grato a ti" onclick="openModal(this)">
-        <img src="Eterna Gratidão.jpg" alt="Eterna Gratidão" onclick="openModal(this)">
-        <img src="Subline e Grande Amor.jpeg" alt="Subline e Grande Amor" onclick="openModal(this)">
-        <img src="Te agradeço.jpg" alt="Te agradeço" onclick="openModal(this)">
-        <img src="Yoshi_s Island.png" alt="Yoshi's Island" onclick="openModal(this)">
+        <img src="093.jpg" alt="Imagem 093" onclick="openModal(0)">
+        <img src="107.jpg" alt="Imagem 107" onclick="openModal(1)">
+        <img src="109.jpg" alt="Imagem 109" onclick="openModal(2)">
+        <img src="370.jpg" alt="Imagem 370" onclick="openModal(3)">
+        <img src="459.jpg" alt="Imagem 459" onclick="openModal(4)">
+        <img src="63.jpg" alt="Imagem 63" onclick="openModal(5)">
+        <img src="89.jpg" alt="Imagem 89" onclick="openModal(6)">
+        <img src="Altar.png" alt="Altar" onclick="openModal(7)">
+        <img src="grato-a-ti.jpg" alt="Grato a ti" onclick="openModal(8)">
+        <img src="9.jpg" alt="Imagem 9" onclick="openModal(9)">
+        <img src="Eterna Gratidão.jpg" alt="Eterna Gratidão" onclick="openModal(10)">
+        <img src="Subline e Grande Amor.jpeg" alt="Subline e Grande Amor" onclick="openModal(11)">
+        <img src="Te agradeço.jpg" alt="Te agradeço" onclick="openModal(12)">
+        <img src="Yoshi_s Island.png" alt="Yoshi's Island" onclick="openModal(13)">
     </div>
 
     <div class="modal" id="modal">
         <span class="close" onclick="closeModal()">&times;</span>
+        <span class="prev" onclick="changeImage(-1)">&#10094;</span>
         <img id="modalImage" src="" alt="">
-    </div>
-
-    <div class="modal" id="pdfModal">
-        <span class="close" onclick="closePDFModal()">&times;</span>
-        <embed id="modalPDF" src="" type="application/pdf" width="90%" height="90%">
+        <span class="next" onclick="changeImage(1)">&#10095;</span>
     </div>
 
     <script>
-        function openModal(img) {
+        const images = [
+            "093.jpg", "107.jpg", "109.jpg", "370.jpg", "459.jpg", "63.jpg", 
+            "89.jpg", "Altar.png", "grato-a-ti.jpg", "9.jpg",
+            "Eterna Gratidão.jpg", "Subline e Grande Amor.jpeg", 
+            "Te agradeço.jpg", "Yoshi_s Island.png"
+        ];
+        let currentImageIndex = 0;
+
+        function openModal(index) {
+            currentImageIndex = index;
             const modal = document.getElementById('modal');
             const modalImage = document.getElementById('modalImage');
-            modalImage.src = img.src;
+            modalImage.src = images[currentImageIndex];
             modal.style.display = 'flex';
         }
 
         function closeModal() {
             const modal = document.getElementById('modal');
             modal.style.display = 'none';
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1;
+            } else if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            }
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = images[currentImageIndex];
         }
 
         function openPDFModal(pdf) {
