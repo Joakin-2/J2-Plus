@@ -6,6 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JokGym</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        #weight-height {
+    margin: 20px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+.input-group label {
+    margin-right: 10px; /* Espaço entre o label e o input */
+    white-space: nowrap; /* Evita quebra de linha no rótulo */
+}
+
+.input-group input {
+    flex-grow: 1; /* Faz o input ocupar o espaço restante */
+    padding: 5px;
+}
+
+@media (max-width: 1440px) {
+    #weight-height {
+        margin: 10px; /* Menor margem para telas pequenas */
+    }
+
+    main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 250px;
+}
+}
+    </style>
 </head>
 <body>
 
@@ -59,11 +93,17 @@
             </div>
 
             <div id="weight-height">
-                <label for="weight">Peso (Kg):</label>
-                <input type="text" id="weight" name="weight" placeholder="Digite seu peso...">
-                <label for="height">Altura:</label>
-                <input type="text" id="height" name="height" placeholder="Digite sua altura...">
+                <div class="input-group">
+                    <label for="weight">Peso (Kg):</label>
+                    <input type="text" id="weight" name="weight" placeholder="Digite seu peso...">
+                </div>
+                <div class="input-group">
+                    <label for="height">Altura (m):</label>
+                    <input type="text" id="height" name="height" placeholder="Digite sua altura...">
+                </div>
+                <div id="result" style="margin-top: 20px;"></div>
             </div>
+            
         </section>
 
         <section id="about-section">
@@ -101,5 +141,35 @@
                     break;
             }
         }
+        function calculateIMC() {
+    const weight = parseFloat(document.getElementById('weight').value);
+    const height = parseFloat(document.getElementById('height').value);
+    const resultDiv = document.getElementById('result');
+
+    if (isNaN(weight) || isNaN(height) || height <= 0) {
+        resultDiv.textContent = ""; // Limpa o resultado se os valores não forem válidos
+        return;
+    }
+
+    const imc = weight / (height * height);
+    let classification = "";
+
+    if (imc < 18.5) {
+        classification = "abaixo do peso.";
+    } else if (imc < 25) {
+        classification = "com peso normal.";
+    } else if (imc < 30) {
+        classification = "com sobrepeso.";
+    } else {
+        classification = "obeso.";
+    }
+
+    resultDiv.textContent = `Seu IMC é ${imc.toFixed(2)} e você está ${classification}`;
+}
+
+// Adiciona eventos de input nos campos
+document.getElementById('weight').addEventListener('input', calculateIMC);
+document.getElementById('height').addEventListener('input', calculateIMC);
+
     </script>
     

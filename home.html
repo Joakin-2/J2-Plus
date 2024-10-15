@@ -179,36 +179,46 @@ button {
     </div>    
 
     <script>
-        // Example script for updating date and time
-const updateDateTime = () => {
-    const dateTime = new Date().toLocaleString();
-    document.getElementById('date-time').innerText = dateTime;
-};
-setInterval(updateDateTime, 1000);
-
-// Fetch weather and update the weather section
-const fetchWeather = () => {
-    // Use a weather API for real data
-    document.getElementById('weather').innerText = "Sunny, 25°C";
-};
-fetchWeather();
-
-// Toggle the menu panel when the menu button is clicked
-document.getElementById('menuButtonNav').addEventListener('click', function() {
-    const menuPanel = document.getElementById('menuPanel');
+        // Atualiza a data e a hora
+        const updateDateTime = () => {
+            const dateTime = new Date().toLocaleString();
+            document.getElementById('date-time').innerText = dateTime;
+        };
+        setInterval(updateDateTime, 1000);
     
-    // Toggle the display of the menu panel
-    menuPanel.style.display = (menuPanel.style.display === 'none' || menuPanel.style.display === '') ? 'block' : 'none';
-});
-
-// Function to load URL in a new tab
-const openInNewTab = (url) => window.open(url, '_blank');
-
-// Event listeners for buttons
-document.getElementById('goButton').addEventListener('click', () => {
-    const url = document.getElementById('urlInput').value;
-    openInNewTab(url);
-});
+        // Simulação de busca do clima
+        const fetchWeather = () => {
+            // Use uma API real para obter dados de clima
+            document.getElementById('weather').innerText = "Sunny, 25°C";
+        };
+        fetchWeather();
+    
+        // Exibe ou esconde o painel de menu
+        document.getElementById('menuButtonNav').addEventListener('click', function() {
+            const menuPanel = document.getElementById('menuPanel');
+            menuPanel.style.display = (menuPanel.style.display === 'none' || menuPanel.style.display === '') ? 'block' : 'none';
+        });
+    
+        // Abre uma URL em uma nova aba
+        const openInNewTab = (url) => window.open(url, '_blank');
+    
+        // Função para fazer a busca no Google
+        const searchGoogle = () => {
+            const query = document.getElementById('urlInput').value;
+            if (query) {
+                openInNewTab(`https://www.google.com/search?q=${encodeURIComponent(query)}`);
+            }
+        };
+    
+        // Evento para o botão "Ir"
+        document.getElementById('goButton').addEventListener('click', searchGoogle);
+    
+        // Evento para pressionar a tecla "Enter"
+        document.getElementById('urlInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchGoogle();
+            }
+        });
 
 document.getElementById('instagramButton').addEventListener('click', () => openInNewTab('https://www.instagram.com'));
 document.getElementById('noticiasButton').addEventListener('click', () => openInNewTab('https://news.google.com/home?hl=pt-BR&gl=BR&ceid=BR:pt-419'));
