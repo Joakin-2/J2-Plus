@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="J2+.png" type="image/x-icon">
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f1316, #364452);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    background-color: #0f1316;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0px 2px 5px rgb(0 0 0 / 20%);
+    z-index: 1000;
+}
+
+.address-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.fa-search:before {
+    content: "\f002";
+}
+
+.address-bar i {
+    margin-right: 10px;
+    color: #8C52FF;
+}
+
+#goButton {
+    padding: 10px 20px;
+    border: none;
+    background-color: #8C52FF;
+    color: white;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+#urlInput {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    margin-right: -3px;
+}
+
+button {
+    background-color: #8C52FF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+#menuPanel {
+    display: none;
+    position: fixed;
+    bottom: 44%;
+    left: 2px;
+    width: 120px;
+    background-color: #14191d;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+#menuPanel button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #8C52FF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 0;
+}
+
+    label {
+        margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <button id="menuButtonNav"><i class="fas fa-bars"></i></button>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="address-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="urlInput" placeholder="Faça sua pesquisa...">
+            <button id="goButton">Ir</button>
+        </div>
+        <section class="grid-container">
+            <div class="news">
+                <h2>Top News</h2>
+                <label>Nenhuma Notícia.</label>
+                <!-- News articles will be dynamically loaded here -->
+            </div>
+
+            <div class="weather">
+                <h2>Weather</h2>
+                <p id="weather">Loading weather...</p>
+            </div>
+
+            <div class="custom-widget">
+                <h2>Today’s Date & Time</h2>
+                <p id="date-time"></p>
+            </div>
+        </section>
+    </main>
+
+    <div id="menuPanel" style="display: none;">
+        <button id="j2plusButton">J2+</button>
+        <button id="noticiasButton">Notícias</button>
+        <!--<button id="favoritesButton">Favorites</button>-->
+        <button id="instagramButton">Instagram</button>
+        <button id="financasButton">Finanças</button>
+
+        <button id="growthButton">Growth</button>
+        <button id="canvaButton">Canva</button>
+        <button id="mercadoLivreButton">Mercado Livre</button>
+        <button id="keepButton">Keep</button>
+        <button id="pinterestButton">Pinterest</button>
+        <button id="aliexpressButton">Aliexpress</button>
+        <button id="convertioButton">Convertio</button>
+        <button id="driveButton">Drive</button>
+    </div>    
+
+    <script>
+        // Example script for updating date and time
+const updateDateTime = () => {
+    const dateTime = new Date().toLocaleString();
+    document.getElementById('date-time').innerText = dateTime;
+};
+setInterval(updateDateTime, 1000);
+
+// Fetch weather and update the weather section
+const fetchWeather = () => {
+    // Use a weather API for real data
+    document.getElementById('weather').innerText = "Sunny, 25°C";
+};
+fetchWeather();
+
+// Toggle the menu panel when the menu button is clicked
+document.getElementById('menuButtonNav').addEventListener('click', function() {
+    const menuPanel = document.getElementById('menuPanel');
+    
+    // Toggle the display of the menu panel
+    menuPanel.style.display = (menuPanel.style.display === 'none' || menuPanel.style.display === '') ? 'block' : 'none';
+});
+
+// Function to load URL in a new tab
+const openInNewTab = (url) => window.open(url, '_blank');
+
+// Event listeners for buttons
+document.getElementById('goButton').addEventListener('click', () => {
+    const url = document.getElementById('urlInput').value;
+    openInNewTab(url);
+});
+
+document.getElementById('instagramButton').addEventListener('click', () => openInNewTab('https://www.instagram.com'));
+document.getElementById('noticiasButton').addEventListener('click', () => openInNewTab('https://news.google.com/home?hl=pt-BR&gl=BR&ceid=BR:pt-419'));
+document.getElementById('j2plusButton').addEventListener('click', () => openInNewTab('https://j2plus.netlify.app'));
+
+// New buttons
+document.getElementById('growthButton').addEventListener('click', () => openInNewTab('https://growth.com'));
+document.getElementById('canvaButton').addEventListener('click', () => openInNewTab('https://www.canva.com'));
+document.getElementById('mercadoLivreButton').addEventListener('click', () => openInNewTab('https://www.mercadolivre.com.br'));
+document.getElementById('keepButton').addEventListener('click', () => openInNewTab('https://keep.google.com'));
+document.getElementById('pinterestButton').addEventListener('click', () => openInNewTab('https://www.pinterest.com'));
+document.getElementById('aliexpressButton').addEventListener('click', () => openInNewTab('https://www.aliexpress.com'));
+document.getElementById('convertioButton').addEventListener('click', () => openInNewTab('https://www.convertio.co'));
+document.getElementById('driveButton').addEventListener('click', () => openInNewTab('https://drive.google.com'));
+
+    </script>
+</body>
+</html>

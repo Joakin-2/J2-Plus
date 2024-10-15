@@ -33,7 +33,6 @@ body {
 .clock {
     font-size: 1.2em; /* Tamanho da fonte do relógio */
     margin-left: 70%;
-    margin-top: 2%;
 }
 
 .clock i {
@@ -236,7 +235,7 @@ h2, h3 {
     border-radius: 8px; /* Bordas arredondadas */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     margin-top: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding: 15px; /* Espaçamento interno */
 }
 
