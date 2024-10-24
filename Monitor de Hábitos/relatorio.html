@@ -5,36 +5,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório Diário</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
             padding: 20px;
-            background-color: #f4f4f4;
+            font-size: 1.2em;
+        }
+        .header .date {
+            font-weight: bold;
+            margin-right: 600px;
+        }
+        .header .clock {
+            font-weight: bold;
+            margin-left: 300px;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h2 {
+            margin-top: 20px;
+            font-size: 1.8em;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         th, td {
-            padding: 8px;
+            padding: 12px 15px;
             text-align: left;
+            border-bottom: 1px solid #e0e0e0;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #333;
+            color: white;
+            font-weight: bold;
         }
-        h2 {
-            margin-bottom: 20px;
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        td {
+            color: #555;
+        }
+        .status-concluido {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .status-nao-concluido {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            th, td {
+                font-size: 0.9em;
+                padding: 10px;
+            }
         }
     </style>
+    <script>
+        // Função para atualizar o relógio
+        function updateClock() {
+            const clockElement = document.querySelector('.clock');
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // Atualiza o relógio a cada segundo
+        setInterval(updateClock, 1000);
+
+        // Inicializa a data e carrega o relatório de hábitos
+        window.onload = function() {
+            const dateElement = document.querySelector('.date');
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            dateElement.textContent = now.toLocaleDateString('pt-BR', options);
+
+            updateClock();
+            carregarRelatorio();
+        }
+
+        // Função para carregar o relatório de hábitos do LocalStorage
+        function carregarRelatorio() {
+    const manhaHabitos = JSON.parse(localStorage.getItem('manhaHabitos')) || [];
+    const tardeHabitos = JSON.parse(localStorage.getItem('tardeHabitos')) || [];
+    const noiteHabitos = JSON.parse(localStorage.getItem('noiteHabitos')) || [];
+
+    const habitos = [...manhaHabitos, ...tardeHabitos, ...noiteHabitos];
+    const tbody = document.querySelector('tbody');
+
+    // Limpa o conteúdo existente antes de adicionar novos dados
+    tbody.innerHTML = '';
+
+    habitos.forEach(habito => {
+        const tr = document.createElement('tr');
+        const tdHabito = document.createElement('td');
+        const tdHorario = document.createElement('td');
+        const tdStatus = document.createElement('td');
+        const tdObservacoes = document.createElement('td');
+
+        tdHabito.textContent = habito.nome;
+        tdHorario.textContent = habito.horario || 'Não definido';
+        tdStatus.textContent = habito.concluido ? 'Concluído' : 'Não Concluído';
+        tdStatus.classList.add(habito.concluido ? 'status-concluido' : 'status-nao-concluido');
+        tdObservacoes.textContent = habito.observacao || 'Sem observações';
+
+        tr.appendChild(tdHabito);
+        tr.appendChild(tdHorario);
+        tr.appendChild(tdStatus);
+        tr.appendChild(tdObservacoes);
+
+        tbody.appendChild(tr);
+    });
+}
+    </script>
 </head>
 <body>
 
-<h2>Relatório do Dia</h2>
+<div class="header">
+    <div class="date"></div>
+    <div class="clock"></div>
+</div>
+
+<div class="container">
+    <h2>Relatório do Dia</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Hábito</th>
+                <th>Horário</th>
+                <th>Status</th>
+                <th>Observações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Os hábitos serão carregados aqui -->
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>
