@@ -89,36 +89,13 @@ function loadExpenses() {
     }
 }
 
-// Função para salvar anotações no localStorage
-function saveNotes() {
-    var notes = document.getElementById("notes").value;
-    localStorage.setItem("notes", notes);
-    console.log("Anotações salvas:", notes);
-}
-
-// Função para carregar anotações do localStorage
-function loadNotes() {
-    var savedNotes = localStorage.getItem("notes");
-    if (savedNotes) {
-        document.getElementById("notes").value = savedNotes;
-        console.log("Anotações carregadas:", savedNotes);
-    } else {
-        console.log("Nenhuma anotação encontrada no localStorage.");
-    }
-}
-
 // Evento para salvar despesas ao clicar no botão "Salvar"
 document.getElementById("save-expenses").addEventListener("click", function() {
     saveExpenses();
 });
-document.getElementById("notes").addEventListener("input", function() {
-    saveNotes(); // Salva as anotações sempre que o texto é alterado
-});
-
 
 document.addEventListener("DOMContentLoaded", function() {
     loadExpenses();
-    loadNotes();
 });
 
 document.getElementById("expense-form").addEventListener("submit", function(event) {
@@ -134,7 +111,6 @@ document.getElementById("expense-form").addEventListener("submit", function(even
 
     addExpense(name, type, amount); // Chamada à função addExpense
     saveExpenses(); // Salva as despesas após adicionar uma despesa
-    saveNotes(); // Salva as anotações após adicionar uma despesa
 });
 
 document.getElementById("download-pdf").addEventListener("click", function() {
@@ -154,15 +130,12 @@ document.getElementById("download-pdf").addEventListener("click", function() {
 
     // Criação de uma tabela para as entradas variáveis
     var entradaVariavelRows = [];
-    var entradaVariavelTotal = 0;
 
     // Criação de uma tabela para as entradas fixas
     var entradaFixaRows = [];
-    var entradaFixaTotal = 0;
 
     // Criação de uma tabela para as saídas
     var saidaRows = [];
-    var saidaTotal = 0;
 
     for (var i = 0; i < rows.length; i++) {
         var cells = rows[i].getElementsByTagName("td");
@@ -173,77 +146,44 @@ document.getElementById("download-pdf").addEventListener("click", function() {
         // Adiciona a linha à categoria apropriada
         if (type === "entrada-variavel") {
             entradaVariavelRows.push([name, amount.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})]);
-            entradaVariavelTotal += amount;
         } else if (type === "entrada-fixa") {
             entradaFixaRows.push([name, amount.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})]);
-            entradaFixaTotal += amount;
         } else if (type === "saida") {
             saidaRows.push([name, amount.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})]);
-            saidaTotal += amount;
         }
     }
 
     // Adiciona as tabelas ao PDF
+    // Tabela de Entradas Variáveis
 doc.autoTable({
-    startY: startY, 
     head: [["Entrada Variável", "Valor (R$)"]],
     body: entradaVariavelRows,
-    theme: 'grid', // Define o tema da tabela
     styles: { 
-        halign: 'center',
-        textColor: 'black'   // Cor do texto
-    },
-    headStyles: { 
-        fillColor: '#6a43be', // Cor de fundo dos cabeçalhos
-        textColor: '#ffffff'   // Cor do texto dos cabeçalhos
+        halign: 'center',  // Centraliza o conteúdo das células
+        fillColor: '#825dff' // Define a cor de fundo da tabela
     }
 });
-var entradaVariavelTotalY = doc.lastAutoTable.finalY + 10;
-doc.text(`Total: R$ ${entradaVariavelTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, startX, entradaVariavelTotalY);
 
+// Tabela de Entradas Fixas
 doc.autoTable({
-    startY: entradaVariavelTotalY + 20,
     head: [["Entrada Fixa", "Valor (R$)"]],
     body: entradaFixaRows,
-    theme: 'grid',
     styles: { 
         halign: 'center',
-        textColor: 'black'   // Cor do texto
-    },
-    headStyles: { 
-        fillColor: '#6a43be', // Cor de fundo dos cabeçalhos
-        textColor: '#ffffff'   // Cor do texto dos cabeçalhos
+        fillColor: '#825dff' 
     }
 });
-var entradaFixaTotalY = doc.lastAutoTable.finalY + 10;
-doc.text(`Total: R$ ${entradaFixaTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, startX, entradaFixaTotalY);
 
+// Tabela de Saídas
 doc.autoTable({
-    startY: entradaFixaTotalY + 20,
     head: [["Saída", "Valor (R$)"]],
     body: saidaRows,
-    theme: 'grid',
     styles: { 
         halign: 'center',
-        textColor: 'black'   // Cor do texto
-    },
-    headStyles: { 
-        fillColor: '#6a43be', // Cor de fundo dos cabeçalhos
-        textColor: '#ffffff'   // Cor do texto dos cabeçalhos
+        fillColor: '#825dff' 
     }
 });
-    var saidaTotalY = doc.lastAutoTable.finalY + 10;
-    doc.text(`Total: R$ ${saidaTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, startX, saidaTotalY);
 
-    var totalFinal = entradaVariavelTotal + entradaFixaTotal + saidaTotal;
-    doc.text(`Total Final: R$ ${totalFinal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, startX, saidaTotalY + 20);
-
-    // Adiciona as anotações ao PDF
-    var notesText = document.getElementById("notes").value;
-    if (notesText.trim() !== "") {
-        doc.text("Anotações:", startX, saidaTotalY + 40);
-        doc.text(notesText, startX, saidaTotalY + 50);
-    }
-
-    doc.save("Controle de Gastos.pdf");
+    
+    doc.save("Gastos.pdf");
 });

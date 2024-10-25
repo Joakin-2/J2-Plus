@@ -37,15 +37,33 @@ function toggleMenu() {
     menu.setAttribute('aria-hidden', isOpen ? 'true' : 'false'); // Atualiza o status de acessibilidade
 }
 
+function toggleMenu2() {
+    const menu = document.getElementById('overlayMenu2');
+    const chat = document.querySelector('.chat');
+    const isOpen = menu.classList.contains('open');
+    
+    menu.classList.toggle('open', !isOpen);
+    chat.classList.toggle('shift', !isOpen);
+    document.body.style.overflow = isOpen ? 'auto' : 'hidden'; // Atualiza o scroll da página
+    menu.setAttribute('aria-hidden', isOpen ? 'true' : 'false'); // Atualiza o status de acessibilidade
+}
+
 // Função para abrir e fechar o menu ao pressionar "ESC"
 function handleEscapeKey(event) {
     if (event.key === "Escape") {
-        const menu = document.getElementById('overlayMenu');
-        if (menu.classList.contains('open')) {
+        const menu1 = document.getElementById('overlayMenu');
+        const menu2 = document.getElementById('overlayMenu2');
+
+        if (menu1.classList.contains('open')) {
             toggleMenu(); // Fecha o menu se estiver aberto
+        } else if (menu2.classList.contains('open')) {
+            toggleMenu2(); // Fecha o segundo menu se estiver aberto
         }
     }
 }
+
+// Adicione o listener para o evento de tecla
+document.addEventListener('keydown', handleEscapeKey);
 
 // Função para lidar com a tecla pressionada no campo de entrada
 function handleKeyPress(event) {

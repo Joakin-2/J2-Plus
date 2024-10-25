@@ -94,47 +94,58 @@
         width: 80px; /* Botão ocupa toda a largura em telas menores */
     }
 
-    /* Estilizando a barra de rolagem */
-::-webkit-scrollbar {
-    width: 12px; /* Largura da barra de rolagem */
-}
+    .suggestions {
+            border: 1px solid #ddd;
+            max-height: 100px;
+            overflow-y: auto;
+            display: none; /* Oculto inicialmente */
+            background-color: #f9f9f9;
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+        }
+        .suggestion-item {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #ececec;
+        }
 
-/* Estilizando o trilho da barra de rolagem */
-::-webkit-scrollbar-track {
-    background: #1e1e1e; /* Cor de fundo do trilho */
-    border-radius: 10px; /* Arredondamento dos cantos */
-}
-
-/* Estilizando o polegar (a parte que se move) */
-::-webkit-scrollbar-thumb {
-    background-color: #555; /* Cor do polegar */
-    border-radius: 10px; /* Arredondamento dos cantos do polegar */
-    border: 3px solid #1e1e1e; /* Adicionando um espaçamento ao redor do polegar */
-}
-
-/* Efeito de hover sobre o polegar */
-::-webkit-scrollbar-thumb:hover {
-    background-color: #888; /* Cor do polegar ao passar o mouse */
-}
-
-/* Estilizando a barra de rolagem quando ativa (clicada) */
-::-webkit-scrollbar-thumb:active {
-    background-color: #333; /* Cor do polegar enquanto está ativo */
-}
-
+    /* Estilo da barra de rolagem */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #1e1e1e;
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #555;
+        border-radius: 10px;
+        border: 3px solid #1e1e1e;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #888;
+    }
 </style>
 </head>
 <body>
-    <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background-color: #1f1f1f; color: #fff;">
-        <h1 style="display: flex; align-items: center; margin-left: 120px; margin-top: 0; margin-bottom: 0;">
-            Productive Youtube 
-            <img src="yt/yt.png" alt="YouTube Icon" style="width: 44px; height: auto; margin-left: 10px;">
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
+        <h1 style="display: flex; align-items: center; margin-left: 120px;">Productive Youtube 
+            <img src="yt/yt.png" alt="YouTube Icon" style="width: 44px; margin-left: 10px;">
         </h1>
-        <form action="https://www.youtube.com/results" method="GET" style="display: flex; align-items: center;">
-            <input type="text" name="search_query" placeholder="Pesquisar..." required style="padding: 10px; width: 400px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;">
+        <form action="https://www.youtube.com/results" method="GET" style="position: relative;">
+            <input type="text" id="search" name="search_query" placeholder="Pesquisar..." required
+                style="padding: 10px; width: 400px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;"
+                oninput="toggleSuggestions()"> <!-- Adicione o evento 'oninput' aqui -->
             <button type="submit" style="padding: 10px; background-color: #ff0000; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px; margin-right: 120px;">Buscar</button>
+            <div id="suggestions" class="suggestions" style="margin-top: 10px;">
+                <!-- Sugestões vão aparecer aqui -->
+            </div>
         </form>
-    </header>     
+    </header>
+
     <div class="container">
         <a href="https://www.youtube.com/@saxworldwide/videos" class="video">
             <img src="yt/sax-video.jpeg" alt="Video 1">
@@ -265,5 +276,60 @@
             <div class="channel-logo"><img src="yt/eu.jpg" alt="video 1"></div>
         </a>
     </div>
+
+    <script>
+        const tradeOptions = [
+        { text: "Reunião Laatus", link: "https://www.youtube.com/results?search_query=laatus+reuni%C3%A3o+matinal" },
+        { text: "Coringa trade", link: "https://www.youtube.com/results?search_query=coringa+trade" }
+    ];
+
+    function toggleSuggestions() {
+        const input = document.getElementById("search").value.toLowerCase();
+        const suggestionsContainer = document.getElementById("suggestions");
+
+        // Limpar sugestões anteriores
+        suggestionsContainer.innerHTML = '';
+
+        if (input === '') {
+            suggestionsContainer.style.display = 'none';
+            return;
+        }
+
+        // Verificar se o input é "/trade"
+        if (input === '/trade') {
+            suggestionsContainer.style.display = 'block';
+            tradeOptions.forEach(option => {
+                const suggestionItem = document.createElement('div');
+                suggestionItem.className = 'suggestion-item';
+                suggestionItem.textContent = option.text;
+
+                // Adiciona o evento de clique
+                suggestionItem.onclick = () => {
+                    window.open(option.link, '_blank'); // Abre o link em nova aba
+                };
+
+                suggestionsContainer.appendChild(suggestionItem);
+            });
+            return;
+        }
+
+        // Filtrar as sugestões
+        const filteredSuggestions = suggestionsData.filter(item => item.toLowerCase().includes(input));
+
+        // Mostrar as sugestões filtradas
+        if (filteredSuggestions.length > 0) {
+            suggestionsContainer.style.display = 'block';
+            filteredSuggestions.forEach(item => {
+                const suggestionItem = document.createElement('div');
+                suggestionItem.className = 'suggestion-item';
+                suggestionItem.textContent = item;
+                suggestionsContainer.appendChild(suggestionItem);
+            });
+        } else {
+            suggestionsContainer.style.display = 'none'; // Ocultar se não houver sugestões
+        }
+    }
+</script>
+
 </body>
 </html>

@@ -30,6 +30,19 @@ body {
     margin-right: 10px; /* Espaço entre o botão e o relógio */
 }
 
+.menu-button2 {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    background-color: #825dff; /* Roxo para o botão do menu */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px; /* Espaço entre o botão e o relógio */
+}
+
 .clock {
     font-size: 1.2em; /* Tamanho da fonte do relógio */
     margin-left: 70%;
