@@ -218,7 +218,7 @@ textarea {
 }
 
 #calendar {
-    width: 180%;
+    width: 170%;
     height: 180px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -226,7 +226,6 @@ textarea {
 }
 
 .day {
-    width: 30px;
     height: 30px;
     color: #ffd755;
     text-align: center;

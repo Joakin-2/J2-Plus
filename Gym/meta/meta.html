@@ -237,6 +237,7 @@
     <!-- Tela de Conclusão -->
     <div id="completion-screen">
         <h1>Parabéns! Treino Finalizado</h1>
+        <div id="calories-burned" style="margin: 20px;"></div>
         <button class="control-button" onclick="resetWorkout()">Voltar ao Início</button>
     </div>
 
@@ -250,6 +251,17 @@
         let timerId;
         let isTimerRunning = false;
         let isPaused = false; // Variável para controlar o estado de pausa
+
+        let caloriesPerMinute = {
+            'Core 1': 5,
+            'Core 2': 5,
+            'Core 3': 5,
+            'Core 4': 5,
+            'Core 5': 5,
+            'Core 6': 5,
+            'Inferior 1': 7,
+            'Inferior 2': 7
+        };
 
         function updateTimer() {
             if (isTimerRunning && !isPaused) {
@@ -378,6 +390,25 @@
         if (event.target === document.getElementById('videoModal')) {
             closeVideoModal();
         }
+    }
+
+    function showCompletionScreen() {
+        // Calcular calorias queimadas
+        const totalMinutes = Math.floor(timeInSeconds / 60);
+        const currentExercise = exercises[currentIndex];
+        const caloriesBurned = totalMinutes * caloriesPerMinute[currentExercise];
+
+        // Exibir na tela de conclusão
+        const caloriesElement = document.getElementById('calories-burned');
+        caloriesElement.textContent = `Você queimou aproximadamente ${caloriesBurned} calorias durante o treino!`;
+
+        const initialScreen = document.getElementById("initial-screen");
+        const workoutScreen = document.getElementById("workout-screen");
+        const completionScreen = document.getElementById("completion-screen");
+
+        if (workoutScreen) workoutScreen.style.display = "none";
+        if (completionScreen) completionScreen.style.display = "flex";
+        if (initialScreen) initialScreen.style.display = "none";
     }
     </script>
 

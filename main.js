@@ -123,11 +123,21 @@ function piscarOlhos() {
 // Piscar os olhos a cada 3 segundos
 setInterval(piscarOlhos, 3000);
 
+// Função para exibir status de carregamento
+function updateStatus(message) {
+    const status = document.getElementById('status');
+    status.style.display = 'block';
+    status.innerHTML = message;
+}
+
 // Função para enviar mensagens
 function sendMessage() {
     const inputText = document.getElementById('inputText').value;
     if (inputText.trim() === "") return;
-    
+
+    // Exibir "digitando..." antes de enviar
+    updateStatus('Digitando...');
+
     sendMessageToAPI(inputText);
 }
 
@@ -137,8 +147,6 @@ function sendMessageToAPI(message) {
     const inputText = document.getElementById('inputText');
     const sendButton = document.getElementById('sendButton');
 
-    status.style.display = 'block';
-    status.innerHTML = 'Carregando...';
     sendButton.disabled = true;
     sendButton.style.cursor = 'not-allowed';
     inputText.disabled = true;
@@ -147,15 +155,13 @@ function sendMessageToAPI(message) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Accept-Language': 'pt-BR'  // Adicione esta linha para especificar o idioma
+            'Accept-Language': 'pt-BR'  // Adiciona a especificação do idioma
         },
         body: JSON.stringify({
             contents: [
                 {
                     parts: [
-                        {
-                            text: message
-                        }
+                        { text: message }
                     ]
                 }
             ]
@@ -163,34 +169,65 @@ function sendMessageToAPI(message) {
     })
     .then(response => response.json())
     .then(response => {
-        console.log('Resposta da API:', response);  // Adicionado para depuração
+        console.log('Resposta da API:', response);
         if (response.candidates && response.candidates.length > 0) {
             let candidate = response.candidates[0];
-            console.log('Primeiro candidato:', candidate);  // Adicionado para depuração
-            console.log('Conteúdo do candidato:', candidate.content);  // Adicionado para depuração
-            
+            console.log('Primeiro candidato:', candidate);
             let content = candidate.content;
             let r = 'Texto não encontrado';
+            
             if (content && content.parts && content.parts.length > 0) {
                 let part = content.parts[0];
-                r = part.text || 'Texto não encontrado';  // Ajuste conforme a estrutura real
+                r = part.text || 'Texto não encontrado';
+                
+                // Verificando se o conteúdo parece ser código
+                if (isCode(r)) {
+                    r = formatCode(r); // Formata o código com sintaxe adequada
+                }
             }
             
+            // Quando a resposta for recebida, esconder "digitando..."
+            updateStatus('');
+
             showHistory(message, r);
             falar(r);
         } else {
-            status.innerHTML = 'Resposta inesperada da API. Verifique o console para mais detalhes.';
+            updateStatus('Resposta inesperada da API. Verifique o console para mais detalhes.');
         }
     })
     .catch(e => {
         console.log(`Error -> ${e}`);
-        status.innerHTML = 'Erro, tente novamente mais tarde...';
+        updateStatus('Erro, tente novamente mais tarde...');
     })
     .finally(() => {
         sendButton.disabled = false;
         sendButton.style.cursor = 'pointer';
         inputText.disabled = false;
         inputText.value = '';
+    });
+}
+
+// Função para identificar se o texto é código
+function isCode(text) {
+    const codePatterns = [
+        /```[\s\S]*```/,
+        /<\s*script.*>/,
+        /\bfunction\b|\bconst\b|\blet\b|\bvar\b/,
+        /\bdef\b|\bclass\b/
+    ];
+    
+    return codePatterns.some(pattern => pattern.test(text));
+}
+
+// Função para formatar o código com marcação HTML
+function formatCode(code) {
+    return `<pre><code>${escapeHtml(code)}</code></pre>`;
+}
+
+// Função para escapar caracteres especiais em HTML
+function escapeHtml(unsafe) {
+    return unsafe.replace(/[&<>"'`]/g, function (char) {
+        return `&#${char.charCodeAt(0)};`;
     });
 }
 
@@ -211,9 +248,8 @@ function showHistory(message, response) {
     const chatResponse = document.createElement('p');
     chatResponse.className = 'response-message';
 
-    // Remove asteriscos e adiciona formatação de quebras de linha
-    const cleanedResponse = response.replace(/\*/g, '').replace(/\n/g, '<br>');
-    chatResponse.innerHTML = cleanedResponse;
+    // Exibe a resposta formatada
+    chatResponse.innerHTML = response;
 
     boxResponseMessage.appendChild(chatResponse);
     historyBox.appendChild(boxResponseMessage);

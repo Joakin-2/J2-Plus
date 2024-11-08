@@ -16,6 +16,7 @@
             background-color: #2B2B2B;
             color: white;
             text-align: center;
+            overflow: hidden;
         }
 
         #initial-screen, #workout-screen, #completion-screen, #info-screen {
@@ -197,6 +198,7 @@
     <!-- Tela de Conclusão -->
     <div id="completion-screen">
         <h1>Parabéns! Treino Finalizado</h1>
+        <div id="calories-burned" style="margin: 20px;"></div>
         <button class="control-button" onclick="resetWorkout()">Voltar ao Início</button>
     </div>
 
@@ -211,6 +213,14 @@
         let isTimerRunning = false;
         let isPaused = false;
         let countdownId;
+
+        let caloriesPerMinute = {
+    'Prancha': 4,               // Exemplo de calorias por minuto
+    'Abdômen Polia': 5,         // Exemplo de calorias por minuto
+    'Abdômen Infra': 5,         // Exemplo de calorias por minuto
+    'Abdômen Supra': 5,         // Exemplo de calorias por minuto
+    'Abdômen Máquina': 6        // Exemplo de calorias por minuto
+};
 
         function updateTimer() {
             if (isTimerRunning && !isPaused) {
@@ -362,16 +372,6 @@
             if (exercicioImagem) exercicioImagem.src = '';
         }
 
-        function showCompletionScreen() {
-            const initialScreen = document.getElementById("initial-screen");
-            const workoutScreen = document.getElementById("workout-screen");
-            const completionScreen = document.getElementById("completion-screen");
-
-            if (workoutScreen) workoutScreen.style.display = "none";
-            if (completionScreen) completionScreen.style.display = "flex";
-            if (initialScreen) initialScreen.style.display = "none";
-        }
-
         function showInfoScreen() {
             const initialScreen = document.getElementById("initial-screen");
             const infoScreen = document.getElementById("info-screen");
@@ -387,6 +387,25 @@
             if (infoScreen) infoScreen.style.display = "none";
             if (initialScreen) initialScreen.style.display = "flex";
         }
+
+        function showCompletionScreen() {
+        // Calcular calorias queimadas
+        const totalMinutes = Math.floor(timeInSeconds / 60);
+        const currentExercise = exercises[currentIndex];
+        const caloriesBurned = totalMinutes * caloriesPerMinute[currentExercise];
+
+        // Exibir na tela de conclusão
+        const caloriesElement = document.getElementById('calories-burned');
+        caloriesElement.textContent = `Você queimou aproximadamente ${caloriesBurned} calorias durante o treino!`;
+
+        const initialScreen = document.getElementById("initial-screen");
+        const workoutScreen = document.getElementById("workout-screen");
+        const completionScreen = document.getElementById("completion-screen");
+
+        if (workoutScreen) workoutScreen.style.display = "none";
+        if (completionScreen) completionScreen.style.display = "flex";
+        if (initialScreen) initialScreen.style.display = "none";
+    }
     </script>
 
 </body>

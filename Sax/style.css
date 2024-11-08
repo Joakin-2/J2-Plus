@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background-color: #000000;
+    background-color: #282828;
     color: #ffd755;
     padding: 16px;
     text-align: center;
@@ -214,7 +214,6 @@ textarea {
 }
 
 .day {
-    width: 30px;
     height: 30px;
     color: #ffd755;
     text-align: center;
