@@ -1,0 +1,29 @@
+const fetch = require('node-fetch');
+
+const apiKey = 'sua-chave-de-api-govee'; // Substitua pela sua chave de API Govee
+const deviceId = 'id-do-seu-dispositivo'; // Substitua pelo ID do seu dispositivo (fita de LED Govee)
+const url = `https://api.govee.com/v1/devices/control`;
+
+const data = {
+  device: deviceId,
+  model: 'H6159', // O modelo da fita de LED (ajuste conforme necessário)
+  color: { r: 255, g: 0, b: 0 }, // Cor vermelha (RGB)
+  brightness: 100, // Brilho máximo
+};
+
+fetch(url, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Govee-API-Key': apiKey,
+  },
+  body: JSON.stringify(data),
+})
+  .then(response => response.json())
+  .then(data => console.log('Comando enviado:', data))
+  .catch(error => console.error('Erro ao enviar comando:', error));
+
+
+https://developer.govee.com/
+
+https://produto.mercadolivre.com.br/MLB-3837078789-lmpadas-de-faixa-de-led-govee-rubic-m1-1m-com-extenso-4-em-_JM#polycard_client=search-nordic&position=8&search_layout=grid&type=item&tracking_id=bd822256-f3b6-4660-acbd-d34c2eb36543
