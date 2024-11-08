@@ -16,6 +16,7 @@
             background-color: #2B2B2B;
             color: white;
             text-align: center;
+            overflow: hidden;
         }
 
         #initial-screen, #workout-screen, #completion-screen {
@@ -140,7 +141,7 @@
     <!-- Tela de Treino -->
     <div id="workout-screen">
         <div id="imagem-container">
-            <img id="exercicio-imagem" src="" alt="GIF de Exercício">
+            <img id="exercicio-imagem" style="width: 430px;" src="" alt="GIF de Exercício">
         </div>
         <div id="exercise-info">3 séries de 15 repetições</div>
         <div id="timer">00:00:00</div>
@@ -163,150 +164,160 @@
     <!-- Tela de Conclusão -->
     <div id="completion-screen">
         <h1>Parabéns! Treino Finalizado</h1>
+        <div id="calories-burned" style="margin: 20px;"></div>
         <button class="control-button" onclick="resetWorkout()">Voltar ao Início</button>
     </div>
 
     <script>
         const exercises = ['Agachamento', 'Inferior'];
-let currentIndex = 0;
-let timeInSeconds = 0;
-let timerId;
-let isTimerRunning = false;
-let isPaused = false; // Variável para controlar o estado de pausa
+        let currentIndex = 0;
+        let timeInSeconds = 0;
+        let timerId;
+        let isTimerRunning = false;
+        let isPaused = false; // Variável para controlar o estado de pausa
 
-function updateTimer() {
-    if (isTimerRunning && !isPaused) {
-        timeInSeconds++;
-        const hours = Math.floor(timeInSeconds / 3600);
-        const minutes = Math.floor((timeInSeconds % 3600) / 60);
-        const seconds = timeInSeconds % 60;
+        // Gasto calórico por minuto para cada exercício
+        const caloriesPerMinute = {
+            'Agachamento': 8,
+            'Inferior': 8
+        };
 
-        const formattedHours = hours.toString().padStart(2, '0');
-        const formattedMinutes = minutes.toString().padStart(2, '0');
-        const formattedSeconds = seconds.toString().padStart(2, '0');
+        function updateTimer() {
+            if (isTimerRunning && !isPaused) {
+                timeInSeconds++;
+                const hours = Math.floor(timeInSeconds / 3600);
+                const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                const seconds = timeInSeconds % 60;
 
-        document.getElementById("timer").textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-    }
-}
+                const formattedHours = hours.toString().padStart(2, '0');
+                const formattedMinutes = minutes.toString().padStart(2, '0');
+                const formattedSeconds = seconds.toString().padStart(2, '0');
 
-function startWorkout() {
-    // Certifique-se de que todos os IDs existem antes de tentar acessar seus estilos
-    const initialScreen = document.getElementById("initial-screen");
-    const workoutScreen = document.getElementById("workout-screen");
-    const completionScreen = document.getElementById("completion-screen");
-    const timer = document.getElementById("timer");
-    const imagemContainer = document.getElementById("imagem-container");
-    const controls = document.getElementById("controls");
-    const startButton = document.getElementById("startButton");
+                document.getElementById("timer").textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+            }
+        }
 
-    // Verifique se os elementos existem antes de tentar manipular seus estilos
-    if (initialScreen) initialScreen.style.display = "none";
-    if (workoutScreen) workoutScreen.style.display = "flex";
-    if (completionScreen) completionScreen.style.display = "none";
-    if (timer) timer.style.display = "block";
-    // pause-controls removido, pois não existe no HTML
-    if (imagemContainer) imagemContainer.style.display = "flex";
-    if (controls) controls.style.display = "flex";
-    if (startButton) startButton.style.display = "none";
+        function startWorkout() {
+            // Certifique-se de que todos os IDs existem antes de tentar acessar seus estilos
+            const initialScreen = document.getElementById("initial-screen");
+            const workoutScreen = document.getElementById("workout-screen");
+            const completionScreen = document.getElementById("completion-screen");
+            const timer = document.getElementById("timer");
+            const imagemContainer = document.getElementById("imagem-container");
+            const controls = document.getElementById("controls");
+            const startButton = document.getElementById("startButton");
 
-    if (!isTimerRunning) {
-        timerId = setInterval(updateTimer, 1000);
-        isTimerRunning = true;
-    }
+            // Verifique se os elementos existem antes de tentar manipular seus estilos
+            if (initialScreen) initialScreen.style.display = "none";
+            if (workoutScreen) workoutScreen.style.display = "flex";
+            if (completionScreen) completionScreen.style.display = "none";
+            if (timer) timer.style.display = "block";
+            if (imagemContainer) imagemContainer.style.display = "flex";
+            if (controls) controls.style.display = "flex";
+            if (startButton) startButton.style.display = "none";
 
-    showCurrentExercise();
-}
+            if (!isTimerRunning) {
+                timerId = setInterval(updateTimer, 1000);
+                isTimerRunning = true;
+            }
 
-function showCurrentExercise() {
-    const imagemContainer = document.getElementById('imagem-container');
-    const exercicioImagem = document.getElementById('exercicio-imagem');
+            showCurrentExercise();
+        }
 
-    const imagemMap = {
-        'Agachamento': 'Agachamento.jpg',
-        'Inferior': 'pernas.jpg'
-    };
+        function showCurrentExercise() {
+            const imagemContainer = document.getElementById('imagem-container');
+            const exercicioImagem = document.getElementById('exercicio-imagem');
 
-    exercicioImagem.src = imagemMap[exercises[currentIndex]];
-}
+            const imagemMap = {
+                'Agachamento': 'Agachamento.jpg',
+                'Inferior': 'pernas.jpg'
+            };
 
-function nextExercise() {
-    if (currentIndex < exercises.length - 1) {
-        currentIndex++;
-        showCurrentExercise();
-    } else {
-        showCompletionScreen(); // Certifique-se de que esta função está definida
-    }
-}
+            exercicioImagem.src = imagemMap[exercises[currentIndex]];
+        }
 
-function previousExercise() {
-    if (currentIndex > 0) {
-        currentIndex--;
-        showCurrentExercise();
-    }
-}
+        function nextExercise() {
+            if (currentIndex < exercises.length - 1) {
+                currentIndex++;
+                showCurrentExercise();
+            } else {
+                showCompletionScreen();
+            }
+        }
 
-function togglePause() {
-    if (isPaused) {
-        resumeTimer();
-    } else {
-        pauseTimer();
-    }
-}
+        function previousExercise() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showCurrentExercise();
+            }
+        }
 
-function pauseTimer() {
-    clearInterval(timerId);
-    isTimerRunning = false;
-    isPaused = true;
-    document.getElementById("pause-button").innerHTML = '<i class="fas fa-play"></i> Retomar';
-}
+        function togglePause() {
+            if (isPaused) {
+                resumeTimer();
+            } else {
+                pauseTimer();
+            }
+        }
 
-function resumeTimer() {
-    if (!isTimerRunning) {
-        timerId = setInterval(updateTimer, 1000);
-        isTimerRunning = true;
-        isPaused = false;
-        document.getElementById("pause-button").innerHTML = '<i class="fas fa-pause"></i> Pausar';
-    }
-}
+        function pauseTimer() {
+            clearInterval(timerId);
+            isTimerRunning = false;
+            isPaused = true;
+            document.getElementById("pause-button").innerHTML = '<i class="fas fa-play"></i> Retomar';
+        }
 
-function resetWorkout() {
-    clearInterval(timerId);
-    isTimerRunning = false;
-    isPaused = false;
-    timeInSeconds = 0;
+        function resumeTimer() {
+            if (!isTimerRunning) {
+                timerId = setInterval(updateTimer, 1000);
+                isTimerRunning = true;
+                isPaused = false;
+                document.getElementById("pause-button").innerHTML = '<i class="fas fa-pause"></i> Pausar';
+            }
+        }
 
-    // Verifique se os elementos existem antes de tentar acessar suas propriedades
-    const timer = document.getElementById("timer");
-    const controls = document.getElementById("controls");
-    const workoutScreen = document.getElementById("workout-screen");
-    const completionScreen = document.getElementById("completion-screen");
-    const initialScreen = document.getElementById("initial-screen");
-    const startButton = document.getElementById("startButton");
-    const imagemContainer = document.getElementById("imagem-container");
-    const exercicioImagem = document.getElementById("exercicio-imagem");
+        function resetWorkout() {
+            clearInterval(timerId);
+            isTimerRunning = false;
+            isPaused = false;
+            timeInSeconds = 0;
 
-    if (timer) timer.style.display = "none";
-    if (controls) controls.style.display = "none";
-    if (workoutScreen) workoutScreen.style.display = "none";
-    if (completionScreen) completionScreen.style.display = "none";
-    if (initialScreen) initialScreen.style.display = "flex";
-    if (startButton) startButton.style.display = "inline-block";
-    if (imagemContainer) imagemContainer.style.display = "none";
-    if (exercicioImagem) exercicioImagem.src = '';
-}
+            const timer = document.getElementById("timer");
+            const controls = document.getElementById("controls");
+            const workoutScreen = document.getElementById("workout-screen");
+            const completionScreen = document.getElementById("completion-screen");
+            const initialScreen = document.getElementById("initial-screen");
+            const startButton = document.getElementById("startButton");
+            const imagemContainer = document.getElementById("imagem-container");
+            const exercicioImagem = document.getElementById("exercicio-imagem");
 
-function showCompletionScreen() {
-    // Certifique-se de que todos os IDs existem antes de tentar acessar seus estilos
-    const initialScreen = document.getElementById("initial-screen");
-    const workoutScreen = document.getElementById("workout-screen");
-    const completionScreen = document.getElementById("completion-screen");
+            if (timer) timer.style.display = "none";
+            if (controls) controls.style.display = "none";
+            if (workoutScreen) workoutScreen.style.display = "none";
+            if (completionScreen) completionScreen.style.display = "none";
+            if (initialScreen) initialScreen.style.display = "flex";
+            if (startButton) startButton.style.display = "inline-block";
+            if (imagemContainer) imagemContainer.style.display = "none";
+            if (exercicioImagem) exercicioImagem.src = '';
+        }
 
-    if (workoutScreen) workoutScreen.style.display = "none";
-    if (completionScreen) completionScreen.style.display = "flex";
-    if (initialScreen) initialScreen.style.display = "none";
-}
+        function showCompletionScreen() {
+            // Calcular calorias queimadas
+            const totalMinutes = Math.floor(timeInSeconds / 60);
+            const caloriesBurned = totalMinutes * caloriesPerMinute[exercises[currentIndex]];
 
+            // Exibir na tela de conclusão
+            const caloriesElement = document.getElementById('calories-burned');
+            caloriesElement.textContent = `Você queimou aproximadamente ${caloriesBurned} calorias durante o treino!`;
 
+            const initialScreen = document.getElementById("initial-screen");
+            const workoutScreen = document.getElementById("workout-screen");
+            const completionScreen = document.getElementById("completion-screen");
+
+            if (workoutScreen) workoutScreen.style.display = "none";
+            if (completionScreen) completionScreen.style.display = "flex";
+            if (initialScreen) initialScreen.style.display = "none";
+        }
     </script>
 
 </body>

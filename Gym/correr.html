@@ -28,6 +28,12 @@
             margin-bottom: 20px;
         }
 
+        #calories {
+            font-size: 1.5em;
+            color: #ffe893;
+            margin-top: 20px;
+        }
+
         #startButton {
             font-size: 1.5em;
             background-color: #ffe893;
@@ -43,14 +49,20 @@
 
     <div id="timer">00:00:00</div>
     <button id="startButton" onclick="toggleTimer()">Iniciar</button>
+    <div id="calories">Calorias queimadas: 0</div>
 
     <script>
         let timeInSeconds = 0;
+        let caloriesBurned = 0;
         let timerId;  // Variável para armazenar o ID do temporizador
         let isTimerRunning = false;  // Flag para verificar se o temporizador está em execução
 
+        // Calorias queimadas por minuto (valor arbitrário, você pode ajustar conforme necessário)
+        const caloriesPerMinute = 8; 
+
         function updateTimer() {
             if (isTimerRunning) {
+                // Atualiza o cronômetro
                 const hours = Math.floor(timeInSeconds / 3600);
                 const minutes = Math.floor((timeInSeconds % 3600) / 60);
                 const seconds = timeInSeconds % 60;
@@ -60,6 +72,14 @@
                 const formattedSeconds = seconds.toString().padStart(2, '0');
 
                 document.getElementById("timer").textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+
+                // Calcula as calorias queimadas (baseado no tempo em minutos)
+                caloriesBurned = Math.floor((timeInSeconds / 60) * caloriesPerMinute);
+
+                // Atualiza o contador de calorias
+                document.getElementById("calories").textContent = `Calorias queimadas: ${caloriesBurned}`;
+
+                // Incrementa o tempo em segundos
                 timeInSeconds++;
             }
         }

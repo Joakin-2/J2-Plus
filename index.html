@@ -44,7 +44,6 @@
     
     <div class="container">
         <button class="menu-button" aria-label="Abrir menu" onclick="toggleMenu()">Menu</button>
-        <button class="menu-button2" aria-label="Abrir menu2" onclick="toggleMenu2()">Ajuda</button>
         <button class="chatg" onclick="window.location.href='https://chat.openai.com/chat'"></button>
         <span class="clock">
             <i class="fas fa-clock"></i> <!-- Ícone de relógio -->
@@ -71,12 +70,14 @@
                     </ul>
                 </div>                
             </div>
-            <div class="avatar">
-                <div class="face">
-                    <div class="eye left" id="olhoEsquerdo"></div>
-                    <div class="eye right" id="olhoDireito"></div>
+            <a href="chat.html" target="_blank">
+                <div class="avatar">
+                    <div class="face">
+                        <div class="eye left" id="olhoEsquerdo"></div>
+                        <div class="eye right" id="olhoDireito"></div>
+                    </div>
                 </div>
-            </div>
+            </a>            
             <div class="right-side">
                 <div class="weather">
                     <a href="https://www.msn.com/pt-br/clima/forecast/in-Jacupiranga,S%C3%A3o-Paulo?ocid=msedgntphdr&cvid=bb73bd20fe56462399e7e714692deb87&loc=eyJsIjoiSmFjdXBpcmFuZ2EiLCJyIjoiU8OjbyBQYXVsbyIsImMiOiJCcmFzaWwiLCJpIjoiQlIiLCJ0IjoxMDIsImciOiJwdC1iciIsIngiOiItNDguMDA2MDk5NzAwOTI3NzM0IiwieSI6Ii0yNC43MDM4MDAyMDE0MTYwMTYifQ%3D%3D&weadegreetype=C" target="_blank">
@@ -106,6 +107,7 @@
     <footer>
         <button class="detalhes" onclick="window.location.href='privacidade.html'">Privacidade</button>
         <button class="detalhes" onclick="window.location.href='termo.html'">Termo</button>
+        <button class="detalhes" aria-label="Abrir menu2" onclick="toggleMenu2()">Help</button>
     </footer>
     
     <script src="main.js"></script> <!-- JavaScript externo -->

@@ -229,7 +229,7 @@ h2, h3 {
 }
 
 #recomendacoes {
-    margin-bottom: 45px;
+    margin-bottom: 38px;
 }
 
 #status {
@@ -241,7 +241,7 @@ h2, h3 {
 }
 
 .chat {
-    width: 600px;
+    width: 800px;
     height: 300px;
     border: 1px solid #333;
     background-color: #1e1e1e;
