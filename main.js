@@ -67,10 +67,20 @@ document.addEventListener('keydown', handleEscapeKey);
 
 // Função para lidar com a tecla pressionada no campo de entrada
 function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-        sendMessage(); // Chama a função sendMessage() ao pressionar Enter
+    // Verifica se é apenas Enter (sem Shift) para chamar a função de enviar mensagem
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();  // Impede a ação padrão de enviar um formulário (se houver)
+      sendMessage();  // Chama a função sendMessage() para enviar a mensagem
     }
-}
+    
+    // Verifica se é Shift + Enter para inserir uma quebra de linha
+    if (event.key === 'Enter' && event.shiftKey) {
+      event.preventDefault();  // Impede a ação padrão de adicionar uma nova linha no conteúdo
+
+      // Insere uma quebra de linha no ponto do cursor
+      document.execCommand('insertHTML', false, '<br>');  // Adiciona a nova linha no campo de texto
+    }
+  }
 
 // Adicionar um listener para a tecla "Escape"
 document.addEventListener('keydown', handleEscapeKey);
