@@ -136,11 +136,9 @@
             <img src="yt/yt.png" alt="YouTube Icon" style="width: 44px; margin-left: 10px;">
         </h1>
         <form action="https://www.youtube.com/results" method="GET" style="position: relative;">
-            <input type="text" id="search" name="search_query" placeholder="Pesquisar..." required
-                style="padding: 10px; width: 400px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;"
-                oninput="toggleSuggestions()"> <!-- Adicione o evento 'oninput' aqui -->
-            <button type="submit" style="padding: 10px; background-color: #ff0000; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px; margin-right: 120px;">Buscar</button>
-            <div id="suggestions" class="suggestions" style="margin-top: 10px;">
+            <input type="text" id="search" name="search_query" placeholder="Pesquisar..." required="" style="padding: 10px; width: 400px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;" oninput="toggleSuggestions()"> <!-- Adicione o evento 'oninput' aqui -->
+            <button type="submit" style="padding: 10px;background-color: #2e2e2e;color: white;border: none;border-radius: 5px;cursor: pointer;margin-left: 10px;margin-right: 10px;">Buscar</button>
+            <button type="button" style="padding: 10px;background-color: #2e2e2e;color: white;border: none;border-radius: 5px;cursor: pointer;margin-right: 120px;" onclick="openSites()">+</button><div id="suggestions" class="suggestions" style="margin-top: 10px;">
                 <!-- Sugestões vão aparecer aqui -->
             </div>
         </form>
@@ -312,6 +310,20 @@
             });
             return;
         }
+
+        function openSites() {
+        // URLs dos sites a serem abertos
+        const sites = [
+            "https://drive.google.com/drive/u/4/folders/1d7MVyG2ZSvt58nlbZ_6CoMnd_FGQc6Fi", // Exemplo de site 1
+            "https://www.instagram.com/joakin_luiz/saved/all-posts/?theme=dark",        // Exemplo de site 2
+            "https://snapinsta.app/pt"   // Exemplo de site 3
+        ];
+
+        // Abre cada site em uma nova aba
+        sites.forEach(site => {
+            window.open(site, '_blank');
+        });
+    }
 
         // Filtrar as sugestões
         const filteredSuggestions = suggestionsData.filter(item => item.toLowerCase().includes(input));
