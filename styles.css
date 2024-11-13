@@ -278,6 +278,8 @@ h2, h3 {
     border-radius: 5px;
     margin-left: 50%;
     margin-right: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .response-message {
@@ -287,6 +289,8 @@ h2, h3 {
     padding: 6px;
     max-width: 80%;
     border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 footer {
