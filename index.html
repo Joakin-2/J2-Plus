@@ -94,6 +94,7 @@
             </div>
         </div>
         <br><br>
+        <div id="birthdayMessage" style="display: none;background-color: #ffffff;color: #642dfc;padding: 10px;border: 1px solid #642dfc;border-radius: 5px;"><p id="birthdayText">🎉 Feliz Aniversário! 🎂</p></div>
         <div class="chat">
             <main id="chatArea" class="chat-area"></main>
             <div id="status" class="status"></div>
@@ -155,6 +156,39 @@ window.onclick = function(event) {
         }
     }
 }
+        // Função para verificar os aniversários
+function checkBirthday() {
+    // Defina os aniversários com nome e data (mês e dia)
+    const birthdays = [
+        { name: "Joaquim", date: new Date('2008-02-05') },
+        { name: "Vitória", date: new Date('2014-07-04') },
+        { name: "Paula", date: new Date('1979-10-24') },
+        { name: "Adeir", date: new Date('1976-09-07') }
+    ];
+
+    // Obtém a data atual
+    const today = new Date();
+    let message = '';
+
+    // Verifica se a data de hoje é o aniversário de alguém
+    birthdays.forEach(birthday => {
+        // Faz a comparação apenas pelo mês e dia (ignora o ano)
+        if (today.getDate() === birthday.date.getDate() && today.getMonth() === birthday.date.getMonth()) {
+            message = `🎉 Parabéns, ${birthday.name}! 🎂`; // Cria uma mensagem personalizada
+        }
+    });
+
+    // Se algum aniversário for hoje, exibe a mensagem
+    if (message) {
+        document.getElementById('birthdayText').innerText = message; // Atualiza o texto da mensagem
+        document.getElementById('birthdayMessage').style.display = 'block'; // Exibe o div
+    }
+}
+
+// Chama a função quando a página for carregada
+window.onload = function() {
+    checkBirthday();
+};
     </script>
     
 </body>
