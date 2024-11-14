@@ -276,7 +276,7 @@
     </div>
 
     <script>
-        const tradeOptions = [
+    const tradeOptions = [
         { text: "Reunião Laatus", link: "https://www.youtube.com/results?search_query=laatus+reuni%C3%A3o+matinal" },
         { text: "Coringa trade", link: "https://www.youtube.com/results?search_query=coringa+trade" }
     ];
@@ -319,20 +319,6 @@
             return;
         }
 
-        function openSites() {
-        // URLs dos sites a serem abertos
-        const sites = [
-            "https://drive.google.com/drive/u/4/folders/1d7MVyG2ZSvt58nlbZ_6CoMnd_FGQc6Fi", // Exemplo de site 1
-            "https://www.instagram.com/joakin_luiz/saved/all-posts/?theme=dark",        // Exemplo de site 2
-            "https://snapinsta.app/pt"   // Exemplo de site 3
-        ];
-
-        // Abre cada site em uma nova aba
-        sites.forEach(site => {
-            window.open(site, '_blank');
-        });
-    }
-
         // Filtrar as sugestões
         const filteredSuggestions = suggestionsData.filter(item => item.toLowerCase().includes(input));
 
@@ -348,6 +334,21 @@
         } else {
             suggestionsContainer.style.display = 'none'; // Ocultar se não houver sugestões
         }
+    }
+
+    // Mover a função openSites para fora da função toggleSuggestions
+    function openSites() {
+        // URLs dos sites a serem abertos
+        const sites = [
+            "https://drive.google.com/drive/u/4/folders/1d7MVyG2ZSvt58nlbZ_6CoMnd_FGQc6Fi", // Exemplo de site 1
+            "https://www.instagram.com/joakin_luiz/saved/all-posts/?theme=dark",        // Exemplo de site 2
+            "https://snapinsta.app/pt"   // Exemplo de site 3
+        ];
+
+        // Abre cada site em uma nova aba
+        sites.forEach(site => {
+            window.open(site, '_blank');
+        });
     }
 </script>
 
