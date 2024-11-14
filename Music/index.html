@@ -169,6 +169,7 @@
             height: 100%;
             border-radius: 10px;
             text-align: center;
+            overflow-y: auto;
         }
 
         .outros-button {
@@ -416,7 +417,7 @@
 }
 
 .icons i:hover {
-    color: #ff6347;
+    color: #e22bd3;
 }
 
 .time {
@@ -556,7 +557,11 @@
             </div>            
             <br>
             <div class="controls" style="display: flex; align-items: center; justify-content: center;">
-                <button class="outros-button" onclick="previousTrack()" style="border: none; cursor: pointer; padding: 10px;">
+                <!-- Botão de Loop -->
+                <button class="outros-button" onclick="toggleLoop()" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px;">
+                    <i class="fas fa-redo"></i> <!-- Ícone de loop -->
+                </button>
+                <button class="outros-button" onclick="previousTrack()" style="background: #1a1a1a; border: none; cursor: pointer; padding: 10px;">
                     <i class="fas fa-backward"></i> <!-- Ícone de voltar -->
                 </button>
                 <button class="outros-button" id="playPauseButton" onclick="togglePlayPause()" style="background: #1a1a1a; border: none; color: white; padding: 10px;">
@@ -564,8 +569,12 @@
                         <path d="M5.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0v-9A.5.5 0 0 1 5.5 3zM10.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0v-9a.5.5 0 0 1 .5-.5z"></path>
                     </svg>
                 </button>
-                <button class="outros-button" onclick="nextTrack()" style="border: none; cursor: pointer; padding: 10px;">
+                <button class="outros-button" onclick="nextTrack()" style="background: #1a1a1a; border: none; cursor: pointer; padding: 10px;">
                     <i class="fas fa-forward"></i> <!-- Ícone de avançar -->
+                </button>
+                <!-- Botão de Coração (Favoritar) -->
+                <button class="outros-button" onclick="toggleFavorite()" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px;">
+                    <i class="fas fa-heart"></i> <!-- Ícone de coração -->
                 </button>
             </div>
         </div>
@@ -1384,6 +1393,39 @@ function displayMusicSelection(playlistName) {
             if (input) {
                 window.location.href = `https://music.youtube.com/results?search_query=${encodeURIComponent(input)}`;
             }
+        }
+
+        let isLooping = false;  // Para controlar o estado de loop
+        let isFavorite = false;  // Para controlar o estado de favorito
+
+        // Função para alternar o loop
+        function toggleLoop() {
+            isLooping = !isLooping;
+            const loopButton = document.querySelector(".outros-button i.fa-redo");
+
+            // Altere o ícone ou a lógica de reprodução conforme necessário
+            if (isLooping) {
+                loopButton.style.color = "purple";  // Exemplo: mudança de cor quando o loop está ativado
+            } else {
+                loopButton.style.color = "";  // Cor padrão
+            }
+
+            console.log(isLooping ? "Loop ativado" : "Loop desativado");
+        }
+
+        // Função para alternar o favorito
+        function toggleFavorite() {
+            isFavorite = !isFavorite;
+            const heartButton = document.querySelector(".outros-button i.fa-heart");
+
+            // Altere o ícone ou o estilo conforme necessário
+            if (isFavorite) {
+                heartButton.style.color = "purple";  // Exemplo: cor vermelha quando favorito
+            } else {
+                heartButton.style.color = "";  // Cor padrão
+            }
+
+            console.log(isFavorite ? "Adicionado aos favoritos" : "Removido dos favoritos");
         }
 
     </script>
