@@ -61,6 +61,7 @@
 
         <!-- Botões para salvar e baixar PDF -->
         <button id="save-expenses" class="hidden">Salvar</button>
+        <button id="save-text-file">Salvar</button>
         <button id="download-pdf">Baixar PDF</button>
 
         <!-- Área de Anotações -->
@@ -71,5 +72,42 @@
         </div>
     </div>
     <script src="scripts.js"></script>
+    <script>
+        // Função para salvar as despesas em um arquivo de texto
+        function saveExpensesAsText() {
+            var table = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
+            var expensesText = "Controle de Despesas: \n\n";
+            
+            // Adiciona as despesas na tabela ao conteúdo do arquivo
+            for (var i = 0; i < table.rows.length; i++) {
+                var cells = table.rows[i].cells;
+                var name = cells[0].textContent;
+                var type = cells[1].textContent;
+                var amount = cells[2].textContent;
+                expensesText += `Nome: ${name};\n Tipo: ${type};\n Valor: ${amount};\n\n `;
+            }
+
+            // Adiciona as anotações ao conteúdo do arquivo
+            var notesText = document.getElementById("notes").value;
+            if (notesText.trim() !== "") {
+                expensesText += `Anotações:\n${notesText}\n`;
+            }
+
+            // Cria um Blob com o conteúdo das despesas e anotações
+            var blob = new Blob([expensesText], { type: "text/plain" });
+
+            // Cria um link temporário para o download do arquivo
+            var link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "controle de gastos.txt";  // Nome do arquivo a ser baixado
+
+            // Simula o clique no link para baixar o arquivo
+            link.click();
+        }
+
+        // Evento para o botão de salvar como arquivo de texto
+        document.getElementById("save-text-file").addEventListener("click", saveExpensesAsText);
+
+    </script>
 </body>
 </html>
