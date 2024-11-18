@@ -209,7 +209,7 @@ button:hover {
 .modal-conteudo select:focus {
     outline: none;
     border-color: #673ab7; /* cor da borda ao focar */
-    box-shadow: 0 0 8px rgba(0, 128, 0, 0.5); /* sombra ao focar */
+    box-shadow: 0 0 8px #7e50cfad; /* sombra ao focar */
 }
 
 .modal-conteudo option {
