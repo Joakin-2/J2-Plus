@@ -194,12 +194,13 @@ fieldset button:hover {
 
 /* Conteúdo do modal */
 .modal-content {
-    background-color: #fff;
+    background-color: #1c1c1c;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Largura do modal */
+    width: 80%;
     max-width: 400px;
+    color: white;
 }
 
 /* Botão de fechar */
@@ -225,6 +226,10 @@ ul {
 
 li {
     margin: 5px 0;
+}
+
+.kcal {
+        margin-left: 40px;
 }
 
         
@@ -260,15 +265,15 @@ li {
                 <div class="modal-content">
                     <span class="close" onclick="fecharModal()">&times;</span>
                     <h3>Lista de Alimentos</h3>
-                    <ul>
-                        <li>Pão</li>
-                        <li>Ovo</li>
-                        <li>Queijo</li>
-                        <li>Fruta</li>
-                        <li>Leite</li>
-                        <li>Café</li>
-                        <li>Hambúrguer</li>
-                    </ul>
+                     <ul>
+                      <li><span class="alimento">Pão</span><span class="kcal">80 kcal</span></li>
+                      <li><span class="alimento">Ovo</span><span class="kcal">70 kcal</span></li>
+                      <li><span class="alimento">Queijo</span><span class="kcal">120 kcal</span></li>
+                      <li><span class="alimento">Fruta</span><span class="kcal">50 kcal</span></li>
+                      <li><span class="alimento">Leite</span><span class="kcal">60 kcal</span></li>
+                      <li><span class="alimento">Café</span><span class="kcal">5 kcal</span></li>
+                      <li><span class="alimento">Hambúrguer</span><span class="kcal">250 kcal</span></li>
+                  </ul>
                 </div>
             </div>
 
