@@ -46,9 +46,10 @@
         <button class="menu-button" aria-label="Abrir menu" onclick="toggleMenu()">Menu</button>
         <button class="chatg" onclick="window.location.href='https://chat.openai.com/chat'"></button>
         <span class="clock">
+            <i id="muteButton" class="fas fa-volume-up" style="cursor: pointer;"></i>
             <i class="fas fa-clock"></i> <!-- Ícone de relógio -->
             <span id="clock">00:00</span>
-        </span>
+        </span>    
         <br><br><br>
         <div id="recomendacoes"></div>
         <div class="avatar-container">
@@ -72,6 +73,7 @@
             </div>
             <a href="chat.html" target="_blank">
                 <div class="avatar">
+                    <div id="Hat" class="birthday-hat" style="display:none;">🎩</div>
                     <div class="face">
                         <div class="eye left" id="olhoEsquerdo"></div>
                         <div class="eye right" id="olhoDireito"></div>
@@ -94,8 +96,14 @@
             </div>
         </div>
         <br><br>
-        <div id="birthdayMessage" style="display: none;background-color: #ffffff;color: #642dfc;padding: 10px;border: 1px solid #642dfc;border-radius: 5px;"><p id="birthdayText">🎉 Feliz Aniversário! 🎂</p></div>
-        <div class="chat">
+        <!-- <audio id="backgroundMusic" loop>
+            <source src="natal.mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio> -->
+        <div id="Message" style="display: none;background-color: rgb(232 213 255);color: rgb(100, 45, 252);padding: 10px;border: 1px solid rgb(100, 45, 252);border-radius: 5px;">
+             <p id="Text"></p>
+            </div>
+                <div class="chat">
             <main id="chatArea" class="chat-area"></main>
             <div id="status" class="status"></div>
             <footer class="chat-footer">
@@ -114,6 +122,25 @@
     
     <script src="main.js"></script> <!-- JavaScript externo -->
     <script>
+        // Função para alternar o som da página
+    document.getElementById('muteButton').addEventListener('click', function () {
+        const mediaElements = document.querySelectorAll('audio, video'); // Seleciona todos os elementos de mídia
+        const muteIcon = this;
+
+        mediaElements.forEach(element => {
+            element.muted = !element.muted; // Alterna o estado de mudo
+        });
+
+        // Alterna o ícone entre "volume-up" e "volume-mute"
+        if (mediaElements.length > 0 && mediaElements[0].muted) {
+            muteIcon.classList.remove('fa-volume-up');
+            muteIcon.classList.add('fa-volume-mute');
+        } else {
+            muteIcon.classList.remove('fa-volume-mute');
+            muteIcon.classList.add('fa-volume-up');
+        }
+    });
+
         const autocompleteInput = document.getElementById('inputText');
     
         const suggestions = [
@@ -158,38 +185,111 @@ window.onclick = function(event) {
     }
 }
         // Função para verificar os aniversários
-function checkBirthday() {
-    // Defina os aniversários com nome e data (mês e dia)
-    const birthdays = [
-        { name: "Joaquim", date: new Date('2008-02-05') },
-        { name: "Vitória", date: new Date('2014-07-04') },
-        { name: "Paula", date: new Date('1979-10-24') },
-        { name: "Adeir", date: new Date('1976-09-07') }
-    ];
+        function checkBirthday() {
+            // Defina os aniversários com nome, mês e dia
+            const birthdays = [
+                { name: "Joaquim", month: 2, day: 5 },     // 5 de fevereiro
+                { name: "Vitória", month: 7, day: 4 },     // 4 de julho
+                { name: "Paula", month: 10, day: 24 },     // 24 de outubro
+                { name: "Adeir", month: 9, day: 7 }        // 7 de setembro
+            ];
 
-    // Obtém a data atual
-    const today = new Date();
-    let message = '';
+            // Obtém a data atual
+            const today = new Date();
+            const todayMonth = today.getMonth() + 1; // Mês atual (1-12)
+            const todayDay = today.getDate();        // Dia atual (1-31)
 
-    // Verifica se a data de hoje é o aniversário de alguém
-    birthdays.forEach(birthday => {
-        // Faz a comparação apenas pelo mês e dia (ignora o ano)
-        if (today.getDate() === birthday.date.getDate() && today.getMonth() === birthday.date.getMonth()) {
-            message = `🎉 Parabéns, ${birthday.name}! 🎂`; // Cria uma mensagem personalizada
+            let message = '';
+
+            // Verifica se a data de hoje é o aniversário de alguém
+            birthdays.forEach(birthday => {
+                // Compara mês e dia
+                if (todayMonth === birthday.month && todayDay === birthday.day) {
+                    message = `🎉 Parabéns, ${birthday.name}! 🎂`; // Cria uma mensagem personalizada
+                }
+            });
+
+            // Se algum aniversário for hoje, exibe a mensagem
+            if (message) {
+                document.getElementById('Text').innerText = message; // Atualiza o texto da mensagem
+                document.getElementById('Message').style.display = 'block'; // Exibe o div
+                document.getElementById('Hat').style.display = 'inline'; // Exibe o chapéu
+
+                // Criar confetes
+                createConfetti();
+            }
         }
-    });
 
-    // Se algum aniversário for hoje, exibe a mensagem
-    if (message) {
-        document.getElementById('birthdayText').innerText = message; // Atualiza o texto da mensagem
-        document.getElementById('birthdayMessage').style.display = 'block'; // Exibe o div
-    }
+        // Função para criar confetes
+        function createConfetti() {
+            const numConfetti = 100; // Número de confetes
+
+            for (let i = 0; i < numConfetti; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+
+                // Definindo posição aleatória e duração da animação para o confete
+                confetti.style.left = Math.random() * 100 + 'vw'; // Aleatório de 0 a 100% da largura da tela
+                confetti.style.animationDuration = Math.random() * 2 + 3 + 's'; // Entre 3s e 5s
+                confetti.style.animationDelay = Math.random() * 2 + 's'; // Delay entre 0s e 2s
+
+                // Adiciona o confete ao corpo da página
+                document.body.appendChild(confetti);
+            }
+        }
+
+        // Função para criar flocos de neve
+        function createSnowflakes() {
+            const numSnowflakes = 60; // Número de flocos de neve
+
+            for (let i = 0; i < numSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.textContent = '❄'; // Símbolo de floco de neve
+
+                // Definindo uma posição aleatória para cada floco
+                snowflake.style.left = Math.random() * 100 + 'vw'; // Aleatório de 0 a 100% da largura da tela
+                snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; // Animação entre 5s e 10s
+                snowflake.style.animationDelay = Math.random() * 5 + 's'; // Delay entre 0s e 5s
+
+                // Adiciona o floco de neve ao corpo da página
+                document.body.appendChild(snowflake);
+            }
+        }
+
+        function startChristmasEffect() {
+    const music = document.getElementById('backgroundMusic');
+    music.play().then();
 }
 
-// Chama a função quando a página for carregada
-window.onload = function() {
-    checkBirthday();
-};
+        // Função para verificar o Natal e ativar o efeito
+        function checkChristmas() {
+        const today = new Date();
+
+        // Verifica se é 25 de dezembro
+        if (today.getDate() === 25 && today.getMonth() === 11) { // Dezembro é mês 11 (base 0)
+            // Exibe a mensagem de Natal
+            const christmasMessage = "🎄 Feliz Natal! 🎅";
+            document.getElementById('Text').innerText = christmasMessage;
+            document.getElementById('Message').style.display = 'block';
+
+            // Mensagem falada
+            falar("Feliz Natal! Que sua noite seja mágica e cheia de alegria!");
+
+            // Toca música de fundo em loop
+            // startChristmasEffect()
+
+            // Cria os flocos de neve
+            createSnowflakes();
+        }
+    }
+
+        // Chama a função quando a página for carregada
+        window.onload = function() {
+            checkBirthday();
+            checkChristmas();  // Verifica o Natal e ativa os flocos de neve
+        };
+
     </script>
     
 </body>
