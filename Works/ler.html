@@ -152,7 +152,7 @@
         // Função para lidar com a caixa de anotações
         function saveNotes() {
             var notes = document.getElementById('notesBox').value;
-            localStorage.setItem('notes', notes);
+            localStorage.setItem('notes-ler', notes);
         }
 
         // Carregar informações do livro e notas ao iniciar a página
@@ -160,7 +160,7 @@
             //updateBookInfo();
 
             // Carregar notas salvas no localStorage
-            var savedNotes = localStorage.getItem('notes');
+            var savedNotes = localStorage.getItem('notes-ler');
             if (savedNotes) {
                 document.getElementById('notesBox').value = savedNotes;
             }
