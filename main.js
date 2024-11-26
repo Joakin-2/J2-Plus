@@ -66,25 +66,44 @@ function handleEscapeKey(event) {
 document.addEventListener('keydown', handleEscapeKey);
 
 // Função para lidar com a tecla pressionada no campo de entrada
+// Função para lidar com a tecla pressionada no campo de entrada
 function handleKeyPress(event) {
-    // Verifica se é apenas Enter (sem Shift) para chamar a função de enviar mensagem
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();  // Impede a ação padrão de enviar um formulário (se houver)
-      sendMessage();  // Chama a função sendMessage() para enviar a mensagem
-    }
-    
-    // Verifica se é Shift + Enter para inserir uma quebra de linha
-    if (event.key === 'Enter' && event.shiftKey) {
-      event.preventDefault();  // Impede a ação padrão de adicionar uma nova linha no conteúdo
+    const inputText = document.getElementById('inputText');
 
-      // Insere uma quebra de linha no ponto do cursor
-      document.execCommand('insertHTML', false, '<br>');  // Adiciona a nova linha no campo de texto
+    if (event.key === 'Enter' && event.shiftKey) {
+        // Adiciona uma nova linha
+        event.preventDefault(); // Previne o comportamento padrão de Enter
+        inputText.value += '\n'; // Adiciona uma nova linha no valor da entrada de texto
+    } else if (event.key === 'Enter' && !event.shiftKey) {
+        // Envia a mensagem
+        event.preventDefault();  // Impede a ação padrão de enviar um formulário (se houver)
+        sendMessage();  // Chama a função sendMessage() para enviar a mensagem
     }
-  }
+}
+
+// Adiciona o listener para a tecla "Enter" e "Shift + Enter"
+document.getElementById('inputText').addEventListener('keypress', handleKeyPress);
+
+// Exemplo da função sendMessage para enviar a mensagem
+function sendMessage() {
+    const inputText = document.getElementById('inputText');
+    const message = inputText.value.trim();
+
+    if (message) {
+        console.log("Mensagem enviada: ", message); // Aqui você pode adicionar o envio real da mensagem
+        inputText.value = ''; // Limpa a entrada de texto após o envio
+    }
+}
+
+// Exemplo de função para lidar com a tecla "Escape" (opcional)
+function handleEscapeKey(event) {
+    if (event.key === 'Escape') {
+        document.getElementById('inputText').value = ''; // Limpa o campo de entrada ao pressionar "Escape"
+    }
+}
 
 // Adicionar um listener para a tecla "Escape"
 document.addEventListener('keydown', handleEscapeKey);
-
 
 // Função para falar um texto em português
 function falar(texto) {
@@ -156,6 +175,9 @@ function sendMessageToAPI(message) {
     const status = document.getElementById('status');
     const inputText = document.getElementById('inputText');
     const sendButton = document.getElementById('sendButton');
+
+    const apiKey = 'AIzaSyAvpvehwHv1RN-vwnmth-3asp0kF0z5kPg';  // Substitua com sua chave de API do Google Gemini
+    const apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
 
     sendButton.disabled = true;
     sendButton.style.cursor = 'not-allowed';
@@ -321,6 +343,15 @@ async function fetchWeatherForecast() {
         'heavy snow': 'neve intensa',
         'sleet': 'chuva congelada',
         'hail': 'granizo',
+        // Adicionando mais traduções
+        'drizzle': 'chuvisco',
+        'overcast clouds': 'nuvens densas',
+        'fog': 'névoa',
+        'sand': 'areia',
+        'dust': 'poeira',
+        'volcanic ash': 'cinza vulcânica',
+        'squalls': 'rajadas',
+        'tornado': 'tornado'
     };
 
     try {
@@ -356,8 +387,7 @@ async function fetchWeatherForecast() {
         });
 
         // Formatação da saída
-        // Hoje ${todayTemp} °C (${todayDesc}), Amanhã ${tomorrowTemp} °C (${tomorrowDesc})
-        let forecastText = `Amanhã ${tomorrowTemp} °C (${tomorrowDesc})`;
+        let forecastText = `Hoje ${todayTemp} °C (${todayDesc})`;
         document.getElementById('weatherForecast').textContent = forecastText;
     } catch (error) {
         console.error(error);
@@ -366,64 +396,73 @@ async function fetchWeatherForecast() {
 }
 
 async function fetchNews() {
-    const apiKey = '0677968389214cdfa1fe6bff826d68b2';
-    try {
-        const response = await fetch(`https://newsapi.org/v2/top-headlines?country=br&apiKey=${apiKey}`);
-        if (!response.ok) {
-            throw new Error('Erro ao buscar notícias: ' + response.status);
-        }
-        const data = await response.json();
-        const newsList = document.getElementById('newsList');
-        newsList.innerHTML = ''; // Limpar lista anterior
+    const apiKeyNews = '0677968389214cdfa1fe6bff826d68b2';
+    const urlNews = `https://newsapi.org/v2/everything?q=brasil&apiKey=${apiKeyNews}`; // Mudança para o endpoint "everything"
+    const newsList = document.getElementById('newsList');
+    newsList.innerHTML = '<li>Carregando notícias...</li>'; // Placeholder enquanto carrega
 
-        if (data.articles) {
+    try {
+        const response = await fetch(urlNews);
+        const data = await response.json();
+
+        // Limpa a lista de notícias
+        newsList.innerHTML = '';
+
+        if (data.status === 'ok' && data.articles.length > 0) {
+            // Preenche a lista com as notícias
             data.articles.forEach(article => {
                 const li = document.createElement('li');
-                li.textContent = article.title;
+                li.innerHTML = `
+                    <strong>${article.title}</strong><br>
+                    <a href="${article.url}" target="_blank">Leia mais</a>
+                `;
                 newsList.appendChild(li);
             });
         } else {
-            newsList.innerHTML = '<li>Nenhuma notícia disponível.</li>';
+            newsList.innerHTML = '<li>Sem notícias disponíveis no momento.</li>';
         }
     } catch (error) {
-        console.error(error);
-        const newsList = document.getElementById('newsList');
-        newsList.innerHTML = '<li>Erro ao carregar notícias.</li>';
+        console.error('Erro ao buscar as notícias:', error);
+        newsList.innerHTML = '<li>Erro ao carregar as notícias. Tente novamente mais tarde.</li>';
     }
 }
 
-async function fetchStocks() {
-    const apiKey = 'W4QWE2694N3QS20K';
-    const symbols = ['IBOV', 'DXY'];
-    const stocksList = document.getElementById('stocksList');
-    stocksList.innerHTML = ''; // Limpar lista anterior
-
-    for (const symbol of symbols) {
-        try {
-            const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=1min&apikey=${apiKey}`);
-            if (!response.ok) {
-                throw new Error('Erro ao buscar ações: ' + response.status);
-            }
-            const data = await response.json();
-            const timeSeries = data['Time Series (1min)'];
-            
-            if (timeSeries) {
-                const latestTime = Object.keys(timeSeries)[0];
-                const li = document.createElement('li');
-                li.textContent = `${symbol}: ${timeSeries[latestTime]['1. open']}`;
-                stocksList.appendChild(li);
-            } else {
-                const li = document.createElement('li');
-                li.textContent = `${symbol}: Dados não disponíveis.`;
-                stocksList.appendChild(li);
-            }
-        } catch (error) {
-            console.error(error);
-            const li = document.createElement('li');
-            li.textContent = `Erro ao carregar dados para ${symbol}.`;
-            stocksList.appendChild(li);
-        }
+const ativos = [
+    {
+        "tickerSymbol": "WINM24",
+        "side": "compra",
+        "marketName": "Futuros",
+        "tradeQuantity": 2,
+        "priceValue": 120000.0,
+        "tradeDateTime": "2024-11-26T08:30:00Z",
+        "previousValue": 130115.0 // Valor de referência do Mini-Índice
+    },
+    {
+        "tickerSymbol": "WDOZ24",
+        "side": "venda",
+        "marketName": "Futuros",
+        "tradeQuantity": 5,
+        "priceValue": 5125.0,
+        "tradeDateTime": "2024-11-26T09:15:00Z",
+        "previousValue": 5800.0 // Valor de referência do Mini Dólar
     }
+];
+
+// Função para adicionar os ativos à lista
+function fetchStocks() {
+    const lista = document.getElementById('stocksList');
+    lista.innerHTML = ''; // Limpa a lista (para remover o "Carregando...")
+
+    // Adiciona os ativos à lista
+    ativos.forEach(ativo => {
+        const priceChange = ativo.priceValue - ativo.previousValue;
+        const percentageChange = (priceChange / ativo.previousValue) * 100;
+        const direction = priceChange > 0 ? 'subindo' : 'caindo';
+        const li = document.createElement('li');
+        li.textContent = `${ativo.tickerSymbol}: (${direction} ${Math.abs(percentageChange).toFixed(2)}%)`;
+        // li.textContent = `${ativo.tickerSymbol} - ${ativo.side} - ${ativo.marketName} - ${ativo.tradeQuantity} contratos a ${ativo.priceValue} (${direction} ${Math.abs(percentageChange).toFixed(2)}%)`;
+        lista.appendChild(li);
+    });
 }
 
 function updateClock() {
@@ -438,3 +477,74 @@ function updateClock() {
 setInterval(updateClock, 60000);
 // Chama a função uma vez para não esperar um minuto
 updateClock();
+
+// Camera
+const openCameraButton = document.getElementById("openCamera");
+        const cameraModal = document.getElementById("cameraModal");
+        const closeModalButton = document.getElementById("closeModalCamera");
+        const video = document.getElementById("video");
+        const cameraSelect = document.getElementById("cameraSelect");
+
+        // Abrir o modal ao clicar no ícone
+        openCameraButton.addEventListener("click", () => {
+            cameraModal.style.display = "flex"; // Exibe o modal
+        });
+
+        // Fechar o modal ao clicar no botão de fechar
+        closeModalButton.addEventListener("click", () => {
+            cameraModal.style.display = "none"; // Esconde o modal
+            stopVideo(); // Para a câmera
+        });
+
+        // Função para listar as câmeras disponíveis
+        async function listCameras() {
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            const videoDevices = devices.filter(device => device.kind === 'videoinput');
+            cameraSelect.innerHTML = ''; // Limpa as opções
+            videoDevices.forEach((device, index) => {
+                const option = document.createElement('option');
+                option.value = device.deviceId;
+                option.textContent = device.label || `Câmera ${index + 1}`;
+                cameraSelect.appendChild(option);
+            });
+
+            // Inicia a câmera com a primeira disponível
+            if (videoDevices.length > 1) {
+                startVideo(videoDevices[1].deviceId);
+            }
+        }
+
+        // Função para iniciar a câmera
+        async function startVideo(deviceId) {
+            const constraints = {
+                video: { deviceId: deviceId ? { exact: deviceId } : undefined }
+            };
+            const stream = await navigator.mediaDevices.getUserMedia(constraints);
+            video.srcObject = stream;
+        }
+
+        // Função para parar o vídeo
+        function stopVideo() {
+            const stream = video.srcObject;
+            if (stream) {
+                const tracks = stream.getTracks();
+                tracks.forEach(track => track.stop());
+            }
+            video.srcObject = null;
+        }
+
+        // Evento para trocar de câmera ao selecionar outra
+        cameraSelect.addEventListener("change", () => {
+            startVideo(cameraSelect.value);
+        });
+
+        // Carregar câmeras ao abrir o modal
+        cameraModal.addEventListener("click", async (e) => {
+            if (e.target === cameraModal) {
+                cameraModal.style.display = "none"; // Fechar ao clicar fora do modal
+                stopVideo();
+            }
+        });
+
+        // Inicializar
+        window.addEventListener("load", listCameras);

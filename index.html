@@ -5,6 +5,7 @@
     <link rel="icon" href="J2+.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>J2+</title>
+    <script src="Facial/face-api.js"></script>
     <link rel="stylesheet" href="styles.css"> <!-- CSS externo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -22,7 +23,7 @@
             <ul>
                 <li><a href="https://360ytmp3.com/pt100">Baixador</a></li>
                 <li><a href="https://j2plus.netlify.app/finan%C3%A7as/">Finanças</a></li>
-                <li><a href="https://j2plus.netlify.app/links/">Controles</a></li>
+                <li><a href="https://j2plus.netlify.app/control/">Controles</a></li>
                 <li><a href="https://j2plus.netlify.app/streamings/">Streamings</a></li>
                 <li><a href="https://j2plus.netlify.app/back/games%20states/games">Game State</a></li>
             </ul>
@@ -41,12 +42,23 @@
             </ul>
         </div>
     </aside>
-    
+
+    <!-- Modal com câmera -->
+    <div id="cameraModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeModalCamera" class="close">&times;</span>
+            <select id="cameraSelect" style="display: none;"></select>
+            <video id="video" width="720" height="560" autoplay></video>
+            <canvas id="overlay" width="720" height="560" style="position: absolute; top: 0; left: 0;"></canvas>
+        </div>
+    </div>
+
     <div class="container">
         <button class="menu-button" aria-label="Abrir menu" onclick="toggleMenu()">Menu</button>
         <button class="chatg" onclick="window.location.href='https://chat.openai.com/chat'"></button>
         <span class="clock">
             <i id="muteButton" class="fas fa-volume-up" style="cursor: pointer;"></i>
+            <i id="openCamera" class="fas fa-camera" style="cursor: pointer;"></i>
             <i class="fas fa-clock"></i> <!-- Ícone de relógio -->
             <span id="clock">00:00</span>
         </span>    
