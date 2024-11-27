@@ -13,6 +13,7 @@
 <body>
     <aside class="menu" id="overlayMenu" aria-hidden="true">
         <div class="menu-content">
+            <button class="menu-button" aria-label="Fechar menu" onclick="toggleMenu()">Voltar</button>
             <ul>
                 <li><a href="https://www.deepl.com/pt-BR/translator">Deepl</a></li>
                 <li><a href="https://j2plus.netlify.app/monitor%20de%20h%C3%A1bitos/saude.html">Saúde</a></li>
@@ -32,9 +33,10 @@
 
     <aside class="menu" id="overlayMenu2" aria-hidden="true">
         <div class="menu-content">
+            <button class="menu-button" aria-label="Fechar menu 2" onclick="toggleMenu2()">Voltar</button>
             <ul>
                 <!-- Atualizar em breve -->
-                <li><a href="https://www.deepl.com/pt-BR/translator">Deepl</a></li>
+                <li><a href="https://j2plus.netlify.app/proto">Proto</a></li>
                 <li><a href="https://j2plus.netlify.app/monitor%20de%20h%C3%A1bitos/saude.html">Saúde</a></li>
                 <li><a href="https://j2plus.netlify.app/works/ler.html">Leitura</a></li>
                 <li><a href="https://j2plus.netlify.app/monitor%20de%20h%C3%A1bitos/">Hábitos</a></li>
@@ -46,7 +48,7 @@
     <!-- Modal com câmera -->
     <div id="cameraModal" class="modal" style="display: none;">
         <div class="modal-content">
-            <span id="closeModalCamera" class="close">&times;</span>
+            <span id="closeModalCamera" class="close" style="display: none;">×</span>
             <select id="cameraSelect" style="display: none;"></select>
             <video id="video" width="720" height="560" autoplay></video>
             <canvas id="overlay" width="720" height="560" style="position: absolute; top: 0; left: 0;"></canvas>
