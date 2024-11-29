@@ -451,6 +451,19 @@
     text-overflow: ellipsis;
 }
 
+.locked {
+    pointer-events: none; /* Desativa cliques */
+    opacity: 0.6; /* Indica visualmente que está bloqueado */
+    display: inline-flex; /* Permite alinhar o ícone e o título na horizontal */
+    align-items: center; /* Alinha verticalmente os itens */
+    gap: 8px; /* Espaçamento entre o título e o ícone */
+}
+
+.lock-icon {
+    font-size: 18px;
+    color: rgb(194, 39, 255); /* Cor do cadeado */
+}
+
 ::-webkit-scrollbar {
             width: 12px;
         }
@@ -484,38 +497,59 @@
     </header>
     
     <div class="container">
-        <a href="#" class="video christ-gym" onclick="showPlaylist('Christ Gym');">
+        <a href="#" class="video christ-gym" onclick="showPlaylist('Christ Gym');"
+        onmousedown="startLock(this, 'Christ Gym')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
             <h2>Christ Gym</h2>
         </a>
-        <a href="#" class="video hip-praise" onclick="showPlaylist('Hip Praise');">
+        <a href="#" class="video hip-praise" onclick="showPlaylist('Hip Praise');"
+        onmousedown="startLock(this, 'Hip Praise')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
             <h2>Hip Praise</h2>
         </a>
     </div>
     <div class="container">
-        <a href="#" class="video praise" onclick="showPlaylist('Praise');">
+        <a href="#" class="video praise" onclick="showPlaylist('Praise');"
+        onmousedown="startLock(this, 'Praise')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
             <h2>Praise</h2>
         </a>
-        <a href="#" class="video fundo" onclick="showPlaylist('Fundo');">
+        <a href="#" class="video fundo" onclick="showPlaylist('Fundo');"
+        onmousedown="startLock(this, 'Fundo')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
             <h2>Fundo</h2>
         </a>
     </div>
     <div class="container">
-        <a href="#" class="video vibes" onclick="showPlaylist('Vibes');">
+        <a href="#" class="video vibes" onclick="showPlaylist('Vibes');"
+        onmousedown="startLock(this, 'Vibes')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
             <h2>Vibes</h2>
         </a>
-        <a href="#" class="video gym" onclick="showPlaylist('Gym');">
+        <a href="#" class="video gym" onclick="showPlaylist('Gym');"
+        onmousedown="startLock(this, 'Gym')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
             <h2>Gym</h2>
         </a>
     </div>
     <div class="container">
-        <a href="#" class="video fnf" onclick="showPlaylist('FNF');">
-            <h2>FNF</h2>
-        </a>
+        <a href="#" class="video fnf" onclick="showPlaylist('FNF');"
+        onmousedown="startLock(this, 'FNF')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
+         <h2>FNF</h2>
+     </a>
         <a href="#" class="video upload" onclick="uploadMusic();">
             <h2>+ Upload</h2>
         </a>
     </div>
-
+            
     <div id="uploadModal">
         <div class="modal-content">
             <h2 style="text-align: center;">Upload de Música</h2>
@@ -1151,6 +1185,27 @@
         }
 
         document.querySelector('.progress-container').addEventListener('click', seek);
+
+        let lockTimeout; // Variável para rastrear o timeout do bloqueio
+
+        function startLock(element, playlistName) {
+    lockTimeout = setTimeout(() => {
+        // Adiciona classe bloqueada
+        element.classList.add('locked');
+        
+        // Define o conteúdo do botão com o título e o ícone
+        element.innerHTML = `
+            <h2>${playlistName}</h2>
+            <span class="lock-icon">🔒</span>
+        `;
+        element.onclick = null; // Remove a ação de clique
+    }, 1500); // Tempo para segurar
+}
+
+function stopLock(element) {
+    // Cancela o timeout se o botão for solto antes do tempo
+    clearTimeout(lockTimeout);
+}
 
         const progressContainer = document.querySelector('.progress-container');
 const progressBar = document.getElementById('progress-bar');

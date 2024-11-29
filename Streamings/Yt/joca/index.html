@@ -276,11 +276,6 @@
     </div>
 
     <script>
-    const tradeOptions = [
-        { text: "Reunião Laatus", link: "https://www.youtube.com/results?search_query=laatus+reuni%C3%A3o+matinal" },
-        { text: "Coringa trade", link: "https://www.youtube.com/results?search_query=coringa+trade" }
-    ];
-
     function toggleSuggestions() {
         const input = document.getElementById("search").value.toLowerCase();
         const suggestionsContainer = document.getElementById("suggestions");
@@ -295,27 +290,9 @@
 
         // Verificar se o input é "/trade"
         if (input === '/trade') {
-            suggestionsContainer.style.display = 'block';
-            tradeOptions.forEach(option => {
-                const suggestionItem = document.createElement('div');
-                suggestionItem.className = 'suggestion-item';
-                suggestionItem.textContent = option.text;
-
-                // Adiciona o evento de clique
-                suggestionItem.onclick = () => {
-                    window.open(option.link, '_blank'); // Abre o link em nova aba
-                };
-
-                suggestionsContainer.appendChild(suggestionItem);
-            });
-            return;
-        }
-
-        if (input === '/z') {
-            // Abre os 3 sites diretamente em novas abas
-            window.open('https://www.youtube.com/results?search_query=zezao+biru+biru', '_blank');
-            window.open('https://www.youtube.com/results?search_query=zez%C3%A3o+fnaf', '_blank');
-            window.open('https://www.youtube.com/results?search_query=zez%C3%A3o', '_blank');
+            // Abre os 2 sites diretamente em novas abas
+            window.open('https://www.youtube.com/results?search_query=laatus+reuni%C3%A3o+matinal', '_blank');
+            window.open('https://www.youtube.com/results?search_query=coringa+trade', '_blank');
             return;
         }
 

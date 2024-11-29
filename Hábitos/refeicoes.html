@@ -276,6 +276,7 @@ li {
                          <li><span class="alimento">Hambúrguer</span><span class="kcal">250 kcal</span></li>
                          <li><span class="alimento">Sanduíche</span><span class="kcal">300 kcal</span></li>
                      </ul>
+                     <button id="menuRefeicoesBtn">Cardápio</button>
                 </div>
             </div>
 
@@ -355,6 +356,22 @@ li {
                 </div>  
             </fieldset>
         </section>        
+    </div>
+
+    <div id="menuRefeicoesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharMenuRefeicoes()">&times;</span>
+            <h3 id="menuTitle">Menu de Refeições</h3>
+            <ul id="listaRefeicoes">
+                <li>6h: Ovo - 70 kcal</li>
+                <li>9h: Pão com Queijo - 200 kcal</li>
+                <li>12h: Frango com Arroz - 450 kcal</li>
+                <li>15h: Salada de Frutas - 150 kcal</li>
+                <li>18h: Sopa de Legumes - 300 kcal</li>
+                <li>21h: Iogurte Natural - 100 kcal</li>
+            </ul>
+            <button id="modoJejumBtn">Modo Jejum</button>
+        </div>
     </div>
 
     <div id="modalOverlay"></div>
@@ -606,6 +623,38 @@ window.onclick = function(event) {
         fecharModal();
     }
 }
+
+document.getElementById('menuRefeicoesBtn').addEventListener('click', () => {
+    document.getElementById('menuRefeicoesModal').style.display = 'block';
+});
+
+document.getElementById('modoJejumBtn').addEventListener('click', () => {
+    const listaRefeicoes = document.getElementById('listaRefeicoes');
+    const titulo = document.getElementById('menuTitle');
+
+    // Alterar para o "Modo Jejum"
+    listaRefeicoes.innerHTML = `
+        <li>6h: Chá verde - 0 kcal</li>
+        <li>9h: Frutas vermelhas - 50 kcal</li>
+        <li>12h: Salada com folhas verdes e limão - 80 kcal</li>
+        <li>15h: Água com limão - 0 kcal</li>
+        <li>18h: Sopa de legumes sem óleo - 100 kcal</li>
+        <li>21h: Chá de camomila - 0 kcal</li>
+    `;
+    titulo.textContent = 'Menu de Refeições - Modo Jejum';
+});
+
+function fecharMenuRefeicoes() {
+    document.getElementById('menuRefeicoesModal').style.display = 'none';
+}
+
+// Fechar modal ao clicar fora do conteúdo
+window.onclick = function (event) {
+    const modal = document.getElementById('menuRefeicoesModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+};
 
 </script>
     
