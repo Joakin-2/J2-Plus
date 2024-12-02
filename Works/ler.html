@@ -4,35 +4,31 @@
     <meta charset="UTF-8">
     <link rel="icon" href="ícone.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer</title>
+    <title>Leitura</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #000000;
-            position: relative; /* Adicionado para posicionamento relativo */
-        }
-    
-        .container {
+            background-color: #121212;
+            color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
         }
-    
-        h1 {
-            margin-bottom: 20px;
-            color: rgb(255, 255, 255);
+        
+        h1, h3 {
+            margin-bottom: 10px;
+            color: #FFFFFF;
         }
-    
+        
         #timer {
-            color: rgb(255, 255, 255);
             font-size: 36px;
             margin-bottom: 20px;
         }
-    
+        
         .btn {
             padding: 10px 20px;
             font-size: 18px;
@@ -42,82 +38,97 @@
             background-color: #833fd1;
             color: white;
             transition: background-color 0.3s;
-            margin-right: 10px;
         }
-    
+        
         .btn:hover {
             background-color: #7133b8;
         }
-    
-        #parabensMessage {
-            display: none;
-            font-size: 24px;
-            color: #333;
-        }
-
-        #backButton {
-            position: absolute; /* Alterado para absolute */
-            bottom: 10px;
-            left: 50%; /* Adicionado para centralizar horizontalmente */
-            transform: translateX(-50%); /* Adicionado para centralizar horizontalmente */
-            opacity: 0.1;
-            background-color: transparent;
-            border: none;
-            color: #FFFFFF;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        #backButton:hover {
-            opacity: 0.5;
-        }
-
-        /* Estilo para a caixa de anotações */
+        
         #notesContainer {
-            margin-bottom: 80px;
+            margin-bottom: 30px;
             width: 80%;
             max-width: 600px;
-            text-align: left;
         }
-
+        
         #notesBox {
-            width: 100%;
-            height: 100px;
+            width: 80%;
+    height: 120px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 5px;
+    resize: none;
+    margin-left: 10%;
+        }
+        
+        #musicOptions {
+            margin-bottom: 20px;
+        }
+        
+        select {
             padding: 10px;
             font-size: 16px;
-            background-color: #333;
-            color: white;
             border: 1px solid #555;
             border-radius: 5px;
-            resize: none;
+            background-color: #333;
+            color: white;
+            outline: none;
+        }
+
+        /* Estilo para o contêiner dos botões */
+        #buttonContainer {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Caixa de Anotações -->
-        <div id="notesContainer">
-            <h3 style="color: white;">Ler</h3>
-            <textarea id="notesBox" placeholder="Anote aqui..."></textarea>
-        </div>
-        <div id="timer">00:00</div>
-        <button class="btn" onclick="startTimer()">Start</button>
-        <br>
-        <button class="btn" onclick="stopTimer()">Stop</button>
-        <br>
-        <div id="parabensMessage">Parabéns por tirar um tempo para ler!</div>
+    <!-- Área de Anotações -->
+    <div id="notesContainer">
+        <h3 style="margin-left: 10%;">Anotações</h3>
+        <textarea id="notesBox" placeholder="Anote aqui..."></textarea>
     </div>
-
-    <audio id="backgroundMusic" loop="">
-        <source src="music.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
+    
+    <!-- Temporizador -->
+    <div id="timer">00:00</div>
+    
+    <!-- Botões de controle -->
+    <div id="buttonContainer">
+        <button class="btn" onclick="startTimer()">Iniciar</button>
+        <button class="btn" onclick="stopTimer()">Parar</button>
+        <button class="btn" onclick="restartTimer()">Reiniciar</button>
+    </div>
+    
+    <!-- Opções de música -->
+    <div id="musicOptions">
+        <label for="musicSelector" style="padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #833fd1;
+        color: white;
+        transition: background-color 0.3s;">Music</label>
+        <select id="musicSelector" onchange="changeMusic()">
+            <option value="Agape.mp3">Agape</option>
+            <option value="Dragonfly (Slowed).mp3">Dragonfly</option>
+        </select>
+    </div>
+    
+    <audio id="backgroundMusic" loop>
+        <source src="Agape.mp3" type="audio/mp3">
+        Seu navegador não suporta o elemento de áudio.
     </audio>
     
     <script>
-        var timerInterval;
-        var startTime;
-        var running = false;
-    
+        let timerInterval;
+        let startTime;
+        let running = false;
+        
         function startTimer() {
             if (!running) {
                 startTime = new Date().getTime();
@@ -126,49 +137,51 @@
                 running = true;
             }
         }
-    
+        
         function stopTimer() {
             clearInterval(timerInterval);
             document.getElementById('backgroundMusic').pause();
-            document.getElementById('timer').innerText = "00:00";
-            document.getElementById('parabensMessage').style.display = 'block';
             running = false;
         }
-    
-        function updateTimer() {
-            var currentTime = new Date().getTime();
-            var elapsedTime = Math.floor((currentTime - startTime) / 1000);
-    
-            var minutes = Math.floor(elapsedTime / 60);
-            var seconds = elapsedTime % 60;
-    
-            // Adiciona um zero à esquerda se o número for menor que 10
-            minutes = (minutes < 10) ? "0" + minutes : minutes;
-            seconds = (seconds < 10) ? "0" + seconds : seconds;
-    
-            document.getElementById("timer").innerText = minutes + ":" + seconds;
+        
+        function restartTimer() {
+            stopTimer();
+            document.getElementById('timer').innerText = "00:00";
+            running = false;
+            startTimer();
         }
-
-        // Função para lidar com a caixa de anotações
+        
+        function updateTimer() {
+            const currentTime = new Date().getTime();
+            const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+            
+            const minutes = String(Math.floor(elapsedTime / 60)).padStart(2, '0');
+            const seconds = String(elapsedTime % 60).padStart(2, '0');
+            
+            document.getElementById("timer").innerText = `${minutes}:${seconds}`;
+        }
+        
+        function changeMusic() {
+            const selectedMusic = document.getElementById('musicSelector').value;
+            const musicPlayer = document.getElementById('backgroundMusic');
+            musicPlayer.src = selectedMusic;
+            musicPlayer.play();
+        }
+        
+        // Funções de anotações
         function saveNotes() {
-            var notes = document.getElementById('notesBox').value;
+            const notes = document.getElementById('notesBox').value;
             localStorage.setItem('notes-ler', notes);
         }
-
-        // Carregar informações do livro e notas ao iniciar a página
+        
         window.onload = function() {
-            //updateBookInfo();
-
-            // Carregar notas salvas no localStorage
-            var savedNotes = localStorage.getItem('notes-ler');
+            // Carregar anotações salvas
+            const savedNotes = localStorage.getItem('notes-ler');
             if (savedNotes) {
                 document.getElementById('notesBox').value = savedNotes;
             }
-
-            // Salvar as notas sempre que o conteúdo mudar
             document.getElementById('notesBox').addEventListener('input', saveNotes);
         };
-        
     </script>
 </body>
 </html>

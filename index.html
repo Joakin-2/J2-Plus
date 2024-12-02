@@ -49,10 +49,9 @@
     <!-- Modal com câmera -->
     <div id="cameraModal" class="modal" style="display: none;">
         <div class="modal-content" style="margin-left: 25%;">
-            <span id="closeModalCamera" class="close" style="display: none;">×</span>
-            <select id="cameraSelect" style="display: none;"></select>
-            <video id="video" width="720" height="560" autoplay muted></video>
-            <canvas id="overlay" width="720" height="560" style="position: absolute; top: 0; left: 0;"></canvas>
+          <span id="closeModalCamera" class="close" style="display: none;">×</span>
+          <video id="video" width="720" height="560" autoplay muted></video>
+          <canvas id="overlay" width="720" height="560" style="position: absolute; top: 0; left: 0;"></canvas>
         </div>
     </div>
 
@@ -65,6 +64,12 @@
             <i class="fas fa-clock"></i> <!-- Ícone de relógio -->
             <span id="clock">00:00</span>
         </span>    
+        <!-- Lista de câmeras disponíveis -->
+        <div id="cameraOptions" style="background: rgb(18, 18, 18); color: white; display: none; margin-left: 70%; margin-top: 1%;">
+            <ul id="cameraList" style="list-style-type: none; padding: 0; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); margin: 0;">
+              <!-- As opções de câmeras serão adicionadas aqui dinamicamente -->
+            </ul>
+        </div>
         <br><br><br>
         <div id="recomendacoes"></div>
         <div class="avatar-container">
@@ -104,9 +109,12 @@
                 </div>
                 <div class="news">
                     <button class="texto" onclick="abrirSites()">Últimas Notícias</button> 
-                    <ul id="newsList">
-                        <li>Carregando notícias...</li>
+                    <ul>
+                        <li>Sem Notícias...</li>
                     </ul>
+                    <!-- <ul id="newsList">
+                        <li>Carregando notícias...</li>
+                    </ul> -->
                 </div>
             </div>
         </div>

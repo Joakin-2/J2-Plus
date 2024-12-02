@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', async () => {
     await fetchTemperature();
     await fetchWeatherForecast();
-    await fetchNews();
+    // await fetchNews();
     await fetchStocks();
 });
 
@@ -387,7 +387,8 @@ async function fetchWeatherForecast() {
         });
 
         // Formatação da saída
-        let forecastText = `Hoje ${todayTemp} °C (${todayDesc})`;
+        // let forecastText = `Hoje ${todayTemp} °C (${todayDesc})`;
+        let forecastText = `${todayTemp} °C (${todayDesc})`;
         document.getElementById('weatherForecast').textContent = forecastText;
     } catch (error) {
         console.error(error);
@@ -480,6 +481,9 @@ updateClock();
 
 // Camera
 document.addEventListener('DOMContentLoaded', () => {
+    let isCameraActive = false; // Controle para saber se a câmera está ativa
+    let currentStream = null;  // Referência para o stream da câmera, para poder parar a câmera depois
+  
     Promise.all([
       faceapi.nets.tinyFaceDetector.loadFromUri('Facial/models'),
       faceapi.nets.faceLandmark68Net.loadFromUri('Facial/models'),
@@ -487,8 +491,54 @@ document.addEventListener('DOMContentLoaded', () => {
       faceapi.nets.faceExpressionNet.loadFromUri('Facial/models')
     ]).then(startVideo);
   
-    // Função para abrir o modal de câmera
+    // Função para alternar entre abrir e fechar a câmera
     document.getElementById('openCamera').addEventListener('click', function() {
+      const cameraOptions = document.getElementById('cameraOptions');
+      const cameraModal = document.getElementById('cameraModal');
+      
+      if (isCameraActive) {
+        // Fechar a câmera e parar o stream
+        if (currentStream) {
+          const tracks = currentStream.getTracks();
+          tracks.forEach(track => track.stop()); // Parar todos os tracks de vídeo
+        }
+        cameraModal.style.display = 'none'; // Fechar o modal
+        isCameraActive = false; // Atualizar o estado da câmera
+      } else {
+        // Mostrar as opções de câmeras
+        cameraOptions.style.display = 'block';
+        
+        // Obter dispositivos de mídia (câmeras)
+        navigator.mediaDevices.enumerateDevices()
+          .then(devices => {
+            const videoDevices = devices.filter(device => device.kind === 'videoinput');
+            const cameraList = document.getElementById('cameraList');
+            cameraList.innerHTML = ''; // Limpar a lista antes de adicionar novas opções
+            
+            // Adicionar cada câmera como uma opção na lista
+            videoDevices.forEach((device, index) => {
+              const listItem = document.createElement('li');
+              listItem.textContent = device.label || `Câmera ${index + 1}`;
+              listItem.style.padding = '5px 10px';
+              listItem.style.cursor = 'pointer';
+              
+              // Adicionar evento de clique para selecionar a câmera
+              listItem.addEventListener('click', () => {
+                openCameraModal(device.deviceId);
+                cameraOptions.style.display = 'none'; // Fechar a lista após selecionar a câmera
+              });
+              
+              cameraList.appendChild(listItem);
+            });
+          })
+          .catch(err => console.error('Erro ao listar dispositivos de mídia: ', err));
+          
+        isCameraActive = true; // A câmera agora está ativa
+      }
+    });
+  
+    // Função para abrir o modal e iniciar a câmera selecionada
+    function openCameraModal(cameraId) {
       const cameraModal = document.getElementById('cameraModal');
       const closeModalCamera = document.getElementById('closeModalCamera');
       
@@ -499,99 +549,79 @@ document.addEventListener('DOMContentLoaded', () => {
       closeModalCamera.addEventListener('click', () => {
         cameraModal.style.display = 'none';
       });
-    });
-  
-    function startVideo() {
-      // Acessando o elemento 'video' após o DOM ser carregado
+      
+      // Iniciar a câmera selecionada
       const video = document.getElementById('video');
-      if (!video) {
-        console.error('Elemento de vídeo não encontrado!');
-        return;
-      }
-  
-      // Obter dispositivos de mídia e filtrar pela câmera
-      navigator.mediaDevices.enumerateDevices()
-        .then(devices => {
-          const videoDevices = devices.filter(device => device.kind === 'videoinput');
-  
-          // Verificar se a câmera 1 está disponível
-          if (videoDevices.length > 1) {
-            const camera1 = videoDevices[1]; // A câmera 1 (geralmente a câmera traseira)
-            const constraints = {
-              video: { deviceId: camera1.deviceId }
-            };
-  
-            // Iniciar o acesso à câmera 1
-            navigator.mediaDevices.getUserMedia(constraints)
-              .then(stream => {
-                video.srcObject = stream;
-              })
-              .catch(err => console.error('Erro ao acessar a câmera 1: ', err));
-          } else {
-            console.log('Câmera 1 não encontrada. Usando a câmera padrão.');
-            // Caso não tenha a câmera 1, utiliza a câmera padrão
-            navigator.mediaDevices.getUserMedia({ video: {} })
-              .then(stream => {
-                video.srcObject = stream;
-              })
-              .catch(err => console.error('Erro ao acessar a câmera padrão: ', err));
-          }
+      const constraints = {
+        video: { deviceId: cameraId ? { exact: cameraId } : undefined }
+      };
+      
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then(stream => {
+          video.srcObject = stream;
+          currentStream = stream;  // Salvar o stream para poder parar depois
         })
-        .catch(err => console.error('Erro ao listar dispositivos de mídia: ', err));
+        .catch(err => console.error('Erro ao acessar a câmera: ', err));
   
-      // Quando o vídeo começar a reproduzir, cria o canvas e começa a detecção
       video.addEventListener('play', () => {
-        const canvas = faceapi.createCanvasFromMedia(video);
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
         document.body.append(canvas);
         const displaySize = { width: video.videoWidth, height: video.videoHeight };
         faceapi.matchDimensions(canvas, displaySize);
   
-        // Detecção e desenho a cada segundo
         setInterval(async () => {
-          // Detectando os rostos e expressões faciais
           const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({
-            inputSize: 160,  // Tamanho da entrada da imagem (menor valor = mais rápido, mas menos preciso)
-            scoreThreshold: 0.5  // Limite de confiança para detectar um rosto (valor maior = mais preciso, mas mais lento)
+            inputSize: 160,
+            scoreThreshold: 0.5
           }))
             .withFaceLandmarks()
-            .withFaceExpressions();        
+            .withFaceExpressions();
   
           const resizedDetections = faceapi.resizeResults(detections, displaySize);
           canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
           faceapi.draw.drawDetections(canvas, resizedDetections);
           faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
           faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-  
-          if (detections.length > 0 && detections[0].expressions) {
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-  
-            var raw = JSON.stringify({
-              "local_name": "joaquim",
-              "created_at": "2021-07-09T20:48:09.859650Z",
-              "irritado": detections[0].expressions.angry,
-              "desgostoso": detections[0].expressions.disgusted,
-              "medo": detections[0].expressions.fearful,
-              "feliz": detections[0].expressions.happy,
-              "neutro": detections[0].expressions.neutral,
-              "triste": detections[0].expressions.sad,
-              "surpreso": detections[0].expressions.surprised
-            });
-  
-            var requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-              redirect: 'follow'
-            };
-  
-            //fetch("http://127.0.0.1:8000/facial/", requestOptions)
-            //  .then(response => response.text())
-            //  .then(result => console.log(result))
-            //  .catch(error => console.log('error', error));
-          }
         }, 1000);
       });
     }
-  });
   
+    // Função para iniciar o vídeo (caso a câmera padrão seja escolhida)
+    function startVideo() {
+      const video = document.getElementById('video');
+      if (!video) {
+        console.error('Elemento de vídeo não encontrado!');
+        return;
+      }
+  
+      navigator.mediaDevices.getUserMedia({ video: {} })
+        .then(stream => {
+          video.srcObject = stream;
+        })
+        .catch(err => console.error('Erro ao acessar a câmera padrão: ', err));
+  
+      video.addEventListener('play', () => {
+        const canvas = faceapi.createCanvasFromMedia(video);
+        document.body.append(canvas);
+        const displaySize = { width: video.videoWidth, height: video.videoHeight };
+        faceapi.matchDimensions(canvas, displaySize);
+  
+        setInterval(async () => {
+          const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({
+            inputSize: 160,
+            scoreThreshold: 0.5
+          }))
+            .withFaceLandmarks()
+            .withFaceExpressions();
+  
+          const resizedDetections = faceapi.resizeResults(detections, displaySize);
+          canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+          faceapi.draw.drawDetections(canvas, resizedDetections);
+          faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
+          faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
+        }, 1000);
+      });
+    }
+  });  
