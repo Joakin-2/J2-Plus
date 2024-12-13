@@ -60,6 +60,14 @@
         background-color: #444;
     }
 
+    #search {
+        width: 400px;
+    }
+
+    #plus {
+        margin-right: 120px;
+    }
+
     /* Media Query para telas de 1024x600 */
 @media screen and (max-width: 1024px) and (max-height: 600px) {
     body {
@@ -87,11 +95,11 @@
     }
 
     form {
-        width: 30%; /* O campo de busca ocupa 90% da tela */
+        width: 50%; /* O campo de busca ocupa 90% da tela */
     }
 
     button {
-        width: 80px; /* Botão ocupa toda a largura em telas menores */
+        width: 70px; /* Botão ocupa toda a largura em telas menores */
     }
 
     .suggestions {
@@ -111,6 +119,14 @@
         .suggestion-item:hover {
             background-color: #ececec;
         }
+
+    #search {
+        width: 100px;
+    }
+
+    #plus {
+        margin-right: 2px;
+    }
 
     /* Estilo da barra de rolagem */
     ::-webkit-scrollbar {
@@ -136,9 +152,9 @@
             <img src="yt/yt.png" alt="YouTube Icon" style="width: 44px; margin-left: 10px;">
         </h1>
         <form action="https://www.youtube.com/results" method="GET" style="position: relative;">
-            <input type="text" id="search" name="search_query" placeholder="Pesquisar..." required="" style="padding: 10px; width: 400px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;" oninput="toggleSuggestions()"> <!-- Adicione o evento 'oninput' aqui -->
+            <input type="text" id="search" name="search_query" placeholder="Pesquisar..." required="" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;" oninput="toggleSuggestions()"> <!-- Adicione o evento 'oninput' aqui -->
             <button type="submit" style="padding: 10px;background-color: #2e2e2e;color: white;border: none;border-radius: 5px;cursor: pointer;margin-left: 10px;margin-right: 10px;">Buscar</button>
-            <button type="button" style="padding: 10px;background-color: #2e2e2e;color: white;border: none;border-radius: 5px;cursor: pointer;margin-right: 120px;" onclick="openSites()">+</button><div id="suggestions" class="suggestions" style="margin-top: 10px;">
+            <button type="button" id="plus" style="padding: 10px;background-color: #2e2e2e;color: white;border: none;border-radius: 5px;cursor: pointer;" onclick="openSites()">+</button><div id="suggestions" class="suggestions" style="margin-top: 10px;">
                 <!-- Sugestões vão aparecer aqui -->
             </div>
         </form>
