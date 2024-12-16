@@ -87,6 +87,10 @@
         .buttons button:hover {
             background-color: #444;
         }
+        .grafico {
+            margin: 20px auto;
+            text-align: center;
+        }
         @media (max-width: 768px) {
             th, td {
                 font-size: 0.9em;
@@ -176,56 +180,180 @@
         }
 
         // Função para limpar todos os hábitos marcados como concluídos
-        function limparConcluidos() {
-            const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-            allCheckboxes.forEach(checkbox => {
-                checkbox.checked = false; // Desmarca todos os checkboxes
-            });
+        // Função para limpar todos os hábitos marcados como concluídos e limpar o gráfico
+function limparConcluidos() {
+    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+    allCheckboxes.forEach(checkbox => {
+        checkbox.checked = false; // Desmarca todos os checkboxes
+    });
 
-            // Salva os hábitos no localStorage após limpar
-            salvarHabitos();
-        }
+    // Salva os hábitos no localStorage após limpar
+    salvarHabitos();
 
-        // Função para marcar ou desmarcar um hábito
-    function marcarHabito(habitoId) {
-        const habitStatus = document.getElementById(habitoId).checked;
+    // Limpa o gráfico
+    if (meuGrafico) {
+        meuGrafico.destroy(); // Destrói o gráfico existente
+    }
 
-        // Recupera os hábitos armazenados no localStorage ou cria um array vazio
-        let habitos = JSON.parse(localStorage.getItem('habitos')) || [];
+    // Renderiza o gráfico com os hábitos desmarcados
+    renderizarGrafico();
+}
 
-        // Encontra o hábito no array de hábitos
-        let habitIndex = habitos.findIndex(habito => habito.id === habitoId);
+        // Função para calcular os hábitos concluídos e não concluídos
+function calcularHabitos() {
+    // Recupera os hábitos armazenados no localStorage ou cria um array vazio
+    let habitos = JSON.parse(localStorage.getItem('habitos')) || [];
 
-        // Se o hábito não existe, cria um novo hábito
-        if (habitIndex === -1) {
-            habitos.push({
-                id: habitoId,
-                concluido: habitStatus
-            });
+    // Inicializa os contadores
+    let concluidos = 0;
+    let naoConcluidos = 0;
+
+    // Itera sobre os hábitos e atualiza os contadores
+    habitos.forEach(habito => {
+        if (habito.concluido) {
+            concluidos++;
         } else {
-            // Atualiza o status do hábito
-            habitos[habitIndex].concluido = habitStatus;
+            naoConcluidos++;
         }
+    });
 
-        // Salva os hábitos atualizados no localStorage
-        localStorage.setItem('habitos', JSON.stringify(habitos));
-    }
+    return { concluidos, naoConcluidos };
+}
 
-    // Função para carregar os hábitos da tabela com base no localStorage
-    function carregarHabitos() {
-        let habitos = JSON.parse(localStorage.getItem('habitos')) || [];
+// Função para renderizar o gráfico
+function renderizarGrafico() {
+    const { concluidos, naoConcluidos } = calcularHabitos();
 
-        habitos.forEach(habito => {
-            const checkbox = document.getElementById(habito.id);
-            if (checkbox) {
-                checkbox.checked = habito.concluido;
+    const ctx = document.getElementById('meuGrafico').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Concluídos', 'Não Concluídos'],
+            datasets: [{
+                data: [concluidos, naoConcluidos],
+                backgroundColor: ['#4CAF50', '#F44336']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
             }
+        }
+    });
+}
+
+// Função para marcar ou desmarcar um hábito
+function marcarHabito(habitoId) {
+    const habitStatus = document.getElementById(habitoId).checked;
+
+    // Recupera os hábitos armazenados no localStorage ou cria um array vazio
+    let habitos = JSON.parse(localStorage.getItem('habitos')) || [];
+
+    // Encontra o hábito no array de hábitos
+    let habitIndex = habitos.findIndex(habito => habito.id === habitoId);
+
+    // Se o hábito não existe, cria um novo hábito
+    if (habitIndex === -1) {
+        habitos.push({
+            id: habitoId,
+            concluido: habitStatus
         });
+    } else {
+        // Atualiza o status do hábito
+        habitos[habitIndex].concluido = habitStatus;
     }
 
-    // Carregar os hábitos quando a página for carregada
-    window.onload = carregarHabitos;
+    // Salva os hábitos atualizados no localStorage
+    localStorage.setItem('habitos', JSON.stringify(habitos));
+
+    // Atualiza o gráfico após marcar ou desmarcar um hábito
+    renderizarGrafico();
+}
+
+// Função para carregar os hábitos da tabela com base no localStorage
+function carregarHabitos() {
+    let habitos = JSON.parse(localStorage.getItem('habitos')) || [];
+
+    habitos.forEach(habito => {
+        const checkbox = document.getElementById(habito.id);
+        if (checkbox) {
+            checkbox.checked = habito.concluido;
+        }
+    });
+
+    // Renderiza o gráfico após carregar os hábitos
+    renderizarGrafico();
+}
+
+// Carregar os hábitos quando a página for carregada
+window.onload = carregarHabitos;
+
+    // Renderizando o gráfico
+    let meuGrafico = null;  // Variável global para armazenar o gráfico
+
+// Função para renderizar o gráfico
+function renderizarGrafico() {
+    const { concluidos, naoConcluidos } = calcularHabitos();
+
+    const ctx = document.getElementById('graficoHabitos').getContext('2d');
+    
+    // Destruir o gráfico anterior se já existir
+    if (meuGrafico) {
+        meuGrafico.destroy();
+    }
+
+    // Criar um novo gráfico
+    meuGrafico = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Concluídos', 'Não Concluídos'],
+            datasets: [{
+                data: [concluidos, naoConcluidos],
+                backgroundColor: ['#673ab7', '#4c4c4c'],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+}
+
+        // Função para salvar automaticamente as notas
+function salvarNotasAutomaticamente() {
+    const notas = document.getElementById('campoNotas').value;
+    localStorage.setItem('notasDiarias', notas);
+}
+
+// Função para carregar notas ao carregar a página
+function carregarNotas() {
+    const notas = localStorage.getItem('notasDiarias');
+    if (notas) {
+        document.getElementById('campoNotas').value = notas;
+    }
+}
+
+// Adiciona um ouvinte de evento ao campo de texto para salvar automaticamente enquanto o usuário digita
+document.addEventListener('DOMContentLoaded', () => {
+    const campoNotas = document.getElementById('campoNotas');
+    carregarNotas();
+    campoNotas.addEventListener('input', salvarNotasAutomaticamente);
+});
+
+        // Inicializando o gráfico e carregando as notas salvas
+        window.onload = function() {
+            renderizarGrafico();
+            carregarNotas();
+        };
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -253,6 +381,14 @@
                     <input type="checkbox" id="sax" onclick="marcarHabito('sax')">
                 </td>
                 <td>Ensaiar por 1 hora.</td>
+            </tr>
+            <tr>
+                <td>Leitura</td>
+                <td>13:30</td>
+                <td>
+                    <input type="checkbox" id="leitura" onclick="marcarHabito('leitura')">
+                </td>
+                <td>Tire um momento de leitura.</td>
             </tr>
             <tr>
                 <td>Beber água</td>
@@ -288,6 +424,17 @@
             </tr>
         </tbody>
     </table>
+
+    <!-- Gráfico -->
+    <div class="grafico">
+        <canvas id="graficoHabitos"></canvas>
+    </div>
+
+    <!-- Notas -->
+    <div class="notas">
+        <h2>Notas</h2>
+        <textarea id="campoNotas" placeholder="Adicione suas observações aqui..."></textarea>
+    </div>
 
     <!-- Botões para Monitorar e Limpar -->
     <div class="buttons">

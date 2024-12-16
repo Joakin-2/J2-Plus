@@ -593,7 +593,7 @@
             <div class="controls" style="display: flex; align-items: center; justify-content: center;">
                 <!-- Botão de Loop -->
                 <button class="outros-button" onclick="toggleLoop()" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px;">
-                    <i class="fas fa-redo"></i> <!-- Ícone de loop -->
+                    <i class="fas fa-redo"></i> <!-- Loop Icon -->
                 </button>
                 <button class="outros-button" onclick="previousTrack()" style="background: #1a1a1a; border: none; cursor: pointer; padding: 10px;">
                     <i class="fas fa-backward"></i> <!-- Ícone de voltar -->
@@ -1473,20 +1473,13 @@ function displayMusicSelection(playlistName) {
         let isLooping = false;  // Para controlar o estado de loop
         let isFavorite = false;  // Para controlar o estado de favorito
 
-        // Função para alternar o loop
         function toggleLoop() {
-            isLooping = !isLooping;
-            const loopButton = document.querySelector(".outros-button i.fa-redo");
-
-            // Altere o ícone ou a lógica de reprodução conforme necessário
-            if (isLooping) {
-                loopButton.style.color = "purple";  // Exemplo: mudança de cor quando o loop está ativado
-            } else {
-                loopButton.style.color = "";  // Cor padrão
-            }
-
-            console.log(isLooping ? "Loop ativado" : "Loop desativado");
-        }
+    isLooping = !isLooping;
+    audioPlayer.loop = isLooping; // Enable/disable loop on the audio element
+    const loopButton = document.querySelector(".outros-button i.fa-redo");
+    loopButton.style.color = isLooping ? "purple" : ""; // Highlight button when loop is active
+    console.log(isLooping ? "Loop activated" : "Loop deactivated");
+}
 
         // Função para alternar o favorito
         function toggleFavorite() {
