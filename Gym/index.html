@@ -92,6 +92,14 @@
                 </button>
             </div>
 
+            <button style="height: 30px; width: 420px;" onclick="redirecionar('Gym Play')">
+                <!-- Ícone de Play usando SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; color: white;">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Gym Play
+            </button>            
+
             <div id="weight-height">
                 <div class="input-group">
                     <label for="weight">Peso (Kg):</label>
@@ -136,6 +144,10 @@
                 case 'Exercícios':
                     window.close('index.html');
                     window.open('pesos.html');
+                    break;
+                case 'Gym Play':
+                    window.close('index.html');
+                    window.open('play.html');
                     break;
                 default:
                     break;
