@@ -462,6 +462,35 @@ button:hover {
     }
   }
 
+  .gorro {
+    position: absolute;
+    width: 150px;
+    height: 70px;
+    background-color: red;
+    border-radius: 96% 30% 0 0;
+    margin: 50px auto;
+    margin-bottom: 324px;
+}
+.pompom {
+    position: absolute;
+    top: -16px;
+    left: 96%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+}
+.faixa {
+    position: absolute;
+    bottom: -15px;
+    right: -6px;
+    width: 108%;
+    height: 20px;
+    border-radius: 14%;
+    background-color: white;
+}
+
 /* Para navegadores baseados em WebKit (como Chrome, Safari e Edge) */
 ::-webkit-scrollbar {
     width: 8px;

@@ -94,6 +94,10 @@
             <a href="chat.html" target="_blank">
                 <div class="avatar">
                     <div id="Hat" class="birthday-hat" style="display:none;">🎩</div>
+                    <div id="Gorro" class="gorro" style="display: none;">
+                        <div class="faixa"></div>
+                        <div class="pompom"></div>
+                    </div>
                     <div class="face">
                         <div class="eye left" id="olhoEsquerdo"></div>
                         <div class="eye right" id="olhoDireito"></div>
@@ -123,7 +127,7 @@
             <source src="natal.mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio> -->
-        <div id="Message" style="display: none;background-color: rgb(232 213 255);color: rgb(100, 45, 252);padding: 10px;border: 1px solid rgb(100, 45, 252);border-radius: 5px;">
+        <div id="Message" style="display: none;color: rgb(100, 45, 252);padding: 10px;border: 1px solid rgb(100, 45, 252);border-radius: 5px;">
              <p id="Text"></p>
             </div>
                 <div class="chat">
@@ -295,6 +299,7 @@ window.onclick = function(event) {
             const christmasMessage = "🎄 Feliz Natal! 🎅";
             document.getElementById('Text').innerText = christmasMessage;
             document.getElementById('Message').style.display = 'block';
+            document.getElementById('Gorro').style.display = 'block'; // Mostrar o gorro
 
             // Mensagem falada
             falar("Feliz Natal! Que sua noite seja mágica e cheia de alegria!");
