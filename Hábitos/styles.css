@@ -217,6 +217,21 @@ button:hover {
     color: white; /* cor do texto das opções */
 }
 
+.button-group {
+    display: flex;
+}
+
+.btn-export, .btn-import {
+    background-color: #2b2b2b;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 /* Estilização para checkboxes */
 input[type="checkbox"] {
     appearance: none;

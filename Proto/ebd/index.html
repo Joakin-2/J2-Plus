@@ -1,141 +1,164 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EBD</title>
-    <link rel="icon" href="ícone.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #121212;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            color: #ffffff;
-            margin: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-        .gallery {
-            display: none;
-            /* display: grid; */
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-            padding: 20px;
-        }
-        .gallery img {
-            max-width: 100%;
-            height: auto;
-            border: 2px solid #333;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-            transition: transform 0.3s ease;
-        }
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-        .pdf-link {
-            color: #e0e0e0;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .pdf-link i {
-            color: #ff5722;
-        }
-        .pinterest-button {
-            background-color: #f8fa9a;;
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 20px 10px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .pinterest-button i {
-            font-size: 20px;
-        }
-        .notes-container {
-            margin: 20px;
-        }
-        .notes-textarea {
-            width: 800px;
-            height: 550px;
-            border: 1px solid #333;
-            border-radius: 5px;
-            background-color: #1e1e1e;
-            color: #e0e0e0;
-            padding: 10px;
-            resize: none;
-        }
-        /* Estilizando a barra de rolagem */
-        .notes-textarea::-webkit-scrollbar {
-            width: 12px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EBD</title>
+  <link rel="icon" href="ícone.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #121212;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      color: #ffffff;
+      margin: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .gallery {
+      display: none;
+      /* display: grid; */
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+    .gallery img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #333;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    .pdf-link {
+      color: #e0e0e0;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pdf-link i {
+      color: #ff5722;
+    }
+    .btn {
+      background-color: #f8fa9a;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 20px 10px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn i {
+      font-size: 20px;
+    }
+    .notes-container {
+      margin: 20px;
+    }
+    .notes-textarea {
+      width: 800px;
+      height: 550px;
+      border: 1px solid #333;
+      border-radius: 5px;
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+      padding: 10px;
+      resize: none;
+    }
+    /* Estilizando a barra de rolagem */
+    .notes-textarea::-webkit-scrollbar {
+      width: 12px;
+    }
 
-        .notes-textarea::-webkit-scrollbar-track {
-            background: #222; /* Cor de fundo da trilha */
-            border-radius: 5px;
-        }
+    .notes-textarea::-webkit-scrollbar-track {
+      background: #222; /* Cor de fundo da trilha */
+      border-radius: 5px;
+    }
 
-        .notes-textarea::-webkit-scrollbar-thumb {
-            background: #f8fa9a;; /* Cor da barra de rolagem */
-            border-radius: 5px;
-        }
+    .notes-textarea::-webkit-scrollbar-thumb {
+      background: #f8fa9a; /* Cor da barra de rolagem */
+      border-radius: 5px;
+    }
 
-        .notes-textarea::-webkit-scrollbar-thumb:hover {
-            background: #f1f364;; /* Cor da barra de rolagem ao passar o mouse */
-        }
-    </style>
+    .notes-textarea::-webkit-scrollbar-thumb:hover {
+      background: #f1f364; /* Cor da barra de rolagem ao passar o mouse */
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-    <h1><i class="fas fa-image"></i> Galeria de Imagens</h1>
-    <a href="https://github.com/Juca3/J2-Plus" class="pinterest-button" target="_blank">Atualizar</a>
-    <a href="https://www.youtube.com/watch?v=_EMckqKOipQ" class="pinterest-button" target="_blank">Lição 9</a>
-    <!--
-<a href="https://www.youtube.com/watch?v=s7lO3QBcuVs" class="pinterest-button" target="_blank">Lição 4</a>
--->
-    
-    <div class="gallery">
-        <img src="093.jpg" alt="Imagem 093">
-        <img src="107.jpg" alt="Imagem 107">
-        <img src="109.jpg" alt="Imagem 109">
-        <img src="370.jpg" alt="Imagem 370">
-        <img src="459.jpg" alt="Imagem 459">
-        <img src="63.jpg" alt="Imagem 63">
-        <img src="89.jpg" alt="Imagem 89">
-        <img src="9.jpg" alt="Imagem 9">
-    </div>
+  <div class="notes-container">
+    <h3 style="margin-top: 80px;">Anotações</h3>
+    <textarea class="notes-textarea" id="notes-ebd" placeholder="Digite aqui..."></textarea>
+  </div>
 
-    <div class="notes-container">
-        <br>
-        <h2>Anotações</h2>
-        <textarea class="notes-textarea" id="notes-ebd" placeholder="Digite aqui..."></textarea>
-    </div>
+  <button class="btn" onclick="exportNotes()">
+    <i class="fas fa-file-export"></i> Exportar
+  </button>
+  <button class="btn" onclick="importNotes()">
+    <i class="fas fa-file-import"></i> Importar
+  </button>
+  <a href="https://github.com/Juca3/J2-Plus" class="btn" target="_blank">Atualizar</a>
+  <a href="https://www.youtube.com/watch?v=_EMckqKOipQ" class="btn" target="_blank">Lição 9</a>
 
-    <script>
-        const notesTextarea = document.getElementById('notes-ebd');
+  <script>
+    const notesTextarea = document.getElementById('notes-ebd');
 
-        // Carregar anotações do localStorage
-        notesTextarea.value = localStorage.getItem('notes-ebd') || '';
+    // Carregar anotações do localStorage
+    notesTextarea.value = localStorage.getItem('notes-ebd') || '';
 
-        // Salvar anotações no localStorage sempre que houver alteração
-        notesTextarea.addEventListener('input', () => {
-            localStorage.setItem('notes-ebd', notesTextarea.value);
-        });
-    </script>
+    // Salvar anotações no localStorage sempre que houver alteração
+    notesTextarea.addEventListener('input', () => {
+      localStorage.setItem('notes-ebd', notesTextarea.value); 
+    });
+
+    function exportNotes() {
+      const notes = notesTextarea.value;
+      const blob = new Blob([notes], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.setAttribute('href', url);
+      a.setAttribute('download', 'ebd.txt');
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function importNotes() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.txt';
+      input.onchange = () => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          notesTextarea.value = reader.result;
+          localStorage.setItem('notes-ebd', reader.result); // Salvar após importação
+        };
+        reader.readAsText(input.files[0]);
+      };
+      input.click();
+    }
+  </script>
 </body>
 </html>

@@ -61,8 +61,11 @@
 
         <!-- Botões para salvar e baixar PDF -->
         <button id="save-expenses" class="hidden">Salvar</button>
-        <button id="save-text-file">Salvar</button>
-        <button id="download-pdf">Baixar PDF</button>
+        <div class="button-container">
+            <button id="save-json-file" style="width: 200px;">Salvar Dados</button>
+            <button id="import-json-file" style="width: 200px;">Importar Dados</button>
+            <button id="download-pdf" style="width: 200px;">Baixar PDF</button>
+        </div>        
 
         <!-- Área de Anotações -->
         <br>
@@ -73,41 +76,141 @@
     </div>
     <script src="scripts.js"></script>
     <script>
-        // Função para salvar as despesas em um arquivo de texto
-        function saveExpensesAsText() {
+
+        // Função para salvar as despesas em um arquivo JSON
+        function saveExpensesAsJson() {
             var table = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
-            var expensesText = "Controle de Despesas: \n\n";
-            
-            // Adiciona as despesas na tabela ao conteúdo do arquivo
+            var expenses = [];
+        
+            // Adiciona as despesas na tabela ao conteúdo do arquivo JSON
             for (var i = 0; i < table.rows.length; i++) {
                 var cells = table.rows[i].cells;
                 var name = cells[0].textContent;
                 var type = cells[1].textContent;
                 var amount = cells[2].textContent;
-                expensesText += `Nome: ${name};\n Tipo: ${type};\n Valor: ${amount};\n\n `;
+        
+                // Remove o símbolo "R$" e substitui a vírgula por ponto
+                amount = amount.replace("R$", "").trim();
+                amount = amount.replace(".", "").replace(",", ".");
+        
+                // Converte para número e formata com 2 casas decimais
+                amount = parseFloat(amount).toFixed(2);
+        
+                expenses.push({ name, type, amount });
             }
-
-            // Adiciona as anotações ao conteúdo do arquivo
+        
+            // Adiciona as anotações ao conteúdo do arquivo JSON
             var notesText = document.getElementById("notes").value;
             if (notesText.trim() !== "") {
-                expensesText += `Anotações:\n${notesText}\n`;
+                expenses.push({ notes: notesText });
             }
-
-            // Cria um Blob com o conteúdo das despesas e anotações
-            var blob = new Blob([expensesText], { type: "text/plain" });
-
+        
+            // Cria um Blob com o conteúdo em formato JSON
+            var blob = new Blob([JSON.stringify(expenses, null, 2)], { type: "application/json" });
+        
             // Cria um link temporário para o download do arquivo
             var link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = "controle de gastos.txt";  // Nome do arquivo a ser baixado
-
+            link.download = "gastos.json";  // Nome do arquivo a ser baixado
+        
             // Simula o clique no link para baixar o arquivo
             link.click();
         }
+        
+        // Evento para o botão de salvar como arquivo JSON
+        document.getElementById("save-json-file").addEventListener("click", saveExpensesAsJson);
 
-        // Evento para o botão de salvar como arquivo de texto
-        document.getElementById("save-text-file").addEventListener("click", saveExpensesAsText);
+        // Função para importar o JSON e preencher a tabela
+        function importJsonFile(event) {
+            var file = event.target.files[0];
+            if (!file) {
+                alert("Nenhum arquivo selecionado.");
+                return;
+            }
+        
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var data = e.target.result;
+                try {
+                    var expenses = JSON.parse(data);
+                    var tableBody = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
+                    tableBody.innerHTML = "";  // Limpa a tabela antes de carregar os dados
+        
+                    expenses.forEach(function(expense) {
+                        if (expense.name && expense.type && expense.amount) {
+                            var row = tableBody.insertRow();
+                            row.innerHTML = `
+                                <td>${expense.name}</td>
+                                <td>${expense.type}</td>
+                                <td>R$ ${parseFloat(expense.amount).toFixed(2).replace(".", ",")}</td>
+                                <td><button onclick="deleteRow(this)">Excluir</button></td>
+                            `;
+                        }
+                    });
+        
+                    // Preenche a área de anotações
+                    if (expenses.some(expense => expense.notes)) {
+                        document.getElementById("notes").value = expenses.find(expense => expense.notes).notes;
+                    }
+        
+                    // Atualiza o total
+                    updateTotal();
+        
+                    // Salva os dados no localStorage após importar
+                    saveToLocalStorage();
+        
+                } catch (error) {
+                    alert("Erro ao importar o arquivo. Certifique-se de que o arquivo seja um JSON válido.");
+                }
+            };
+        
+            reader.readAsText(file);
 
+            // Salva os dados no localStorage após importar
+    saveToLocalStorage(dataToSave);
+}
+        
+        // Ao clicar no botão "Importar Dados", abre a seleção de arquivos
+        document.getElementById("import-json-file").addEventListener("click", function() {
+            var inputFile = document.createElement("input");
+            inputFile.type = "file";
+            inputFile.accept = ".json";
+            inputFile.style.display = "none";
+        
+            inputFile.addEventListener("change", importJsonFile);
+            inputFile.click();
+        });
+        let dataToSave;
+
+        function saveToLocalStorage(data) {
+  try {
+    const cleanedData = JSON.parse(JSON.stringify(data)); 
+    localStorage.setItem('expensesData', JSON.stringify(cleanedData));
+    console.log('Dados salvos no localStorage com sucesso.');
+  } catch (error) {
+    console.error('Erro ao salvar os dados no localStorage:', error);
+    alert(`Ocorreu um erro ao salvar os dados: ${error.message}`);
+  }
+}
+
+function loadFromLocalStorage() {
+  const savedData = localStorage.getItem('expensesData');
+
+  if (savedData !== null && savedData !== 'undefined') { // Verifica se existe e não é 'undefined'
+    try {
+      const parsedData = JSON.parse(savedData);
+      // Preenche a tabela e a área de anotações com os dados recuperados
+      // ...
+    } catch (error) {
+      console.error('Erro ao carregar os dados do localStorage:', error);
+      // Limpar o localStorage se os dados estiverem corrompidos?
+      // localStorage.removeItem('expensesData');
+    }
+  } else {
+    console.warn("Nenhum dado encontrado no localStorage.");
+  }
+}
+        
     </script>
 </body>
 </html>

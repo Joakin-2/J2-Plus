@@ -116,7 +116,11 @@
             <textarea id="notas" class="notes" placeholder="Anote aqui..." oninput="saveNotas()"></textarea>
 
             <div class="buttons">
+                <button class="botao" onclick="exportNotes()"><i class="fas fa-file-export"></i> Exportar</button>
+                <button class="botao" onclick="importNotes()"><i class="fas fa-file-import"></i> Importar</button>
                 <button class="botao" onclick="redirecionar('EBD')"><i class="fas fa-file"></i> EBD</button>
+            </div>
+            <div class="buttons">
                 <button class="botao" onclick="redirecionar('Bíblia')"><i class="fas fa-book"></i> Bíblia</button>
                 <button class="botao" onclick="redirecionar('Canais')"><i class="fas fa-globe"></i> Canais</button>
                 <button class="botao" onclick="redirecionar('Memórias')"><i class="fas fa-camera"></i> Memórias</button>
@@ -197,6 +201,33 @@
                     break;
             }
         }
+
+        function exportNotes() {
+  const notes = document.getElementById('notas').value;
+  const blob = new Blob([notes], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.setAttribute('href', url);
+  a.setAttribute('download', 'crist.txt');
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function importNotes() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.txt';
+  input.onchange = () => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      document.getElementById('notas').value = reader.result;
+      localStorage.setItem('notas', reader.result);
+    };
+    reader.readAsText(input.files[0]);
+  };
+  input.click();
+}
     </script>
 </body>
 </html>

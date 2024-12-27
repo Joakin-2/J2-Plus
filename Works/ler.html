@@ -1,57 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="ícone.ico" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leitura</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        
-        h1, h3 {
-            margin-bottom: 10px;
-            color: #FFFFFF;
-        }
-        
-        #timer {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #833fd1;
-            color: white;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #7133b8;
-        }
-        
-        #notesContainer {
-            margin-bottom: 30px;
-            width: 80%;
-            max-width: 600px;
-        }
-        
-        #notesBox {
-            width: 80%;
+  <meta charset="UTF-8">
+  <link rel="icon" href="ícone.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Leitura</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1, h3 {
+      margin-bottom: 10px;
+      color: #FFFFFF;
+    }
+
+    .music-player {
+      background-color: #333;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: 466px;
+      margin-left: 20px;
+    }
+
+    #timer {
+      color: #fff;
+      font-size: 3em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #buttonContainer {
+      display: flex;
+      justify-content: center; 
+    }
+
+    .btn {
+      background-color: #833fd1;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .btn2 {
+      background-color: #121212;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #musicOptions {
+      display: flex;
+      align-items: center;
+    }
+
+    #musicSelector {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #555;
+      border-radius: 5px;
+      background-color: #333;
+      color: white;
+      outline: none;
+      margin-right: 10px;
+    }
+
+    #notesContainer {
+      margin-bottom: 30px;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    #notesBox {
+        width: 480px;
     height: 120px;
     padding: 10px;
     font-size: 16px;
@@ -60,128 +96,175 @@
     border: 1px solid #555;
     border-radius: 5px;
     resize: none;
-    margin-left: 10%;
-        }
-        
-        #musicOptions {
-            margin-bottom: 20px;
-        }
-        
-        select {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #555;
-            border-radius: 5px;
-            background-color: #333;
-            color: white;
-            outline: none;
-        }
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
 
-        /* Estilo para o contêiner dos botões */
-        #buttonContainer {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-    </style>
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #555;
+      border-radius: 5px;
+      background-color: #333;
+      color: white;
+      outline: none;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
+    .button-group {
+  display: flex;
+}
+
+.button-group div {
+  display: flex;
+  justify-content: space-between;
+}
+  </style>
 </head>
 <body>
-    <!-- Área de Anotações -->
-    <div id="notesContainer">
+    <div class="button-group">
         <h3 style="margin-left: 10%;">Anotações</h3>
-        <textarea id="notesBox" placeholder="Anote aqui..."></textarea>
+        <div style="display: flex; justify-content: space-between;">
+          <button class="btn2" onclick="exportNotes()" style="margin-left: 10px;">
+            <i class="fas fa-file-export"></i>
+          </button>
+          <button class="btn2" onclick="importNotes()">
+            <i class="fas fa-file-import"></i>
+          </button>
+        </div>
     </div>
-    
-    <!-- Temporizador -->
+
+    <textarea id="notesBox" placeholder="Anote aqui..."></textarea>
+
+  <div class="music-player">
     <div id="timer">00:00</div>
-    
-    <!-- Botões de controle -->
     <div id="buttonContainer">
-        <button class="btn" onclick="startTimer()">Iniciar</button>
-        <button class="btn" onclick="stopTimer()">Parar</button>
-        <button class="btn" onclick="restartTimer()">Reiniciar</button>
+        <i class="fas fa-compact-disc fa-3x" style="margin-right: 10px; margin-top: 5px;"></i>
+      <select id="musicSelector" onchange="changeMusic()">
+        <option value="Agape.mp3">Agape</option>
+        <option value="Dragonfly (Slowed).mp3">Dragonfly</option>
+      </select>
+      <button class="btn" onclick="playPauseTimer()">
+        <svg class="icon" id="playIcon" viewBox="0 0 20 20">
+          <path d="M8 5v10l10-5z" />
+        </svg>
+        <svg class="icon" id="pauseIcon" viewBox="0 0 20 20" style="display: none;">
+          <rect x="4" y="3" width="4" height="14" />
+          <rect x="12" y="3" width="4" height="14" />
+        </svg>
+      </button>
+      <button class="btn" onclick="restartTimer()">
+        <i class="fas fa-redo"></i>
+      </button>
     </div>
-    
-    <!-- Opções de música -->
-    <div id="musicOptions">
-        <label for="musicSelector" style="padding: 10px 20px;
-        font-size: 18px;
-        cursor: pointer;
-        border: none;
-        border-radius: 5px;
-        background-color: #833fd1;
-        color: white;
-        transition: background-color 0.3s;">Music</label>
-        <select id="musicSelector" onchange="changeMusic()">
-            <option value="Agape.mp3">Agape</option>
-            <option value="Dragonfly (Slowed).mp3">Dragonfly</option>
-        </select>
-    </div>
-    
-    <audio id="backgroundMusic" loop>
-        <source src="Agape.mp3" type="audio/mp3">
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
-    
-    <script>
-        let timerInterval;
-        let startTime;
-        let running = false;
-        
-        function startTimer() {
-            if (!running) {
-                startTime = new Date().getTime();
-                timerInterval = setInterval(updateTimer, 1000);
-                document.getElementById('backgroundMusic').play();
-                running = true;
-            }
-        }
-        
-        function stopTimer() {
-            clearInterval(timerInterval);
-            document.getElementById('backgroundMusic').pause();
-            running = false;
-        }
-        
-        function restartTimer() {
-            stopTimer();
-            document.getElementById('timer').innerText = "00:00";
-            running = false;
-            startTimer();
-        }
-        
-        function updateTimer() {
-            const currentTime = new Date().getTime();
-            const elapsedTime = Math.floor((currentTime - startTime) / 1000);
-            
-            const minutes = String(Math.floor(elapsedTime / 60)).padStart(2, '0');
-            const seconds = String(elapsedTime % 60).padStart(2, '0');
-            
-            document.getElementById("timer").innerText = `${minutes}:${seconds}`;
-        }
-        
-        function changeMusic() {
-            const selectedMusic = document.getElementById('musicSelector').value;
-            const musicPlayer = document.getElementById('backgroundMusic');
-            musicPlayer.src = selectedMusic;
-            musicPlayer.play();
-        }
-        
-        // Funções de anotações
-        function saveNotes() {
-            const notes = document.getElementById('notesBox').value;
-            localStorage.setItem('notes-ler', notes);
-        }
-        
-        window.onload = function() {
-            // Carregar anotações salvas
-            const savedNotes = localStorage.getItem('notes-ler');
-            if (savedNotes) {
-                document.getElementById('notesBox').value = savedNotes;
-            }
-            document.getElementById('notesBox').addEventListener('input', saveNotes);
-        };
-    </script>
+  </div>
+
+  <audio id="backgroundMusic" loop>
+    <source src="Agape.mp3" type="audio/mp3">
+    Seu navegador não suporta o elemento de áudio.
+  </audio>
+
+  <script>
+    let timerInterval;
+    let startTime;
+    let running = false;
+
+    function playPauseTimer() {
+      if (running) {
+        stopTimer();
+      } else {
+        startTimer();
+      }
+    }
+
+    function startTimer() {
+      if (!running) {
+        startTime = new Date().getTime();
+        timerInterval = setInterval(updateTimer, 1000);
+        document.getElementById('backgroundMusic').play();
+        document.getElementById('playIcon').style.display = 'none';
+        document.getElementById('pauseIcon').style.display = 'block';
+        running = true;
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+      document.getElementById('backgroundMusic').pause();
+      document.getElementById('playIcon').style.display = 'block';
+      document.getElementById('pauseIcon').style.display = 'none';
+      running = false;
+    }
+
+    function restartTimer() {
+      stopTimer();
+      document.getElementById('timer').innerText = "00:00";
+      running = false;
+      startTimer();
+    }
+
+    function updateTimer() {
+      const currentTime = new Date().getTime();
+      const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+
+      const minutes = String(Math.floor(elapsedTime / 60)).padStart(2, '0');
+      const seconds = String(elapsedTime % 60).padStart(2, '0');
+
+      document.getElementById("timer").innerText = `${minutes}:${seconds}`;
+    }
+
+    function changeMusic() {
+      const selectedMusic = document.getElementById('musicSelector').value;
+      const musicPlayer = document.getElementById('backgroundMusic');
+      musicPlayer.src = selectedMusic;
+      musicPlayer.play();
+    }
+
+    // Funções de anotações
+    function saveNotes() {
+      const notes = document.getElementById('notesBox').value;
+      localStorage.setItem('notes-ler', notes);
+    }
+
+    window.onload = function() {
+      // Carregar anotações salvas
+      const savedNotes = localStorage.getItem('notes-ler');
+      if (savedNotes) {
+        document.getElementById('notesBox').value = savedNotes;
+      }
+      document.getElementById('notesBox').addEventListener('input', saveNotes);
+    };
+
+    function exportNotes() {
+    const notes = document.getElementById('notesBox').value;
+    const blob = new Blob([notes], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('download', 'ler.txt');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  function importNotes() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.txt';
+    input.onchange = () => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        document.getElementById('notesBox').value = reader.result;
+      };
+      reader.readAsText(input.files[0]);
+    };
+    input.click();
+  }
+  </script>
 </body>
 </html>

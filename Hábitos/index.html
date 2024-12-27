@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitor de Hábitos</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="header-container">
@@ -26,7 +27,11 @@
     <div style="margin-bottom: 30px;"></div>
 
     <section class="caixa-anotacao">
-        <h3>Anotações</h3>
+        <div class="button-group" style="margin-left: 360px;"> 
+            <h3>Anotações</h3>
+            <button class="btn-export" onclick="exportNotes()" style="margin-left: 10px;"><i class="fas fa-file-export"></i></button>
+            <button class="btn-import" onclick="importNotes()"><i class="fas fa-file-import"></i></button>
+        </div>
         <textarea id="anotacoes3" rows="5" cols="50"></textarea>
     </section>
 

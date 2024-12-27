@@ -93,7 +93,7 @@
             </div>
             <a href="chat.html" target="_blank">
                 <div class="avatar">
-                    <div id="Hat" class="birthday-hat" style="display:none;">🎩</div>
+                    <div id="Hat" class="birthday-hat" style="display:none;"></div>
                     <div id="Gorro" class="gorro" style="display: none;">
                         <div class="faixa"></div>
                         <div class="pompom"></div>
@@ -312,11 +312,33 @@ window.onclick = function(event) {
         }
     }
 
+    function checkNewYear() {
+  const today = new Date();
+
+  // Verifica se é 1º de janeiro
+  if (today.getDate() === 1 && today.getMonth() === 0) { // Janeiro é mês 0 (base 0)
+    const newYearMessage = " Feliz Ano Novo! ";
+    document.getElementById('Text').innerText = newYearMessage;
+    document.getElementById('Message').style.display = 'block';
+
+    // Mudar a cor do rosto
+    document.querySelector('.face').style.backgroundColor = '#a083ff';
+    document.querySelector('.avatar').style.backgroundColor = '#a083ff';
+
+    // Criar confetes
+    createConfetti();
+
+    // Mensagem falada
+    falar("Feliz Ano Novo! Que este novo ano seja repleto de alegrias e realizações!");
+  }
+}
+
         // Chama a função quando a página for carregada
         window.onload = function() {
-            checkBirthday();
-            checkChristmas();  // Verifica o Natal e ativa os flocos de neve
-        };
+  checkBirthday();
+  checkChristmas();
+  checkNewYear();
+};
 
     </script>
     

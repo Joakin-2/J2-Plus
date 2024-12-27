@@ -412,10 +412,29 @@ button:hover {
 
 /* Estilo para o chapéu de aniversário */
 .birthday-hat {
-    font-size: 60px;
     position: absolute;
-    margin-bottom: 270px;
-}
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 0; /* Definimos a altura como 0 para criar o triângulo */
+    border-left: 40px solid transparent; /* Cria a borda esquerda do triângulo */
+    border-right: 40px solid transparent; /* Cria a borda direita do triângulo */
+    border-bottom: 80px solid #dac5ff; /* Cria a base do triângulo */
+    z-index: 100;
+  }
+  
+  /* Estilo para a bola do chapéu */
+  .birthday-hat::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 45%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+  }
 
 /* Confetes caindo */
 .confetti {

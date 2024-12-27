@@ -230,3 +230,129 @@ function criarHabito(textoHabito, periodo) {
         localStorage.setItem(chave, JSON.stringify(habitosSalvos));
     }    
 });
+
+let data = {}; // Define globally
+
+function exportNotes() {
+    // Gather data from textareas
+    const anotacoes = document.getElementById('anotacoes3').value;
+    const programados = document.getElementById('programados').value;
+    const melhorar = document.getElementById('anotacoes2').value;
+    const naoFazer = document.getElementById('anotacoes').value;
+
+    // Coleta os dados dos hábitos
+    const manhaHabitos = document.getElementById('manhaHabitos').textContent.trim().split('\n');
+    const tardeHabitos = document.getElementById('tardeHabitos').textContent.trim().split('\n');
+    const noiteHabitos = document.getElementById('noiteHabitos').textContent.trim().split('\n');
+
+    // Cria um array de objetos para representar os hábitos
+    const habitos = [
+        ...manhaHabitos.map(habito => ({ nome: habito, periodo: 'manha' })),
+        ...tardeHabitos.map(habito => ({ nome: habito, periodo: 'tarde' })),
+        ...noiteHabitos.map(habito => ({ nome: habito, periodo: 'noite' }))
+    ];
+
+    // Prepare data object
+    const data = {
+        anotacoes,
+        programados,
+        melhorar,
+        naoFazer,
+        habitos
+    };
+
+    // Convert data to JSON string
+    const jsonData = JSON.stringify(data);
+
+    // Create a blob for the JSON data
+    const blob = new Blob([jsonData], { type: 'application/json' });
+
+    // Simulate a file download using FileSaver.js (if included)
+    if (typeof window.saveAs === 'function') {
+        window.saveAs(blob, 'habitos.json');
+    } else {
+        // Provide alternative download method if FileSaver.js is not available
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'habitos.json';
+        link.click();
+    }
+
+    // Save to localStorage
+    localStorage.setItem('habitosData', jsonData);
+}
+
+function importNotes() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+
+    input.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+            try {
+                data = JSON.parse(event.target.result);
+
+                // Log imported data
+                console.log('Imported data:', data);
+
+                // Update textareas with imported data
+                document.getElementById('anotacoes3').value = data.anotacoes || '';
+                document.getElementById('programados').value = data.programados || '';
+                document.getElementById('anotacoes2').value = data.melhorar || '';
+                document.getElementById('anotacoes').value = data.naoFazer || '';
+
+                // Save the imported data to localStorage
+                localStorage.setItem('habitosData', JSON.stringify(data));
+            } catch (error) {
+                console.error('Erro ao importar dados:', error);
+            }
+        };
+
+        reader.readAsText(file);
+    });
+
+    input.click();
+}
+
+function loadSavedData() {
+    const savedData = localStorage.getItem('habitosData');
+    if (savedData) {
+        data = JSON.parse(savedData);
+
+        // Log loaded data
+        console.log('Loaded data:', data);
+
+        // Preenche os campos com os dados carregados do localStorage
+        document.getElementById('anotacoes3').value = data.anotacoes || '';
+        document.getElementById('programados').value = data.programados || '';
+        document.getElementById('anotacoes2').value = data.melhorar || '';
+        document.getElementById('anotacoes').value = data.naoFazer || '';
+
+        // Preenche os hábitos
+        if (data.habitos) {
+            data.habitos.forEach(habito => {
+                const li = document.createElement('li');
+                li.textContent = habito.nome;
+
+                if (habito.periodo === 'manha') {
+                    document.getElementById('manhaHabitos').appendChild(li);
+                } else if (habito.periodo === 'tarde') {
+                    document.getElementById('tardeHabitos').appendChild(li);
+                } else if (habito.periodo === 'noite') {
+                    document.getElementById('noiteHabitos').appendChild(li);
+                }
+            });
+        } else {
+            console.log('No habits found.');
+        }
+    }
+}
+
+// Chamar a função para carregar os dados salvos ao carregar a página
+window.onload = () => {
+    loadSavedData();
+};
