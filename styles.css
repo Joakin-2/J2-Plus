@@ -510,6 +510,67 @@ button:hover {
     background-color: white;
 }
 
+
+/* Efeitos de Estações no Brasil */
+
+.spring {
+    background-color: #202020; /* Tons suaves de primavera */
+}
+
+.summer {
+    background-color: #2b2818; /* Tons quentes do verão */
+}
+
+.autumn {
+    background-color: #1b0e0b; /* Tons de outono com laranja e marrom */
+}
+
+.winter {
+    background-color: #1f2429; /* Tons frios de inverno */
+}
+
+.flower {
+    position: absolute;
+    font-size: 2rem;
+    animation: bloom 5s infinite;
+}
+
+.sunshine {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    border-radius: 50%;
+    box-shadow: 0 0 50px yellow;
+    animation: shine 2s infinite;
+}
+
+.leaf {
+    position: absolute;
+    font-size: 2rem;
+    color: #f44336;
+    animation: fall 5s infinite;
+}
+
+@keyframes bloom {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shine {
+    0% { box-shadow: 0 0 20px yellow; }
+    100% { box-shadow: 0 0 50px yellow; }
+}
+
+@keyframes fall {
+    0% { top: -5%; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+
 /* Para navegadores baseados em WebKit (como Chrome, Safari e Edge) */
 ::-webkit-scrollbar {
     width: 8px;

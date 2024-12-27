@@ -625,3 +625,97 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });  
+
+  // Função para verificar a estação atual e ativar efeitos
+  function checkSeason() {
+    const today = new Date();
+    const month = today.getMonth(); // Mês atual (0-11)
+    const day = today.getDate();    // Dia atual (1-31)
+
+    let seasonMessage = '';
+    let seasonEffect = '';
+
+    // Verifica o primeiro dia de cada estação
+
+    // Primavera: 22 de setembro a 21 de dezembro
+    if (month === 8 && day === 22) {
+        seasonMessage = "🌸 Bem-vindo à Primavera! 🌼";
+        seasonEffect = "spring";
+    }
+    // Verão: 22 de dezembro a 20 de março
+    else if (month === 11 && day === 22) {
+        seasonMessage = "☀️ É Verão! Aproveite o calor! 🌴";
+        seasonEffect = "summer";
+    }
+    // Outono: 21 de março a 20 de junho
+    else if (month === 2 && day === 21) {
+        seasonMessage = "🍂 Outono chegou! O ar fresco está no ar. 🍁";
+        seasonEffect = "autumn";
+    }
+    // Inverno: 21 de junho a 21 de setembro
+    else if (month === 5 && day === 21) {
+        seasonMessage = "❄️ Inverno chegou! Prepare-se para o frio! 🧣";
+        seasonEffect = "winter";
+    }
+
+    // Se for o primeiro dia da estação, exibe a mensagem e ativa o efeito
+    if (seasonMessage) {
+        document.getElementById('Text').innerText = seasonMessage;
+        document.getElementById('Message').style.display = 'block'; // Exibe a mensagem
+        activateSeasonEffect(seasonEffect);
+    }
+}
+
+// Função para ativar o efeito visual de cada estação
+function activateSeasonEffect(season) {
+    // Remove todos os efeitos de estação anteriores
+    document.body.classList.remove('spring', 'summer', 'autumn', 'winter');
+
+    // Adiciona o efeito correspondente à estação
+    document.body.classList.add(season);
+
+    // Dependendo da estação, você pode adicionar diferentes animações ou mudanças de fundo
+    if (season === 'spring') {
+        createSpringFlowers(); // Cria flores ou algo relacionado à primavera
+    } else if (season === 'summer') {
+        createSunshine(); // Efeito de sol e calor para o verão
+    } else if (season === 'autumn') {
+        createFallingLeaves(); // Folhas caindo para o outono
+    } else if (season === 'winter') {
+        createSnowflakes(); // Flocos de neve para o inverno
+    }
+}
+
+// Funções específicas de cada estação (você já tem funções como "createSnowflakes" e "createConfetti")
+function createSpringFlowers() {
+    // Adicionar flores ou outros elementos visuais para a primavera
+    const numFlowers = 50;
+    for (let i = 0; i < numFlowers; i++) {
+        const flower = document.createElement('div');
+        flower.classList.add('flower');
+        flower.textContent = '🌸'; // Símbolo de flor
+        flower.style.left = Math.random() * 100 + 'vw';
+        flower.style.animationDuration = Math.random() * 5 + 5 + 's';
+        document.body.appendChild(flower);
+    }
+}
+
+function createSunshine() {
+    // Criar um efeito de sol para o verão
+    const sunEffect = document.createElement('div');
+    sunEffect.classList.add('sunshine');
+    document.body.appendChild(sunEffect);
+}
+
+function createFallingLeaves() {
+    // Efeito de folhas caindo no outono
+    const numLeaves = 50;
+    for (let i = 0; i < numLeaves; i++) {
+        const leaf = document.createElement('div');
+        leaf.classList.add('leaf');
+        leaf.textContent = '🍂';
+        leaf.style.left = Math.random() * 100 + 'vw';
+        leaf.style.animationDuration = Math.random() * 5 + 5 + 's';
+        document.body.appendChild(leaf);
+    }
+}
