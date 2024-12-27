@@ -289,7 +289,7 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
+    width: 250px;
     padding: 25px; /* Diminuindo o espaço interno dos botões */
     margin: 15px 0; /* Diminuindo o espaço vertical entre os botões */
     font-size: 16px;
@@ -355,7 +355,7 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 430px;
+    width: 200px;
     padding: 25px; /* Diminuindo o espaço interno dos botões */
     margin: 15px 0; /* Diminuindo o espaço vertical entre os botões */
     font-size: 16px;

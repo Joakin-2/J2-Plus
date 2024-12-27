@@ -323,10 +323,10 @@ function loadSavedData() {
     if (savedData) {
         data = JSON.parse(savedData);
 
-        // Log loaded data
-        console.log('Loaded data:', data);
+        // Log dos dados carregados
+        console.log('Dados carregados:', data);
 
-        // Preenche os campos com os dados carregados do localStorage
+        // Preenche os campos com os dados carregados
         document.getElementById('anotacoes3').value = data.anotacoes || '';
         document.getElementById('programados').value = data.programados || '';
         document.getElementById('anotacoes2').value = data.melhorar || '';
@@ -338,6 +338,18 @@ function loadSavedData() {
                 const li = document.createElement('li');
                 li.textContent = habito.nome;
 
+                // Adiciona a classe 'concluido' se o hábito estiver marcado
+                if (habito.concluido) {
+                    li.classList.add('concluido');
+                }
+
+                // Adiciona o evento de clique para marcar/desmarcar
+                li.addEventListener('click', () => {
+                    li.classList.toggle('concluido');
+                    saveHabitsState(); // Salva o estado atualizado
+                });
+
+                // Adiciona o hábito ao período correto
                 if (habito.periodo === 'manha') {
                     document.getElementById('manhaHabitos').appendChild(li);
                 } else if (habito.periodo === 'tarde') {
@@ -347,12 +359,59 @@ function loadSavedData() {
                 }
             });
         } else {
-            console.log('No habits found.');
+            console.log('Nenhum hábito encontrado.');
         }
     }
 }
 
-// Chamar a função para carregar os dados salvos ao carregar a página
+document.getElementById('desmarcarHabitosBtn').addEventListener('click', () => {
+    // Seleciona todos os hábitos
+    ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
+        const periodo = document.getElementById(periodoId);
+        Array.from(periodo.children).forEach(li => {
+            // Remove a classe 'concluido'
+            li.classList.remove('concluido');
+        });
+    });
+
+    // Atualiza o estado no localStorage
+    saveHabitsState();
+
+    console.log('Todos os hábitos foram desmarcados e salvos.');
+});
+
+function saveHabitsState() {
+    // Atualiza os dados dos hábitos com o estado de "concluído"
+    const habitos = [];
+
+    ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
+        const periodo = document.getElementById(periodoId);
+        Array.from(periodo.children).forEach(li => {
+            habitos.push({
+                nome: li.textContent,
+                periodo: periodoId.replace('Habitos', '').toLowerCase(),
+                concluido: li.classList.contains('concluido') // Verifica se está marcado
+            });
+        });
+    });
+
+    // Atualiza o objeto `data` e salva no localStorage
+    data.habitos = habitos;
+    localStorage.setItem('habitosData', JSON.stringify(data));
+}
+
+// Adicione estilos para itens marcados
+const style = document.createElement('style');
+style.textContent = `
+    .concluido {
+        text-decoration: line-through;
+        color: gray;
+    }
+`;
+document.head.appendChild(style);
+
+// Chamar a função para carregar os dados ao carregar a página
 window.onload = () => {
     loadSavedData();
 };
+

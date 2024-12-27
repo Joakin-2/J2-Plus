@@ -16,20 +16,20 @@
 </head>
 <body>
     <main>
-        <section id="weekly-schedule">
+        <section id="weekly-schedule" style="padding: 20px;">
             <br>
             <br>
             <br>
             <br>
             <h2>Programação Semanal</h2>
             <!-- Botões dos treinos da semana -->
-            <button class="exercise-button" onclick="redirecionar('Seg')">Segunda-feira: Peito e Tríceps</button>
-            <button class="exercise-button" onclick="redirecionar('Ter')">Terça-feira: Costas e Bíceps</button>
-            <button class="exercise-button" onclick="redirecionar('Qua')">Quarta-feira: Pernas e Abdômen</button>
-            <button class="exercise-button" onclick="redirecionar('Qui')">Quinta-feira: Ombros e Trapézio</button>
-            <button class="exercise-button" onclick="redirecionar('Sex')">Sexta-feira: Alongamentos</button>
-            <button class="exercise-button" onclick="redirecionar('Sab')">Sábado: Corrida</button>
-            <button class="exercise-button" onclick="redirecionar('Dom')">Domingo: Alongamentos</button>
+            <button class="exercise-button" onclick="redirecionar('Seg')">Seg: Peito e Tríceps</button>
+            <button class="exercise-button" onclick="redirecionar('Ter')">Ter: Costas e Bíceps</button>
+            <button class="exercise-button" onclick="redirecionar('Qua')">Qua: Pernas e Abdômen</button>
+            <button class="exercise-button" onclick="redirecionar('Qui')">Qui: Ombros e Trapézio</button>
+            <button class="exercise-button" onclick="redirecionar('Sex')">Sex: Alongamentos</button>
+            <button class="exercise-button" onclick="redirecionar('Sab')">Sáb: Corrida</button>
+            <button class="exercise-button" onclick="redirecionar('Dom')">Dom: Alongamentos</button>
             <br>
         </section>
         <section id="exercise-buttons">
@@ -53,8 +53,10 @@
                 <button id="legs-button" class="exercise-button2" onclick="redirecionar('Perna')">Perna</button>
             </div>
 
-            <button id="meta-button" class="exercise-button" onclick="redirecionar('Meta')">Meta</button>
-                              
+            <div class="row2">
+                <button id="meta-button" class="exercise-button2" onclick="redirecionar('Meta')">Meta</button>
+                <button id="sport-button" class="exercise-button2" onclick="redirecionar('Esportes')">Esportes</button>
+            </div>                              
         </section>        
     </main>
     
@@ -88,6 +90,9 @@
                     window.open('alongar.html');
                     break;
 
+                case 'Esportes':
+                    window.open('sport.html');
+                    break;
                 case 'Meta':
                     window.open('meta/body/mural.html');
                     window.open('meta/meta.html');
