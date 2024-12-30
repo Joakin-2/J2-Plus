@@ -719,3 +719,81 @@ function createFallingLeaves() {
         document.body.appendChild(leaf);
     }
 }
+
+
+// Seleciona elementos
+const perfilBtn = document.getElementById("perfil-btn");
+const perfilContainer = document.getElementById("perfil-container");
+const fecharBtn = document.getElementById("fechar-btn");
+const importarBtn = document.getElementById("importar-btn");
+const exportarBtn = document.getElementById("exportar-btn");
+const nomePerfil = document.getElementById("nome-perfil");
+const bioPerfil = document.getElementById("bio-perfil");
+
+// Dados do perfil
+let perfil = {
+  nome: "Joaquim",
+  bio: "O Criador e Investidor",
+  nivel: localStorage.getItem("nivelAtual") || 1,
+  xp: localStorage.getItem("xpAtual") || 0,
+};
+
+// Atualiza a tela de perfil com os dados
+function atualizarPerfil() {
+  nomePerfil.textContent = perfil.nome;
+  bioPerfil.value = perfil.bio;
+}
+
+// Exibir e ocultar a tela de perfil
+perfilBtn.addEventListener("click", () => {
+  atualizarPerfil();
+  perfilContainer.style.display = "flex";
+});
+
+fecharBtn.addEventListener("click", () => {
+  perfilContainer.style.display = "none";
+});
+
+// Função de exportar perfil (JSON)
+exportarBtn.addEventListener("click", () => {
+  const perfilJSON = JSON.stringify(perfil);
+  const blob = new Blob([perfilJSON], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "perfil.json";
+  link.click();
+  URL.revokeObjectURL(url);
+});
+
+// Função de importar perfil
+importarBtn.addEventListener("click", () => {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = ".json";
+  input.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const dadosImportados = JSON.parse(e.target.result);
+          perfil = { ...perfil, ...dadosImportados };
+          localStorage.setItem("nivelAtual", perfil.nivel);
+          localStorage.setItem("xpAtual", perfil.xp);
+          atualizarPerfil();
+          alert("Perfil importado com sucesso!");
+        } catch (error) {
+          alert("Erro ao importar o perfil.");
+        }
+      };
+      reader.readAsText(file);
+    }
+  });
+  input.click();
+});
+
+// Atualiza os dados do perfil ao fechar
+bioPerfil.addEventListener("input", () => {
+  perfil.bio = bioPerfil.value;
+});
