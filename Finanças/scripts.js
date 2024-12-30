@@ -141,7 +141,7 @@
         var { jsPDF } = window.jspdf;
         var doc = new jsPDF();
 
-        doc.text("Controle de Gastos", 10, 10);
+        doc.text("Controle Financeiro", 10, 10);
         var today = new Date();
         var formattedDate = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
         doc.text(`Data: ${formattedDate}`, 150, 10);
