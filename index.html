@@ -340,9 +340,23 @@ window.onclick = function(event) {
     function checkNewYear() {
   const today = new Date();
 
+  // Verifica se é 31 de dezembro
+  if (today.getDate() === 31 && today.getMonth() === 11) { // Dezembro é mês 11 (base 0)
+    const message = "Prepare-se para a virada do ano! 🎉";
+    document.getElementById('Text').innerText = message;
+    document.getElementById('Message').style.display = 'block';
+
+    // Mudar a cor do rosto para dourado (sinal de celebração)
+    document.querySelector('.face').style.backgroundColor = '#a083ff';
+    document.querySelector('.avatar').style.backgroundColor = '#a083ff';
+
+    // Mensagem falada
+    falar("Prepare-se para a virada do ano! Que venha um novo ciclo cheio de oportunidades!");
+  }
+
   // Verifica se é 1º de janeiro
-  if (today.getDate() === 1 && today.getMonth() === 0) { // Janeiro é mês 0 (base 0)
-    const newYearMessage = " Feliz Ano Novo! ";
+  else if (today.getDate() === 1 && today.getMonth() === 0) { // Janeiro é mês 0 (base 0)
+    const newYearMessage = "🎆 Feliz Ano Novo! 🎆";
     document.getElementById('Text').innerText = newYearMessage;
     document.getElementById('Message').style.display = 'block';
 
