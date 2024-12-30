@@ -245,5 +245,5 @@
             doc.text(notesText, startX, saidaTotalY + 50);
         }
 
-        doc.save("Controle de Gastos.pdf");
+        doc.save("Controle de Finanças.pdf");
     });
