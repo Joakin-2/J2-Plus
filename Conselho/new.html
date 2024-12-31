@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="icon" href="Conselho.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflexões</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            color: #f5f5f5;
+        }
+
+        .menu-relogio-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+
+        #relogio {
+            font-size: 24px;
+            color: #f5f5f5;
+        }
+
+        section {
+            display: grid;
+            gap: 15px;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        section label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #f5f5f5;
+        }
+
+        section input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: #333;
+            color: #f5f5f5;
+        }
+
+        section button {
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        section button:hover {
+            background-color: #131313;
+        }
+
+        .mensagem {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            width: 10px; /* Largura da barra de rolagem */
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb {
+            background-color: #00bcd4; /* Cor da "cabeça" da barra de rolagem */
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background-color: #0097a7; /* Cor ao passar o mouse */
+        }
+
+        .scroll-container::-webkit-scrollbar-track {
+            background-color: #444; /* Cor do fundo da barra de rolagem */
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="menu-relogio-container">
+            <h1>Reflexões de Fim de Ano</h1>
+            <p id="relogio"></p>
+        </div>  
+        
+        <br>
+
+        <div id="conteudo-pdf"></div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/html2pdf.js@0.10.0/dist/html2pdf.bundle.js"></script>
+
+    <script>
+        function obterDataAtual() {
+            const data = new Date();
+            const dia = data.getDate().toString().padStart(2, '0');
+            const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+            const ano = data.getFullYear();
+            return `${dia}/${mes}/${ano}`;
+        }
+
+        function atualizarRelogio() {
+            const relogioElement = document.getElementById('relogio');
+            if (relogioElement) {
+                const agora = new Date();
+                const horas = agora.getHours().toString().padStart(2, '0');
+                const minutos = agora.getMinutes().toString().padStart(2, '0');
+                const segundos = agora.getSeconds().toString().padStart(2, '0');
+                const horario = `${horas}:${minutos}:${segundos}`;
+                relogioElement.textContent = horario;
+            }
+        }
+
+        function exibirQuestionario() {
+            let questionarioElement = document.getElementById('conteudo-pdf');
+
+            if (!questionarioElement) {
+                questionarioElement = document.createElement('div');
+                questionarioElement.id = 'conteudo-pdf'; // Adiciona um ID para referência posterior no PDF
+                document.querySelector('.container').appendChild(questionarioElement);
+            }
+
+            questionarioElement.innerHTML = `
+                <section>
+                    <label for="objetivosAnoNovo">Quais são seus principais objetivos para o próximo ano?</label>
+                    <input type="text" id="objetivosAnoNovo" name="objetivosAnoNovo">
+
+                    <label for="aprendizadosAno">Quais foram os principais aprendizados deste ano?</label>
+                    <input type="text" id="aprendizadosAno" name="aprendizadosAno">
+
+                    <label for="desafiosSuperados">Quais desafios você superou neste ano?</label>
+                    <input type="text" id="desafiosSuperados" name="desafiosSuperados">
+
+                    <label for="momentosFelizes">Quais foram os momentos mais felizes do ano?</label>
+                    <input type="text" id="momentosFelizes" name="momentosFelizes">
+
+                    <label for="metasNaoAlcancadas">Existem metas que não foram alcançadas?</label>
+                    <input type="text" id="metasNaoAlcancadas" name="metasNaoAlcancadas">
+
+                    <label for="metasNaoAlcancadas2">O que você pode fazer para alcançá-las?</label>
+                    <input type="text" id="metasNaoAlcancadas2" name="metasNaoAlcancadas2">
+
+                    <label for="agradecimentos">O que você agradece mais neste ano?</label>
+                    <input type="text" id="agradecimentos" name="agradecimentos">
+
+                    <button onclick="gerarPDF()">Gerar PDF</button>
+                </section>
+            `;
+        }
+
+        function gerarPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'pt', 'a4');
+
+            // Definir cores para o tema escuro
+            const corFundo = [30, 30, 30]; // Cor de fundo escura (rgb)
+            const corTexto = [255, 255, 255]; // Cor do texto clara (rgb)
+
+            // Preencher o fundo com a cor escura
+            doc.setFillColor(...corFundo);
+            doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F');
+
+            // Adicionar título e data
+            doc.setTextColor(...corTexto);
+            doc.setFontSize(16);
+            doc.text('Questionário de Fim de Ano', 10, 20);
+            doc.text(`Data: ${obterDataAtual()}`, 10, 40);
+
+            // Perguntas e respostas
+            const respostas = [
+                { pergunta: "Quais são seus principais objetivos para o próximo ano?", resposta: document.getElementById('objetivosAnoNovo').value },
+                { pergunta: "Quais foram os principais aprendizados deste ano?", resposta: document.getElementById('aprendizadosAno').value },
+                { pergunta: "Quais desafios você superou neste ano?", resposta: document.getElementById('desafiosSuperados').value },
+                { pergunta: "Quais foram os momentos mais felizes do ano?", resposta: document.getElementById('momentosFelizes').value },
+                { pergunta: "Existem metas que não foram alcançadas?", resposta: document.getElementById('metasNaoAlcancadas').value },
+                { pergunta: "O que você pode fazer para alcançá-las?", resposta: document.getElementById('metasNaoAlcancadas2').value },
+                { pergunta: "O que você agradece mais neste ano?", resposta: document.getElementById('agradecimentos').value }
+            ];
+
+            let y = 60;
+            respostas.forEach((item, index) => {
+                doc.setFontSize(12);
+                doc.setTextColor(...corTexto);
+                doc.text(`Pergunta ${index + 1}: ${item.pergunta}`, 40, y);
+                y += 20;
+                doc.text(`Sua Resposta: ${item.resposta}`, 40, y);
+                y += 30;
+
+                // Verificar se precisa de quebra de página
+                if (y > 750) {
+                    doc.addPage();
+                    doc.setFillColor(...corFundo);
+                    doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F');
+                    y = 30;
+                }
+            });
+
+            doc.save(`Reflexão de Fim de Ano (${obterDataAtual()}).pdf`);
+        }
+
+        // Atualiza o relógio a cada segundo
+        setInterval(atualizarRelogio, 1000);
+
+        // Exibe o questionário
+        exibirQuestionario();
+    </script>
+</body>
+</html>
