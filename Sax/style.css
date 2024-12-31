@@ -164,6 +164,20 @@ h2 {
     transform: scale(1.05);
 }
 
+.button-group {
+    display: flex;
+}
+
+.btn-export, .btn-import {
+    background-color: #2c2c2c;
+    color: white;
+    border: none;
+    width: 40px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 #loader-container {
     display: flex;
     align-items: center;

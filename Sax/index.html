@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Place</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -27,7 +28,11 @@
             <section id="report-section">
                 <h2>Relatório</h2>
                 <div id="notes-section">
-                    <h3>Anotações</h3>
+                    <div class="button-group"> 
+                        <h3>Anotações</h3>
+                        <button class="btn-export" onclick="exportNotes()" style="margin-left: 15px;"><i class="fas fa-file-export"></i></button>
+                        <button class="btn-import" onclick="importNotes()"><i class="fas fa-file-import"></i></button>
+                    </div>
                     <textarea id="notes1" placeholder="Faça suas anotações aqui..."></textarea>
                 </div>
                 <div id="calendar-section">
@@ -104,6 +109,56 @@
                     break;
             }
         }
+
+        const notesTextarea2 = document.getElementById("notes1");
+    const storageKey = "savedNotes2"; // Chave única para armazenar o conteúdo
+
+    // Carrega o texto salvo no localStorage ao abrir a página
+    window.onload = () => {
+        const savedNotes2 = localStorage.getItem(storageKey);
+        if (savedNotes2) {
+            notesTextarea2.value = savedNotes2; // Preenche o textarea com o conteúdo salvo
+        }
+    };
+
+    // Salva o conteúdo do textarea no localStorage automaticamente
+    notesTextarea2.addEventListener("input", () => {
+        localStorage.setItem(storageKey, notesTextarea2.value);
+    });
+
+    // Função para exportar o conteúdo como arquivo .txt
+    function exportNotes() {
+        const blob = new Blob([notesTextarea2.value], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "sax.txt";
+        link.click();
+    }
+
+    // Função para importar um arquivo
+    function importNotes() {
+        const fileInput = document.createElement("input"); // Cria o elemento de input dinamicamente
+        fileInput.type = "file";
+        fileInput.accept = ".txt";
+        fileInput.style.display = "none"; // Oculta o input
+        document.body.appendChild(fileInput); // Adiciona temporariamente ao body
+
+        // Quando um arquivo for selecionado
+        fileInput.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    notesTextarea2.value = e.target.result; // Define o texto no textarea
+                    localStorage.setItem(storageKey, e.target.result); // Salva no localStorage
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        fileInput.click(); // Abre o seletor de arquivos
+        document.body.removeChild(fileInput); // Remove o input após o uso
+    }
     </script>
 </body>
 </html>
