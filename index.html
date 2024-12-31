@@ -72,6 +72,7 @@
     <div class="container">
         <button class="menu-button" aria-label="Abrir menu" onclick="toggleMenu()">Menu</button>
         <button id="perfil-btn">Perfil</button>
+        <button onclick="window.location.href='https://j2plus.netlify.app/conselho/new.html'" style="display:none; position: absolute; margin-top: 30%;" id="botao31Dezembro">Refexão desse Ano!</button>
         <button class="chatg" onclick="window.location.href='https://chat.openai.com/chat'"></button>
         <span class="clock">
             <i id="muteButton" class="fas fa-volume-up" style="cursor: pointer;"></i>
@@ -350,6 +351,9 @@ window.onclick = function(event) {
     document.querySelector('.face').style.backgroundColor = '#a083ff';
     document.querySelector('.avatar').style.backgroundColor = '#a083ff';
 
+    // Função que exibe o botão apenas no dia 31 de dezembro
+    document.getElementById('botao31Dezembro').style.display = 'block'; // Exibe o botão
+    
     // Mensagem falada
     falar("Prepare-se para a virada do ano! Que venha um novo ciclo cheio de oportunidades!");
   }
