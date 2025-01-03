@@ -720,7 +720,6 @@ function createFallingLeaves() {
     }
 }
 
-
 // Seleciona elementos
 const perfilBtn = document.getElementById("perfil-btn");
 const perfilContainer = document.getElementById("perfil-container");
@@ -729,19 +728,37 @@ const importarBtn = document.getElementById("importar-btn");
 const exportarBtn = document.getElementById("exportar-btn");
 const nomePerfil = document.getElementById("nome-perfil");
 const bioPerfil = document.getElementById("bio-perfil");
+const perfilSelector = document.getElementById("perfil-selector"); // O dropdown para seleção de perfil
 
-// Dados do perfil
-let perfil = {
-  nome: "Joaquim",
-  bio: "O Criador e Investidor",
-  nivel: localStorage.getItem("nivelAtual") || 1,
-  xp: localStorage.getItem("xpAtual") || 0,
+// Dados dos perfis
+const perfis = {
+  Joaquim: {
+    nome: "Joaquim",
+    bio: "O Criador e Investidor",
+    nivel: localStorage.getItem("nivelAtual") || 1,
+    xp: localStorage.getItem("xpAtual") || 0,
+  },
+  Main: {
+    nome: "Main",
+    bio: "Perfil principal",
+    nivel: 0,  // O perfil Main não tem níveis
+    xp: 0,     // O perfil Main não tem XP
+  },
 };
 
-// Atualiza a tela de perfil com os dados
+// Recupera a escolha de perfil do localStorage, ou usa "Joaquim" por padrão
+let perfilAtivo = localStorage.getItem("perfilAtivo") || "Joaquim";
+
+// Atualiza a tela de perfil com os dados do perfil ativo
 function atualizarPerfil() {
+  const perfil = perfis[perfilAtivo];
   nomePerfil.textContent = perfil.nome;
   bioPerfil.value = perfil.bio;
+  
+  // Se o perfil for "Main", pode desabilitar ou ocultar algo relacionado a nível e XP (opcional)
+  if (perfilAtivo === "Main") {
+    bioPerfil.disabled = false; // Exemplo de como habilitar/alterar UI
+  }
 }
 
 // Exibir e ocultar a tela de perfil
@@ -756,12 +773,13 @@ fecharBtn.addEventListener("click", () => {
 
 // Função de exportar perfil (JSON)
 exportarBtn.addEventListener("click", () => {
+  const perfil = perfis[perfilAtivo];
   const perfilJSON = JSON.stringify(perfil);
   const blob = new Blob([perfilJSON], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "perfil.json";
+  link.download = `${perfil.nome}.json`;
   link.click();
   URL.revokeObjectURL(url);
 });
@@ -778,9 +796,10 @@ importarBtn.addEventListener("click", () => {
       reader.onload = (e) => {
         try {
           const dadosImportados = JSON.parse(e.target.result);
-          perfil = { ...perfil, ...dadosImportados };
-          localStorage.setItem("nivelAtual", perfil.nivel);
-          localStorage.setItem("xpAtual", perfil.xp);
+          // Atualiza o perfil ativo com os dados importados
+          perfis[perfilAtivo] = { ...perfis[perfilAtivo], ...dadosImportados };
+          localStorage.setItem("nivelAtual", perfis[perfilAtivo].nivel);
+          localStorage.setItem("xpAtual", perfis[perfilAtivo].xp);
           atualizarPerfil();
           alert("Perfil importado com sucesso!");
         } catch (error) {
@@ -793,7 +812,24 @@ importarBtn.addEventListener("click", () => {
   input.click();
 });
 
-// Atualiza os dados do perfil ao fechar
+// Atualiza os dados do perfil ao editar a bio
 bioPerfil.addEventListener("input", () => {
+  const perfil = perfis[perfilAtivo];
   perfil.bio = bioPerfil.value;
+  // Atualiza a localStorage também se necessário
+  localStorage.setItem("bio" + perfilAtivo, perfil.bio);
+});
+
+// Quando o usuário mudar a seleção no dropdown, alteramos o perfil ativo
+perfilSelector.addEventListener("change", (event) => {
+  perfilAtivo = event.target.value; // Seleciona o perfil de acordo com a opção escolhida
+  localStorage.setItem("perfilAtivo", perfilAtivo); // Armazena o perfil ativo no localStorage
+  atualizarPerfil(); // Atualiza a tela com o novo perfil
+});
+
+// Inicializa o perfil ao carregar a página
+document.addEventListener("DOMContentLoaded", () => {
+  // Define a escolha do perfil no dropdown de acordo com o perfil ativo
+  perfilSelector.value = perfilAtivo;
+  atualizarPerfil(); // Atualiza o perfil ativo ao carregar a página
 });

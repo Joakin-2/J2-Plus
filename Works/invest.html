@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="icon" href="ícone.ico" type="image/x-icon">
     <meta charset="UTF-8">
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Área de Investir</title>
-    <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,8 +19,73 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            margin-top: 10%;
             gap: 40px; /* Aumenta a distância entre os botões */
+        }
+
+        .meta-container {
+            margin: 20px;
+        }
+
+        .calendar-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            width: 20%;
+            margin-top: 20px;
+        }
+
+        .day {
+            background-color: #2d2d2d;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .day-name {
+            font-weight: bold;
+            background-color: #1a1a1a;
+            color: #aaa;
+        }
+
+        .day-number {
+            background-color: #444;
+            color: white;
+        }
+
+        .day-number:hover {
+            background-color: #833fd1;
+        }
+
+        .has-ganho {
+            background-color: #673ab7;
+        }
+
+        input[type="number"], input[type="date"] {
+            background: #181818;
+            color: white;
+            width: 300px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #833fd1;
+            color: white;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
         }
 
         .botao {
@@ -45,21 +108,61 @@
             flex-direction: column;
         }
 
-        .mensagem {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
+        .button-group {
+    display: flex;
+}
+
+.btn-export, .btn-import {
+    background-color: #121212;
+    color: white;
+    border: none;
+    width: 40px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
     </style>
-    
 </head>
 <body>
 
+    <!-- Calendário -->
+    <div class="calendar-container" style="display: flex;">
+        <h3 style="margin-left: 6%; position: absolute; margin-top: 50px;">Calendário</h3>
+        <div id="calendar-section" style="margin-top: 80px;">
+            <div id="calendar" class="calendar" style="margin-left: 20%;">
+                <div class="day day-name">Dom</div>
+                <div class="day day-name">Seg</div>
+                <div class="day day-name">Ter</div>
+                <div class="day day-name">Qua</div>
+                <div class="day day-name">Qui</div>
+                <div class="day day-name">Sex</div>
+                <div class="day day-name">Sáb</div>
+
+                <!-- Dias do mês -->
+                <!-- A geração dos dias será feita via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Meta de Ganho -->
+    <div class="meta-container" style="position: absolute; margin-left: 1000px; top: 50px;">
+        <div class="button-group"> 
+            <h2>Meta de Ganho: R$<span id="meta-ganho-valor">80</span></h2>
+            <button class="btn-export" onclick="exportarDados()" style="margin-left: 15px;"><i class="fas fa-file-export"></i></button>
+            <button class="btn-import" onclick="importarDados()"><i class="fas fa-file-import"></i></button>
+        </div>
+        <h4>Selecione um dia e registre seu ganho:</h4>
+            <input type="date" id="data-selecionada">
+            <input type="number" id="valor-ganho" placeholder="Valor ganho">
+            <div class="button-group">
+            <button onclick="registrarGanho()">Registrar Ganho</button>
+            <button onclick="reiniciarProgresso()" style="margin-left: 20px;">Reiniciar Tudo</button>
+            </div>
+            <h3>Total de Ganhos: R$<span id="total-ganhos">0.00</span></h3>
+    </div>
+
+    <!-- Container de Botões -->
     <div class="container">
         <button class="botao" onclick="redirecionar('Anúncios')"><i class="fas fa-money-bill"></i> Anúncios</button>
         <button class="botao" onclick="redirecionar('Day Trade')"><i class="fas fa-chart-line"></i> Day Trade</button>
@@ -68,6 +171,169 @@
     </div>
 
     <script>
+        // Objetos para armazenar os dados de ganhos por dia
+        let ganhosPorData = {};
+        let metaGanho = 80;
+
+        // Função para registrar o ganho no dia selecionado
+        function registrarGanho() {
+            const dataSelecionada = document.getElementById('data-selecionada').value;
+            const valorGanho = parseFloat(document.getElementById('valor-ganho').value);
+
+            if (!dataSelecionada || isNaN(valorGanho) || valorGanho <= 0) {
+                alert("Por favor, insira uma data válida e um valor de ganho.");
+                return;
+            }
+
+            if (!ganhosPorData[dataSelecionada]) {
+                ganhosPorData[dataSelecionada] = 0;
+            }
+
+            ganhosPorData[dataSelecionada] += valorGanho;
+
+            // Atualiza a cor do dia selecionado no calendário
+            marcarDiaComGanho(dataSelecionada);
+
+            // Limpa os campos
+            document.getElementById('valor-ganho').value = '';
+            document.getElementById('data-selecionada').value = '';
+
+            alert(`Ganho de R$${valorGanho} registrado para o dia ${dataSelecionada}.`);
+            salvarProgresso();
+            atualizarTotalGanhos();
+        }
+
+        // Função para marcar os dias com ganho
+        function marcarDiaComGanho(data) {
+            const dias = document.querySelectorAll('.day-number');
+            dias.forEach(dia => {
+                const diaData = dia.getAttribute('data-day');
+                const anoMes = new Date().toISOString().slice(0, 7); // Ano e mês no formato YYYY-MM
+                const dataDia = `${anoMes}-${diaData.padStart(2, '0')}`;
+
+                if (dataDia === data && ganhosPorData[dataDia]) {
+                    dia.classList.add('has-ganho');
+                }
+            });
+        }
+
+        // Função para gerar os dias do mês no calendário
+        function gerarCalendario() {
+            const diasDoMes = new Date(2025, 0, 0).getDate(); // Número de dias no mês de janeiro
+            const calendario = document.getElementById('calendar');
+            for (let i = 1; i <= diasDoMes; i++) {
+                const dia = document.createElement('div');
+                dia.classList.add('day', 'day-number');
+                dia.setAttribute('data-day', i);
+                dia.textContent = i;
+                dia.addEventListener('click', function() {
+                    document.getElementById('data-selecionada').value = `2025-01-${i.toString().padStart(2, '0')}`;
+                });
+                calendario.appendChild(dia);
+            }
+
+            // Marcar os dias com ganho ao carregar
+            for (let data in ganhosPorData) {
+                marcarDiaComGanho(data);
+            }
+        }
+
+        // Função para salvar progresso
+        function salvarProgresso() {
+            localStorage.setItem("ganhosPorData", JSON.stringify(ganhosPorData));
+            localStorage.setItem("metaGanho", metaGanho);
+        }
+
+        // Função para carregar progresso
+        function carregarProgresso() {
+            const dados = JSON.parse(localStorage.getItem("ganhosPorData"));
+            if (dados) {
+                ganhosPorData = dados;
+            }
+
+            const meta = parseFloat(localStorage.getItem("metaGanho"));
+            if (meta) {
+                metaGanho = meta;
+                document.getElementById('meta-ganho-valor').textContent = metaGanho.toFixed(2);
+            }
+        }
+
+        // Função para exportar dados
+        function exportarDados() {
+            const dados = {
+                metaGanho: metaGanho,
+                ganhosPorData: ganhosPorData
+            };
+            const blob = new Blob([JSON.stringify(dados)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'ganhos.json';
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Função para importar dados
+        // Função para importar dados
+function importarDados() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const dados = JSON.parse(e.target.result);
+            
+            // Atualiza a meta de ganho e os ganhos por data a partir dos dados importados
+            metaGanho = dados.metaGanho;
+            ganhosPorData = dados.ganhosPorData;
+
+            // Atualiza a interface com os novos dados
+            document.getElementById('meta-ganho-valor').textContent = metaGanho.toFixed(2);
+            
+            // Regenera o calendário para refletir os dados importados
+            gerarCalendario();
+            
+            // Salva os dados importados no localStorage para persistência
+            salvarProgresso();
+            
+            alert("Dados importados e salvos com sucesso!");
+        };
+        reader.readAsText(file);
+    });
+    input.click();
+}
+
+        // Função para reiniciar os dados
+        function reiniciarProgresso() {
+            if (confirm("Você tem certeza que deseja reiniciar os dados?")) {
+                ganhosPorData = {};
+                metaGanho = 80;
+                document.getElementById('meta-ganho-valor').textContent = metaGanho.toFixed(2);
+                atualizarTotalGanhos();
+                salvarProgresso();
+                gerarCalendario();
+            }
+        }
+
+        // Função para atualizar o total de ganhos
+        function atualizarTotalGanhos() {
+            let total = 0;
+            for (let data in ganhosPorData) {
+                total += ganhosPorData[data];
+            }
+            document.getElementById('total-ganhos').textContent = total.toFixed(2);
+        }
+
+        // Carregar o progresso ao iniciar
+        document.addEventListener("DOMContentLoaded", function() {
+            carregarProgresso();
+            gerarCalendario();
+            atualizarTotalGanhos();
+        });
+
+        // Redirecionamento para as páginas de investimento
         function redirecionar(destino) {
             switch (destino) {
                 case 'Day Trade':
@@ -75,7 +341,6 @@
                     window.open('https://br.investing.com/');
                     window.open('https://br.tradingview.com/chart/wJjwLtXA/?symbol=BMFBOVESPA%3AIBOV');
                     window.open('https://www.youtube.com/results?search_query=coringa+trade');
-                    // window.open('https://www.youtube.com/@DayTradeAoVivoCoringaTreta/community', '_blank');
                     window.open('https://www.youtube.com/results?search_query=laatus+reuni%C3%A3o+matinal');
                     break;
                 case 'Home Broker':
