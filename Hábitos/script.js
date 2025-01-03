@@ -133,6 +133,7 @@ function criarHabito(textoHabito, periodo) {
         document.querySelectorAll('.caixa ul li.concluido').forEach(habito => {
             habito.classList.remove('concluido');
             // Atualizar no localStorage
+            ganharXp(10);
             atualizarConcluidoLocalStorage(habito.textContent.trim(), false);
         });
     });
@@ -415,3 +416,53 @@ window.onload = () => {
     loadSavedData();
 };
 
+function ganharXp(xp) {
+    const xpGainElement = document.getElementById("xp-gain");
+    xpGainElement.textContent = `+${xp} XP`;
+    xpGainElement.style.display = "block";
+
+    // Esconde a mensagem após 1.5 segundos
+    setTimeout(() => {
+        xpGainElement.style.display = "none";
+    }, 1500);
+
+    // Atualiza o progresso e a interface (já implementado no script externo)
+    // Aqui você deve chamar `ganharXp` para processar o XP normalmente
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Função para obter o dia da semana
+    const diasSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+    const hoje = new Date();
+    const diaDaSemana = hoje.getDay(); // Retorna um número de 0 (Domingo) a 6 (Sábado)
+    
+    // Definir os hábitos para os dias específicos
+    const habitos = {
+        Segunda: ['Se depile'],
+        Quinta: ['Aparar barba'],
+    };
+
+    // Adicionar hábitos de acordo com o dia da semana
+    function adicionarHabitos(dia) {
+        const listaManha = document.getElementById("manhaHabitos");
+        const listaTarde = document.getElementById("tardeHabitos");
+        const listaNoite = document.getElementById("noiteHabitos");
+
+        if (habitos[dia]) {
+            habitos[dia].forEach(habito => {
+                const li = document.createElement('li');
+                li.textContent = habito;
+
+                // Se o dia for Segunda ou Quinta, adicione na lista de manhã, tarde ou noite conforme a necessidade.
+                if (dia === 'Segunda') {
+                    listaTarde.appendChild(li);
+                } else if (dia === 'Quinta') {
+                    listaManha.appendChild(li);
+                }
+            });
+        }
+    }
+
+    // Verifica o dia e chama a função para adicionar os hábitos
+    adicionarHabitos(diasSemana[diaDaSemana]);
+});

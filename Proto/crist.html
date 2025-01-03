@@ -62,7 +62,7 @@
             background-color: #f8fa9a;
             color: rgb(0, 0, 0);
             border: none;
-            padding: 20px 25px; /* Ajustado o tamanho do botão */
+            padding: 10px 12px; /* Ajustado o tamanho do botão */
             font-size: 24px;
             margin: 5px; /* Espaçamento entre os botões */
             cursor: pointer; 
@@ -88,7 +88,7 @@
         .notes {
             width: 100%; /* Largura total */
             padding: 15px;
-            border: 1px solid #ccc;
+            border: 1px solid rgb(43, 42, 42);
             border-radius: 8px;
             resize: vertical;
             min-height: 250px;
@@ -101,6 +101,32 @@
         h1 {
             color: #f8fa9a; /* Cor do título */
         }
+
+        .notes-container {
+    position: relative;
+    width: 1000px;
+    max-width: 600px;
+    margin: auto;
+    background-color: rgb(43, 42, 42);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn, .btn-export, .btn-import {
+    background-color: rgb(43, 42, 42);
+    color: white;
+    border: none;
+    width: 40px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
     </style>
 </head>
 <body>
@@ -112,15 +138,23 @@
                     <img src="Tabela.jpg" alt="Tabela de Estudos">
                 </div>
             </div>
-            <!-- Notes section -->
-            <textarea id="notas" class="notes" placeholder="Anote aqui..." oninput="saveNotas()"></textarea>
-
-            <div class="buttons">
-                <button class="botao" onclick="exportNotes()"><i class="fas fa-file-export"></i> Exportar</button>
-                <button class="botao" onclick="importNotes()"><i class="fas fa-file-import"></i> Importar</button>
-                <button class="botao" onclick="redirecionar('EBD')"><i class="fas fa-file"></i> EBD</button>
+            <div class="notes-container">
+                <div class="button-group"> 
+                    <button class="btn" onclick="redirecionar('Devocional')" style="margin-right: 475px; display: flex;">
+                        <i class="fas fa-book" style="margin-right: 5px;"></i>Devocional
+                    </button>
+                    <button class="btn-export" onclick="exportNotes()">
+                        <i class="fas fa-file-export"></i>
+                    </button>
+                    <button class="btn-import" onclick="importNotes()">
+                        <i class="fas fa-file-import"></i>
+                    </button>
+                </div>
+                <textarea id="notas" class="notes" placeholder="Anote aqui..." oninput="saveNotas()"></textarea>
             </div>
+            
             <div class="buttons">
+                <button class="botao" onclick="redirecionar('EBD')"><i class="fas fa-file"></i> EBD</button>
                 <button class="botao" onclick="redirecionar('Bíblia')"><i class="fas fa-book"></i> Bíblia</button>
                 <button class="botao" onclick="redirecionar('Canais')"><i class="fas fa-globe"></i> Canais</button>
                 <button class="botao" onclick="redirecionar('Memórias')"><i class="fas fa-camera"></i> Memórias</button>
@@ -192,6 +226,10 @@
                     window.open('https://www.youtube.com/@RodrigoSilvaArqueologia/videos');
                     window.open('https://www.youtube.com/@prantoniojunior/videos');
                     window.open('https://www.youtube.com/@PrOsielGomes/videos');
+                    break;
+                case 'Devocional':
+                    window.close('crist');
+                    window.open('time.html');
                     break;
                 case 'Memórias':
                     window.close('crist');

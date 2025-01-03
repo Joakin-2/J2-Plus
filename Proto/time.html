@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timer</title>
+    <!-- Incluindo Font Awesome para os ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -28,40 +30,114 @@
             margin-bottom: 20px;
         }
 
-        #startButton {
+        #startButton, #doneButton {
             font-size: 1.5em;
-            background-color: #93e8ff;
-            color: black;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin: 10px;
+        }
+
+        #startButton, #doneButton {
+            background-color: #93e8ff;
+            color: black;
+        }
+
+        .button-group {
+            display: flex;
+        }
+
+        .progress-container {
+            margin-top: 20px;
+            width: 80%;
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 30px;
+            background-color: #4caf50;
+            width: 0;
+            text-align: center;
+            color: white;
+            line-height: 30px;
+            font-size: 1em;
+        }
+
+        .status {
+            color: white;
+            margin-top: 10px;
+        }
+
+        .xp-gain {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #b382ed;
+            font-size: 2em;
+            font-weight: bold;
+            animation: fade-out 1.5s forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(1.2);
+            }
         }
     </style>
 </head>
 <body>
 
     <div id="timer">00:00:00</div>
-    <button id="startButton" onclick="toggleTimer()">Iniciar</button>
+    
+    <div class="button-group"> 
+        <button id="startButton" onclick="toggleTimer()">
+            <i class="fas fa-play"></i> Iniciar
+        </button>
+        <button id="doneButton" onclick="timerDone(); ganharXp(10);">
+            <i class="fas fa-check-circle"></i> Feito
+        </button>
+    </div>
 
+    <div class="progress-container" style="display: none;">
+        <div id="progress-bar" class="progress-bar">0%</div>
+    </div>
+
+    <div class="status" style="display: none;">
+        <p>Nível: <span id="nivel">1</span></p>
+        <p>XP Atual: <span id="xp-atual">0</span></p>
+        <p>XP Necessário: <span id="xp-necessario">100</span></p>
+    </div>
+
+    <div id="xp-gain" class="xp-gain" style="display: none;">+10 XP</div>
+
+    <!-- Inclui o script externo -->
+    <script src="/script/nivel.js"></script>
     <script>
         let timeInSeconds = 0;
         let timerId;  // Variável para armazenar o ID do temporizador
         let isTimerRunning = false;  // Flag para verificar se o temporizador está em execução
 
         function updateTimer() {
-            if (isTimerRunning) {
-                const hours = Math.floor(timeInSeconds / 3600);
-                const minutes = Math.floor((timeInSeconds % 3600) / 60);
-                const seconds = timeInSeconds % 60;
+            const hours = Math.floor(timeInSeconds / 3600);
+            const minutes = Math.floor((timeInSeconds % 3600) / 60);
+            const seconds = timeInSeconds % 60;
 
-                const formattedHours = hours.toString().padStart(2, '0');
-                const formattedMinutes = minutes.toString().padStart(2, '0');
-                const formattedSeconds = seconds.toString().padStart(2, '0');
+            const formattedHours = hours.toString().padStart(2, '0');
+            const formattedMinutes = minutes.toString().padStart(2, '0');
+            const formattedSeconds = seconds.toString().padStart(2, '0');
 
-                document.getElementById("timer").textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-                timeInSeconds++;
-            }
+            document.getElementById("timer").textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+            timeInSeconds++;
         }
 
         function toggleTimer() {
@@ -76,6 +152,29 @@
                 isTimerRunning = true;
                 document.getElementById("startButton").textContent = "Pausar";
             }
+        }
+
+        function timerDone() {
+            // Para o temporizador e resetta o tempo
+            clearInterval(timerId);
+            isTimerRunning = false;
+            timeInSeconds = 0;
+            document.getElementById("timer").textContent = "00:00:00";
+            document.getElementById("startButton").textContent = "Iniciar";
+        }
+
+        function ganharXp(xp) {
+            const xpGainElement = document.getElementById("xp-gain");
+            xpGainElement.textContent = `+${xp} XP`;
+            xpGainElement.style.display = "block";
+
+            // Esconde a mensagem após 1.5 segundos
+            setTimeout(() => {
+                xpGainElement.style.display = "none";
+            }, 1500);
+
+            // Atualiza o progresso e a interface (já implementado no script externo)
+            // Aqui você deve chamar `ganharXp` para processar o XP normalmente
         }
     </script>
 

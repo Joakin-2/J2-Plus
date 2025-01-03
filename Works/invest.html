@@ -5,6 +5,7 @@
     <link rel="icon" href="ícone.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Área de Investir</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
@@ -122,13 +123,25 @@
     cursor: pointer;
 }
 
+.xp-gain {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #b382ed;
+    font-size: 2em;
+    font-weight: bold;
+    animation: fade-out 1.5s forwards;
+    pointer-events: none;
+}
+
     </style>
 </head>
 <body>
 
     <!-- Calendário -->
-    <div class="calendar-container" style="display: flex;">
-        <h3 style="margin-left: 6%; position: absolute; margin-top: 50px;">Calendário</h3>
+    <div class="calendar-container" style="display: flex; margin-left: 250px;">
+        <h3 style="margin-left: 90px; position: absolute; margin-top: 50px;">Calendário</h3>
         <div id="calendar-section" style="margin-top: 80px;">
             <div id="calendar" class="calendar" style="margin-left: 20%;">
                 <div class="day day-name">Dom</div>
@@ -146,18 +159,23 @@
     </div>
 
     <!-- Meta de Ganho -->
-    <div class="meta-container" style="position: absolute; margin-left: 1000px; top: 50px;">
+    <div class="meta-container" style="position: absolute; margin-left: 1100px; top: 50px;">
         <div class="button-group"> 
             <h2>Meta de Ganho: R$<span id="meta-ganho-valor">80</span></h2>
             <button class="btn-export" onclick="exportarDados()" style="margin-left: 15px;"><i class="fas fa-file-export"></i></button>
             <button class="btn-import" onclick="importarDados()"><i class="fas fa-file-import"></i></button>
         </div>
         <h4>Selecione um dia e registre seu ganho:</h4>
-            <input type="date" id="data-selecionada">
-            <input type="number" id="valor-ganho" placeholder="Valor ganho">
+        <div>
+            <input type="date" id="data-selecionada" style="display: block; margin-bottom: 10px;">
+        </div>
+        <div>
+            <input type="number" id="valor-ganho" placeholder="Valor ganho" style="display: block; margin-bottom: 10px;">
+        </div>        
             <div class="button-group">
-            <button onclick="registrarGanho()">Registrar Ganho</button>
-            <button onclick="reiniciarProgresso()" style="margin-left: 20px;">Reiniciar Tudo</button>
+            <button onclick="registrarGanho()">Registrar</button>
+            <button onclick="salvarPDF()" style="margin-left: 5px;">Salvar PDF</button>
+            <button onclick="reiniciarProgresso()" style="margin-left: 5px;">Reiniciar Tudo</button>
             </div>
             <h3>Total de Ganhos: R$<span id="total-ganhos">0.00</span></h3>
     </div>
@@ -170,10 +188,51 @@
         <button class="botao" onclick="redirecionar('Bolsa de Valores')"><i class="fas fa-hand-holding-usd"></i> Bolsa de Valores</button>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         // Objetos para armazenar os dados de ganhos por dia
         let ganhosPorData = {};
         let metaGanho = 80;
+
+        function salvarPDF() {
+            const { jsPDF } = window.jspdf; // Obtendo o objeto jsPDF corretamente
+            const doc = new jsPDF();
+
+    // Título do PDF
+    doc.setFontSize(18);
+    doc.text("Ganhos do Mês", 20, 20);
+
+    // Data atual
+    const dataAtual = new Date();
+    const mesAtual = dataAtual.toLocaleString('default', { month: 'long' });
+    const anoAtual = dataAtual.getFullYear();
+    doc.text(`Mês: ${mesAtual} ${anoAtual}`, 20, 30);
+
+    // Cabeçalho da tabela
+    doc.setFontSize(12);
+    doc.text("Data", 20, 40);
+    doc.text("Valor Ganho", 100, 40);
+
+    let yPosition = 50; // Posição inicial para os dados
+
+    // Adiciona os dados dos ganhos
+    for (let data in ganhosPorData) {
+        if (data.startsWith(`${anoAtual}-${dataAtual.getMonth() + 1}`)) { // Verifica se é do mês atual
+            const valorGanho = ganhosPorData[data];
+            doc.text(data, 20, yPosition);
+            doc.text(`R$ ${valorGanho.toFixed(2)}`, 100, yPosition);
+            yPosition += 10;
+
+            if (yPosition > 250) { // Se a página estiver cheia, cria uma nova
+                doc.addPage();
+                yPosition = 20;
+            }
+        }
+    }
+
+    // Salva o PDF
+    doc.save(`Ganhos ${mesAtual}.pdf`);
+}
 
         // Função para registrar o ganho no dia selecionado
         function registrarGanho() {
@@ -219,24 +278,46 @@
 
         // Função para gerar os dias do mês no calendário
         function gerarCalendario() {
-            const diasDoMes = new Date(2025, 0, 0).getDate(); // Número de dias no mês de janeiro
-            const calendario = document.getElementById('calendar');
-            for (let i = 1; i <= diasDoMes; i++) {
-                const dia = document.createElement('div');
-                dia.classList.add('day', 'day-number');
-                dia.setAttribute('data-day', i);
-                dia.textContent = i;
-                dia.addEventListener('click', function() {
-                    document.getElementById('data-selecionada').value = `2025-01-${i.toString().padStart(2, '0')}`;
-                });
-                calendario.appendChild(dia);
-            }
+    const dataAtual = new Date();
+    const anoAtual = dataAtual.getFullYear();
+    const mesAtual = dataAtual.getMonth(); // Pega o mês atual (0 = janeiro, 11 = dezembro)
 
-            // Marcar os dias com ganho ao carregar
-            for (let data in ganhosPorData) {
-                marcarDiaComGanho(data);
-            }
+    // Número de dias no mês atual
+    const diasDoMes = new Date(anoAtual, mesAtual + 1, 0).getDate(); 
+    const calendario = document.getElementById('calendar');
+    
+    // Limpa o calendário antes de gerar novamente
+    calendario.innerHTML = '';
+
+    // Gera os dias da semana (Dom, Seg, Ter, etc.)
+    const diasSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+    diasSemana.forEach(dia => {
+        const divDia = document.createElement('div');
+        divDia.classList.add('day', 'day-name');
+        divDia.textContent = dia;
+        calendario.appendChild(divDia);
+    });
+
+    // Gera os dias do mês
+    for (let i = 1; i <= diasDoMes; i++) {
+        const dia = document.createElement('div');
+        dia.classList.add('day', 'day-number');
+        dia.setAttribute('data-day', i);
+        dia.textContent = i;
+        dia.addEventListener('click', function() {
+            document.getElementById('data-selecionada').value = `${anoAtual}-${(mesAtual + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
+        });
+        calendario.appendChild(dia);
+    }
+
+    // Marcar os dias com ganho ao carregar
+    for (let data in ganhosPorData) {
+        const anoMes = new Date().toISOString().slice(0, 7); // Ano e mês no formato YYYY-MM
+        if (data.startsWith(anoMes)) {
+            marcarDiaComGanho(data);
         }
+    }
+}
 
         // Função para salvar progresso
         function salvarProgresso() {
@@ -273,7 +354,6 @@
             URL.revokeObjectURL(url);
         }
 
-        // Função para importar dados
         // Função para importar dados
 function importarDados() {
     const input = document.createElement('input');

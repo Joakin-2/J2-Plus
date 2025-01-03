@@ -570,23 +570,23 @@ button:hover {
     100% { top: 100%; opacity: 0; }
 }
 
-.progress-bar-nivel-container {
-    width: 80%;
-    background-color: #e0e0e0;
-    border-radius: 25px;
-    margin: 20px auto;
+.progress-container {
+    margin-top: 20px;
+    width: 10%;
+    background-color: #444;
+    border-radius: 10px;
     overflow: hidden;
-  }
-  .progress-bar-nivel {
-    width: 0%;
-    height: 25px;
-    background-color: #4caf50;
-    text-align: center;
-    line-height: 25px;
-    color: white;
-    transition: width 0.3s;
-  }
+}
 
+.progress-bar {
+    height: 30px;
+    background-color: #a085ff;
+    width: 0;
+    text-align: center;
+    color: white;
+    line-height: 30px;
+    font-size: 1em;
+}
 
   /* Estilo do botão de perfil */
   button#perfil-btn {
