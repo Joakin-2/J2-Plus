@@ -94,7 +94,7 @@ button {
 #menuPanel {
     display: none;
     position: fixed;
-    bottom: 44%;
+    bottom: 190px;
     left: 2px;
     width: 120px;
     background-color: #14191d;
@@ -124,6 +124,66 @@ button {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     }
+
+    
+/* Efeitos de Estações no Brasil */
+
+.spring {
+    background-color: #202020; /* Tons suaves de primavera */
+}
+
+.summer {
+    background-color: #2b2818; /* Tons quentes do verão */
+}
+
+.autumn {
+    background-color: #1b0e0b; /* Tons de outono com laranja e marrom */
+}
+
+.winter {
+    background-color: #1f2429; /* Tons frios de inverno */
+}
+
+.flower {
+    position: absolute;
+    font-size: 2rem;
+    animation: bloom 5s infinite;
+}
+
+.sunshine {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    border-radius: 50%;
+    box-shadow: 0 0 50px yellow;
+    animation: shine 2s infinite;
+}
+
+.leaf {
+    position: absolute;
+    font-size: 2rem;
+    color: #f44336;
+    animation: fall 5s infinite;
+}
+
+@keyframes bloom {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shine {
+    0% { box-shadow: 0 0 20px yellow; }
+    100% { box-shadow: 0 0 50px yellow; }
+}
+
+@keyframes fall {
+    0% { top: -5%; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
     </style>
 </head>
 <body>
@@ -169,6 +229,7 @@ button {
         <button id="keepButton">Keep</button>
         <button id="canvaButton">Canva</button>
         <button id="driveButton">Drive</button>
+        <button id="toggleEffectButton" class="toggle-effect-btn">Efeitos</button>
         <button id="growthButton">Growth</button>
         <button id="pinterestButton">Pinterest</button>
         <button id="aliexpressButton">Aliexpress</button>
@@ -217,6 +278,125 @@ button {
                 searchGoogle();
             }
         });
+
+        // Função para verificar a estação atual e ativar efeitos
+  function checkSeason() {
+    const today = new Date();
+    const month = today.getMonth(); // Mês atual (0-11)
+    const day = today.getDate();    // Dia atual (1-31)
+
+    let seasonMessage = '';
+    let seasonEffect = '';
+
+    // Verifica o primeiro dia de cada estação
+
+    // Primavera: 22 de setembro a 21 de dezembro
+    if (month === 8 && day === 22) {
+        seasonMessage = "🌸 Bem-vindo à Primavera! 🌼";
+        seasonEffect = "spring";
+    }
+    // Verão: 22 de dezembro a 20 de março
+    else if (month === 11 && day === 22) {
+        seasonMessage = "☀️ É Verão! Aproveite o calor! 🌴";
+        seasonEffect = "summer";
+    }
+    // Outono: 21 de março a 20 de junho
+    else if (month === 2 && day === 21) {
+        seasonMessage = "🍂 Outono chegou! O ar fresco está no ar. 🍁";
+        seasonEffect = "autumn";
+    }
+    // Inverno: 21 de junho a 21 de setembro
+    else if (month === 5 && day === 21) {
+        seasonMessage = "❄️ Inverno chegou! Prepare-se para o frio! 🧣";
+        seasonEffect = "winter";
+    }
+
+    // Se for o primeiro dia da estação, exibe a mensagem e ativa o efeito
+    if (seasonMessage) {
+        //document.getElementById('Text').innerText = seasonMessage;
+        //document.getElementById('Message').style.display = 'block'; // Exibe a mensagem
+        activateSeasonEffect(seasonEffect);
+    }
+}
+
+// Função para ativar o efeito visual de cada estação
+function activateSeasonEffect(season) {
+    // Remove todos os efeitos de estação anteriores
+    document.body.classList.remove('spring', 'summer', 'autumn', 'winter');
+
+    // Adiciona o efeito correspondente à estação
+    document.body.classList.add(season);
+
+    // Dependendo da estação, você pode adicionar diferentes animações ou mudanças de fundo
+    if (season === 'spring') {
+        //createSpringFlowers(); // Cria flores ou algo relacionado à primavera
+    } else if (season === 'summer') {
+        createSunshine(); // Efeito de sol e calor para o verão
+    } else if (season === 'autumn') {
+        createFallingLeaves(); // Folhas caindo para o outono
+    } else if (season === 'winter') {
+        //createSnowflakes(); // Flocos de neve para o inverno
+    }
+}
+
+// Funções específicas de cada estação (você já tem funções como "createSnowflakes" e "createConfetti")
+function createSpringFlowers() {
+    // Adicionar flores ou outros elementos visuais para a primavera
+    const numFlowers = 50;
+    for (let i = 0; i < numFlowers; i++) {
+        const flower = document.createElement('div');
+        flower.classList.add('flower');
+        flower.textContent = '🌸'; // Símbolo de flor
+        flower.style.left = Math.random() * 100 + 'vw';
+        flower.style.animationDuration = Math.random() * 5 + 5 + 's';
+        document.body.appendChild(flower);
+    }
+}
+
+function createSunshine() {
+    // Criar um efeito de sol para o verão
+    const sunEffect = document.createElement('div');
+    sunEffect.classList.add('sunshine');
+    document.body.appendChild(sunEffect);
+}
+
+function createSnowflakes() {
+            const numSnowflakes = 60; // Número de flocos de neve
+
+            for (let i = 0; i < numSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.textContent = '❄'; // Símbolo de floco de neve
+
+                // Definindo uma posição aleatória para cada floco
+                snowflake.style.left = Math.random() * 100 + 'vw'; // Aleatório de 0 a 100% da largura da tela
+                snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; // Animação entre 5s e 10s
+                snowflake.style.animationDelay = Math.random() * 5 + 's'; // Delay entre 0s e 5s
+
+                // Adiciona o floco de neve ao corpo da página
+                document.body.appendChild(snowflake);
+            }
+        }
+
+function createFallingLeaves() {
+    // Efeito de folhas caindo no outono
+    const numLeaves = 50;
+    for (let i = 0; i < numLeaves; i++) {
+        const leaf = document.createElement('div');
+        leaf.classList.add('leaf');
+        leaf.textContent = '🍂';
+        leaf.style.left = Math.random() * 100 + 'vw';
+        leaf.style.animationDuration = Math.random() * 5 + 5 + 's';
+        document.body.appendChild(leaf);
+    }
+}
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+    checkSeason(); // Verifica a estação atual
+    // Adiciona o evento para o botão de alternância
+});
+
 
 document.getElementById('instagramButton').addEventListener('click', () => openInNewTab('https://www.instagram.com'));
 document.getElementById('noticiasButton').addEventListener('click', () => openInNewTab('https://www.instagram.com/direct/inbox/?theme=dark'));

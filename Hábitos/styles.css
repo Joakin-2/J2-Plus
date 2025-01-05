@@ -96,6 +96,14 @@ h3 {
     padding: 25px;
 }
 
+.meta-container {
+    width: 840px;
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
 .caixa-anotacao2 h2 {
     margin-bottom: 10px;
 }
