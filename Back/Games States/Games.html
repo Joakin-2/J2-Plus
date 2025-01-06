@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Games States</title>
-    <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
+    <!-- Vincule a biblioteca Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -16,72 +16,152 @@
             background-color: #000000;
         }
 
+        .containers {
+            margin-top: 200px;
+            margin-left: 220px;
+            display: flex;
+            gap: 10px;
+        }
+
         .container {
             display: flex;
-            flex-direction: column; /* Alteração para empilhar os botões verticalmente */
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .botao {
             background-color: #8C52FF;
             color: white;
             border: none;
-            padding: 40px; /* Ajuste o tamanho dos botões conforme necessário */
+            padding: 40px;
             text-align: center;
-            text-decoration: none;
             display: inline-block;
-            font-size: 18px; /* Ajuste o tamanho da fonte conforme necessário */
-            margin: 10px; /* Ajuste o espaçamento entre os botões conforme necessário */
+            font-size: 18px;
+            margin: 10px;
             cursor: pointer;
             border-radius: 8px;
-            width: 450px; /* Ajuste a largura dos botões conforme necessário */
+            width: 450px;
         }
 
-        .mensagem {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+        .botao i {
+            margin-right: 8px;
+        }
+
+        .area-anotacoes {
+            margin-top: 20px;
+            width: 425px;
+            height: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 14px;
+            resize: none;
+            color: white;
+            background-color: #111111;
+        }
+
+        .btn-export, .btn-import {
             background-color: #333;
             color: white;
-            padding: 10px;
-            text-align: center;
+            border: none;
+            padding: 15px 60px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn-export:hover, .btn-import:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <button class="botao" onclick="redirecionar('+ Mais')"> + Mais</button>
-        <button class="botao" onclick="redirecionar('Ticks')"><i class="fas fa-square"></i> Ticks</button>
-        <button class="botao" onclick="redirecionar('Balloon Fly')"><i class="fas fa-cloud"></i> Balloon Fly</button>
-        <button class="botao" onclick="redirecionar('Sky of Wars')"><i class="fas fa-rocket"></i> Sky of Wars</button>
-    </div>      
-
+    <div class="containers">
+        <!-- Primeiro contêiner -->
+        <div class="container">
+            <button class="botao" onclick="redirecionar('Ticks')"><i class="fas fa-square"></i> Ticks</button>
+            <button class="botao" onclick="redirecionar('Balloon Fly')"><i class="fas fa-cloud"></i> Balloon Fly</button>
+            <button class="botao" onclick="redirecionar('Sky of Wars')"><i class="fas fa-rocket"></i> Sky of Wars</button>
+        </div>   
+        
+        <!-- Segundo contêiner -->
+        <div class="container">
+            <textarea class="area-anotacoes" id="game" placeholder="Anote aqui..."></textarea>
+            <button class="botao" onclick="redirecionar('+ Mais')" style="width: 250px; margin-right: 205px;">+ Mais</button>
+            <div class="container" style="margin-top: -127px; margin-left: 255px;">
+                <button class="btn-export" onclick="exportNotes()"><i class="fas fa-file-export"></i> Exportar</button>
+                <button class="btn-import" onclick="importNotes()"><i class="fas fa-file-import"></i> Importar</button>
+            </div> 
+        </div>   
+    </div>
+    
     <script>
-        function redirecionar(destino) {
-            switch (destino) {
-                case '+ Mais':
-                    window.close('Games.html');
-                    window.open('Outros.html');
-                    break; // Adicionei o break aqui
-                case 'Ticks':
-                    window.close('Games.html');
-                    window.open('Ticks.html');
-                    break; // Adicionei o break aqui
-                case 'Balloon Fly':
-                    window.close('Games.html');
-                    window.open('Balloon Fly.html');
-                    break; // Adicionei o break aqui
-                case 'Sky of Wars':
-                    window.close('Games.html');
-                    window.open('Sky of Wars.html');
-                    break; // Adicionei o break aqui
-                default:
-                    break;
+        // Carregar as anotações do LocalStorage ao carregar a página
+        document.addEventListener("DOMContentLoaded", () => {
+            const notesTextarea = document.getElementById("game");
+            const savedNotes = localStorage.getItem("gameNotes");
+            if (savedNotes) {
+                notesTextarea.value = savedNotes;
             }
+
+            // Salvar automaticamente as anotações quando o usuário digitar
+            notesTextarea.addEventListener("input", () => {
+                localStorage.setItem("gameNotes", notesTextarea.value);
+            });
+        });
+
+        // Função para redirecionar
+        function redirecionar(destino) {
+            const pages = {
+                '+ Mais': 'Outros.html',
+                'Ticks': 'Ticks.html',
+                'Balloon Fly': 'Balloon Fly.html',
+                'Sky of Wars': 'Sky of Wars.html',
+            };
+
+            if (pages[destino]) {
+                window.close('Games.html');
+                window.open(pages[destino]);
+            }
+        }
+
+        // Função para exportar anotações
+        function exportNotes() {
+            const notesTextarea = document.getElementById("game");
+            const blob = new Blob([notesTextarea.value], { type: "text/plain" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "game.txt";
+            link.click();
+        }
+
+        // Função para importar anotações
+        function importNotes() {
+            const fileInput = document.createElement("input");
+            fileInput.type = "file";
+            fileInput.accept = ".txt";
+            fileInput.style.display = "none";
+            document.body.appendChild(fileInput);
+
+            fileInput.addEventListener("change", (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const notesTextarea = document.getElementById("game");
+                        notesTextarea.value = e.target.result;
+                        localStorage.setItem("gameNotes", e.target.result); // Salva no LocalStorage
+                    };
+                    reader.readAsText(file);
+                }
+            });
+
+            fileInput.click();
+            document.body.removeChild(fileInput);
         }
     </script>
 </body>

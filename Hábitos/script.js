@@ -454,8 +454,17 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Definir os hábitos para os dias específicos
     const habitos = {
-        Segunda: ['Se depile'],
-        Quinta: ['Aparar barba'],
+        Segunda: { 
+            Manha: ['Limpar Ouvido'], 
+            Tarde: ['Se depile']
+        },
+        Quinta: { 
+            Manha: ['Aparar barba', 'Limpar Ouvido'], 
+            Tarde: ['Igreja']
+        },
+        Sexta: { 
+            Tarde: ['Limpar Escritório'] 
+        },
     };
 
     // Adicionar hábitos de acordo com o dia da semana
@@ -465,17 +474,32 @@ document.addEventListener("DOMContentLoaded", function() {
         const listaNoite = document.getElementById("noiteHabitos");
 
         if (habitos[dia]) {
-            habitos[dia].forEach(habito => {
-                const li = document.createElement('li');
-                li.textContent = habito;
-
-                // Se o dia for Segunda ou Quinta, adicione na lista de manhã, tarde ou noite conforme a necessidade.
-                if (dia === 'Segunda') {
-                    listaTarde.appendChild(li);
-                } else if (dia === 'Quinta') {
+            // Adicionar hábitos para a manhã
+            if (habitos[dia].Manha) {
+                habitos[dia].Manha.forEach(habito => {
+                    const li = document.createElement('li');
+                    li.textContent = habito;
                     listaManha.appendChild(li);
-                }
-            });
+                });
+            }
+
+            // Adicionar hábitos para a tarde
+            if (habitos[dia].Tarde) {
+                habitos[dia].Tarde.forEach(habito => {
+                    const li = document.createElement('li');
+                    li.textContent = habito;
+                    listaTarde.appendChild(li);
+                });
+            }
+
+            // Adicionar hábitos para a noite (se necessário no futuro)
+            if (habitos[dia].Noite) {
+                habitos[dia].Noite.forEach(habito => {
+                    const li = document.createElement('li');
+                    li.textContent = habito;
+                    listaNoite.appendChild(li);
+                });
+            }
         }
     }
 
