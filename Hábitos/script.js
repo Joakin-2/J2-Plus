@@ -250,11 +250,11 @@ let data = {}; // Define globally
 function carregarHabitosDoDia() {
     const habitosPorDia = {
         segunda: {
-            manha: ['Limpar Ouvido'],
-            tarde: ['Se depile']
+            manha: ['Alisar Pé', 'Limpar Ouvido'],
+            tarde: ['Se Depile']
         },
         quinta: {
-            manha: ['Aparar barba', 'Limpar Ouvido'],
+            manha: ['Alisar Pé', 'Aparar Barba', 'Limpar Ouvido'],
             tarde: ['Igreja']
         },
         sexta: {
