@@ -20,7 +20,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 10%;
+            margin-top: 8%;
             gap: 40px; /* Aumenta a distância entre os botões */
         }
 
@@ -151,7 +151,6 @@
                 <div class="day day-name">Qui</div>
                 <div class="day day-name">Sex</div>
                 <div class="day day-name">Sáb</div>
-
                 <!-- Dias do mês -->
                 <!-- A geração dos dias será feita via JavaScript -->
             </div>
@@ -159,7 +158,7 @@
     </div>
 
     <!-- Meta de Ganho -->
-    <div class="meta-container" style="position: absolute; margin-left: 1100px; top: 50px;">
+    <div class="meta-container" style="position: absolute; margin-left: 60%; top: 50px;">
         <div class="button-group"> 
             <h2>Meta de Ganho: R$<span id="meta-ganho-valor">80</span></h2>
             <button class="btn-export" onclick="exportarDados()" style="margin-left: 15px;"><i class="fas fa-file-export"></i></button>
@@ -195,8 +194,8 @@
         let metaGanho = 80;
 
         function salvarPDF() {
-            const { jsPDF } = window.jspdf; // Obtendo o objeto jsPDF corretamente
-            const doc = new jsPDF();
+    const { jsPDF } = window.jspdf; // Obtendo o objeto jsPDF
+    const doc = new jsPDF();
 
     // Título do PDF
     doc.setFontSize(18);
@@ -210,24 +209,37 @@
 
     // Cabeçalho da tabela
     doc.setFontSize(12);
-    doc.text("Data", 20, 40);
-    doc.text("Valor Ganho", 100, 40);
+    doc.text("Data", 20, 50);
+    doc.text("Valor Ganho (R$)", 100, 50);
 
-    let yPosition = 50; // Posição inicial para os dados
+    // Linha divisória
+    doc.line(20, 55, 190, 55);
+
+    let yPosition = 60; // Posição inicial para os dados
 
     // Adiciona os dados dos ganhos
+    let dadosAdicionados = false; // Para verificar se há dados no mês atual
     for (let data in ganhosPorData) {
-        if (data.startsWith(`${anoAtual}-${dataAtual.getMonth() + 1}`)) { // Verifica se é do mês atual
+        const [ano, mes] = data.split('-'); // Extrai ano e mês da data
+        if (parseInt(ano) === anoAtual && parseInt(mes) === (dataAtual.getMonth() + 1)) {
             const valorGanho = ganhosPorData[data];
             doc.text(data, 20, yPosition);
             doc.text(`R$ ${valorGanho.toFixed(2)}`, 100, yPosition);
             yPosition += 10;
+            dadosAdicionados = true;
 
-            if (yPosition > 250) { // Se a página estiver cheia, cria uma nova
+            // Adiciona nova página se necessário
+            if (yPosition > 280) {
                 doc.addPage();
                 yPosition = 20;
             }
         }
+    }
+
+    // Mensagem caso não haja ganhos no mês atual
+    if (!dadosAdicionados) {
+        doc.setFontSize(14);
+        doc.text("Nenhum ganho registrado para este mês.", 20, 70);
     }
 
     // Salva o PDF
