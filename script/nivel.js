@@ -12,7 +12,7 @@ function ganharXp(xp) {
     xpAtual -= xpNecessario;
     nivelAtual++;
     xpNecessario = 100 * (nivelAtual * nivelAtual);
-    alert(`Parabéns! Você alcançou o nível ${nivelAtual}!`);
+    mostrarComemoracao(`Parabéns! Você alcançou o nível ${nivelAtual}!`);
   }
   salvarProgresso();
   atualizarInterface();
@@ -38,6 +38,19 @@ function atualizarInterface() {
 function salvarProgresso() {
   localStorage.setItem("nivelAtual", nivelAtual);
   localStorage.setItem("xpAtual", xpAtual);
+}
+
+// Função para mostrar a comemoração no HTML
+function mostrarComemoracao(mensagem) {
+  const comemoracao = document.createElement("div");
+  comemoracao.classList.add("comemoracao");
+  comemoracao.textContent = mensagem;
+  document.body.appendChild(comemoracao);
+
+  // Remove a comemoração após 3 segundos
+  setTimeout(() => {
+    comemoracao.remove();
+  }, 3000);
 }
 
 // Atualiza a interface ao carregar a página

@@ -22,6 +22,12 @@ function toggleDay(event) {
     // Adicione a lógica para salvar os dias marcados
     const dayNumber = selectedDay.dataset.day;
     saveMarkedDay(dayNumber);
+
+    // Adiciona 10 XP sempre que um dia é marcado ou desmarcado
+    ganharXp(10);
+
+    // Exibe a mensagem "+10 XP" no HTML
+    atualizarInterface();
 }
 
 function saveMarkedDay(dayNumber) {
@@ -54,6 +60,52 @@ function restoreMarkedDays() {
         }
     });
 }
+
+// Função para ganhar XP
+function ganharXp(xp) {
+    xpAtual += xp;
+    if (xpAtual >= xpNecessario) {
+        xpAtual -= xpNecessario;
+        nivelAtual++;
+        xpNecessario = 100 * (nivelAtual * nivelAtual);
+        alert(`Parabéns! Você alcançou o nível ${nivelAtual}!`);
+    }
+    salvarProgresso();
+    atualizarInterface();
+}
+
+// Função para salvar o progresso no localStorage
+function salvarProgresso() {
+    localStorage.setItem("nivelAtual", nivelAtual);
+    localStorage.setItem("xpAtual", xpAtual);
+}
+
+// Função para atualizar a interface e exibir a mensagem "+10 XP"
+function atualizarInterface() {
+    const progressBar = document.getElementById("progress-bar");
+    const nivelSpan = document.getElementById("nivel");
+    const xpAtualSpan = document.getElementById("xp-atual");
+    const xpNecessarioSpan = document.getElementById("xp-necessario");
+    const mensagemXp = document.getElementById("mensagem-xp");
+
+    if (nivelSpan && xpAtualSpan && xpNecessarioSpan && progressBar && mensagemXp) {
+        nivelSpan.textContent = nivelAtual;
+        xpAtualSpan.textContent = xpAtual;
+        xpNecessarioSpan.textContent = xpNecessario;
+
+        const progresso = (xpAtual / xpNecessario) * 100;
+        progressBar.style.width = `${progresso}%`;
+        progressBar.textContent = `${Math.round(progresso)}%`;
+
+        // Exibe a mensagem "+10 XP"
+        mensagemXp.textContent = "+10 XP";
+        setTimeout(() => {
+            mensagemXp.textContent = "";
+        }, 2000);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", atualizarInterface);
 
 function loadNotes() {
     // Verifique se há anotações salvas no localStorage
