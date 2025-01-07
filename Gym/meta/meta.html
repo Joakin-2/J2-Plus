@@ -76,7 +76,16 @@
 
         #imagem-container {
             margin: 20px 0;
+            width: 800px;
+            height: 400px;
+            justify-content: center;
         }
+
+        #imagem-container img {
+            width: 800px;
+            height: 400px;
+            justify-content: center;
+}
 
         #controls {
             display: flex;
@@ -144,10 +153,9 @@
 
     .modal-content {
         background-color: rgb(36, 36, 36);
-        margin: 10% auto;
         padding: 20px;
         border: 1px solid #888;
-        width: 80%;
+        height: 94%;
     }
 
     .close {
@@ -167,22 +175,14 @@
     .video-container {
         display: flex;
         justify-content: space-around;
-        margin-top: 20px;
+        margin-top: 120px;
     }
 
     iframe {
-        width: 45%; /* Tamanho do iframe */
-        height: 250px; /* Altura padrão */
-        max-height: 400px; /* Ajuste a altura máxima conforme necessário */
+        width: 239px;
+        height: 425px;
     }
 
-    /* Estilo responsivo para telas menores */
-    @media (max-width: 600px) {
-        iframe {
-            width: 100%; /* 100% em telas menores */
-            height: auto; /* Mantém a proporção */
-        }
-    }
     </style>
 </head>
 <body>

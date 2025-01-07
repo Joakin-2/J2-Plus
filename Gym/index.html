@@ -55,8 +55,8 @@ button i {
     main {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 20px 350px;
+    justify-content: center;
+    margin: 0px 30px;
 }
 }
     </style>
@@ -73,13 +73,13 @@ button i {
     </div>
     
     <header>
-        <h1>Bem-vindo ao JokGym</h1>
+        <h1 style="bottom: 0px;">Bem-vindo ao JokGym</h1>
     </header>
     
     <main>
         <section id="report-section">
             <div id="notes-section">
-                <div class="button-group" style="margin-top: 18%;"> 
+                <div class="button-group" style="margin-top: 22px;"> 
                     <h2>Relatório</h2>
                     <button class="btn-export" onclick="exportNotes()" style="margin-left: 15px;"><i class="fas fa-file-export"></i></button>
                     <button class="btn-import" onclick="importNotes()"><i class="fas fa-file-import"></i></button>
@@ -87,9 +87,12 @@ button i {
                 <textarea id="notesgym" placeholder="Registre suas anotações aqui..."></textarea>
             </div>
             <div id="calendar-section">
-                <h3>Calendário</h3>
                 <div id="calendar"></div>
             </div>
+            <section id="about-section">
+                <h2>Sobre</h2>
+                <p>Bem-vindo ao JokGym! Um espaço dedicado a prática de exercícios para manter seu corpo ativo.</p>
+            </section>
         </section>
         
         <section id="exercise-buttons">
@@ -115,7 +118,7 @@ button i {
                 </button>
             </div>
 
-            <button style="height: 30px; width: 520px;" onclick="redirecionar('Gym Play')">
+            <button style="height: 100px; width: 520px;" onclick="redirecionar('Gym Play')">
                 <!-- Ícone de Play usando SVG -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; color: white;">
                     <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -135,14 +138,6 @@ button i {
                 <div id="result" style="margin-top: 20px;"></div>
             </div>
             
-        </section>
-
-        <section id="about-section">
-            <br>
-            <br>
-            <br>
-            <h2>Sobre</h2>
-            <p>Bem-vindo ao JokGym! Um espaço dedicado a aprendizado e prática de exercícios para manter seu corpo saudável e ativo.</p>
         </section>
     </main>
     

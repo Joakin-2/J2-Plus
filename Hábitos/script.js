@@ -38,14 +38,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('refeicoesBtn').addEventListener('click', function() {
         window.location.href = 'refeicoes.html';
     });
-
-    // Função para criar um hábito
+    
+// Função para criar um hábito
+// Função para criar um hábito
 function criarHabito(textoHabito, periodo) {
-    // Criar o elemento <li> para o hábito
     const novoHabito = document.createElement('li');
     novoHabito.textContent = textoHabito;
 
-    // Determinar o container correto baseado no período
     let container;
     switch (periodo) {
         case 'manha':
@@ -62,10 +61,13 @@ function criarHabito(textoHabito, periodo) {
             return;
     }
 
-    // Adicionar classe para permitir a estilização
+    // Verifica se o hábito já existe
+    if ([...container.children].some(child => child.textContent === textoHabito)) {
+        return; // Se o hábito já existe, não o adiciona novamente
+    }
+
     novoHabito.classList.add('habito');
 
-    // Adicionar o hábito à lista apropriada
     if (container) {
         container.appendChild(novoHabito);
     } else {
@@ -73,22 +75,21 @@ function criarHabito(textoHabito, periodo) {
         return;
     }
 
-    // Adicionar evento de clique para marcar como concluído
-    novoHabito.addEventListener('click', function() {
+    novoHabito.addEventListener('click', function () {
         novoHabito.classList.toggle('concluido');
-
-        // Salvar estado no localStorage
-        salvarNoLocalStorage('habitos', { habito: textoHabito, periodo: periodo, concluido: novoHabito.classList.contains('concluido') });
+        salvarNoLocalStorage('habitos', {
+            habito: textoHabito,
+            periodo: periodo,
+            concluido: novoHabito.classList.contains('concluido')
+        });
     });
 
-    // Verificar se o hábito já foi concluído anteriormente
     const habitosSalvos = JSON.parse(localStorage.getItem('habitos')) || [];
     const habitoSalvo = habitosSalvos.find(habito => habito.habito === textoHabito && habito.periodo === periodo);
     if (habitoSalvo && habitoSalvo.concluido) {
         novoHabito.classList.add('concluido');
     }
 }
-
 
     // Evento para salvar hábito ao clicar no botão 'Salvar' do modal
     salvarHabitoBtn.addEventListener('click', function() {
@@ -242,9 +243,157 @@ if (metasSalvas) {
         }
         localStorage.setItem(chave, JSON.stringify(habitosSalvos));
     }    
-});
+
 
 let data = {}; // Define globally
+
+function carregarHabitosDoDia() {
+    const habitosPorDia = {
+        segunda: {
+            manha: ['Limpar Ouvido'],
+            tarde: ['Se depile']
+        },
+        quinta: {
+            manha: ['Aparar barba', 'Limpar Ouvido'],
+            tarde: ['Igreja']
+        },
+        sexta: {
+            tarde: ['Limpar Escritório']
+        }
+    };
+
+    const diasSemana = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+    const hoje = new Date();
+    const diaAtual = diasSemana[hoje.getDay()];
+
+    if (habitosPorDia[diaAtual]) {
+        const habitosDia = habitosPorDia[diaAtual];
+        for (const periodo in habitosDia) {
+            habitosDia[periodo].forEach(habito => criarHabito(habito, periodo));
+        }
+    }
+}
+
+function loadSavedData() {
+    const savedData = localStorage.getItem('habitosData');
+    if (savedData) {
+        data = JSON.parse(savedData);
+
+        // Log dos dados carregados
+        console.log('Dados carregados:', data);
+
+        // Preenche os campos com os dados carregados
+        document.getElementById('anotacoes3').value = data.anotacoes || '';
+        document.getElementById('meta').value = data.meta || '';
+        document.getElementById('programados').value = data.programados || '';
+        document.getElementById('anotacoes2').value = data.melhorar || '';
+        document.getElementById('anotacoes').value = data.naoFazer || '';
+
+        // Limpa os hábitos anteriores antes de adicionar os novos
+        ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
+            const periodo = document.getElementById(periodoId);
+            while (periodo.firstChild) {
+                periodo.removeChild(periodo.firstChild);
+            }
+        });
+
+        // Preenche os hábitos salvos
+        if (data.habitos) {
+            data.habitos.forEach(habito => {
+                const li = document.createElement('li');
+                li.textContent = habito.nome;
+
+                // Adiciona a classe 'concluido' se o hábito estiver marcado
+                if (habito.concluido) {
+                    li.classList.add('concluido');
+                }
+
+                // Adiciona o evento de clique para marcar/desmarcar
+                li.addEventListener('click', () => {
+                    li.classList.toggle('concluido');
+                    saveHabitsState(); // Salva o estado atualizado
+                });
+
+                // Adiciona o hábito ao período correto
+                if (habito.periodo === 'manha') {
+                    document.getElementById('manhaHabitos').appendChild(li);
+                } else if (habito.periodo === 'tarde') {
+                    document.getElementById('tardeHabitos').appendChild(li);
+                } else if (habito.periodo === 'noite') {
+                    document.getElementById('noiteHabitos').appendChild(li);
+                }
+            });
+        } else {
+            console.log('Nenhum hábito encontrado.');
+        }
+    }
+    carregarHabitosDoDia();
+
+}
+
+
+document.getElementById('desmarcarHabitosBtn').addEventListener('click', () => {
+    // Seleciona todos os hábitos
+    ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
+        const periodo = document.getElementById(periodoId);
+        Array.from(periodo.children).forEach(li => {
+            // Remove a classe 'concluido'
+            li.classList.remove('concluido');
+        });
+    });
+
+    // Atualiza o estado no localStorage
+    saveHabitsState();
+
+    console.log('Todos os hábitos foram desmarcados e salvos.');
+});
+
+function saveHabitsState() {
+    // Atualiza os dados dos hábitos com o estado de "concluído"
+    const habitos = [];
+
+    ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
+        const periodo = document.getElementById(periodoId);
+        Array.from(periodo.children).forEach(li => {
+            habitos.push({
+                nome: li.textContent,
+                periodo: periodoId.replace('Habitos', '').toLowerCase(),
+                concluido: li.classList.contains('concluido') // Verifica se está marcado
+            });
+        });
+    });
+
+    // Atualiza o objeto `data` e salva no localStorage
+    data.habitos = habitos;
+    localStorage.setItem('habitosData', JSON.stringify(data));
+}
+
+// Adicione estilos para itens marcados
+const style = document.createElement('style');
+style.textContent = `
+    .concluido {
+        text-decoration: line-through;
+        color: gray;
+    }
+`;
+document.head.appendChild(style);
+
+function ganharXp(xp) {
+    const xpGainElement = document.getElementById("xp-gain");
+    xpGainElement.textContent = `+${xp} XP`;
+    xpGainElement.style.display = "block";
+
+    // Esconde a mensagem após 1.5 segundos
+    setTimeout(() => {
+        xpGainElement.style.display = "none";
+    }, 1500);
+
+    // Atualiza o progresso e a interface (já implementado no script externo)
+    // Aqui você deve chamar `ganharXp` para processar o XP normalmente
+}
+
+loadSavedData();
+});
 
 function exportNotes() {
     // Gather data from textareas
@@ -333,176 +482,3 @@ function importNotes() {
 
     input.click();
 }
-
-function loadSavedData() {
-    const savedData = localStorage.getItem('habitosData');
-    if (savedData) {
-        data = JSON.parse(savedData);
-
-        // Log dos dados carregados
-        console.log('Dados carregados:', data);
-
-        // Preenche os campos com os dados carregados
-        document.getElementById('anotacoes3').value = data.anotacoes || '';
-        document.getElementById('meta').value = data.meta || '';
-        document.getElementById('programados').value = data.programados || '';
-        document.getElementById('anotacoes2').value = data.melhorar || '';
-        document.getElementById('anotacoes').value = data.naoFazer || '';
-
-        // Preenche os hábitos
-        if (data.habitos) {
-            data.habitos.forEach(habito => {
-                const li = document.createElement('li');
-                li.textContent = habito.nome;
-
-                // Adiciona a classe 'concluido' se o hábito estiver marcado
-                if (habito.concluido) {
-                    li.classList.add('concluido');
-                }
-
-                // Adiciona o evento de clique para marcar/desmarcar
-                li.addEventListener('click', () => {
-                    li.classList.toggle('concluido');
-                    saveHabitsState(); // Salva o estado atualizado
-                });
-
-                // Adiciona o hábito ao período correto
-                if (habito.periodo === 'manha') {
-                    document.getElementById('manhaHabitos').appendChild(li);
-                } else if (habito.periodo === 'tarde') {
-                    document.getElementById('tardeHabitos').appendChild(li);
-                } else if (habito.periodo === 'noite') {
-                    document.getElementById('noiteHabitos').appendChild(li);
-                }
-            });
-        } else {
-            console.log('Nenhum hábito encontrado.');
-        }
-    }
-}
-
-document.getElementById('desmarcarHabitosBtn').addEventListener('click', () => {
-    // Seleciona todos os hábitos
-    ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
-        const periodo = document.getElementById(periodoId);
-        Array.from(periodo.children).forEach(li => {
-            // Remove a classe 'concluido'
-            li.classList.remove('concluido');
-        });
-    });
-
-    // Atualiza o estado no localStorage
-    saveHabitsState();
-
-    console.log('Todos os hábitos foram desmarcados e salvos.');
-});
-
-function saveHabitsState() {
-    // Atualiza os dados dos hábitos com o estado de "concluído"
-    const habitos = [];
-
-    ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
-        const periodo = document.getElementById(periodoId);
-        Array.from(periodo.children).forEach(li => {
-            habitos.push({
-                nome: li.textContent,
-                periodo: periodoId.replace('Habitos', '').toLowerCase(),
-                concluido: li.classList.contains('concluido') // Verifica se está marcado
-            });
-        });
-    });
-
-    // Atualiza o objeto `data` e salva no localStorage
-    data.habitos = habitos;
-    localStorage.setItem('habitosData', JSON.stringify(data));
-}
-
-// Adicione estilos para itens marcados
-const style = document.createElement('style');
-style.textContent = `
-    .concluido {
-        text-decoration: line-through;
-        color: gray;
-    }
-`;
-document.head.appendChild(style);
-
-// Chamar a função para carregar os dados ao carregar a página
-window.onload = () => {
-    loadSavedData();
-};
-
-function ganharXp(xp) {
-    const xpGainElement = document.getElementById("xp-gain");
-    xpGainElement.textContent = `+${xp} XP`;
-    xpGainElement.style.display = "block";
-
-    // Esconde a mensagem após 1.5 segundos
-    setTimeout(() => {
-        xpGainElement.style.display = "none";
-    }, 1500);
-
-    // Atualiza o progresso e a interface (já implementado no script externo)
-    // Aqui você deve chamar `ganharXp` para processar o XP normalmente
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Função para obter o dia da semana
-    const diasSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-    const hoje = new Date();
-    const diaDaSemana = hoje.getDay(); // Retorna um número de 0 (Domingo) a 6 (Sábado)
-    
-    // Definir os hábitos para os dias específicos
-    const habitos = {
-        Segunda: { 
-            Manha: ['Limpar Ouvido'], 
-            Tarde: ['Se depile']
-        },
-        Quinta: { 
-            Manha: ['Aparar barba', 'Limpar Ouvido'], 
-            Tarde: ['Igreja']
-        },
-        Sexta: { 
-            Tarde: ['Limpar Escritório'] 
-        },
-    };
-
-    // Adicionar hábitos de acordo com o dia da semana
-    function adicionarHabitos(dia) {
-        const listaManha = document.getElementById("manhaHabitos");
-        const listaTarde = document.getElementById("tardeHabitos");
-        const listaNoite = document.getElementById("noiteHabitos");
-
-        if (habitos[dia]) {
-            // Adicionar hábitos para a manhã
-            if (habitos[dia].Manha) {
-                habitos[dia].Manha.forEach(habito => {
-                    const li = document.createElement('li');
-                    li.textContent = habito;
-                    listaManha.appendChild(li);
-                });
-            }
-
-            // Adicionar hábitos para a tarde
-            if (habitos[dia].Tarde) {
-                habitos[dia].Tarde.forEach(habito => {
-                    const li = document.createElement('li');
-                    li.textContent = habito;
-                    listaTarde.appendChild(li);
-                });
-            }
-
-            // Adicionar hábitos para a noite (se necessário no futuro)
-            if (habitos[dia].Noite) {
-                habitos[dia].Noite.forEach(habito => {
-                    const li = document.createElement('li');
-                    li.textContent = habito;
-                    listaNoite.appendChild(li);
-                });
-            }
-        }
-    }
-
-    // Verifica o dia e chama a função para adicionar os hábitos
-    adicionarHabitos(diasSemana[diaDaSemana]);
-});

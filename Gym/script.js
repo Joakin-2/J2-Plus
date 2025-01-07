@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadNotes();
 
     // Restaurar os dias marcados ao carregar a página
-    restoreMarkedDays();
+    restoremarkedDays2();
 });
 
 function toggleDay(event) {
@@ -25,28 +25,28 @@ function toggleDay(event) {
 
 function saveMarkedDay(dayNumber) {
     // Obtenha os dias marcados armazenados ou inicialize um array vazio
-    let markedDays = JSON.parse(localStorage.getItem("markedDays")) || [];
+    let markedDays2 = JSON.parse(localStorage.getItem("markedDays2")) || [];
 
     // Verifique se o dia já está marcado
-    const index = markedDays.indexOf(dayNumber);
+    const index = markedDays2.indexOf(dayNumber);
     if (index === -1) {
         // Se não estiver marcado, adicione à lista
-        markedDays.push(dayNumber);
+        markedDays2.push(dayNumber);
     } else {
         // Se estiver marcado, remova da lista
-        markedDays.splice(index, 1);
+        markedDays2.splice(index, 1);
     }
 
     // Salve a lista de dias marcados de volta no localStorage
-    localStorage.setItem("markedDays", JSON.stringify(markedDays));
+    localStorage.setItem("markedDays2", JSON.stringify(markedDays2));
 }
 
-function restoreMarkedDays() {
+function restoremarkedDays2() {
     // Obtenha os dias marcados armazenados
-    const markedDays = JSON.parse(localStorage.getItem("markedDays")) || [];
+    const markedDays2 = JSON.parse(localStorage.getItem("markedDays2")) || [];
 
     // Para cada dia marcado, adicione a classe "selected"
-    markedDays.forEach((dayNumber) => {
+    markedDays2.forEach((dayNumber) => {
         const day = document.querySelector(`[data-day="${dayNumber}"]`);
         if (day) {
             day.classList.add("selected");

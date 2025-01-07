@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Criar o calendário
     createCalendar();
 
-    // Remover a tela de loading após 5 segundos (5000 milissegundos)
+    // Remover a tela de loading após 1 segundo (1000 milissegundos)
     setTimeout(function () {
         document.getElementById("loader-container").style.display = "none";
     }, 1000);
 
-    // Carregue as anotações salvas, se houver
+    // Carregar as anotações salvas, se houver
     loadNotes();
 
     // Restaurar os dias marcados ao carregar a página
@@ -54,8 +54,6 @@ function restoreMarkedDays() {
         }
     });
 }
-
-
 
 function loadNotes() {
     // Verifique se há anotações salvas no localStorage
@@ -105,13 +103,9 @@ function createCalendar() {
         day.addEventListener("click", toggleDay);
         calendarContainer.appendChild(day);
     }
-}
 
-
-function toggleDay(event) {
-    // Adicione lógica para marcar/desmarcar os dias no calendário
-    const selectedDay = event.target;
-    selectedDay.classList.toggle("selected");
+    // Restaura os dias marcados ao criar o calendário
+    restoreMarkedDays();
 }
 
 function showLessons(instrument) {
