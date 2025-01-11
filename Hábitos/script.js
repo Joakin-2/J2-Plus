@@ -249,6 +249,10 @@ let data = {}; // Define globally
 
 function carregarHabitosDoDia() {
     const habitosPorDia = {
+        domingo: {
+            manha: ['Escola Dominical'],
+            tarde: ['Culto as 18h']
+        },
         segunda: {
             manha: ['Alisar Pé', 'Limpar Ouvido'],
             tarde: ['Se Depile']
@@ -259,6 +263,10 @@ function carregarHabitosDoDia() {
         },
         sexta: {
             tarde: ['Limpar Escritório']
+        },
+        sábado: {
+            manha: ['Correr', 'Ensaiar 2h'],
+            tarde: ['Conselho']
         }
     };
 
@@ -344,6 +352,7 @@ document.getElementById('desmarcarHabitosBtn').addEventListener('click', () => {
 
     // Atualiza o estado no localStorage
     saveHabitsState();
+    saveHabitsState2();
 
     console.log('Todos os hábitos foram desmarcados e salvos.');
 });
@@ -367,6 +376,21 @@ function saveHabitsState() {
     data.habitos = habitos;
     localStorage.setItem('habitosData', JSON.stringify(data));
 }
+
+function saveHabitsState2() {
+    data.habitos = [];
+    ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
+        const periodo = document.getElementById(periodoId);
+        const habitos = [...periodo.children].map(li => ({
+            nome: li.textContent,
+            concluido: li.classList.contains('concluido'),
+            periodo: periodoId.replace('Habitos', '') // Remove 'Habitos' para obter o período
+        }));
+        data.habitos.push(...habitos);
+    });
+    localStorage.setItem('habitosData', JSON.stringify(data));
+}
+
 
 // Adicione estilos para itens marcados
 const style = document.createElement('style');
