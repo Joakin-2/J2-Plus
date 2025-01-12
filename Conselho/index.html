@@ -116,6 +116,42 @@
             background-color: #444; /* Cor do fundo da barra de rolagem */
             border-radius: 10px;
         }
+
+        .comemoracao {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+    animation: aparecer 0.5s ease, desaparecer 0.5s ease 2.5s;
+  }
+  
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
+  @keyframes desaparecer {
+    from {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+  }  
     </style>
 </head>
 <body>
@@ -134,8 +170,14 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/html2pdf.js@0.10.0/dist/html2pdf.bundle.js"></script>
+    <script src="/script/nivel.js"></script>
 
     <script>
+        // Função chamada quando o usuário responde corretamente
+        function respostaCerta() {
+          ganharXp(5); // Adiciona 5 XP para cada resposta correta
+        }
+        
         function obterDataAtual() {
             const data = new Date();
             const dia = data.getDate().toString().padStart(2, '0');
