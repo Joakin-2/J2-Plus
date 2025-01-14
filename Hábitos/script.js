@@ -254,18 +254,18 @@ function carregarHabitosDoDia() {
             tarde: ['Culto as 18h']
         },
         segunda: {
-            manha: ['Alisar Pé', 'Limpar Ouvido'],
+            manha: ['Alise seu Pé', 'Limpar Ouvido'],
             tarde: ['Se Depile']
         },
         quinta: {
-            manha: ['Alisar Pé', 'Aparar Barba', 'Limpar Ouvido'],
-            tarde: ['Igreja']
+            manha: ['Alise seu Pé', 'Aparar Barba', 'Limpar Ouvido'],
+            tarde: ['Ir para Igreja']
         },
         sexta: {
             tarde: ['Limpar Escritório']
         },
         sábado: {
-            manha: ['Correr', 'Ensaiar 2h'],
+            manha: ['Correr (1 hora)', 'Ensaiar (2 hora)'],
             tarde: ['Conselho']
         }
     };
