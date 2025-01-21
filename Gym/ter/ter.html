@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2B2B2B;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #initial-screen, #workout-screen, #completion-screen {
+            display: none;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #initial-screen {
+            display: flex; /* Exibe a tela inicial por padrão */
+        }
+
+        #initial-screen h1 {
+            margin-bottom: 20px;
+        }
+
+        #exercise-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #exercise-list li {
+            background-color: rgb(36, 36, 36);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 5px;
+            font-size: 18px;
+        }
+
+        #startButton {
+            font-size: 1.5em;
+            background-color: #FFB800;
+            color: rgb(0, 0, 0);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #timer {
+            font-size: 2em;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none; /* Oculta o temporizador por padrão */
+        }
+
+        #workout-screen {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #imagem-container {
+            margin: 20px 0;
+            width: auto;
+            height: 400px;
+            justify-content: center;
+        }
+
+        #controls, #pause-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .control-button {
+            font-size: 1.5em;
+            width: 180px; /* Tamanho fixo para todos os botões */
+            background-color: #FFB800;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            align-items: center;
+            gap: 10px;
+            box-sizing: border-box;
+        }
+
+        .control-button:hover {
+            opacity: 0.8;
+        }
+
+        .control-button i {
+            margin-right: 5px;
+        }
+
+        #reset-button {
+            width: 60px; /* Tamanho fixo quadrado para o botão de voltar */
+            height: 60px;
+            border-radius: 10px; /* Adiciona um pequeno arredondamento */
+        }
+
+        #completion-screen h1 {
+            font-size: 2em;
+            margin: 20px;
+        }
+
+        #exercise-info {
+            font-size: 1.2em;
+            margin: 20px;
+            color: #FFB800;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Tela Inicial -->
+    <div id="initial-screen">
+        <h1>Treino de Costas e Bíceps</h1>
+        <ul id="exercise-list">
+            <li>Desenvolvimento Atrás</li>
+            <li>Levantamento Terra</li>
+            <li>Lombar</li>
+            <li>Pulley</li>
+
+            <li>Bíceps Polia</li>
+            <!-- <li>Rosca Polia</li> -->
+            <li>Rosca Direta</li>
+            <li>Rosca Inversa</li>
+            <li>Antibraços</li>
+            <li>Extras</li>
+        </ul>
+        <button id="startButton" onclick="startWorkout()">Começar</button>
+    </div>
+
+    <!-- Tela de Treino -->
+    <div id="workout-screen">
+        <div id="imagem-container">
+            <img id="exercicio-imagem" src="" alt="GIF de Exercício" style="width: 360px;">
+        </div>
+        <div id="exercise-info">3 séries de 15 repetições</div>
+        <div id="timer">00:00:00</div>
+        <div id="controls">
+            <button id="reset-button" class="control-button" onclick="resetWorkout()">
+                <i class="fas fa-redo"></i>
+            </button>
+            <button class="control-button" onclick="previousExercise()">
+                <i class="fas fa-arrow-left"></i> Anterior
+            </button>
+            <button class="control-button" id="pause-button" onclick="togglePause()">
+                <i class="fas fa-pause" id="pause-icon"></i> Pausar
+            </button>
+            <button class="control-button" onclick="nextExercise()">
+                <i class="fas fa-arrow-right"></i> Próximo
+            </button>
+        </div>
+    </div>
+
+    <!-- Tela de Conclusão -->
+    <div id="completion-screen">
+        <h1>Parabéns! Treino Finalizado</h1>
+        <div id="calories-burned" style="margin: 20px;"></div>
+        <button class="control-button" onclick="resetWorkout()">Voltar ao Início</button>
+    </div>
+
+    <script>
+        const exercises = ['Desenvolvimento Atrás', 'Levantamento Terra', 'Lombar', 'Pulley', 'Bíceps Polia', 'Rosca Direta/ Inversa', 'Antibraços', 'Extras'];
+let currentIndex = 0;
+let timeInSeconds = 0;
+let timerId;
+let isTimerRunning = false;
+let isPaused = false; // Variável para controlar o estado de pausa
+
+let caloriesPerMinute = {
+    'Desenvolvimento Atrás': 6,
+    'Levantamento Terra': 8,
+    'Lombar': 6,
+    'Pulley': 7,
+    'Bíceps Polia': 5,           // Exemplo de calorias por minuto
+    //'Rosca Polia': 5,            // Exemplo de calorias por minuto
+    'Rosca Direta/ Inversa': 5,  // Exemplo de calorias por minuto
+    'Antibraços': 4,             // Exemplo de calorias por minuto
+    'Extras': 6       
+};
+
+function updateTimer() {
+    if (isTimerRunning && !isPaused) {
+        timeInSeconds++;
+        const hours = Math.floor(timeInSeconds / 3600);
+        const minutes = Math.floor((timeInSeconds % 3600) / 60);
+        const seconds = timeInSeconds % 60;
+
+        const formattedHours = hours.toString().padStart(2, '0');
+        const formattedMinutes = minutes.toString().padStart(2, '0');
+        const formattedSeconds = seconds.toString().padStart(2, '0');
+
+        document.getElementById("timer").textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    }
+}
+
+function startWorkout() {
+    // Certifique-se de que todos os IDs existem antes de tentar acessar seus estilos
+    const initialScreen = document.getElementById("initial-screen");
+    const workoutScreen = document.getElementById("workout-screen");
+    const completionScreen = document.getElementById("completion-screen");
+    const timer = document.getElementById("timer");
+    const imagemContainer = document.getElementById("imagem-container");
+    const controls = document.getElementById("controls");
+    const startButton = document.getElementById("startButton");
+
+    // Verifique se os elementos existem antes de tentar manipular seus estilos
+    if (initialScreen) initialScreen.style.display = "none";
+    if (workoutScreen) workoutScreen.style.display = "flex";
+    if (completionScreen) completionScreen.style.display = "none";
+    if (timer) timer.style.display = "block";
+    // pause-controls removido, pois não existe no HTML
+    if (imagemContainer) imagemContainer.style.display = "flex";
+    if (controls) controls.style.display = "flex";
+    if (startButton) startButton.style.display = "none";
+
+    if (!isTimerRunning) {
+        timerId = setInterval(updateTimer, 1000);
+        isTimerRunning = true;
+    }
+
+    showCurrentExercise();
+}
+
+function showCurrentExercise() {
+    const imagemContainer = document.getElementById('imagem-container');
+    const exercicioImagem = document.getElementById('exercicio-imagem');
+
+    const imagemMap = {
+        'Desenvolvimento Atrás': 'Desenvolvimento Atrás.gif',
+        'Levantamento Terra': 'Levantamento Terra.gif',
+        'Lombar': 'lombar.jpg',
+        'Pulley': 'Pulley.gif',
+        'Bíceps Polia': ['biceps na polia.png'],
+        'Rosca Polia': ['braços.jpg'],
+        'Rosca Direta/ Inversa': ['biceps.jpg'],
+        'Antibraços': ['antibraço.jpg'],
+        'Extras': ['braco.jpg'],
+    };
+
+    exercicioImagem.src = imagemMap[exercises[currentIndex]];
+}
+
+function nextExercise() {
+    if (currentIndex < exercises.length - 1) {
+        currentIndex++;
+        showCurrentExercise();
+    } else {
+        showCompletionScreen(); // Certifique-se de que esta função está definida
+    }
+}
+
+function previousExercise() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        showCurrentExercise();
+    }
+}
+
+function togglePause() {
+    if (isPaused) {
+        resumeTimer();
+    } else {
+        pauseTimer();
+    }
+}
+
+function pauseTimer() {
+    clearInterval(timerId);
+    isTimerRunning = false;
+    isPaused = true;
+    document.getElementById("pause-button").innerHTML = '<i class="fas fa-play"></i> Retomar';
+}
+
+function resumeTimer() {
+    if (!isTimerRunning) {
+        timerId = setInterval(updateTimer, 1000);
+        isTimerRunning = true;
+        isPaused = false;
+        document.getElementById("pause-button").innerHTML = '<i class="fas fa-pause"></i> Pausar';
+    }
+}
+
+function resetWorkout() {
+    clearInterval(timerId);
+    isTimerRunning = false;
+    isPaused = false;
+    timeInSeconds = 0;
+
+    // Verifique se os elementos existem antes de tentar acessar suas propriedades
+    const timer = document.getElementById("timer");
+    const controls = document.getElementById("controls");
+    const workoutScreen = document.getElementById("workout-screen");
+    const completionScreen = document.getElementById("completion-screen");
+    const initialScreen = document.getElementById("initial-screen");
+    const startButton = document.getElementById("startButton");
+    const imagemContainer = document.getElementById("imagem-container");
+    const exercicioImagem = document.getElementById("exercicio-imagem");
+
+    if (timer) timer.style.display = "none";
+    if (controls) controls.style.display = "none";
+    if (workoutScreen) workoutScreen.style.display = "none";
+    if (completionScreen) completionScreen.style.display = "none";
+    if (initialScreen) initialScreen.style.display = "flex";
+    if (startButton) startButton.style.display = "inline-block";
+    if (imagemContainer) imagemContainer.style.display = "none";
+    if (exercicioImagem) exercicioImagem.src = '';
+}
+
+function showCompletionScreen() {
+        // Calcular calorias queimadas
+        const totalMinutes = Math.floor(timeInSeconds / 60);
+        const currentExercise = exercises[currentIndex];
+        const caloriesBurned = totalMinutes * caloriesPerMinute[currentExercise];
+
+        // Exibir na tela de conclusão
+        const caloriesElement = document.getElementById('calories-burned');
+        caloriesElement.textContent = `Você queimou aproximadamente ${caloriesBurned} calorias durante o treino!`;
+
+        const initialScreen = document.getElementById("initial-screen");
+        const workoutScreen = document.getElementById("workout-screen");
+        const completionScreen = document.getElementById("completion-screen");
+
+        if (workoutScreen) workoutScreen.style.display = "none";
+        if (completionScreen) completionScreen.style.display = "flex";
+        if (initialScreen) initialScreen.style.display = "none";
+    }
+
+    </script>
+
+</body>
+
+</html>
