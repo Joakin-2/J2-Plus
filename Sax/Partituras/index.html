@@ -75,6 +75,21 @@
             gap: 8px;
         }
 
+        .filter-button {
+            background-color: #171717;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         /* Estilos do modal */
         .modal {
             display: none;
@@ -136,7 +151,17 @@
         <i class="fab fa-pinterest"></i> Ver no Pinterest
     </a>
     <a href="#" class="pinterest-button" target="_blank" style="font-size: 18px;" onclick="openMultipleSites(); return false;"> + </a>
+    <!-- Botões para alternar entre PDF, Imagens e Tudo -->
+    <div class="filter-buttons">
+        <button class="filter-button" onclick="showAll()">All</button>
+        <button class="filter-button" onclick="showPDFs()">PDFs</button>
+        <button class="filter-button" onclick="showImages()">Imagens</button>
+    </div>
     <div class="gallery">
+        <div class="pdf-icon" onclick="openPDFModal('Além do Rio Azul.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Além do Rio Azul</span>
+        </div>
         <div class="pdf-icon" onclick="openPDFModal('Com Muito Louvor.pdf')">
             <i class="fas fa-file-pdf"></i>
             <span style="margin-left: 8px;">Com Muito Louvor</span>
@@ -145,39 +170,71 @@
             <i class="fas fa-file-pdf"></i>
             <span style="margin-left: 8px;">Uma Vez Outra Vez</span>
         </div>
+        <div class="pdf-icon" onclick="openPDFModal('O GRANDE EU SOU.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">O GRANDE EU SOU</span>
+        </div>
+        <div class="pdf-icon" onclick="openPDFModal('Hino Nacional.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Hino Nacional</span>
+        </div>
+        <div class="pdf-icon" onclick="openPDFModal('ESTOU CONTIGO.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">ESTOU CONTIGO</span>
+        </div>
         <div class="pdf-icon" onclick="openPDFModal('Casa do Pai.pdf')">
             <i class="fas fa-file-pdf"></i>
             <span style="margin-left: 8px;">Casa do Pai</span>
+        </div>
+        <div class="pdf-icon" onclick="openPDFModal('Shout Lord.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Shout Lord</span>
+        </div>
+        <div class="pdf-icon" onclick="openPDFModal('O Exilado.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">O Exilado</span>
+        </div>
+        <div class="pdf-icon" onclick="openPDFModal('How Great.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">How Great</span>
+        </div>
+        <div class="pdf-icon" onclick="openPDFModal('Presença.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Presença</span>
         </div>
         <div class="pdf-icon" onclick="openPDFModal('Mil Graus.pdf')">
             <i class="fas fa-file-pdf"></i>
             <span style="margin-left: 8px;">Mil Graus</span>
         </div>
+        <div class="pdf-icon" onclick="openPDFModal('Draw 06.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Draw 06</span>
+        </div>
         <div class="pdf-icon" onclick="openPDFModal('311.pdf')">
             <i class="fas fa-file-pdf"></i>
             <span style="margin-left: 8px;">Hino 311</span>
         </div>
-        <img src="Noite Feliz.jpg" alt="Imagem Noite Feliz" onclick="openModal(0)">
-        <img src="125.jpg" alt="Imagem 125" onclick="openModal(1)">
-        <img src="093.jpg" alt="Imagem 093" onclick="openModal(2)">
-        <img src="107.jpg" alt="Imagem 107" onclick="openModal(3)">
-        <img src="109.jpg" alt="Imagem 109" onclick="openModal(4)">
-        <img src="370.jpg" alt="Imagem 370" onclick="openModal(5)">
-        <img src="459.jpg" alt="Imagem 459" onclick="openModal(6)">
-        <img src="63.jpg" alt="Imagem 63" onclick="openModal(7)">
-        <img src="89.jpg" alt="Imagem 89" onclick="openModal(8)">
-        <img src="14.jpeg" alt="Imagem 14" onclick="openModal(9)">
-        <img src="Altar.png" alt="Altar" onclick="openModal(10)">
-        <img src="grato-a-ti.jpg" alt="Grato a ti" onclick="openModal(11)">
-        <img src="96.jpeg" alt="Imagem 096" onclick="openModal(12)">
-        <img src="559.jpeg" alt="Imagem 093" onclick="openModal(13)">
-        <img src="491.jpeg" alt="Imagem 491" onclick="openModal(14)">
-        <img src="3.jpeg" alt="Imagem 3" onclick="openModal(15)">
-        <img src="9.jpg" alt="Imagem 9" onclick="openModal(16)">
-        <img src="Eterna Gratidão.jpg" alt="Eterna Gratidão" onclick="openModal(17)">
-        <img src="Subline e Grande Amor.jpeg" alt="Subline e Grande Amor" onclick="openModal(18)">
-        <img src="Te agradeço.jpg" alt="Te agradeço" onclick="openModal(19)">
-        <img src="Yoshi_s Island.png" alt="Yoshi's Island" onclick="openModal(20)">
+        <img class="image" src="Noite Feliz.jpg" alt="Imagem Noite Feliz" onclick="openModal(0)">
+        <img class="image" src="125.jpg" alt="Imagem 125" onclick="openModal(1)">
+        <img class="image" src="093.jpg" alt="Imagem 093" onclick="openModal(2)">
+        <img class="image" src="107.jpg" alt="Imagem 107" onclick="openModal(3)">
+        <img class="image" src="109.jpg" alt="Imagem 109" onclick="openModal(4)">
+        <img class="image" src="370.jpg" alt="Imagem 370" onclick="openModal(5)">
+        <img class="image" src="459.jpg" alt="Imagem 459" onclick="openModal(6)">
+        <img class="image" src="63.jpg" alt="Imagem 63" onclick="openModal(7)">
+        <img class="image" src="89.jpg" alt="Imagem 89" onclick="openModal(8)">
+        <img class="image" src="14.jpeg" alt="Imagem 14" onclick="openModal(9)">
+        <img class="image" src="Altar.png" alt="Altar" onclick="openModal(10)">
+        <img class="image" src="grato-a-ti.jpg" alt="Grato a ti" onclick="openModal(11)">
+        <img class="image" src="96.jpeg" alt="Imagem 096" onclick="openModal(12)">
+        <img class="image" src="559.jpeg" alt="Imagem 093" onclick="openModal(13)">
+        <img class="image" src="491.jpeg" alt="Imagem 491" onclick="openModal(14)">
+        <img class="image" src="3.jpeg" alt="Imagem 3" onclick="openModal(15)">
+        <img class="image" src="9.jpg" alt="Imagem 9" onclick="openModal(16)">
+        <img class="image" src="Eterna Gratidão.jpg" alt="Eterna Gratidão" onclick="openModal(17)">
+        <img class="image" src="Subline e Grande Amor.jpeg" alt="Subline e Grande Amor" onclick="openModal(18)">
+        <img class="image" src="Te agradeço.jpg" alt="Te agradeço" onclick="openModal(19)">
+        <img class="image" src="Yoshi_s Island.png" alt="Yoshi's Island" onclick="openModal(20)">
     </div>
     
     <!-- Modal for PDF -->
@@ -196,6 +253,21 @@
     <script>
         const images = ["Noite Feliz.jpg", "125.jpg", "093.jpg", "107.jpg", "109.jpg", "370.jpg", "459.jpg", "63.jpg", "89.jpg", "14.jpeg", "Altar.png", "grato-a-ti.jpg", "96.jpeg", "559.jpeg", "491.jpeg", "3.jpeg", "9.jpg", "Eterna Gratidão.jpg", "Subline e Grande Amor.jpeg", "Te agradeço.jpg", "Yoshi_s Island.png"];
         let currentImageIndex = 0;
+
+        function showPDFs() {
+            document.querySelectorAll('.pdf-icon').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.image').forEach(el => el.style.display = 'none');
+        }
+
+        function showImages() {
+            document.querySelectorAll('.pdf-icon').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.image').forEach(el => el.style.display = 'block');
+        }
+
+        function showAll() {
+            document.querySelectorAll('.pdf-icon').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.image').forEach(el => el.style.display = 'block');
+        }
 
         function openModal(index) {
             currentImageIndex = index;
