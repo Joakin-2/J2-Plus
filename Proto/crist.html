@@ -54,7 +54,7 @@
         }
 
         .image-container2 img {
-            max-width: 500px; /* Garante que a imagem não ultrapasse o container */
+            max-width: 418px; /* Garante que a imagem não ultrapasse o container */
             height: auto; /* Altura automática para manter proporção */
         }
 
@@ -135,7 +135,7 @@
             <!-- Row for images -->
             <div class="row">
                 <div class="image-container">
-                    <img src="Tabela.jpg" alt="Tabela de Estudos">
+                    <img id="image" src="Tabela.jpg" alt="Tabela de Estudos">
                 </div>
             </div>
             <div class="notes-container">
@@ -167,13 +167,19 @@
         <div class="column">
             <div class="row">
                 <div class="image-container2">
-                    <img src="Cultos.png" alt="Cultos na Igreja">
+                    <img id="image2" src="Cultos.png" alt="Cultos na Igreja">
                 </div>
+                <button class="botao" id="changeImageButton" onclick="changeImage()">Trocar Imagem</button>
             </div>
         </div>
     </div>
 
     <script>
+        function changeImage() {
+        const image = document.getElementById("image2");
+        image.src = "Cultos2.jpg"; // Troca para a nova imagem
+        image.alt = "Cultos.png";
+    }
         // Função para salvar notas no armazenamento local
         function saveNotas() {
             var notas = document.getElementById('notas').value;
