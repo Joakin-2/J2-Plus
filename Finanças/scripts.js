@@ -3,11 +3,20 @@
         var total = 0;
         var table = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
         for (var i = 0; i < table.rows.length; i++) {
-            var amount = parseFloat(table.rows[i].cells[2].textContent.replace("R$ ", "").replace(".", "").replace(",", ".")); // Convertendo o formato brasileiro para número
-            total += amount;
+            var amountText = table.rows[i].cells[2].textContent;
+            console.log("Valor bruto:", amountText); // Verifica o texto bruto da célula
+            var amount = parseFloat(amountText.replace("R$ ", "").replace(".", "").replace(",", "."));
+            console.log("Valor convertido:", amount); // Verifica o valor convertido
+            if (!isNaN(amount)) {
+                total += amount;
+            } else {
+                console.warn("Valor inválido na linha:", i + 1);
+            }
         }
-        document.getElementById("total-amount").textContent = "Total: R$ " + total.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2}); // Formata o total como moeda brasileira
+        document.getElementById("total-amount").textContent = "Total: R$ " + total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        console.log("Total atualizado:", total);
     }
+    
 
     // Definição da função addExpense
     function addExpense(name, type, amount) {

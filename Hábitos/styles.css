@@ -78,6 +78,7 @@ h3 {
 
 .caixa-anotacao {
     width: 840px;
+    border-radius: 8px;
     background-color: #2b2b2b;
     color: white;
     border: 1px solid #ddd;
@@ -90,6 +91,7 @@ h3 {
 
 .caixa-anotacao2 {
     width: 389px;
+    border-radius: 8px;
     background-color: #2b2b2b;
     color: white;
     border: 1px solid #ddd;
@@ -131,6 +133,7 @@ textarea {
     color: white;
     resize: none;
     padding: 10px;
+    border-radius: 8px;
     font-family: 'Montserrat', sans-serif;
     margin-top: 10px;
 }
@@ -145,7 +148,7 @@ button {
     width: 300px;
     height: 70px;
     font-size: 20px;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 button:hover {

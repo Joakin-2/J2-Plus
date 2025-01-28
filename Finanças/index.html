@@ -6,6 +6,7 @@
     <title>Finanças</title>
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- jsPDF library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
 <!-- jsPDF-AutoTable plugin -->
@@ -57,7 +58,10 @@
         </table>
 
         <!-- Total das despesas -->
-        <h3 id="total">Total: R$ 0.00</h3>
+        <div class="controls" style="display: flex; align-items: center; justify-content: center;">
+            <h3 id="total">Total: R$ 0.00</h3>
+        <button id="recalculate-total" class="fas fa-redo" style="width: auto; margin-left: 20px; padding: 6px;"></button>
+        </div>
 
         <!-- Botões para salvar e baixar PDF -->
         <button id="save-expenses" class="hidden">Salvar</button>
@@ -192,6 +196,7 @@
                 }
             };
             reader.readAsText(file);
+            updateTotal()
         }
     
         document.getElementById("import-json-file").addEventListener("click", function () {
@@ -219,7 +224,7 @@
         var cells = table.rows[i].cells;
         var amount = cells[2].textContent;
 
-        // Remove o "R$", formata o valor e converte para número
+        // Remove "R$", formata o valor e converte para número
         amount = amount.replace("R$", "").trim();
         amount = amount.replace(".", "").replace(",", ".");
         amount = parseFloat(amount);
@@ -232,6 +237,11 @@
     // Atualiza o total na interface
     document.getElementById("total").textContent = `Total: R$ ${total.toFixed(2).replace(".", ",")}`;
 }
+
+    document.getElementById("recalculate-total").addEventListener("click", function() {
+    updateTotal();
+    console.warn("Total recalculado!");
+});
 
         // Carrega os dados ao iniciar
         window.onload = loadFromLocalStorage;
