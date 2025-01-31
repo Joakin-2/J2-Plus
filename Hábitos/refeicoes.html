@@ -96,7 +96,7 @@ fieldset button:hover {
 #botoesControle button {
     width: 48%; /* Ajuste a largura conforme necessário */
 }
-#calculatorModal {
+#calculatorModal, #notesModal {
     display: none;
     position: fixed;
     top: 50%;
@@ -358,7 +358,7 @@ li {
                 <label for="dicas">Recomendado comer a cada 3 horas</label>
                 <div style="margin-bottom: 30px;"></div>
                 <div id="botoesControle">
-                    <button id="bottomButton" onclick="window.open('receitas.html', '_blank')">Receitas</button>
+                    <button onclick="window.open('receitas.html', '_blank')">Receitas</button>
                     <button id="openCalculatorButton">Calculadora</button>
                 </div>  
             </fieldset>
@@ -383,13 +383,24 @@ li {
 
     <div id="modalOverlay"></div>
     <div id="calculatorModal">
-        <h2>Calculadora de Calorias</h2>
+        <div style="display: inline-flex; align-items: center; margin-bottom: 10px;">
+            <h2 style="display: inline-block; margin-right: 10px;">Calculadora de Calorias</h2>
+            <button type="button" class="sugestao-btn" onclick="openNotesModal()">?</button>
+        </div>
         <br>
         <label for="gramsInput">Quantos gramas de comida você comeu?</label>
         <input type="number" id="gramsInput" placeholder="Digite os gramas" />
         <button id="calculateButton">Calcular Calorias</button>
         <p id="result"></p>
         <button id="closeButton">Fechar</button>
+    </div>
+
+    <!-- Modal de anotações -->
+    <div id="notesModal">
+        <h2>Anotações</h2>
+        <textarea id="notesTextAreaComer" placeholder="Escreva suas anotações aqui..." style="height: 120px; border: 1px solid #ccc; background-color: #2b2b2b; color: white;"></textarea>
+        <p>A quantidade de calorias varia conforme o tipo de alimento. Para um cálculo mais preciso, consulte uma tabela nutricional.</p>
+        <button onclick="closeNotesModal()">Fechar</button>
     </div>
 
     <div id="resetModal">
@@ -448,24 +459,42 @@ li {
             resetModal.style.display = 'none';
         });
 
+        // Função para salvar automaticamente no localStorage
+        function saveNotes() {
+            const notes = document.getElementById("notesTextAreaComer").value;
+            localStorage.setItem("userNotes", notes);
+        }
+
+        // Carregar as anotações salvas ao abrir a página
+        window.onload = function () {
+            const savedNotes = localStorage.getItem("userNotes");
+            if (savedNotes) {
+                document.getElementById("notesTextAreaComer").value = savedNotes;
+            }
+        };
+
+        // Monitorar mudanças na caixa de texto e salvar automaticamente
+        document.getElementById("notesTextAreaComer").addEventListener("input", saveNotes);
+
+        function openNotesModal() {
+            document.getElementById("notesModal").style.display = "block";
+        }
+
+        function closeNotesModal() {
+            document.getElementById("notesModal").style.display = "none";
+        }
+
         function salvarContador() {
             // Salvar o valor atualizado do contador no localStorage
             localStorage.setItem('contadorLitros', contadorLitros.textContent);
         }
 
-        const bottomButton = document.getElementById("bottomButton");
         const calculatorModal = document.getElementById("calculatorModal");
         const modalOverlay = document.getElementById("modalOverlay");
         const calculateButton = document.getElementById("calculateButton");
         const closeButton = document.getElementById("closeButton");
         const gramsInput = document.getElementById("gramsInput");
         const result = document.getElementById("result");
-
-        // Exibe a calculadora quando o botão for clicado
-        bottomButton.addEventListener("click", () => {
-            calculatorModal.style.display = "block";
-            modalOverlay.style.display = "block";
-        });
 
         // Fecha a calculadora
         closeButton.addEventListener("click", () => {
