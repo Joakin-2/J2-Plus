@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadNotes();
 
     // Restaurar os dias marcados ao carregar a página
-    restoremarkedDays2();
+    restoreMarkedDays2();
 });
 
 function toggleDay(event) {
@@ -27,28 +27,29 @@ function toggleDay(event) {
 }
 
 function saveMarkedDay(dayNumber) {
-    // Obtenha os dias marcados armazenados ou inicialize um array vazio
-    let markedDays2 = JSON.parse(localStorage.getItem("markedDays2")) || [];
+    const currentMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
+    const key = `markedDays2-${currentMonth}-${currentYear}`;
 
-    // Verifique se o dia já está marcado
+    let markedDays2 = JSON.parse(localStorage.getItem(key)) || [];
     const index = markedDays2.indexOf(dayNumber);
+
     if (index === -1) {
-        // Se não estiver marcado, adicione à lista
         markedDays2.push(dayNumber);
     } else {
-        // Se estiver marcado, remova da lista
         markedDays2.splice(index, 1);
     }
 
-    // Salve a lista de dias marcados de volta no localStorage
-    localStorage.setItem("markedDays2", JSON.stringify(markedDays2));
+    localStorage.setItem(key, JSON.stringify(markedDays2));
 }
 
-function restoremarkedDays2() {
-    // Obtenha os dias marcados armazenados
-    const markedDays2 = JSON.parse(localStorage.getItem("markedDays2")) || [];
+function restoreMarkedDays2() {
+    const currentMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
+    const key = `markedDays2-${currentMonth}-${currentYear}`;
 
-    // Para cada dia marcado, adicione a classe "selected"
+    const markedDays2 = JSON.parse(localStorage.getItem(key)) || [];
+
     markedDays2.forEach((dayNumber) => {
         const day = document.querySelector(`[data-day="${dayNumber}"]`);
         if (day) {
@@ -168,10 +169,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function createCalendar() {
     const calendarContainer = document.getElementById("calendar");
+    calendarContainer.innerHTML = ""; // Limpa o calendário
 
     const daysOfWeek = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
 
-    // Adicionar dias da semana ao calendário
+    // Obter o primeiro dia do mês e o número de dias no mês
+    const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+    // Criar cabeçalho com os dias da semana
     for (let i = 0; i < daysOfWeek.length; i++) {
         const dayOfWeek = document.createElement("div");
         dayOfWeek.classList.add("day", "day-name");
@@ -179,16 +188,34 @@ function createCalendar() {
         calendarContainer.appendChild(dayOfWeek);
     }
 
-    // Obter o número real de dias no mês (você precisará ajustar isso)
-    const daysInMonth = 30; // Substitua pelo número real de dias no mês
+    // Adicionar espaços vazios para alinhar os dias corretamente
+    for (let i = 0; i < firstDayOfMonth; i++) {
+        const emptyDay = document.createElement("div");
+        emptyDay.classList.add("day", "empty");
+        calendarContainer.appendChild(emptyDay);
+    }
 
-    // Adicionar dias do mês ao calendário
+    // Adicionar os dias do mês
     for (let i = 1; i <= daysInMonth; i++) {
         const day = document.createElement("div");
         day.classList.add("day", "day-number");
         day.textContent = i;
-        day.dataset.day = i; // Adicione o número do dia como um atributo de dados
+        day.dataset.day = i;
         day.addEventListener("click", toggleDay);
         calendarContainer.appendChild(day);
     }
+
+    // Restaurar os dias marcados depois de criar o calendário
+    restoreMarkedDays2();
 }
+
+// Verifica quando o mês muda e reinicia o calendário automaticamente
+setInterval(function () {
+    const now = new Date();
+    const storedMonth = localStorage.getItem("lastMonth") || -1;
+
+    if (storedMonth != now.getMonth()) {
+        localStorage.setItem("lastMonth", now.getMonth());
+        createCalendar(); // Recria o calendário para o novo mês
+    }
+}, 60000); // Verifica a cada 60 segundos
