@@ -268,9 +268,9 @@ window.onclick = function(event) {
 
             // Verifica se a data de hoje é o aniversário de alguém
             birthdays.forEach(birthday => {
-                // Compara mês e dia
                 if (todayMonth === birthday.month && todayDay === birthday.day) {
                     message = `🎉 Parabéns, ${birthday.name}! 🎂`; // Cria uma mensagem personalizada
+                    falar(`Parabéns, ${birthday.name}! Espero que seu dia seja incrível!`); // Faz o navegador falar
                 }
             });
 
