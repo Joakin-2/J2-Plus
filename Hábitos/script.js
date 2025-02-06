@@ -259,14 +259,14 @@ function carregarHabitosDoDia() {
         },
         quinta: {
             manha: ['Alise seu Pé', 'Aparar Barba', 'Limpar Ouvido'],
-            tarde: ['Ir para Igreja']
+             // tarde: ['Ir para Igreja']
         },
         sexta: {
             tarde: ['Limpar Escritório']
         },
         sábado: {
             manha: ['Correr (1 hora)', 'Ensaiar (2 hora)'],
-            tarde: ['Conselho']
+            tarde: ['Conselho', 'Ir para Igreja']
         }
     };
 
