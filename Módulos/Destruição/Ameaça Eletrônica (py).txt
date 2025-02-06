@@ -1,0 +1,16 @@
+import random
+import time
+
+def verificar_ameaca_eletronica():
+    # Simula a detecção de falhas eletrônicas ou interferência
+    interferencia = random.choice([True, False])
+
+    if interferencia:
+        print("Atenção: Interferência eletrônica detectada! Potencial risco para a operação.")
+    else:
+        print("Sistema eletrônico funcionando corretamente.")
+
+# Testando o módulo
+while True:
+    verificar_ameaca_eletronica()
+    time.sleep(5)  # Verifica a cada 5 segundos

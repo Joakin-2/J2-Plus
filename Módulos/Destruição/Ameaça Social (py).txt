@@ -1,0 +1,17 @@
+def detectar_ameaca_social(discursos):
+    # Palavras-chave que podem indicar desestabilização social
+    palavras_chave = ["protesto", "revolução", "injustiça", "destruição"]
+    for discurso in discursos:
+        for palavra in palavras_chave:
+            if palavra in discurso.lower():
+                return "Atenção: Possível instabilidade social detectada."
+    return "Nenhuma ameaça social detectada."
+
+# Testando o módulo
+discursos = [
+    "Estamos enfrentando uma revolução!",
+    "A sociedade está se unindo em protesto.",
+    "Nada de mais acontecendo."
+]
+
+print(detectar_ameaca_social(discursos))

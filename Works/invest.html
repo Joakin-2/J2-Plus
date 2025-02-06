@@ -329,16 +329,14 @@
         function gerarCalendario() {
     const dataAtual = new Date();
     const anoAtual = dataAtual.getFullYear();
-    const mesAtual = dataAtual.getMonth(); // Pega o mês atual (0 = janeiro, 11 = dezembro)
+    const mesAtual = dataAtual.getMonth(); 
 
-    // Número de dias no mês atual
     const diasDoMes = new Date(anoAtual, mesAtual + 1, 0).getDate(); 
-    const calendario = document.getElementById('calendar');
+    const primeiroDiaSemana = new Date(anoAtual, mesAtual, 1).getDay(); // Obtém o dia da semana do primeiro dia do mês
     
-    // Limpa o calendário antes de gerar novamente
+    const calendario = document.getElementById('calendar');
     calendario.innerHTML = '';
 
-    // Gera os dias da semana (Dom, Seg, Ter, etc.)
     const diasSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
     diasSemana.forEach(dia => {
         const divDia = document.createElement('div');
@@ -346,6 +344,13 @@
         divDia.textContent = dia;
         calendario.appendChild(divDia);
     });
+
+    // Adiciona espaços vazios antes do primeiro dia do mês
+    for (let i = 0; i < primeiroDiaSemana; i++) {
+        const vazio = document.createElement('div');
+        vazio.classList.add('day', 'empty');
+        calendario.appendChild(vazio);
+    }
 
     // Gera os dias do mês
     for (let i = 1; i <= diasDoMes; i++) {
@@ -361,7 +366,7 @@
 
     // Marcar os dias com ganho ao carregar
     for (let data in ganhosPorData) {
-        const anoMes = new Date().toISOString().slice(0, 7); // Ano e mês no formato YYYY-MM
+        const anoMes = new Date().toISOString().slice(0, 7);
         if (data.startsWith(anoMes)) {
             marcarDiaComGanho(data);
         }
