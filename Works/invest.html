@@ -230,7 +230,7 @@
     <script>
         // Objetos para armazenar os dados de ganhos por dia
         let ganhosPorData = {};
-        let metaGanho = 80;
+        // let metaGanho = 80;
 
         function salvarPDF() {
     const { jsPDF } = window.jspdf; // Obtendo o objeto jsPDF
@@ -388,17 +388,17 @@
                 ganhosPorData = dados;
             }
 
-            const meta = parseFloat(localStorage.getItem("metaGanho"));
-            if (meta) {
-                metaGanho = meta;
-                document.getElementById('meta-ganho-valor').textContent = metaGanho.toFixed(2);
-            }
+            //const meta = parseFloat(localStorage.getItem("metaGanho"));
+            //if (meta) {
+            //    metaGanho = meta;
+            //    document.getElementById('meta-ganho-valor').textContent = metaGanho.toFixed(2);
+            //}
         }
 
         // Função para exportar dados
         function exportarDados() {
             const dados = {
-                metaGanho: metaGanho,
+                //metaGanho: metaGanho,
                 ganhosPorData: ganhosPorData
             };
             const blob = new Blob([JSON.stringify(dados)], { type: 'application/json' });
@@ -422,11 +422,11 @@ function importarDados() {
             const dados = JSON.parse(e.target.result);
             
             // Atualiza a meta de ganho e os ganhos por data a partir dos dados importados
-            metaGanho = dados.metaGanho;
+            //metaGanho = dados.metaGanho;
             ganhosPorData = dados.ganhosPorData;
 
             // Atualiza a interface com os novos dados
-            document.getElementById('meta-ganho-valor').textContent = metaGanho.toFixed(2);
+            //document.getElementById('meta-ganho-valor').textContent = metaGanho.toFixed(2);
             
             // Regenera o calendário para refletir os dados importados
             gerarCalendario();
