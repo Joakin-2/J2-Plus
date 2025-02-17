@@ -4,447 +4,141 @@
     <link rel="icon" href="icon.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório Diário</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Relatório</title>
     <style>
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            padding: 20px;
-            font-size: 1.2em;
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
         }
-        .header .date {
-            font-weight: bold;
-            margin-right: 600px;
-        }
-        .header .clock {
-            font-weight: bold;
-            margin-left: 300px;
-        }
+
         .container {
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             padding: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        h2 {
-            margin-bottom: 30px;
-            font-size: 1.8em;
-            margin-top: 8%;
-        }
-        table {
-            margin-bottom: 12%;
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
-    margin-top: 6%;
-}
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        th {
-            background-color: #333;
-            color: white;
-            font-weight: bold;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        td {
-            color: white;
-            background: #555;
-        }
-        .status-concluido {
-            color: #28a745;
-            font-weight: bold;
-        }
-        .status-nao-concluido {
-            color: #dc3545;
-            font-weight: bold;
-        }
-        input[type="checkbox"]:checked {
-            background-color: #673ab7;
-        }
-        .buttons {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .buttons button {
-            padding: 10px 10px;
-            font-size: 1em;
-            width: 340px;
-            border: none;
-            background-color: #333;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .buttons button:hover {
-            background-color: #444;
-        }
-        .grafico {
-            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
             text-align: center;
         }
-        @media (max-width: 768px) {
-            th, td {
-                font-size: 0.9em;
-                padding: 10px;
-            }
+
+        h1 {
+            margin-bottom: 25px;
+            padding: 20px 0;
+        }
+
+        section {
+            display: grid;
+            gap: 10px;
+            text-align: left;
+        }
+
+        section label {
+            font-weight: 600;
+        }
+
+        section input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #333;
+            color: #f5f5f5;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #131313;
+        }
+
+        .resultado {
+            background-color: #3a3a3a;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .resultado h2 {
+            color: #825dff;
         }
     </style>
-    <script>
-        // Função para atualizar o relógio
-        function updateClock() {
-            const clockElement = document.querySelector('.clock');
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
-        }
-
-        // Atualiza o relógio a cada segundo
-        setInterval(updateClock, 1000);
-
-        // Inicializa a data e carrega o relatório de hábitos
-        window.onload = function() {
-            const dateElement = document.querySelector('.date');
-            const now = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            dateElement.textContent = now.toLocaleDateString('pt-BR', options);
-
-            updateClock();
-            carregarRelatorio();
-        }
-
-        // Função para carregar o relatório de hábitos do LocalStorage
-        function carregarRelatorio() {
-            const manhaHabitos = JSON.parse(localStorage.getItem('manhaHabitos')) || [];
-            const tardeHabitos = JSON.parse(localStorage.getItem('tardeHabitos')) || [];
-            const noiteHabitos = JSON.parse(localStorage.getItem('noiteHabitos')) || [];
-
-            const habitos = [...manhaHabitos, ...tardeHabitos, ...noiteHabitos];
-            const tbody = document.querySelector('tbody');
-
-            // Limpa o conteúdo existente antes de adicionar novos dados
-            tbody.innerHTML = '';
-
-            habitos.forEach((habito, index) => {
-                const tr = document.createElement('tr');
-                const tdHabito = document.createElement('td');
-                const tdHorario = document.createElement('td');
-                const tdStatus = document.createElement('td');
-                const tdObservacoes = document.createElement('td');
-
-                tdHabito.textContent = habito.nome;
-                tdHorario.textContent = habito.horario || 'Não definido';
-                tdObservacoes.textContent = habito.observacao || 'Sem observações';
-
-                // Criar o checkbox para marcar o status
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.checked = habito.concluido;
-                checkbox.addEventListener('change', () => {
-                    habito.concluido = checkbox.checked;
-                    salvarHabitos();  // Salva os hábitos novamente após a mudança
-                });
-
-                tdStatus.appendChild(checkbox);
-
-                tr.appendChild(tdHabito);
-                tr.appendChild(tdHorario);
-                tr.appendChild(tdStatus);
-                tr.appendChild(tdObservacoes);
-
-                tbody.appendChild(tr);
-            });
-        }
-
-        // Função para salvar os hábitos no LocalStorage
-        function salvarHabitos() {
-            const manhaHabitos = JSON.parse(localStorage.getItem('manhaHabitos')) || [];
-            const tardeHabitos = JSON.parse(localStorage.getItem('tardeHabitos')) || [];
-            const noiteHabitos = JSON.parse(localStorage.getItem('noiteHabitos')) || [];
-
-            const habitos = [...manhaHabitos, ...tardeHabitos, ...noiteHabitos];
-
-            localStorage.setItem('manhaHabitos', JSON.stringify(manhaHabitos));
-            localStorage.setItem('tardeHabitos', JSON.stringify(tardeHabitos));
-            localStorage.setItem('noiteHabitos', JSON.stringify(noiteHabitos));
-        }
-
-        // Função para limpar todos os hábitos marcados como concluídos
-        // Função para limpar todos os hábitos marcados como concluídos e limpar o gráfico
-function limparConcluidos() {
-    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-    allCheckboxes.forEach(checkbox => {
-        checkbox.checked = false; // Desmarca todos os checkboxes
-    });
-
-    // Salva os hábitos no localStorage após limpar
-    salvarHabitos();
-
-    // Limpa o gráfico
-    if (meuGrafico) {
-        meuGrafico.destroy(); // Destrói o gráfico existente
-    }
-
-    // Renderiza o gráfico com os hábitos desmarcados
-    renderizarGrafico();
-}
-
-        // Função para calcular os hábitos concluídos e não concluídos
-function calcularHabitos() {
-    // Recupera os hábitos armazenados no localStorage ou cria um array vazio
-    let habitos = JSON.parse(localStorage.getItem('habitos')) || [];
-
-    // Inicializa os contadores
-    let concluidos = 0;
-    let naoConcluidos = 0;
-
-    // Itera sobre os hábitos e atualiza os contadores
-    habitos.forEach(habito => {
-        if (habito.concluido) {
-            concluidos++;
-        } else {
-            naoConcluidos++;
-        }
-    });
-
-    return { concluidos, naoConcluidos };
-}
-
-// Função para renderizar o gráfico
-function renderizarGrafico() {
-    const { concluidos, naoConcluidos } = calcularHabitos();
-
-    const ctx = document.getElementById('meuGrafico').getContext('2d');
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Concluídos', 'Não Concluídos'],
-            datasets: [{
-                data: [concluidos, naoConcluidos],
-                backgroundColor: ['#4CAF50', '#F44336']
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                }
-            }
-        }
-    });
-}
-
-// Função para marcar ou desmarcar um hábito
-function marcarHabito(habitoId) {
-    const habitStatus = document.getElementById(habitoId).checked;
-
-    // Recupera os hábitos armazenados no localStorage ou cria um array vazio
-    let habitos = JSON.parse(localStorage.getItem('habitos')) || [];
-
-    // Encontra o hábito no array de hábitos
-    let habitIndex = habitos.findIndex(habito => habito.id === habitoId);
-
-    // Se o hábito não existe, cria um novo hábito
-    if (habitIndex === -1) {
-        habitos.push({
-            id: habitoId,
-            concluido: habitStatus
-        });
-    } else {
-        // Atualiza o status do hábito
-        habitos[habitIndex].concluido = habitStatus;
-    }
-
-    // Salva os hábitos atualizados no localStorage
-    localStorage.setItem('habitos', JSON.stringify(habitos));
-
-    // Atualiza o gráfico após marcar ou desmarcar um hábito
-    renderizarGrafico();
-}
-
-// Função para carregar os hábitos da tabela com base no localStorage
-function carregarHabitos() {
-    let habitos = JSON.parse(localStorage.getItem('habitos')) || [];
-
-    habitos.forEach(habito => {
-        const checkbox = document.getElementById(habito.id);
-        if (checkbox) {
-            checkbox.checked = habito.concluido;
-        }
-    });
-
-    // Renderiza o gráfico após carregar os hábitos
-    renderizarGrafico();
-}
-
-// Carregar os hábitos quando a página for carregada
-window.onload = carregarHabitos;
-
-    // Renderizando o gráfico
-    let meuGrafico = null;  // Variável global para armazenar o gráfico
-
-// Função para renderizar o gráfico
-function renderizarGrafico() {
-    const { concluidos, naoConcluidos } = calcularHabitos();
-
-    const ctx = document.getElementById('graficoHabitos').getContext('2d');
-    
-    // Destruir o gráfico anterior se já existir
-    if (meuGrafico) {
-        meuGrafico.destroy();
-    }
-
-    // Criar um novo gráfico
-    meuGrafico = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Concluídos', 'Não Concluídos'],
-            datasets: [{
-                data: [concluidos, naoConcluidos],
-                backgroundColor: ['#673ab7', '#4c4c4c'],
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                }
-            }
-        }
-    });
-}
-
-        // Função para salvar automaticamente as notas
-function salvarNotasAutomaticamente() {
-    const notas = document.getElementById('campoNotas').value;
-    localStorage.setItem('notasDiarias', notas);
-}
-
-// Função para carregar notas ao carregar a página
-function carregarNotas() {
-    const notas = localStorage.getItem('notasDiarias');
-    if (notas) {
-        document.getElementById('campoNotas').value = notas;
-    }
-}
-
-// Adiciona um ouvinte de evento ao campo de texto para salvar automaticamente enquanto o usuário digita
-document.addEventListener('DOMContentLoaded', () => {
-    const campoNotas = document.getElementById('campoNotas');
-    carregarNotas();
-    campoNotas.addEventListener('input', salvarNotasAutomaticamente);
-});
-
-        // Inicializando o gráfico e carregando as notas salvas
-        window.onload = function() {
-            renderizarGrafico();
-            carregarNotas();
-        };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
-<div class="header">
-    <div class="date"></div>
-    <div class="clock"></div>
-</div>
-
-<div class="container">
-    <h2>Relatório do Dia</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Hábito</th>
-                <th>Horário</th>
-                <th>Status</th>
-                <th>Observações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Ensaio</td>
-                <td>10:00</td>
-                <td>
-                    <input type="checkbox" id="sax" onclick="marcarHabito('sax')">
-                </td>
-                <td>Ensaiar por 1 hora.</td>
-            </tr>
-            <tr>
-                <td>Leitura</td>
-                <td>13:30</td>
-                <td>
-                    <input type="checkbox" id="leitura" onclick="marcarHabito('leitura')">
-                </td>
-                <td>Tire um momento de leitura.</td>
-            </tr>
-            <tr>
-                <td>Beber água</td>
-                <td>Sempre</td>
-                <td>
-                    <input type="checkbox" id="beberAgua" onclick="marcarHabito('beberAgua')">
-                </td>
-                <td>Beber 4 litros de água ao longo do dia.</td>
-            </tr>
-            <tr>
-                <td>Devocional</td>
-                <td>06:30</td>
-                <td>
-                    <input type="checkbox" id="meditacao" onclick="marcarHabito('meditacao')">
-                </td>
-                <td>Devocional e Meditação.</td>
-            </tr>
-            <tr>
-                <td>Alongamentos</td>
-                <td>06:00</td>
-                <td>
-                    <input type="checkbox" id="alongar" onclick="marcarHabito('alongar')">
-                </td>
-                <td>Alongar por 15 minutos ao acordar.</td>
-            </tr>
-            <tr>
-                <td>Exercícios matinais</td>
-                <td>07:00</td>
-                <td>
-                    <input type="checkbox" id="exerciciosMatinais" onclick="marcarHabito('exerciciosMatinais')">
-                </td>
-                <td>Exercícios e 10 minutos de caminhada.</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- Gráfico -->
-    <div class="grafico">
-        <canvas id="graficoHabitos"></canvas>
+    <div class="container">
+        <h1>Relatório Diário</h1>
+        <section id="formulario">
+            <label>Quantas vezes escovou os dentes hoje?
+                <input type="text" id="escovouDentes">
+            </label>
+            <label>Tempo de ensaio (minutos)?
+                <input type="text" id="tempoEnsaio">
+            </label>
+            <label>Treinou hoje? (sim/não)
+                <input type="text" id="treino">
+            </label>
+            <button onclick="gerarRelatorio()">Gerar Relatório</button>
+        </section>
+        <div id="resultado" class="resultado" style="display: none;">
+            <h2>Relatório Gerado</h2>
+            <p><strong>Escovação:</strong> <span id="resEscovouDentes"></span></p>
+            <p><strong>Tempo de Ensaio:</strong> <span id="resTempoEnsaio"></span></p>
+            <p><strong>Treino:</strong> <span id="resTreino"></span></p>
+            <p><strong>Pontuação:</strong> <span id="pontuacao"></span> XP</p>
+            <p><strong>Nível:</strong> <span id="nivel"></span></p>
+        </div>
     </div>
+    <script>
+        let nivelAtual = localStorage.getItem("nivelAtual") ? parseInt(localStorage.getItem("nivelAtual")) : 1;
+        let xpAtual = localStorage.getItem("xpAtual") ? parseInt(localStorage.getItem("xpAtual")) : 0;
+        let xpNecessario = 100 * (nivelAtual * nivelAtual);
 
-    <!-- Notas -->
-    <div class="notas">
-        <h2>Notas</h2>
-        <textarea id="campoNotas" placeholder="Adicione suas observações aqui..." style="width: 96%;"></textarea>
-    </div>
+        function gerarRelatorio() {
+            const escovouDentes = document.getElementById("escovouDentes").value;
+            const tempoEnsaio = document.getElementById("tempoEnsaio").value;
+            const treino = document.getElementById("treino").value.toLowerCase();
+            let xpGanho = 0;
 
-    <!-- Botões para Monitorar e Limpar -->
-    <div class="buttons">
-        <button onclick="window.location.href='index.html'">Monitor</button>
-        <button onclick="limparConcluidos()">Limpar</button>
-    </div>
-</div>
+            if (escovouDentes >= 7) xpGanho += 10;
+            if (tempoEnsaio >= 30) xpGanho += 10;
+            if (treino === "sim") xpGanho += 10;
 
+            xpAtual += xpGanho;
+            if (xpAtual >= xpNecessario) {
+                xpAtual -= xpNecessario;
+                nivelAtual++;
+                xpNecessario = 100 * (nivelAtual * nivelAtual);
+                alert(`Parabéns! Você alcançou o nível ${nivelAtual}!`);
+            }
+
+            localStorage.setItem("nivelAtual", nivelAtual);
+            localStorage.setItem("xpAtual", xpAtual);
+
+            document.getElementById("resEscovouDentes").textContent = escovouDentes;
+            document.getElementById("resTempoEnsaio").textContent = tempoEnsaio;
+            document.getElementById("resTreino").textContent = treino;
+            document.getElementById("pontuacao").textContent = xpGanho;
+            document.getElementById("nivel").textContent = nivelAtual;
+            document.getElementById("resultado").style.display = "block";
+        }
+    </script>
 </body>
 </html>
