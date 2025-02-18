@@ -39,7 +39,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 0;
         }
 
         #relogio {
@@ -116,6 +115,20 @@
             background-color: #444; /* Cor do fundo da barra de rolagem */
             border-radius: 10px;
         }
+        .comemoracao {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #b690f9;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+    animation: aparecer 0.5s ease, desaparecer 0.5s ease 2.5s;
+  }
+
     </style>
 </head>
 <body>
@@ -124,6 +137,9 @@
         <div class="menu-relogio-container">
             <h1>Reflexões de Fim de Ano</h1>
             <p id="relogio"></p>
+            <div id="mensagem-xp"></div>
+            <p id="xp-gain" style="display: none; color: #825dff; font-size: 18px; font-weight: bold;"></p>
+            <p id="xp" style="display: none; color: #825dff; font-size: 18px; font-weight: bold;"></p>
         </div>  
         
         <br>
@@ -133,85 +149,113 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://unpkg.com/html2pdf.js@0.10.0/dist/html2pdf.bundle.js"></script>
+
+    <script src="/script/nivel.js"></script>
 
     <script>
-        function obterDataAtual() {
-            const data = new Date();
-            const dia = data.getDate().toString().padStart(2, '0');
-            const mes = (data.getMonth() + 1).toString().padStart(2, '0');
-            const ano = data.getFullYear();
-            return `${dia}/${mes}/${ano}`;
+        function ganharXp(xp) {
+        let nivelAtual = parseInt(localStorage.getItem("nivelAtual")) || 1;
+        let xpAtual = parseInt(localStorage.getItem("xpAtual")) || 0;
+        let xpNecessario = 100 * (nivelAtual * nivelAtual);
+    
+        xpAtual += xp;
+    
+        while (xpAtual >= xpNecessario) {
+            xpAtual -= xpNecessario;
+            nivelAtual++;
+            xpNecessario = 100 * (nivelAtual * nivelAtual);
         }
+    
+        localStorage.setItem("nivelAtual", nivelAtual);
+        localStorage.setItem("xpAtual", xpAtual);
+    
+        const xpGainElement = document.getElementById("xp-gain");
+        xpGainElement.textContent = `+${xp} XP`;
+        xpGainElement.style.display = "block";
+    
+        setTimeout(() => {
+            xpGainElement.style.display = "none";
+        }, 1500);
+    }
+
+    function obterDataAtual() {
+    const agora = new Date();
+    const dia = agora.getDate().toString().padStart(2, '0');
+    const mes = (agora.getMonth() + 1).toString().padStart(2, '0'); // Meses começam de 0
+    const ano = agora.getFullYear();
+    return `${dia}-${mes}-${ano}`;
+}
 
         function atualizarRelogio() {
-            const relogioElement = document.getElementById('relogio');
-            if (relogioElement) {
-                const agora = new Date();
-                const horas = agora.getHours().toString().padStart(2, '0');
-                const minutos = agora.getMinutes().toString().padStart(2, '0');
-                const segundos = agora.getSeconds().toString().padStart(2, '0');
-                const horario = `${horas}:${minutos}:${segundos}`;
-                relogioElement.textContent = horario;
-            }
+            const agora = new Date();
+            const horas = agora.getHours().toString().padStart(2, '0');
+            const minutos = agora.getMinutes().toString().padStart(2, '0');
+            const segundos = agora.getSeconds().toString().padStart(2, '0');
+            document.getElementById('relogio').textContent = `${horas}:${minutos}:${segundos}`;
         }
 
         function exibirQuestionario() {
-            let questionarioElement = document.getElementById('conteudo-pdf');
-
-            if (!questionarioElement) {
-                questionarioElement = document.createElement('div');
-                questionarioElement.id = 'conteudo-pdf'; // Adiciona um ID para referência posterior no PDF
-                document.querySelector('.container').appendChild(questionarioElement);
-            }
-
-            questionarioElement.innerHTML = `
+            document.getElementById('conteudo-pdf').innerHTML = `
                 <section>
                     <label for="objetivosAnoNovo">Quais são seus principais objetivos para o próximo ano?</label>
-                    <input type="text" id="objetivosAnoNovo" name="objetivosAnoNovo">
+                    <input type="text" id="objetivosAnoNovo" name="objetivosAnoNovo" oninput="calcularXP()">
 
                     <label for="aprendizadosAno">Quais foram os principais aprendizados deste ano?</label>
-                    <input type="text" id="aprendizadosAno" name="aprendizadosAno">
+                    <input type="text" id="aprendizadosAno" name="aprendizadosAno" oninput="calcularXP()">
 
                     <label for="desafiosSuperados">Quais desafios você superou neste ano?</label>
-                    <input type="text" id="desafiosSuperados" name="desafiosSuperados">
+                    <input type="text" id="desafiosSuperados" name="desafiosSuperados" oninput="calcularXP()">
 
                     <label for="momentosFelizes">Quais foram os momentos mais felizes do ano?</label>
-                    <input type="text" id="momentosFelizes" name="momentosFelizes">
+                    <input type="text" id="momentosFelizes" name="momentosFelizes" oninput="calcularXP()">
 
                     <label for="metasNaoAlcancadas">Existem metas que não foram alcançadas?</label>
-                    <input type="text" id="metasNaoAlcancadas" name="metasNaoAlcancadas">
+                    <input type="text" id="metasNaoAlcancadas" name="metasNaoAlcancadas" oninput="calcularXP()">
 
                     <label for="metasNaoAlcancadas2">O que você pode fazer para alcançá-las?</label>
-                    <input type="text" id="metasNaoAlcancadas2" name="metasNaoAlcancadas2">
+                    <input type="text" id="metasNaoAlcancadas2" name="metasNaoAlcancadas2" oninput="calcularXP()">
 
                     <label for="agradecimentos">O que você agradece mais neste ano?</label>
-                    <input type="text" id="agradecimentos" name="agradecimentos">
+                    <input type="text" id="agradecimentos" name="agradecimentos" oninput="calcularXP()">
 
                     <button onclick="gerarPDF()">Gerar PDF</button>
                 </section>
             `;
         }
 
+        let xpTotal = 0; // Definir o XP total globalmente
+
+function calcularXP() {
+    xpTotal = 0; // Resetar o XP total antes de recalcular
+    const respostas = [
+        'objetivosAnoNovo',
+        'aprendizadosAno',
+        'desafiosSuperados',
+        'momentosFelizes',
+        'metasNaoAlcancadas',
+        'metasNaoAlcancadas2',
+        'agradecimentos'
+    ];
+
+    respostas.forEach(id => {
+        const resposta = document.getElementById(id).value.trim();
+        if (resposta.length > 5) { 
+            xpTotal += 10; 
+        }
+    });
+
+    document.getElementById('xp').textContent = `XP: ${xpTotal}`;
+    ganharXp(xpTotal); // Atualizar o XP total no sistema de níveis
+}
+
         function gerarPDF() {
             const { jsPDF } = window.jspdf;
-            const doc = new jsPDF('p', 'pt', 'a4');
+            const doc = new jsPDF();
 
-            // Definir cores para o tema escuro
-            const corFundo = [30, 30, 30]; // Cor de fundo escura (rgb)
-            const corTexto = [255, 255, 255]; // Cor do texto clara (rgb)
-
-            // Preencher o fundo com a cor escura
-            doc.setFillColor(...corFundo);
-            doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F');
-
-            // Adicionar título e data
-            doc.setTextColor(...corTexto);
             doc.setFontSize(16);
             doc.text('Questionário de Fim de Ano', 10, 20);
-            doc.text(`Data: ${obterDataAtual()}`, 10, 40);
+            doc.text(`XP Final: ${xpTotal}`, 10, 40);
 
-            // Perguntas e respostas
             const respostas = [
                 { pergunta: "Quais são seus principais objetivos para o próximo ano?", resposta: document.getElementById('objetivosAnoNovo').value },
                 { pergunta: "Quais foram os principais aprendizados deste ano?", resposta: document.getElementById('aprendizadosAno').value },
@@ -223,31 +267,20 @@
             ];
 
             let y = 60;
-            respostas.forEach((item, index) => {
+            respostas.forEach(({ pergunta, resposta }) => {
                 doc.setFontSize(12);
-                doc.setTextColor(...corTexto);
-                doc.text(`Pergunta ${index + 1}: ${item.pergunta}`, 40, y);
+                doc.text(`${pergunta}`, 10, y);
+                y += 10;
+                doc.text(`Resposta: ${resposta}`, 10, y);
                 y += 20;
-                doc.text(`Sua Resposta: ${item.resposta}`, 40, y);
-                y += 30;
-
-                // Verificar se precisa de quebra de página
-                if (y > 750) {
-                    doc.addPage();
-                    doc.setFillColor(...corFundo);
-                    doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F');
-                    y = 30;
-                }
             });
 
             doc.save(`Reflexão de Fim de Ano (${obterDataAtual()}).pdf`);
         }
 
-        // Atualiza o relógio a cada segundo
         setInterval(atualizarRelogio, 1000);
-
-        // Exibe o questionário
         exibirQuestionario();
     </script>
+
 </body>
 </html>

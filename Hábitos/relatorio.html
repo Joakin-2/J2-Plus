@@ -27,6 +27,13 @@
             text-align: center;
         }
 
+        #relogio {
+            font-size: 24px;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
         h1 {
             margin-bottom: 25px;
             padding: 20px 0;
@@ -43,7 +50,7 @@
         }
 
         section input {
-            width: 100%;
+            width: 98%;
             padding: 8px;
             border: 1px solid #444;
             border-radius: 4px;
@@ -69,6 +76,13 @@
             background-color: #131313;
         }
 
+        .menu-relogio-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
         .resultado {
             background-color: #3a3a3a;
             padding: 15px;
@@ -80,11 +94,30 @@
         .resultado h2 {
             color: #825dff;
         }
+
+        .comemoracao {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #b690f9;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+    animation: aparecer 0.5s ease, desaparecer 0.5s ease 2.5s;
+  }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Relatório Diário</h1>
+        <div class="menu-relogio-container">
+            <h1>Conselho</h1>
+            <p id="relogio">13:46:42</p>
+        </div>
+        <div id="mensagem-xp"></div>
+        <p id="xp-gain" style="display: none; color: #825dff; font-size: 18px; font-weight: bold;"></p>
         <section id="formulario">
             <label>Quantas vezes escovou os dentes hoje?
                 <input type="text" id="escovouDentes">
@@ -95,6 +128,21 @@
             <label>Treinou hoje? (sim/não)
                 <input type="text" id="treino">
             </label>
+            <label>Você orou? (sim/não)
+                <input type="text" id="oracao">
+            </label>
+            <label>Teve momento de leitura? (sim/não)
+                <input type="text" id="leitura">
+            </label>
+            <label>Leu a Bíblia? (sim/não)
+                <input type="text" id="biblia">
+            </label>
+            <label>Se alongou? (sim/não)
+                <input type="text" id="alongamento">
+            </label>
+            <label>Tomou os 4L de água? (sim/não)
+                <input type="text" id="agua">
+            </label>
             <button onclick="gerarRelatorio()">Gerar Relatório</button>
         </section>
         <div id="resultado" class="resultado" style="display: none;">
@@ -102,43 +150,83 @@
             <p><strong>Escovação:</strong> <span id="resEscovouDentes"></span></p>
             <p><strong>Tempo de Ensaio:</strong> <span id="resTempoEnsaio"></span></p>
             <p><strong>Treino:</strong> <span id="resTreino"></span></p>
-            <p><strong>Pontuação:</strong> <span id="pontuacao"></span> XP</p>
-            <p><strong>Nível:</strong> <span id="nivel"></span></p>
+            <p><strong>Oração:</strong> <span id="resOracao"></span></p>
+            <p><strong>Leitura:</strong> <span id="resLeitura"></span></p>
+            <p><strong>Leu a Bíblia:</strong> <span id="resBiblia"></span></p>
+            <p><strong>Alongamento:</strong> <span id="resAlongamento"></span></p>
+            <p><strong>Água:</strong> <span id="resAgua"></span></p>
+            <p><strong>XP Ganhado:</strong> <span id="xpTotal"></span> XP</p>
+            <p><strong>Classificação do Dia:</strong> <span id="classificacao"></span></p>
         </div>
     </div>
+    
+    <script src="/script/nivel.js"></script>
     <script>
-        let nivelAtual = localStorage.getItem("nivelAtual") ? parseInt(localStorage.getItem("nivelAtual")) : 1;
-        let xpAtual = localStorage.getItem("xpAtual") ? parseInt(localStorage.getItem("xpAtual")) : 0;
+    function ganharXp(xp) {
+        let nivelAtual = parseInt(localStorage.getItem("nivelAtual")) || 1;
+        let xpAtual = parseInt(localStorage.getItem("xpAtual")) || 0;
         let xpNecessario = 100 * (nivelAtual * nivelAtual);
-
-        function gerarRelatorio() {
-            const escovouDentes = document.getElementById("escovouDentes").value;
-            const tempoEnsaio = document.getElementById("tempoEnsaio").value;
-            const treino = document.getElementById("treino").value.toLowerCase();
-            let xpGanho = 0;
-
-            if (escovouDentes >= 7) xpGanho += 10;
-            if (tempoEnsaio >= 30) xpGanho += 10;
-            if (treino === "sim") xpGanho += 10;
-
-            xpAtual += xpGanho;
-            if (xpAtual >= xpNecessario) {
-                xpAtual -= xpNecessario;
-                nivelAtual++;
-                xpNecessario = 100 * (nivelAtual * nivelAtual);
-                alert(`Parabéns! Você alcançou o nível ${nivelAtual}!`);
-            }
-
-            localStorage.setItem("nivelAtual", nivelAtual);
-            localStorage.setItem("xpAtual", xpAtual);
-
-            document.getElementById("resEscovouDentes").textContent = escovouDentes;
-            document.getElementById("resTempoEnsaio").textContent = tempoEnsaio;
-            document.getElementById("resTreino").textContent = treino;
-            document.getElementById("pontuacao").textContent = xpGanho;
-            document.getElementById("nivel").textContent = nivelAtual;
-            document.getElementById("resultado").style.display = "block";
+    
+        xpAtual += xp;
+    
+        while (xpAtual >= xpNecessario) {
+            xpAtual -= xpNecessario;
+            nivelAtual++;
+            xpNecessario = 100 * (nivelAtual * nivelAtual);
         }
+    
+        localStorage.setItem("nivelAtual", nivelAtual);
+        localStorage.setItem("xpAtual", xpAtual);
+    
+        const xpGainElement = document.getElementById("xp-gain");
+        xpGainElement.textContent = `+${xp} XP`;
+        xpGainElement.style.display = "block";
+    
+        setTimeout(() => {
+            xpGainElement.style.display = "none";
+        }, 1500);
+    }
+    
+    function gerarRelatorio() {
+        const escovouDentes = parseInt(document.getElementById("escovouDentes").value) || 0;
+        const tempoEnsaio = parseInt(document.getElementById("tempoEnsaio").value) || 0;
+        const treino = document.getElementById("treino").value.toLowerCase();
+        const oracao = document.getElementById("oracao").value.toLowerCase();
+        const leitura = document.getElementById("leitura").value.toLowerCase();
+        const biblia = document.getElementById("biblia").value.toLowerCase();
+        const alongamento = document.getElementById("alongamento").value.toLowerCase();
+        const agua = document.getElementById("agua").value.toLowerCase();
+    
+        let respostasCorretas = 0;
+        let xp = 0;
+    
+        if (escovouDentes >= 7) { respostasCorretas++; xp += 10; }
+        if (tempoEnsaio >= 30) { respostasCorretas++; xp += 20; }
+        if (treino === "sim") { respostasCorretas++; xp += 10; }
+        if (oracao === "sim") { respostasCorretas++; xp += 10; }
+        if (leitura === "sim") { respostasCorretas++; xp += 10; }
+        if (biblia === "sim") { respostasCorretas++; xp += 20; }
+        if (alongamento === "sim") { respostasCorretas++; xp += 10; }
+        if (agua === "sim") { respostasCorretas++; xp += 10; }
+    
+        const classificacoes = ["Vergonha", "Dia Ruim", "Dia Bom", "Dia Prime"];
+        const classificacao = classificacoes[Math.min(respostasCorretas, 3)];
+    
+        document.getElementById("resEscovouDentes").textContent = escovouDentes;
+        document.getElementById("resTempoEnsaio").textContent = tempoEnsaio;
+        document.getElementById("resTreino").textContent = treino;
+        document.getElementById("resOracao").textContent = oracao;
+        document.getElementById("resLeitura").textContent = leitura;
+        document.getElementById("resBiblia").textContent = biblia;
+        document.getElementById("resAlongamento").textContent = alongamento;
+        document.getElementById("resAgua").textContent = agua;
+        document.getElementById("classificacao").textContent = classificacao;
+        document.getElementById("xpTotal").textContent = xp;
+        document.getElementById("resultado").style.display = "block";
+    
+        ganharXp(xp);
+    }
     </script>
+    
 </body>
 </html>
