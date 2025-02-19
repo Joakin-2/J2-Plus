@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #161616; /* Cor de fundo mais escura */
+            color: #fff; /* Texto em branco */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center; 
+            align-items: flex-start; /* Alinhamento no início */
+            height: 100vh;
+            text-align: center;
+            width: 80%; /* Largura do container */
+            margin: 0 auto; /* Centraliza o container na página */
+        }
+
+        header {
+            background-color: #000000;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            padding: 60px;
+        }
+        h1, h2 {
+            color: #f8fa9a; /* Cor do título */
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        .content {
+            margin-top: 20px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .button-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn {
+    background-color: rgb(43, 42, 42);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ramificações do Evangelho e Denominações Cristãs</h1>
+        <div class="button-group"> 
+            <button class="btn" onclick="redirecionar('Nacional')" style="margin-right: 10px; display: flex;">
+                <i class="fas fa-book" style="margin-right: 5px;"></i>Hino Nacional
+            </button>
+            <button class="btn" onclick="redirecionar('Music')" style="margin-right: 45%; display: flex;">
+                <i class="fas fa-book" style="margin-right: 5px;"></i> Music
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>1. Introdução ao Evangelho</h2>
+            <ul>
+                <li><a href="#definicao">Definição e Significado</a></li>
+                <li><a href="#temas">Principais Temas</a></li>
+            </ul>
+            <div id="definicao" class="content">
+                <h3>Definição e Significado</h3>
+                <p>O Evangelho é a boa notícia sobre a vida, morte e ressurreição de Jesus Cristo. Estude passagens-chave como os Evangelhos (Mateus, Marcos, Lucas e João) e as cartas de Paulo.</p>
+            </div>
+            <div id="temas" class="content">
+                <h3>Principais Temas</h3>
+                <ul>
+                    <li>Soteriologia: A doutrina da salvação.</li>
+                    <li>Cristologia: Quem é Jesus? O que significa sua divindade e humanidade?</li>
+                    <li>Escatologia: O que o Evangelho diz sobre o fim dos tempos?</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. Catolicismo Romano</h2>
+            <ul>
+                <li><a href="#teologia-catolica">Teologia Católica</a></li>
+                <li><a href="#praticas-catolicas">Práticas Católicas</a></li>
+                <li><a href="#historia-catolica">História da Igreja Católica</a></li>
+            </ul>
+            <div id="teologia-catolica" class="content">
+                <h3>Teologia Católica</h3>
+                <p>Autoridade da Igreja e Tradição: A importância da Tradição e Escritura na interpretação do Evangelho.</p>
+                <p>Sacramentos: Como os sacramentos (como a Eucaristia, Batismo, Confissão) são vistos como meios de graça.</p>
+                <p>Intercessão dos Santos e Maria: O papel de Maria e dos santos na vida cristã.</p>
+                <p>Justificação: A doutrina da justificação no catolicismo, que envolve fé e obras.</p>
+            </div>
+            <div id="praticas-catolicas" class="content">
+                <h3>Práticas Católicas</h3>
+                <p>Culto litúrgico, a importância da missa, a devoção mariana e a veneração dos santos.</p>
+            </div>
+            <div id="historia-catolica" class="content">
+                <h3>História da Igreja Católica</h3>
+                <p>O impacto histórico da Igreja Católica no cristianismo, desde o Império Romano até os concílios ecumênicos (como o Concílio de Trento).</p>
+            </div>
+        </section>
+
+        <!-- Repita o mesmo formato para as outras seções -->
+        <section>
+            <h2>3. Protestantismo</h2>
+            <ul>
+                <li><a href="#teologia-protestante">Teologia Protestante</a></li>
+                <li><a href="#divisoes-protestantes">Divisões Dentro do Protestantismo</a></li>
+                <li><a href="#historia-protestante">História do Protestantismo</a></li>
+            </ul>
+            <div id="teologia-protestante" class="content">
+                <h3>Teologia Protestante</h3>
+                <p>Sola Scriptura: A centralidade das Escrituras como autoridade final.</p>
+                <p>Sola Fide: A justificação pela fé somente, sem a necessidade de obras.</p>
+            </div>
+            <div id="divisoes-protestantes" class="content">
+                <h3>Divisões Dentro do Protestantismo</h3>
+                <ul>
+                    <li>Luteranismo: A teologia de Martinho Lutero e a doutrina da justificação pela fé.</li>
+                    <li>Calvinismo: A ênfase na soberania de Deus, predestinação e os cinco pontos do calvinismo (TULIP).</li>
+                    <li>Anabatismo: A doutrina do batismo de crentes e o conceito de uma Igreja separada do Estado.</li>
+                    <li>Evangelicalismo: O foco na evangelização e a vivência prática do Evangelho.</li>
+                </ul>
+            </div>
+            <div id="historia-protestante" class="content">
+                <h3>História do Protestantismo</h3>
+                <p>A Reforma Protestante, as suas consequências na Europa e no mundo, a formação das principais denominações protestantes.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>4. Igrejas Ortodoxas</h2>
+            <ul>
+                <li><a href="#teologia-ortodoxa">Teologia Ortodoxa</a></li>
+                <li><a href="#praticas-ortodoxas">Práticas Ortodoxas</a></li>
+                <li><a href="#historia-ortodoxa">História da Igreja Ortodoxa</a></li>
+            </ul>
+        
+            <div id="teologia-ortodoxa" class="content">
+                <h3>Teologia Ortodoxa</h3>
+                <p>A doutrina ortodoxa sobre os sacramentos, chamados "mistérios". Destaca-se o Batismo, Crisma, Eucaristia, Confissão.</p>
+                <p>Natureza de Cristo e Trindade: A crença na unidade da Trindade e a natureza de Cristo em duas essências, humana e divina.</p>
+                <p>Filioque: A diferença na formulação do Credo Niceno, especialmente sobre o Espírito Santo.</p>
+            </div>
+        
+            <div id="praticas-ortodoxas" class="content">
+                <h3>Práticas Ortodoxas</h3>
+                <p>A liturgia ortodoxa, o uso de ícones, a ênfase na oração contínua (como no "Jesus Prayer") e a vida monástica.</p>
+            </div>
+        
+            <div id="historia-ortodoxa" class="content">
+                <h3>História da Igreja Ortodoxa</h3>
+                <p>A separação entre o Oriente e o Ocidente (Cisma de 1054), a influência do Império Bizantino, e o papel das Igrejas Ortodoxas na cultura e política do Leste Europeu.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>5. Católicos Românicos vs. Ortodoxos</h2>
+            <ul>
+                <li><a href="#diferencas-historicas">Diferenças Históricas</a></li>
+                <li><a href="#teologias-comparadas">Teologias Comparadas</a></li>
+            </ul>
+        
+            <div id="diferencas-historicas" class="content">
+                <h3>Diferenças Históricas</h3>
+                <p>O Cisma de 1054, onde as Igrejas de Roma e Constantinopla se separaram devido a disputas sobre autoridade papal e doutrinas teológicas (como o "Filioque").</p>
+                <p>Questões litúrgicas e culturais que ainda dividem as duas tradições.</p>
+            </div>
+        
+            <div id="teologias-comparadas" class="content">
+                <h3>Teologias Comparadas</h3>
+                <p>A visão sobre a autoridade do Papa: Católica Romana vê o Papa como líder supremo, enquanto a Ortodoxa vê o Patriarca de Constantinopla como "primeiro entre iguais".</p>
+                <p>Visões sobre a Eucaristia: Ambas acreditam na presença real de Cristo na Eucaristia, mas a Ortodoxa tem uma visão mais misteriosa e profunda sobre o sacramento.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>6. Outras Denominações Cristãs</h2>
+            <ul>
+                <li><a href="#igrejas-evangelicas">Igrejas Evangélicas</a></li>
+                <li><a href="#igrejas-anglicanas">Igrejas Anglicanas</a></li>
+                <li><a href="#movimentos-minoritarios">Movimentos Minoritários</a></li>
+            </ul>
+        
+            <div id="igrejas-evangelicas" class="content">
+                <h3>Igrejas Evangélicas</h3>
+                <p>Estudo das denominações como Pentecostais, Batista, Presbiteriana e suas diferenças teológicas e práticas.</p>
+            </div>
+        
+            <div id="igrejas-anglicanas" class="content">
+                <h3>Igrejas Anglicanas</h3>
+                <p>Uma mistura entre tradições católicas e protestantes, com foco na liturgia e na autoridade das Escrituras.</p>
+            </div>
+        
+            <div id="movimentos-minoritarios" class="content">
+                <h3>Movimentos Minoritários</h3>
+                <p>Estudo das crenças divergentes e como eles entendem o Evangelho de maneira única, com foco em temas como a interpretação da Bíblia, a figura de Cristo e a visão da salvação.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>7. Práticas e Liturgias no Contexto do Evangelho</h2>
+            <ul>
+                <li><a href="#liturgia-catolica-ortodoxa">Liturgia no Catolicismo e Ortodoxia</a></li>
+                <li><a href="#culto-evangelico">Culto Evangélico e Protestante</a></li>
+            </ul>
+        
+            <div id="liturgia-catolica-ortodoxa" class="content">
+                <h3>Liturgia no Catolicismo e Ortodoxia</h3>
+                <p>O papel central da liturgia nas missas (católicas) e divinas liturgias (ortodoxas). A Eucaristia como a forma central de adoração, a relação com o sacrifício de Cristo.</p>
+            </div>
+        
+            <div id="culto-evangelico" class="content">
+                <h3>Culto Evangélico e Protestante</h3>
+                <p>O foco na pregação e no estudo da Bíblia, oração e música como expressões de adoração.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>8. O Evangelho e a Missão Global</h2>
+            <ul>
+                <li><a href="#grande-comissao">A Grande Comissão</a></li>
+                <li><a href="#evangelismo-missoes">Evangelismo e Missões</a></li>
+            </ul>
+        
+            <div id="grande-comissao" class="content">
+                <h3>A Grande Comissão</h3>
+                <p>Mateus 28:18-20 e como cada denominação a interpreta e a pratica.</p>
+            </div>
+        
+            <div id="evangelismo-missoes" class="content">
+                <h3>Evangelismo e Missões</h3>
+                <p>O papel das igrejas no envio de missionários, tanto no sentido local quanto global.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>9. Desafios Contemporâneos e o Evangelho</h2>
+            <ul>
+                <li><a href="#modernidade-secularismo">Modernidade e Secularismo</a></li>
+                <li><a href="#dialogo-inter-religioso">Diálogo Inter-religioso</a></li>
+            </ul>
+        
+            <div id="modernidade-secularismo" class="content">
+                <h3>Modernidade e Secularismo</h3>
+                <p>Como as diferentes denominações respondem aos desafios da sociedade secular e aos questionamentos modernos sobre a fé.</p>
+            </div>
+        
+            <div id="dialogo-inter-religioso" class="content">
+                <h3>Diálogo Inter-religioso</h3>
+                <p>A relação com outras religiões e a perspectiva do Evangelho sobre o pluralismo religioso.</p>
+            </div>
+        </section>
+        
+    </main>
+    <script>
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Nacional':
+                    window.open('https://www.youtube.com/watch?v=rLqj2LUm5l0');
+                    break;
+                case 'Music':
+                    window.open('https://j2plus.netlify.app/music/#praise');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

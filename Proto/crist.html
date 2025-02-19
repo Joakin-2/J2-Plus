@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Renovação</title>
-    <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -140,8 +139,11 @@
             </div>
             <div class="notes-container">
                 <div class="button-group"> 
-                    <button class="btn" onclick="redirecionar('Devocional')" style="margin-right: 475px; display: flex;">
+                    <button class="btn" onclick="redirecionar('Devocional')" style="margin-right: 10px; display: flex;">
                         <i class="fas fa-book" style="margin-right: 5px;"></i>Devocional
+                    </button>
+                    <button class="btn" onclick="redirecionar('Bíblia')" style="margin-right: 378px; margin-left: 50px; display: flex;">
+                        <i class="fas fa-book" style="margin-right: 5px;"></i> Bíblia
                     </button>
                     <button class="btn-export" onclick="exportNotes()">
                         <i class="fas fa-file-export"></i>
@@ -155,8 +157,8 @@
             
             <div class="buttons">
                 <button class="botao" onclick="redirecionar('EBD')"><i class="fas fa-file"></i> EBD</button>
-                <button class="botao" onclick="redirecionar('Bíblia')"><i class="fas fa-book"></i> Bíblia</button>
                 <button class="botao" onclick="redirecionar('Canais')"><i class="fas fa-globe"></i> Canais</button>
+                <button class="botao" onclick="redirecionar('Estudar')"><i class="fas fa-brain"></i> Estudar</button>
                 <button class="botao" onclick="redirecionar('Memórias')"><i class="fas fa-camera"></i> Memórias</button>
             </div>
 
@@ -216,32 +218,36 @@
         function redirecionar(destino) {
             switch (destino) {
                 case 'EBD':
-                    window.close('crist');
+                    window.close('crist.html');
                     window.open('https://www.bibliaonline.com.br/acf');
                     window.open('ebd/index.html');
                     break;
                 case 'Bíblia':
-                    window.close('crist');
+                    window.close('crist.html');
                     window.open('https://www.youtube.com/watch?v=nR-QdUPKVao');
                     window.open('https://www.bibliaonline.com.br/acf');
                     window.open('https://drive.google.com/drive/folders/1Of9cNspUSobIUiQbsixEG3FlJYWAr3Ay');
                     window.open('https://drive.google.com/drive/folders/1h1QOxEjQRQfiobTXzsNvErYjPIsTV6t0');
                     break;
                 case 'Canais':
-                    window.close('crist');
+                    window.close('crist.html');
                     window.open('https://www.youtube.com/@IsraelSubira/videos');
                     window.open('https://www.youtube.com/@VidadeFe/videos');
                     window.open('https://www.youtube.com/@RodrigoSilvaArqueologia/videos');
                     window.open('https://www.youtube.com/@prantoniojunior/videos');
                     window.open('https://www.youtube.com/@PrOsielGomes/videos');
                     break;
+                case 'Estudar':
+                    window.close('crist.html');
+                    window.open('brain.html');
+                    break;
                 case 'Devocional':
-                    window.close('crist');
+                    window.close('crist.html');
                     window.open('time.html');
                     break;
                 case 'Memórias':
-                    window.close('crist');
-                    window.open('file:///C:/Users/Luiz/OneDrive/Imagens/Igreja');
+                    window.close('crist.html');
+                    window.open('https://photos.onedrive.com/?ft=homeEnable');
                     break;
                 default:
                     break;
