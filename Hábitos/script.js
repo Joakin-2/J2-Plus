@@ -253,6 +253,9 @@ function carregarHabitosDoDia() {
             tarde: ['Alise seu Pé', 'Se Depile'],
             noite: ['Culto as 18h']
         },
+        segunda: {
+            manha: ['Oração na Igreja']
+        },
         quarta: {
             manha: ['Aparar Barba', 'Limpar Ouvido'],
             tarde: ['Alise seu Pé'],
