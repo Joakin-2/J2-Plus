@@ -46,11 +46,18 @@
 
     <script>
         let videos = [
-            "Amigos.mp4", "Angrybirds.mp4", "CANCELADOS!!!.mp4",
-            "Compilation Menes.mp4", "Compilation Menes 2.mp4",
-            "Compilation Menes 3.mp4", "Compilation Menes 4.mp4",
-            "Compilation Menes 5.mp4", "Compilation Menes 6.mp4",
-            "Compilation Menes 7.mp4", "Emoji Challenge.mp4", "Gru na China.mp4"
+            "https://www.youtube.com/embed/OdEkUyYwV-Y", // link embed de vídeo do YouTube
+            "https://www.youtube.com/embed/KNROJFlQ5aM",
+            "https://www.youtube.com/embed/Z1Eh_Z0_37I",
+            "https://www.youtube.com/embed/fPqw7zOMscw",
+            "https://www.youtube.com/embed/76cFT7_y54U",
+            "https://www.youtube.com/embed/qb0CEHPJt_I",
+            "https://www.youtube.com/embed/GM2YyEWN1kY",
+            "https://www.youtube.com/embed/tPAWJb72l80",
+            "https://www.youtube.com/embed/hZtJQ8A4qOk",
+            "https://www.youtube.com/embed/0ZwJZtOoF-k",
+            //"https://www.youtube.com/embed/hZtJQ8A4qOk",
+            //"https://www.youtube.com/embed/0ZwJZtOoF-k"
         ];
 
         function shuffleArray(array) {
@@ -68,13 +75,13 @@
                 const videoContainer = document.createElement("div");
                 videoContainer.classList.add("video-container");
 
-                const video = document.createElement("video");
-                video.src = videoSrc;
-                video.controls = true;
-                video.autoplay = false;
-                video.loop = true;
+                const iframe = document.createElement("iframe");
+                iframe.src = videoSrc;
+                iframe.frameBorder = "0";
+                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                iframe.allowFullscreen = true;
 
-                videoContainer.appendChild(video);
+                videoContainer.appendChild(iframe);
                 feed.appendChild(videoContainer);
             });
         }
