@@ -16,7 +16,13 @@ function updateClock() {
 function updateDate() {
     const now = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = now.toLocaleDateString('pt-br', options);
+    let formattedDate = now.toLocaleDateString('pt-br', options);
+
+    // Remove "-feira" dos dias da semana
+    formattedDate = formattedDate.replace(/segunda-feira|terça-feira|quarta-feira|quinta-feira|sexta-feira/gi, function (match) {
+        return match.replace('-feira', '');
+    });
+
     document.getElementById('date').textContent = formattedDate;
 }
 
