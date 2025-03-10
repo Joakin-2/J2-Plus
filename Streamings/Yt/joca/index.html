@@ -4,6 +4,7 @@
 <link rel="icon" href="yt/yt.png" type="image/x-icon">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <title>YouTube</title>
 <style>
     body {
@@ -62,6 +63,10 @@
 
     #search {
         width: 400px;
+    }
+
+    #up {
+        margin-right: 10px;
     }
 
     #plus {
@@ -154,6 +159,7 @@
         <form action="https://www.youtube.com/results" method="GET" style="position: relative;">
             <input type="text" id="search" name="search_query" placeholder="Pesquisar..." required="" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;" oninput="toggleSuggestions()"> <!-- Adicione o evento 'oninput' aqui -->
             <button type="submit" style="padding: 10px;background-color: #2e2e2e;color: white;border: none;border-radius: 5px;cursor: pointer;margin-left: 10px;margin-right: 10px;">Buscar</button>
+            <button type="button" id="up" style="padding: 10px; background-color: #2e2e2e; color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="openSite()"><i class="fas fa-upload"></i> <!-- Ícone de upload --></button>
             <button type="button" id="plus" style="padding: 10px;background-color: #2e2e2e;color: white;border: none;border-radius: 5px;cursor: pointer;" onclick="openSites()">+</button>
             <div id="suggestions" class="suggestions" style="margin-top: 10px;">
                 <!-- Sugestões vão aparecer aqui -->
@@ -346,6 +352,18 @@
             "https://snapinsta.app/pt",   // Exemplo de site 3
             "https://www.canva.com/",   // Exemplo de site 4
             "https://y2down.cc/pt/"   // Exemplo de site 5
+        ];
+
+        // Abre cada site em uma nova aba
+        sites.forEach(site => {
+            window.open(site, '_blank');
+        });
+    }
+
+    function openSite() {
+        // URLs dos sites a serem abertos
+        const sites = [
+            "https://studio.youtube.com/channel/UCUmyhRgqHgAA8XY9Kx5gPiQ/videos"
         ];
 
         // Abre cada site em uma nova aba
