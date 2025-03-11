@@ -441,31 +441,57 @@
 
     let zoomLevel = 1.0;
     let currentAudio = null;
-    //const audioFiles = ["audio.mp3", "audio2.mp3", "audio3.mp3", "audi4.mp3", "audio5.mp3", "audio6.mp3", "audio7.mp3", "audio8.mp3", "audio9.mp3", "audio10.mp3", "audio.mp3", "audio2.mp3", "audio3.mp3", "535.mp3", "audio5.mp3", "audio6.mp3", "audio7.mp3", "audio8.mp3", "audio9.mp3", "audio10.mp3", "audio11.mp3"];
+    const audioFiles = ["audio.mp3", "audio2.mp3", "audio3.mp3", "audio4.mp3", "audio5.mp3", "audio6.mp3", "audio7.mp3", "audio8.mp3", "audio9.mp3", "audio10.mp3", "audio11.mp3", "audio12.mp3", "audio13.mp3", "audio14.mp3", "535.mp3", "audio16.mp3", "audio17.mp3", "audio18.mp3", "audio19.mp3", "audio20.mp3", "audio21.mp3", "audio22.mp3", "audio23.mp3", "audio24.mp3"];
     const modalImage = document.getElementById("modalImage");
     const audioPlayer = document.getElementById("audioPlayer");
     const audioSource = document.getElementById("audioSource");
     const playButton = document.getElementById("playButton");
 
     function openModal(index) {
-        currentImageIndex = index;
-        document.getElementById("imageModal").style.display = "flex";
-        modalImage.src = document.querySelectorAll(".image")[index].src;
-        zoomLevel = 1.0;
-        modalImage.style.transform = `scale(${zoomLevel})`;
+    currentImageIndex = index;
+    document.getElementById("imageModal").style.display = "flex";
+    
+    // Definir a imagem no modal
+    const modalImage = document.getElementById("modalImage");
+    modalImage.src = images[index];
 
-        // Definir o áudio da partitura específica
-        //audioSource.src = audioFiles[index];
-        //audioPlayer.load();
-        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
-        currentAudio = index;
+    // Resetar o zoom ao abrir nova imagem
+    zoomLevel = 1.0;
+    modalImage.style.transform = `scale(${zoomLevel})`;
+
+    // Definir o áudio correspondente
+    if (audioFiles[index]) {
+        const audioPlayer = document.getElementById("audioPlayer");
+        const audioSource = document.getElementById("audioSource");
+        audioSource.src = audioFiles[index];
+        audioPlayer.load(); // Carregar o áudio
     }
 
-    function closeModal() {
-        document.getElementById("imageModal").style.display = "none";
+    // Resetar o botão de play
+    document.getElementById("playButton").innerHTML = '<i class="fa-solid fa-play"></i>';
+}
+
+function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+
+    // Pausar o áudio ao fechar
+    const audioPlayer = document.getElementById("audioPlayer");
+    audioPlayer.pause();
+    document.getElementById("playButton").innerHTML = '<i class="fa-solid fa-play"></i>';
+}
+
+function toggleAudio() {
+    const audioPlayer = document.getElementById("audioPlayer");
+    const playButton = document.getElementById("playButton");
+
+    if (audioPlayer.paused) {
+        audioPlayer.play().catch(e => console.error("Erro ao tentar reproduzir o áudio:", e));
+        playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    } else {
         audioPlayer.pause();
         playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
     }
+}
 
     function changeImage(direction) {
             currentImageIndex += direction;
@@ -479,7 +505,7 @@
         }
 
     // Lista de arquivos de áudio correspondentes aos PDFs
-const audioFiles = {
+const audioFiles2 = {
     "25.pdf": "25.mp3",
     "349.pdf": "349.mp3",
     "481.pdf": "481.mp3",
@@ -502,9 +528,9 @@ let currentPDFIndex = 0;
         pdfModal.style.display = 'flex';
 
         // Atualizar o áudio do PDF atual
-        if (audioFiles[pdfFileName]) {
+        if (audioFiles2[pdfFileName]) {
             const pdfAudioSource = document.getElementById("pdfAudioSource");
-            pdfAudioSource.src = audioFiles[pdfFileName];
+            pdfAudioSource.src = audioFiles2[pdfFileName];
             const pdfAudioPlayer = document.getElementById("pdfAudioPlayer");
             pdfAudioPlayer.load(); // Carregar o áudio
         }
