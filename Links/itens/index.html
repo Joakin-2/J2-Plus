@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens</title>
+    <link rel="icon" href="ícone.ico" type="image/png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Cor de fundo escura */
+            color: #e0e0e0; /* Cor do texto clara */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Impede rolagem */
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1; /* Garante que o conteúdo fique acima da neve */
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Coloca os botões em coluna */
+            gap: 20px; /* Espaço entre os botões */
+            align-items: center; /* Centraliza os botões horizontalmente */
+        }
+
+        .btn {
+            width: 150px; /* Aumenta a largura dos botões */
+            background-color: #1f1f1f; /* Cor de fundo dos botões */
+            color: #ffffff; /* Cor do texto dos botões */
+            border: none;
+            border-radius: 8px; /* Aumenta o raio para bordas mais arredondadas */
+            padding: 15px; /* Ajusta o padding */
+            font-size: 18px; /* Aumenta o tamanho da fonte */
+            text-decoration: none; /* Remove o sublinhado dos links */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adiciona sombra para destaque */
+        }
+
+        .btn:hover {
+            transform: scale(1.1); /* Aumenta o botão ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="ripple-container">
+        <p id="transcript"></p>
+        <div class="button-container">
+            <a href="comprar/index.html" target="_blank" class="btn" id="viBtn">Compras</a>
+            <a href="comprar/toys.html" target="_blank" class="btn" id="pcBtn">Toys</a>
+            <a href="pagar/index.html" target="_blank" class="btn" id="noteBtn">Pagar</a>
+            <a href="pc/index.html" target="_blank" class="btn" id="noteBtn">PC</a>
+            <a href="project/index.html" target="_blank" class="btn" id="noteBtn">Projetos</a>
+        </div>
+    </div>
+</body>
+</html>

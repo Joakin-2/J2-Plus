@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="ícone.ico" type="image/png">
+    <title>Pagar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            line-height: 1.6;
+        }
+
+        main {
+            display: flex;
+            justify-content: center; /* Centraliza o conteúdo horizontalmente */
+            align-items: center; /* Centraliza o conteúdo verticalmente */
+            height: 100vh; /* Faz o main ocupar toda a altura da tela */
+        }
+
+        textarea {
+            width: 80%;
+            height: 50%;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            resize: none; /* Impede o redimensionamento */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea:focus {
+            outline: none; /* Remove o contorno padrão ao focar */
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <textarea id="autoSave" placeholder="Digite aqui..."></textarea>
+    </main>
+
+    <script>
+        // Recupera o valor salvo do armazenamento local ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            const textarea = document.getElementById('autoSave');
+            textarea.value = localStorage.getItem('savedText') || '';
+            
+            // Salva o conteúdo do textarea no armazenamento local sempre que muda
+            textarea.addEventListener('input', () => {
+                localStorage.setItem('savedText', textarea.value);
+            });
+        });
+    </script>
+</body>
+</html>
