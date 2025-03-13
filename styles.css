@@ -352,6 +352,10 @@ button:hover {
     background-color: #642dfc; /* Roxo mais escuro no hover */
 }
 
+a:hover {
+    background-color: #642dfc; /* Roxo mais escuro no hover */
+}
+
 .texto {
     background-color: #121212;
     color: #fff; /* Cor do texto */
