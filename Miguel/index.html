@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <title>Miguel</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #000000, #0c0c0c);
+        }
+
+        h1 {
+            background-color: white;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .quadrado {
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(0, 0, 0);
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .quadrado img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 5px;
+        }
+
+        #status {
+            display: none;
+        }
+
+        #history {
+            overflow-y: auto;
+            height: 300px;
+            width: 100%;
+            display: none; /* Começa oculto */
+        }
+
+        .box-my-message, .box-response-message {
+            margin: 10px;
+        }
+
+        .my-message {
+            color: #00f;
+        }
+
+        .response-message {
+            color: #0f0;
+        }
+
+        .box-my-message, .box-response-message {
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .input-container {
+            margin-top: 20px;
+            display: none; /* Começa oculto */
+        }
+
+        #inputText {
+            width: 300px;
+            padding: 10px;
+        }
+
+        #sendButton {
+            margin-left: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .show-chat #history, .show-chat .input-container {
+            display: 
+            block;
+        }
+
+        /* Estilo para a mensagem de parabéns */
+        #parabensMensagem {
+            display: none;
+            text-align: center;
+            font-size: 25px;
+            color: #ff0;
+            font-family: 'Pacifico', cursive; /* Aplica a fonte bonita */
+        }
+
+        #natalMensagem {
+            display: none;
+            text-align: center;
+            font-size: 25px;
+            color: #ff0;
+            font-family: 'Pacifico', cursive; /* Aplica a fonte bonita */
+        }
+
+        @keyframes neve {
+    0% {
+        transform: translateY(-100px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+@keyframes confete {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5) translateY(100vh);
+        opacity: 0;
+    }
+}
+
+.neve {
+    position: absolute;
+    top: -10px;
+    animation: neve 10s infinite linear;
+}
+
+.confete {
+    position: absolute;
+    top: -10px;
+    animation: confete 3s infinite ease-in-out;
+}
+
+    </style>
+</head>
+<body>
+    <!--  Trocar API -->
+    <!--  Datas Especiais -->
+    <div class="container" id="container">
+        <div class="quadrado">
+            <img src="gif.gif" alt="GIF">
+        </div>
+
+        <!-- Contêiner para os flocos de neve -->
+        <div id="neve" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+
+        <!-- Contêiner para os confetes -->
+        <div id="confetes" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+
+
+        <!-- Mensagens de Natal e Aniversário -->
+        <div id="parabensMensagem">
+            Parabéns, Joaquim! 🎉
+        </div>
+
+        <div id="natalMensagem">
+            Feliz Natal, Joaquim! 🎄
+        </div>
+        
+        <!-- Adiciona um elemento de áudio para o som -->
+        <audio id="uiSound" src="UI.mp3"></audio>
+        
+        <!-- Adiciona os elementos para input e botão -->
+        <div class="input-container">
+            <input type="text" id="inputText" placeholder="Digite sua pergunta">
+            <button id="sendButton">Enviar</button>
+        </div>
+        
+        <!-- Adiciona um contêiner para mostrar o histórico -->
+        <div id="history"></div>
+
+        <!-- Adiciona um contêiner para status -->
+        <div id="status"></div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
