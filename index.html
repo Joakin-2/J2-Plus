@@ -89,7 +89,7 @@
             <i id="muteButton" class="fas fa-volume-up" style="cursor: pointer;"></i>
             <i id="openCamera" class="fas fa-camera" style="cursor: pointer;"></i>
             <i id="openWifi" class="fas fa-wifi" style="cursor: pointer;"></i>
-            <i class="fas fa-clock"></i> <!-- Ícone de relógio -->
+            <i id="openClock" class="fas fa-clock"></i> <!-- Ícone de relógio -->
             <span id="clock">00:00</span>
         </span>    
         <!-- Lista de câmeras disponíveis -->
@@ -207,7 +207,11 @@
         }
     });
     
-    document.getElementById("openWifi").addEventListener("click", function() {
+    document.getElementById("openClock").addEventListener("click", function() {
+    window.open("Back/index.html", "_blank");
+  });
+
+  document.getElementById("openWifi").addEventListener("click", function() {
     window.open("https://fast.com/", "_blank");
   });
 
