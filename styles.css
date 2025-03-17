@@ -337,6 +337,10 @@ input[type="text"] {
     margin-left: 10px;
 }
 
+.detalhes:hover {
+    background-color: #642dfc; /* Roxo mais escuro no hover */
+}
+
 button {
     background-color: #825dff; /* Roxo para o botão */
     color: #fff; /* Cor do texto */
@@ -349,10 +353,6 @@ button {
 }
 
 button:hover {
-    background-color: #642dfc; /* Roxo mais escuro no hover */
-}
-
-a:hover {
     background-color: #642dfc; /* Roxo mais escuro no hover */
 }
 
