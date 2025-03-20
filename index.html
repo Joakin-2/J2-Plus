@@ -79,6 +79,18 @@
         </div>
     </div>
 </div>
+
+<!-- Modal de notificações -->
+<div id="notificationModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
+    <div style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); background-color: #202020; padding: 20px; border-radius: 8px; width: 301px; margin-left: -1px;">
+      <h3>Notificações</h3>
+      <button onclick="closeModal()" style="position: absolute; margin-top: -45px; margin-left: 270px; background: #202020;">X</button>
+      <ul id="notificationList" style="border: none; border-radius: 5px; color: #6f4fef; list-style-type: none; padding-left: 0;">
+        <!-- As notificações serão listadas aqui -->
+      </ul>
+      <button id="clearNotificationsBtn" style="width: 290px;">Limpar</button>
+    </div>
+  </div>
   
     <div class="container">
         <button class="menu-button" aria-label="Abrir menu" onclick="toggleMenu()">Menu</button>
@@ -88,6 +100,11 @@
         <span class="clock">
             <i id="muteButton" class="fas fa-volume-up" style="cursor: pointer;"></i>
             <i id="openCamera" class="fas fa-camera" style="cursor: pointer;"></i>
+            <i id="notificationButton" class="fas fa-bell" style="cursor: pointer;">
+                <span id="notificationCount" style="position: absolute; background: #825dff; color: white; border-radius: 50%; padding: 2px 5px; font-size: 12px;">
+                    0
+                </span>
+              </i>
             <i id="openWifi" class="fas fa-wifi" style="cursor: pointer;"></i>
             <i id="openClock" class="fas fa-clock"></i> <!-- Ícone de relógio -->
             <span id="clock">00:00</span>
@@ -282,6 +299,12 @@ window.onclick = function(event) {
                 if (todayMonth === birthday.month && todayDay === birthday.day) {
                     message = `🎉 Parabéns, ${birthday.name}! 🎂`; // Cria uma mensagem personalizada
                     falar(`Parabéns, ${birthday.name}! Espero que seu dia seja incrível!`); // Faz o navegador falar
+
+                    // Adiciona a notificação de aniversário
+                    notifications.push(`Hoje é o aniversário de ${birthday.name}! 🎉`);
+
+                    // Exibe a notificação no ícone de notificação
+                    document.getElementById("notificationCount").innerText = notifications.length;
                 }
             });
 

@@ -720,6 +720,119 @@ function createFallingLeaves() {
     }
 }
 
+// Função que calcula a data 15 dias antes de uma data (sem ano)
+function calculateReminderDate(month, day) {
+  const currentYear = new Date().getFullYear();  // Usa o ano atual
+  const reminderDate = new Date(currentYear, month, day); // Cria a data de notificação
+  reminderDate.setDate(reminderDate.getDate() - 15); // Subtrai 15 dias
+  return reminderDate;
+}
+
+// Função para extrair o mês e o dia de uma data
+function getMonthAndDay(date) {
+  return { month: date.getMonth(), day: date.getDate() };
+}
+
+// Armazenar notificações (array de objetos)
+let notifications = [];
+
+// Datas importantes (sem ano, apenas mês e dia)
+const importantDates = [
+  { name: "Páscoa", month: 3, day: 20 },  // Páscoa (mês 3, dia 20) - exemplo sem o ano
+  { name: "Natal", month: 11, day: 25 },  // Natal (mês 11, dia 25)
+  // Adicione outras datas importantes conforme necessário
+];
+
+// Função para verificar se a data atual é 15 dias antes de algum feriado
+function checkForUpcomingHolidays() {
+  const today = new Date();
+  const todayMonthAndDay = getMonthAndDay(today);
+  let notificationCount = 0;
+  
+  importantDates.forEach(holiday => {
+    const reminderDate = calculateReminderDate(holiday.month, holiday.day);  // Usa mês e dia
+    const holidayMonthAndDay = { month: holiday.month, day: holiday.day };
+    const reminderMonthAndDay = getMonthAndDay(reminderDate);
+
+    // Verifica se hoje é 15 dias antes de algum feriado (compara apenas mês e dia)
+    if (todayMonthAndDay.month === reminderMonthAndDay.month && todayMonthAndDay.day === reminderMonthAndDay.day) {
+      // Adiciona a notificação à lista
+      notifications.push(`Lembrete: Faltam 15 dias para ${holiday.name}!`);
+      notificationCount++;
+    }
+  });
+
+  // Atualiza o contador de notificações
+  document.getElementById("notificationCount").innerText = notificationCount;
+}
+
+// Função para criar notificações relevantes a cada 10 minutos
+function createPeriodicNotification() {
+  // Mensagens de notificação personalizadas
+  const notificationsMessages = [
+      "⏰ Hora de dar uma pausa! Levante-se e movimente-se! 🚶",    // Lembrete de pausa
+      "💧 Beba água! Seu corpo precisa de hidratação!",             // Lembrete de hidratação
+      "📅 Lembre-se de revisar suas metas do dia! Está indo bem!"  // Lembrete de metas
+  ];
+
+  // Escolhe uma mensagem aleatória
+  const randomMessage = notificationsMessages[Math.floor(Math.random() * notificationsMessages.length)];
+
+  // Adiciona a notificação ao array de notificações
+  notifications.push(randomMessage);
+
+  // Atualiza o contador de notificações
+  document.getElementById("notificationCount").innerText = notifications.length;
+
+  // Exibe a notificação na interface (caso o modal esteja aberto)
+  if (document.getElementById("notificationModal").style.display === 'block') {
+      const notificationList = document.getElementById("notificationList");
+      const li = document.createElement("li");
+      li.textContent = randomMessage;
+      notificationList.appendChild(li);
+  }
+}
+
+// Função para abrir o modal e mostrar as notificações
+function openModalNotificar() {
+  const notificationList = document.getElementById("notificationList");
+  notificationList.innerHTML = '';  // Limpa a lista atual
+
+  // Adiciona cada notificação à lista no modal
+  notifications.forEach(notification => {
+    const li = document.createElement("li");
+    li.textContent = notification;
+    notificationList.appendChild(li);
+  });
+
+  // Exibe o modal
+  document.getElementById("notificationModal").style.display = 'block';
+}
+
+// Função para fechar o modal
+function closeModal() {
+  document.getElementById("notificationModal").style.display = 'none';
+}
+
+// Verifica as notificações diariamente
+setInterval(checkForUpcomingHolidays, 24 * 60 * 60 * 1000);
+
+// Adiciona o evento de clique no ícone de notificação
+document.getElementById("notificationButton").addEventListener("click", openModalNotificar);
+
+// Verifica as notificações ao carregar a página
+document.addEventListener("DOMContentLoaded", checkForUpcomingHolidays);
+
+// Função para limpar as notificações
+function clearNotifications() {
+  notifications = [];  // Limpa o array de notificações
+  document.getElementById("notificationList").innerHTML = '';  // Limpa a lista no modal
+  document.getElementById("notificationCount").innerText = '0';  // Reseta o contador
+}
+
+// Adiciona o evento de clique no botão "Limpar Notificações"
+document.getElementById("clearNotificationsBtn").addEventListener("click", clearNotifications);
+
 // Seleciona elementos
 const perfilBtn = document.getElementById("perfil-btn");
 const perfilContainer = document.getElementById("perfil-container");
@@ -827,9 +940,13 @@ perfilSelector.addEventListener("change", (event) => {
   atualizarPerfil(); // Atualiza a tela com o novo perfil
 });
 
+// Define um intervalo para exibir a notificação a cada 10 minutos (600.000 ms)
+setInterval(createPeriodicNotification, 10 * 60 * 1000); // 10 minutos em milissegundos
+
 // Inicializa o perfil ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
   // Define a escolha do perfil no dropdown de acordo com o perfil ativo
   perfilSelector.value = perfilAtivo;
   atualizarPerfil(); // Atualiza o perfil ativo ao carregar a página
+  createPeriodicNotification();
 });
