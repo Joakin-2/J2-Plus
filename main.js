@@ -639,23 +639,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Primavera: 22 de setembro a 21 de dezembro
     if (month === 8 && day === 22) {
-        seasonMessage = "🌸 Bem-vindo à Primavera! 🌼";
-        seasonEffect = "spring";
+      seasonMessage = "🌸 Bem-vindo à Primavera! 🌼";
+      seasonEffect = "spring";
+      seasonNotification = "Lembrete: Hoje é o primeiro dia da Primavera!";
     }
     // Verão: 22 de dezembro a 20 de março
     else if (month === 11 && day === 22) {
-        seasonMessage = "☀️ É Verão! Aproveite o calor! 🌴";
-        seasonEffect = "summer";
+      seasonMessage = "☀️ É Verão! Aproveite o calor! 🌴";
+      seasonEffect = "summer";
+      seasonNotification = "Lembrete: Hoje é o primeiro dia do Verão!";
     }
     // Outono: 21 de março a 20 de junho
     else if (month === 2 && day === 21) {
-        seasonMessage = "🍂 Outono chegou! O ar fresco está no ar. 🍁";
-        seasonEffect = "autumn";
+      seasonMessage = "🍂 Outono chegou! O ar fresco está no ar. 🍁";
+      seasonEffect = "autumn";
+      seasonNotification = "Lembrete: Hoje é o primeiro dia do Outono!";
     }
     // Inverno: 21 de junho a 21 de setembro
     else if (month === 5 && day === 21) {
-        seasonMessage = "❄️ Inverno chegou! Prepare-se para o frio! 🧣";
-        seasonEffect = "winter";
+      seasonMessage = "❄️ Inverno chegou! Prepare-se para o frio! 🧣";
+      seasonEffect = "winter";
+      seasonNotification = "Lembrete: Hoje é o primeiro dia do Inverno!";
     }
 
     // Se for o primeiro dia da estação, exibe a mensagem e ativa o efeito
@@ -663,6 +667,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('Text').innerText = seasonMessage;
         document.getElementById('Message').style.display = 'block'; // Exibe a mensagem
         activateSeasonEffect(seasonEffect);
+
+        // Adiciona a notificação de estação
+        notifications.push(seasonNotification);
+        document.getElementById("notificationCount").innerText = notifications.length;
     }
 }
 

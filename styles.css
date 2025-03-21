@@ -236,6 +236,7 @@ h2, h3 {
 }
 
 #recomendacoes {
+    margin-top: -20px;
     margin-bottom: 30px;
 }
 
@@ -552,7 +553,7 @@ button:hover {
 }
 
 .leaf {
-    position: absolute;
+    position: fixed;
     font-size: 2rem;
     color: #f44336;
     animation: fall 5s infinite;
