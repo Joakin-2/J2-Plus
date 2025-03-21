@@ -25,6 +25,22 @@ inputText.addEventListener('input', () => {
         hideTypingStatus();
     }
 });
+
+// Função para detectar o comando e abrir um site
+function detectCommand(event) {
+  const inputText = document.getElementById('inputText');
+  const message = inputText.value.trim();
+
+  if (message === '/modulos') {
+      // Abre o site desejado
+      window.open('Módulos/index.html', '_blank'); // Substitua pelo URL do site que deseja abrir
+      inputText.value = ''; // Limpa o campo de entrada após a execução do comando
+  }
+}
+
+// Adiciona um evento de 'input' ao campo de texto
+document.getElementById('inputText').addEventListener('input', detectCommand);
+
 // Função para alternar o menu
 function toggleMenu() {
     const menu = document.getElementById('overlayMenu');
