@@ -23,6 +23,22 @@
             height: 100vh;
         }
 
+        .filter-container {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        select {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 5px;
+            width: 400px;
+        }
+
         .video-container {
             width: 100%;
             max-width: 400px;
@@ -32,49 +48,85 @@
             scroll-snap-align: start;
         }
 
-        video {
+        iframe {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 10px;
         }
+
+        .video-feed {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
-    <div id="videosFeed"></div>
+    <!-- Barra de filtro -->
+    <div class="filter-container">
+        <select id="videoFilter">
+            <option value="all">Todos</option>
+            <option value="shorts">Shorts</option>
+            <option value="long">Longos</option>
+        </select>
+    </div>
+
+    <div id="videosFeed" class="video-feed"></div>
 
     <script>
-        let videos = [
-            "https://www.youtube.com/embed/OdEkUyYwV-Y", 
-            "https://www.youtube.com/embed/KNROJFlQ5aM",
-            "https://www.youtube.com/embed/Z1Eh_Z0_37I",
-            "https://www.youtube.com/embed/fPqw7zOMscw",
-            "https://www.youtube.com/embed/76cFT7_y54U",
-            "https://www.youtube.com/embed/qb0CEHPJt_I",
-            "https://www.youtube.com/embed/GM2YyEWN1kY",
-            "https://www.youtube.com/embed/tPAWJb72l80",
-            "https://www.youtube.com/embed/hZtJQ8A4qOk",
-            "https://www.youtube.com/embed/0ZwJZtOoF-k",
-            "https://www.youtube.com/embed/EzlzmiGdRYc",
-            "https://www.youtube.com/embed/gi07epGHjvQ",
-            "https://www.youtube.com/embed/rwZIba14XLI",
-            "https://www.youtube.com/embed/KkUPfJPlxHQ",
-            "https://www.youtube.com/embed/HZeUniUllnI",
-            "https://www.youtube.com/embed/EHV1Ht4aP2U"
-        ];
+        const videos = {
+            all: [
+                "https://www.youtube.com/embed/OdEkUyYwV-Y", 
+                "https://www.youtube.com/embed/KNROJFlQ5aM",
+                "https://www.youtube.com/embed/Z1Eh_Z0_37I",
+                "https://www.youtube.com/embed/fPqw7zOMscw",
+                "https://www.youtube.com/embed/76cFT7_y54U",
+                "https://www.youtube.com/embed/qb0CEHPJt_I",
+                "https://www.youtube.com/embed/GM2YyEWN1kY",
+                "https://www.youtube.com/embed/tPAWJb72l80",
+                "https://www.youtube.com/embed/hZtJQ8A4qOk",
+                "https://www.youtube.com/embed/0ZwJZtOoF-k",
+                "https://www.youtube.com/embed/EzlzmiGdRYc",
+                "https://www.youtube.com/embed/gi07epGHjvQ",
+                "https://www.youtube.com/embed/rwZIba14XLI",
+                "https://www.youtube.com/embed/KkUPfJPlxHQ",
+                "https://www.youtube.com/embed/HZeUniUllnI",
+                "https://www.youtube.com/embed/EHV1Ht4aP2U",
+                "https://www.youtube.com/embed/vuC0kyEBPUM"
+            ],
+            shorts: [
+                "https://www.youtube.com/embed/OdEkUyYwV-Y", 
+                "https://www.youtube.com/embed/KNROJFlQ5aM",
+                "https://www.youtube.com/embed/Z1Eh_Z0_37I",
+                "https://www.youtube.com/embed/fPqw7zOMscw",
+                "https://www.youtube.com/embed/76cFT7_y54U",
+                "https://www.youtube.com/embed/qb0CEHPJt_I",
+                "https://www.youtube.com/embed/GM2YyEWN1kY",
+                "https://www.youtube.com/embed/tPAWJb72l80",
+                "https://www.youtube.com/embed/hZtJQ8A4qOk",
+                "https://www.youtube.com/embed/0ZwJZtOoF-k",
+                "https://www.youtube.com/embed/EzlzmiGdRYc",
+                "https://www.youtube.com/embed/gi07epGHjvQ",
+                "https://www.youtube.com/embed/rwZIba14XLI",
+                "https://www.youtube.com/embed/EHV1Ht4aP2U",
+                "https://www.youtube.com/embed/vuC0kyEBPUM"
+            ],
+            long: [
+                "https://www.youtube.com/embed/HZeUniUllnI",
+                "https://www.youtube.com/embed/KkUPfJPlxHQ"
+            ]
+        };
 
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        function loadVideos() {
-            shuffleArray(videos);
+        // Função para carregar os vídeos
+        function loadVideos(filter = "all") {
             const feed = document.getElementById("videosFeed");
+            feed.innerHTML = ''; // Limpa os vídeos atuais
 
-            videos.forEach(videoSrc => {
+            const selectedVideos = videos[filter]; // Videos a serem exibidos conforme o filtro
+
+            selectedVideos.forEach(videoSrc => {
                 const videoContainer = document.createElement("div");
                 videoContainer.classList.add("video-container");
 
@@ -89,7 +141,12 @@
             });
         }
 
-        loadVideos();
+        // Evento para alterar o filtro
+        document.getElementById("videoFilter").addEventListener("change", (e) => {
+            loadVideos(e.target.value); // Carrega vídeos conforme o filtro selecionado
+        });
+
+        loadVideos(); // Carrega os vídeos inicialmente
     </script>
 </body>
 </html>
