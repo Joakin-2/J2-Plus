@@ -495,6 +495,58 @@ setInterval(updateClock, 60000);
 // Chama a função uma vez para não esperar um minuto
 updateClock();
 
+// Inicializando as variáveis
+const calenButton = document.querySelector('.calenbutton');
+const calendar = document.getElementById('calendar');
+const calendarGrid = document.getElementById('calendarGrid');
+const yearDisplay = document.getElementById('year');
+const prevYear = document.getElementById('prevYear');
+const nextYear = document.getElementById('nextYear');
+
+let currentYear = new Date().getFullYear(); // Inicia com o ano atual
+
+// Função para renderizar o calendário com todos os meses
+function renderCalendar() {
+  yearDisplay.textContent = currentYear;
+
+  // Limpa o grid de meses
+  calendarGrid.innerHTML = '';
+
+  const months = [
+    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+  ];
+
+  // Preenche o calendário com os meses
+  months.forEach((month, index) => {
+    const monthDiv = document.createElement('div');
+    monthDiv.textContent = month;
+    monthDiv.addEventListener('click', () => alert(`Você clicou em ${month} de ${currentYear}`)); // Exemplo de ação ao clicar em um mês
+    calendarGrid.appendChild(monthDiv);
+  });
+}
+
+// Mostrar/Esconder o calendário ao clicar no botão
+calenButton.addEventListener('click', () => {
+  calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
+  renderCalendar();
+});
+
+// Mudar para o ano anterior
+prevYear.addEventListener('click', () => {
+  currentYear--;
+  renderCalendar();
+});
+
+// Mudar para o próximo ano
+nextYear.addEventListener('click', () => {
+  currentYear++;
+  renderCalendar();
+});
+
+// Inicializa o calendário
+renderCalendar();
+
 // Camera
 document.addEventListener('DOMContentLoaded', () => {
     let isCameraActive = false; // Controle para saber se a câmera está ativa

@@ -80,6 +80,16 @@
     </div>
 </div>
 
+<!-- Calendário que ficará escondido inicialmente -->
+<div id="calendar" class="calendar">
+    <div id="calendarHeader">
+      <button id="prevMonth">‹</button>
+      <span id="monthYear">2025</span>
+      <button id="nextMonth">›</button>
+    </div>
+    <div id="calendarGrid"></div>
+  </div>
+
 <!-- Modal de notificações -->
 <div id="notificationModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
     <div style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); background-color: #202020; padding: 20px; border-radius: 8px; width: 301px; margin-left: -1px;">
@@ -94,6 +104,9 @@
   
     <div class="container">
         <button class="menu-button" aria-label="Abrir menu" onclick="toggleMenu()">Menu</button>
+        <button class="calenbutton" aria-label="Abrir calendário">
+            <i class="fas fa-calendar-alt"></i> <!-- Ícone de calendário -->
+        </button>
         <button id="perfil-btn">Perfil</button>
         <button onclick="window.location.href='https://j2plus.netlify.app/conselho/new.html'" style="display:none; position: absolute; margin-top: 440px;" id="botao31Dezembro">Refexão desse Ano!</button>
         <button class="chatg" onclick="window.location.href='https://chat.openai.com/chat'"></button>
@@ -199,6 +212,7 @@
         <button class="detalhes" onclick="window.location.href='termo.html'">Termo</button>
         <a style="font-size: 14px; text-decoration: none;" class="detalhes" href="Links/itens/index.html">Itens</a>
         <button class="detalhes" aria-label="Abrir menu2" onclick="toggleMenu2()">Help</button>
+        <button class="detalhes" onclick="window.location.href='reclamar.html'">Reclamar</button>
     </footer>
     
     <!-- Inclui o script externo -->
