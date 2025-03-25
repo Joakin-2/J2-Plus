@@ -67,7 +67,7 @@ canvas {
     color: #ffffff;
 }
 
-.calendar {
+#calendar {
     top: 10px;
     left: 100px;
     display: none;
@@ -102,7 +102,7 @@ canvas {
   }
   
   #calendarGrid div:hover {
-    background-color: #f0f0f0;
+    background-color: #252525;
   }
 
 .clock {

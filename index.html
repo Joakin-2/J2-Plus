@@ -41,7 +41,7 @@
                 <li><a href="https://j2plus.netlify.app/sax">Sax</a></li>
                 <li><a href="https://j2plus.netlify.app/proto">Proto</a></li>
                 <li><a href="https://j2plus.netlify.app/H%C3%A1bitos/saude.html">Saúde</a></li>
-                <li><a href="https://j2plus.netlify.app/works/ler.html">Leitura</a></li>
+                <li><a href="https://j2plus.netlify.app/reclamar.html">Reclamar</a></li>
             </ul>
         </div>
     </aside>
@@ -81,14 +81,14 @@
 </div>
 
 <!-- Calendário que ficará escondido inicialmente -->
-<div id="calendar" class="calendar">
-    <div id="calendarHeader">
-      <button id="prevMonth">‹</button>
-      <span id="monthYear">2025</span>
-      <button id="nextMonth">›</button>
+<div id="calendar" style="display: none;">
+    <div style="display: flex; margin-bottom: 20px;">
+        <button id="prevYear" style="margin-left: 220px; margin-right: 15px;"><</button>
+        <div id="year" style="margin-left: 5px; margin-top: 10px;"></div>
+        <button id="nextYear" style="margin-left: 20px;">></button>
     </div>
     <div id="calendarGrid"></div>
-  </div>
+</div>
 
 <!-- Modal de notificações -->
 <div id="notificationModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
@@ -212,7 +212,6 @@
         <button class="detalhes" onclick="window.location.href='termo.html'">Termo</button>
         <a style="font-size: 14px; text-decoration: none;" class="detalhes" href="Links/itens/index.html">Itens</a>
         <button class="detalhes" aria-label="Abrir menu2" onclick="toggleMenu2()">Help</button>
-        <button class="detalhes" onclick="window.location.href='reclamar.html'">Reclamar</button>
     </footer>
     
     <!-- Inclui o script externo -->

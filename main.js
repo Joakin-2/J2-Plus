@@ -495,58 +495,6 @@ setInterval(updateClock, 60000);
 // Chama a função uma vez para não esperar um minuto
 updateClock();
 
-// Inicializando as variáveis
-const calenButton = document.querySelector('.calenbutton');
-const calendar = document.getElementById('calendar');
-const calendarGrid = document.getElementById('calendarGrid');
-const yearDisplay = document.getElementById('year');
-const prevYear = document.getElementById('prevYear');
-const nextYear = document.getElementById('nextYear');
-
-let currentYear = new Date().getFullYear(); // Inicia com o ano atual
-
-// Função para renderizar o calendário com todos os meses
-function renderCalendar() {
-  yearDisplay.textContent = currentYear;
-
-  // Limpa o grid de meses
-  calendarGrid.innerHTML = '';
-
-  const months = [
-    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-  ];
-
-  // Preenche o calendário com os meses
-  months.forEach((month, index) => {
-    const monthDiv = document.createElement('div');
-    monthDiv.textContent = month;
-    monthDiv.addEventListener('click', () => alert(`Você clicou em ${month} de ${currentYear}`)); // Exemplo de ação ao clicar em um mês
-    calendarGrid.appendChild(monthDiv);
-  });
-}
-
-// Mostrar/Esconder o calendário ao clicar no botão
-calenButton.addEventListener('click', () => {
-  calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
-  renderCalendar();
-});
-
-// Mudar para o ano anterior
-prevYear.addEventListener('click', () => {
-  currentYear--;
-  renderCalendar();
-});
-
-// Mudar para o próximo ano
-nextYear.addEventListener('click', () => {
-  currentYear++;
-  renderCalendar();
-});
-
-// Inicializa o calendário
-renderCalendar();
-
 // Camera
 document.addEventListener('DOMContentLoaded', () => {
     let isCameraActive = false; // Controle para saber se a câmera está ativa
@@ -1025,4 +973,114 @@ document.addEventListener("DOMContentLoaded", () => {
   perfilSelector.value = perfilAtivo;
   atualizarPerfil(); // Atualiza o perfil ativo ao carregar a página
   createPeriodicNotification();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const calenButton = document.querySelector('.calenbutton');
+  const calendar = document.getElementById('calendar');
+  const calendarGrid = document.getElementById('calendarGrid');
+  const yearDisplay = document.getElementById('year');
+  const prevYear = document.getElementById('prevYear');
+  const nextYear = document.getElementById('nextYear');
+
+  if (!calenButton || !calendar || !calendarGrid || !yearDisplay || !prevYear || !nextYear) {
+    console.error("Um ou mais elementos esperados estão ausentes no DOM!");
+    return;
+  }
+
+  const birthdays = [
+    { name: "Pipoca", month: 1, day: 24 },
+    { name: "Joaquim", month: 2, day: 5 },
+    { name: "Joaquim Batismo", month: 2, day: 22 },
+    { name: "Vitória", month: 6, day: 4 },
+    { name: "Paula", month: 10, day: 24 },
+    { name: "Adeir", month: 9, day: 7 }
+  ];
+
+  const specialEvents = [
+    { name: "Independência do Brasil", month: 9, day: 7 },
+    { name: "Natal", month: 12, day: 25 },
+    { name: "Ano Novo", month: 1, day: 1 },
+  ];
+
+  let currentYear = new Date().getFullYear();
+
+  function renderCalendar() {
+    yearDisplay.textContent = currentYear;
+    calendarGrid.innerHTML = '';
+    const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    months.forEach((month, index) => {
+      const monthDiv = document.createElement('div');
+      monthDiv.textContent = month;
+      monthDiv.addEventListener('click', () => renderDaysInMonth(index, currentYear, month));
+      calendarGrid.appendChild(monthDiv);
+    });
+  }
+
+  function renderDaysInMonth(monthIndex, year, monthName) {
+    calendarGrid.innerHTML = ''; // Limpa o grid atual
+    const daysInMonth = new Date(year, monthIndex + 1, 0).getDate(); // Obtém a quantidade de dias no mês
+    const title = document.createElement('div');
+    title.textContent = `${monthName} ${year}`;
+    title.style.fontWeight = 'bold';
+    title.style.marginBottom = '10px';
+    calendarGrid.appendChild(title);
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dayDiv = document.createElement('div');
+      dayDiv.textContent = day;
+      dayDiv.style.border = '1px solid #ccc';
+      dayDiv.style.padding = '10px';
+      dayDiv.style.margin = '5px';
+      dayDiv.style.display = 'inline-block';
+      dayDiv.style.cursor = 'pointer';
+
+      // Verifica se é um aniversário ou evento especial
+      const birthday = birthdays.find(b => b.month === monthIndex + 1 && b.day === day);
+      const event = specialEvents.find(e => e.month === monthIndex + 1 && e.day === day);
+
+      if (birthday) {
+        dayDiv.style.backgroundColor = '#6e9bff'; // Destaca o dia com cor
+        dayDiv.textContent += ` 🎉 ${birthday.name}`;
+      }
+
+      if (event) {
+        dayDiv.style.backgroundColor = '#9877f1'; // Destaca o dia com cor diferente
+        dayDiv.textContent += ` ✨ ${event.name}`;
+      }
+
+      dayDiv.addEventListener('click', () => {
+        let message = `Dia ${day} de ${monthName}, ${year}`;
+        if (birthday) message += ` - Aniversário de ${birthday.name}`;
+        if (event) message += ` - Evento especial: ${event.name}`;
+        alert(message);
+      });
+
+      calendarGrid.appendChild(dayDiv);
+    }
+
+    const backButton = document.createElement('button');
+    backButton.textContent = "Voltar";
+    backButton.style.padding = '10px';
+    backButton.style.cursor = 'pointer';
+    backButton.addEventListener('click', renderCalendar);
+    calendarGrid.appendChild(backButton);
+  }
+
+  calenButton.addEventListener('click', () => {
+    calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
+    renderCalendar();
+  });
+
+  prevYear.addEventListener('click', () => {
+    currentYear--;
+    renderCalendar();
+  });
+
+  nextYear.addEventListener('click', () => {
+    currentYear++;
+    renderCalendar();
+  });
+
+  renderCalendar();
 });
