@@ -1,0 +1,4 @@
+'Praise/E Ele (Ao Vivo).mp3': "É Ele (Ao Vivo)",
+'Praise/Grande Rei (Yeshua Esta Aqui) (Ao Vivo).mp3': "Grande Rei (Yeshua Está Aqui) (Ao Vivo)",
+'Praise/O FOGO ARDERA (AO VIVO).mp3': "O FOGO ARDERÁ (AO VIVO)",
+'Praise/Tudo e teu.mp3': "Tudo é teu",
