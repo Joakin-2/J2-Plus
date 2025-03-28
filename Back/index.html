@@ -46,7 +46,7 @@
             if (horas === 18 && minutos === 25) {
                 tocarAlarme1();
             } else if (horas === 23 && minutos === 0) {
-                abrirSite();
+                window.open('https://j2plus.netlify.app/back/sleep.html', '_blank');
             } else if (horas === 23 && minutos === 30) {
                 tocarAlarme2();
             }
@@ -59,9 +59,6 @@
         function tocarAlarme2() {
             var alarmeAudio = new Audio('Dormir.wav');
             alarmeAudio.play();
-        }
-        function abrirSite() {
-            window.open('sleep.html');
         }
 
         var musicaIniciada = false;
@@ -116,10 +113,6 @@
         };
 
         // Funções para abrir sites
-        function abrirSite(url) {
-            window.open(url, '_blank');
-            console.log(`Abrindo o site: ${url}`);
-        }
 
         function abrirAlgunsSites(url1, url2, url3, url4) {
             window.open(url1, '_blank');
