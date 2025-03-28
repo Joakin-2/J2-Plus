@@ -7,14 +7,176 @@
     <title>Módulos</title>
     <style>
         body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #121212; /* Cor de fundo escura */
-    color: #e0e0e0; /* Cor de texto clara */
-}
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Cor de fundo escura */
+            color: #e0e0e0; /* Cor de texto clara */
+            overflow-x: hidden;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 3em;
+            color: #ff0000; /* Cor vermelha, como se fosse um alerta */
+        }
+        .module {
+            width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border: 2px solid #333;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .module:hover {
+            background-color: #ff0000;
+            transform: scale(1.05);
+        }
+        .module h2 {
+            color: #fff;
+        }
+        .module button {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+        .module button:hover {
+            background-color: #e60000;
+        }
+        
+        /* Estilos para os modais */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            color: #e0e0e0;
+        }
+        .modal button {
+            background-color: #ff0000;
+            color: white;
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .modal button:hover {
+            background-color: #e60000;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #fff;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <h1>Módulos de Sistema</h1>
+
+    <!-- Módulo de Destruição -->
+    <div class="module" onclick="openModal('destruicao')">
+        <h2>Módulo de Destruição</h2>
+        <button>Ativar</button>
+    </div>
+
+    <!-- Módulo de Segurança -->
+    <div class="module" onclick="openModal('seguranca')">
+        <h2>Módulo de Segurança</h2>
+        <button>Ativar</button>
+    </div>
+
+    <!-- Módulo de Proteção -->
+    <div class="module" onclick="openModal('protecao')">
+        <h2>Módulo de Proteção</h2>
+        <button>Ativar</button>
+    </div>
+
+    <!-- Modal de Destruição -->
+    <div id="destruicaoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('destruicao')">&times;</span>
+            <h2>Destruição - Selecione uma Opção</h2>
+            <button>Destruir tudo</button>
+            <button>Ativar Explosões</button>
+            <button>Hacker remoto</button>
+            <button>Destruição de Dados</button>
+            <button>Destruição Total</button>
+            <button>Ativar Guerra Cibernética</button>
+            <button>Destruição de Sistema</button>
+        </div>
+    </div>
+
+    <!-- Modal de Segurança -->
+    <div id="segurancaModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('seguranca')">&times;</span>
+            <h2>Segurança - Selecione uma Opção</h2>
+            <button>Ativar Firewall</button>
+            <button>Verificar Vulnerabilidades</button>
+            <button>Bloquear IP</button>
+        </div>
+    </div>
+
+    <!-- Modal de Proteção -->
+    <div id="protecaoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('protecao')">&times;</span>
+            <h2>Proteção - Selecione uma Opção</h2>
+            <button>Ativar Proteção contra DDoS</button>
+            <button>Fortificar Sistema</button>
+            <button>Ativar Backup</button>
+        </div>
+    </div>
+
+    <script>
+        // Função para abrir o modal
+        function openModal(modalType) {
+            const modal = document.getElementById(modalType + 'Modal');
+            modal.style.display = 'flex';
+        }
+
+        // Função para fechar o modal
+        function closeModal(modalType) {
+            const modal = document.getElementById(modalType + 'Modal');
+            modal.style.display = 'none';
+        }
+
+        // Fechar o modal se clicar fora do conteúdo
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(function(modal) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
