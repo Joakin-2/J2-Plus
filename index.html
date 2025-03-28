@@ -41,7 +41,7 @@
                 <li><a href="https://j2plus.netlify.app/sax">Sax</a></li>
                 <li><a href="https://j2plus.netlify.app/proto">Proto</a></li>
                 <li><a href="https://j2plus.netlify.app/H%C3%A1bitos/saude.html">Saúde</a></li>
-                <li><a href="https://j2plus.netlify.app/reclamar.html">Reclamar</a></li>
+                <li><a href="#" onclick="openModal('modalReclamar'); return false;">Reclamar</a></li>
             </ul>
         </div>
     </aside>
@@ -94,7 +94,7 @@
 <div id="notificationModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
     <div style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); background-color: #202020; padding: 20px; border-radius: 8px; width: 301px; margin-left: -1px;">
       <h3>Notificações</h3>
-      <button onclick="closeModal()" style="position: absolute; margin-top: -45px; margin-left: 270px; background: #202020;">X</button>
+      <button onclick="closeModalNotify()" style="position: absolute; margin-top: -45px; margin-left: 270px; background: #202020;">X</button>
       <ul id="notificationList" style="border: none; border-radius: 5px; color: #6f4fef; list-style-type: none; padding-left: 0;">
         <!-- As notificações serão listadas aqui -->
       </ul>
@@ -157,7 +157,7 @@
                     </ul>
                 </div>                
             </div>
-            <a href="chat.html" target="_blank">
+            <a>
                 <div class="avatar">
                     <div id="Hat" class="birthday-hat" style="display:none;"></div>
                     <div id="Gorro" class="gorro" style="display: none;">
@@ -207,9 +207,86 @@
         </div>        
     </div>
 
+    <!-- Modal Privacidade -->
+<div id="modalPrivacidade" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalPrivacidade')">&times;</span>
+      <h1>Política de Privacidade</h1>
+    <p>A sua privacidade é importante para nós. Esta política explica como coletamos, usamos e protegemos suas informações.</p>
+
+    <h2>Informações que coletamos</h2>
+    <p>Coletamos informações pessoais que você nos fornece.</p>
+
+    <h2>Uso de cookies</h2>
+    <p>Utilizamos cookies para melhorar sua experiência em nosso site. Você pode desativar os cookies nas configurações do seu navegador.</p>
+
+    <h2>Segurança das informações</h2>
+    <p>Tomamos medidas adequadas para proteger suas informações contra acesso não autorizado e uso indevido.</p>
+
+    <h2>Contato</h2>
+    <p>Se você tiver perguntas sobre esta política de privacidade, entre em contato conosco pelo e-mail: <a href="mailto:jqm5049@gmail.com">jqm5049@gmail.com</a>.</p>
+    </div>
+  </div>
+  
+  <!-- Modal Termo -->
+  <div id="modalTermo" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalTermo')">&times;</span>
+      <h1>Termos de Serviço</h1>
+    <p>Bem-vindo ao J2+. Ao acessar e utilizar nosso site, você concorda com os seguintes termos e condições.</p>
+
+    <h2>Uso do site</h2>
+    <p>Você concorda em usar o site apenas para fins legais e de acordo com todas as leis aplicáveis.</p>
+
+    <h2>Propriedade intelectual</h2>
+    <p>Todo o conteúdo deste site, incluindo textos, gráficos e imagens, é protegido por direitos autorais e não pode ser reproduzido sem autorização.</p>
+
+    <h2>Limitação de responsabilidade</h2>
+    <p>Não nos responsabilizamos por danos diretos, indiretos, acidentais ou consequenciais que possam resultar do uso ou da incapacidade de uso do site.</p>
+
+    <h2>Modificações nos termos</h2>
+    <p>Reservamo-nos o direito de modificar estes termos a qualquer momento. Recomendamos que você os revise periodicamente.</p>
+
+    <h2>Contato</h2>
+    <p>Se você tiver perguntas sobre estes Termos de Serviço, entre em contato conosco pelo e-mail: <a href="mailto:jqm5049@gmail.com">jqm5049@gmail.com</a>.</p>
+    </div>
+  </div>
+  
+  <!-- Modal Reclamar -->
+  <div id="modalReclamar" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalReclamar')">&times;</span>
+      <div style="border-radius: 10px; background: #825dff; color: white; text-align: center; padding: 20px;">
+        <h1>Central de Reclamações</h1>
+        <p>Seu feedback é muito importante para nós! Por favor, preencha o formulário abaixo.</p></div>
+
+        <form action="#" method="POST" id="complaintForm" style="margin: 20px auto; background: #202020; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgb(0 0 0 / 10%);">
+            <div>
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" placeholder="Seu nome" required>
+            </div>
+            <div>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+            </div>
+            <div>
+                <label for="subject">Assunto:</label>
+                <input type="text" id="subject" name="subject" placeholder="Resumo da reclamação" required>
+            </div>
+            <div>
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" rows="5" placeholder="Descreva sua reclamação" required></textarea>
+            </div>
+            <div>
+                <button type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
+            </div>
+        </form>
+    </div>
+  </div>
+
     <footer style="margin-top: -10px;">
-        <button class="detalhes" onclick="window.location.href='privacidade.html'">Privacidade</button>
-        <button class="detalhes" onclick="window.location.href='termo.html'">Termo</button>
+        <button class="detalhes" onclick="openModal('modalPrivacidade')">Privacidade</button>
+        <button class="detalhes" onclick="openModal('modalTermo')">Termo</button>
         <a style="font-size: 14px; text-decoration: none;" class="detalhes" href="Links/itens/index.html">Itens</a>
         <button class="detalhes" aria-label="Abrir menu2" onclick="toggleMenu2()">Help</button>
     </footer>
@@ -236,6 +313,34 @@
             muteIcon.classList.add('fa-volume-up');
         }
     });
+
+    document.querySelector('.avatar').addEventListener('click', function(event) {
+    event.preventDefault();  // Impede o redirecionamento da página
+    const chat = document.querySelector('.chat');
+    
+    // Alterna a classe "expanded" no chat
+    chat.classList.toggle('expanded');
+});
+
+    // Função para abrir o modal
+function openModal(modalId) {
+  document.getElementById(modalId).style.display = "block";
+}
+
+// Função para fechar o modal
+function closeModal(modalId) {
+  document.getElementById(modalId).style.display = "none";
+}
+
+// Fecha o modal se o usuário clicar fora dele
+window.onclick = function(event) {
+  var modals = document.getElementsByClassName("modal");
+  for (var i = 0; i < modals.length; i++) {
+    if (event.target == modals[i]) {
+      modals[i].style.display = "none";
+    }
+  }
+}
     
     document.getElementById("openClock").addEventListener("click", function() {
     window.open("Back/index.html", "_blank");

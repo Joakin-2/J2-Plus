@@ -1,6 +1,20 @@
 const apiKey = 'AIzaSyAvpvehwHv1RN-vwnmth-3asp0kF0z5kPg';  // Substitua com sua chave de API do Google Gemini
 const apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
 
+const apiKey2 = 'bd2aa057407fb66d24136dab032d5bb8'; // Sua chave de API
+const city = 'Jacupiranga'; // A cidade para a qual você deseja buscar a previsão do tempo
+const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey2}`;
+
+fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // Exibe os dados da resposta da API
+    })
+    .catch(error => {
+        console.error("Erro ao buscar os dados:", error);
+    });
+
+
 // Referências aos elementos
 const inputText = document.getElementById('inputText');
 const status = document.getElementById('status');
@@ -82,7 +96,6 @@ function handleEscapeKey(event) {
 document.addEventListener('keydown', handleEscapeKey);
 
 // Função para lidar com a tecla pressionada no campo de entrada
-// Função para lidar com a tecla pressionada no campo de entrada
 function handleKeyPress(event) {
     const inputText = document.getElementById('inputText');
 
@@ -102,13 +115,21 @@ document.getElementById('inputText').addEventListener('keypress', handleKeyPress
 
 // Exemplo da função sendMessage para enviar a mensagem
 function sendMessage() {
-    const inputText = document.getElementById('inputText');
-    const message = inputText.value.trim();
+  const inputText = document.getElementById('inputText');
+  const message = inputText.value.trim(); // Captura o valor e remove espaços desnecessários
 
-    if (message) {
-        console.log("Mensagem enviada: ", message); // Aqui você pode adicionar o envio real da mensagem
-        inputText.value = ''; // Limpa a entrada de texto após o envio
-    }
+  if (message === "") return; // Se a mensagem estiver vazia, não faz nada
+
+  // Exibir "digitando..." antes de enviar
+  updateStatus('Digitando...');
+
+  // Envia a mensagem para a API
+  sendMessageToAPI(message);
+
+  // Limpa o campo de entrada após o envio
+  inputText.value = '';
+
+  console.log("Mensagem enviada: ", message); // Registra no console a mensagem enviada
 }
 
 // Exemplo de função para lidar com a tecla "Escape" (opcional)
@@ -175,84 +196,76 @@ function updateStatus(message) {
     status.innerHTML = message;
 }
 
-// Função para enviar mensagens
-function sendMessage() {
-    const inputText = document.getElementById('inputText').value;
-    if (inputText.trim() === "") return;
-
-    // Exibir "digitando..." antes de enviar
-    updateStatus('Digitando...');
-
-    sendMessageToAPI(inputText);
-}
-
 // Função para enviar a mensagem para a API do Google Gemini
 function sendMessageToAPI(message) {
-    const status = document.getElementById('status');
-    const inputText = document.getElementById('inputText');
-    const sendButton = document.getElementById('sendButton');
+  //const status = document.getElementById('status');
+  const inputText = document.getElementById('inputText');
+  const sendButton = document.getElementById('sendButton');
 
-    const apiKey = 'AIzaSyAvpvehwHv1RN-vwnmth-3asp0kF0z5kPg';  // Substitua com sua chave de API do Google Gemini
-    const apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
+  sendButton.disabled = true;
+  sendButton.style.cursor = 'not-allowed';
+  inputText.disabled = true;
 
-    sendButton.disabled = true;
-    sendButton.style.cursor = 'not-allowed';
-    inputText.disabled = true;
+  fetch(`${apiEndpoint}?key=${apiKey}`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept-Language': 'pt-BR'  // Adiciona a especificação do idioma
+      },
+      body: JSON.stringify({
+          contents: [
+              {
+                  parts: [
+                      { text: message }
+                  ]
+              }
+          ]
+      })
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error(`Erro na API: ${response.statusText}`);
+      }
+      return response.json();
+  })
+  .then(response => {
+      console.log('Resposta da API:', response);
+      
+      // Verifica se 'candidates' existe e tem conteúdo
+      if (response && response.candidates && response.candidates.length > 0) {
+          let candidate = response.candidates[0];
+          console.log('Primeiro candidato:', candidate);
+          let content = candidate.content;
+          let r = 'Texto não encontrado';
+          
+          if (content && content.parts && content.parts.length > 0) {
+              let part = content.parts[0];
+              r = part.text || 'Texto não encontrado';
+              
+              // Verificando se o conteúdo parece ser código
+              if (isCode(r)) {
+                  r = formatCode(r); // Formata o código com sintaxe adequada
+              }
+          }
 
-    fetch(`${apiEndpoint}?key=${apiKey}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept-Language': 'pt-BR'  // Adiciona a especificação do idioma
-        },
-        body: JSON.stringify({
-            contents: [
-                {
-                    parts: [
-                        { text: message }
-                    ]
-                }
-            ]
-        })
-    })
-    .then(response => response.json())
-    .then(response => {
-        console.log('Resposta da API:', response);
-        if (response.candidates && response.candidates.length > 0) {
-            let candidate = response.candidates[0];
-            console.log('Primeiro candidato:', candidate);
-            let content = candidate.content;
-            let r = 'Texto não encontrado';
-            
-            if (content && content.parts && content.parts.length > 0) {
-                let part = content.parts[0];
-                r = part.text || 'Texto não encontrado';
-                
-                // Verificando se o conteúdo parece ser código
-                if (isCode(r)) {
-                    r = formatCode(r); // Formata o código com sintaxe adequada
-                }
-            }
-            
-            // Quando a resposta for recebida, esconder "digitando..."
-            updateStatus('');
+          // Quando a resposta for recebida, esconder "digitando..."
+          updateStatus('');
 
-            showHistory(message, r);
-            falar(r);
-        } else {
-            updateStatus('Resposta inesperada da API. Verifique o console para mais detalhes.');
-        }
-    })
-    .catch(e => {
-        console.log(`Error -> ${e}`);
-        updateStatus('Erro, tente novamente mais tarde...');
-    })
-    .finally(() => {
-        sendButton.disabled = false;
-        sendButton.style.cursor = 'pointer';
-        inputText.disabled = false;
-        inputText.value = '';
-    });
+          showHistory(message, r);
+          falar(r);
+      } else {
+          updateStatus('Resposta inesperada da API. Verifique o console para mais detalhes.');
+      }
+  })
+  .catch(e => {
+      console.log(`Error -> ${e}`);
+      updateStatus('Erro, tente novamente mais tarde...');
+  })
+  .finally(() => {
+      sendButton.disabled = false;
+      sendButton.style.cursor = 'pointer';
+      inputText.disabled = false;
+  });
 }
 
 // Função para identificar se o texto é código
@@ -834,7 +847,7 @@ function openModalNotificar() {
 }
 
 // Função para fechar o modal
-function closeModal() {
+function closeModalNotify() {
   document.getElementById("notificationModal").style.display = 'none';
 }
 
