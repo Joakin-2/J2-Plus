@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
+            margin: 20px;
             padding: 0;
             background-color: #121212;
             color: #ffffff;
@@ -45,39 +45,99 @@
             border-radius: 8px;
             width: 300px; /* Largura fixa para os botões */
         }
+
+        h1, h2 {
+            color: #825dff;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            color: #825dff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <button class="botao" onclick="redirecionar('mercado-livre')"><i class="fas fa-shopping-cart"></i> Mercado Livre</button>
-            <button class="botao" onclick="redirecionar('marketing-digital')"><i class="fas fa-bullhorn"></i> MKT Digital</button>
-        </div>
-        <div class="row">
-            <button class="botao" onclick="redirecionar('instagram')"><i class="fab fa-instagram"></i> Instagram</button>
-            <button class="botao" onclick="redirecionar('day-trade')"><i class="fas fa-chart-line"></i> Day Trade</button>
-        </div>
-    </div>
-    <script>
-        function redirecionar(destino) {
-            switch (destino) {
-                case 'mercado-livre':
-                    window.location.href = 'Cursos\\mercado.html';
-                    break;
-                case 'marketing-digital':
-                    window.location.href = 'Cursos\\mkt.html';
-                    break;
-                case 'instagram':
-                    window.location.href = 'Cursos\\insta.html';
-                    break;
-                case 'day-trade':
-                    window.location.href = 'Cursos\\trade.html';
-                    break;
-                default:
-                    break;
-            }
-        }
-    </script>
+    <h1>Links de Cursos e Tutoriais</h1>
+
+    <h2>1. Android com Espresso (Testes Automatizados)</h2>
+    <ul>
+        <li><a href="https://drive.google.com/file/d/1UlZ51yj2S5T1EHknOhsP0zAD32oZHdms/view?usp=sharing">100 - Android com Espresso parte 1: Teste da interface do usuário</a></li>
+        <li><a href="https://drive.google.com/file/d/1Afw7I6fPi8DiyYg2AEoO1JCe2_8ng1FT/view?usp=sharing">101 - Android com Espresso parte 2: Testes de fluxos complexos</a></li>
+    </ul>
+
+    <h2>2. Android com Web Service</h2>
+    <ul>
+        <li><a href="https://drive.google.com/file/d/193ty-Xu_92UhT2QvRnXTlzHQb7QopNDe/view?usp=sharing">102 - Android com Web Service parte 1: Sincronize sua app com o servidor</a></li>
+        <li><a href="https://drive.google.com/file/d/1XAaCujhmpkYvc6ga7Nz07uXcSeKzvwgp/view?usp=sharing">103 - Android com Web Service parte 2: Mais técnicas de sincronização</a></li>
+        <li><a href="https://drive.google.com/file/d/1aG8Gk4dLlj3Q8QC3cS2wqJWAUIm8kK88/view?usp=sharing">104 - Android com Web Service parte 3: Sincronização em modo offline</a></li>
+    </ul>
+
+    <h2>3. Android Fragments</h2>
+    <ul>
+        <li><a href="https://drive.google.com/file/d/1S06KTiNDMXrqPHl7hwpOLcDlIP_9B4Wz/view?usp=sharing">105 - Android Fragments: Reutilizando componentes visuais</a></li>
+    </ul>
+
+    <h2>4. Introdução ao Desenvolvimento Android</h2>
+    <ul>
+        <li><a href="https://drive.google.com/file/d/17GYRWohP5qtc7fIcQB6H_VtwcyxAA3mY/view?usp=sharing">106 - Android I: Crie sua App fantástica com Android Studio</a></li>
+        <li><a href="https://drive.google.com/file/d/1EE5Facn8UMNOE3u5wvudkCCPlNVsGOP4/view?usp=sharing">107 - Android I: Crie sua App fantástica no Eclipse</a></li>
+        <li><a href="https://drive.google.com/file/d/1kkU1hAmaYrUxOKPDFAdzJLkkxbztGl-3/view?usp=sharing">113 - Android parte 1: Crie a sua primeira app mobile</a></li>
+    </ul>
+
+    <h2>5. Android Avançado</h2>
+    <ul>
+        <li><a href="https://drive.google.com/file/d/1PugkZ5yCkZMjZcLHQK8gEIedivQClibJ/view?usp=sharing">108 - Android II: Imersão em interfaces e recursos</a></li>
+        <li><a href="https://drive.google.com/file/d/1nlZa5DQeZv2dtnZsFfWNklL0O1EBAEYR/view?usp=sharing">109 - Android II: Integração com apps e recursos do device</a></li>
+        <li><a href="https://drive.google.com/file/d/1-7eNOZP3t_Khbj2_Dvlczf32Woz_sp9r/view?usp=sharing">110 - Android III: Aprimore sua app com Fragments, Google Maps e GPS</a></li>
+        <li><a href="https://drive.google.com/file/d/1D9xJxnjWZd03uvT6TEPoRfbPlWZr4jcC/view?usp=sharing">111 - Android III: Integrações e Mapas para turbinar sua App</a></li>
+    </ul>
+
+    <h2>6. Testes em Android</h2>
+    <ul>
+        <li><a href="https://drive.google.com/file/d/1eRtZqrHkIw4ext4YdmxtiLYXzXDxa8oi/view?usp=sharing">114 - Android parte 1: Testes automatizados e TDD</a></li>
+        <li><a href="https://drive.google.com/file/d/17Si5nZ-TGFWjuhdgKa7Bb1O04t9PSAKk/view?usp=sharing">115 - Android parte 2: Avançando com listeners, menu e UI</a></li>
+        <li><a href="https://drive.google.com/file/d/1rn7qSgEplgrXLQNZuKZnDR8bAa7O_IsQ/view?usp=sharing">116 - Android parte 2: Boas práticas e novos cenários de testes</a></li>
+        <li><a href="https://drive.google.com/file/d/1gnaSp4Of8lDJwsLz5svnuidqIUf-d1Te/view?usp=sharing">117 - Android parte 3: Refinando o projeto</a></li>
+    </ul>
+
+    <h2>7. Android Room (Persistência de Dados)</h2>
+    <ul>
+        <li><a href="https://drive.google.com/file/d/1H_ZX9sXc5RJWGAUQspQm31o4rfTAUfXE/view?usp=sharing">118 - Android Room parte 1: Introdução à persistência de dados com ORM</a></li>
+        <li><a href="https://drive.google.com/file/d/1EHQ_ldLC4ZdU_NHgaAzeHxuHihRmoyHD/view?usp=sharing">119 - Android Room parte 2: Operações assíncronas</a></li>
+    </ul>
+
+    <h2>8. Android - Acessando APIs Web</h2>
+    <ul>
+        <li><a href="https://drive.google.com/file/d/1lkR9EaYsAXmaB71QZfu3GR6mRK1BVpzg/view?usp=sharing">120 - Android: Acessando uma API web</a></li>
+    </ul>
+
+    <h2>9. Arduino</h2>
+    <ul>
+        <li><a href="https://drive.google.com/file/d/1yDQqg8X8F6XTeiSSQkD1_rAtKN_dzW1K/view?usp=sharing">Arduino: Do zero ao jogo</a></li>
+        <li><a href="https://drive.google.com/file/d/1HPrEy6jtD6Qc8y00Wopb7SMW6f4MK35G/view?usp=sharing">Arduino: Introdução à Robótica</a></li>
+    </ul>
+
+    <h2>10. Chatbot com Watson</h2>
+    <ul>
+        <li><a href="https://drive.google.com/file/d/1mEKz5p6pE2AN0mGdKVzslGcYi-JJeu8R/view?usp=sharing">Chatbot parte 1: Começando com as conversas inteligentes usando o Watson</a></li>
+        <li><a href="https://drive.google.com/file/d/14l6SROpfdzd4LV4xVOq7upASvxBUP8eC/view?usp=sharing">Chatbot parte 1 (antigo): Começando com as conversas inteligentes usando o Watson</a></li>
+        <li><a href="https://drive.google.com/file/d/1IWvvjrG4jWLuL39dLvktwXbk82amtx10/view?usp=sharing">Chatbot parte 2: Avançando e integrando o bot</a></li>
+    </ul>
+</div>
 </body>
 </html>

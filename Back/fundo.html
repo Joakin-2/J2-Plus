@@ -7,26 +7,25 @@
     <link rel="icon" type="image/x-icon" href="ícone.ico">
     <style>
         body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* Para evitar barras de rolagem */
-}
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Para evitar barras de rolagem */
+        }
 
-#background-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1; /* Coloca o vídeo no fundo */
-}
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1; /* Coloca o vídeo no fundo */
+        }
 
-#background-video.purple {
-    filter: brightness(80%);
-}
-
+        #background-video.purple {
+            filter: brightness(80%);
+        }
     </style>
 </head>
 <body>
@@ -40,15 +39,17 @@
             var hour = now.getHours();
 
             // Defina os horários de mudança dos vídeos
-            var yellowStartHour = 23; // 23h
-            var purpleStartHour = 7;  // 7h
+            var nightStartHour = 23; // 19h (início da noite)
+            var morningStartHour = 6;  // 6h (início da manhã)
 
-            // Verifica o horário e alterna os vídeos
-            if (hour >= yellowStartHour || hour < purpleStartHour) {
+            // Verifica o horário e alterna os vídeos corretamente
+            if (hour >= nightStartHour || hour < morningStartHour) {
+                // Exibir o vídeo amarelo à noite
                 iframe.src = "https://www.youtube.com/embed/14hR9VSCCMs?autoplay=1&loop=1&playlist=14hR9VSCCMs";
             } else {
-                iframe.src = "https://www.youtube.com/embed/9X5t2RpC2Jg?autoplay=1&loop=1&playlist=9X5t2RpC2Jg";
-                iframe.classList.add("purple"); // Adiciona a classe 'purple' se necessário
+                // Exibir o vídeo roxo de manhã
+                iframe.src = "https://www.youtube.com/embed/aU5oT-xyXZA?autoplay=1&loop=1&playlist=aU5oT-xyXZA";
+                iframe.classList.add("purple");
             }
 
             // Verifica a hora a cada minuto
