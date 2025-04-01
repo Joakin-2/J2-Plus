@@ -12,6 +12,14 @@
 
 </head>
 <body>
+    <div id="loader-container">
+        <div id="loader-background">
+            <video autoplay loop muted>
+                <source src="load.mp4" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
+    </div>
     <aside class="menu" id="overlayMenu" aria-hidden="true">
         <div class="menu-content">
             <button class="menu-button" aria-label="Fechar menu" onclick="toggleMenu()">Voltar</button>
@@ -321,6 +329,13 @@
     
     // Alterna a classe "expanded" no chat
     chat.classList.toggle('expanded');
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Remover a tela de loading após 5 segundos (5000 milissegundos)
+    setTimeout(function () {
+        document.getElementById("loader-container").style.display = "none";
+    }, 1000);
 });
 
     // Função para abrir o modal
