@@ -206,7 +206,6 @@ input, textarea {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     background-color: #1f1f1f; /* Fundo do menu */
     display: none; /* Oculto por padrão */
     justify-content: center; /* Centraliza o conteúdo horizontalmente */
