@@ -45,48 +45,223 @@
             border-radius: 8px;
             width: 300px; /* Largura fixa para os botões */
         }
+
+        /* Estilos do Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      overflow: auto;
+    }
+
+    .modal-content {
+      background-color: #121212;
+      padding: 20px;
+      border-radius: 10px;
+      color: white;
+    }
+
+    .close {
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #833fd1;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal-header {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+
+    .modal-body {
+      font-size: 1.2em;
+    }
     </style>
 
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <button class="botao" onclick="redirecionar('metas')"><i class="fas fa-arrow-right"></i> Metas</button>
-            <button class="botao" onclick="redirecionar('contas')"><i class="fas fa-wallet"></i> Contas</button>
-            <button class="botao" onclick="redirecionar('edit')"><i class="fas fa-edit"></i> Edição</button>
+          <button class="botao" onclick="redirecionar('metas')"><i class="fas fa-arrow-right"></i> Metas</button>
+          <button class="botao" onclick="redirecionar1('contas')"><i class="fas fa-wallet"></i> Contas</button>
+          <button class="botao" onclick="redirecionar('edit')"><i class="fas fa-edit"></i> Edição</button>
         </div>
         <div class="row">
-            <button class="botao" onclick="redirecionar('trabalho')"><i class="fas fa-briefcase"></i> Trabalho</button>
-            <button class="botao" onclick="redirecionar('programacao')"><i class="fas fa-code"></i> Programação</button>
-            <button class="botao" onclick="redirecionar('investimento')"><i class="fas fa-chart-line"></i> Investimento</button>
+          <button class="botao" onclick="redirecionar1('trabalho')"><i class="fas fa-briefcase"></i> Trabalho</button>
+          <button class="botao" onclick="redirecionar1('programacao')"><i class="fas fa-code"></i> Programação</button>
+          <button class="botao" onclick="redirecionar('investimento')"><i class="fas fa-chart-line"></i> Investimento</button>
         </div>
-    </div>
+      </div>
+    
+      <!-- Modal Contas -->
+      <div id="contasModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('contas')">&times;</span>
+          <div class="modal-header">Contas</div>
+          <div class="container">
+            <button class="botao" onclick="redirecionar('Inter')"><i class="fas fa-university"></i> Inter</button>
+            <button class="botao" onclick="redirecionar('Nuivest')"><i class="fas fa-hand-holding-usd"></i> Nuivest</button>
+            <button class="botao" onclick="redirecionar('Binance')"><i class="fas fa-coins"></i> Binance</button>
+        </div>
+        </div>
+      </div>
+    
+      <!-- Modal Trabalho -->
+      <div id="trabalhoModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('trabalho')">&times;</span>
+          <div class="modal-header">Trabalho</div>
+          <div class="container">
+            <div class="row">
+                <button class="botao" onclick="redirecionar('Criar Livro')"><i class="fas fa-book"></i> Criar Livro</button>
+                <button class="botao" onclick="redirecionar('Criar eBook')"><i class="fas fa-file-alt"></i> Criar eBook</button>
+                <button class="botao" onclick="redirecionar('Social Mídia')"><i class="fab fa-instagram"></i> Social Mídia</button>
+            </div>
+            <div class="row">
+                <button class="botao" onclick="redirecionar('Marketing')"><i class="fas fa-globe"></i> Marketing</button>
+                <button class="botao" onclick="redirecionar('curso')"><i class="fas fa-graduation-cap"></i> Curso</button>
+                <button class="botao" onclick="redirecionar1('pulike')"><i class="fas fa-print"></i> Pulike</button>
+            </div>
+            <button class="botao" onclick="redirecionar('Loop')"><i class="fas fa-sync"></i> Loop</button>
+            </div>
+        </div>
+      </div>
+    
+      <!-- Modal Programação -->
+      <div id="programacaoModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('programacao')">&times;</span>
+          <div class="modal-header">Programação</div>
+          <div class="container">
+            <button class="botao" onclick="redirecionar('J2')"><i class="fas fa-laptop-code"></i> J2</button>
+            <button class="botao" onclick="redirecionar('Klaton Wacth')"><i class="fas fa-file-code"></i> Klaton Wacth</button>
+            <button class="botao" onclick="redirecionar('Protótipos')"><i class="fas fa-cogs"></i> Protótipos</button>
+        </div>
+        </div>
+      </div>
+    
+      <!-- Modal Pulike -->
+      <div id="pulikeModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('pulike')">&times;</span>
+          <div class="modal-header">Pulike</div>
+          <div class="container">
+            <button class="botao" onclick="redirecionar('Pulike')"><i class="fas fa-edit"></i> Plus</button>
+            <button class="botao" onclick="redirecionar('Pulike2')"><i class="fas fa-arrow-right"></i> Plano</button>
+            <button class="botao" onclick="redirecionar('Pulike3')"><i class="fas fa-wallet"></i> Contas</button>
+        </div>
+        </div>
+      </div>
 
     <script>
+
+    function redirecionar1(page) {
+      const modal = document.getElementById(page + 'Modal');
+      modal.style.display = "block";
+    }
+
+    function closeModal(page) {
+      const modal = document.getElementById(page + 'Modal');
+      modal.style.display = "none";
+    }
+
+    // Fechar modals quando o usuário clicar fora da área do modal
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => modal.style.display = "none");
+      }
+    }
+
         function redirecionar(destino) {
             switch (destino) {
                 case 'metas':
-                    window.location.href = 'https://keep.google.com/u/4/#NOTE/1LkttUxXBMJ3sXm4IwvNbWDM5ABzW6nRau-BIr-RGBFSJvcxhVZzQXekNlWuDbw';
+                    window.location.href = 'https://keep.google.com/u/4/#LIST/1gPCPbXOWFMgFgxt44yFmCGDGYxxdVLYZ3b9_y2JngRjzDB8ojICe6_NApL8BuJdQXivh';
                     break;
-                case 'trabalho':
-                    window.open('work.html');
-                    //window.open('curso.html');
+                case 'curso':
+                    window.open('curso.html');
                     window.open('https://drive.google.com/drive/u/0/folders/1TeJczUMaAtSy6UFOXvtrgpBqsCCIIESt');
-                    break;
-                case 'programacao':
-                    window.location.href = 'dev.html';
                     break;
                 case 'investimento':
                     window.location.href = 'invest.html';
-                    break;
-                case 'contas':
-                    window.location.href = 'contas.html'; // Certifique-se de criar esta página
                     break;
                 case 'edit':
                     window.open('https://www.iloveimg.com/pt/ampliar-imagem')
                     window.open('https://www.remove.bg/pt-br')
                     window.open('https://www.capcut.com/my-edit?start_tab=video')
                     window.open('https://www.canva.com/')
+                    break;
+                case 'Criar Livro':
+                    window.open('https://app.leonardo.ai/ai-generations');
+                    window.open('https://www.canva.com/');
+                    window.open('https://kdp.amazon.com/pt_BR/bookshelf');
+                    window.open('https://www.ilovepdf.com/pt');
+                    window.open('https://drive.google.com/file/d/1Q-ktynj2dUxChyIKHwTIlMsAKQaINsFs/view?usp=drive_link');
+                    break;
+                case 'Criar eBook':
+                    window.open('https://chatgpt.com/c/cfd0f8f5-2aa9-421c-9d2d-49be44d79557');
+                    window.open('https://www.canva.com/design/DAF-Gy3IYpA/WSgRpWRg6tie85tpFtfCDA/edit');
+                    break;
+                case 'Social Mídia':
+                    window.open('https://chat.openai.com/');
+                    window.open('https://www.canva.com/');
+                    window.open('https://www.instagram.com/');
+                    window.open('https://business.facebook.com/latest/home?asset_id=244402432098789&business_id=954939336298894&nav_ref=media_manager_redirect_home');
+                    break;
+                case 'Marketing':
+                    window.open('https://app.hotmart.com/dashboard');
+                    window.open('https://dashboard.kiwify.com.br/');
+                    window.open('https://anuncy.com/profile/dashboard');
+                    break;
+                case 'Pulike':
+                    //window.open('https://learn.microsoft.com/pt-br/');window.open('https://unhideschool.com/cursos?orderby=RECENT&search=impress%C3%A3o%203d');
+                    window.open('https://trello.com/b/72e7GwSj/gestao-jin-sei-arts');
+                    //window.open('https://learn.microsoft.com/pt-br/');window.open('https://learn.microsoft.com/pt-br/credentials/applied-skills/build-natural-language-solution-azure-ai/?wt.mc_id=fsi_msle_landingpage_wwl_ailanguage');
+                    window.open('https://discord.com/channels/@me/1066833055723028603');
+                    //window.open('https://learn.microsoft.com/pt-br/');
+                    break;
+                case 'Pulike2':
+                    window.open('https://business.facebook.com/latest/?asset_id=603116216208940&business_id=2349354548756195&nav_ref=mfb_get_started_header_cta');
+                    window.open('https://miro.com/app/dashboard/');
+                    break;
+                case 'Pulike3':
+                    window.open('https://shopee.com.br/m/afiliados?gad_source=1&gclid=EAIaIQobChMIrP2ijO3ciwMVCVNIAB1nLw-nEAAYASAAEgKumvD_BwE');
+                    window.open('https://associados.amazon.com.br/home');
+                    window.open('https://portals.aliexpress.com/affiportals/web/portals.htm#/home');
+                    break;
+                case 'Inter':
+                    window.open('https://contadigital.inter.co/home');
+                    break;
+                case 'Nuivest':
+                    window.open('https://www.nuinvest.com.br/home');
+                    break;
+                case 'Binance':
+                    window.open('https://www.binance.com/pt-BR/my/dashboard');
+                    Window.open('https://www.binance.com/en/trading-bots')
+                    break;
+                case 'Loop':
+                    window.open('https://loop.cloud.microsoft/');
+                    break;
+                case 'J2':
+                    window.open('https://loop.cloud.microsoft/p/eyJ3Ijp7InUiOiJodHRwczovL2hvbWUubWljcm9zb2Z0cGVyc29uYWxjb250ZW50LmNvbS8%2FbmF2PWN6MGxNa1ltWkQxaUlXWkZhRWhaVWxOM1IydHBjWFJMTUVSS1FqTkpMV3BCTFhaUk9ETktUVnBEYjJSM1IwVkhZM051ZFV0Q1ZuQklhalIxTkVoU1ltRklMVVF3UTJReVluTW1aajB3TVRSSVdWUkJXVTFNU0ZVMFYwbzFOVmRQVGtaYVVsbEJVVlpSUlU0MVUwMVlKbU05Sm1ac2RXbGtQVEUlM0QiLCJyIjpmYWxzZX0sInAiOnsidSI6Imh0dHBzOi8vaG9tZS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tLzpmbDovci9jb250ZW50c3RvcmFnZS9DU1BfNjE0NzQ4N2MtYjAxNC00ODFhLWFhYjQtYWQwMzI0MWRjOGZhL0RvY3VtZW50JTIwTGlicmFyeS9Mb29wQXBwRGF0YS9QJUMzJUExZ2luYSUyMHNlbSUyMHQlQzMlQUR0dWxvLmxvb3A%2FZD13YTNkOTM0OTViMTU4NGIwMGEzNWJiZDc5NjQ5M2FkOWEmY3NmPTEmd2ViPTEmbmF2PWN6MGxNa1pqYjI1MFpXNTBjM1J2Y21GblpTVXlSa05UVUY4Mk1UUTNORGczWXkxaU1ERTBMVFE0TVdFdFlXRmlOQzFoWkRBek1qUXhaR000Wm1FbVpEMWlJV1pGYUVoWlVsTjNSMnRwY1hSTE1FUktRak5KTFdwQkxYWlJPRE5LVFZwRGIyUjNSMFZIWTNOdWRVdENWbkJJYWpSMU5FaFNZbUZJTFVRd1EyUXlZbk1tWmowd01UUklXVlJCV1UxV1IxUk5Na2RYUmxKQlFrWXlSMWMxTlZCR1UwcElURTB5Sm1NOUpUSkdKbVpzZFdsa1BURW1ZVDFNYjI5d1FYQndKbkE5SlRRd1pteDFhV1I0SlRKR2JHOXZjQzF3WVdkbExXTnZiblJoYVc1bGNpWjRQU1UzUWlVeU1uY2xNaklsTTBFbE1qSlVNRkpVVlVoNGIySXlNV3hNYlRGd1dUTktkbU15T1cxa1NFSnNZMjVPZG1KdFJuTlpNamwxWkVkV2RXUkROV3BpTWpFNFdXbEdiVkpYYUVsWFZrcFVaREJrY21GWVJqQlRla0pGVTJ0SmVsTlRNWEZSVXpFeVZWUm5lbE5yTVdGUk1qbHJaREJrUmxJeVRucGlibFpNVVd4YWQxTkhiekJrVkZKSlZXMUthRk5ETVVWTlJVNXJUVzFLZW1aRVFYaE9SV2hhVmtWR1dsUlZlRWxXVkZKWVUycFZNVll3T1U5U2JIQlRWMVZHVWxac1JrWlVhbFpVVkZabkpUTkVKVEl5SlRKREpUSXlhU1V5TWlVelFTVXlNakptTURJM05XSTBMV1U1TkRZdE5ETmtOQzA0WkRSaUxXRmlNMlZoT0dZek9UazBaQ1V5TWlVM1JBJTNEJTNEIiwiciI6ZmFsc2V9LCJpIjp7ImkiOiIyZjAyNzViNC1lOTQ2LTQzZDQtOGQ0Yi1hYjNlYThmMzk5NGQifX0%3D');
+                    break;
+                case 'Klaton Wacth':
+                    window.open('https://chat.openai.com/c/d04bc51d-ee6e-49af-84fb-fb665996b0ce');
+                    break;
+                case 'Protótipos':
+                    window.open('https://www.robocore.net');
+                    window.open('https://loop.cloud.microsoft/p/eyJ3Ijp7InUiOiJodHRwczovL2hvbWUubWljcm9zb2Z0cGVyc29uYWxjb250ZW50LmNvbS8%2FbmF2PWN6MGxNa1ltWkQxaUlXWkZhRWhaVWxOM1IydHBjWFJMTUVSS1FqTkpMV3BCTFhaUk9ETktUVnBEYjJSM1IwVkhZM051ZFV0Q1ZuQklhalIxTkVoU1ltRklMVVF3UTJReVluTW1aajB3TVRSSVdWUkJXVTFNU0ZVMFYwbzFOVmRQVGtaYVVsbEJVVlpSUlU0MVUwMVlKbU05Sm1ac2RXbGtQVEUlM0QiLCJyIjpmYWxzZX0sInAiOnsidSI6Imh0dHBzOi8vaG9tZS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tLzpmbDovci9jb250ZW50c3RvcmFnZS9DU1BfNjE0NzQ4N2MtYjAxNC00ODFhLWFhYjQtYWQwMzI0MWRjOGZhL0RvY3VtZW50JTIwTGlicmFyeS9Mb29wQXBwRGF0YS9TZW0lMjB0JUMzJUFEdHVsby5sb29wP2Q9d2ZiZGZjZTAwZmQwMjRmZjY4ODA2NzMwNTk1NmE3M2UxJmNzZj0xJndlYj0xJm5hdj1jejBsTWtaamIyNTBaVzUwYzNSdmNtRm5aU1V5UmtOVFVGODJNVFEzTkRnM1l5MWlNREUwTFRRNE1XRXRZV0ZpTkMxaFpEQXpNalF4WkdNNFptRW1aRDFpSVdaRmFFaFpVbE4zUjJ0cGNYUkxNRVJLUWpOSkxXcEJMWFpST0ROS1RWcERiMlIzUjBWSFkzTnVkVXRDVm5CSWFqUjFORWhTWW1GSUxVUXdRMlF5WW5NbVpqMHdNVFJJV1ZSQldVbEJXak5RTjFkQldEVTJXa2haVVVKVVZFRlhTMWRWTkRkQ0ptTTlKVEpHSm1ac2RXbGtQVEVtWVQxTWIyOXdRWEJ3Sm5BOUpUUXdabXgxYVdSNEpUSkdiRzl2Y0Mxd1lXZGxMV052Ym5SaGFXNWxjaVo0UFNVM1FpVXlNbmNsTWpJbE0wRWxNakpVTUZKVVZVaDRiMkl5TVd4TWJURndXVE5LZG1NeU9XMWtTRUpzWTI1T2RtSnRSbk5aTWpsMVpFZFdkV1JETldwaU1qRTRXV2xHYlZKWGFFbFhWa3BVWkRCa2NtRllSakJUZWtKRlUydEplbE5UTVhGUlV6RXlWVlJuZWxOck1XRlJNamxyWkRCa1JsSXlUbnBpYmxaTVVXeGFkMU5IYnpCa1ZGSkpWVzFLYUZORE1VVk5SVTVyVFcxS2VtWkVRWGhPUldoYVZrVkdXbFJWZUVsV1ZGSllVMnBWTVZZd09VOVNiSEJUVjFWR1VsWnNSa1pVYWxaVVZGWm5KVE5FSlRJeUpUSkRKVEl5YVNVeU1pVXpRU1V5TWpGaFlqWTFZV1kyTFRJd1pEVXROR05rWkMxaFltSXpMVGxrWVRrNU9UTTVORFExTXlVeU1pVTNSQSUzRCUzRCIsInIiOmZhbHNlfSwiaSI6eyJpIjoiMWFiNjVhZjYtMjBkNS00Y2RkLWFiYjMtOWRhOTk5Mzk0NDUzIn19');
                     break;
                 default:
                     break;

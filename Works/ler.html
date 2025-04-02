@@ -88,7 +88,7 @@
 
     #notesBox {
         width: 480px;
-    height: 120px;
+    height: 135px;
     padding: 10px;
     font-size: 16px;
     background-color: #333;
@@ -145,10 +145,18 @@
     <div id="timer">00:00</div>
     <div id="buttonContainer">
         <i class="fas fa-compact-disc fa-3x" style="margin-right: 10px; margin-top: 5px;"></i>
-      <select id="musicSelector" onchange="changeMusic()">
-        <option value="Agape.mp3">Agape</option>
-        <option value="Dragonfly (Slowed).mp3">Dragonfly</option>
-      </select>
+        <select id="musicSelector" onchange="changeMusic()">
+          <option value="/Music/Fundo/Agape.mp3">Agape</option>
+          <option value="/Music/Fundo/bob sponge edit.wav">Bob Sponge Edit</option>
+          <option value="/Music/Fundo/Dev Song.mp3">Dev Song</option>
+          <option value="/Music/Fundo/Dragonfly (Slowed).mp3">Dragonfly</option>
+          <option value="/Music/Fundo/Gamers-React-Background-Music.wav">Gamers React</option>
+          <option value="/Music/Fundo/Lofi.mp3">Lofi</option>
+          <option value="/Music/Fundo/lovely - Billie Eilish Khalid (Cover Violin).mp3">Lovely (Billie Eilish Cover)</option>
+          <option value="/Music/Fundo/Musica do Chis.mp3">Musica do Chis</option>
+          <option value="/Music/Fundo/Musica do Onibus.mp3">Musica do Onibus</option>
+          <option value="/Music/Fundo/Natal.mp3">Natal</option>
+        </select>
       <button class="btn" onclick="playPauseTimer()">
         <svg class="icon" id="playIcon" viewBox="0 0 20 20">
           <path d="M8 5v10l10-5z" />
@@ -165,7 +173,7 @@
   </div>
 
   <audio id="backgroundMusic" loop>
-    <source src="Agape.mp3" type="audio/mp3">
+    <source src="/Music/Fundo/Agape.mp3" type="audio/mp3">
     Seu navegador não suporta o elemento de áudio.
   </audio>
 

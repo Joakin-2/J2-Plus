@@ -514,10 +514,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentStream = null;  // Referência para o stream da câmera, para poder parar a câmera depois
   
     Promise.all([
-      faceapi.nets.tinyFaceDetector.loadFromUri('Facial/models'),
-      faceapi.nets.faceLandmark68Net.loadFromUri('Facial/models'),
-      faceapi.nets.faceRecognitionNet.loadFromUri('Facial/models'),
-      faceapi.nets.faceExpressionNet.loadFromUri('Facial/models')
+      faceapi.nets.tinyFaceDetector.loadFromUri('Script/Facial/models'),
+      faceapi.nets.faceLandmark68Net.loadFromUri('Script/Facial/models'),
+      faceapi.nets.faceRecognitionNet.loadFromUri('Script/Facial/models'),
+      faceapi.nets.faceExpressionNet.loadFromUri('Script/Facial/models')
     ]).then(startVideo);
   
     // Função para alternar entre abrir e fechar a câmera

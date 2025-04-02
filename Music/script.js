@@ -97,9 +97,11 @@
                     'Fundo/Dev Song.mp3',
                     'Fundo/Dragonfly (Slowed).mp3',
                     'Fundo/Gamers-React-Background-Music.wav',
+                    'Fundo/Lofi.mp3',
                     'Fundo/lovely - Billie Eilish Khalid (Cover Violin).mp3',
                     'Fundo/Musica do Chis.mp3',
-                    'Fundo/Musica do Onibus.mp3'
+                    'Fundo/Musica do Onibus.mp3',
+                    'Fundo/Natal.mp3'
                 ]
             },
             'Vibes': {
@@ -425,8 +427,10 @@
             'Vibe/Dragonfly (Slowed).mp3': "Dragonfly (Slowed)",
             'Fundo/Gamers-React-Background-Music.wav': "Background Music",
             'Fundo/lovely - Billie Eilish Khalid (Cover Violin).mp3': "Billie Eilish (Violin)",
+            'Fundo/lofi.mp3': "Lo-fi",
             'Fundo/Musica do Chis.mp3': "Música do Chis",
             'Fundo/Musica do Onibus.mp3': "Chis no Onibus",
+            'Fundo/Natal.mp3': "Natal",
 
             'Praise/A Boa Parte (Ao Vivo).mp3': "A Boa Parte (Ao Vivo)",
             'Praise/A Face Adorada.mp3': "A Face Adorada",
