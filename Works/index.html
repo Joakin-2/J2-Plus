@@ -87,6 +87,28 @@
     .modal-body {
       font-size: 1.2em;
     }
+
+    table {
+      width: 64%;
+      margin: auto;
+      margin-top: 160px;
+      border-collapse: collapse;
+      background-color: #121212;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      background-color: #121212;
+      padding: 15px;
+      text-align: center;
+    }
+    th {
+      background-color: #833fd1;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
     </style>
 
 </head>
@@ -133,7 +155,7 @@
                 <button class="botao" onclick="redirecionar('curso')"><i class="fas fa-graduation-cap"></i> Curso</button>
                 <button class="botao" onclick="redirecionar1('pulike')"><i class="fas fa-print"></i> Pulike</button>
             </div>
-            <button class="botao" onclick="redirecionar('Loop')"><i class="fas fa-sync"></i> Loop</button>
+            <button class="botao" style="width: 860px;" onclick="redirecionar('Loop')"><i class="fas fa-sync"></i> Loop</button>
             </div>
         </div>
       </div>
@@ -155,8 +177,39 @@
       <div id="pulikeModal" class="modal">
         <div class="modal-content">
           <span class="close" onclick="closeModal('pulike')">&times;</span>
-          <div class="modal-header">Pulike</div>
-          <div class="container">
+          <div class="modal-header">Pulike - Jin-Sei Art</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo de Conteúdo</th>
+                <th>Plataforma</th>
+                <th>Frequência</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Vídeo Longo</td>
+                <td>YouTube</td>
+                <td>1 vez por semana (4/mês)</td>
+              </tr>
+              <tr>
+                <td>Shorts e Reels</td>
+                <td>YouTube e Instagram</td>
+                <td>5 vezes por semana (20/mês)</td>
+              </tr>
+              <tr>
+                <td>Publicações no Feed</td>
+                <td>Instagram</td>
+                <td>3 vezes por semana (12/mês)</td>
+              </tr>
+              <tr>
+                <td>Stories</td>
+                <td>Instagram</td>
+                <td>1 por dia (30/mês)</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="container" style="display: block; margin-top: 50px; margin-left: 250px;">
             <button class="botao" onclick="redirecionar('Pulike')"><i class="fas fa-edit"></i> Plus</button>
             <button class="botao" onclick="redirecionar('Pulike2')"><i class="fas fa-arrow-right"></i> Plano</button>
             <button class="botao" onclick="redirecionar('Pulike3')"><i class="fas fa-wallet"></i> Contas</button>
