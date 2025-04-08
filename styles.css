@@ -258,11 +258,10 @@ input, textarea {
     color: #fff; /* Cor do texto */
     border: none; /* Sem borda */
     text-decoration: none; /* Remove sublinhado */
-    padding: 20px; /* Padding uniforme */
+    padding: 25px; /* Padding uniforme */
     border-radius: 5px; /* Bordas arredondadas */
     cursor: pointer; /* Cursor de mão */
     font-size: 30px; /* Tamanho da fonte */
-    margin-top: 20px; /* Espaço acima do botão */
     transition: background-color 0.3s; /* Transição suave ao passar o mouse */
 }
 

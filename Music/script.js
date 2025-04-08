@@ -527,7 +527,7 @@
             'Gym/AUTOMOTIVO MANGOS.mp3': "AUTOMOTIVO MANGOS",
             'Gym/AUTOMOTIVO MODERN TETRIS (slowed).mp3': "AUTOMOTIVO MODERN TETRIS (Slowed)",
             'Gym/AUTOMOTIVO PA PA PAPAI (Slowed).mp3': "AUTOMOTIVO PA PA PAPAI (Slowed)",
-            'Gym/Aura Cosmica edit-audio.mp3': "Aura Cósmica edit-audio",
+            'Gym/Aura Cosmica edit-audio.mp3': "𝘼𝙪𝙧𝙚𝙖 𝘾ó𝙨𝙢𝙞𝙘𝙖 (edit-audio)",
             'Gym/Avatar Edit.mp3': "Avatar Edit",
             'Gym/Backyardigans phonk X Perfume Exalando (Slowed to perfection).mp3': "Backyardigans X Perfume (Slowed to perfection)",
             'Gym/BAD PARENTING FUNK V2 (Slowed).mp3': "BAD PARENTING FUNK V2 (Slowed)",
