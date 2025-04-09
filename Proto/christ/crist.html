@@ -139,10 +139,13 @@
             </div>
             <div class="notes-container">
                 <div class="button-group"> 
-                    <button class="btn" onclick="redirecionar('Devocional')" style="margin-right: 10px; display: flex;">
+                    <button class="btn" onclick="redirecionar('Devocional')" style="margin-right: 60px; display: flex;">
                         <i class="fas fa-book" style="margin-right: 5px;"></i>Devocional
                     </button>
-                    <button class="btn" onclick="redirecionar('Bíblia')" style="margin-right: 378px; margin-left: 50px; display: flex;">
+                    <button class="btn" onclick="redirecionar('Princípios')" style="margin-right: 10px; display: flex;">
+                        <i class="fas fa-book" style="margin-right: 5px;"></i>Princípios
+                    </button>
+                    <button class="btn" onclick="redirecionar('Bíblia')" style="margin-right: 280px; margin-left: 40px; display: flex;">
                         <i class="fas fa-book" style="margin-right: 5px;"></i> Bíblia
                     </button>
                     <button class="btn-export" onclick="exportNotes()">
@@ -244,6 +247,10 @@
                 case 'Devocional':
                     window.close('crist.html');
                     window.open('time.html');
+                    break;
+                case 'Princípios':
+                    window.close('crist.html');
+                    window.open('principio.html');
                     break;
                 case 'Memórias':
                     window.close('crist.html');

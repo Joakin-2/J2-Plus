@@ -133,12 +133,20 @@
 
     <!-- Tela Inicial -->
     <div id="initial-screen">
-        <h1>Treino de Peito</h1>
+        <div style="display: flex;">
+            <h1>Treino de Peito</h1>
+
+            <!-- Botão para copiar -->
+           <button onclick="copiarTexto()" class="flex gap-1 items-center select-none py-1" aria-label="Copy" style="width: 10px; background: #2b2b2b; border: #333; color: white; margin-left: 10px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7 5C7 3.34315 8.34315 2 10 2H19C20.6569 2 22 3.34315 22 5V14C22 15.6569 20.6569 17 19 17H17V19C17 20.6569 15.6569 22 14 22H5C3.34315 22 2 20.6569 2 19V10C2 8.34315 3.34315 7 5 7H7V5ZM9 7H14C15.6569 7 17 8.34315 17 10V15H19C19.5523 15 20 14.5523 20 14V5C20 4.44772 19.5523 4 19 4H10C9.44772 4 9 4.44772 9 5V7ZM5 9C4.44772 9 4 9.44772 4 10V19C4 19.5523 4.44772 20 5 20H14C14.5523 20 15 19.5523 15 19V10C15 9.44772 14.5523 9 14 9H5Z" fill="currentColor"></path>
+            </svg>Copy</button>
+        </div>
         <ul id="exercise-list">
-            <li>Superior</li>
-            <li>Supino</li>
-            <li>Flexão</li>
-            <li>Cross</li>
+            <li id="exercicio1">Superior</li>
+            <li id="exercicio2">Supino</li>
+            <li id="exercicio3">Flexão</li>
+            <li id="exercicio4">Cross</li>
         </ul>
         <button id="startButton" onclick="startWorkout()">Começar</button>
     </div>
@@ -187,6 +195,31 @@ let caloriesPerMinute = {
     'Superior': 6,      // Exemplo de calorias por minuto
     'Cross': 8          // Exemplo de calorias por minuto
 };
+
+
+function copiarTexto() {
+        // Seleciona o texto dos exercícios
+        let texto = '';
+        texto += document.getElementById('exercicio1').innerText + '\n';
+        texto += document.getElementById('exercicio2').innerText + '\n';
+        texto += document.getElementById('exercicio3').innerText + '\n';
+        texto += document.getElementById('exercicio4').innerText + '\n';
+
+        // Cria um elemento temporário para copiar o texto
+        let tempTextArea = document.createElement('textarea');
+        tempTextArea.value = texto;
+        document.body.appendChild(tempTextArea);
+
+        // Seleciona e copia o texto
+        tempTextArea.select();
+        document.execCommand('copy');
+
+        // Remove o elemento temporário
+        document.body.removeChild(tempTextArea);
+
+        // Alerta ou notificação que o texto foi copiado
+        alert("Lista de exercícios copiada!");
+    }
 
 function updateTimer() {
     if (isTimerRunning && !isPaused) {
