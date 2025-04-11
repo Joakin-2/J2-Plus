@@ -245,6 +245,10 @@
         <button class="filter-button" onclick="showImages()">Imagens</button>
     </div>
     <div class="gallery">
+        <div class="pdf-icon" onclick="openPDFModal('Cristo o fiel amigo.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Cristo o fiel amigo</span>
+        </div>
         <div class="pdf-icon sax-alto" onclick="openPDFModal('Além do Rio Azul.pdf')">
             <i class="fas fa-file-pdf"></i>
             <span style="margin-left: 8px;">Além do Rio Azul</span>
@@ -316,6 +320,18 @@
         <div class="pdf-icon sax-alto" onclick="openPDFModal('311.pdf')">
             <i class="fas fa-file-pdf"></i>
             <span style="margin-left: 8px;">Hino 311</span>
+        </div>
+        <div class="pdf-icon clarinete" onclick="openPDFModal('074 - Clarinete B.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Cristo Virá</span>
+        </div>
+        <div class="pdf-icon sax-tenor" onclick="openPDFModal('074 - Sax tenor.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Cristo Virá</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('074 - Sax alto B.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Cristo Virá</span>
         </div>
         <div class="pdf-icon" onclick="openPDFModal('25.pdf')">
             <i class="fas fa-file-pdf"></i>
@@ -395,6 +411,7 @@
 
     <script>
         const pdfs = [
+        'Cristo o fiel amigo.pdf',
         'Além do Rio Azul.pdf',
         'Com Muito Louvor.pdf',
         'Uma Vez Outra Vez.pdf',
@@ -413,6 +430,9 @@
         '481.pdf',
         '349.pdf',
         '311.pdf',
+        '074 - Clarinete B.pdf',
+        '074 - Sax tenor.pdf',
+        '074 - Sax alto B.pdf',
         '25.pdf'
     ];
         const images = ["Noite Feliz.jpg", "125.jpg", "093.jpg", "107.jpg", "109.jpg", "370.jpg", "459.jpg", "63.jpg", "89.jpg", "481.jpeg", "577.jpg", "Altar.png", "grato-a-ti.jpg", "96.jpeg", "559.jpeg", "535.jpeg", "525.jpg", "14.jpeg", "491.jpeg", "3.jpeg", "9.jpg", "Eterna Gratidão.jpg", "Subline e Grande Amor.jpeg", "Te agradeço.jpg", "247.jpeg", "Yoshi_s Island.png"];
