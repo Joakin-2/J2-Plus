@@ -219,6 +219,11 @@ fieldset button:hover {
 }
 
 /* Estilos para a lista */
+.paginacao {
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -229,11 +234,11 @@ li {
 }
 
 .kcal {
-        margin-left: 20px;
+        margin-left: 40px;
 }
 
 .gramas {
-        margin-left: 20px;
+        margin-left: 40px;
 }
 
         
@@ -264,31 +269,50 @@ li {
                 <button type="button" class="sugestao-btn" onclick="mostrarModal()" style="margin-left: 0px; margin-bottom: 10px; margin-top: 0px;">?</button>
             </div>
 
-            <!-- Modal -->
             <div id="modalAlimentos" class="modal">
                 <div class="modal-content">
-                    <span class="close" onclick="fecharModal()">&times;</span>
-                    <h3>Lista de Alimentos</h3>
+                  <span class="close" onclick="fecharModal()">&times;</span>
+                  <h3>Lista de Alimentos</h3>
+              
+                  <div class="pagina" id="pagina1">
                     <ul>
-                        <li><span class="alimento">Pão</span><span class="gramas">50g</span><span class="kcal">80 kcal</span></li>
-                        <li><span class="alimento">Ovo</span><span class="gramas">50g</span><span class="kcal">70 kcal</span></li>
-                        <li><span class="alimento">Café</span><span class="gramas">200ml</span><span class="kcal">5 kcal</span></li>
-                        <li><span class="alimento">Fruta</span><span class="gramas">100g</span><span class="kcal">50 kcal</span></li>
-                        <li><span class="alimento">Arroz</span><span class="gramas">125g</span><span class="kcal">130 kcal</span></li>
-                        <li><span class="alimento">Feijão</span><span class="gramas">100g</span><span class="kcal">95 kcal</span></li>
-                        <li><span class="alimento">Queijo</span><span class="gramas">30g</span><span class="kcal">120 kcal</span></li>
-                        <li><span class="alimento">Leite</span><span class="gramas">200ml</span><span class="kcal">60 kcal</span></li>
-                        <li><span class="alimento">Tapioca</span><span class="gramas">50g</span><span class="kcal">100 kcal</span></li>
-                        <li><span class="alimento">Linguiça</span><span class="gramas">100g</span><span class="kcal">200 kcal</span></li>
-                        <li><span class="alimento">Mortadela</span><span class="gramas">50g</span><span class="kcal">150 kcal</span></li>
-                        <li><span class="alimento">Amendoim</span><span class="gramas">30g</span><span class="kcal">180 kcal</span></li>
-                        <li><span class="alimento">Sanduíche</span><span class="gramas">150g</span><span class="kcal">300 kcal</span></li>
-                        <li><span class="alimento">Hambúrguer</span><span class="gramas">130g</span><span class="kcal">250 kcal</span></li>
-                    </ul>                    
-                     <button id="menuRefeicoesBtn">Cardápio</button>
+                      <li><span class="alimento">Pão</span> <span class="gramas">50g</span> <span class="kcal">80 kcal</span></li>
+                      <li><span class="alimento">Ovo</span> <span class="gramas">50g</span> <span class="kcal">70 kcal</span></li>
+                      <li><span class="alimento">Café</span> <span class="gramas">200ml</span> <span class="kcal">5 kcal</span></li>
+                      <li><span class="alimento">Fruta</span> <span class="gramas">100g</span> <span class="kcal">50 kcal</span></li>
+                      <li><span class="alimento">Arroz</span> <span class="gramas">125g</span> <span class="kcal">130 kcal</span></li>
+                    </ul>
+                  </div>
+              
+                  <div class="pagina" id="pagina2" style="display:none;">
+                    <ul>
+                      <li><span class="alimento">Feijão</span> <span class="gramas">100g</span> <span class="kcal">95 kcal</span></li>
+                      <li><span class="alimento">Queijo</span> <span class="gramas">30g</span> <span class="kcal">120 kcal</span></li>
+                      <li><span class="alimento">Leite</span> <span class="gramas">200ml</span> <span class="kcal">60 kcal</span></li>
+                      <li><span class="alimento">Tapioca</span> <span class="gramas">50g</span> <span class="kcal">100 kcal</span></li>
+                      <li><span class="alimento">Linguiça</span> <span class="gramas">100g</span> <span class="kcal">200 kcal</span></li>
+                    </ul>
+                  </div>
+              
+                  <div class="pagina" id="pagina3" style="display:none;">
+                    <ul>
+                      <li><span class="alimento">Salsicha</span> <span class="gramas">50g</span> <span class="kcal">140 kcal</span></li>
+                      <li><span class="alimento">Mortadela</span> <span class="gramas">50g</span> <span class="kcal">150 kcal</span></li>
+                      <li><span class="alimento">Amendoim</span> <span class="gramas">30g</span> <span class="kcal">180 kcal</span></li>
+                      <li><span class="alimento">Sanduíche</span> <span class="gramas">150g</span> <span class="kcal">300 kcal</span></li>
+                      <li><span class="alimento">Hambúrguer</span> <span class="gramas">130g</span> <span class="kcal">250 kcal</span></li>
+                    </ul>
+                  </div>
+              
+                  <div class="paginacao">
+                    <button style="width: 150px;" onclick="mudarPagina(-1)">Anterior</button>
+                    <button style="width: 150px;" onclick="mudarPagina(1)">Próximo</button>
+                  </div>
+              
+                  <button id="menuRefeicoesBtn">Cardápio</button>
                 </div>
-            </div>
-
+              </div>
+              
             <form id="refeicoesForm">
                 <fieldset style="display: flex; flex-direction: column; padding: 20px; margin-top: 52px;">
                     <legend>Manhã</legend>
@@ -423,6 +447,17 @@ li {
         const contadorLitros = document.getElementById('contadorDeLitros');
         const resetarRefeicoesBtn = document.getElementById('resetarRefeicoesBtn');
         const resetarTudoBtn = document.getElementById('resetarTudoBtn');
+
+        let paginaAtual = 1;
+const totalPaginas = 3;
+
+function mudarPagina(direcao) {
+  document.getElementById(`pagina${paginaAtual}`).style.display = "none";
+  paginaAtual += direcao;
+  if (paginaAtual < 1) paginaAtual = 1;
+  if (paginaAtual > totalPaginas) paginaAtual = totalPaginas;
+  document.getElementById(`pagina${paginaAtual}`).style.display = "block";
+}
     
         // Evento de clique para abrir o modal de reset
         resetarLitroBtn.addEventListener('click', function() {
