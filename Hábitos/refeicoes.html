@@ -199,6 +199,7 @@ fieldset button:hover {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    height: 380px;
     max-width: 400px;
     color: white;
 }
@@ -222,6 +223,10 @@ fieldset button:hover {
 .paginacao {
   justify-content: space-between;
   margin-top: 10px;
+}
+
+ul li {
+    margin-bottom: 15px;
 }
 
 ul {
@@ -403,7 +408,10 @@ li {
                 <li>18h: Sopa de Legumes - 300 kcal</li>
                 <li>21h: Iogurte Natural - 100 kcal</li>
             </ul>
-            <button id="modoJejumBtn">Modo Jejum</button>
+            <div>
+                <button id="modoJejumBtn">Modo Jejum</button>
+                <button type="button" class="sugestao-btn" onclick="mostrarInfoJejum()" style="width: 50px; height: 70px; margin-left: 0px; margin-bottom: 10px; margin-top: 0px;">?</button>
+            </div>
         </div>
     </div>
 
@@ -447,6 +455,10 @@ li {
         const contadorLitros = document.getElementById('contadorDeLitros');
         const resetarRefeicoesBtn = document.getElementById('resetarRefeicoesBtn');
         const resetarTudoBtn = document.getElementById('resetarTudoBtn');
+
+        function mostrarInfoJejum() {
+    alert("O jejum é uma prática natural que ajuda a equilibrar o corpo e a mente. Ao ficar algumas horas sem comer, você permite que seu corpo queime gordura, melhore a digestão e até renove o paladar. Comece devagar, ouvindo seu corpo e aproveitando os benefícios com leveza.");
+}
 
         let paginaAtual = 1;
 const totalPaginas = 3;
