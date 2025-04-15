@@ -250,29 +250,33 @@ function carregarHabitosDoDia() {
     const habitosPorDia = {
         domingo: {
             manha: ['Limpar Ouvido', 'Escola Dominical'],
-            tarde: ['Se Depile', 'Alise seu Pé'],
+            tarde: ['Se Depile', 'Alise seu Pé', 'Trabalho (Trade)'],
             noite: ['Culto as 18h']
         },
         segunda: {
-            manha: ['Oração na Igreja']
+            manha: ['Oração na Igreja'],
+            tarde: ['Trabalho (Trade)'],
+        },
+        terça: {
+            tarde: ['Trabalho (Trade)'],
         },
         quarta: {
             manha: ['Aparar Barba', 'Limpar Ouvido'],
-            tarde: ['Alise seu Pé'],
+            tarde: ['Alise seu Pé', 'Trabalho (Trade)'],
             // noite: ['Culto as 19h30']
         },
         quinta: {
             manha: ['Começar Jejum'],
-            tarde: ['Continuar Jejum'],
+            tarde: ['Trabalho (Trade)', 'Continuar Jejum'],
             noite: ['Finalizar Jejum']
         },
         sexta: {
-            tarde: ['Limpar Escritório'],
+            tarde: ['Trabalho (Mídia)', 'Limpar Escritório'],
             // noite: ['Culto as 19h30']
         },
         sábado: {
             manha: ['Correr (1 hora)', 'Ensaiar (2 hora)'],
-            tarde: ['Conselho', 'Ensaio (UADEMIS)']
+            tarde: ['Conselho', 'Atualizações', 'Ensaio (UADEMIS)']
         }
     };
 
