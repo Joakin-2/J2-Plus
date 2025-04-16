@@ -157,6 +157,15 @@
         var audioPlayer = document.getElementById('audioPlayer');
         var playlistImage = document.getElementById('playlistImage');
 
+        document.getElementById('playlistImage').addEventListener('click', function() {
+    // Verifica se a imagem já está com 50% de largura
+    if (this.style.maxWidth === '50%') {
+        this.style.maxWidth = '100%'; // Se sim, volta para 100%
+    } else {
+        this.style.maxWidth = '50%'; // Caso contrário, diminui para 50%
+    }
+});
+
         document.getElementById('playlistImage').addEventListener('dblclick', function () {
             const audio = document.getElementById('audioPlayer');
             if (audio.paused) {
