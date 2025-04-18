@@ -349,80 +349,62 @@ async function fetchTemperature() {
 }
 
 async function fetchWeatherForecast() {
-    const apiKey = 'bd2aa057407fb66d24136dab032d5bb8';
-    const city = 'Jacupiranga';
-    
-    // Dicionário de traduções
-    const translations = {
-        'clear sky': 'céu limpo',
-        'few clouds': 'poucas nuvens',
-        'scattered clouds': 'nuvens esparsas',
-        'broken clouds': 'nuvens fragmentadas',
-        'shower rain': 'chuva rápida',
-        'rain': 'chuva',
-        'thunderstorm': 'tempestade',
-        'snow': 'neve',
-        'mist': 'neblina',
-        'light rain': 'chuva leve',
-        'moderate rain': 'chuva moderada',
-        'heavy intensity rain': 'chuva intensa',
-        'very heavy rain': 'chuva muito intensa',
-        'extreme rain': 'chuva extrema',
-        'light snow': 'neve leve',
-        'heavy snow': 'neve intensa',
-        'sleet': 'chuva congelada',
-        'hail': 'granizo',
-        // Adicionando mais traduções
-        'drizzle': 'chuvisco',
-        'overcast clouds': 'nuvens densas',
-        'fog': 'névoa',
-        'sand': 'areia',
-        'dust': 'poeira',
-        'volcanic ash': 'cinza vulcânica',
-        'squalls': 'rajadas',
-        'tornado': 'tornado'
-    };
+  const apiKey = 'bd2aa057407fb66d24136dab032d5bb8';
+  const city = 'Jacupiranga';
+  
+  // Dicionário de traduções
+  const translations = {
+      'clear sky': 'céu limpo',
+      'few clouds': 'poucas nuvens',
+      'scattered clouds': 'nuvens esparsas',
+      'broken clouds': 'nuvens fragmentadas',
+      'shower rain': 'chuva rápida',
+      'rain': 'chuva',
+      'thunderstorm': 'tempestade',
+      'snow': 'neve',
+      'mist': 'neblina',
+      'light rain': 'chuva leve',
+      'moderate rain': 'chuva moderada',
+      'heavy intensity rain': 'chuva intensa',
+      'very heavy rain': 'chuva muito intensa',
+      'extreme rain': 'chuva extrema',
+      'light snow': 'neve leve',
+      'heavy snow': 'neve intensa',
+      'sleet': 'chuva congelada',
+      'hail': 'granizo',
+      'drizzle': 'chuvisco',
+      'overcast clouds': 'nuvens densas',
+      'fog': 'névoa',
+      'sand': 'areia',
+      'dust': 'poeira',
+      'volcanic ash': 'cinza vulcânica',
+      'squalls': 'rajadas',
+      'tornado': 'tornado'
+  };
 
-    try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`);
-        if (!response.ok) {
-            throw new Error('Erro ao buscar previsão do tempo: ' + response.status);
-        }
-        const data = await response.json();
-        const forecast = data.list;
-        const today = new Date();
-        const tomorrow = new Date();
-        tomorrow.setDate(today.getDate() + 1);
+  try {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&lang=pt_br&units=metric`);
+    const data = await response.json();
 
-        // Variáveis para armazenar temperaturas e descrições
-        let todayTemp = null;
-        let tomorrowTemp = null;
-        let todayDesc = '';
-        let tomorrowDesc = '';
+    if (data.cod === 200) {
+      const temperature = data.main.temp;
+      const weatherDescription = data.weather[0].description;
+      const translatedDescription = translations[weatherDescription] || weatherDescription;
 
-        forecast.forEach(item => {
-            const forecastDate = new Date(item.dt_txt);
-            if (forecastDate.getDate() === today.getDate() &&
-                forecastDate.getMonth() === today.getMonth() &&
-                forecastDate.getFullYear() === today.getFullYear()) {
-                todayTemp = item.main.temp;
-                todayDesc = translations[item.weather[0].description] || item.weather[0].description; // Tradução do clima
-            } else if (forecastDate.getDate() === tomorrow.getDate() &&
-                       forecastDate.getMonth() === tomorrow.getMonth() &&
-                       forecastDate.getFullYear() === tomorrow.getFullYear()) {
-                tomorrowTemp = item.main.temp;
-                tomorrowDesc = translations[item.weather[0].description] || item.weather[0].description; // Tradução do clima
-            }
-        });
-
-        // Formatação da saída
-        // let forecastText = `Hoje ${todayTemp} °C (${todayDesc})`;
-        let forecastText = `${todayTemp} °C (${todayDesc})`;
-        document.getElementById('weatherForecast').textContent = forecastText;
-    } catch (error) {
-        console.error(error);
-        document.getElementById('weatherForecast').textContent = 'Erro ao carregar previsão do tempo.';
+      // Atualizando o conteúdo do parágrafo
+      const weatherElement = document.getElementById('weatherForecast');
+      //weatherElement.innerHTML = `Clima em ${city}:<br>
+      //                            Temperatura: ${temperature}°C<br>
+      //                            Descrição: ${translatedDescription}`;
+      weatherElement.innerHTML = `Clima: ${translatedDescription}`;
+    } else {
+      const weatherElement = document.getElementById('weatherForecast');
+      weatherElement.innerHTML = 'Erro ao obter os dados do clima. Tente novamente mais tarde.';
     }
+  } catch (error) {
+    const weatherElement = document.getElementById('weatherForecast');
+    weatherElement.innerHTML = 'Erro na requisição: ' + error;
+  }
 }
 
 async function fetchNews() {

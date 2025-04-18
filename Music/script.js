@@ -107,7 +107,7 @@
                 ]
             },
             'Vibes': {
-                image: '5.png',
+                image: '5.gif',
                 tracks: [
                     'Vibe/A COLORS ENCORE.mp3',
                     'Vibe/After Party (Official Audio).mp3',
@@ -196,7 +196,7 @@
                 ]
             },
             'Gym': {
-                image: '6.png',
+                images: ['6.png', '6 - 1.png', '6 - 2.png'],
                 tracks: [
                     'Gym/2K FREESTYLE.mp3',
                     'Gym/21 Century Fox phonk.mp3',
