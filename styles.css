@@ -8,6 +8,68 @@ body {
     color: #e0e0e0; /* Cor de texto clara */
 }
 
+.raindrop {
+    position: fixed;
+    width: 3px;
+    height: 15px;
+    background-color: #5db1ff; /* Cor roxa */
+    animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+    0% {
+      top: -10px;
+      transform: translateX(0);
+    }
+    100% {
+      top: 100%;
+      transform: translateX(calc(100vw - 100%));
+    }
+  }
+
+  /* Estilo das nuvens */
+.cloud {
+    position: absolute;
+    width: 150px;
+    height: 80px;
+    background-color: #888;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: moveClouds linear infinite;
+}
+
+/* Adicionando mais “volume” com before e after */
+.cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background-color: #888;
+    border-radius: 50%;
+}
+
+.cloud::before {
+    width: 120px;
+    height: 80px;
+    top: -20px;
+    left: 20px;
+}
+
+.cloud::after {
+    width: 100px;
+    height: 60px;
+    top: -40px;
+    left: 50px;
+}
+
+/* Ajustar a animação */
+@keyframes moveClouds {
+    0% {
+        transform: translateX(-150%); /* Começa mais à esquerda */
+    }
+    100% {
+        transform: translateX(150%); /* Vai até a extremidade direita */
+    }
+}
+
 canvas {
     position: absolute;
     top: 0;
@@ -393,7 +455,7 @@ h2, h3 {
     height: 340px;
     border: 1px solid #333;
     background-color: #1e1e1e;
-    border-radius: 8px; /* Bordas arredondadas */
+    border-radius: 20px; /* Bordas arredondadas */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     margin-top: 35px;
     margin-bottom: 10px;
@@ -415,7 +477,7 @@ h2, h3 {
     overflow-y: auto;
     border-radius: 4%;
     border-top: 1px solid #333; /* Borda superior do chat */
-    background-color: #2e2e2e; /* Fundo do área de chat */
+    background-color: #121212; /* Fundo do área de chat */
 }
 
 .chat-footer {
@@ -460,7 +522,7 @@ input[type="text"] {
     flex: 1;
     padding: 10px;
     border: 1px solid #444; /* Borda do campo de texto */
-    background-color: #333; /* Fundo do campo de texto */
+    background-color: #1e1e1e; /* Fundo do campo de texto */
     color: #e0e0e0; /* Cor do texto no campo de texto */
     border-radius: 3px;
     margin-right: 5px;
