@@ -1014,6 +1014,14 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Independência do Brasil", month: 9, day: 7 },
     { name: "Natal", month: 12, day: 25 },
     { name: "Ano Novo", month: 1, day: 1 },
+    { name: "Carnaval", month: 2, day: 17 },
+    { name: "Sexta-feira Santa", month: 4, day: 18 },
+    { name: "Tiradentes", month: 4, day: 21 },
+    { name: "Dia do Trabalho", month: 5, day: 1 },
+    { name: "Festa de Nossa Senhora Aparecida", month: 10, day: 12 },
+    { name: "Proclamação da República", month: 11, day: 15 },
+    { name: "Finados", month: 11, day: 2 },
+    { name: "Dia da Consciência Negra", month: 11, day: 20 },
   ];
 
   let currentYear = new Date().getFullYear();
