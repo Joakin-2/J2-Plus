@@ -382,6 +382,36 @@ async function fetchWeatherForecast() {
       'tornado': 'tornado'
   };
 
+  // Dicionário de ícones correspondentes ao clima
+  const weatherIcons = {
+    'clear sky': 'fas fa-sun',
+    'few clouds': 'fas fa-cloud-sun',
+    'scattered clouds': 'fas fa-cloud-sun',
+    'broken clouds': 'fas fa-cloud',
+    'shower rain': 'fas fa-cloud-showers-heavy',
+    'rain': 'fas fa-cloud-rain',
+    'thunderstorm': 'fas fa-bolt',
+    'snow': 'fas fa-snowflake',
+    'mist': 'fas fa-smog',
+    'light rain': 'fas fa-cloud-rain',
+    'moderate rain': 'fas fa-cloud-rain',
+    'heavy intensity rain': 'fas fa-cloud-showers-heavy',
+    'very heavy rain': 'fas fa-cloud-showers-heavy',
+    'extreme rain': 'fas fa-cloud-showers-heavy',
+    'light snow': 'fas fa-snowflake',
+    'heavy snow': 'fas fa-snowflake',
+    'sleet': 'fas fa-cloud-meatball',
+    'hail': 'fas fa-cloud-meatball',
+    'drizzle': 'fas fa-cloud-drizzle',
+    'overcast clouds': 'fas fa-cloud',
+    'fog': 'fas fa-smog',
+    'sand': 'fas fa-sand',
+    'dust': 'fas fa-dust',
+    'volcanic ash': 'fas fa-cloud',
+    'squalls': 'fas fa-wind',
+    'tornado': 'fas fa-tornado'
+  };
+
   try {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&lang=pt_br&units=metric`);
     const data = await response.json();
@@ -393,10 +423,30 @@ async function fetchWeatherForecast() {
 
       // Atualizando o conteúdo do parágrafo
       const weatherElement = document.getElementById('weatherForecast');
-      //weatherElement.innerHTML = `Clima em ${city}:<br>
-      //                            Temperatura: ${temperature}°C<br>
-      //                            Descrição: ${translatedDescription}`;
+      const weatherIconElement = document.getElementById('weatherIcon');
+      
+      // Atualizando a descrição do clima
       weatherElement.innerHTML = `Clima: ${translatedDescription}`;
+
+      // Definindo o ícone correspondente
+      const iconClass = weatherIcons[weatherDescription] || 'fas fa-cloud';
+      weatherIconElement.className = iconClass; // Definindo a classe do ícone
+
+      // Verificando se é um clima de chuva e ativando o efeito de chuva
+      if (weatherDescription.includes('rain') || weatherDescription.includes('drizzle') || weatherDescription.includes('shower')) {
+        activateRainEffect(); // Ativando o efeito de chuva
+        deactivateCloudEffect(); // Garantindo que o efeito de nuvens será removido
+      } else {
+        deactivateRainEffect(); // Desativando o efeito de chuva
+      }
+
+      // Verificando se é um clima com nuvens e ativando o efeito de nuvens
+      if (weatherDescription.includes('clouds') || weatherDescription.includes('nuvens')) {
+        activateCloudEffect(); // Ativando o efeito de nuvens
+      } else {
+        deactivateCloudEffect(); // Removendo as nuvens
+      }
+
     } else {
       const weatherElement = document.getElementById('weatherForecast');
       weatherElement.innerHTML = 'Erro ao obter os dados do clima. Tente novamente mais tarde.';
@@ -405,6 +455,41 @@ async function fetchWeatherForecast() {
     const weatherElement = document.getElementById('weatherForecast');
     weatherElement.innerHTML = 'Erro na requisição: ' + error;
   }
+}
+
+// Função para ativar o efeito de chuva
+function activateRainEffect() {
+  for (let i = 0; i < 100; i++) {
+    const raindrop = document.createElement('div');
+    raindrop.classList.add('raindrop');
+    raindrop.style.left = `${Math.random() * 100}vw`;
+    document.body.appendChild(raindrop);
+  }
+}
+
+// Função para desativar o efeito de chuva
+function deactivateRainEffect() {
+  const raindrops = document.querySelectorAll('.raindrop');
+  raindrops.forEach(raindrop => raindrop.remove());
+}
+
+// Função para ativar o efeito de nuvens
+function activateCloudEffect() {
+  for (let i = 0; i < 5; i++) { // Número de nuvens a serem criadas
+    const cloud = document.createElement('div');
+    cloud.classList.add('cloud');
+    cloud.style.width = `${Math.random() * 200 + 150}px`; // Largura variável para as nuvens
+    cloud.style.height = `${Math.random() * 50 + 30}px`; // Altura variável para as nuvens
+    cloud.style.top = `${Math.random() * 50 + 10}%`; // Posição Y aleatória
+    cloud.style.animationDuration = `${Math.random() * 20 + 30}s`; // Duração aleatória da animação
+    document.body.appendChild(cloud);
+  }
+}
+
+// Função para desativar o efeito de nuvens
+function deactivateCloudEffect() {
+  const clouds = document.querySelectorAll('.cloud');
+  clouds.forEach(cloud => cloud.remove());
 }
 
 async function fetchNews() {

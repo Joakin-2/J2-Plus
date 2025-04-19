@@ -102,12 +102,12 @@
                     <i class="fas fa-arrow-left"></i> <!-- Ícone de voltar -->
                 </button>
                 <h2 id="currentPlaylistTitle" style="flex-grow: 1; text-align: center;">Nome da Playlist</h2>
-            </div>
-            <img src="" id="playlistImage" alt="Playlist Image" style="cursor: pointer;">
-            <!-- Botão para mudar a imagem da playlist "Gym" - inicialmente escondido -->
-            <button id="changeImageButton" class="outros-button" onclick="changeGymImage()" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px; display: none;">
+                <!-- Botão para mudar a imagem da playlist - inicialmente escondido -->
+            <button id="changeImageButton" class="outros-button" onclick="changeImage()" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px; display: none;">
                 <i class="fas fa-image"></i> <!-- Ícone de imagem -->
             </button>
+            </div>
+            <img src="" id="playlistImage" alt="Playlist Image" style="cursor: pointer;">
             <h2 id="musicTitle"></h2>
             <h3 id="songName" style="margin: 30px;"></h3>
             <div class="progress-container">
@@ -243,6 +243,19 @@ window.onload = () => {
     }
 };
 
+window.onload = () => {
+    const playlistImage = document.getElementById('playlistImage');
+
+    // Verifique se a variável 'playlist' está definida e contém a chave 'Fundo'
+    if (playlist && playlist['Fundo'] && playlist['Fundo'].images && playlist['Fundo'].images.length > 0) {
+        // Atribui a primeira imagem da lista de imagens da playlist
+        playlistImage.src = playlist['Fundo'].images[0];  
+    } else {
+        // Se não houver imagens, exibe uma imagem padrão
+        playlistImage.src = '4.jpg';  
+    }
+};
+
 function updateProgressBar() {
     const audio = document.getElementById('audioPlayer');
     const progressBar = document.getElementById('progress-bar');
@@ -300,39 +313,45 @@ document.addEventListener('mousemove', (event) => {
         });
 
         // Função para mostrar a lista de músicas de uma playlist
-function showPlaylist(playlistName) {
+        function showPlaylist(playlistName) {
     currentPlaylist = playlist[playlistName].tracks;
     currentTrackIndex = 0;
-    document.getElementById('playlistImage').src = playlist[playlistName].image; // Define a imagem da playlist
+    
+    // Definir a imagem da playlist
+    document.getElementById('playlistImage').src = playlist[playlistName].image; 
     document.getElementById('currentPlaylistTitle').textContent = playlistName; // Atualiza o título no player
     document.getElementById('playlistTitle').textContent = playlistName; // Atualiza o título na seleção
+    
     displayMusicSelection(playlistName);
-// Verificar se a playlist é "Gym"
-if (playlistName === 'Gym') {
-                // Mostrar o botão de troca de imagem
-                changeImageButton.style.display = 'inline-block';
-            } else {
-                // Esconder o botão de troca de imagem
-                changeImageButton.style.display = 'none';
-            }
 
-            // Exibir a imagem da playlist atual
-            const playlistImage = document.getElementById('playlistImage');
-            playlistImage.src = playlist[playlistName].image;
+    // Exibir o botão de troca de imagem apenas para as playlists 'Gym' ou 'Fundo'
+    if (playlistName === 'Gym' || playlistName === 'Fundo') {
+        changeImageButton.style.display = 'inline-block'; // Exibe o botão
+    } else {
+        changeImageButton.style.display = 'none'; // Esconde o botão
+    }
+}
+
+// Função genérica para trocar a imagem da playlist
+let currentImageIndex = 0;
+
+function changeImage(playlistName) {
+    if (playlist[playlistName] && playlist[playlistName].images) {
+        currentImageIndex++;
+        if (currentImageIndex >= playlist[playlistName].images.length) {
+            currentImageIndex = 0; // Se alcançar a última imagem, volta para a primeira
         }
 
-        // Função para alternar as imagens da playlist Gym
-        let currentImageIndex = 0;
+        const playlistImage = document.getElementById('playlistImage');
+        playlistImage.src = playlist[playlistName].images[currentImageIndex];
+    }
+}
 
-        function changeGymImage() {
-            currentImageIndex++;
-            if (currentImageIndex >= playlist['Gym'].images.length) {
-                currentImageIndex = 0; // Se alcançar a última imagem, volta para a primeira
-            }
-
-            const playlistImage = document.getElementById('playlistImage');
-            playlistImage.src = playlist['Gym'].images[currentImageIndex];
-        }
+// Atribuindo a função de alternância de imagem aos botões
+changeImageButton.addEventListener('click', () => {
+    const currentPlaylistName = document.getElementById('playlistTitle').textContent;
+    changeImage(currentPlaylistName);
+});
 
         /// Função para exibir a seleção de músicas
 function displayMusicSelection(playlistName) {

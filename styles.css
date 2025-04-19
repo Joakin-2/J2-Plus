@@ -8,6 +8,17 @@ body {
     color: #e0e0e0; /* Cor de texto clara */
 }
 
+#weatherForecast {
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  #weatherIcon {
+    font-size: 24px;
+    vertical-align: bottom;
+  }  
+
 .raindrop {
     position: fixed;
     width: 3px;
@@ -28,47 +39,22 @@ body {
   }
 
   /* Estilo das nuvens */
-.cloud {
-    position: absolute;
-    width: 150px;
-    height: 80px;
-    background-color: #888;
+  .cloud {
+    position: fixed;
+    background-color: #fff;
     border-radius: 50%;
     opacity: 0.7;
-    animation: moveClouds linear infinite;
-}
-
-/* Adicionando mais “volume” com before e after */
-.cloud::before, .cloud::after {
-    content: '';
-    position: absolute;
-    background-color: #888;
-    border-radius: 50%;
-}
-
-.cloud::before {
-    width: 120px;
-    height: 80px;
-    top: -20px;
-    left: 20px;
-}
-
-.cloud::after {
-    width: 100px;
-    height: 60px;
-    top: -40px;
-    left: 50px;
-}
-
-/* Ajustar a animação */
-@keyframes moveClouds {
+    animation: moveClouds 30s linear infinite;
+  }
+  
+  @keyframes moveClouds {
     0% {
-        transform: translateX(-150%); /* Começa mais à esquerda */
+      left: -20%;
     }
     100% {
-        transform: translateX(150%); /* Vai até a extremidade direita */
+      left: 120%;
     }
-}
+  }  
 
 canvas {
     position: absolute;

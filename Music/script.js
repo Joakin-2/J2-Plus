@@ -92,15 +92,16 @@
                 ]
             },
             'Fundo': {
-                image: '4.png',
+                image: '4.jpg',
+                images: ['4.jpg', '4.gif'],
                 tracks: [
                     'Fundo/Agape.mp3',
                     'Fundo/bob sponge edit.wav',
                     'Fundo/Dev Song.mp3',
                     'Fundo/Dragonfly (Slowed).mp3',
                     'Fundo/Gamers-React-Background-Music.wav',
-                    'Fundo/Lofi.mp3',
                     'Fundo/lovely - Billie Eilish Khalid (Cover Violin).mp3',
+                    'Fundo/Lofi.mp3',
                     'Fundo/Musica do Chis.mp3',
                     'Fundo/Musica do Onibus.mp3',
                     'Fundo/Natal.mp3'
@@ -196,6 +197,7 @@
                 ]
             },
             'Gym': {
+                image: '6.png',
                 images: ['6.png', '6 - 1.png', '6 - 2.png'],
                 tracks: [
                     'Gym/2K FREESTYLE.mp3',
@@ -440,10 +442,10 @@
             'Fundo/Agape.mp3': "Agape",
             'Fundo/bob sponge edit.wav': "Bob Sponge Edit",
             'Fundo/Dev Song.mp3': "Dev Song",
-            'Vibe/Dragonfly (Slowed).mp3': "Dragonfly (Slowed)",
+            'Fundo/Dragonfly (Slowed).mp3': "Dragonfly (Slowed)",
             'Fundo/Gamers-React-Background-Music.wav': "Background Music",
             'Fundo/lovely - Billie Eilish Khalid (Cover Violin).mp3': "Billie Eilish (Violin)",
-            'Fundo/lofi.mp3': "Lo-fi",
+            'Fundo/Lofi.mp3': "Lo-fi",
             'Fundo/Musica do Chis.mp3': "Música do Chis",
             'Fundo/Musica do Onibus.mp3': "Chis no Onibus",
             'Fundo/Natal.mp3': "Natal",
