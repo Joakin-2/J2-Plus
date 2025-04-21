@@ -1172,3 +1172,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderCalendar();
 });
+
+const olhoEsquerdo = document.getElementById("olhoEsquerdo");
+    const olhoDireito = document.getElementById("olhoDireito");
+    const container = document.getElementById("container");
+
+    let seguindoMouse = false;
+
+    // Função para simular o piscar
+    function piscar() {
+        olhoEsquerdo.style.transition = "height 0.1s ease-in";
+        olhoDireito.style.transition = "height 0.1s ease-in";
+        olhoEsquerdo.style.height = "5px";
+        olhoDireito.style.height = "5px";
+
+        setTimeout(() => {
+            olhoEsquerdo.style.transition = "height 0.3s ease-out";
+            olhoDireito.style.transition = "height 0.3s ease-out";
+            olhoEsquerdo.style.height = "70px";
+            olhoDireito.style.height = "70px";
+        }, 100);
+    }
+
+    // Pisca a cada 5 segundos
+    setInterval(piscar, 5000);
+
+    // Função para alternar o comportamento de seguir o mouse
+    function toggleSeguirMouse() {
+        seguindoMouse = !seguindoMouse;
+
+        if (seguindoMouse) {
+            // Inicia o movimento para seguir o mouse
+            document.addEventListener('mousemove', seguirMouse);
+        } else {
+            // Para o movimento
+            document.removeEventListener('mousemove', seguirMouse);
+        }
+    }
+
+    // Função que move os olhos para a posição do mouse
+    function seguirMouse(event) {
+        const faceRect = container.getBoundingClientRect();
+        const eyeRadiusX = olhoEsquerdo.offsetWidth / 2;
+        const eyeRadiusY = olhoEsquerdo.offsetHeight / 2;
+
+        // Calcula a posição do mouse em relação à face
+        let mouseX = event.clientX - faceRect.left;
+        let mouseY = event.clientY - faceRect.top;
+
+        // Limita o movimento do olho dentro da face
+        mouseX = Math.max(eyeRadiusX, Math.min(faceRect.width - eyeRadiusX, mouseX));
+        mouseY = Math.max(eyeRadiusY, Math.min(faceRect.height - eyeRadiusY, mouseY));
+
+        // Calcula a posição dos olhos para seguir o mouse
+        olhoEsquerdo.style.left = `${mouseX - eyeRadiusX}px`;
+        olhoEsquerdo.style.top = `${mouseY - eyeRadiusY}px`;
+
+        olhoDireito.style.left = `${mouseX - eyeRadiusX + 100}px`; // Adiciona um deslocamento para o olho direito
+        olhoDireito.style.top = `${mouseY - eyeRadiusY}px`;
+    }
+
+    // Adiciona o evento de clique para alternar entre seguir e parar de seguir o mouse
+    //container.addEventListener('click', toggleSeguirMouse);

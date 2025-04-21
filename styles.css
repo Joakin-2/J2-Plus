@@ -413,6 +413,7 @@ h2, h3 {
     height: 70px;
     background-color: rgb(0, 0, 0);
     border-radius: 20%;
+    transition: height 0.3s ease-in-out;
 }
 
 .eye.left {
