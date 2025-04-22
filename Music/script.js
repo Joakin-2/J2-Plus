@@ -198,7 +198,7 @@
             },
             'Gym': {
                 image: '6.png',
-                images: ['6.png', '6 - 1.png', '6 - 2.png'],
+                images: ['6.png', '6 - 1.png', '6 - 2.png', '6 - 3.gif'],
                 tracks: [
                     'Gym/2K FREESTYLE.mp3',
                     'Gym/21 Century Fox phonk.mp3',
@@ -297,6 +297,7 @@
                     'Gym/TORE UP.mp3',
                     'Gym/Tore Up (TikTok Guitar Remix).mp3',
                     'Gym/TOXIC.mp3',
+                    'Gym/TRALALERO TRALALA PHONK (Slowed).mp3',
                     'Gym/UGOVHB - WTF 2 (perfect slowed).mp3',
                     'Gym/Uma palavra adeus.mp3',
                     'Gym/UNIVERSO (Slowed).mp3',
@@ -624,6 +625,7 @@
             'Gym/TORE UP.mp3': "TORE UP",
             'Gym/Tore Up (TikTok Guitar Remix).mp3': "Tore Up (TikTok Guitar Remix)",
             'Gym/TOXIC.mp3': "TÓXIC",
+            'Gym/TRALALERO TRALALA PHONK (Slowed).mp3': "TRALALERO TRALALA PHONK (Slowed)",
             'Gym/UGOVHB - WTF 2 (perfect slowed).mp3': "UGOVHB - WTF 2 (perfect slowed)",
             'Gym/Uma palavra adeus.mp3': "Uma Palavra Adeus",
             'Gym/UNIVERSO (Slowed).mp3': "UNIVERSO (Slowed)",
