@@ -1073,8 +1073,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Joaquim", month: 2, day: 5 },
     { name: "Joaquim Batismo", month: 2, day: 22 },
     { name: "Vitória", month: 6, day: 4 },
+    { name: "Adeir", month: 9, day: 7 },
     { name: "Paula", month: 10, day: 24 },
-    { name: "Adeir", month: 9, day: 7 }
+    { name: "Mia", month: 11, day: 23 }
   ];
 
   const specialEvents = [
