@@ -722,6 +722,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });  
 
+  let currentSeason = '';
+
   // Função para verificar a estação atual e ativar efeitos
   function checkSeason() {
     const today = new Date();
@@ -768,6 +770,126 @@ document.addEventListener('DOMContentLoaded', () => {
         notifications.push(seasonNotification);
         document.getElementById("notificationCount").innerText = notifications.length;
     }
+    currentSeason = seasonEffect;
+}
+
+function checkSeason2() {
+  const today = new Date();
+  const month = today.getMonth(); // Mês atual (0-11)
+  const day = today.getDate();    // Dia atual (1-31)
+
+  let seasonMessage = '';
+  let seasonEffect = '';
+  
+  // Definindo a data do primeiro e último dia de cada estação
+  const firstDays = {
+      spring: { month: 8, day: 23 },
+      summer: { month: 11, day: 23 },
+      autumn: { month: 2, day: 22 },
+      winter: { month: 5, day: 22 }
+  };
+  
+  const lastDays = {
+      spring: { month: 11, day: 21 },
+      summer: { month: 2, day: 20 },
+      autumn: { month: 5, day: 20 },
+      winter: { month: 8, day: 21 }
+  };
+
+  const seasons = ['spring', 'summer', 'autumn', 'winter'];
+
+  // Verifica em qual estação estamos com base na data de hoje
+  for (let season of seasons) {
+      let firstDay = firstDays[season];
+      let lastDay = lastDays[season];
+
+      // Verifica se estamos dentro da estação (depois do primeiro dia, antes do último dia)
+      if (
+        (month === firstDay.month && day >= firstDay.day) ||
+        (month > firstDay.month && month < lastDay.month) ||
+        (month === lastDay.month && day <= lastDay.day)
+    ) {
+        if (season === 'spring') {
+            seasonEffect = "spring";
+        } else if (season === 'summer') {
+            seasonEffect = "summer";
+        } else if (season === 'autumn') {
+            seasonEffect = "autumn";
+        } else if (season === 'winter') {
+            seasonEffect = "winter";
+        }
+
+        // Exibe o efeito da estação
+        activateSeasonEffect(seasonEffect);
+
+        // Notificação com o nome das estações traduzido para português
+        let seasonNameInPortuguese;
+        if (season === 'spring') {
+            seasonNameInPortuguese = 'Primavera';
+        } else if (season === 'summer') {
+            seasonNameInPortuguese = 'Verão';
+        } else if (season === 'autumn') {
+            seasonNameInPortuguese = 'Outono';
+        } else if (season === 'winter') {
+            seasonNameInPortuguese = 'Inverno';
+        }
+
+        // Adiciona a notificação com a estação traduzida
+        notifications.push(`Lembrete: Estamos no meio do ${seasonNameInPortuguese}!`);
+        document.getElementById("notificationCount").innerText = notifications.length;
+
+        break; // Sai do loop assim que encontrar a estação correta
+    }
+  }
+  currentSeason = seasonEffect;
+}
+
+// Variável para controlar os efeitos criados (deve ser definida globalmente)
+let activeEffects = []; // Inicializa o array global para armazenar os elementos criados
+
+// Variável para controlar se o efeito da estação está ativado ou não
+let isEffectActive = true;
+
+// Adiciona o event listener para o botão
+document.getElementById('toggleEffectButton').addEventListener('click', toggleSeasonEffect);
+
+function toggleSeasonEffect() {
+    // Se o efeito estiver ativo, desative-o
+    if (isEffectActive) {
+        // Remove a classe da estação (efeito)
+        document.body.classList.remove('spring', 'summer', 'autumn', 'winter');
+        
+        // Remove os elementos criados para o efeito visual
+        removeActiveEffects();
+
+        // Esconde a mensagem da estação
+        document.getElementById('Message').style.display = 'none';
+
+        // Altera o ícone ou estilo do botão para refletir a mudança
+        document.getElementById('toggleEffectButton').innerHTML = '<i class="fas fa-leaf"></i>';
+
+    } else {
+        // Caso o efeito esteja desativado, ativa-o de novo
+        activateSeasonEffect(currentSeason); // 'currentSeason' precisa ser a estação ativa no momento
+
+        // Exibe a mensagem da estação
+        document.getElementById('Message').style.display = 'block';
+
+        // Altera o ícone ou estilo do botão
+        document.getElementById('toggleEffectButton').innerHTML = '<i class="fas fa-leaf"></i>';
+    }
+
+    // Alterna o estado da variável que controla se o efeito está ativo ou não
+    isEffectActive = !isEffectActive;
+}
+
+// Função para remover todos os efeitos ativos da página
+function removeActiveEffects() {
+    // Remove todos os elementos criados para os efeitos
+    activeEffects.forEach(effect => {
+        document.body.removeChild(effect);
+    });
+    activeEffects = []; // Limpa a lista de efeitos
 }
 
 // Função para ativar o efeito visual de cada estação
@@ -786,13 +908,12 @@ function activateSeasonEffect(season) {
     } else if (season === 'autumn') {
         createFallingLeaves(); // Folhas caindo para o outono
     } else if (season === 'winter') {
-        createSnowflakes(); // Flocos de neve para o inverno
+        createSnowflakes2(); // Flocos de neve para o inverno
     }
 }
 
 // Funções específicas de cada estação (você já tem funções como "createSnowflakes" e "createConfetti")
 function createSpringFlowers() {
-    // Adicionar flores ou outros elementos visuais para a primavera
     const numFlowers = 50;
     for (let i = 0; i < numFlowers; i++) {
         const flower = document.createElement('div');
@@ -801,18 +922,18 @@ function createSpringFlowers() {
         flower.style.left = Math.random() * 100 + 'vw';
         flower.style.animationDuration = Math.random() * 5 + 5 + 's';
         document.body.appendChild(flower);
+        activeEffects.push(flower); // Adiciona ao controle de efeitos ativos
     }
 }
 
 function createSunshine() {
-    // Criar um efeito de sol para o verão
     const sunEffect = document.createElement('div');
     sunEffect.classList.add('sunshine');
     document.body.appendChild(sunEffect);
+    activeEffects.push(sunEffect); // Adiciona ao controle de efeitos ativos
 }
 
 function createFallingLeaves() {
-    // Efeito de folhas caindo no outono
     const numLeaves = 50;
     for (let i = 0; i < numLeaves; i++) {
         const leaf = document.createElement('div');
@@ -821,7 +942,27 @@ function createFallingLeaves() {
         leaf.style.left = Math.random() * 100 + 'vw';
         leaf.style.animationDuration = Math.random() * 5 + 5 + 's';
         document.body.appendChild(leaf);
+        activeEffects.push(leaf); // Adiciona ao controle de efeitos ativos
     }
+}
+
+function createSnowflakes2() {
+  const numSnowflakes = 60; // Número de flocos de neve
+
+  for (let i = 0; i < numSnowflakes; i++) {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.textContent = '❄'; // Símbolo de floco de neve
+
+      // Definindo uma posição aleatória para cada floco
+      snowflake.style.left = Math.random() * 100 + 'vw'; // Aleatório de 0 a 100% da largura da tela
+      snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; // Animação entre 5s e 10s
+      snowflake.style.animationDelay = Math.random() * 5 + 's'; // Delay entre 0s e 5s
+
+      // Adiciona o floco de neve ao corpo da página
+      document.body.appendChild(snowflake);
+      activeEffects.push(snowflake); // Adiciona ao controle de efeitos ativos
+  }
 }
 
 // Função que calcula a data 15 dias antes de uma data (sem ano)
