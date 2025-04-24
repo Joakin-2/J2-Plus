@@ -121,7 +121,8 @@
         <button onclick="window.location.href='https://j2plus.netlify.app/conselho/new.html'" style="display:none; position: absolute; margin-top: 440px;" id="botao31Dezembro">Refexão desse Ano!</button>
         <button class="chatg" onclick="window.location.href='https://chat.openai.com/chat'"></button>
         <span class="clock">
-            <i id="muteButton" class="fas fa-volume-up" style="cursor: pointer;"></i>
+            <i id="toggleMusicBtn" class="fas fa-volume-up" style="cursor: pointer;"></i>
+            <i id="muteButton" class="fas fa-volume-up" style="display: none; cursor: pointer;"></i>
             <i id="openCamera" class="fas fa-camera" style="cursor: pointer;"></i>
             <i id="notificationButton" class="fas fa-bell" style="cursor: pointer;">
                 <span id="notificationCount" style="position: absolute; background: #825dff; color: white; border-radius: 50%; padding: 2px 5px; font-size: 12px;">
@@ -201,14 +202,10 @@
             </div>
         </div>
         <br><br>
-        <!-- <audio id="backgroundMusicNatal" loop>
-            <source src="Music/Fundo/Natal.mp3" type="audio/mpeg">
+        <audio id="backgroundMusic" loop>
+            <source src="Music/Fundo/Dev Song.mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
-        </audio> -->
-        <!-- <audio id="backgroundMusic" loop>
-            <source src="Music/Fundo/Agape.mp3" type="audio/mpeg">
-            Seu navegador não suporta o elemento de áudio.
-        </audio> -->
+        </audio>
         <div id="Message" style="display: none;color: rgb(100, 45, 252);padding: 10px;border: 1px solid rgb(100, 45, 252);border-radius: 5px; margin-top: -55px; margin-bottom: -18px;">
              <p id="Text"></p>
             </div>
@@ -222,8 +219,8 @@
         </div>        
     </div>
 
-    <!-- Modal Privacidade -->
-<div id="modalPrivacidade" class="modal">
+  <!-- Modal Privacidade -->
+  <div id="modalPrivacidade" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modalPrivacidade')">&times;</span>
       <h1>Política de Privacidade</h1>
@@ -310,6 +307,96 @@
     <script src="Script/nivel.js"></script>
     <script src="main.js"></script> <!-- JavaScript externo -->
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const toggleMusicBtn = document.getElementById('toggleMusicBtn');
+    let isPlaying = false;
+    const defaultMusicSrc = "Music/Fundo/Dev Song.mp3";
+    const christmasMusicSrc = "Music/Fundo/Natal.mp3";
+    const birthdayMusicSrc = "Music/Fundo/Happy birthday.mp3"; // Caminho para a música de aniversário
+
+    const birthdays = [
+        { name: "Pipoca", month: 1, day: 24 },
+        { name: "Joaquim", month: 2, day: 5 },
+        { name: "Joaquim Batismo", month: 2, day: 22 },
+        { name: "Vitória", month: 6, day: 4 },
+        { name: "Adeir", month: 9, day: 7 },
+        { name: "Paula", month: 10, day: 24 },
+        { name: "Mia", month: 11, day: 23 }
+    ];
+
+    function isChristmasTime() {
+        const now = new Date();
+        const month = now.getMonth();
+        const day = now.getDate();
+        return (day === 25 && month === 11); // Mês de dezembro é 11
+    }
+
+    function isBirthday() {
+        const now = new Date();
+        const currentMonth = now.getMonth() + 1; // Janeiro é 1
+        const currentDay = now.getDate();
+
+        for (const birthday of birthdays) {
+            if (birthday.month === currentMonth && birthday.day === currentDay) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function loadMusic(src) {
+        backgroundMusic.src = src;
+        backgroundMusic.load();
+    }
+
+    function playOrPauseMusic() {
+        if (isPlaying) {
+            backgroundMusic.pause();
+        } else {
+            backgroundMusic.play();
+        }
+        isPlaying = !isPlaying;
+        updateButtonIcon();
+    }
+
+    function updateButtonIcon() {
+        if (isPlaying) {
+            toggleMusicBtn.classList.remove('fa-volume-mute');
+            toggleMusicBtn.classList.add('fa-volume-up');
+        } else {
+            toggleMusicBtn.classList.remove('fa-volume-up');
+            toggleMusicBtn.classList.add('fa-volume-mute');
+        }
+    }
+
+    // Carrega a música apropriada, mas não a inicia
+    if (isBirthday()) {
+        loadMusic(birthdayMusicSrc);
+    } else if (isChristmasTime()) {
+        loadMusic(christmasMusicSrc);
+    } else {
+        loadMusic(defaultMusicSrc);
+    }
+
+    // Adiciona um ouvinte de evento de clique para iniciar/pausar a música
+    toggleMusicBtn.addEventListener('click', function() {
+        // Se a música não estiver tocando, inicia ao primeiro clique
+        if (!isPlaying) {
+            backgroundMusic.play().catch(error => {
+                console.error("Erro ao iniciar a reprodução:", error);
+            });
+            isPlaying = true;
+            updateButtonIcon();
+        } else {
+            playOrPauseMusic();
+        }
+    });
+
+    // Inicialmente, define o ícone para mudo, pois a música não está tocando
+    updateButtonIcon();
+});
+
         // Função para alternar o som da página
     document.getElementById('muteButton').addEventListener('click', function () {
         const mediaElements = document.querySelectorAll('audio, video'); // Seleciona todos os elementos de mídia
