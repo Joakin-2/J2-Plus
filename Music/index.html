@@ -256,6 +256,19 @@ window.onload = () => {
     }
 };
 
+window.onload = () => {
+    const playlistImage = document.getElementById('playlistImage');
+
+    // Verifique se a variável 'playlist' está definida e contém a chave 'Vibes'
+    if (playlist && playlist['Vibes'] && playlist['Vibes'].images && playlist['Vibes'].images.length > 0) {
+        // Atribui a primeira imagem da lista de imagens da playlist
+        playlistImage.src = playlist['Vibes'].images[0];  
+    } else {
+        // Se não houver imagens, exibe uma imagem padrão
+        playlistImage.src = '5.gif';  
+    }
+};
+
 function updateProgressBar() {
     const audio = document.getElementById('audioPlayer');
     const progressBar = document.getElementById('progress-bar');
@@ -324,8 +337,8 @@ document.addEventListener('mousemove', (event) => {
     
     displayMusicSelection(playlistName);
 
-    // Exibir o botão de troca de imagem apenas para as playlists 'Gym' ou 'Fundo'
-    if (playlistName === 'Gym' || playlistName === 'Fundo') {
+    // Exibir o botão de troca de imagem apenas para as playlists 'Gym' ou 'Fundo' ou 'Vibes'
+    if (playlistName === 'Gym' || playlistName === 'Fundo' || playlistName === 'Vibes') {
         changeImageButton.style.display = 'inline-block'; // Exibe o botão
     } else {
         changeImageButton.style.display = 'none'; // Esconde o botão
@@ -353,7 +366,7 @@ changeImageButton.addEventListener('click', () => {
     changeImage(currentPlaylistName);
 });
 
-        /// Função para exibir a seleção de músicas
+        // Função para exibir a seleção de músicas
 function displayMusicSelection(playlistName) {
     // Atualiza o título da playlist
     var playlistTitle = document.getElementById('playlistTitle');

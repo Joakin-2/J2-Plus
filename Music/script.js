@@ -110,6 +110,7 @@
             },
             'Vibes': {
                 image: '5.gif',
+                images: ['5.gif', '5 - 1.gif'],
                 tracks: [
                     'Vibe/A COLORS ENCORE.mp3',
                     'Vibe/After Party (Official Audio).mp3',
@@ -199,7 +200,7 @@
             },
             'Gym': {
                 image: '6.png',
-                images: ['6.png', '6 - 1.png', '6 - 2.png', '6 - 3.gif'],
+                images: ['6.png', '6 - 1.png', '6 - 2.png', '6 - 3.gif', '6 - 4.jpeg'],
                 tracks: [
                     'Gym/2K FREESTYLE.mp3',
                     'Gym/21 Century Fox phonk.mp3',
@@ -268,6 +269,7 @@
                     'Gym/MONTAGEM VOZES PROFUNDAS.mp3',
                     'Gym/morder.mp3',
                     'Gym/NUNCA MUDA - SLOWED (Edit Audio).mp3',
+                    'Gym/OGAME.mp3',
                     'Gym/OLD GENESIS.mp3',
                     'Gym/PHONKGASKAR.mp3',
                     'Gym/Pinguins Dancando Melodia Envolvente.mp3',
@@ -597,6 +599,7 @@
             'Gym/MONTAGEM VOZES PROFUNDAS.mp3': "MONTAGEM VOZES PROFUNDAS",
             'Gym/morder.mp3': "Morder",
             'Gym/NUNCA MUDA - SLOWED (Edit Audio).mp3': "NUNCA MUDA - SLOWED (Edit Audio)",
+            'Gym/OGAME.mp3': "OGAME",
             'Gym/OLD GENESIS.mp3': "OLD GENESIS",
             'Gym/PHONKGASKAR.mp3': "PHONKGASKAR",
             'Gym/Pinguins Dancando Melodia Envolvente.mp3': "Pinguins Dancando Melodia Envolvente",
