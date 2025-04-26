@@ -1263,18 +1263,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   let currentYear = new Date().getFullYear();
-
-  function renderCalendar() {
-    yearDisplay.textContent = currentYear;
-    calendarGrid.innerHTML = '';
-    const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-    months.forEach((month, index) => {
-      const monthDiv = document.createElement('div');
-      monthDiv.textContent = month;
-      monthDiv.addEventListener('click', () => renderDaysInMonth(index, currentYear, month));
-      calendarGrid.appendChild(monthDiv);
-    });
-  }
+  let currentMonth = new Date().getMonth(); // Mês atual (0 = Janeiro, 1 = Fevereiro, ...)
 
   function renderDaysInMonth(monthIndex, year, monthName) {
     calendarGrid.innerHTML = ''; // Limpa o grid atual
@@ -1284,7 +1273,12 @@ document.addEventListener("DOMContentLoaded", () => {
     title.style.fontWeight = 'bold';
     title.style.marginBottom = '10px';
     calendarGrid.appendChild(title);
-
+  
+    // Obtém a data atual
+    const today = new Date();
+    const currentDay = today.getDate();
+    const currentMonth = today.getMonth(); // O mês atual (0 = Janeiro, 1 = Fevereiro, ...)
+  
     for (let day = 1; day <= daysInMonth; day++) {
       const dayDiv = document.createElement('div');
       dayDiv.textContent = day;
@@ -1293,28 +1287,34 @@ document.addEventListener("DOMContentLoaded", () => {
       dayDiv.style.margin = '5px';
       dayDiv.style.display = 'inline-block';
       dayDiv.style.cursor = 'pointer';
-
+  
+      // Verifica se é o dia atual
+      if (monthIndex === currentMonth && day === currentDay) {
+        dayDiv.style.backgroundColor = '#825dff'; // Cor de fundo especial para o dia atual
+        dayDiv.style.fontWeight = 'bold'; // Pode aplicar negrito no texto também
+      }
+  
       // Verifica se é um aniversário ou evento especial
       const birthday = birthdays.find(b => b.month === monthIndex + 1 && b.day === day);
       const event = specialEvents.find(e => e.month === monthIndex + 1 && e.day === day);
-
+  
       if (birthday) {
         dayDiv.style.backgroundColor = '#6e9bff'; // Destaca o dia com cor
         dayDiv.textContent += ` 🎉 ${birthday.name}`;
       }
-
+  
       if (event) {
         dayDiv.style.backgroundColor = '#9877f1'; // Destaca o dia com cor diferente
         dayDiv.textContent += ` ✨ ${event.name}`;
       }
-
+  
       dayDiv.addEventListener('click', () => {
         let message = `Dia ${day} de ${monthName}, ${year}`;
         if (birthday) message += ` - Aniversário de ${birthday.name}`;
         if (event) message += ` - Evento especial: ${event.name}`;
         alert(message);
       });
-
+  
       calendarGrid.appendChild(dayDiv);
     }
 
@@ -1322,8 +1322,47 @@ document.addEventListener("DOMContentLoaded", () => {
     backButton.textContent = "Voltar";
     backButton.style.padding = '10px';
     backButton.style.cursor = 'pointer';
-    backButton.addEventListener('click', renderCalendar);
+    backButton.addEventListener('click', renderCalendar2);
     calendarGrid.appendChild(backButton);
+  }
+
+  function renderCalendar() {
+    yearDisplay.textContent = currentYear;
+    calendarGrid.innerHTML = '';
+    const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+  
+    // Exibe os meses de forma simples, com o clique para ver os dias
+    months.forEach((month, index) => {
+      const monthDiv = document.createElement('div');
+      monthDiv.textContent = month;
+      if (index === currentMonth) {
+        monthDiv.style.fontWeight = 'bold'; // Destaque para o mês atual
+        monthDiv.style.backgroundColor = '#825dff'; // Cor de fundo para destaque
+      }
+      monthDiv.addEventListener('click', () => renderDaysInMonth(index, currentYear, month));
+      calendarGrid.appendChild(monthDiv);
+    });
+  
+    // Exibe diretamente os dias do mês atual
+    renderDaysInMonth(currentMonth, currentYear, months[currentMonth]);
+  }
+  
+  function renderCalendar2() {
+    yearDisplay.textContent = currentYear;
+    calendarGrid.innerHTML = '';
+    const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+  
+    // Exibe os meses de forma simples, com o clique para ver os dias
+    months.forEach((month, index) => {
+      const monthDiv = document.createElement('div');
+      monthDiv.textContent = month;
+      if (index === currentMonth) {
+        monthDiv.style.fontWeight = 'bold'; // Destaque para o mês atual
+        monthDiv.style.backgroundColor = '#825dff'; // Cor de fundo para destaque
+      }
+      monthDiv.addEventListener('click', () => renderDaysInMonth(index, currentYear, month));
+      calendarGrid.appendChild(monthDiv);
+    });
   }
 
   calenButton.addEventListener('click', () => {
@@ -1333,12 +1372,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   prevYear.addEventListener('click', () => {
     currentYear--;
-    renderCalendar();
+    renderCalendar2();
   });
 
   nextYear.addEventListener('click', () => {
     currentYear++;
-    renderCalendar();
+    renderCalendar2();
   });
 
   renderCalendar();
