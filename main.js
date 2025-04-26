@@ -348,6 +348,35 @@ async function fetchTemperature() {
     }
 }
 
+let effectsActive2 = true;  // Controla se os efeitos estão ativos ou não
+
+// Função para alternar os efeitos de clima
+function toggleWeatherEffects() {
+  if (effectsActive2) {
+    // Desativa os efeitos de clima
+    deactivateRainEffect();
+    deactivateCloudEffect();
+  } else {
+    // Ativa os efeitos de clima de acordo com o clima atual
+    const weatherElement = document.getElementById('weatherForecast');
+    const weatherDescription = weatherElement ? weatherElement.innerText : '';
+    
+    if (weatherDescription.includes('chuva') || weatherDescription.includes('drizzle') || weatherDescription.includes('shower')) {
+      activateRainEffect();
+    }
+    
+    if (weatherDescription.includes('nuvens') || weatherDescription.includes('clouds')) {
+      activateCloudEffect();
+    }
+  }
+  
+  // Alterna o estado
+  effectsActive2 = !effectsActive2;
+}
+
+// Adicionando o event listener para o botão de alternância
+document.getElementById('toggleEffectButton2').addEventListener('click', toggleWeatherEffects);
+
 async function fetchWeatherForecast() {
   const apiKey = 'bd2aa057407fb66d24136dab032d5bb8';
   const city = 'Jacupiranga';
@@ -873,7 +902,7 @@ function toggleSeasonEffect() {
         activateSeasonEffect(currentSeason); // 'currentSeason' precisa ser a estação ativa no momento
 
         // Exibe a mensagem da estação
-        document.getElementById('Message').style.display = 'block';
+        //document.getElementById('Message').style.display = 'block';
 
         // Altera o ícone ou estilo do botão
         document.getElementById('toggleEffectButton').innerHTML = '<i class="fas fa-leaf"></i>';
