@@ -121,7 +121,7 @@ button {
 #menuPanel {
     display: none;
     position: fixed;
-    bottom: 385px;
+    margin-top: -220px;
     left: 5px;
     width: 120px;
     background-color: #14191d;
@@ -220,6 +220,17 @@ button {
         <button id="menuButtonNav"><i class="fas fa-bars"></i></button>
     </header>
 
+    <div id="menuPanel" style="display: none;">
+        <button id="j2plusButton">J2+</button>
+        <button id="keepButton">Keep</button>
+        <button id="canvaButton">Canva</button>
+        <button id="toggleEffectButton" class="toggle-effect-btn">Efeito</button>
+        <button id="noticiasButton">Notícias</button>
+        <button id="financasButton">Finanças</button>
+        <button id="pinterestButton">Pinterest</button>
+        <button id="convertioButton">Convertio</button>
+    </div> 
+
     <!-- Main Content -->
     <main>
         <div id="clock"></div>
@@ -251,24 +262,6 @@ button {
             </div>
         </section>
     </main>
-
-    <div id="menuPanel" style="display: none;">
-        <button id="j2plusButton">J2+</button>
-        <button id="noticiasButton">Notícias</button>
-        <!--<button id="favoritesButton">Favorites</button>-->
-        <button id="instagramButton">Instagram</button>
-        <button id="financasButton">Finanças</button>
-
-        <button id="keepButton">Keep</button>
-        <button id="canvaButton">Canva</button>
-        <button id="driveButton">Drive</button>
-        <button id="toggleEffectButton" class="toggle-effect-btn">Efeitos</button>
-        <button id="growthButton">Growth</button>
-        <button id="pinterestButton">Pinterest</button>
-        <button id="aliexpressButton">Aliexpress</button>
-        <button id="convertioButton">Convertio</button>
-        <button id="mercadoLivreButton">Mercado Livre</button>
-    </div>    
 
     <script>
         // Atualiza a data e a hora
@@ -752,19 +745,14 @@ function deactivateCloudEffect() {
   clouds.forEach(cloud => cloud.remove());
 }
 
-document.getElementById('instagramButton').addEventListener('click', () => openInNewTab('https://www.instagram.com'));
 document.getElementById('noticiasButton').addEventListener('click', () => openInNewTab('https://www.instagram.com/direct/inbox/?theme=dark'));
 document.getElementById('j2plusButton').addEventListener('click', () => openInNewTab('https://j2plus.netlify.app'));
 
 // New buttons
-document.getElementById('growthButton').addEventListener('click', () => openInNewTab('https://growth.com'));
 document.getElementById('canvaButton').addEventListener('click', () => openInNewTab('https://www.canva.com'));
-document.getElementById('mercadoLivreButton').addEventListener('click', () => openInNewTab('https://www.mercadolivre.com.br'));
 document.getElementById('keepButton').addEventListener('click', () => openInNewTab('https://keep.google.com'));
 document.getElementById('pinterestButton').addEventListener('click', () => openInNewTab('https://www.pinterest.com'));
-document.getElementById('aliexpressButton').addEventListener('click', () => openInNewTab('https://www.aliexpress.com'));
 document.getElementById('convertioButton').addEventListener('click', () => openInNewTab('https://www.convertio.co'));
-document.getElementById('driveButton').addEventListener('click', () => openInNewTab('https://drive.google.com'));
 
     </script>
 </body>
