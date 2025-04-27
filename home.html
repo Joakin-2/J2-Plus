@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="icon" href="J2+.png" type="image/x-icon">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Home</title>
     <style>
         body {
@@ -30,8 +31,34 @@ header {
     z-index: 1000;
 }
 
+#temperature-container {
+    /* display: flex;*/
+    align-items: center; /* Isso alinha o ícone e a temperatura na mesma linha */
+}
+
+#weather-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    margin-bottom: 15px;
+    margin-left: 10px; /* Espaçamento entre a temperatura e o ícone */
+}
+
+#clock {
+            border-radius: 15px; /* Bordas mais arredondadas */
+            padding: 20px;
+            color: #E0FFFF; /* Cor azul clara */
+            box-shadow: 0 0 25px #14191d; /* Sombra mais destacada */
+            backdrop-filter: blur(10px); /* Adiciona desfoque de fundo */
+            display: inline-flex;
+            margin-left: 10%;
+            font-size: 150px;
+            margin-bottom: 50px;
+        }
+
 .address-bar {
     display: flex;
+    width: 730px;
     align-items: center;
     background-color: #f0f0f0;
     padding: 10px;
@@ -195,6 +222,8 @@ button {
 
     <!-- Main Content -->
     <main>
+        <div id="clock"></div>
+        
         <div class="address-bar">
             <i class="fas fa-search"></i>
             <input style="background: white; color: #8c52ff;" type="text" id="urlInput" placeholder="Faça sua pesquisa...">
@@ -209,12 +238,16 @@ button {
 
             <div class="weather">
                 <h2>Weather</h2>
-                <p id="weather">Loading weather...</p>
+                <div id="temperature-container">
+                    <p id="temperature">Loading weather...</p>
+                    <div id="weather-icon"></div> <!-- Ícone do clima -->
+                </div>
             </div>
 
             <div class="custom-widget">
-                <h2>Today’s Date & Time</h2>
-                <p id="date-time"></p>
+                <h2>Today’s Date</h2>
+                <div id="date"></div>
+                <p style="display: none;" id="date-time"></p>
             </div>
         </section>
     </main>
@@ -239,6 +272,34 @@ button {
 
     <script>
         // Atualiza a data e a hora
+        function updateClock() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+// Atualiza a data
+function updateDate2() {
+    const now = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let formattedDate = now.toLocaleDateString('pt-br', options);
+
+    // Remove "-feira" dos dias da semana
+    formattedDate = formattedDate.replace(/segunda-feira|terça-feira|quarta-feira|quinta-feira|sexta-feira/gi, function (match) {
+        return match.replace('-feira', '');
+    });
+
+    document.getElementById('date').textContent = formattedDate;
+}
+
+// Chama as funções ao carregar a página e a cada segundo
+updateClock();
+updateDate2();
+setInterval(updateClock, 1000); // Atualiza a cada segundo
+
+        // Atualiza a data e a hora
         const updateDateTime = () => {
             const dateTime = new Date().toLocaleString();
             document.getElementById('date-time').innerText = dateTime;
@@ -246,10 +307,21 @@ button {
         setInterval(updateDateTime, 1000);
     
         // Simulação de busca do clima
-        const fetchWeather = () => {
-            // Use uma API real para obter dados de clima
-            document.getElementById('weather').innerText = "Sunny, 25°C";
-        };
+        async function fetchWeather() {
+            const apiKey = 'bd2aa057407fb66d24136dab032d5bb8';
+    const city = 'Jacupiranga';
+    try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
+        if (!response.ok) {
+            throw new Error('Erro ao buscar temperatura: ' + response.status);
+        }
+        const data = await response.json();
+        document.getElementById('temperature').textContent = `Clima: ${data.main.temp} °C`;
+    } catch (error) {
+        console.error(error);
+        document.getElementById('temperature').textContent = 'Erro ao carregar temperatura.';
+    }
+}
         fetchWeather();
     
         // Exibe ou esconde o painel de menu

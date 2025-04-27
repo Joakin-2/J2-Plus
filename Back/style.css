@@ -9,6 +9,25 @@ body, html {
     font-family: 'Arial', sans-serif; /* Fonte padrão mais moderna */
 }
 
+#temperature-container {
+    display: flex;
+    margin-top: 20px;
+    align-items: center; /* Isso alinha o ícone e a temperatura na mesma linha */
+    border-radius: 15px; /* Bordas mais arredondadas */
+    padding: 20px;
+    color: #E0FFFF; /* Cor azul clara */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6); /* Sombra mais destacada */
+    backdrop-filter: blur(10px); /* Adiciona desfoque de fundo */
+}
+
+#weather-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    margin-bottom: 15px;
+    margin-left: 10px; /* Espaçamento entre a temperatura e o ícone */
+}
+
 #background-video-container {
     position: fixed;
     top: 0;
@@ -39,7 +58,7 @@ body, html {
     background-color: rgba(0, 0, 0, 0.705);
 }
 
-#clock, #date, #temperature {
+#clock, #date {
     border-radius: 15px; /* Bordas mais arredondadas */
     padding: 20px;
     color: #E0FFFF; /* Cor azul clara */
@@ -52,16 +71,14 @@ body, html {
     margin-bottom: 20px;
 }
 
-#date, #temperature {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
 #date {
+    font-size: 2em;
     font-weight: bold; /* Destaque para a data */
 }
 
 #temperature {
+    font-size: 2em;
+    margin-left: 20%;
     font-weight: bold; /* Destaque para a temperatura */
 }
 

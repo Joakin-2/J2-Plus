@@ -19,7 +19,10 @@
     <div id="content-container">
         <div id="clock"></div>
         <div id="date"></div>
-        <div id="temperature"></div>
+        <div id="temperature-container">
+            <div id="temperature"></div>
+            <div id="weather-icon"></div> <!-- Ícone do clima ao lado da temperatura -->
+        </div>
     </div>
 
     <script>
@@ -197,12 +200,39 @@ async function getTemperature() {
         const temperaturaKelvin = data.main.temp;
         const temperaturaCelsius = (temperaturaKelvin - 273.15).toFixed(2); // Convertendo para Celsius e fixando duas casas decimais
 
+        // Definir o texto da temperatura
         document.getElementById('temperature').textContent = `Temperatura: ${temperaturaCelsius}°C`;
+
+        // Obter a condição do tempo
+        const weatherCondition = data.weather[0].main;
+
+        // Definir o ícone de clima com base na condição
+        let weatherIcon = '';
+        switch (weatherCondition) {
+            case 'Clear':
+                weatherIcon = '☀️'; // Ícone de sol
+                break;
+            case 'Clouds':
+                weatherIcon = '☁️'; // Ícone de nuvem
+                break;
+            case 'Snow':
+                weatherIcon = '❄️'; // Ícone de neve
+                break;
+            case 'Rain':
+                weatherIcon = '🌧️'; // Ícone de chuva
+                break;
+            default:
+                weatherIcon = '🌥️'; // Ícone de tempo parcialmente nublado
+                break;
+        }
+
+        // Exibir o ícone de clima
+        document.getElementById('weather-icon').textContent = weatherIcon;
+
     } catch (error) {
         console.error(`Erro ao obter a temperatura: ${error.message}`);
     }
 }
-
 
 // Define intervalos para atualizar a data e o relógio a cada minuto
 setInterval(updateDate, 1000);
