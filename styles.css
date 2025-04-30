@@ -894,6 +894,36 @@ ul li:hover {
     background-color: #161616;
 }
 
+#cameraModal {
+    position: absolute; /* Para permitir o movimento */
+    width: 460px; /* Tamanho pequeno */
+    height: 360px; /* Tamanho pequeno */
+    margin: 0;
+    padding: 0px;
+    background-color: #121212;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none; /* Inicialmente escondido */
+    z-index: 1000;
+  }
+  
+  #cameraModal .modal-content {
+    position: relative;
+    padding: 0px;
+  }
+  
+  #video {
+    width: 450px;
+    height: 350px;
+  }
+  
+  #overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }  
+
 /* Para navegadores baseados em WebKit (como Chrome, Safari e Edge) */
 ::-webkit-scrollbar {
     width: 8px;

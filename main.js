@@ -606,150 +606,177 @@ updateClock();
 
 // Camera
 document.addEventListener('DOMContentLoaded', () => {
-    let isCameraActive = false; // Controle para saber se a câmera está ativa
-    let currentStream = null;  // Referência para o stream da câmera, para poder parar a câmera depois
-  
-    Promise.all([
+  let isCameraActive = false;
+  let currentStream = null;
+  let labeledDescriptors = [];
+  let modelsLoaded = false;
+
+  const video = document.getElementById('video');
+  const cameraModal = document.getElementById('cameraModal');
+  const cameraOptions = document.getElementById('cameraOptions');
+  const openCameraBtn = document.getElementById('openCamera');
+
+  // Tornar modal arrastável
+  (() => {
+    const modal = cameraModal;
+    const modalContent = document.querySelector('.modal-content');
+    let offsetX = 0, offsetY = 0, isDragging = false;
+
+    modalContent.addEventListener('mousedown', e => {
+      isDragging = true;
+      offsetX = e.clientX - modal.offsetLeft;
+      offsetY = e.clientY - modal.offsetTop;
+      document.body.style.cursor = 'move';
+    });
+
+    document.addEventListener('mousemove', e => {
+      if (isDragging) {
+        modal.style.left = `${e.clientX - offsetX}px`;
+        modal.style.top = `${e.clientY - offsetY}px`;
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      document.body.style.cursor = 'default';
+    });
+  })();
+
+  // Carregar modelos e descritor Joaquim
+  async function loadModelsAndDescriptor() {
+    await Promise.all([
       faceapi.nets.tinyFaceDetector.loadFromUri('Script/Facial/models'),
       faceapi.nets.faceLandmark68Net.loadFromUri('Script/Facial/models'),
       faceapi.nets.faceRecognitionNet.loadFromUri('Script/Facial/models'),
-      faceapi.nets.faceExpressionNet.loadFromUri('Script/Facial/models')
-    ]).then(startVideo);
-  
-    // Função para alternar entre abrir e fechar a câmera
-    document.getElementById('openCamera').addEventListener('click', function() {
-      const cameraOptions = document.getElementById('cameraOptions');
-      const cameraModal = document.getElementById('cameraModal');
-      
-      if (isCameraActive) {
-        // Fechar a câmera e parar o stream
-        if (currentStream) {
-          const tracks = currentStream.getTracks();
-          tracks.forEach(track => track.stop()); // Parar todos os tracks de vídeo
-        }
-        cameraModal.style.display = 'none'; // Fechar o modal
-        isCameraActive = false; // Atualizar o estado da câmera
-      } else {
-        // Mostrar as opções de câmeras
-        cameraOptions.style.display = 'block';
-        
-        // Obter dispositivos de mídia (câmeras)
-        navigator.mediaDevices.enumerateDevices()
-          .then(devices => {
-            const videoDevices = devices.filter(device => device.kind === 'videoinput');
-            const cameraList = document.getElementById('cameraList');
-            cameraList.innerHTML = ''; // Limpar a lista antes de adicionar novas opções
-            
-            // Adicionar cada câmera como uma opção na lista
-            videoDevices.forEach((device, index) => {
-              const listItem = document.createElement('li');
-              listItem.textContent = device.label || `Câmera ${index + 1}`;
-              listItem.style.padding = '5px 10px';
-              listItem.style.cursor = 'pointer';
-              
-              // Adicionar evento de clique para selecionar a câmera
-              listItem.addEventListener('click', () => {
-                openCameraModal(device.deviceId);
-                cameraOptions.style.display = 'none'; // Fechar a lista após selecionar a câmera
-              });
-              
-              cameraList.appendChild(listItem);
+      faceapi.nets.faceExpressionNet.loadFromUri('Script/Facial/models'),
+      faceapi.nets.ssdMobilenetv1.loadFromUri('Script/Facial/models'), // ✅ ESSENCIAL
+    ]);
+    await loadJoaquimDescriptor();
+    modelsLoaded = true;
+  }  
+
+  async function loadJoaquimDescriptor() {
+    const img = await faceapi.fetchImage('Script/Facial/joaquim.jpg');
+    const detection = await faceapi
+      .detectSingleFace(img)
+      .withFaceLandmarks()
+      .withFaceDescriptor();
+
+    if (!detection) {
+      console.error("Não foi possível detectar o rosto na imagem de Joaquim.");
+      return;
+    }
+
+    const descriptor = new faceapi.LabeledFaceDescriptors('Joaquim', [detection.descriptor]);
+    labeledDescriptors.push(descriptor);
+  }
+
+  // Abrir câmera
+  openCameraBtn.addEventListener('click', async () => {
+    if (isCameraActive) {
+      // Desligar câmera
+      if (currentStream) {
+        currentStream.getTracks().forEach(track => track.stop());
+        currentStream = null;
+      }
+      cameraModal.style.display = 'none';
+      openCameraBtn.classList.remove('fa-eye');
+      openCameraBtn.classList.add('fa-camera');
+      cameraOptions.style.display = 'none';
+      isCameraActive = false;
+    } else {
+      // Ativar câmera
+      if (!modelsLoaded) await loadModelsAndDescriptor();
+
+      navigator.mediaDevices.enumerateDevices()
+        .then(devices => {
+          const cameras = devices.filter(d => d.kind === 'videoinput');
+          const cameraList = document.getElementById('cameraList');
+          cameraList.innerHTML = '';
+          cameras.forEach((device, i) => {
+            const li = document.createElement('li');
+            li.textContent = device.label || `Câmera ${i + 1}`;
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+              startCamera(device.deviceId);
+              cameraOptions.style.display = 'none';
             });
-          })
-          .catch(err => console.error('Erro ao listar dispositivos de mídia: ', err));
-          
-        isCameraActive = true; // A câmera agora está ativa
-      }
-    });
-  
-    // Função para abrir o modal e iniciar a câmera selecionada
-    function openCameraModal(cameraId) {
-      const cameraModal = document.getElementById('cameraModal');
-      const closeModalCamera = document.getElementById('closeModalCamera');
-      
-      // Exibe o modal
+            cameraList.appendChild(li);
+          });
+          cameraOptions.style.display = 'block';
+        });
+
+      openCameraBtn.classList.remove('fa-camera');
+      openCameraBtn.classList.add('fa-eye');
+      isCameraActive = true;
+    }
+  });
+
+  // Função para iniciar a câmera
+  function startCamera(deviceId) {
+    navigator.mediaDevices.getUserMedia({
+      video: { deviceId: { exact: deviceId } }
+    }).then(stream => {
+      video.srcObject = stream;
+      currentStream = stream;
       cameraModal.style.display = 'block';
-      
-      // Fecha o modal quando clicar no 'X'
-      closeModalCamera.addEventListener('click', () => {
-        cameraModal.style.display = 'none';
-      });
-      
-      // Iniciar a câmera selecionada
-      const video = document.getElementById('video');
-      const constraints = {
-        video: { deviceId: cameraId ? { exact: cameraId } : undefined }
-      };
-      
-      navigator.mediaDevices.getUserMedia(constraints)
-        .then(stream => {
-          video.srcObject = stream;
-          currentStream = stream;  // Salvar o stream para poder parar depois
-        })
-        .catch(err => console.error('Erro ao acessar a câmera: ', err));
+      startDetection();
+    }).catch(err => console.error(err));
+  }
+
+  // Fechar modal
+  document.getElementById('closeModalCamera').addEventListener('click', () => {
+    cameraModal.style.display = 'none';
+  });
+
+  // Face detection + reconhecimento
+  function startDetection() {
+    video.onloadedmetadata = () => {
+      const canvas = faceapi.createCanvasFromMedia(video);
+      document.body.appendChild(canvas);
   
-      video.addEventListener('play', () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        document.body.append(canvas);
-        const displaySize = { width: video.videoWidth, height: video.videoHeight };
-        faceapi.matchDimensions(canvas, displaySize);
+      const displaySize = { width: video.videoWidth, height: video.videoHeight };
+      faceapi.matchDimensions(canvas, displaySize);
   
-        setInterval(async () => {
-          const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({
-            inputSize: 160,
-            scoreThreshold: 0.5
-          }))
+      let lastRun = 0;
+      const intervalMs = 1000;
+  
+      async function detectionLoop(timestamp) {
+        if (timestamp - lastRun >= intervalMs) {
+          lastRun = timestamp;
+  
+          const detections = await faceapi
+            .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({ inputSize: 160 }))
             .withFaceLandmarks()
-            .withFaceExpressions();
+            .withFaceExpressions()
+            .withFaceDescriptors();
   
-          const resizedDetections = faceapi.resizeResults(detections, displaySize);
-          canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
-          faceapi.draw.drawDetections(canvas, resizedDetections);
-          faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
-          faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-        }, 1000);
-      });
-    }
+          const resized = faceapi.resizeResults(detections, displaySize);
+          const context = canvas.getContext('2d');
+          context.clearRect(0, 0, canvas.width, canvas.height);
   
-    // Função para iniciar o vídeo (caso a câmera padrão seja escolhida)
-    function startVideo() {
-      const video = document.getElementById('video');
-      if (!video) {
-        console.error('Elemento de vídeo não encontrado!');
-        return;
+          faceapi.draw.drawDetections(canvas, resized);
+          faceapi.draw.drawFaceLandmarks(canvas, resized);
+          faceapi.draw.drawFaceExpressions(canvas, resized);
+  
+          if (labeledDescriptors.length > 0) {
+            const matcher = new faceapi.FaceMatcher(labeledDescriptors, 0.6);
+            resized.forEach(det => {
+              const match = matcher.findBestMatch(det.descriptor);
+              const box = det.detection.box;
+              const drawBox = new faceapi.draw.DrawBox(box, { label: match.label });
+              drawBox.draw(canvas);
+            });
+          }
+        }
+  
+        requestAnimationFrame(detectionLoop);
       }
   
-      navigator.mediaDevices.getUserMedia({ video: {} })
-        .then(stream => {
-          video.srcObject = stream;
-        })
-        .catch(err => console.error('Erro ao acessar a câmera padrão: ', err));
-  
-      video.addEventListener('play', () => {
-        const canvas = faceapi.createCanvasFromMedia(video);
-        document.body.append(canvas);
-        const displaySize = { width: video.videoWidth, height: video.videoHeight };
-        faceapi.matchDimensions(canvas, displaySize);
-  
-        setInterval(async () => {
-          const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({
-            inputSize: 160,
-            scoreThreshold: 0.5
-          }))
-            .withFaceLandmarks()
-            .withFaceExpressions();
-  
-          const resizedDetections = faceapi.resizeResults(detections, displaySize);
-          canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
-          faceapi.draw.drawDetections(canvas, resizedDetections);
-          faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
-          faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-        }, 1000);
-      });
-    }
-  });  
+      requestAnimationFrame(detectionLoop);
+    };
+  }  
+});
 
   let currentSeason = '';
 

@@ -55,14 +55,15 @@
         </div>
     </aside>
 
-    <!-- Modal com câmera -->
-    <div id="cameraModal" class="modal" style="display: none;">
-        <div class="modal-content" style="margin-left: 25%;">
-          <span id="closeModalCamera" class="close" style="display: none;">×</span>
-          <video id="video" width="720" height="560" autoplay muted></video>
-          <canvas id="overlay" width="720" height="560" style="position: absolute; top: 0; left: 0;"></canvas>
-        </div>
+    <!-- Modal Camera -->
+<div id="cameraModal" class="modal" style="display: none;">
+    <div class="modal-content" style="width: 450px; height: 350px; margin: 0; padding: 0;">
+      <!-- Botão de fechar -->
+      <span id="closeModalCamera" class="close" style="display: none;">×</span>
+      <video id="video" width="450" height="350" autoplay muted></video>
+      <canvas id="overlay" width="450" height="350" style="position: absolute;"></canvas>
     </div>
+  </div>  
 
   <!-- Tela de perfil -->
   <div class="perfil-container" id="perfil-container">
@@ -134,7 +135,7 @@
             <span id="clock">00:00</span>
         </span>    
         <!-- Lista de câmeras disponíveis -->
-        <div id="cameraOptions" style="background: rgb(18, 18, 18); color: white; display: none; margin-left: 70%; margin-top: 1%;">
+        <div id="cameraOptions" style="background: rgb(18, 18, 18); color: white; display: none; margin-left: 66%;margin-top: 60px; position: fixed; z-index: 1000;">
             <ul id="cameraList" style="list-style-type: none; padding: 0; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); margin: 0;">
               <!-- As opções de câmeras serão adicionadas aqui dinamicamente -->
             </ul>
