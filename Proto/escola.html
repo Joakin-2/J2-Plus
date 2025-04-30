@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escola</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .column {
+            flex: 1;
+            max-width: 45%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .botao {
+            background-color: #4c87af;
+            color: white;
+            border: none;
+            padding: 40px 0;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            max-width: 350px;
+            font-size: 24px;
+            margin: 20px 0;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .botao:hover {
+            background-color: #3a7192;
+        }
+
+        .mensagem {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .botao {
+                max-width: 90%;
+                padding: 30px 0;
+            }
+        }
+
+        /* Estilo para o display das informações */
+        .informacoes {
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            display: none; /* Inicialmente escondido */
+            text-align: center;
+        }
+
+        .informacoes a {
+            color: #4c87af;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .informacoes a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column">
+            <button class="botao" id="btnJok">Jok</button>
+        </div>
+        <div class="column">
+            <button class="botao" id="btnNulluz">Nulluz</button>
+        </div>
+    </div>
+
+    <div class="informacoes" id="infoJok">
+        <p><strong>Jok</strong><br>RA: 000111754476<br>Dígito: x<br>Senha: 05022008adc</p>
+        <p><a href="https://saladofuturo.educacao.sp.gov.br" target="_blank">Acessar Sala do Futuro</a></p>
+    </div>
+
+    <div class="informacoes" id="infoNulluz">
+        <p><strong>Nulluz</strong><br>RA: 000110963997<br>Dígito: 1<br>Senha: 03082006adc</p>
+        <p><a href="https://saladofuturo.educacao.sp.gov.br" target="_blank">Acessar Sala do Futuro</a></p>
+    </div>
+
+    <script>
+        // Exemplo de interatividade para o botão "Jok"
+        document.getElementById("btnJok").addEventListener("click", function() {
+            document.getElementById("infoJok").style.display = "block"; // Exibe as informações do Jok
+            document.getElementById("infoNulluz").style.display = "none"; // Esconde as informações do Nulluz
+        });
+
+        // Exemplo de interatividade para o botão "Nulluz"
+        document.getElementById("btnNulluz").addEventListener("click", function() {
+            document.getElementById("infoNulluz").style.display = "block"; // Exibe as informações do Nulluz
+            document.getElementById("infoJok").style.display = "none"; // Esconde as informações do Jok
+        });
+    </script>
+</body>
+</html>
