@@ -407,6 +407,25 @@ h2, h3 {
     border-radius: 50%;
 }
 
+.risadinha {
+    position: fixed;
+    font-size: 14px;
+    color: #825dff;
+    animation: subirEDesaparecer 2s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes subirEDesaparecer {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
 .eye {
     position: absolute;
     width: 45px;
@@ -422,6 +441,28 @@ h2, h3 {
 
 .eye.right {
     right: 38px;
+}
+
+.eye.left2 {
+    left: 38px;
+    height: 30px;
+    background-color: #825dff;
+    margin-top: 40px;
+}
+
+.eye.right2 {
+    right: 38px;
+    height: 30px;
+    background-color: #825dff;
+    margin-top: 40px;
+}
+
+.eye.left2,
+.eye.right2 {
+    animation-duration: 0.2s;
+    transition: opacity 0.5s ease;
+    position: absolute; /* ajuste conforme necessário */
+    /* outros estilos que definem a aparência e posição */
 }
 
 #recomendacoes {

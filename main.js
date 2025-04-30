@@ -1411,63 +1411,127 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const olhoEsquerdo = document.getElementById("olhoEsquerdo");
-    const olhoDireito = document.getElementById("olhoDireito");
-    const container = document.getElementById("container");
+const olhoDireito = document.getElementById("olhoDireito");
+const container = document.getElementById('container');
+const risadas = ['haha', 'ha', 'ha ha', 'HaHa'];
 
-    let seguindoMouse = false;
+const olhoEsquerdo2 = document.getElementById('olhoEsquerdo2');
+const olhoDireito2 = document.getElementById('olhoDireito2');
 
-    // Função para simular o piscar
-    function piscar() {
-        olhoEsquerdo.style.transition = "height 0.1s ease-in";
-        olhoDireito.style.transition = "height 0.1s ease-in";
-        olhoEsquerdo.style.height = "5px";
-        olhoDireito.style.height = "5px";
+container2.addEventListener('mouseenter', () => {
+    criarRisadinha();
+});
 
-        setTimeout(() => {
-            olhoEsquerdo.style.transition = "height 0.3s ease-out";
-            olhoDireito.style.transition = "height 0.3s ease-out";
-            olhoEsquerdo.style.height = "70px";
-            olhoDireito.style.height = "70px";
-        }, 100);
+container2.addEventListener('mousemove', () => {
+    criarRisadinha();
+});
+
+function criarRisadinha() {
+    const risadinha = document.createElement('div');
+    risadinha.className = 'risadinha';
+    risadinha.textContent = risadas[Math.floor(Math.random() * risadas.length)];
+
+    // Posicionamento aleatório dentro do container
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    risadinha.style.left = `${x}%`;
+    risadinha.style.top = `${y}%`;
+
+    container.appendChild(risadinha);
+
+    // Ativar os olhos extras
+    olhoEsquerdo2.style.display = 'block';
+    olhoDireito2.style.display = 'block';
+
+    // Remover risadinha e desativar os olhos extras após 2 segundos
+    setTimeout(() => {
+        risadinha.remove();
+        olhoEsquerdo2.style.display = 'none';
+        olhoDireito2.style.display = 'none';
+    }, 2000);
+}
+
+let seguindoMouse = false;
+let posicaoInicial = { x: olhoEsquerdo.offsetLeft, y: olhoEsquerdo.offsetTop };  // Armazena a posição inicial dos olhos
+
+// Função para simular o piscar
+function piscar() {
+    olhoEsquerdo.style.transition = "height 0.1s ease-in";
+    olhoDireito.style.transition = "height 0.1s ease-in";
+    olhoEsquerdo.style.height = "5px";
+    olhoDireito.style.height = "5px";
+
+    setTimeout(() => {
+        olhoEsquerdo.style.transition = "height 0.3s ease-out";
+        olhoDireito.style.transition = "height 0.3s ease-out";
+        olhoEsquerdo.style.height = "70px";
+        olhoDireito.style.height = "70px";
+    }, 100);
+}
+
+// Pisca a cada 5 segundos
+setInterval(piscar, 5000);
+
+// Função para alternar o comportamento de seguir o mouse
+function toggleSeguirMouse() {
+    seguindoMouse = !seguindoMouse;
+
+    if (seguindoMouse) {
+        // Inicia o movimento para seguir o mouse
+        document.addEventListener('mousemove', seguirMouse);
+    } else {
+        // Para o movimento
+        document.removeEventListener('mousemove', seguirMouse);
+        // Reinicia a posição dos olhos suavemente
+        resetarPosicaoOlhos();
     }
+}
 
-    // Pisca a cada 5 segundos
-    setInterval(piscar, 5000);
+// Função que move os olhos para a posição do mouse
+function seguirMouse(event) {
+  const avatarRect = container.getBoundingClientRect();
+  const eyeRadiusX = olhoEsquerdo.offsetWidth / 2;
+  const eyeRadiusY = olhoEsquerdo.offsetHeight / 2;
 
-    // Função para alternar o comportamento de seguir o mouse
-    function toggleSeguirMouse() {
-        seguindoMouse = !seguindoMouse;
+  const mouseX = event.clientX - avatarRect.left;
+  const mouseY = event.clientY - avatarRect.top;
 
-        if (seguindoMouse) {
-            // Inicia o movimento para seguir o mouse
-            document.addEventListener('mousemove', seguirMouse);
-        } else {
-            // Para o movimento
-            document.removeEventListener('mousemove', seguirMouse);
-        }
-    }
+  const maxDistance = 30;
 
-    // Função que move os olhos para a posição do mouse
-    function seguirMouse(event) {
-        const faceRect = container.getBoundingClientRect();
-        const eyeRadiusX = olhoEsquerdo.offsetWidth / 2;
-        const eyeRadiusY = olhoEsquerdo.offsetHeight / 2;
+  function moverOlhoIndependente(olho) {
+      const olhoRect = olho.getBoundingClientRect();
+      const olhoCenterX = olhoRect.left + olho.offsetWidth / 2 - avatarRect.left;
+      const olhoCenterY = olhoRect.top + olho.offsetHeight / 2 - avatarRect.top;
 
-        // Calcula a posição do mouse em relação à face
-        let mouseX = event.clientX - faceRect.left;
-        let mouseY = event.clientY - faceRect.top;
+      let dx = mouseX - olhoCenterX;
+      let dy = mouseY - olhoCenterY;
 
-        // Limita o movimento do olho dentro da face
-        mouseX = Math.max(eyeRadiusX, Math.min(faceRect.width - eyeRadiusX, mouseX));
-        mouseY = Math.max(eyeRadiusY, Math.min(faceRect.height - eyeRadiusY, mouseY));
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance > maxDistance) {
+          const ratio = maxDistance / distance;
+          dx *= ratio;
+          dy *= ratio;
+      }
 
-        // Calcula a posição dos olhos para seguir o mouse
-        olhoEsquerdo.style.left = `${mouseX - eyeRadiusX}px`;
-        olhoEsquerdo.style.top = `${mouseY - eyeRadiusY}px`;
+      olho.style.transition = "transform 0.1s ease-out";
+      olho.style.transform = `translate(${dx}px, ${dy}px)`;
+  }
 
-        olhoDireito.style.left = `${mouseX - eyeRadiusX + 100}px`; // Adiciona um deslocamento para o olho direito
-        olhoDireito.style.top = `${mouseY - eyeRadiusY}px`;
-    }
+  moverOlhoIndependente(olhoEsquerdo);
+  moverOlhoIndependente(olhoDireito);
+}
 
-    // Adiciona o evento de clique para alternar entre seguir e parar de seguir o mouse
-    //container.addEventListener('click', toggleSeguirMouse);
+// Função para resetar a posição dos olhos suavemente com margin-left: 10px
+function resetarPosicaoOlhos() {
+  // Restaura a posição inicial dos olhos com transição suave e desloca 10px para a esquerda
+  olhoEsquerdo.style.transition = "transform 0.5s ease-out";
+  olhoDireito.style.transition = "transform 0.5s ease-out";
+
+  const deslocamentoX = -40; // Desloca 10px para a esquerda
+
+  olhoEsquerdo.style.transform = `translate(${posicaoInicial.x + deslocamentoX + 5}px, ${posicaoInicial.y}px)`;
+  olhoDireito.style.transform = `translate(${posicaoInicial.x + deslocamentoX}px, ${posicaoInicial.y}px)`;
+}
+
+// Adiciona o evento de clique para alternar entre seguir e parar de seguir o mouse
+container.addEventListener('click', toggleSeguirMouse);
