@@ -69,6 +69,7 @@
   <div class="perfil-container" id="perfil-container">
     <div class="perfil-content">
         <button id="fechar-btn" class="fechar-btn" style="margin-right: 90%; background: #202020;">X</button>
+        <button id="squad-btn" class="squad-btn" style="margin-top: -5px; margin-left: -150px; background: #202020; position: absolute;"><i class="fas fa-users"></i></button>
         <button id="toggleEffectButton" class="toggle-effect-btn" style="position: absolute; margin-top: -40px; margin-left: 100px;"><i class="fas fa-leaf"></i></button>          
         <button id="toggleEffectButton2" class="toggle-effect-btn" style="position: absolute; margin-top: 0px; margin-left: 100px;"><i class="fas fa-star"></i></button>
         <div class="icone-perfil">&#128100;</div> <!-- Ícone de perfil -->
@@ -90,6 +91,59 @@
         </div>
     </div>
 </div>
+
+<!-- Squad -->
+<div id="modal-squad" class="modal">
+    <span class="close-btn">&times;</span>
+    <div class="modal-content">
+      <h1>Jok Squad</h1>
+  
+      <!-- Layout dividido em dois painéis: Perfis e Chat -->
+      <div class="modal-body" style="display: flex;">
+        <!-- Painel de Perfis -->
+        <div class="profiles-panel">
+          <h3>J2 System</h3>
+          
+          <!-- Perfil 1: Android -->
+          <div class="profile" id="profile-1">
+            <img src="https://t2.tudocdn.net/615839?w=824&h=494" alt="Perfil 1" class="profile-img">
+            <p>Apps</p>
+          </div>
+          
+          <!-- Perfil 2: Cérebro -->
+          <div class="profile" id="profile-2">
+            <img src="https://brasil.perfil.com/wp-content/uploads/2024/09/Abre-PERFIL-BRASIL-8-7.jpg" alt="Perfil 2" class="profile-img">
+            <p>Jok Squad</p>
+          </div>
+          
+          <!-- Perfil 3: Engrenagem -->
+          <div class="profile" id="profile-3">
+            <img src="https://thumbs.dreamstime.com/b/engrenagens-em-um-fundo-preto-ilustra%C3%A7%C3%A3o-do-vetor-%C3%ADcone-s%C3%B3lido-liso-eps-108961303.jpg" alt="Perfil 3" class="profile-img">
+            <p>Protótipos</p>
+          </div>
+
+          <div class="modal-footer">
+            <button id="export-btn" class="modal-btn">Exportar Dados</button>
+            <input type="file" id="import-file" class="modal-btn" style="display: none;">
+            <button id="import-btn" class="modal-btn">Importar Dados</button>
+          </div>
+
+        </div>          
+  
+        <!-- Painel de Chat -->
+        <div class="chat-panel">
+          <h3>Chat</h3>
+          <div id="chat-container" class="chat-container" style="height: 50px;">
+            <p style="color: #8561ff;">Escolha um perfil para iniciar o chat.</p>
+          </div>
+          <div id="note-box" class="note-box" style="display: none;">
+            <textarea id="note-textarea" placeholder="Faça suas anotações..." style="color: white; height: 140px;"></textarea>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>  
 
 <!-- Calendário que ficará escondido inicialmente -->
 <div id="calendar" style="display: none;">
@@ -245,7 +299,7 @@
   
   <!-- Modal Termo -->
   <div id="modalTermo" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="margin: 10% auto;">
       <span class="close" onclick="closeModal('modalTermo')">&times;</span>
       <h1>Termos de Serviço</h1>
     <p>Bem-vindo ao J2+. Ao acessar e utilizar nosso site, você concorda com os seguintes termos e condições.</p>
@@ -269,7 +323,7 @@
   
   <!-- Modal Reclamar -->
   <div id="modalReclamar" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="margin: 8% auto;">
       <span class="close" onclick="closeModal('modalReclamar')">&times;</span>
       <div style="border-radius: 10px; background: #825dff; color: white; text-align: center; padding: 20px;">
         <h1>Central de Reclamações</h1>
@@ -398,6 +452,118 @@
 
     // Inicialmente, define o ícone para mudo, pois a música não está tocando
     updateButtonIcon();
+});
+
+// Obtendo os elementos
+const modal = document.getElementById('modal-squad');
+const btn = document.getElementById('squad-btn');
+const closeBtn = document.querySelector('.close-btn');
+const profiles = document.querySelectorAll('.profile');
+const chatContainer = document.getElementById('chat-container');
+const noteBox = document.getElementById('note-box');
+const noteTextarea = document.getElementById('note-textarea');
+const exportBtn = document.getElementById('export-btn');
+const importBtn = document.getElementById('import-btn');
+const importFileInput = document.getElementById('import-file');
+
+// Função para abrir o modal
+btn.addEventListener('click', function() {
+  modal.style.display = 'block';
+});
+
+// Função para fechar o modal
+closeBtn.addEventListener('click', function() {
+  modal.style.display = 'none';
+});
+
+// Fecha o modal se clicar fora do conteúdo
+window.addEventListener('click', function(event) {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+// Função para salvar as mensagens de cada perfil no localStorage
+function saveMessageForProfile(profileId, message) {
+  const messages = JSON.parse(localStorage.getItem('messages')) || {};
+  messages[profileId] = message;
+  localStorage.setItem('messages', JSON.stringify(messages));
+}
+
+// Função para carregar as mensagens de um perfil
+function loadMessagesForProfile(profileId) {
+  const messages = JSON.parse(localStorage.getItem('messages')) || {};
+  return messages[profileId] || '';
+}
+
+function formatTextWithLineBreaks(text) {
+  return text.replace(/\n/g, '<br>');
+}
+
+// Função para exibir o chat e carregar as anotações
+profiles.forEach(profile => {
+  profile.addEventListener('click', function() {
+    const profileName = profile.querySelector('p').innerText;
+    const profileId = profile.id; // ID único do perfil
+
+    // Atualiza o chat com uma mensagem personalizada
+    chatContainer.innerHTML = `<p style="color: #8561ff;"><strong>${profileName}</strong> está online! Inicie a conversa abaixo.</p>`;
+
+    // Carrega as mensagens salvas para o perfil
+    noteTextarea.value = loadMessagesForProfile(profileId);
+
+    // Exibe a caixa de anotações
+    noteBox.style.display = 'block';
+
+    // Define o título da caixa de anotações
+    noteTextarea.placeholder = `Anote algo para o ${profileName}`;
+
+    // Salva a mensagem ao digitar
+    noteTextarea.addEventListener('input', function() {
+      saveMessageForProfile(profileId, noteTextarea.value);
+    });
+  });
+});
+
+// Função para exportar as mensagens para um arquivo JSON
+exportBtn.addEventListener('click', function() {
+  const messages = localStorage.getItem('messages');
+  if (messages) {
+    const blob = new Blob([messages], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'squad.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  } else {
+    alert("Não há mensagens para exportar.");
+  }
+});
+
+// Função para importar os dados de um arquivo JSON
+importBtn.addEventListener('click', function() {
+  importFileInput.click();
+});
+
+// Lê o arquivo JSON importado e carrega as mensagens
+importFileInput.addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  if (file && file.type === 'application/json') {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const data = JSON.parse(e.target.result);
+        localStorage.setItem('messages', JSON.stringify(data));
+        alert("Dados importados com sucesso!");
+      } catch (error) {
+        alert("Erro ao importar os dados.");
+      }
+    };
+    reader.readAsText(file);
+  } else {
+    alert("Por favor, selecione um arquivo JSON.");
+  }
 });
 
         // Função para alternar o som da página

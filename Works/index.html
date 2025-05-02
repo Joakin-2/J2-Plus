@@ -120,8 +120,8 @@
           <button class="botao" onclick="redirecionar('edit')"><i class="fas fa-edit"></i> Edição</button>
         </div>
         <div class="row">
+          <button class="botao" onclick="redirecionar('Anúncios')"><i class="fas fa-money-bill"></i> Anúncios</button>
           <button class="botao" onclick="redirecionar1('trabalho')"><i class="fas fa-briefcase"></i> Trabalho</button>
-          <button class="botao" onclick="redirecionar1('programacao')"><i class="fas fa-code"></i> Programação</button>
           <button class="botao" onclick="redirecionar('investimento')"><i class="fas fa-chart-line"></i> Investimento</button>
         </div>
       </div>
@@ -157,19 +157,6 @@
             </div>
             <button class="botao" style="width: 57%;" onclick="redirecionar('Loop')"><i class="fas fa-sync"></i> Loop</button>
             </div>
-        </div>
-      </div>
-    
-      <!-- Modal Programação -->
-      <div id="programacaoModal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeModal('programacao')">&times;</span>
-          <div class="modal-header">Programação</div>
-          <div class="container">
-            <button class="botao" onclick="redirecionar('J2')"><i class="fas fa-laptop-code"></i> J2</button>
-            <button class="botao" onclick="redirecionar('Klaton Wacth')"><i class="fas fa-file-code"></i> Klaton Wacth</button>
-            <button class="botao" onclick="redirecionar('Protótipos')"><i class="fas fa-cogs"></i> Protótipos</button>
-        </div>
         </div>
       </div>
     
@@ -307,15 +294,9 @@
                 case 'Loop':
                     window.open('https://loop.cloud.microsoft/');
                     break;
-                case 'J2':
-                    window.open('https://loop.cloud.microsoft/p/eyJ3Ijp7InUiOiJodHRwczovL2hvbWUubWljcm9zb2Z0cGVyc29uYWxjb250ZW50LmNvbS8%2FbmF2PWN6MGxNa1ltWkQxaUlXWkZhRWhaVWxOM1IydHBjWFJMTUVSS1FqTkpMV3BCTFhaUk9ETktUVnBEYjJSM1IwVkhZM051ZFV0Q1ZuQklhalIxTkVoU1ltRklMVVF3UTJReVluTW1aajB3TVRSSVdWUkJXVTFNU0ZVMFYwbzFOVmRQVGtaYVVsbEJVVlpSUlU0MVUwMVlKbU05Sm1ac2RXbGtQVEUlM0QiLCJyIjpmYWxzZX0sInAiOnsidSI6Imh0dHBzOi8vaG9tZS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tLzpmbDovci9jb250ZW50c3RvcmFnZS9DU1BfNjE0NzQ4N2MtYjAxNC00ODFhLWFhYjQtYWQwMzI0MWRjOGZhL0RvY3VtZW50JTIwTGlicmFyeS9Mb29wQXBwRGF0YS9QJUMzJUExZ2luYSUyMHNlbSUyMHQlQzMlQUR0dWxvLmxvb3A%2FZD13YTNkOTM0OTViMTU4NGIwMGEzNWJiZDc5NjQ5M2FkOWEmY3NmPTEmd2ViPTEmbmF2PWN6MGxNa1pqYjI1MFpXNTBjM1J2Y21GblpTVXlSa05UVUY4Mk1UUTNORGczWXkxaU1ERTBMVFE0TVdFdFlXRmlOQzFoWkRBek1qUXhaR000Wm1FbVpEMWlJV1pGYUVoWlVsTjNSMnRwY1hSTE1FUktRak5KTFdwQkxYWlJPRE5LVFZwRGIyUjNSMFZIWTNOdWRVdENWbkJJYWpSMU5FaFNZbUZJTFVRd1EyUXlZbk1tWmowd01UUklXVlJCV1UxV1IxUk5Na2RYUmxKQlFrWXlSMWMxTlZCR1UwcElURTB5Sm1NOUpUSkdKbVpzZFdsa1BURW1ZVDFNYjI5d1FYQndKbkE5SlRRd1pteDFhV1I0SlRKR2JHOXZjQzF3WVdkbExXTnZiblJoYVc1bGNpWjRQU1UzUWlVeU1uY2xNaklsTTBFbE1qSlVNRkpVVlVoNGIySXlNV3hNYlRGd1dUTktkbU15T1cxa1NFSnNZMjVPZG1KdFJuTlpNamwxWkVkV2RXUkROV3BpTWpFNFdXbEdiVkpYYUVsWFZrcFVaREJrY21GWVJqQlRla0pGVTJ0SmVsTlRNWEZSVXpFeVZWUm5lbE5yTVdGUk1qbHJaREJrUmxJeVRucGlibFpNVVd4YWQxTkhiekJrVkZKSlZXMUthRk5ETVVWTlJVNXJUVzFLZW1aRVFYaE9SV2hhVmtWR1dsUlZlRWxXVkZKWVUycFZNVll3T1U5U2JIQlRWMVZHVWxac1JrWlVhbFpVVkZabkpUTkVKVEl5SlRKREpUSXlhU1V5TWlVelFTVXlNakptTURJM05XSTBMV1U1TkRZdE5ETmtOQzA0WkRSaUxXRmlNMlZoT0dZek9UazBaQ1V5TWlVM1JBJTNEJTNEIiwiciI6ZmFsc2V9LCJpIjp7ImkiOiIyZjAyNzViNC1lOTQ2LTQzZDQtOGQ0Yi1hYjNlYThmMzk5NGQifX0%3D');
-                    break;
-                case 'Klaton Wacth':
-                    window.open('https://chat.openai.com/c/d04bc51d-ee6e-49af-84fb-fb665996b0ce');
-                    break;
-                case 'Protótipos':
-                    window.open('https://www.robocore.net');
-                    window.open('https://loop.cloud.microsoft/p/eyJ3Ijp7InUiOiJodHRwczovL2hvbWUubWljcm9zb2Z0cGVyc29uYWxjb250ZW50LmNvbS8%2FbmF2PWN6MGxNa1ltWkQxaUlXWkZhRWhaVWxOM1IydHBjWFJMTUVSS1FqTkpMV3BCTFhaUk9ETktUVnBEYjJSM1IwVkhZM051ZFV0Q1ZuQklhalIxTkVoU1ltRklMVVF3UTJReVluTW1aajB3TVRSSVdWUkJXVTFNU0ZVMFYwbzFOVmRQVGtaYVVsbEJVVlpSUlU0MVUwMVlKbU05Sm1ac2RXbGtQVEUlM0QiLCJyIjpmYWxzZX0sInAiOnsidSI6Imh0dHBzOi8vaG9tZS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tLzpmbDovci9jb250ZW50c3RvcmFnZS9DU1BfNjE0NzQ4N2MtYjAxNC00ODFhLWFhYjQtYWQwMzI0MWRjOGZhL0RvY3VtZW50JTIwTGlicmFyeS9Mb29wQXBwRGF0YS9TZW0lMjB0JUMzJUFEdHVsby5sb29wP2Q9d2ZiZGZjZTAwZmQwMjRmZjY4ODA2NzMwNTk1NmE3M2UxJmNzZj0xJndlYj0xJm5hdj1jejBsTWtaamIyNTBaVzUwYzNSdmNtRm5aU1V5UmtOVFVGODJNVFEzTkRnM1l5MWlNREUwTFRRNE1XRXRZV0ZpTkMxaFpEQXpNalF4WkdNNFptRW1aRDFpSVdaRmFFaFpVbE4zUjJ0cGNYUkxNRVJLUWpOSkxXcEJMWFpST0ROS1RWcERiMlIzUjBWSFkzTnVkVXRDVm5CSWFqUjFORWhTWW1GSUxVUXdRMlF5WW5NbVpqMHdNVFJJV1ZSQldVbEJXak5RTjFkQldEVTJXa2haVVVKVVZFRlhTMWRWTkRkQ0ptTTlKVEpHSm1ac2RXbGtQVEVtWVQxTWIyOXdRWEJ3Sm5BOUpUUXdabXgxYVdSNEpUSkdiRzl2Y0Mxd1lXZGxMV052Ym5SaGFXNWxjaVo0UFNVM1FpVXlNbmNsTWpJbE0wRWxNakpVTUZKVVZVaDRiMkl5TVd4TWJURndXVE5LZG1NeU9XMWtTRUpzWTI1T2RtSnRSbk5aTWpsMVpFZFdkV1JETldwaU1qRTRXV2xHYlZKWGFFbFhWa3BVWkRCa2NtRllSakJUZWtKRlUydEplbE5UTVhGUlV6RXlWVlJuZWxOck1XRlJNamxyWkRCa1JsSXlUbnBpYmxaTVVXeGFkMU5IYnpCa1ZGSkpWVzFLYUZORE1VVk5SVTVyVFcxS2VtWkVRWGhPUldoYVZrVkdXbFJWZUVsV1ZGSllVMnBWTVZZd09VOVNiSEJUVjFWR1VsWnNSa1pVYWxaVVZGWm5KVE5FSlRJeUpUSkRKVEl5YVNVeU1pVXpRU1V5TWpGaFlqWTFZV1kyTFRJd1pEVXROR05rWkMxaFltSXpMVGxrWVRrNU9UTTVORFExTXlVeU1pVTNSQSUzRCUzRCIsInIiOmZhbHNlfSwiaSI6eyJpIjoiMWFiNjVhZjYtMjBkNS00Y2RkLWFiYjMtOWRhOTk5Mzk0NDUzIn19');
+                case 'Anúncios':
+                    window.open('https://ads.google.com/aw/overview?ocid=1292038484&euid=889301739&__u=1365571411&uscid=1292038484&__c=7686292916&authuser=0&subid=ww-ww-xs-ip-awhc-a-ogb_cons!o2m--ahpm-0000000127-0000000000-awhp-hv-01-22');
+                    window.open('https://business.facebook.com/latest/home?nav_ref=bm_home_redirect&business_id=1094998265234232&asset_id=115913178149808');
                     break;
                 default:
                     break;
