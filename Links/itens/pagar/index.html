@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="ícone.ico" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Pagar</title>
     <style>
         body {
@@ -37,22 +38,85 @@
             outline: none; /* Remove o contorno padrão ao focar */
             background-color: #444;
         }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            height: 50px;
+            width: 200px;
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #777;
+        }
+
+        .button-group {
+    display: flex;
+}
     </style>
 </head>
 <body>
     <main>
         <textarea id="autoSave" placeholder="Digite aqui..."></textarea>
+        <div class="button-group" style="position: fixed; margin-top: 600px;"> 
+            <button id="importBtn"><i class="fas fa-file-import" style="margin-right: 10px;"></i>Importar</button>
+            <button id="exportBtn"><i class="fas fa-file-export" style="margin-right: 10px;"></i>Exportar</button>
+        </div>
     </main>
 
     <script>
-        // Recupera o valor salvo do armazenamento local ao carregar a página
         document.addEventListener('DOMContentLoaded', () => {
             const textarea = document.getElementById('autoSave');
+            const importBtn = document.getElementById('importBtn');
+            const exportBtn = document.getElementById('exportBtn');
+
+            // Recupera o valor salvo do armazenamento local ao carregar a página
             textarea.value = localStorage.getItem('savedText') || '';
-            
+
             // Salva o conteúdo do textarea no armazenamento local sempre que muda
             textarea.addEventListener('input', () => {
                 localStorage.setItem('savedText', textarea.value);
+            });
+
+            // Importar arquivo de texto ao clicar no botão
+            importBtn.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'text/plain';
+                input.style.display = 'none';
+
+                input.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            textarea.value = e.target.result;
+                            localStorage.setItem('savedText', textarea.value);
+                        };
+                        reader.readAsText(file);
+                    }
+                });
+
+                document.body.appendChild(input);
+                input.click();
+                document.body.removeChild(input);
+            });
+
+            // Exportar conteúdo para arquivo de texto
+            exportBtn.addEventListener('click', () => {
+                const blob = new Blob([textarea.value], { type: 'text/plain' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = 'pagar.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
             });
         });
     </script>
