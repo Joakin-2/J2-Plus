@@ -37,7 +37,13 @@
 
     <div style="margin-bottom: 30px;"></div>
 
-    <h2>Hábitos</h2>
+    <h2>Hábitos <button id="mostrarHorarioBtn" style="width: 10px; height: 40px; background-color: #141414; border: 1px solid #141414; margin-left: -5px;"><i class="fas fa-question-circle" style="margin-left: -10px;"></i></button></h2>
+
+    <div id="horarioExplicacao" style="display: none; margin-bottom: 20px; color: #fff;">
+        <p><strong>Manhã:</strong> 06:00 - 12:00</p>
+        <p><strong>Tarde:</strong> 12:00 - 18:00</p>
+        <p><strong>Noite:</strong> 18:00 - 00:00</p>
+    </div>    
 
     <div id="habitosContainer" class="section-container">
         <div id="mensagem-xp"></div>
@@ -53,9 +59,29 @@
             </ul>
         </div>
         <div id="noite" class="caixa">
-            <div class="titulo">Noite</div>
+            <div class="titulo" id="noiteTitulo">Noite</div>
             <ul id="noiteHabitos">
             </ul>
+        </div>
+    </div> 
+    
+    <!-- Modal de Encerramento do Dia -->
+    <div class="modal" id="modalFim">
+        <div class="modal-conteudo" style="background-color: #1e1e1e; width: 400px; height: 450px;">
+            <h2 style="margin-bottom: 30px;">Encerramento do Dia</h2>
+            <ul id="habitosFinaisList" style="margin-bottom: 20px;">
+                <li><span> Abs</span></li>
+                <li><span> Sax</span></li>
+                <li><span> Tolha</span></li>
+                <li><span> Whey</span></li>
+                <li><span> Livros</span></li>
+                <li><span> Águas</span></li>
+                <li><span> Roupas</span></li>
+                <li><span> Higiênicos</span></li>
+                <li><span> Olhos e Fita</span></li>
+                <li><span> Copo de Café</span></li>
+            </ul>
+            <button id="fecharModalBtn" style="border: 1px solid #ddd;">Fechar</button>
         </div>
     </div>    
 

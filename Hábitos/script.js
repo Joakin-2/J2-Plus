@@ -361,15 +361,23 @@ function loadSavedData() {
 
 }
 
-
 document.getElementById('desmarcarHabitosBtn').addEventListener('click', () => {
-    // Seleciona todos os hábitos
+    // Seleciona todos os hábitos (manhã, tarde, noite)
     ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
         const periodo = document.getElementById(periodoId);
         Array.from(periodo.children).forEach(li => {
             // Remove a classe 'concluido'
             li.classList.remove('concluido');
         });
+    });
+
+    // Desmarcar os hábitos do fim de dia
+    const habitosFinais = document.querySelectorAll('#habitosFinaisList li');
+    habitosFinais.forEach(habito => {
+        // Remove o risco e a cor cinza
+        const textoHabito = habito.querySelector('span');
+        textoHabito.style.textDecoration = 'none';
+        textoHabito.style.color = '';  // Reseta a cor para o valor padrão
     });
 
     // Atualiza o estado no localStorage
@@ -552,3 +560,52 @@ function importNotes() {
 
     input.click();
 }
+
+document.getElementById('mostrarHorarioBtn').addEventListener('click', function () {
+    const explicacao = document.getElementById('horarioExplicacao');
+    
+    // Verifica se o texto explicativo está visível ou não
+    if (explicacao.style.display === 'none' || explicacao.style.display === '') {
+        explicacao.style.display = 'block';  // Exibe a explicação
+    } else {
+        explicacao.style.display = 'none';  // Esconde a explicação
+    }
+});
+
+// Mostrar o modal de Encerramento do Dia ao clicar em "Noite"
+document.getElementById('noiteTitulo').addEventListener('click', function() {
+    const modalFim = document.getElementById('modalFim');
+    modalFim.style.display = 'flex';
+});
+
+// Fechar o modal quando clicar no botão "Fechar"
+document.getElementById('fecharModalBtn').addEventListener('click', function() {
+    const modalFim = document.getElementById('modalFim');
+    modalFim.style.display = 'none';
+});
+
+// Fechar o modal quando clicar fora da área do conteúdo
+window.addEventListener('click', function(event) {
+    const modalFim = document.getElementById('modalFim');
+    if (event.target === modalFim) {
+        modalFim.style.display = 'none';
+    }
+});
+
+// Adicionar evento de clique nos itens de hábitos (agora sem checkboxes)
+const habitos = document.querySelectorAll('#habitosFinaisList li');
+
+habitos.forEach(function(item) {
+    item.addEventListener('click', function() {
+        // Alterna o estilo riscado no texto do hábito
+        const textoHabito = item.querySelector('span');
+        
+        if (textoHabito.style.textDecoration === 'line-through') {
+            textoHabito.style.textDecoration = 'none';  // Remove o risco
+            textoHabito.style.color = '';  // Remove a cor cinza
+        } else {
+            textoHabito.style.textDecoration = 'line-through';  // Adiciona o risco
+            textoHabito.style.color = '#888';  // Adiciona a cor cinza
+        }
+    });
+});
