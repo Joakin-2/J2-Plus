@@ -322,36 +322,61 @@
   </div>
   
   <!-- Modal Reclamar -->
-  <div id="modalReclamar" class="modal">
-    <div class="modal-content" style="margin: 8% auto;">
-      <span class="close" onclick="closeModal('modalReclamar')">&times;</span>
-      <div style="border-radius: 10px; background: #825dff; color: white; text-align: center; padding: 20px;">
-        <h1>Central de Reclamações</h1>
-        <p>Seu feedback é muito importante para nós! Por favor, preencha o formulário abaixo.</p></div>
-
-        <form action="#" method="POST" id="complaintForm" style="margin: 20px auto; background: #202020; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgb(0 0 0 / 10%);">
-            <div>
-                <label for="name">Nome:</label>
-                <input type="text" id="name" name="name" placeholder="Seu nome" required>
-            </div>
-            <div>
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
-            </div>
-            <div>
-                <label for="subject">Assunto:</label>
-                <input type="text" id="subject" name="subject" placeholder="Resumo da reclamação" required>
-            </div>
-            <div>
-                <label for="message">Mensagem:</label>
-                <textarea id="message" name="message" rows="5" placeholder="Descreva sua reclamação" required></textarea>
-            </div>
-            <div>
-                <button type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
-            </div>
-        </form>
+<div id="modalReclamar" class="modal">
+  <div class="modal-content" style="margin: 8% auto;">
+    <span class="close" onclick="closeModal('modalReclamar')">&times;</span>
+    <div style="border-radius: 10px; background: #825dff; color: white; text-align: center; padding: 20px;">
+      <h1>Central de Reclamações</h1>
+      <p>Seu feedback é muito importante para nós! Veja as reclamações e adicione a sua.</p>
     </div>
+
+    <!-- Lista de Reclamações -->
+    <div id="complaintsList" class="complaints-list" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 20px;">
+      <!-- As reclamações vão aparecer aqui -->
+    </div>
+
+    <!-- Botão para adicionar nova reclamação -->
+    <div style="text-align: center;">
+      <button id="addComplaintBtn" class="add-complaint-btn" onclick="openAddComplaintForm()">
+        <i class="fas fa-plus"></i> Adicionar Reclamação
+      </button>
+    </div>
+
+    <!-- Botões de Importar e Exportar -->
+    <div style="text-align: center; margin-top: 20px;">
+      <button id="exportDataBtn" class="export-data-btn" onclick="exportData()">
+        <i class="fas fa-download"></i> Exportar Dados
+      </button>
+      <input type="file" id="importDataBtn" class="import-data-btn" onchange="importData(event)" style="display: none;" />
+      <button id="importDataButton" class="import-data-btn" onclick="document.getElementById('importDataBtn').click()">
+        <i class="fas fa-upload"></i> Importar Dados
+      </button>
+    </div>
+
+    <!-- Formulário de Reclamação -->
+    <form id="complaintForm" style="display: none; margin: 20px auto; background: #202020; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgb(0 0 0 / 10%);">
+      <div>
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" placeholder="Seu nome" required>
+      </div>
+      <div>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+      </div>
+      <div>
+        <label for="subject">Assunto:</label>
+        <input type="text" id="subject" name="subject" placeholder="Resumo da reclamação" required>
+      </div>
+      <div>
+        <label for="message">Mensagem:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Descreva sua reclamação" required></textarea>
+      </div>
+      <div>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
+      </div>
+    </form>
   </div>
+</div>
 
     <footer style="margin-top: -10px;">
         <button class="detalhes" onclick="openModal('modalPrivacidade')">Privacidade</button>

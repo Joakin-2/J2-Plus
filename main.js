@@ -1535,3 +1535,90 @@ function resetarPosicaoOlhos() {
 
 // Adiciona o evento de clique para alternar entre seguir e parar de seguir o mouse
 container.addEventListener('click', toggleSeguirMouse);
+
+// Lista simulada de reclamações
+const complaints = [
+  { id: 1, name: 'João Silva', subject: 'Produto danificado', message: 'O produto chegou quebrado.' },
+  { id: 2, name: 'Maria Oliveira', subject: 'Atendimento ruim', message: 'O atendimento foi muito demorado.' },
+];
+
+// Carregar as reclamações no modal
+function loadComplaints() {
+  const complaintsList = document.getElementById('complaintsList');
+  complaintsList.innerHTML = ''; // Limpa as reclamações atuais
+  
+  complaints.forEach(complaint => {
+    const complaintElement = document.createElement('div');
+    complaintElement.classList.add('complaint-item');
+    complaintElement.innerHTML = `
+      <h3>${complaint.subject}</h3>
+      <p><strong>${complaint.name}</strong></p>
+      <p>${complaint.message}</p>
+    `;
+    complaintsList.appendChild(complaintElement);
+  });
+}
+
+// Função para mostrar o formulário de reclamação
+function openAddComplaintForm() {
+  document.getElementById('complaintForm').style.display = 'block';
+  document.getElementById('addComplaintBtn').style.display = 'none'; // Esconde o botão de adicionar
+}
+
+// Função para enviar a reclamação (você pode personalizar para enviar para um backend)
+document.getElementById('complaintForm').onsubmit = function(event) {
+  event.preventDefault();
+  
+  // Obter dados do formulário
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+
+  // Adicionar a nova reclamação à lista (aqui você pode adicionar uma lógica para salvar no servidor)
+  complaints.push({ id: complaints.length + 1, name, subject, message });
+
+  // Atualizar a lista de reclamações e fechar o formulário
+  loadComplaints();
+  document.getElementById('complaintForm').style.display = 'none';
+  document.getElementById('addComplaintBtn').style.display = 'inline-block';
+};
+
+// Função para exportar os dados de reclamações para JSON
+function exportData() {
+  const dataStr = JSON.stringify(complaints, null, 2); // Converte o array de reclamações para string JSON
+  const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+
+  const exportFileName = 'reclamacoes.json';
+  const downloadLink = document.createElement('a');
+  downloadLink.setAttribute('href', dataUri);
+  downloadLink.setAttribute('download', exportFileName);
+  downloadLink.click(); // Inicia o download
+}
+
+// Função para importar os dados de reclamações de um arquivo JSON
+function importData(event) {
+  const file = event.target.files[0];
+  if (file && file.type === 'application/json') {
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+      try {
+        const importedData = JSON.parse(e.target.result);
+        // Verifique se o arquivo tem o formato correto antes de atualizar a lista
+        if (Array.isArray(importedData)) {
+          complaints = importedData;
+          loadComplaints(); // Atualiza a lista de reclamações no modal
+        } else {
+          alert('O arquivo JSON não contém dados válidos.');
+        }
+      } catch (error) {
+        alert('Erro ao processar o arquivo JSON.');
+      }
+    };
+
+    reader.readAsText(file); // Lê o conteúdo do arquivo
+  } else {
+    alert('Por favor, selecione um arquivo JSON válido.');
+  }
+}
