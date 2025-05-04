@@ -1536,11 +1536,9 @@ function resetarPosicaoOlhos() {
 // Adiciona o evento de clique para alternar entre seguir e parar de seguir o mouse
 container.addEventListener('click', toggleSeguirMouse);
 
-// Lista simulada de reclamações
-const complaints = [
-  { id: 1, name: 'João Silva', subject: 'Produto danificado', message: 'O produto chegou quebrado.' },
-  { id: 2, name: 'Maria Oliveira', subject: 'Atendimento ruim', message: 'O atendimento foi muito demorado.' },
-];
+
+// Lista de reclamações (carregada do localStorage, se houver)
+let complaints = JSON.parse(localStorage.getItem('complaints')) || [];
 
 // Carregar as reclamações no modal
 function loadComplaints() {
@@ -1559,56 +1557,66 @@ function loadComplaints() {
   });
 }
 
+function closeComplaintForm() {
+  document.getElementById('complaintForm').style.display = 'none';
+  document.getElementById('addComplaintBtn').style.display = 'inline-block';
+  document.getElementById('complaintForm').reset(); // limpa os campos do formulário (opcional)
+}
+
 // Função para mostrar o formulário de reclamação
 function openAddComplaintForm() {
   document.getElementById('complaintForm').style.display = 'block';
-  document.getElementById('addComplaintBtn').style.display = 'none'; // Esconde o botão de adicionar
+  document.getElementById('addComplaintBtn').style.display = 'none';
 }
 
-// Função para enviar a reclamação (você pode personalizar para enviar para um backend)
+// Função para salvar no localStorage
+function saveToLocalStorage() {
+  localStorage.setItem('complaints', JSON.stringify(complaints));
+}
+
+// Enviar nova reclamação
 document.getElementById('complaintForm').onsubmit = function(event) {
   event.preventDefault();
   
-  // Obter dados do formulário
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const subject = document.getElementById('subject').value;
   const message = document.getElementById('message').value;
 
-  // Adicionar a nova reclamação à lista (aqui você pode adicionar uma lógica para salvar no servidor)
   complaints.push({ id: complaints.length + 1, name, subject, message });
 
-  // Atualizar a lista de reclamações e fechar o formulário
-  loadComplaints();
+  saveToLocalStorage(); // Salvar após adicionar
+  loadComplaints(); // Atualizar UI
+
+  document.getElementById('complaintForm').reset(); // Limpa o formulário
   document.getElementById('complaintForm').style.display = 'none';
   document.getElementById('addComplaintBtn').style.display = 'inline-block';
 };
 
-// Função para exportar os dados de reclamações para JSON
+// Exportar dados para JSON
 function exportData() {
-  const dataStr = JSON.stringify(complaints, null, 2); // Converte o array de reclamações para string JSON
+  const dataStr = JSON.stringify(complaints, null, 2);
   const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
 
-  const exportFileName = 'reclamacoes.json';
   const downloadLink = document.createElement('a');
   downloadLink.setAttribute('href', dataUri);
-  downloadLink.setAttribute('download', exportFileName);
-  downloadLink.click(); // Inicia o download
+  downloadLink.setAttribute('download', 'reclamacoes.json');
+  downloadLink.click();
 }
 
-// Função para importar os dados de reclamações de um arquivo JSON
+// Importar dados de JSON
 function importData(event) {
   const file = event.target.files[0];
   if (file && file.type === 'application/json') {
     const reader = new FileReader();
-    
+
     reader.onload = function(e) {
       try {
         const importedData = JSON.parse(e.target.result);
-        // Verifique se o arquivo tem o formato correto antes de atualizar a lista
         if (Array.isArray(importedData)) {
           complaints = importedData;
-          loadComplaints(); // Atualiza a lista de reclamações no modal
+          saveToLocalStorage(); // Salvar dados importados
+          loadComplaints();
         } else {
           alert('O arquivo JSON não contém dados válidos.');
         }
@@ -1617,8 +1625,11 @@ function importData(event) {
       }
     };
 
-    reader.readAsText(file); // Lê o conteúdo do arquivo
+    reader.readAsText(file);
   } else {
     alert('Por favor, selecione um arquivo JSON válido.');
   }
 }
+
+// Inicializa a interface ao carregar a página
+document.addEventListener('DOMContentLoaded', loadComplaints);
