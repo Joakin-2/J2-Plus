@@ -95,6 +95,8 @@
                 image: '4.jpg',
                 images: ['4.jpg', '4.gif'],
                 tracks: [
+                    'Fundo/432 Hz.mp3',
+                    'Fundo/852 Hz.mp3',
                     'Fundo/Agape.mp3',
                     'Fundo/bob sponge edit.wav',
                     'Fundo/Dev Song.mp3',
@@ -444,6 +446,8 @@
             'Vibe/Work - Rihanna ft Dj Natttan.mp3': "Work - Rihanna ft Dj Natttan",
             'Vibe/Yellow Light.mp3': "Yellow Light",
 
+            'Fundo/432 Hz.mp3': "432 Hz",
+            'Fundo/852 Hz.mp3': "852 Hz",
             'Fundo/Agape.mp3': "Agape",
             'Fundo/bob sponge edit.wav': "Bob Sponge Edit",
             'Fundo/Dev Song.mp3': "Dev Song",

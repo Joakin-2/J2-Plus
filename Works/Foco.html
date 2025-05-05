@@ -46,11 +46,7 @@
 </head>
 <body>
     <div id="initialMessage">Vamos utilizar o método Pomodoro.</div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <br><br><br><br><br>
     <div id="temporizador" style="display: none;">25:00</div>
 
     <div id="botoes">
@@ -61,6 +57,8 @@
         let tempoInicial = 25 * 60; // 25 minutos em segundos
         let tempoDescanso = 5 * 60; // 5 minutos em segundos
         let temporizador;
+        let musica = new Audio('/Music/Fundo/852 Hz.mp3'); // Carregar o áudio da música
+        musica.loop = true; // Definir o áudio para tocar em loop
 
         function atualizarTemporizador(segundos) {
             const minutos = Math.floor(segundos / 60);
@@ -71,13 +69,14 @@
         function iniciarPomodoro() {
             clearInterval(temporizador);
             tempoInicial = 25 * 60;
+            musica.play(); // Iniciar a música quando o Pomodoro começar
             temporizador = setInterval(function() {
                 if (tempoInicial > 0) {
                     tempoInicial--;
                     atualizarTemporizador(tempoInicial);
                 } else {
                     clearInterval(temporizador);
-                    playAlarm()
+                    playAlarm();
                     iniciarDescanso();
                 }
             }, 1000);
@@ -86,21 +85,18 @@
         function iniciarDescanso() {
             clearInterval(temporizador);
             tempoDescanso = 5 * 60; // 5 minutos em segundos (pode ajustar conforme necessário)
+            musica.pause(); // Pausar a música durante o descanso
             temporizador = setInterval(function() {
                 if (tempoDescanso > 0) {
                     tempoDescanso--;
                     atualizarTemporizador(tempoDescanso);
                 } else {
                     clearInterval(temporizador);
-                    playAlarm()
+                    playAlarm();
+                    musica.play(); // Recomeçar a música quando voltar ao Pomodoro
                     iniciarPomodoro();
                 }
             }, 1000);
-        }
-
-        function pararTemporizador() {
-            clearInterval(temporizador);
-            atualizarTemporizador(tempoInicial);
         }
 
         function playAlarm() {
@@ -121,6 +117,5 @@
         });
 
     </script>
-
 </body>
 </html>

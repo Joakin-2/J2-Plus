@@ -609,3 +609,20 @@ habitos.forEach(function(item) {
         }
     });
 });
+
+// Função para copiar os hábitos formatados
+document.getElementById('copyButton').addEventListener('click', function() {
+    // Pega todos os itens da lista
+    const habitosItems = document.querySelectorAll('#habitosFinaisList li span');
+    
+    // Cria um array com o texto de cada item e junta com vírgulas
+    const habitosArray = Array.from(habitosItems).map(item => item.innerText.trim());
+    const habitosFormatados = habitosArray.join(', ');
+
+    // Usando a API Clipboard para copiar
+    navigator.clipboard.writeText(habitosFormatados).then(function() {
+        alert('Hábitos copiados para a área de transferência!');
+    }).catch(function(err) {
+        console.error('Erro ao copiar: ', err);
+    });
+});
