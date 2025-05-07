@@ -259,6 +259,19 @@ window.onload = () => {
 window.onload = () => {
     const playlistImage = document.getElementById('playlistImage');
 
+    // Verifique se a variável 'playlist' está definida e contém a chave 'Praise'
+    if (playlist && playlist['Praise'] && playlist['Praise'].images && playlist['Praise'].images.length > 0) {
+        // Atribui a primeira imagem da lista de imagens da playlist
+        playlistImage.src = playlist['Praise'].images[0];  
+    } else {
+        // Se não houver imagens, exibe uma imagem padrão
+        playlistImage.src = '3.png';  
+    }
+};
+
+window.onload = () => {
+    const playlistImage = document.getElementById('playlistImage');
+
     // Verifique se a variável 'playlist' está definida e contém a chave 'Vibes'
     if (playlist && playlist['Vibes'] && playlist['Vibes'].images && playlist['Vibes'].images.length > 0) {
         // Atribui a primeira imagem da lista de imagens da playlist
@@ -337,8 +350,8 @@ document.addEventListener('mousemove', (event) => {
     
     displayMusicSelection(playlistName);
 
-    // Exibir o botão de troca de imagem apenas para as playlists 'Gym' ou 'Fundo' ou 'Vibes'
-    if (playlistName === 'Gym' || playlistName === 'Fundo' || playlistName === 'Vibes') {
+    // Exibir o botão de troca de imagem apenas para as playlists 'Gym' ou 'Fundo' ou 'Vibes' ou 'Praise'
+    if (playlistName === 'Gym' || playlistName === 'Fundo' || playlistName === 'Vibes' || playlistName === 'Praise') {
         changeImageButton.style.display = 'inline-block'; // Exibe o botão
     } else {
         changeImageButton.style.display = 'none'; // Esconde o botão
