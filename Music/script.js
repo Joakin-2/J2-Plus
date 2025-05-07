@@ -47,7 +47,7 @@
             },
             'Praise': {
                 image: '3.png',
-                images: ['3 - 1.png', '3 - 2.png'],
+                images: ['3.png', '3 - 1.png', '3 - 2.png'],
                 tracks: [
                     'Praise/A Boa Parte (Ao Vivo).mp3',
                     'Praise/A Face Adorada.mp3',
