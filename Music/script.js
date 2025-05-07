@@ -599,7 +599,7 @@
             'Gym/Mangos (Tiktok Version).mp3': "Mangos (Tiktok Version)",
             'Gym/Masha ultrafunk.mp3': "Masha Ultrafunk",
             'Gym/Meet the Frownies x Lovely Bastards - TikTok Remix - (Slowed).mp3': "Meet the Frownies x Lovely Bastards - Slowed",
-            'Gym/Mi Mami Funk Vol 2.mp3': "𝙈𝙄 𝙈𝘼𝙈𝙄 𝙁𝙐𝙉𝙆 𝙑𝙤𝙡 2",
+            'Gym/Mi Mami Funk Vol 2.mp3': "𝙈𝙄 𝙈𝘼𝙈𝙄 𝙁𝙐𝙉𝙆 𝙑𝙤𝙡.2",
             'Gym/Money so big - yeat [ edit audio ].mp3': "Money so big - edit audio",
             'Gym/MONTAGEM BIONICA ESPECTRAL 2 - SLOWED.mp3': "MONTAGEM BIONICA ESPECTRAL 2 - SLOWED",
             'Gym/MONTAGEM BIONICA ESPECTRAL 2.mp3': "MONTAGEM BIONICA ESPECTRAL 2",
