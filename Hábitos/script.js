@@ -288,10 +288,10 @@ function carregarHabitosDoDia() {
     if (hoje.getDay() === 6) { // Se for sábado
         const diaDoMes = hoje.getDate();
         if (diaDoMes >= 8 && diaDoMes <= 14) { // Se estiver entre o 8º e o 14º dia do mês
-            if (!habitosPorDia.sábado.manha) {
-                habitosPorDia.sábado.manha = []; // Inicializar caso não exista
+            if (!habitosPorDia.sábado.noite) {
+                habitosPorDia.sábado.noite = []; // Inicializar caso não exista
             }
-            habitosPorDia.sábado.manha.push("Santa Ceia"); // Adicionar "Santa Ceia" no sábado de manhã
+            habitosPorDia.sábado.noite.push("Santa Ceia"); // Adicionar "Santa Ceia" no sábado à noite
         }
     }
 
