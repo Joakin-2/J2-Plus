@@ -592,37 +592,63 @@ window.addEventListener('click', function(event) {
     }
 });
 
-// Adicionar evento de clique nos itens de hábitos (agora sem checkboxes)
-const habitos = document.querySelectorAll('#habitosFinaisList li');
+// Hábitos de Fim de Dia
+const diasCorridosBtn = document.getElementById('diasCorridosBtn');
+    const diasNormaisBtn = document.getElementById('diasNormaisBtn');
+    const habitosFinaisList = document.getElementById('habitosFinaisList');
+    const habitosDiasCorridosList = document.getElementById('habitosDiasCorridosList');
+    const modalConteudo = document.getElementById('modalConteudo'); // Referência ao conteúdo do modal
+    const copyButton = document.getElementById('copyButton');
 
-habitos.forEach(function(item) {
-    item.addEventListener('click', function() {
-        // Alterna o estilo riscado no texto do hábito
-        const textoHabito = item.querySelector('span');
-        
-        if (textoHabito.style.textDecoration === 'line-through') {
-            textoHabito.style.textDecoration = 'none';  // Remove o risco
-            textoHabito.style.color = '';  // Remove a cor cinza
-        } else {
-            textoHabito.style.textDecoration = 'line-through';  // Adiciona o risco
-            textoHabito.style.color = '#888';  // Adiciona a cor cinza
+    // Alternar entre hábitos normais e dias corridos
+    diasCorridosBtn.addEventListener('click', () => {
+        // Exibir hábitos dos dias corridos
+        habitosFinaisList.style.display = 'none';
+        habitosDiasCorridosList.style.display = 'block';
+
+        // Alterar o tamanho do modal
+        modalConteudo.style.height = '520px';
+
+        // Alternar visibilidade dos botões
+        diasCorridosBtn.style.display = 'none';
+        diasNormaisBtn.style.display = 'inline-block';
+    });
+
+    diasNormaisBtn.addEventListener('click', () => {
+        // Voltar para hábitos normais
+        habitosFinaisList.style.display = 'block';
+        habitosDiasCorridosList.style.display = 'none';
+
+        // Alterar o tamanho do modal
+        modalConteudo.style.height = '410px';
+
+        // Alternar visibilidade dos botões
+        diasCorridosBtn.style.display = 'inline-block';
+        diasNormaisBtn.style.display = 'none';
+    });
+
+    // Função para copiar os hábitos formatados com base no estado atual (normal ou corrido)
+    copyButton.addEventListener('click', () => {
+        let habitosArray = [];
+
+        // Verificar qual lista está visível e pegar os itens
+        if (habitosFinaisList.style.display === 'block') {
+            // Copiar hábitos normais
+            const habitosItems = document.querySelectorAll('#habitosFinaisList li span');
+            habitosArray = Array.from(habitosItems).map(item => item.innerText.trim());
+        } else if (habitosDiasCorridosList.style.display === 'block') {
+            // Copiar hábitos dias corridos
+            const habitosItems = document.querySelectorAll('#habitosDiasCorridosList li span');
+            habitosArray = Array.from(habitosItems).map(item => item.innerText.trim());
         }
-    });
-});
 
-// Função para copiar os hábitos formatados
-document.getElementById('copyButton').addEventListener('click', function() {
-    // Pega todos os itens da lista
-    const habitosItems = document.querySelectorAll('#habitosFinaisList li span');
-    
-    // Cria um array com o texto de cada item e junta com vírgulas
-    const habitosArray = Array.from(habitosItems).map(item => item.innerText.trim());
-    const habitosFormatados = habitosArray.join(', ');
+        // Formatar o texto com vírgulas
+        const habitosFormatados = habitosArray.join(', ');
 
-    // Usando a API Clipboard para copiar
-    navigator.clipboard.writeText(habitosFormatados).then(function() {
-        alert('Hábitos copiados para a área de transferência!');
-    }).catch(function(err) {
-        console.error('Erro ao copiar: ', err);
+        // Usar a API Clipboard para copiar o texto formatado
+        navigator.clipboard.writeText(habitosFormatados).then(function() {
+            alert('Hábitos copiados!');
+        }).catch(function(err) {
+            console.error('Erro ao copiar: ', err);
+        });
     });
-});
