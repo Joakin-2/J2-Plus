@@ -71,7 +71,7 @@
                 </div>
                 <h2>Netflix</h2>
             </div>
-            <div class="video-card" onclick="openSite('Yt/index.html')">
+            <div class="video-card" onclick="openProfileModal()">
                 <div class="video-thumbnail">
                     <img src="img/youtube.jpg" alt="Youtube">
                 </div>
@@ -85,6 +85,30 @@
             </div>
         </section2>
     </main>
+    <!-- Modal de seleção de perfil -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeProfileModal()">&times;</span>
+        <h1>Selecione o Perfil</h1>
+        <button class="profile-btn" onclick="openYouTube('perfil1')">Joka</button>
+        <button class="profile-btn" onclick="openYouTube('perfil2')">Vick</button>
+        <button class="profile-btn" onclick="openYouTube('perfil3')">Pais</button>
+        <button class="profile-btn" onclick="openYouTube('perfil4')">Pets</button>
+    </div>
+</div>
+
+<!-- Controle parental -->
+<div id="parentalControlModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 style="color: #ff0000;">Controle paternal</h2>
+        <input type="password" id="accessCode" placeholder="Insira o código de acesso" onkeydown="if(event.keyCode==13) validateCode()">
+        <button class="confirm-btn" onclick="validateCode()">Confirmar</button>
+        <p id="errorMessage" style="color: #ff0000; display: none; margin-top: 10px;">Código incorreto. Tente novamente.</p>
+        <div id="tips" class="tips"></div>
+    </div>
+</div>
+
     <script src="scripts.js"></script>
 </body>
 </html>

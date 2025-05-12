@@ -172,3 +172,99 @@ main {
 .video-card h2 {
     color: #82d5ff;
 }
+
+/* Estilos gerais para modais */
+.profiles {
+            text-align: center;
+        }
+
+        .profile-btn {
+            background-color: #ff0000; /* Red color */
+            color: #fff;
+            padding: 20px 40px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .profile-btn:hover {
+            background-color: #cc0000; /* Darker red color */
+        }
+
+        /* Parental Control Modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 10; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0 0 0); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal content */
+        .modal-content {
+            background-color: #222; /* Darker background */
+            margin: 20% auto; /* Centered vertically and horizontally */
+            padding: 50px;
+            border-radius: 10px;
+            width: 50%; /* Full width */
+            height: 20%; /* Full height */
+            color: #fff; /* Text color */
+            text-align: center; /* Center text */
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Input field */
+        input[type="password"] {
+            width: 50%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #444; /* Darker background */
+            color: #fff; /* Text color */
+        }
+
+        input[type="password"]:focus {
+            outline: none;
+        }
+
+        /* Confirm button */
+        .confirm-btn {
+            background-color: #ff0000; /* Red color */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .confirm-btn:hover {
+            background-color: #cc0000; /* Darker red color */
+        }
+
+        /* Tips section */
+        .tips {
+            color: #ffcc00; /* Yellow color for tips */
+            margin-top: 20px;
+        }

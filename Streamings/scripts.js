@@ -81,3 +81,98 @@ function moveSlide(n) {
         }, 500); // Tempo de espera para a animação de opacidade (0.5s)
     }, 500); // Tempo de espera para a animação de opacidade (0.5s)
 }
+
+// Função para abrir o modal de seleção de perfil
+function openProfileModal() {
+    document.getElementById("profileModal").style.display = "block";
+}
+
+// Fechar o modal de seleção de perfil
+function closeProfileModal() {
+    document.getElementById("profileModal").style.display = "none";
+}
+
+// Abrir o modal de controle parental
+function openParentalControl(profile) {
+    document.getElementById("parentalControlModal").style.display = "block";
+    const accessCodeInput = document.getElementById("accessCode");
+    accessCodeInput.value = "";
+    accessCodeInput.dataset.profile = profile;
+    setTips(profile);
+    document.getElementById("errorMessage").style.display = "none";
+}
+
+// Função chamada ao clicar em um botão de perfil
+function openYouTube(profile) {
+    console.log("Perfil selecionado:", profile);
+
+    if (profile === 'perfil1') {
+        window.open("joca/index.html", "_blank");
+    } else if (profile === 'perfil2') {
+        window.open("vick/index.html", "_blank");
+    } else if (profile === 'perfil3' || profile === 'perfil4') {
+        openParentalControl(profile);
+    }
+}
+
+// Exibe dica de senha com base no perfil
+function setTips(profile) {
+    const tipsElement = document.getElementById("tips");
+    if (profile === 'perfil3') {
+        tipsElement.innerHTML = "Dica: Senha já conhecida.";
+    } else if (profile === 'perfil4') {
+        tipsElement.innerHTML = "Dica: A senha está relacionada aos animais de estimação.";
+    } else {
+        tipsElement.innerHTML = "";
+    }
+}
+
+// Valida o código de acesso e redireciona
+function validateCode() {
+    const accessCode = document.getElementById("accessCode").value.trim().toLowerCase();
+    const profile = document.getElementById("accessCode").dataset.profile;
+    const modalContent = document.querySelector("#parentalControlModal .modal-content");
+
+    let targetURL = null;
+
+    if (profile === 'perfil3') {
+        if (accessCode === "0709") {
+            targetURL = "https://www.youtube.com/feed/you";
+        } else if (accessCode === "jogo") {
+            targetURL = "https://redecanaistv.dev/assistir-premiere-clubes-online-24-horas-ao-vivo_128696632.html";
+        }
+    } else if (profile === 'perfil4' && accessCode === "pets") {
+        targetURL = "https://www.youtube.com/@KOTARO_OTTER";
+    }
+
+    if (targetURL) {
+        modalContent.innerHTML = "<h2 style='color: #ff0000;'>Controle paternal</h2><div style='color: #00ff00; margin-top: 10px;'>Senha Correta</div>";
+        setTimeout(() => {
+             window.open(targetURL, "_blank");          // Abre o destino em nova aba
+             window.location.href = "about:blank";      // Redireciona a aba atual
+             window.close(); 
+        }, 1000);
+    } else {
+        document.getElementById("errorMessage").style.display = "block";
+    }
+}
+
+// Fecha o modal de controle parental
+function closeModal() {
+    document.getElementById("parentalControlModal").style.display = "none";
+}
+
+// Fecha modais ao clicar fora deles
+window.onclick = function(event) {
+    if (event.target === document.getElementById("profileModal")) {
+        closeProfileModal();
+    }
+    if (event.target === document.getElementById("parentalControlModal")) {
+        closeModal();
+    }
+}
+
+// Redirecionamento genérico
+function openSite(url) {
+    window.location.href = url;
+}
