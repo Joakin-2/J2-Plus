@@ -430,7 +430,20 @@ function displayMusicSelection(playlistName) {
             document.getElementById('musicSelection').style.display = 'none';
         }
 
-        // Função para reproduzir uma música
+        var currentSongTitle = "J2 Music"; // título atual da música
+        
+        audio.addEventListener('pause', function() {
+            document.title = "J2 Music";
+        });
+
+        audio.addEventListener('ended', function() {
+            document.title = "J2 Music";
+        });
+
+        audio.addEventListener('play', function() {
+            document.title = currentSongTitle; // volta a mostrar o nome da música
+        });
+
         function playMusic(index) {
             var track = currentPlaylist[index];
             var musicPlayer = document.getElementById('musicPlayer');
@@ -445,7 +458,9 @@ function displayMusicSelection(playlistName) {
             musicSource.play();
             musicPlayer.classList.add('show');
 
-            // Esconder a seleção de músicas
+            currentSongTitle = songNames[track]; // salva o nome da música
+            document.title = currentSongTitle; // atualiza o título da aba
+
             hideMusicSelection();
         }
 
