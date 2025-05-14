@@ -255,7 +255,7 @@ function carregarHabitosDoDia() {
         },
         segunda: {
             manha: ['Oração na Igreja'],
-            tarde: ['Trabalho (Trade)'],
+            tarde: ['Lavar as Roupas', 'Trabalho (Trade)'],
         },
         terça: {
             tarde: ['Trabalho (Trade)'],
