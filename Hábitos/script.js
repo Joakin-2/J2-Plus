@@ -250,7 +250,7 @@ function carregarHabitosDoDia() {
     const habitosPorDia = {
         domingo: {
             manha: ['Limpar Ouvido', 'Escola Dominical'],
-            tarde: ['Se Depile', 'Alise seu Pé'],
+            tarde: ['Se Depile', 'Alise seu Pé', 'Limpar Fogão e Chão'],
             noite: ['Culto as 18h']
         },
         segunda: {
@@ -262,7 +262,7 @@ function carregarHabitosDoDia() {
         },
         quarta: {
             manha: ['Aparar Barba', 'Limpar Ouvido'],
-            tarde: ['Alise seu Pé', 'Trabalho (Trade)'],
+            tarde: ['Alise seu Pé', 'Trabalho (Trade)', 'Limpar Fogão e Chão'],
             // noite: ['Culto as 19h30']
         },
         quinta: {
