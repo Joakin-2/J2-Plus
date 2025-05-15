@@ -472,18 +472,28 @@ function displayMusicSelection(playlistName) {
 
         // Função para pausar ou reproduzir música
         function togglePlayPause() {
-            const audio = document.getElementById('audioPlayer');
-            const button = document.getElementById('playPauseButton');
-            const isPlaying = !audio.paused;
+    const audio = document.getElementById('audioPlayer');
+    const button = document.getElementById('playPauseButton');
+    const isPlaying = !audio.paused;
 
-            if (isPlaying) {
-                audio.pause();
-                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16"><path d="M11.596 8.697a.5.5 0 0 1 0 .607l-6 4.5a.5.5 0 0 1-.896-.447V3.75a.5.5 0 0 1 .896-.447l6 4.5z"/></svg>';
-            } else {
-                audio.play();
-                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16"><path d="M5.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h1zM11 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h1z"/></svg>';
-            }
-        }
+    // Obtém o nome da playlist atual
+    const currentPlaylistName = document.getElementById('playlistTitle').textContent;
+
+    if (isPlaying) {
+        audio.pause();
+        button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16"><path d="M11.596 8.697a.5.5 0 0 1 0 .607l-6 4.5a.5.5 0 0 1-.896-.447V3.75a.5.5 0 0 1 .896-.447l6 4.5z"/></svg>';
+        
+        // Quando a música for pausada, definimos a imagem fixa da playlist
+        const playlistImage = document.getElementById('playlistImage');
+        playlistImage.src = playlist[currentPlaylistName].image;  // Define a imagem fixa da playlist
+    } else {
+        audio.play();
+        button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16"><path d="M5.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h1zM11 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h1z"/></svg>';
+        
+        // Quando a música for reproduzida, volta à lógica de alternância de imagem
+        //changeImage(currentPlaylistName);
+    }
+}
 
         // Função para avançar para a próxima música
         function nextTrack() {
