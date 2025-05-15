@@ -287,11 +287,19 @@ function carregarHabitosDoDia() {
     // Verificar se é o segundo sábado do mês
     if (hoje.getDay() === 6) { // Se for sábado
         const diaDoMes = hoje.getDate();
+        // Segundo sábado
         if (diaDoMes >= 8 && diaDoMes <= 14) { // Se estiver entre o 8º e o 14º dia do mês
             if (!habitosPorDia.sábado.noite) {
                 habitosPorDia.sábado.noite = []; // Inicializar caso não exista
             }
             habitosPorDia.sábado.noite.push("Santa Ceia"); // Adicionar "Santa Ceia" no sábado à noite
+        }
+        // Terceiro sábado
+        if (diaDoMes >= 15 && diaDoMes <= 21) {
+            if (!habitosPorDia.sábado.manha) {
+                habitosPorDia.sábado.manha = []; // Inicializar caso não exista
+            }
+            habitosPorDia.sábado.manha.push("Banho nos Gatos");
         }
     }
 
