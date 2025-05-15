@@ -113,8 +113,8 @@
                 ]
             },
             'Vibes': {
-                image: '5.gif',
-                images: ['5.gif', '5 - 1.gif'],
+                image: '5.jpg',
+                images: ['5.jpg', '5.gif', '5 - 1.gif'],
                 tracks: [
                     'Vibe/A COLORS ENCORE.mp3',
                     'Vibe/After Party (Official Audio).mp3',
@@ -186,6 +186,7 @@
                     'Vibe/See Tinh [Cukak-Remix].mp3',
                     'Vibe/Shake It Bololo (BOLOLO HAHA) [Lyrics Edit].mp3',
                     'Vibe/sigrid - everybody knows (slowed reverb).mp3',
+                    'Vibe/stay - edit audio.mp3'
                     'Vibe/Silento - Watch Me.mp3',
                     'Vibe/Sound Of Da Police.mp3',
                     'Vibe/Take A Slice - Edit Audio.mp3',
@@ -258,6 +259,7 @@
                     'Gym/Jack-Hanma.mp3',
                     'Gym/Kanye West - Runaway [Official Edit] (192).mp3',
                     'Gym/KING BALDWIN IV x YEA (SLOWED + REVERB).mp3',
+                    'Gym/Komodo (slowed).mp3',
                     'Gym/Los Pinguinos de Madagascar.mp3',
                     'Gym/Luci4 - BodyPartz (Edit Extended, Clean).mp3',
                     'Gym/MTG Distocida Japonesa (edit Slowed).mp3',
@@ -286,6 +288,7 @@
                     'Gym/funk de beleza (edit audio).mp3',
                     'Gym/Push Up (Short Version).mp3',
                     'Gym/RAHHHH (slowed reverb).mp3',
+                    'Gym/RISADA CHUCK (Super Slowed).mp3',
                     'Gym/Rocking A Cardigan In Atlanta (Remix).mp3',
                     'Gym/Rocking a cardigan in Atlanta X werkkk sped up.mp3',
                     'Gym/rocking a cardigan in Atlanta(edit audio).mp3',
@@ -439,6 +442,7 @@
             'Vibe/Shake It Bololo (BOLOLO HAHA) [Lyrics Edit].mp3': "Shake It Bololo (BOLOLO HAHA) [Lyrics Edit]",
             'Vibe/Silento - Watch Me.mp3': "Silento - Watch Me",
             'Vibe/sigrid - everybody knows (slowed reverb).mp3': "Sigrid - everybody knows (slowed reverb)",
+            'Vibe/stay - edit audio.mp3': "Stay - edit audio",
             'Vibe/Sound Of Da Police.mp3': "Sound Of Da Police",
             'Vibe/Take A Slice - Edit Audio.mp3': "Take A Slice - Edit Audio",
             'Vibe/Take a Slice (Slowed Reverb looped).mp3': "Take a Slice (Slowed Reverb looped)",
@@ -597,6 +601,7 @@
             'Gym/Jack-Hanma.mp3': "Jack-Hanma",
             'Gym/Kanye West - Runaway [Official Edit] (192).mp3': "Runaway",
             'Gym/KING BALDWIN IV x YEA (SLOWED + REVERB).mp3': "KING BALDWIN IV x YEA (SLOWED + REVERB)",
+            'Gym/Komodo (slowed).mp3': "Komodo (slowed)",
             'Gym/Los Pinguinos de Madagascar.mp3': "Los Pinguinos de Madagascar",
             'Gym/Luci4 - BodyPartz (Edit Extended, Clean).mp3': "BodyPartz (Edit Clean Extended)",
             'Gym/MTG Distocida Japonesa (edit Slowed).mp3': "MTG Distocida Japonesa (edit Slowed)",
@@ -625,6 +630,7 @@
             'Gym/funk de beleza (edit audio).mp3': "Phonk de beleza (edit audio)",
             'Gym/Push Up (Short Version).mp3': "Push Up (Short Version)",
             'Gym/RAHHHH (slowed reverb).mp3': "RAHHHH (slowed reverb)",
+            'Gym/RISADA CHUCK (Super Slowed).mp3': "RISADA CHUCK (Super Slowed)",
             'Gym/Rocking A Cardigan In Atlanta (Remix).mp3': "Rocking A Cardigan In Atlanta (Remix)",
             'Gym/Rocking a cardigan in Atlanta X werkkk sped up.mp3': "Rocking a cardigan in Atlanta sped up",
             'Gym/rocking a cardigan in Atlanta(edit audio).mp3': "rocking a cardigan in Atlanta (edit audio)",
