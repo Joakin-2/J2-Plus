@@ -186,7 +186,7 @@
                     'Vibe/See Tinh [Cukak-Remix].mp3',
                     'Vibe/Shake It Bololo (BOLOLO HAHA) [Lyrics Edit].mp3',
                     'Vibe/sigrid - everybody knows (slowed reverb).mp3',
-                    'Vibe/stay - edit audio.mp3'
+                    'Vibe/stay - edit audio.mp3',
                     'Vibe/Silento - Watch Me.mp3',
                     'Vibe/Sound Of Da Police.mp3',
                     'Vibe/Take A Slice - Edit Audio.mp3',
