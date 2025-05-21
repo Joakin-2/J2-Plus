@@ -340,6 +340,7 @@ document.addEventListener('mousemove', (event) => {
 
         // Função para mostrar a lista de músicas de uma playlist
         function showPlaylist(playlistName) {
+            currentPlaylistName = playlistName
     currentPlaylist = playlist[playlistName].tracks;
     currentTrackIndex = 0;
     
@@ -509,10 +510,17 @@ function displayMusicSelection(playlistName) {
 
         // Função para esconder o player de música
         function hideMusicPlayer() {
-            var musicPlayer = document.getElementById('musicPlayer');
-            musicPlayer.classList.remove('show');
-            audioPlayer.pause();
-        }
+    var musicPlayer = document.getElementById('musicPlayer');
+    musicPlayer.classList.remove('show'); // Esconde o player de música
+
+    // Pausa a música se estiver tocando
+    audioPlayer.pause();
+
+    // Exibe a seleção de músicas da playlist atual
+    if (currentPlaylistName) {
+        displayMusicSelection(currentPlaylistName);
+    }
+}
 
         // Função para abrir o modal de upload de música
         function uploadMusic() {
