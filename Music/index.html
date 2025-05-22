@@ -446,24 +446,27 @@ function displayMusicSelection(playlistName) {
         });
 
         function playMusic(index) {
-            var track = currentPlaylist[index];
-            var musicPlayer = document.getElementById('musicPlayer');
-            var musicTitle = document.getElementById('musicTitle');
-            var songName = document.getElementById('songName');
-            var musicSource = document.getElementById('audioPlayer');
+    var track = currentPlaylist[index];
+    var musicPlayer = document.getElementById('musicPlayer');
+    var musicTitle = document.getElementById('musicTitle');
+    var songName = document.getElementById('songName');
+    var musicSource = document.getElementById('audioPlayer');
 
-            musicTitle.textContent = songNames[track];
-            songName.textContent = songNames[track]; // Mostra o nome da música
-            musicSource.src = track;
-            musicSource.load();
-            musicSource.play();
-            musicPlayer.classList.add('show');
+    musicTitle.textContent = songNames[track];
+    songName.textContent = songNames[track]; // Mostra o nome da música
+    musicSource.src = track;
+    musicSource.load();
+    musicSource.play();
+    musicPlayer.classList.add('show');
 
-            currentSongTitle = songNames[track]; // salva o nome da música
-            document.title = currentSongTitle; // atualiza o título da aba
+    currentSongTitle = songNames[track]; // salva o nome da música
+    document.title = currentSongTitle; // atualiza o título da aba
 
-            hideMusicSelection();
-        }
+    // Atualiza o índice atual
+    currentTrackIndex = index;
+
+    hideMusicSelection();
+}
 
         // Função para exibir o player de música
         function showMusicPlayer() {
@@ -497,16 +500,22 @@ function displayMusicSelection(playlistName) {
 }
 
         // Função para avançar para a próxima música
-        function nextTrack() {
-            currentTrackIndex = (currentTrackIndex + 1) % currentPlaylist.length;
-            playMusic(currentTrackIndex);
-        }
+function nextTrack() {
+    if (!currentPlaylist || currentPlaylist.length === 0) return;
 
-        // Função para voltar para a música anterior
-        function previousTrack() {
-            currentTrackIndex = (currentTrackIndex - 1 + currentPlaylist.length) % currentPlaylist.length;
-            playMusic(currentTrackIndex);
-        }
+    // Incrementa o índice
+    currentTrackIndex = (currentTrackIndex + 1) % currentPlaylist.length;
+    playMusic(currentTrackIndex);
+}
+
+// Função para voltar para a música anterior
+function previousTrack() {
+    if (!currentPlaylist || currentPlaylist.length === 0) return;
+
+    // Decrementa o índice, com wrap-around
+    currentTrackIndex = (currentTrackIndex - 1 + currentPlaylist.length) % currentPlaylist.length;
+    playMusic(currentTrackIndex);
+}
 
         // Função para esconder o player de música
         function hideMusicPlayer() {

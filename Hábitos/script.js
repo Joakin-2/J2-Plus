@@ -660,3 +660,13 @@ const diasCorridosBtn = document.getElementById('diasCorridosBtn');
             console.error('Erro ao copiar: ', err);
         });
     });
+
+    function abrirSitesManha() {
+    window.open('https://www.twitch.tv/joakin_luiz', '_blank');
+    window.open('https://business.facebook.com/latest/content_calendar?business_id=2349354548756195&asset_id=603116216208940', '_blank');
+    window.open('https://j2plus.netlify.app/gym/', '_blank');
+    window.open('https://j2plus.netlify.app/sax/', '_blank');
+    window.open('https://j2plus.netlify.app/proto/christ/crist.html', '_blank');
+    window.open('https://saladofuturo.educacao.sp.gov.br/escolha-de-perfil', '_blank');
+    window.open('https://j2plus.netlify.app/works/', '_blank');
+}
