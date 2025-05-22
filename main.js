@@ -196,41 +196,46 @@ function updateStatus(message) {
     status.innerHTML = message;
 }
 
-// Função para enviar a mensagem para a API do Google Gemini
-function sendMessageToAPI(message) {
-  //const status = document.getElementById('status');
+async function sendMessageToAPI(message) {
+    //const status = document.getElementById('status');
   const inputText = document.getElementById('inputText');
   const sendButton = document.getElementById('sendButton');
 
   sendButton.disabled = true;
   sendButton.style.cursor = 'not-allowed';
   inputText.disabled = true;
+    
+            try {
+                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                    method: 'POST',
+                    headers: {
+                        Authorization: 'Bearer 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',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        model: 'mistralai/mistral-7b-instruct', // ✅ modelo gratuito
+                        messages: [
+                            {
+                                role: 'user',
+                                content: message
+                            }
+                        ]
+                    })
+                });
 
-  fetch(`${apiEndpoint}?key=${apiKey}`, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          'Accept-Language': 'pt-BR'  // Adiciona a especificação do idioma
-      },
-      body: JSON.stringify({
-          contents: [
-              {
-                  parts: [
-                      { text: message }
-                  ]
-              }
-          ]
-      })
-  })
-  .then(response => {
-      if (!response.ok) {
-          throw new Error(`Erro na API: ${response.statusText}`);
-      }
-      return response.json();
-  })
-  .then(response => {
-      console.log('Resposta da API:', response);
-      
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const reply = data.choices?.[0]?.message?.content || 'Sem resposta';
+                updateLastResponse(reply);
+            } catch (e) {
+                console.error('Erro ao chamar a API:', e);
+                updateLastResponse('Erro ao se comunicar com a API.');
+            }
+        }
+
       // Verifica se 'candidates' existe e tem conteúdo
       if (response && response.candidates && response.candidates.length > 0) {
           let candidate = response.candidates[0];
