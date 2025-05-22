@@ -670,3 +670,7 @@ const diasCorridosBtn = document.getElementById('diasCorridosBtn');
     window.open('https://saladofuturo.educacao.sp.gov.br/escolha-de-perfil', '_blank');
     window.open('https://j2plus.netlify.app/works/', '_blank');
 }
+
+function abrirSitesTarde() {
+    window.open('https://j2plus.netlify.app/conselho/relatorio.html', '_blank');
+}
