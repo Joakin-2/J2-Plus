@@ -525,6 +525,8 @@ h2, h3 {
     border-radius: 5px;
     margin-left: 50%;
     margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 2px;
     white-space: pre-wrap;
     word-wrap: break-word;
 }
@@ -536,6 +538,8 @@ h2, h3 {
     padding: 6px;
     max-width: 80%;
     border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 2px;
     white-space: pre-wrap;
     word-wrap: break-word;
 }

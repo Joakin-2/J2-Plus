@@ -196,81 +196,110 @@ function updateStatus(message) {
     status.innerHTML = message;
 }
 
+// Variável global para armazenar o histórico de mensagens
+let messageHistory = [];
+
+async function sendMessage() {
+    const inputText = document.getElementById('inputText');
+    const message = inputText.value.trim();
+
+    if (!message) return; // Não envia mensagem vazia
+
+    // Adiciona a mensagem do usuário ao histórico
+    addMessageToChat(message, 'user');
+
+    // Limpa o input
+    inputText.value = '';
+
+    // Envia ao API
+    await sendMessageToAPI(message);
+}
+
+// Função para enviar a mensagem à API
 async function sendMessageToAPI(message) {
-    //const status = document.getElementById('status');
-  const inputText = document.getElementById('inputText');
-  const sendButton = document.getElementById('sendButton');
+    const sendButton = document.getElementById('sendButton');
+    const inputText = document.getElementById('inputText');
 
-  sendButton.disabled = true;
-  sendButton.style.cursor = 'not-allowed';
-  inputText.disabled = true;
-    
-            try {
-                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                    method: 'POST',
-                    headers: {
-                        Authorization: 'Bearer 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',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        model: 'mistralai/mistral-7b-instruct', // ✅ modelo gratuito
-                        messages: [
-                            {
-                                role: 'user',
-                                content: message
-                            }
-                        ]
-                    })
-                });
+    sendButton.disabled = true;
+    sendButton.style.cursor = 'not-allowed';
+    inputText.disabled = true;
 
-                if (!response.ok) {
-                    throw new Error(`Erro HTTP! status: ${response.status}`);
-                }
+    try {
+        // Prepara o corpo com o histórico
+        const messages = messageHistory.map(msg => ({
+            role: msg.role,
+            content: msg.content
+        }));
+        // Adiciona a nova mensagem do usuário
+        messages.push({ role: 'user', content: message });
 
-                const data = await response.json();
-                const reply = data.choices?.[0]?.message?.content || 'Sem resposta';
-                updateLastResponse(reply);
-            } catch (e) {
-                console.error('Erro ao chamar a API:', e);
-                updateLastResponse('Erro ao se comunicar com a API.');
-            }
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer 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',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                model: 'mistralai/mistral-7b-instruct',
+                messages: messages
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro HTTP! status: ${response.status}`);
         }
 
-      // Verifica se 'candidates' existe e tem conteúdo
-      if (response && response.candidates && response.candidates.length > 0) {
-          let candidate = response.candidates[0];
-          console.log('Primeiro candidato:', candidate);
-          let content = candidate.content;
-          let r = 'Texto não encontrado';
-          
-          if (content && content.parts && content.parts.length > 0) {
-              let part = content.parts[0];
-              r = part.text || 'Texto não encontrado';
-              
-              // Verificando se o conteúdo parece ser código
-              if (isCode(r)) {
-                  r = formatCode(r); // Formata o código com sintaxe adequada
-              }
-          }
+        const data = await response.json();
+        const reply = data.choices?.[0]?.message?.content || 'Sem resposta';
 
-          // Quando a resposta for recebida, esconder "digitando..."
-          updateStatus('');
+        // Adiciona a resposta ao histórico
+        addMessageToChat(reply, 'bot');
 
-          showHistory(message, r);
-          falar(r);
-      } else {
-          updateStatus('Resposta inesperada da API. Verifique o console para mais detalhes.');
-      }
-  })
-  .catch(e => {
-      console.log(`Error -> ${e}`);
-      updateStatus('Erro, tente novamente mais tarde...');
-  })
-  .finally(() => {
-      sendButton.disabled = false;
-      sendButton.style.cursor = 'pointer';
-      inputText.disabled = false;
-  });
+        // Atualiza o histórico para o próximo ciclo
+        messageHistory.push({ role: 'assistant', content: reply });
+
+    } catch (e) {
+        console.error('Erro ao chamar a API:', e);
+        addMessageToChat('Erro ao se comunicar com a API.', 'bot');
+    } finally {
+        // Restaura o botão
+        sendButton.disabled = false;
+        sendButton.style.cursor = 'pointer';
+        document.getElementById('inputText').disabled = false;
+        // Rola para o final da conversa
+        scrollChatToBottom();
+    }
+}
+
+// Função para adicionar uma mensagem na interface
+function addMessageToChat(content, role) {
+    const chatArea = document.getElementById('chatArea');
+
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message');
+
+    if (role === 'user') {
+        messageDiv.classList.add('my-message');
+    } else {
+        messageDiv.classList.add('response-message');
+    }
+
+    messageDiv.textContent = content;
+    chatArea.appendChild(messageDiv);
+}
+
+// Função para rolar para o final
+function scrollChatToBottom() {
+    const chatArea = document.getElementById('chatArea');
+    chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+// Função para atualizar a resposta na interface do usuário
+function updateLastResponse(response) {
+    const responseElement = document.getElementById('chatArea'); // ID do elemento de resposta
+    if (responseElement) {
+        responseElement.textContent = response;
+    }
 }
 
 // Função para identificar se o texto é código
