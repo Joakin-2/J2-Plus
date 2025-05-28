@@ -109,7 +109,7 @@
             <button class="botao" id="btnJok">Jok</button>
         </div>
         <div class="column">
-            <button class="botao" id="btnJok">Magma</button>
+            <button class="botao" id="btnMagma">Magma</button>
         </div>
         <div class="column">
             <button class="botao" id="btnNulluz">Nulluz</button>
@@ -132,17 +132,26 @@
     </div>
 
     <script>
-        // Exemplo de interatividade para o botão "Jok"
-        document.getElementById("btnJok").addEventListener("click", function() {
-            document.getElementById("infoJok").style.display = "block"; // Exibe as informações do Jok
-            document.getElementById("infoNulluz").style.display = "none"; // Esconde as informações do Nulluz
-        });
+    // Exemplo de interatividade para o botão "Jok"
+    document.getElementById("btnJok").addEventListener("click", function() {
+        document.getElementById("infoJok").style.display = "block"; // Exibe as informações do Jok
+        document.getElementById("infoNulluz").style.display = "none"; // Esconde as informações do Nulluz
+        document.getElementById("infoMagma").style.display = "none"; // Esconde as informações do Magma
+    });
 
-        // Exemplo de interatividade para o botão "Nulluz"
-        document.getElementById("btnNulluz").addEventListener("click", function() {
-            document.getElementById("infoNulluz").style.display = "block"; // Exibe as informações do Nulluz
-            document.getElementById("infoJok").style.display = "none"; // Esconde as informações do Jok
-        });
-    </script>
+    // Exemplo de interatividade para o botão "Magma"
+    document.getElementById("btnMagma").addEventListener("click", function() {
+        document.getElementById("infoMagma").style.display = "block"; // Exibe as informações do Magma
+        document.getElementById("infoNulluz").style.display = "none"; // Esconde as informações do Nulluz
+        document.getElementById("infoJok").style.display = "none"; // Esconde as informações do Jok
+    });
+
+    // Exemplo de interatividade para o botão "Nulluz"
+    document.getElementById("btnNulluz").addEventListener("click", function() {
+        document.getElementById("infoNulluz").style.display = "block"; // Exibe as informações do Nulluz
+        document.getElementById("infoJok").style.display = "none"; // Esconde as informações do Jok
+        document.getElementById("infoMagma").style.display = "none"; // Esconde as informações do Magma
+    });
+</script>
 </body>
 </html>
