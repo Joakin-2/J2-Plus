@@ -67,19 +67,6 @@
             text-align: center;
         }
 
-        /* Responsividade para telas menores */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .botao {
-                max-width: 90%;
-                padding: 30px 0;
-            }
-        }
-
-        /* Estilo para o display das informações */
         .informacoes {
             margin-top: 20px;
             background-color: #333;
@@ -101,6 +88,18 @@
         .informacoes a:hover {
             text-decoration: underline;
         }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .botao {
+                max-width: 90%;
+                padding: 30px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -121,7 +120,7 @@
         <p><a href="https://saladofuturo.educacao.sp.gov.br" target="_blank">Acessar Sala do Futuro</a></p>
     </div>
 
-    <div class="informacoes" id="infoMagma"> <!-- Nova seção de informações -->
+    <div class="informacoes" id="infoMagma">
         <p><strong>Magma</strong><br>RA: 000111520740<br>Dígito: 4<br>Senha: 19072007cbfm</p>
         <p><a href="https://saladofuturo.educacao.sp.gov.br" target="_blank">Acessar Sala do Futuro</a></p>
     </div>
