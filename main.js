@@ -1561,9 +1561,9 @@ function resetarPosicaoOlhos() {
   olhoEsquerdo.style.transition = "transform 0.5s ease-out";
   olhoDireito.style.transition = "transform 0.5s ease-out";
 
-  const deslocamentoX = -40; // Desloca 10px para a esquerda
+  const deslocamentoX = -41; // Desloca para a esquerda
 
-  olhoEsquerdo.style.transform = `translate(${posicaoInicial.x + deslocamentoX + 5}px, ${posicaoInicial.y}px)`;
+  olhoEsquerdo.style.transform = `translate(${posicaoInicial.x + deslocamentoX}px, ${posicaoInicial.y}px)`;
   olhoDireito.style.transform = `translate(${posicaoInicial.x + deslocamentoX}px, ${posicaoInicial.y}px)`;
 }
 
