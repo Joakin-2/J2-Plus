@@ -249,8 +249,8 @@ let data = {}; // Define globally
 function carregarHabitosDoDia() {
     const habitosPorDia = {
         domingo: {
-            manha: ['Limpar Ouvido', 'Escola Dominical', 'Limpar Fogão e Chão'],
-            tarde: ['Se Depile', 'Alise seu Pé', 'Lavar as Roupas'],
+            manha: ['Fazer Faxina', 'Limpar Fogão', 'Limpar Ouvido', 'Escola Dominical'],
+            tarde: ['Se Depile', 'Alise seu Pé', 'Lavar as Roupas', 'Lavar o Banheiro'],
             noite: ['Culto as 18h']
         },
         segunda: {
@@ -261,8 +261,8 @@ function carregarHabitosDoDia() {
             tarde: ['Trabalho (Trade)'],
         },
         quarta: {
-            manha: ['Aparar Barba', 'Limpar Ouvido', 'Limpar Fogão e Chão'],
-            tarde: ['Alise seu Pé', 'Trabalho (Trade)', 'Lavar as Roupas'],
+            manha: ['Aparar Barba', 'Fazer Faxina', 'Limpar Fogão', 'Limpar Ouvido'],
+            tarde: ['Alise seu Pé', 'Trabalho (Trade)', 'Lavar as Roupas', 'Lavar o Banheiro'],
             // noite: ['Culto as 19h30']
         },
         quinta: {
