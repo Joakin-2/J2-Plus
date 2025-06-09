@@ -101,9 +101,13 @@
                 <button class="back-button" onclick="hideMusicPlayer()" style="cursor: pointer; margin-right: 10px; background: #0d0d0d; border: none; color: white; padding: 10px; border-radius: 5px;">
                     <i class="fas fa-arrow-left"></i> <!-- Ícone de voltar -->
                 </button>
-                <h2 id="currentPlaylistTitle" style="flex-grow: 1; text-align: center;">Nome da Playlist</h2>
+                <!-- Dentro de #musicHeader, ao lado do botão de voltar -->
+                <button class="outros-button" onclick="showMusicSelection()" style="cursor: pointer; margin-left: 10px; background: #0d0d0d; border: none; color: white; padding: 10px; border-radius: 5px;">
+                    <i class="fas fa-list"></i> <!-- Ícone de lista -->
+                </button>
+                <h2 id="currentPlaylistTitle" style="flex-grow: 0.55; text-align: center;">Nome da Playlist</h2>
                 <!-- Botão para mudar a imagem da playlist - inicialmente escondido -->
-            <button id="changeImageButton" class="outros-button" onclick="changeImage()" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px; display: none;">
+            <button id="changeImageButton" class="outros-button" onclick="changeImage()" style="margin-left: 400px; position: absolute; background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px; display: none;">
                 <i class="fas fa-image"></i> <!-- Ícone de imagem -->
             </button>
             </div>
@@ -209,6 +213,67 @@
 function stopLock(element) {
     // Cancela o timeout se o botão for solto antes do tempo
     clearTimeout(lockTimeout);
+}
+
+function showMusicSelection() {
+    const musicSelection = document.getElementById("musicSelection");
+    musicSelection.style.display = "block";
+
+    // Exibe o nome da playlist atual
+    const playlistTitle = document.getElementById("currentPlaylistTitle").innerText;
+    document.getElementById("playlistTitle").innerText = playlistTitle;
+
+    // Supondo que você tenha uma variável com as faixas da playlist atual
+    loadPlaylistTracks(playlistTitle);
+}
+
+function hideMusicSelection() {
+    document.getElementById("musicSelection").style.display = "none";
+}
+
+function loadPlaylistTracks(playlistName) {
+    // Atualiza o título da playlist
+    var playlistTitle = document.getElementById('playlistTitle');
+    playlistTitle.textContent = playlistName;
+    playlistTitle.style.flexGrow = '1';
+    playlistTitle.style.textAlign = 'center';
+
+    // Obtém a lista de músicas
+    var musicList = document.getElementById('musicList');
+    musicList.innerHTML = ''; // Limpa a lista antes de adicionar novas músicas
+    musicList.style.textAlign = '-webkit-center';
+
+    // Itera sobre a lista de faixas e cria elementos para cada uma
+    currentPlaylist.forEach(function (track, index) {
+        var listItem = document.createElement('li');
+
+        // Cria o elemento para a linha vertical
+        var colorLine = document.createElement('div');
+        colorLine.style.width = '5px'; // Largura da linha
+        colorLine.style.height = '30px'; // Altura da linha
+        colorLine.style.background = 'linear-gradient(45deg, #ff4500, yellow)'; // Gradiente RGB
+        colorLine.style.marginRight = '10px'; // Espaçamento entre a linha e o título
+        colorLine.style.display = 'inline-block'; // Faz com que a linha fique ao lado do texto
+
+        // Cria o elemento para o título da música
+        var musicTitle = document.createElement('span');
+        musicTitle.classList.add('music-title');
+        musicTitle.textContent = songNames[track]; // Certifique-se de que 'track' é o índice correto em 'songNames'
+
+        // Cria o elemento para os ícones de controle
+        var icons = document.createElement('span');
+        icons.classList.add('icons');
+        icons.innerHTML = `
+            <i class="fas fa-play" onclick="playMusic(${index})" style="cursor: pointer;"></i>
+            <i class="fas fa-heart" style="cursor: pointer;"></i>
+        `;
+
+        // Adiciona os elementos ao item da lista
+        // listItem.appendChild(colorLine);
+        listItem.appendChild(musicTitle);
+        listItem.appendChild(icons);
+        musicList.appendChild(listItem);
+    });
 }
 
         const progressContainer = document.querySelector('.progress-container');
