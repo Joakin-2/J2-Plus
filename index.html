@@ -232,6 +232,15 @@
                     </div>
                     <div id="mensagem-xp"></div>
                     <div id="container2" class="face">
+                        <!-- Área onde as notas serão exibidas -->
+                        <div id="music-notes-container" style="display: none;">
+                            <!-- As notas serão inseridas aqui com JavaScript -->
+                        </div>
+                        <!-- Fone de ouvido feito com CSS -->
+                        <div id="headphone" class="headphone" style="display: none;">
+                            <div class="earpiece-left"></div>
+                            <div class="earpiece-right"></div>
+                        </div>
                         <div class="eye left" id="olhoEsquerdo"></div>
                         <div class="eye left2" id="olhoEsquerdo2" style="display: none;"></div>
                         <div class="eye right" id="olhoDireito"></div>
@@ -395,6 +404,8 @@
         document.addEventListener('DOMContentLoaded', function() {
     const backgroundMusic = document.getElementById('backgroundMusic');
     const toggleMusicBtn = document.getElementById('toggleMusicBtn');
+    const headphoneDiv = document.getElementById('headphone');
+    const musicNotesContainer = document.getElementById('music-notes-container');
     let isPlaying = false;
     const defaultMusicSrc = "Music/Fundo/Dev Song.mp3";
     const christmasMusicSrc = "Music/Fundo/Natal.mp3";
@@ -455,6 +466,42 @@
         }
     }
 
+    function showHeadphoneAndNotes() {
+        if (isPlaying) {
+            // Exibe o fone de ouvido
+            headphoneDiv.style.display = 'block';
+
+            // Exibe 3 notas (ícones de música) e substitui a cada 2 segundos
+            let noteIndex = 0; // Para saber qual nota exibir
+            const notes = [];
+            for (let i = 0; i < 3; i++) {
+                const musicNote = document.createElement('i');
+                musicNote.classList.add('fas', 'fa-music', 'music-note');
+                musicNotesContainer.appendChild(musicNote);
+                notes.push(musicNote);
+            }
+
+            // Função para atualizar as notas
+            const noteInterval = setInterval(() => {
+                // Faz a nota anterior desaparecer
+                notes[noteIndex].style.opacity = 0;
+
+                // Atualiza o índice da nota
+                noteIndex = (noteIndex + 1) % 3;
+
+                // Faz a nova nota aparecer
+                notes[noteIndex].style.opacity = 1;
+
+            }, 2000); // Substitui a cada 2 segundos
+
+            // Exibe o container das notas
+            musicNotesContainer.style.display = 'flex';
+        } else {
+            headphoneDiv.style.display = 'none';
+            musicNotesContainer.style.display = 'none'; // Esconde as notas quando a música parar
+        }
+    }
+
     // Carrega a música apropriada, mas não a inicia
     if (isBirthday()) {
         loadMusic(birthdayMusicSrc);
@@ -464,9 +511,8 @@
         loadMusic(defaultMusicSrc);
     }
 
-    // Adiciona um ouvinte de evento de clique para iniciar/pausar a música
+    // Ação do botão para alternar o som
     toggleMusicBtn.addEventListener('click', function() {
-        // Se a música não estiver tocando, inicia ao primeiro clique
         if (!isPlaying) {
             backgroundMusic.play().catch(error => {
                 console.error("Erro ao iniciar a reprodução:", error);
@@ -476,6 +522,9 @@
         } else {
             playOrPauseMusic();
         }
+
+        // Mostrar fone e notas enquanto a música estiver tocando
+        showHeadphoneAndNotes();
     });
 
     // Inicialmente, define o ícone para mudo, pois a música não está tocando

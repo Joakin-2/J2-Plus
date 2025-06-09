@@ -1058,6 +1058,57 @@ ul li:hover {
     background-color: #7046cc;
   }
 
+  .headphone {
+    position: absolute;
+    width: 50px;
+    height: 40px;
+    margin: 10px auto;
+}
+
+.earpiece-left, .earpiece-right {
+    position: absolute;
+    width: 15px;
+    height: 40px;
+    background-color: #333;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.earpiece-left {
+    left: 125px;
+}
+
+.earpiece-right {
+    right: 115px;
+}
+
+#music-notes-container {
+    position: absolute;
+    top: -180px;
+    left: 220%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.music-note {
+    margin-bottom: 10px;
+    color: #000000; /* Cor das notas */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 /* Para navegadores baseados em WebKit (como Chrome, Safari e Edge) */
 ::-webkit-scrollbar {
     width: 8px;
