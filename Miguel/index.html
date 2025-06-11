@@ -26,22 +26,82 @@
             flex-direction: column;
         }
 
-        .quadrado {
-            width: 500px;
-            height: 500px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgb(0, 0, 0);
-            padding: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
+        .avatar {
+    width: 400px;
+    height: 400px;
+    border-radius: 20%;
+    background-color: #121212; /* Cor de fundo do avatar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
 
-        .quadrado img {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 5px;
-        }
+.face {
+    position: relative;
+    width: 40px;
+    height: 120px;
+    background-color: #121212; /* Cor do rosto */
+    border-radius: 50%;
+}
+
+.risadinha {
+    position: fixed;
+    font-size: 14px;
+    color: #121212;
+    animation: subirEDesaparecer 2s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes subirEDesaparecer {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+.eye {
+    position: absolute;
+    width: 90px;
+    height: 140px;
+    background-color: #ff811e;
+    border-radius: 20%;
+    transition: height 0.3s ease-in-out;
+}
+
+.eye.left {
+    left: 41px;
+}
+
+.eye.right {
+    right: 40px;
+}
+
+.eye.left2 {
+    left: 41px;
+    height: 30px;
+    background-color: #121212;
+    margin-top: 40px;
+}
+
+.eye.right2 {
+    right: 40px;
+    height: 30px;
+    background-color: #121212;
+    margin-top: 40px;
+}
+
+.eye.left2,
+.eye.right2 {
+    animation-duration: 0.2s;
+    transition: opacity 0.5s ease;
+    position: absolute; /* ajuste conforme necessário */
+    /* outros estilos que definem a aparência e posição */
+}
 
         #status {
             display: none;
@@ -146,19 +206,38 @@
     </style>
 </head>
 <body>
-    <!--  Trocar API -->
+    <!--  Pagar(R$30) - https://platform.openai.com/api-keys -->
     <!--  Datas Especiais -->
     <div class="container" id="container">
-        <div class="quadrado">
-            <img src="gif.gif" alt="GIF">
-        </div>
+        <div id="container" class="avatar">
+                    <div id="Hat" class="birthday-hat" style="display:none;"></div>
+                    <div id="Gorro" class="gorro" style="display: none;">
+                        <div class="faixa"></div>
+                        <div class="pompom"></div>
+                    </div>
+                    <div id="mensagem-xp"></div>
+                    <div id="container2" class="face">
+                        <!-- Área onde as notas serão exibidas -->
+                        <div id="music-notes-container" style="display: none;">
+                            <!-- As notas serão inseridas aqui com JavaScript -->
+                        </div>
+                        <!-- Fone de ouvido feito com CSS -->
+                        <div id="headphone" class="headphone" style="display: none;">
+                            <div class="earpiece-left"></div>
+                            <div class="earpiece-right"></div>
+                        </div>
+                        <div class="eye left" id="olhoEsquerdo"></div>
+                        <div class="eye left2" id="olhoEsquerdo2" style="display: none;"></div>
+                        <div class="eye right" id="olhoDireito"></div>
+                        <div class="eye right2" id="olhoDireito2" style="display: none;"></div>
+                    </div>
+                </div>
 
         <!-- Contêiner para os flocos de neve -->
         <div id="neve" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
 
         <!-- Contêiner para os confetes -->
         <div id="confetes" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
-
 
         <!-- Mensagens de Natal e Aniversário -->
         <div id="parabensMensagem">
@@ -170,19 +249,15 @@
         </div>
         
         <!-- Adiciona um elemento de áudio para o som -->
-        <audio id="uiSound" src="UI.mp3"></audio>
+        <button id="ativarBtn" style="display: none;">🔊 Ativar Miguel</button>
+        <audio id="beep" src="UI.mp3" preload="auto"></audio>
+
         
-        <!-- Adiciona os elementos para input e botão -->
-        <div class="input-container">
-            <input type="text" id="inputText" placeholder="Digite sua pergunta">
-            <button id="sendButton">Enviar</button>
-        </div>
+        <!-- Botão visual opcional -->
+        <button id="voiceStatus" style="display: none; background: #000000; color: #ff811e; margin: 20px; font-size: large;">Ouvindo...</button>
         
         <!-- Adiciona um contêiner para mostrar o histórico -->
         <div id="history"></div>
-
-        <!-- Adiciona um contêiner para status -->
-        <div id="status"></div>
     </div>
     <script src="main.js"></script>
 </body>
