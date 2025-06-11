@@ -106,6 +106,7 @@
                     <i class="fas fa-list"></i> <!-- Ícone de lista -->
                 </button>
                 <h2 id="currentPlaylistTitle" style="flex-grow: 0.55; text-align: center;">Nome da Playlist</h2>
+                <button id="shareButton" style="margin-left: 270px; position: absolute; background: rgb(13, 13, 13); border: none; width: 40px; cursor: pointer; padding: 10px; display: inline-block;">🔗</button>
                 <!-- Botão para mudar a imagem da playlist - inicialmente escondido -->
             <button id="changeImageButton" class="outros-button" onclick="changeImage()" style="margin-left: 400px; position: absolute; background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px; display: none;">
                 <i class="fas fa-image"></i> <!-- Ícone de imagem -->
@@ -275,6 +276,28 @@ function loadPlaylistTracks(playlistName) {
         musicList.appendChild(listItem);
     });
 }
+
+        document.getElementById('shareButton').addEventListener('click', () => {
+    const audio = document.getElementById('audioPlayer');
+
+    // Pega a URL da música atual
+    const currentTrackUrl = audio.src;
+    const currentTrackName = songNames[currentPlaylist[currentTrackIndex]] || 'Ouça essa música!';
+
+    if (navigator.share) {
+        navigator.share({
+            title: 'Escute essa música!',
+            text: currentTrackName,
+            url: currentTrackUrl
+        }).then(() => {
+            console.log('Compartilhado com sucesso!');
+        }).catch((error) => {
+            console.error('Erro ao compartilhar:', error);
+        });
+    } else {
+        alert('O compartilhamento não é suportado neste navegador.');
+    }
+});
 
         const progressContainer = document.querySelector('.progress-container');
 const progressBar = document.getElementById('progress-bar');
