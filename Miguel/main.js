@@ -1,166 +1,130 @@
-const apiKey = 'AIzaSyAvpvehwHv1RN-vwnmth-3asp0kF0z5kPg';  // Substitua com sua chave de API do Google Gemini
-const apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
+const synth = window.speechSynthesis;
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.lang = 'pt-BR';
+recognition.continuous = true;
+recognition.interimResults = false;
 
-document.addEventListener('DOMContentLoaded', function() {
-    const inputText = document.getElementById('inputText');
-    const sendButton = document.getElementById('sendButton');
-    const status = document.getElementById('status');
-    const uiSound = document.getElementById('uiSound');
-    const historyBox = document.getElementById('history');
-    const container = document.getElementById('container');
+const voiceStatus = document.getElementById("voiceStatus");
+const beep = document.getElementById("beep");
+let ativado = false;
 
-    let commandMode = false;
+let vozMasculina = null;
 
-    function sendMessage() {
-        if (!inputText.value.trim()) {
-            inputText.style.border = '1px solid red';
-            return;
+// Aguarda as vozes carregarem e seleciona voz masculina
+function selecionarVozMasculina() {
+    const vozes = synth.getVoices();
+    vozMasculina = vozes.find(voz => 
+        voz.lang.startsWith('pt') && (
+            voz.name.toLowerCase().includes('male') ||
+            voz.name.toLowerCase().includes('homem') ||
+            voz.name.toLowerCase().includes('bruno')
+        )
+    );
+
+    if (!vozMasculina) {
+        vozMasculina = vozes.find(voz => voz.lang.startsWith('pt'));
+    }
+}
+
+if (synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = selecionarVozMasculina;
+} else {
+    selecionarVozMasculina();
+}
+
+// Função falar usando voz masculina (ou a padrão)
+function falar(texto) {
+    const utter = new SpeechSynthesisUtterance(texto);
+    utter.lang = 'pt-BR';
+    if (vozMasculina) {
+        utter.voice = vozMasculina;
+    }
+    synth.speak(utter);
+}
+
+// Botão de ativação
+document.getElementById("ativarBtn").addEventListener("click", () => {
+    recognition.start();
+    document.getElementById("ativarBtn").style.display = "none"; // esconde botão
+});
+
+// Envia para a OpenAI
+async function consultarOpenAI(pergunta) {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer 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"
+        },
+        body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "system", content: "Você é um assistente simpático e divertido chamado Miguel." },
+                { role: "user", content: pergunta }
+            ]
+        })
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Erro na API OpenAI: ${response.status} - ${errorText}`);
+        throw new Error(`Erro OpenAI: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+        throw new Error("Resposta da OpenAI no formato inesperado");
+    }
+
+    return data.choices[0].message.content.trim();
+}
+
+// Quando o reconhecimento escuta algo
+let esperandoResposta = false;
+
+recognition.onresult = async (event) => {
+    const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+    console.log("Você disse:", transcript);
+
+    if (!ativado && transcript.includes("miguel")) {
+        ativado = true;
+        voiceStatus.style.display = "block";
+        voiceStatus.textContent = "🎙️ Estou ouvindo você...";
+        beep.play();
+        falar("Olá! Pode falar comigo.");
+    } else if (ativado && !esperandoResposta) {
+        esperandoResposta = true;
+        beep.play();
+        voiceStatus.textContent = `🎧 Pensando...`;
+
+        try {
+            const resposta = await consultarOpenAI(transcript);
+            console.log("IA:", resposta);
+            voiceStatus.textContent = "🎙️ Estou ouvindo...";
+            falar(resposta);
+        } catch (error) {
+            console.error(error);
+            voiceStatus.textContent = "❌ Erro ao obter resposta. Tente novamente mais tarde.";
+            falar("Desculpe, estou com dificuldades para responder agora. Por favor, tente novamente mais tarde.");
+        } finally {
+            esperandoResposta = false;
         }
-        inputText.style.border = 'none';
-
-        status.style.display = 'block';
-        status.innerHTML = 'Carregando...';
-        sendButton.disabled = true;
-        sendButton.style.cursor = 'not-allowed';
-        inputText.disabled = true;
-
-        fetch(`${apiEndpoint}?key=${apiKey}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept-Language': 'pt-BR'
-            },
-            body: JSON.stringify({
-                contents: [
-                    {
-                        parts: [
-                            {
-                                text: inputText.value
-                            }
-                        ]
-                    }
-                ]
-            })
-        })
-        .then(response => response.json())
-        .then(response => {
-            console.log('Resposta da API:', response);
-            if (response.candidates && response.candidates.length > 0) {
-                let candidate = response.candidates[0];
-                console.log('Primeiro candidato:', candidate);
-                console.log('Conteúdo do candidato:', candidate.content);
-                
-                let content = candidate.content;
-                let r = 'Texto não encontrado';
-                if (content && content.parts && content.parts.length > 0) {
-                    let part = content.parts[0];
-                    r = part.text || 'Texto não encontrado';
-                }
-                
-                showHistory(inputText.value, r);
-                
-                status.style.display = 'none';
-            } else {
-                status.innerHTML = 'Resposta inesperada da API. Verifique o console para mais detalhes.';
-            }
-        })
-        .catch(e => {
-            console.log(`Error -> ${e}`);
-            status.innerHTML = 'Erro, tente novamente mais tarde...';
-        })
-        .finally(() => {
-            sendButton.disabled = false;
-            sendButton.style.cursor = 'pointer';
-            inputText.disabled = false;
-            inputText.value = '';
-        });
     }
+};
 
-    function showHistory(message, response) {
-        var boxMyMessage = document.createElement('div');
-        boxMyMessage.className = 'box-my-message';
+recognition.start();
 
-        var myMessage = document.createElement('p');
-        myMessage.className = 'my-message';
-        myMessage.innerHTML = message;
-
-        boxMyMessage.appendChild(myMessage);
-        historyBox.appendChild(boxMyMessage);
-
-        var boxResponseMessage = document.createElement('div');
-        boxResponseMessage.className = 'box-response-message';
-
-        var chatResponse = document.createElement('p');
-        chatResponse.className = 'response-message';
-        chatResponse.innerHTML = response;
-
-        boxResponseMessage.appendChild(chatResponse);
-        historyBox.appendChild(boxResponseMessage);
-
-        historyBox.scrollTop = historyBox.scrollHeight;
-    }
-
-    sendButton.addEventListener('click', sendMessage);
-
-    function startRecognition() {
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'pt-BR';
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
-
-        recognition.onresult = function(event) {
-            const transcript = event.results[0][0].transcript.toLowerCase();
-            console.log('Reconhecido:', transcript);
-
-            if (transcript === 'miguel') {
-                uiSound.play(); // Toca o som quando "Miguel" é reconhecido
-                container.classList.add('show-chat'); // Mostra o chat
-                commandMode = true; // Ativa o modo de comando
-                recognition.stop(); // Para o reconhecimento de voz após ativar o modo de comando
-
-                // Recomeçar reconhecimento para captura de perguntas
-                startCommandRecognition();
-            } else if (commandMode) {
-                // Se em modo de comando e ouvir outra coisa, processa como uma pergunta
-                inputText.value = transcript;
-                sendMessage();
-                commandMode = false; // Desativa o modo de comando após enviar a pergunta
-                container.classList.remove('show-chat'); // Oculta o chat
-            }
-        };
-
-        recognition.onerror = function(event) {
-            console.error('Erro no reconhecimento de voz:', event.error);
-        };
-
+document.getElementById("container").addEventListener("click", () => {
+    try {
         recognition.start();
+        console.log("Reconhecimento de voz iniciado por clique.");
+        voiceStatus.style.display = "block";
+        voiceStatus.textContent = "🎙️ Estou ouvindo você...";
+    } catch (e) {
+        console.error("Erro ao tentar iniciar o reconhecimento:", e);
     }
-
-    function falar(texto) {
-        const synth = window.speechSynthesis;
-        const utterance = new SpeechSynthesisUtterance(texto);
-        utterance.lang = 'pt-BR'; // Define o idioma para português
-        
-        // Obtém as vozes disponíveis
-        const vozes = synth.getVoices();
-    
-        // Encontra a voz masculina em português
-        let vozMasculina = null;
-        for (let i = 0; i < vozes.length; i++) {
-            if (vozes[i].lang === 'pt-BR' && vozes[i].name.includes('male')) {
-                vozMasculina = vozes[i];
-                break;
-            }
-        }
-    
-        // Se uma voz masculina for encontrada, atribui a voz à utterance
-        if (vozMasculina) {
-            utterance.voice = vozMasculina;
-        }
-    
-        // Faz o navegador falar
-        synth.speak(utterance);
-    }
+});
 
     window.onload = function() {
         var hoje = new Date();
@@ -220,30 +184,3 @@ function gerarConfetes() {
         confetesContainer.appendChild(confete);
     }
 }
-
-    function startCommandRecognition() {
-        // Inicia o reconhecimento de voz para capturar perguntas
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'pt-BR';
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
-
-        recognition.onresult = function(event) {
-            const transcript = event.results[0][0].transcript.toLowerCase();
-            console.log('Pergunta reconhecida:', transcript);
-            inputText.value = transcript;
-            sendMessage(); // Envia a pergunta para a API
-            commandMode = false; // Desativa o modo de comando após enviar a pergunta
-            container.classList.remove('show-chat'); // Oculta o chat
-        };
-
-        recognition.onerror = function(event) {
-            console.error('Erro no reconhecimento de voz:', event.error);
-        };
-
-        recognition.start();
-    }
-
-    // Inicia o reconhecimento de voz
-    startRecognition();
-});
