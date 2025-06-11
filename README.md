@@ -1,1 +1,3 @@
-Versão 1.9.2
+Versão 1.9.4
+
+*Colocar mesma API para tudo
