@@ -1321,6 +1321,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Proclamação da República", month: 11, day: 15 },
     { name: "Finados", month: 11, day: 2 },
     { name: "Dia da Consciência Negra", month: 11, day: 20 },
+
+    { name: "Dia dos Namorados", month: 6, day: 12 },
+    // Sexta-feira 13 (pode mudar de ano e mês)
   ];
 
   let currentYear = new Date().getFullYear();
