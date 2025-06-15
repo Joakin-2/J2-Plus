@@ -235,6 +235,9 @@ const notesTextarea2 = document.getElementById("notes1");
 
 function redirecionar(destino) {
     switch (destino) {
+        case 'Play':
+            window.open('play.html');
+            break;
         case 'Timer':
             window.open('Timers/timer.html');
             break;

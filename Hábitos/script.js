@@ -299,7 +299,7 @@ function carregarHabitosDoDia() {
             if (!habitosPorDia.sábado.manha) {
                 habitosPorDia.sábado.manha = []; // Inicializar caso não exista
             }
-            habitosPorDia.sábado.manha.push("Banho nos Gatos");
+            habitosPorDia.sábado.manha.push("Banho no Gato");
         }
     }
 
@@ -661,14 +661,33 @@ const diasCorridosBtn = document.getElementById('diasCorridosBtn');
         });
     });
 
-    function abrirSitesManha() {
-    window.open('https://www.twitch.tv/joakin_luiz', '_blank');
-    window.open('https://business.facebook.com/latest/content_calendar?business_id=2349354548756195&asset_id=617136918158059', '_blank');
-    window.open('https://j2plus.netlify.app/gym/', '_blank');
-    window.open('https://j2plus.netlify.app/sax/', '_blank');
-    window.open('https://j2plus.netlify.app/proto/christ/crist.html', '_blank');
-    window.open('https://saladofuturo.educacao.sp.gov.br/escolha-de-perfil', '_blank');
-    window.open('https://j2plus.netlify.app/works/', '_blank');
+function abrirSitesManha() {
+    const hoje = new Date();
+    const diaSemana = hoje.getDay(); // 0 = Domingo, 6 = Sábado
+
+    if (diaSemana === 6) {
+        // Sábado
+        window.open('https://www.twitch.tv/joakin_luiz', '_blank');
+        window.open('https://business.facebook.com/latest/content_calendar?business_id=2349354548756195&asset_id=617136918158059', '_blank');
+        window.open('https://j2plus.netlify.app/gym/', '_blank');
+        window.open('https://j2plus.netlify.app/sax/', '_blank');
+        window.open('https://j2plus.netlify.app/proto/christ/crist.html', '_blank');
+    } else if (diaSemana === 0) {
+        // Domingo
+        window.open('https://www.twitch.tv/joakin_luiz', '_blank');
+        window.open('https://business.facebook.com/latest/content_calendar?business_id=2349354548756195&asset_id=617136918158059', '_blank');
+        window.open('https://j2plus.netlify.app/sax/', '_blank');
+        window.open('https://j2plus.netlify.app/proto/christ/crist.html', '_blank');
+    } else {
+        // Dias úteis (Segunda a Sexta)
+        window.open('https://www.twitch.tv/joakin_luiz', '_blank');
+        window.open('https://business.facebook.com/latest/content_calendar?business_id=2349354548756195&asset_id=617136918158059', '_blank');
+        window.open('https://j2plus.netlify.app/gym/', '_blank');
+        window.open('https://j2plus.netlify.app/sax/', '_blank');
+        window.open('https://j2plus.netlify.app/proto/christ/crist.html', '_blank');
+        window.open('https://saladofuturo.educacao.sp.gov.br/escolha-de-perfil', '_blank');
+        window.open('https://j2plus.netlify.app/works/', '_blank');
+    }
 }
 
 function abrirSitesTarde() {
