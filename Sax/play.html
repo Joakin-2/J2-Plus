@@ -225,7 +225,7 @@
 <body>
     <!-- Botões para alternar entre PDF, Imagens e Tudo -->
     <div class="filter-buttons">
-        <div class="filter-container">
+        <!-- <div class="filter-container">
             <label for="instrument-filter">Filtrar Instrumento:</label>
             <select id="instrument-filter" onchange="filtrarInstrumentos(this.value)">
                 <option value="todos">Todos</option>
@@ -234,28 +234,302 @@
                 <option value="clarinete">🎼 Clarinete</option>
                 <option value="teclado">🎹 Teclado</option>
             </select>
-        </div>
+        </div> -->
         <button class="filter-button" onclick="showAll()">All</button>
         <button class="filter-button" onclick="showPDFs()">PDFs</button>
         <button class="filter-button" onclick="showImages()">Imagens</button>
     </div>
     <div class="gallery">
-        <div class="pdf-icon" onclick="openPDFModal('Cristo o fiel amigo.pdf')">
-            <i class="fas fa-file-pdf"></i>
-            <span style="margin-left: 8px;">Cristo o fiel amigo</span>
-        </div>
-        <div class="pdf-icon sax-alto" onclick="openPDFModal('Além do Rio Azul.pdf')">
-            <i class="fas fa-file-pdf"></i>
-            <span style="margin-left: 8px;">Além do Rio Azul</span>
-        </div>
-        <div class="pdf-icon sax-alto" onclick="openPDFModal('Com Muito Louvor.pdf')">
-            <i class="fas fa-file-pdf"></i>
-            <span style="margin-left: 8px;">Com Muito Louvor</span>
-        </div>
-        <div class="pdf-icon sax-alto" onclick="openPDFModal('Uma Vez Outra Vez.pdf')">
-            <i class="fas fa-file-pdf"></i>
-            <span style="margin-left: 8px;">Uma Vez Outra Vez</span>
-        </div>
+        <img class="image sax-alto" src="Noite Feliz.jpg" alt="Imagem Noite Feliz" onclick="openModal(0)">
+        <img class="image sax-tenor" src="125.jpg" alt="Imagem 125" onclick="openModal(1)">
+        <img class="image sax-tenor" src="093.jpg" alt="Imagem 093" onclick="openModal(2)">
+        <img class="image sax-tenor" src="107.jpg" alt="Imagem 107" onclick="openModal(3)">
+        <img class="image" src="109.jpg" alt="Imagem 109" onclick="openModal(4)">
+        <img class="image sax-tenor" src="370.jpg" alt="Imagem 370" onclick="openModal(5)">
+        <img class="image" src="459.jpg" alt="Imagem 459" onclick="openModal(6)">
+        <img class="image" src="63.jpg" alt="Imagem 63" onclick="openModal(7)">
+        <img class="image" src="89.jpg" alt="Imagem 89" onclick="openModal(8)">
+        <img class="image" src="481.jpeg" alt="Imagem 481" onclick="openModal(9)">
+        <img class="image sax-alto" src="577.jpg" alt="Imagem 577" onclick="openModal(10)">
+        <img class="image teclado" src="Altar.png" alt="Altar" onclick="openModal(11)">
+        <img class="image" src="grato-a-ti.jpg" alt="Grato a ti" onclick="openModal(12)">
+        <img class="image sax-alto" src="96.jpeg" alt="Imagem 096" onclick="openModal(13)">
+        <img class="image sax-alto" src="559.jpeg" alt="Imagem 093" onclick="openModal(14)">
+        <img class="image" src="535.jpeg" alt="Imagem 535" onclick="openModal(15)">
+        <img class="image clarinete" src="525.jpg" alt="Imagem 525" onclick="openModal(16)">
+        <img class="image sax-alto" src="14.jpeg" alt="Imagem 14" onclick="openModal(17)">
+        <img class="image sax-alto" src="491.jpeg" alt="Imagem 491" onclick="openModal(18)">
+        <img class="image sax-alto" src="3.jpeg" alt="Imagem 3" onclick="openModal(19)">
+        <img class="image sax-tenor" src="9.jpg" alt="Imagem 9" onclick="openModal(20)">
+        <img class="image sax-tenor" src="Eterna Gratidão.jpg" alt="Eterna Gratidão" onclick="openModal(21)">
+        <img class="image sax-alto" src="Subline e Grande Amor.jpeg" alt="Subline e Grande Amor" onclick="openModal(22)">
+        <img class="image sax-tenor" src="Te agradeço.jpg" alt="Te agradeço" onclick="openModal(23)">
+        <img class="image" src="247.jpeg" alt="Imagem 247" onclick="openModal(24)">
+        <img class="image sax-alto" src="Yoshi_s Island.png" alt="Yoshi's Island" onclick="openModal(25)">
     </div>
+    
+        <!-- Modal for PDF -->
+<div class="modal" id="pdfModal">
+    <span class="close" onclick="closePDFModal()">&times;</span>
+    <span class="prev" onclick="changePDF(-1)">&#10094;</span>
+    <embed id="modalPDF" src="" type="application/pdf" width="90%" height="90%">
+    <span class="next" onclick="changePDF(1)">&#10095;</span>
+    
+    <!-- Botão de Play -->
+    <button id="pdfPlayButton" class="play-button" onclick="togglePDFAudio()">
+        <i class="fa-solid fa-play"></i>
+    </button>
+    
+    <!-- Elemento de áudio para o PDF -->
+    <audio id="pdfAudioPlayer">
+        <source id="pdfAudioSource" src="" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+</div>
+
+    <!-- Modal for Imagem -->
+    <div class="modal" id="imageModal" style="display: none;">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+        <span class="next" onclick="changeImage(1)">&#10095;</span>
+    
+        <div class="zoom-controls">
+            <button onclick="zoomIn()">+</button>
+            <button onclick="zoomOut()">-</button>
+        </div>
+    
+        <!-- Botão de Play/Pause -->
+        <button id="playButton" class="play-button" onclick="toggleAudio()">
+            <i class="fa-solid fa-play"></i>
+        </button>        
+    
+        <img id="modalImage" src="" alt="Partitura">
+    
+        <!-- Elemento de áudio -->
+        <audio id="audioPlayer">
+            <source id="audioSource" src="" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
+    </div>
+    <script>
+        const pdfs = [
+        'Cristo o fiel amigo.pdf',
+        'Além do Rio Azul.pdf',
+        'Com Muito Louvor.pdf',
+        'Uma Vez Outra Vez.pdf',
+        'O GRANDE EU SOU.pdf',
+        'Hino Nacional.pdf',
+        'ESTOU CONTIGO.pdf',
+        'Casa do Pai.pdf',
+        'Shout Lord.pdf',
+        'O Exilado.pdf',
+        'How Great.pdf',
+        'Presença.pdf',
+        'Mil Graus.pdf',
+        'Draw 06.pdf',
+        '481 Eb.pdf',
+        'hino 481.pdf',
+        '481.pdf',
+        '349.pdf',
+        '311.pdf',
+        '291.pdf',
+        '074 - Clarinete B.pdf',
+        '074 - Sax tenor.pdf',
+        '074 - Sax alto B.pdf',
+        '25.pdf'
+    ];
+        const images = ["Noite Feliz.jpg", "125.jpg", "093.jpg", "107.jpg", "109.jpg", "370.jpg", "459.jpg", "63.jpg", "89.jpg", "481.jpeg", "577.jpg", "Altar.png", "grato-a-ti.jpg", "96.jpeg", "559.jpeg", "535.jpeg", "525.jpg", "14.jpeg", "491.jpeg", "3.jpeg", "9.jpg", "Eterna Gratidão.jpg", "Subline e Grande Amor.jpeg", "Te agradeço.jpg", "247.jpeg", "Yoshi_s Island.png"];
+        let currentImageIndex = 0;
+
+        function filtrarInstrumentos(tipo) {
+            const elementos = document.querySelectorAll('.pdf-icon, .image');
+
+            if (tipo === 'todos') {
+                elementos.forEach(el => {
+                    el.style.display = 'block';
+                });
+            } else {
+                elementos.forEach(el => {
+                    if (el.classList.contains(tipo)) {
+                        el.style.display = 'block';
+                    } else {
+                        el.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        function showPDFs() {
+            document.querySelectorAll('.pdf-icon').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.image').forEach(el => el.style.display = 'none');
+        }
+
+        function showImages() {
+            document.querySelectorAll('.pdf-icon').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.image').forEach(el => el.style.display = 'block');
+        }
+
+        function showAll() {
+            document.querySelectorAll('.pdf-icon').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.image').forEach(el => el.style.display = 'block');
+        }
+
+    let zoomLevel = 1.0;
+    let currentAudio = null;
+    const audioFiles = ["audio.mp3", "audio2.mp3", "audio3.mp3", "audio4.mp3", "audio5.mp3", "audio6.mp3", "audio7.mp3", "audio8.mp3", "audio9.mp3", "481.mp3", "audio10.mp3", "audio11.mp3", "audio12.mp3", "audio13.mp3", "audio14.mp3", "535.mp3", "audio16.mp3", "audio17.mp3", "audio18.mp3", "audio19.mp3", "audio20.mp3", "audio21.mp3", "audio22.mp3", "23.mp3", "247.mp3", "audio24.mp3"];
+    const modalImage = document.getElementById("modalImage");
+    const audioPlayer = document.getElementById("audioPlayer");
+    const audioSource = document.getElementById("audioSource");
+    const playButton = document.getElementById("playButton");
+
+    function openModal(index) {
+    currentImageIndex = index;
+    document.getElementById("imageModal").style.display = "flex";
+    
+    // Definir a imagem no modal
+    const modalImage = document.getElementById("modalImage");
+    modalImage.src = images[index];
+
+    // Resetar o zoom ao abrir nova imagem
+    zoomLevel = 1.0;
+    modalImage.style.transform = `scale(${zoomLevel})`;
+
+    // Definir o áudio correspondente
+    if (audioFiles[index]) {
+        const audioPlayer = document.getElementById("audioPlayer");
+        const audioSource = document.getElementById("audioSource");
+        audioSource.src = audioFiles[index];
+        audioPlayer.load(); // Carregar o áudio
+    }
+
+    // Resetar o botão de play
+    document.getElementById("playButton").innerHTML = '<i class="fa-solid fa-play"></i>';
+}
+
+function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+
+    // Pausar o áudio ao fechar
+    const audioPlayer = document.getElementById("audioPlayer");
+    audioPlayer.pause();
+    document.getElementById("playButton").innerHTML = '<i class="fa-solid fa-play"></i>';
+}
+
+function toggleAudio() {
+    const audioPlayer = document.getElementById("audioPlayer");
+    const playButton = document.getElementById("playButton");
+
+    if (audioPlayer.paused) {
+        audioPlayer.play().catch(e => console.error("Erro ao tentar reproduzir o áudio:", e));
+        playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    } else {
+        audioPlayer.pause();
+        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+    }
+}
+
+    function changeImage(direction) {
+            currentImageIndex += direction;
+
+            // Limitar o índice para garantir que ele não ultrapasse os limites da galeria
+            if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+            if (currentImageIndex >= images.length) currentImageIndex = 0;
+
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = images[currentImageIndex];
+        }
+
+    // Lista de arquivos de áudio correspondentes aos PDFs
+const audioFiles2 = {
+    "25.pdf": "25.mp3",
+    "349.pdf": "349.mp3",
+    "291.pdf": "291.mp3",
+    "481.pdf": "481.mp3",
+    //"Além do Rio Azul.pdf": "Além_do_Rio_Azul.mp3",
+    //"Com Muito Louvor.pdf": "Com_Muito_Louvor.mp3",
+    //"Uma Vez Outra Vez.pdf": "Uma_Vez_Outra_Vez.mp3",
+    //"O GRANDE EU SOU.pdf": "O_GRANDE_EU_SOU.mp3",
+    //"Hino Nacional.pdf": "Hino_Nacional.mp3",
+    //"ESTOU CONTIGO.pdf": "ESTOU_CONTIGO.mp3",
+    // Adicione mais arquivos de áudio conforme necessário
+};
+
+let currentPDFIndex = 0;
+
+    // Função para abrir o modal do PDF
+    function openPDFModal(pdfFileName) {
+        const pdfModal = document.getElementById('pdfModal');
+        const modalPDF = document.getElementById('modalPDF');
+        modalPDF.src = pdfFileName;
+        pdfModal.style.display = 'flex';
+
+        // Atualizar o áudio do PDF atual
+        if (audioFiles2[pdfFileName]) {
+            const pdfAudioSource = document.getElementById("pdfAudioSource");
+            pdfAudioSource.src = audioFiles2[pdfFileName];
+            const pdfAudioPlayer = document.getElementById("pdfAudioPlayer");
+            pdfAudioPlayer.load(); // Carregar o áudio
+        }
+
+        // Alterar o botão para "Play"
+        const playButton = document.getElementById("pdfPlayButton");
+        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+    }
+
+    function changePDF(direction) {
+        currentPDFIndex += direction;
+
+        // Limitar o índice para garantir que ele não ultrapasse os limites da galeria de PDFs
+        if (currentPDFIndex < 0) currentPDFIndex = pdfs.length - 1;
+        if (currentPDFIndex >= pdfs.length) currentPDFIndex = 0;
+
+        const modalPDF = document.getElementById('modalPDF');
+        modalPDF.src = pdfs[currentPDFIndex]; // Atualiza a visualização do PDF
+    }
+
+    // Função para fechar o modal do PDF
+    function closePDFModal() {
+        document.getElementById("pdfModal").style.display = "none";
+        const pdfAudioPlayer = document.getElementById("pdfAudioPlayer");
+        pdfAudioPlayer.pause(); // Parar a música ao fechar o modal
+    }
+
+    // Função para alternar o áudio (Play/Pause)
+    function togglePDFAudio() {
+        const pdfAudioPlayer = document.getElementById("pdfAudioPlayer");
+        const playButton = document.getElementById("pdfPlayButton");
+
+        if (pdfAudioPlayer.paused) {
+            pdfAudioPlayer.play().catch(e => console.error("Erro ao tentar reproduzir o áudio:", e));
+            playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';  // Mudar para o botão de Pause
+        } else {
+            pdfAudioPlayer.pause();
+            playButton.innerHTML = '<i class="fa-solid fa-play"></i>';  // Voltar para o botão de Play
+        }
+    }
+
+    function zoomIn() {
+        zoomLevel += 0.2;
+        modalImage.style.transform = `scale(${zoomLevel})`;
+    }
+
+    function zoomOut() {
+        if (zoomLevel > 0.5) {
+            zoomLevel -= 0.2;
+            modalImage.style.transform = `scale(${zoomLevel})`;
+        }
+    }
+
+    function toggleAudio() {
+        let icon = playButton.querySelector("i");
+        if (audioPlayer.paused) {
+            audioPlayer.play().catch(e => console.error("Erro ao tentar reproduzir o áudio:", e));
+            icon.classList.replace("fa-play", "fa-pause");
+        } else {
+            audioPlayer.pause();
+            icon.classList.replace("fa-pause", "fa-play");
+        }
+    }
+    </script>
 </body>
 </html>
