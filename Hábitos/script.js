@@ -261,7 +261,7 @@ function carregarHabitosDoDia() {
             tarde: ['Trabalho (Trade)'],
         },
         quarta: {
-            manha: ['Aparar Barba', 'Fazer Faxina', 'Limpar Fogão', 'Limpar Ouvido'],
+            manha: ['Fazer Faxina', 'Aparar Barba', 'Limpar Fogão', 'Limpar Ouvido'],
             tarde: ['Alise seu Pé', 'Trabalho (Trade)', 'Lavar as Roupas', 'Lavar o Banheiro'],
             // noite: ['Culto as 19h30']
         },
