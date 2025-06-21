@@ -667,20 +667,20 @@ function abrirSitesManha() {
 
     if (diaSemana === 6) {
         // Sábado
-        window.open('https://www.twitch.tv/joakin_luiz', '_blank');
+        window.open('https://www.twitch.tv/joakinbr', '_blank');
         window.open('https://business.facebook.com/latest/content_calendar?business_id=2349354548756195&asset_id=617136918158059', '_blank');
         window.open('https://j2plus.netlify.app/gym/', '_blank');
         window.open('https://j2plus.netlify.app/sax/', '_blank');
         window.open('https://j2plus.netlify.app/proto/christ/crist.html', '_blank');
     } else if (diaSemana === 0) {
         // Domingo
-        window.open('https://www.twitch.tv/joakin_luiz', '_blank');
+        window.open('https://www.twitch.tv/joakinbr', '_blank');
         window.open('https://business.facebook.com/latest/content_calendar?business_id=2349354548756195&asset_id=617136918158059', '_blank');
         window.open('https://j2plus.netlify.app/sax/', '_blank');
         window.open('https://j2plus.netlify.app/proto/christ/crist.html', '_blank');
     } else {
         // Dias úteis (Segunda a Sexta)
-        window.open('https://www.twitch.tv/joakin_luiz', '_blank');
+        window.open('https://www.twitch.tv/joakinbr', '_blank');
         window.open('https://business.facebook.com/latest/content_calendar?business_id=2349354548756195&asset_id=617136918158059', '_blank');
         window.open('https://j2plus.netlify.app/gym/', '_blank');
         window.open('https://j2plus.netlify.app/sax/', '_blank');
