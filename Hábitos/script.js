@@ -284,24 +284,41 @@ function carregarHabitosDoDia() {
     const hoje = new Date();
     const diaAtual = diasSemana[hoje.getDay()];
 
-    // Verificar se é o segundo sábado do mês
-    if (hoje.getDay() === 6) { // Se for sábado
-        const diaDoMes = hoje.getDate();
-        // Segundo sábado
-        if (diaDoMes >= 8 && diaDoMes <= 14) { // Se estiver entre o 8º e o 14º dia do mês
-            if (!habitosPorDia.sábado.noite) {
-                habitosPorDia.sábado.noite = []; // Inicializar caso não exista
-            }
-            habitosPorDia.sábado.noite.push("Santa Ceia"); // Adicionar "Santa Ceia" no sábado à noite
+    // Verificar se é sábado
+if (hoje.getDay() === 6) {
+    const diaDoMes = hoje.getDate();
+
+    // Segundo sábado
+    if (diaDoMes >= 8 && diaDoMes <= 14) {
+        if (!habitosPorDia.sábado.noite) {
+            habitosPorDia.sábado.noite = [];
         }
-        // Terceiro sábado
-        if (diaDoMes >= 15 && diaDoMes <= 21) {
-            if (!habitosPorDia.sábado.manha) {
-                habitosPorDia.sábado.manha = []; // Inicializar caso não exista
-            }
-            habitosPorDia.sábado.manha.push("Banho no Gato");
-        }
+        habitosPorDia.sábado.noite.push("Santa Ceia");
     }
+
+    // Terceiro sábado
+    if (diaDoMes >= 15 && diaDoMes <= 21) {
+        if (!habitosPorDia.sábado.manha) {
+            habitosPorDia.sábado.manha = [];
+        }
+        habitosPorDia.sábado.manha.push("Banho no Gato");
+    }
+}
+
+// Verificar se é o terceiro domingo do mês
+if (hoje.getDay() === 0) { // Domingo
+    const diaDoMes = hoje.getDate();
+
+    if (diaDoMes >= 15 && diaDoMes <= 21) {
+        if (!habitosPorDia.domingo) {
+            habitosPorDia.domingo = {};
+        }
+        if (!habitosPorDia.domingo.manha) {
+            habitosPorDia.domingo.manha = [];
+        }
+        habitosPorDia.domingo.manha.push("Entragar Dízimo");
+    }
+}
 
     // Carregar hábitos do dia
     if (habitosPorDia[diaAtual]) {
