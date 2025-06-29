@@ -251,7 +251,7 @@ function carregarHabitosDoDia() {
         domingo: {
             manha: ['Fazer Faxina', 'Limpar Fogão', 'Limpar Ouvido', 'Escola Dominical'],
             tarde: ['Se Depile', 'Alise seu Pé', 'Lavar as Roupas', 'Lavar o Banheiro'],
-            noite: ['Culto as 18h']
+            noite: ['Culto da Família']
         },
         segunda: {
             manha: ['Oração na Igreja'],
@@ -329,10 +329,10 @@ if (hoje.getDay() === 0) { // Hoje é domingo
         if (!habitosPorDia.domingo) {
             habitosPorDia.domingo = {};
         }
-        if (!habitosPorDia.domingo.manha) {
-            habitosPorDia.domingo.manha = [];
+        if (!habitosPorDia.domingo.noite) {
+            habitosPorDia.domingo.noite = [];
         }
-        habitosPorDia.domingo.manha.push("Entregar Dízimo");
+        habitosPorDia.domingo.noite.push("Entregar Dízimo");
     }
 }
 
