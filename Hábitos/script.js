@@ -305,18 +305,34 @@ if (hoje.getDay() === 6) {
     }
 }
 
-// Verificar se é o terceiro domingo do mês
-if (hoje.getDay() === 0) { // Domingo
-    const diaDoMes = hoje.getDate();
+// Verificar se é o último domingo do mês
+if (hoje.getDay() === 0) { // Hoje é domingo
+    const ano = hoje.getFullYear();
+    const mes = hoje.getMonth();
+    const dia = hoje.getDate();
 
-    if (diaDoMes >= 15 && diaDoMes <= 21) {
+    // Descobrir o último dia do mês
+    const ultimoDiaDoMes = new Date(ano, mes + 1, 0).getDate();
+
+    // Verificar se há outro domingo após o dia de hoje neste mês
+    let temOutroDomingoDepois = false;
+    for (let d = dia + 1; d <= ultimoDiaDoMes; d++) {
+        const data = new Date(ano, mes, d);
+        if (data.getDay() === 0) { // Outro domingo encontrado
+            temOutroDomingoDepois = true;
+            break;
+        }
+    }
+
+    if (!temOutroDomingoDepois) {
+        // Hoje é o último domingo do mês
         if (!habitosPorDia.domingo) {
             habitosPorDia.domingo = {};
         }
         if (!habitosPorDia.domingo.manha) {
             habitosPorDia.domingo.manha = [];
         }
-        habitosPorDia.domingo.manha.push("Entragar Dízimo");
+        habitosPorDia.domingo.manha.push("Entregar Dízimo");
     }
 }
 
