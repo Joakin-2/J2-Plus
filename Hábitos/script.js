@@ -271,8 +271,9 @@ function carregarHabitosDoDia() {
             noite: ['Finalizar Jejum']
         },
         sexta: {
-            tarde: ['Trabalho (Mídia)', 'Limpar Escritório'],
-            // noite: ['Culto as 19h30']
+            tarde: ['Trabalho (Mídia)', 'Lavar Carro e Moto'],
+            noite: ['Limpar Escritório']
+            // noite: ['Culto as 19h30', 'Limpar Escritório']
         },
         sábado: {
             manha: ['Correr (1 hora)', 'Ensaiar (2 hora)'],
