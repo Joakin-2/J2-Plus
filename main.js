@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await fetchTemperature();
     await fetchWeatherForecast();
     // await fetchNews();
-    await fetchStocks();
+    await exibirCotacoes();
 });
 
 async function fetchTemperature() {
@@ -587,44 +587,6 @@ async function fetchNews() {
     }
 }
 
-const ativos = [
-    {
-        "tickerSymbol": "WINM24",
-        "side": "compra",
-        "marketName": "Futuros",
-        "tradeQuantity": 2,
-        "priceValue": 120000.0,
-        "tradeDateTime": "2024-11-26T08:30:00Z",
-        "previousValue": 130115.0 // Valor de referência do Mini-Índice
-    },
-    {
-        "tickerSymbol": "WDOZ24",
-        "side": "venda",
-        "marketName": "Futuros",
-        "tradeQuantity": 5,
-        "priceValue": 5125.0,
-        "tradeDateTime": "2024-11-26T09:15:00Z",
-        "previousValue": 5800.0 // Valor de referência do Mini Dólar
-    }
-];
-
-// Função para adicionar os ativos à lista
-function fetchStocks() {
-    const lista = document.getElementById('stocksList');
-    lista.innerHTML = ''; // Limpa a lista (para remover o "Carregando...")
-
-    // Adiciona os ativos à lista
-    ativos.forEach(ativo => {
-        const priceChange = ativo.priceValue - ativo.previousValue;
-        const percentageChange = (priceChange / ativo.previousValue) * 100;
-        const direction = priceChange > 0 ? 'subindo' : 'caindo';
-        const li = document.createElement('li');
-        li.textContent = `${ativo.tickerSymbol}: (${direction} ${Math.abs(percentageChange).toFixed(2)}%)`;
-        // li.textContent = `${ativo.tickerSymbol} - ${ativo.side} - ${ativo.marketName} - ${ativo.tradeQuantity} contratos a ${ativo.priceValue} (${direction} ${Math.abs(percentageChange).toFixed(2)}%)`;
-        lista.appendChild(li);
-    });
-}
-
 function updateClock() {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
@@ -637,6 +599,51 @@ function updateClock() {
 setInterval(updateClock, 60000);
 // Chama a função uma vez para não esperar um minuto
 updateClock();
+
+async function fetchCotacaoDolar() {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL');
+    const data = await response.json();
+    const cotacaoAtual = parseFloat(data.USDBRL.bid);
+    return {
+        atual: cotacaoAtual,
+        anterior: cotacaoAtual // não tem variação, só mostra 0%
+    };
+}
+
+    async function fetchIbovespa() {
+        const response = await fetch('https://brapi.dev/api/quote/^BVSP?token=oHx6DYAv1hWwoZMYxKqmgs');
+        const data = await response.json();
+        const ibov = data.results?.[0]?.regularMarketPrice;
+        return ibov || null;
+    }
+
+    async function exibirCotacoes() {
+        const ibovespaItem = document.getElementById('ibovespaItem');
+        const dolarItem = document.getElementById('dolarItem');
+
+        try {
+            const [dolarData, ibovespa] = await Promise.all([
+                fetchCotacaoDolar(),
+                fetchIbovespa()
+            ]);
+
+            const { atual, anterior } = dolarData;
+            const variacao = atual - anterior;
+            const variacaoPorcento = (variacao / anterior) * 100;
+            const classe = variacao >= 0 ? 'positivo' : 'negativo';
+
+            const ibovFormatado = ibovespa ? ibovespa.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) : 'indisponível';
+
+            ibovespaItem.textContent = `Ibovespa: ${ibovFormatado}`;
+            dolarItem.innerHTML = `Dólar - R$ ${atual.toFixed(2)} <span class="${classe}">(${Math.abs(variacaoPorcento).toFixed(2)}%)</span>`;
+        } catch (error) {
+            console.error('Erro ao carregar cotações:', error);
+            ibovespaItem.textContent = 'Ibovespa - erro ao carregar';
+            dolarItem.textContent = 'Dólar - erro ao carregar';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', exibirCotacoes);
 
 // Camera
 document.addEventListener('DOMContentLoaded', () => {

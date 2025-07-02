@@ -69,7 +69,7 @@
   <div class="perfil-container" id="perfil-container">
     <div class="perfil-content">
         <button id="fechar-btn" class="fechar-btn" style="margin-right: 90%; background: #202020;">X</button>
-        <button id="squad-btn" class="squad-btn" style="margin-top: -5px; margin-left: -150px; background: #202020; position: absolute;"><i class="fas fa-users"></i></button>
+        <button id="squad-btn" class="squad-btn" onclick="window.open('squad.html', '_blank')" style="margin-top: -5px; margin-left: -150px; background: #202020; position: absolute;"><i class="fas fa-users"></i></button>
         <button id="toggleEffectButton" class="toggle-effect-btn" style="position: absolute; margin-top: -40px; margin-left: 100px;"><i class="fas fa-leaf"></i></button>          
         <button id="toggleEffectButton2" class="toggle-effect-btn" style="position: absolute; margin-top: 0px; margin-left: 100px;"><i class="fas fa-star"></i></button>
         <div class="icone-perfil">&#128100;</div> <!-- Ícone de perfil -->
@@ -220,7 +220,8 @@
                         <a href="https://www.toroinvestimentos.com.br/" target="_blank">Toro</a>
                     </div>
                     <ul id="stocksList">
-                        <li>Carregando ações...</li>
+                        <li id="ibovespaItem">Ibovespa - carregando...</li>
+                        <li id="dolarItem">Dólar - carregando...</li>
                     </ul>
                 </div>                
             </div>

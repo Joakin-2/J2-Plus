@@ -8,6 +8,14 @@ body {
     color: #e0e0e0; /* Cor de texto clara */
 }
 
+.positivo {
+        color: green;
+    }
+
+    .negativo {
+        color: red;
+    }
+
 #weatherForecast {
     display: inline-block;
     font-size: 18px;

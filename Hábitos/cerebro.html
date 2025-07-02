@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Diagnóstico Cerebral</title>
+        <link rel="icon" href="icon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            text-align: center;
+        }
+        .question-container {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+        }
+        #chart-container {
+            width: 80%;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #result-text {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        /* Estilo padrão */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Fundo da barra */
+::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 5px;
+}
+
+/* Posição da alça */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Alça quando passa o mouse */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+    </style>
+</head>
+<body>
+
+    <h1>Diagnóstico Cerebral Avançado</h1>
+
+    <div id="quiz-container">
+        <div class="question-container" id="q1">
+            <h3>Quanto tempo você consegue se concentrar em uma tarefa?</h3>
+            <button onclick="responder('atenção', 1)">Menos de 5 minutos</button>
+            <button onclick="responder('atenção', 2)">5 a 10 minutos</button>
+            <button onclick="responder('atenção', 3)">Mais de 10 minutos</button>
+        </div>
+
+        <div class="question-container" id="q2" style="display:none;">
+            <h3>Quantos números você lembra de uma sequência de 5?</h3>
+            <button onclick="responder('memória', 1)">Nenhum</button>
+            <button onclick="responder('memória', 2)">Até 3</button>
+            <button onclick="responder('memória', 3)">Todos</button>
+        </div>
+
+        <div class="question-container" id="q3" style="display:none;">
+            <h3>Você consegue resolver quebra-cabeças rapidamente?</h3>
+            <button onclick="responder('raciocínio', 1)">Difícil</button>
+            <button onclick="responder('raciocínio', 2)">Moderadamente</button>
+            <button onclick="responder('raciocínio', 3)">Com facilidade</button>
+        </div>
+
+        <div class="question-container" id="q4" style="display:none;">
+            <h3>Qual sua velocidade para resolver contas mentais simples?</h3>
+            <button onclick="responder('velocidade', 1)">Lenta</button>
+            <button onclick="responder('velocidade', 2)">Razoável</button>
+            <button onclick="responder('velocidade', 3)">Rápida</button>
+        </div>
+    </div>
+
+    <div id="result-section" style="display:none;">
+        <div id="chart-container">
+            <canvas id="resultChart"></canvas>
+        </div>
+        <div id="result-text"></div>
+        <button onclick="baixarResultado()">📥 Baixar Resultado</button>
+    </div>
+
+    <script>
+        let respostas = {
+            atenção: 0,
+            memória: 0,
+            raciocínio: 0,
+            velocidade: 0
+        };
+
+        let perguntaAtual = 1;
+
+        function responder(categoria, valor) {
+            respostas[categoria] += valor;
+            perguntaAtual++;
+
+            if (perguntaAtual > 4) {
+                mostrarResultado();
+            } else {
+                document.getElementById(`q${perguntaAtual - 1}`).style.display = 'none';
+                document.getElementById(`q${perguntaAtual}`).style.display = 'block';
+            }
+        }
+
+        function mostrarResultado() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('result-section').style.display = 'block';
+
+            const ctx = document.getElementById('resultChart').getContext('2d');
+            const categorias = Object.keys(respostas);
+            const valores = Object.values(respostas);
+
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: categorias,
+                    datasets: [{
+                        label: 'Pontuação',
+                        data: valores,
+                        backgroundColor: ['#4caf50', '#2196f3', '#ff9800', '#e91e63']
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: 9,
+                            ticks: {
+                                callback: function(value) {
+                                    if (value <= 3) return 'Ruim';
+                                    if (value <= 5) return 'Normal';
+                                    if (value <= 7) return 'Bom';
+                                    return 'Excelente';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const media = valores.reduce((a, b) => a + b, 0) / valores.length;
+            let texto = '';
+            if (media <= 3) texto = 'Desempenho cognitivo abaixo da média.';
+            else if (media <= 5) texto = 'Desempenho dentro da média.';
+            else if (media <= 7) texto = 'Desempenho bom.';
+            else texto = 'Desempenho excelente!';
+            document.getElementById('result-text').innerText = texto;
+        }
+
+        async function baixarResultado() {
+            const element = document.getElementById('result-section');
+            const canvas = await html2canvas(element);
+            const imgData = canvas.toDataURL('image/png');
+
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            pdf.addImage(imgData, 'PNG', 10, 10, 180, 120);
+            pdf.save("diagnostico_cerebral.pdf");
+        }
+    </script>
+
+</body>
+</html>
