@@ -14,7 +14,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Controle Financeiro Mensal</h1>
+        <div style="display: inline-flex; align-items: center; margin-bottom: 20px; margin-left: 50px;">
+            <h1 style="display: inline-block; margin-right: 10px;">Controle Financeiro Mensal</h1>
+            <button type="button" class="sugestao-btn" onclick="openCalModal()">+/-</button>
+        </div>
 
         <br>
         
@@ -63,6 +66,37 @@
         <button id="recalculate-total" class="fas fa-redo" style="width: auto; margin-left: 20px; padding: 6px;"></button>
         </div>
 
+        <!-- Modal da Calculadora -->
+    <div id="calcModal" class="modal" style="z-index: 1000; height: 410px; width: 380px; background: rgb(0 0 0 / 0%);">
+        <div class="modal-content" onmousedown="dragMouseDown(event)" style="background: #252424; height: 310px; width: 240px; border: 2px solid #ddd; border-radius: 4px;">
+            <div class="calculator">
+                <span class="close" onclick="closeCalModal()">&times;</span>
+                <input type="text" id="display" disabled style="width: 96%; padding: 8px 10px; font-size: 16px; background-color: #333; color: #e0e0e0; border: 1px solid #444; border-radius: 4px;">
+                <div class="buttoncal" style="display: grid; grid-template-columns: repeat(4, 0fr); grid-gap: 10px; margin-top: 10px;">
+                    <button onclick="appendToDisplay('7')">7</button>
+                    <button onclick="appendToDisplay('8')">8</button>
+                    <button onclick="appendToDisplay('9')">9</button>
+                    <button onclick="appendToDisplay('/')">/</button>
+                    
+                    <button onclick="appendToDisplay('4')">4</button>
+                    <button onclick="appendToDisplay('5')">5</button>
+                    <button onclick="appendToDisplay('6')">6</button>
+                    <button onclick="appendToDisplay('*')">*</button>
+                    
+                    <button onclick="appendToDisplay('1')">1</button>
+                    <button onclick="appendToDisplay('2')">2</button>
+                    <button onclick="appendToDisplay('3')">3</button>
+                    <button onclick="appendToDisplay('-')">-</button>
+                    
+                    <button onclick="appendToDisplay('0')">0</button>
+                    <button onclick="clearDisplay()">C</button>
+                    <button onclick="calculate()">=</button>
+                    <button onclick="appendToDisplay('+')">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
         <!-- Botões para salvar e baixar PDF -->
         <button id="save-expenses" class="hidden">Salvar</button>
         <div class="button-container">
@@ -80,6 +114,66 @@
     </div>
     <script src="scripts.js"></script>
     <script>
+        let display = document.getElementById('display');
+
+// Função para abrir o modal
+function openCalModal() {
+    document.getElementById('calcModal').style.display = 'block';
+}
+
+// Função para fechar o modal
+function closeCalModal() {
+    document.getElementById('calcModal').style.display = 'none';
+}
+
+// Função para adicionar valores ao visor
+function appendToDisplay(value) {
+    display.value += value;
+}
+
+// Função para limpar o visor
+function clearDisplay() {
+    display.value = '';
+}
+
+// Função para calcular o resultado
+function calculate() {
+    try {
+        display.value = eval(display.value);
+    } catch (e) {
+        display.value = 'Erro';
+    }
+}
+
+// Função para permitir que o modal seja arrastado
+let modal = document.getElementById('calcModal');
+let modalHeader = document.getElementsByClassName('modal-header')[0];
+
+let isDragging = false;
+let offsetX, offsetY;
+
+function dragMouseDown(e) {
+    e.preventDefault();
+    isDragging = true;
+    offsetX = e.clientX - modal.offsetLeft;
+    offsetY = e.clientY - modal.offsetTop;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = dragMouseMove;
+}
+
+function dragMouseMove(e) {
+    if (isDragging) {
+        modal.style.top = e.clientY - offsetY + 'px';
+        modal.style.left = e.clientX - offsetX + 'px';
+    }
+}
+
+function closeDragElement() {
+    isDragging = false;
+    document.onmouseup = null;
+    document.onmousemove = null;
+}
+
         // Função para salvar as despesas em um arquivo JSON
         function saveExpensesAsJson() {
             var table = document.getElementById("expense-table").getElementsByTagName("tbody")[0];

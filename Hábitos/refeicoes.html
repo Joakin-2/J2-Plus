@@ -108,7 +108,7 @@ fieldset button:hover {
     border-radius: 4px;
     z-index: 1000;
     width: 500px;
-    height: 410px;
+    height: 420px;
         }
 
         #calculatorModal input {
@@ -246,7 +246,11 @@ li {
         margin-left: 40px;
 }
 
-        
+.buttoncal button {
+    width: 60px;
+    height: 50px;
+}
+
     </style>
 </head>
 <body>
@@ -431,11 +435,45 @@ li {
 
     <!-- Modal de anotações -->
     <div id="notesModal">
-        <h2>Anotações</h2>
+        <div style="display: inline-flex; align-items: center; margin-bottom: 20px;">
+            <h2 style="display: inline-block; margin-right: 10px; margin-bottom: 10px;">Anotações</h2>
+            <button type="button" class="sugestao-btn" onclick="openCalModal()">+/-</button>
+        </div>
         <textarea id="notesTextAreaComer" placeholder="Escreva suas anotações aqui..." style="height: 120px; border: 1px solid #ccc; background-color: #2b2b2b; color: white;"></textarea>
         <p>Sua taxa metabólica basal (TMB) é 1.750 kcal por dia.</p>
         <p>A quantidade de calorias varia conforme o tipo de alimento. Para um cálculo mais preciso, consulte uma tabela nutricional.</p>
         <button onclick="closeNotesModal()">Fechar</button>
+    </div>
+
+    <!-- Modal da Calculadora -->
+    <div id="calcModal" class="modal" style="z-index: 1000; height: 410px; width: 380px; background: rgb(0 0 0 / 0%);">
+        <div class="modal-content" onmousedown="dragMouseDown(event)" style="background: #252424; height: 330px; width: 280px; border: 2px solid #ddd; border-radius: 4px;">
+            <div class="calculator">
+                <span class="close" onclick="closeCalModal()">&times;</span>
+                <input type="text" id="display" disabled>
+                <div class="buttoncal" style="display: grid; grid-template-columns: repeat(4, 0fr); grid-gap: 10px; padding: 10px;">
+                    <button onclick="appendToDisplay('7')">7</button>
+                    <button onclick="appendToDisplay('8')">8</button>
+                    <button onclick="appendToDisplay('9')">9</button>
+                    <button onclick="appendToDisplay('/')">/</button>
+                    
+                    <button onclick="appendToDisplay('4')">4</button>
+                    <button onclick="appendToDisplay('5')">5</button>
+                    <button onclick="appendToDisplay('6')">6</button>
+                    <button onclick="appendToDisplay('*')">*</button>
+                    
+                    <button onclick="appendToDisplay('1')">1</button>
+                    <button onclick="appendToDisplay('2')">2</button>
+                    <button onclick="appendToDisplay('3')">3</button>
+                    <button onclick="appendToDisplay('-')">-</button>
+                    
+                    <button onclick="appendToDisplay('0')">0</button>
+                    <button onclick="clearDisplay()">C</button>
+                    <button onclick="calculate()">=</button>
+                    <button onclick="appendToDisplay('+')">+</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="resetModal">
@@ -522,6 +560,66 @@ function mudarPagina(direcao) {
                 document.getElementById("notesTextAreaComer").value = savedNotes;
             }
         };
+
+        let display = document.getElementById('display');
+
+// Função para abrir o modal
+function openCalModal() {
+    document.getElementById('calcModal').style.display = 'block';
+}
+
+// Função para fechar o modal
+function closeCalModal() {
+    document.getElementById('calcModal').style.display = 'none';
+}
+
+// Função para adicionar valores ao visor
+function appendToDisplay(value) {
+    display.value += value;
+}
+
+// Função para limpar o visor
+function clearDisplay() {
+    display.value = '';
+}
+
+// Função para calcular o resultado
+function calculate() {
+    try {
+        display.value = eval(display.value);
+    } catch (e) {
+        display.value = 'Erro';
+    }
+}
+
+// Função para permitir que o modal seja arrastado
+let modal = document.getElementById('calcModal');
+let modalHeader = document.getElementsByClassName('modal-header')[0];
+
+let isDragging = false;
+let offsetX, offsetY;
+
+function dragMouseDown(e) {
+    e.preventDefault();
+    isDragging = true;
+    offsetX = e.clientX - modal.offsetLeft;
+    offsetY = e.clientY - modal.offsetTop;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = dragMouseMove;
+}
+
+function dragMouseMove(e) {
+    if (isDragging) {
+        modal.style.top = e.clientY - offsetY + 'px';
+        modal.style.left = e.clientX - offsetX + 'px';
+    }
+}
+
+function closeDragElement() {
+    isDragging = false;
+    document.onmouseup = null;
+    document.onmousemove = null;
+}
 
         // Monitorar mudanças na caixa de texto e salvar automaticamente
         document.getElementById("notesTextAreaComer").addEventListener("input", saveNotes);
