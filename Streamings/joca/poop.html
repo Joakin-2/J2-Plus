@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="yt/yt.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            height: 100vh;
+            overflow: auto;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 10px;
+            border: 3px solid #121212;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #333;
+            border-radius: 10px;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            scroll-snap-align: start;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .video-feed {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="videosFeed" class="video-feed"></div>
+
+    <script>
+        const videos = [
+            "https://www.youtube.com/embed/5ZntdGUj-vw",
+            "https://www.youtube.com/embed/q6AMjpZylpo",
+            "https://www.youtube.com/embed/WQ8CABnn1Cc",
+            "https://www.youtube.com/embed/2CbBI2J9Z58",
+            "https://www.youtube.com/embed/Qq4uQ1VGVHM",
+            "https://www.youtube.com/embed/8Qu0w4D-ubM",
+            "https://www.youtube.com/embed/5etnN111PGU",
+            "https://www.youtube.com/embed/pE4o9uUp2dk",
+            "https://www.youtube.com/embed/oXGHPFRetHw",
+            "https://www.youtube.com/embed/pop9fab8wrU",
+            "https://www.youtube.com/embed/WQ8CABnn1Cc",
+            "https://www.youtube.com/embed/TZLDvzQX5VU"
+        ];
+
+        function loadVideos() {
+            const feed = document.getElementById("videosFeed");
+            feed.innerHTML = '';
+
+            videos.forEach(videoSrc => {
+                const videoContainer = document.createElement("div");
+                videoContainer.classList.add("video-container");
+
+                const iframe = document.createElement("iframe");
+                iframe.src = videoSrc;
+                iframe.frameBorder = "0";
+                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                iframe.allowFullscreen = true;
+
+                videoContainer.appendChild(iframe);
+                feed.appendChild(videoContainer);
+            });
+        }
+
+        loadVideos();
+    </script>
+</body>
+</html>
