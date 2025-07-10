@@ -211,19 +211,26 @@
                     <h3>Temperatura Atual</h3>
                     <p id="temperature">-- °C</p>
                 </div>
-                <div class="stocks">
-                    <button class="texto" onclick="toggleDropdown()">Últimas Notícias</button>
-                    <div class="dropdown-content" id="dropdownNoticias">
-                        <a href="https://www.msn.com/pt-br/channel/topic/Not%C3%ADcias/tp-Y_fdac555d-4ec2-428a-88e4-cb891ca7d5e9?ocid=msedgntp&cvid=3f0353edefc5487287d80c53e966368a&ei=29" target="_blank">MSN Notícias</a>
-                        <a href="https://br.investing.com/" target="_blank">Investing</a>
-                        <a href="https://www.youtube.com/@Laatusoficial" target="_blank">Laatus</a>
-                        <a href="https://www.toroinvestimentos.com.br/" target="_blank">Toro</a>
-                    </div>
-                    <ul id="stocksList">
-                        <li id="ibovespaItem">Ibovespa - carregando...</li>
-                        <li id="dolarItem">Dólar - carregando...</li>
-                    </ul>
-                </div>                
+                <!-- Seção de Mercado Financeiro -->
+                <div class="stocks" id="stocks">
+        <button class="texto" onclick="toggleDropdown()">Mercado Financeiro</button>
+        <div class="dropdown-content" id="dropdownNoticias">
+            <a href="https://www.msn.com/pt-br/channel/topic/Not%C3%ADcias/tp-Y_fdac555d-4ec2-428a-88e4-cb891ca7d5e9?ocid=msedgntp&cvid=3f0353edefc5487287d80c53e966368a&ei=29" target="_blank">MSN Notícias</a>
+            <a href="https://br.investing.com/" target="_blank">Investing</a>
+            <a href="https://www.youtube.com/@Laatusoficial" target="_blank">Laatus</a>
+            <a href="https://www.toroinvestimentos.com.br/" target="_blank">Toro</a>
+        </div>
+        <ul id="stocksList">
+            <li id="ibovespaItem">Ibovespa - carregando...</li>
+            <li id="dolarItem">Dólar - carregando...</li>
+        </ul>
+                </div>
+                <!-- Seção de Placar de Futebol
+                <div class="placar" id="placarSection">
+        <button class="texto" onclick="toggleGame()">Placar de Futebol</button>
+        <div id="placar" class="placar-content">
+        </div> 
+                </div>    -->   
             </div>
             <a>
                 <div id="container" class="avatar">
@@ -909,6 +916,75 @@ window.onclick = function(event) {
   checkSeason();
   checkSeason2();
 };
+
+// Variáveis da API de Futebol
+const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const footballApiUrl = 'https://api.football-data.org/v4/matches';  // URL da API de futebol
+    const footballApiKey = '3c9a27c625a643de99b9f10eda20b4dc'; // Substitua pela sua chave de API
+
+    // Função para obter os placares ao vivo
+    function getLiveScores() {
+        fetch(proxyUrl + footballApiUrl, {
+            method: 'GET',
+            headers: {
+                'X-Auth-Token': footballApiKey
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const matches = data.matches;
+            if (matches.length > 0) {
+                // Selecionar um jogo aleatório para mostrar o placar
+                const match = matches[Math.floor(Math.random() * matches.length)];
+                const homeTeam = match.homeTeam.name;
+                const awayTeam = match.awayTeam.name;
+                const scoreHome = match.score.fullTime.homeTeam;
+                const scoreAway = match.score.fullTime.awayTeam;
+
+                // Atualiza o conteúdo do placar
+                document.getElementById('placar').innerHTML = `
+                    <p><strong>${homeTeam} ${scoreHome} - ${scoreAway} ${awayTeam}</strong></p>
+                `;
+            } else {
+                document.getElementById('placar').innerHTML = 'Nenhum jogo ao vivo no momento.';
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao carregar os dados do placar:', error);
+            document.getElementById('placar').innerHTML = 'Erro ao carregar placar.';
+        });
+    }
+
+    // Função para alternar entre as seções de Mercado Financeiro e Placar de Futebol
+    function toggleGame() {
+        const placarSection = document.getElementById('placarSection');
+        if (placarSection.style.display === 'none' || placarSection.style.display === '') {
+            placarSection.style.display = 'block';
+        } else {
+            placarSection.style.display = 'none';
+        }
+    }
+
+    // Função para trocar a posição das seções de Mercado Financeiro e Placar de Futebol
+    function swapSections() {
+        const stocks = document.getElementById('stocks');
+        const placarSection = document.getElementById('placarSection');
+        
+        // Troca de lugar entre as seções
+        if (stocks && placarSection) {
+            const parent = stocks.parentNode;
+            parent.insertBefore(placarSection, stocks); // Coloca o placar antes do mercado
+        }
+    }
+
+    // Atualizar o placar a cada 5 segundos
+    //setInterval(getLiveScores, 5000);
+
+    // Carregar o placar inicial ao carregar a página
+    //getLiveScores();
+
+    // Trocar a posição a cada 5 segundos
+    //setInterval(swapSections, 5000);
     </script>
     
 </body>
