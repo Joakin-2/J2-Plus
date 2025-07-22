@@ -210,7 +210,7 @@ main {
         /* Modal content */
         .modal-content {
             background-color: #222; /* Darker background */
-            margin: 20% auto; /* Centered vertically and horizontally */
+            margin: 15% auto; /* Centered vertically and horizontally */
             padding: 50px;
             border-radius: 10px;
             width: 50%; /* Full width */
