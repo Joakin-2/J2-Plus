@@ -1193,13 +1193,20 @@ const perfis = {
     nivel: localStorage.getItem("nivelAtual") || 1,
     xp: localStorage.getItem("xpAtual") || 0,
   },
+  Vitoria: {
+    nome: "Vitória",
+    bio: "Irmã mais nova",
+    nivel: localStorage.getItem("nivelVitoria") || 1,
+    xp: localStorage.getItem("xpVitoria") || 0,
+  },
   Main: {
     nome: "Main",
     bio: "Perfil principal",
-    nivel: 0,  // O perfil Main não tem níveis
-    xp: 0,     // O perfil Main não tem XP
+    nivel: localStorage.getItem("nivelMain") || 1,
+    xp: localStorage.getItem("xpMain") || 0,
   },
 };
+
 
 // Recupera a escolha de perfil do localStorage, ou usa "Joaquim" por padrão
 let perfilAtivo = localStorage.getItem("perfilAtivo") || "Joaquim";
@@ -1207,12 +1214,18 @@ let perfilAtivo = localStorage.getItem("perfilAtivo") || "Joaquim";
 // Atualiza a tela de perfil com os dados do perfil ativo
 function atualizarPerfil() {
   const perfil = perfis[perfilAtivo];
+
+  // Recupera a bio salva no localStorage (se houver)
+  const bioSalva = localStorage.getItem("bio" + perfilAtivo);
+  if (bioSalva) {
+    perfil.bio = bioSalva;
+  }
+
   nomePerfil.textContent = perfil.nome;
   bioPerfil.value = perfil.bio;
-  
-  // Se o perfil for "Main", pode desabilitar ou ocultar algo relacionado a nível e XP (opcional)
+
   if (perfilAtivo === "Main") {
-    bioPerfil.disabled = false; // Exemplo de como habilitar/alterar UI
+    bioPerfil.disabled = false;
   }
 }
 
@@ -1229,7 +1242,14 @@ fecharBtn.addEventListener("click", () => {
 // Função de exportar perfil (JSON)
 exportarBtn.addEventListener("click", () => {
   const perfil = perfis[perfilAtivo];
-  const perfilJSON = JSON.stringify(perfil);
+
+  // Atualiza a bio no objeto antes de exportar
+  perfil.bio = bioPerfil.value;
+
+  // Atualiza também o localStorage se desejar
+  localStorage.setItem("bio" + perfilAtivo, perfil.bio);
+
+  const perfilJSON = JSON.stringify(perfil, null, 2); // Indentado para fácil leitura
   const blob = new Blob([perfilJSON], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
@@ -1249,18 +1269,24 @@ importarBtn.addEventListener("click", () => {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        try {
-          const dadosImportados = JSON.parse(e.target.result);
-          // Atualiza o perfil ativo com os dados importados
-          perfis[perfilAtivo] = { ...perfis[perfilAtivo], ...dadosImportados };
-          localStorage.setItem("nivelAtual", perfis[perfilAtivo].nivel);
-          localStorage.setItem("xpAtual", perfis[perfilAtivo].xp);
-          atualizarPerfil();
-          alert("Perfil importado com sucesso!");
-        } catch (error) {
-          alert("Erro ao importar o perfil.");
-        }
-      };
+  try {
+    const dadosImportados = JSON.parse(e.target.result);
+    perfis[perfilAtivo] = { ...perfis[perfilAtivo], ...dadosImportados };
+
+    localStorage.setItem("nivelAtual", perfis[perfilAtivo].nivel);
+    localStorage.setItem("xpAtual", perfis[perfilAtivo].xp);
+    
+    // Salva a bio importada
+    if (dadosImportados.bio) {
+      localStorage.setItem("bio" + perfilAtivo, dadosImportados.bio);
+    }
+
+    atualizarPerfil();
+    alert("Perfil importado com sucesso!");
+  } catch (error) {
+    alert("Erro ao importar o perfil.");
+  }
+};
       reader.readAsText(file);
     }
   });
@@ -1313,7 +1339,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Vitória", month: 6, day: 4 },
     { name: "Adeir", month: 9, day: 7 },
     { name: "Paula", month: 10, day: 24 },
-    { name: "Mia", month: 11, day: 23 }
   ];
 
   const specialEvents = [
