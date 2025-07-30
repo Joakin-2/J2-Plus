@@ -148,10 +148,10 @@
                     <button class="btn" onclick="redirecionar('Bíblia')" style="margin-right: 280px; margin-left: 40px; display: flex;">
                         <i class="fas fa-book" style="margin-right: 5px;"></i> Bíblia
                     </button>
-                    <button class="btn-export" onclick="exportNotes()">
+                    <button class="btn-export" onclick="exportNotes()" style="display: none;">
                         <i class="fas fa-file-export"></i>
                     </button>
-                    <button class="btn-import" onclick="importNotes()">
+                    <button class="btn-import" onclick="importNotes()" style="display: none;">
                         <i class="fas fa-file-import"></i>
                     </button>
                 </div>
@@ -186,24 +186,33 @@
         image.alt = "Cultos.png";
     }
         // Função para salvar notas no armazenamento local
-        function saveNotas() {
-            var notas = document.getElementById('notas').value;
-            localStorage.setItem('notas', notas); // Mudou para 'notas'
-        }
+        // Função para salvar notas no perfil atual
+function saveNotas() {
+    const perfilAtivo = localStorage.getItem('perfilAtivo') || 'Main'; // Obtém o perfil ativo (ou 'Main' como padrão)
+    var notas = document.getElementById('notas').value;
 
-        // Função para carregar notas do armazenamento local
-        function loadNotas() {
-            var savedNotas = localStorage.getItem('notas'); // Mudou para 'notas'
-            if (savedNotas) {
-                document.getElementById('notas').value = savedNotas;
-            }
-        }
+    // Salva as notas no localStorage, com a chave específica para o perfil ativo
+    localStorage.setItem(`notas-${perfilAtivo}`, notas);
+}
 
-        // Chama a função loadNotas quando a página é carregada
-        window.onload = function() {
-            loadNotas();
-            setInterval(changeTip, 300000); // Mudar a cada 5 minutos (300000 ms)
-        };
+// Função para carregar notas do perfil ativo
+function loadNotas() {
+    const perfilAtivo = localStorage.getItem('perfilAtivo') || 'Main'; // Obtém o perfil ativo (ou 'Main' como padrão)
+    var savedNotas = localStorage.getItem(`notas-${perfilAtivo}`); // Obtém as notas para o perfil ativo
+
+    if (savedNotas) {
+        document.getElementById('notas').value = savedNotas; // Carrega as notas no campo de texto
+    }
+}
+
+// Chama a função loadNotas quando a página é carregada
+window.onload = function() {
+    loadNotas();
+    setInterval(changeTip, 300000); // Mudar a cada 5 minutos (300000 ms)
+};
+
+// Certifique-se de chamar `saveNotas` quando o usuário alterar o campo de notas
+document.getElementById('notas').addEventListener('input', saveNotas);
 
         // Array de dicas
         var dicas = [

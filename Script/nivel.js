@@ -1,38 +1,53 @@
-let nivelAtual = localStorage.getItem("nivelAtual") 
-                 ? parseInt(localStorage.getItem("nivelAtual")) 
-                 : 1;
-let xpAtual = localStorage.getItem("xpAtual") 
-              ? parseInt(localStorage.getItem("xpAtual")) 
-              : 0;
-let xpNecessario = 100 * (nivelAtual * nivelAtual);
-
 function ganharXp(xp) {
-  xpAtual += xp;
-  if (xpAtual >= xpNecessario) {
-    xpAtual -= xpNecessario;
-    nivelAtual++;
-    xpNecessario = 100 * (nivelAtual * nivelAtual);
-    mostrarComemoracao(`Parabéns! Você alcançou o nível ${nivelAtual}!`);
+  const perfil = perfis[perfilAtivo];
+  perfil.xp += xp;
+
+  const xpNecessario = 100 * perfil.nivel * perfil.nivel;
+  if (perfil.xp >= xpNecessario) {
+    perfil.xp -= xpNecessario;
+    perfil.nivel++;
+    mostrarComemoracao(`Parabéns, ${perfil.nome} subiu para o nível ${perfil.nivel}!`);
   }
-  salvarProgresso();
+
+  localStorage.setItem("xp" + perfilAtivo, perfil.xp);
+  localStorage.setItem("nivel" + perfilAtivo, perfil.nivel);
   atualizarInterface();
 }
 
 function atualizarInterface() {
+  const perfil = perfis[perfilAtivo];
   const progressBar = document.getElementById("progress-bar");
   const nivelSpan = document.getElementById("nivel");
   const xpAtualSpan = document.getElementById("xp-atual");
   const xpNecessarioSpan = document.getElementById("xp-necessario");
 
+  const xpNecessario = 100 * (perfil.nivel * perfil.nivel);
+
   if (nivelSpan && xpAtualSpan && xpNecessarioSpan && progressBar) {
-    nivelSpan.textContent = nivelAtual;
-    xpAtualSpan.textContent = xpAtual;
+    nivelSpan.textContent = perfil.nivel;
+    xpAtualSpan.textContent = perfil.xp;
     xpNecessarioSpan.textContent = xpNecessario;
 
-    const progresso = (xpAtual / xpNecessario) * 100;
+    const progresso = (perfil.xp / xpNecessario) * 100;
     progressBar.style.width = `${progresso}%`;
     progressBar.textContent = `${Math.round(progresso)}%`;
   }
+}
+
+function atualizarPerfil() {
+  const perfil = perfis[perfilAtivo];
+
+  perfil.nivel = parseInt(localStorage.getItem("nivel" + perfilAtivo)) || 1;
+  perfil.xp = parseInt(localStorage.getItem("xp" + perfilAtivo)) || 0;
+
+  const bioSalva = localStorage.getItem("bio" + perfilAtivo);
+  if (bioSalva) perfil.bio = bioSalva;
+
+  nomePerfil.textContent = perfil.nome;
+  bioPerfil.value = perfil.bio;
+  bioPerfil.disabled = perfilAtivo !== "Main";
+
+  atualizarInterface(); // Atualiza a barra de progresso
 }
 
 function salvarProgresso() {
@@ -52,6 +67,9 @@ function mostrarComemoracao(mensagem) {
     comemoracao.remove();
   }, 3000);
 }
+
+localStorage.setItem("nivel" + perfilAtivo, perfis[perfilAtivo].nivel);
+localStorage.setItem("xp" + perfilAtivo, perfis[perfilAtivo].xp);
 
 // Atualiza a interface ao carregar a página
 document.addEventListener("DOMContentLoaded", atualizarInterface);

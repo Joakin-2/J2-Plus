@@ -472,46 +472,6 @@ style.textContent = `
         color: gray;
     }
 `;
-document.head.appendChild(style);
-
-function ganharXp(xp) {
-    // Recupera os valores salvos ou define padrões
-    let nivelAtual = parseInt(localStorage.getItem("nivelAtual")) || 1;
-    let xpAtual = parseInt(localStorage.getItem("xpAtual")) || 0;
-    let xpNecessario = 100 * (nivelAtual * nivelAtual);
-
-    // Adiciona o XP ganho
-    xpAtual += xp;
-
-    // Verifica se subiu de nível
-    while (xpAtual >= xpNecessario) {
-        xpAtual -= xpNecessario; // Remove o XP necessário para subir
-        nivelAtual++; // Sobe de nível
-        xpNecessario = 100 * (nivelAtual * nivelAtual); // Atualiza o XP necessário para o próximo nível
-
-        // Exibe uma mensagem de comemoração
-        // mostrarComemoracao(`🎉 Parabéns! Você alcançou o nível ${nivelAtual}!`);
-    }
-
-    // Salva os valores atualizados
-    localStorage.setItem("nivelAtual", nivelAtual);
-    localStorage.setItem("xpAtual", xpAtual);
-
-    // Atualiza a interface
-    atualizarInterface();
-
-    // Exibe a animação de ganho de XP
-    const xpGainElement = document.getElementById("xp-gain");
-    xpGainElement.textContent = `+${xp} XP`;
-    xpGainElement.style.display = "block";
-
-    // Esconde a mensagem após 1.5 segundos
-    setTimeout(() => {
-        xpGainElement.style.display = "none";
-    }, 1500);
-}
-
-
 loadSavedData();
 });
 

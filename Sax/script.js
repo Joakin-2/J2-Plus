@@ -123,27 +123,29 @@ function atualizarInterface() {
 document.addEventListener("DOMContentLoaded", atualizarInterface);
 
 function loadNotes() {
-    // Verifique se há anotações salvas no localStorage
-    const savedNotes = localStorage.getItem("musicPlaceNotes1");
+    // Verifique se há anotações salvas para o perfil ativo
+    const savedNotes = localStorage.getItem(`musicPlaceNotes1-${perfilAtivo}`);
 
     if (savedNotes) {
-        // Se houver, atualize a área de anotações com as anotações salvas
         document.getElementById("notes1").value = savedNotes;
+    } else {
+        document.getElementById("notes1").value = '';
     }
 }
 
-document.getElementById("notes1").addEventListener("input", function () {
-    // Salve as anotações sempre que houver uma alteração
-    saveNotes();
-});
-
 function saveNotes() {
-    // Obtenha o valor das anotações
     const notesValue = document.getElementById("notes1").value;
-
-    // Salve as anotações no localStorage
-    localStorage.setItem("musicPlaceNotes1", notesValue);
+    // Salve as anotações no localStorage para o perfil ativo
+    localStorage.setItem(`musicPlaceNotes1-${perfilAtivo}`, notesValue);
 }
+
+// Adiciona o listener para salvar sempre que o texto for alterado
+document.getElementById("notes1").addEventListener("input", saveNotes);
+
+// Carrega as notas quando a página carregar
+window.onload = function() {
+    loadNotes();
+};
 
 function showLessons(instrument) {
     // Lógica para exibir lições do instrumento

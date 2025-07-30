@@ -1185,32 +1185,6 @@ const nomePerfil = document.getElementById("nome-perfil");
 const bioPerfil = document.getElementById("bio-perfil");
 const perfilSelector = document.getElementById("perfil-selector"); // O dropdown para seleção de perfil
 
-// Dados dos perfis
-const perfis = {
-  Joaquim: {
-    nome: "Joaquim",
-    bio: "O Criador e Investidor",
-    nivel: localStorage.getItem("nivelAtual") || 1,
-    xp: localStorage.getItem("xpAtual") || 0,
-  },
-  Vitoria: {
-    nome: "Vitória",
-    bio: "Irmã mais nova",
-    nivel: localStorage.getItem("nivelVitoria") || 1,
-    xp: localStorage.getItem("xpVitoria") || 0,
-  },
-  Main: {
-    nome: "Main",
-    bio: "Perfil principal",
-    nivel: localStorage.getItem("nivelMain") || 1,
-    xp: localStorage.getItem("xpMain") || 0,
-  },
-};
-
-
-// Recupera a escolha de perfil do localStorage, ou usa "Joaquim" por padrão
-let perfilAtivo = localStorage.getItem("perfilAtivo") || "Joaquim";
-
 // Atualiza a tela de perfil com os dados do perfil ativo
 function atualizarPerfil() {
   const perfil = perfis[perfilAtivo];
@@ -1243,20 +1217,62 @@ fecharBtn.addEventListener("click", () => {
 exportarBtn.addEventListener("click", () => {
   const perfil = perfis[perfilAtivo];
 
-  // Atualiza a bio no objeto antes de exportar
+  // Atualiza dados do DOM no perfil
   perfil.bio = bioPerfil.value;
 
-  // Atualiza também o localStorage se desejar
-  localStorage.setItem("bio" + perfilAtivo, perfil.bio);
+  const notesBox = document.getElementById('notesBox');
+  if (notesBox) {
+    perfil.notesLer = notesBox.value;
+  }
 
-  const perfilJSON = JSON.stringify(perfil, null, 2); // Indentado para fácil leitura
+  const musicPlaceNotesBox = document.getElementById('musicPlaceNotes1'); // Supondo que o id seja 'musicPlaceNotes1'
+  if (musicPlaceNotesBox) {
+    perfil.musicPlaceNotes1 = musicPlaceNotesBox.value; // Captura o conteúdo da área de notas do musicPlace
+  }
+
+  const gymNotesBox = document.getElementById('gymNotes'); // Supondo que o id seja 'gymNotes'
+  if (gymNotesBox) {
+    perfil.gymNotes = gymNotesBox.value; // Captura o conteúdo da área de notas do gym
+  }
+
+  const notasBox = document.getElementById('notas');
+  if (notasBox) {
+    perfil.notas = notasBox.value;
+  }
+
+  const pagarNotasBox = document.getElementById('pagarNotas'); // Supondo que o id seja 'pagarNotas'
+  if (pagarNotasBox) {
+    perfil.pagarNotas = pagarNotasBox.value; // Captura o conteúdo da área de notas para pagar
+  }
+
+  const gameNotesBox = document.getElementById('game');  // Supondo que o id seja 'game'
+  if (gameNotesBox) {
+    perfil.gameNotes = gameNotesBox.value;
+  }
+
+  // Inclui as reclamações no perfil
+  perfil.complaints = perfis[perfilAtivo].complaints;
+
+  // Atualiza localStorage
+  localStorage.setItem("bio" + perfilAtivo, perfil.bio);
+  if (perfil.notesLer) {
+    localStorage.setItem("notes-ler-" + perfilAtivo, perfil.notesLer);
+  }
+
+  // Gera JSON para download
+  const perfilJSON = JSON.stringify(perfil, null, 2);
   const blob = new Blob([perfilJSON], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
   link.download = `${perfil.nome}.json`;
-  link.click();
-  URL.revokeObjectURL(url);
+
+  document.body.appendChild(link);
+  setTimeout(() => {
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }, 100);
 });
 
 // Função de importar perfil
@@ -1269,24 +1285,52 @@ importarBtn.addEventListener("click", () => {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-  try {
-    const dadosImportados = JSON.parse(e.target.result);
-    perfis[perfilAtivo] = { ...perfis[perfilAtivo], ...dadosImportados };
+        try {
+          const dadosImportados = JSON.parse(e.target.result);
 
-    localStorage.setItem("nivelAtual", perfis[perfilAtivo].nivel);
-    localStorage.setItem("xpAtual", perfis[perfilAtivo].xp);
-    
-    // Salva a bio importada
-    if (dadosImportados.bio) {
-      localStorage.setItem("bio" + perfilAtivo, dadosImportados.bio);
-    }
+          // Atualiza os dados do perfil
+          perfis[perfilAtivo] = { ...perfis[perfilAtivo], ...dadosImportados };
 
-    atualizarPerfil();
-    alert("Perfil importado com sucesso!");
-  } catch (error) {
-    alert("Erro ao importar o perfil.");
-  }
-};
+          // Salva dados no localStorage
+          if (dadosImportados.bio)
+            localStorage.setItem("bio" + perfilAtivo, dadosImportados.bio);
+
+          if (dadosImportados.notesLer)
+            localStorage.setItem("notes-ler-" + perfilAtivo, dadosImportados.notesLer);
+
+          if (dadosImportados.musicPlaceNotes1)
+            localStorage.setItem("musicPlaceNotes1-" + perfilAtivo, dadosImportados.musicPlaceNotes1);
+
+          if (dadosImportados.gymNotes)
+            localStorage.setItem("gymNotes-" + perfilAtivo, dadosImportados.gymNotes); // Salva as anotações de gym
+
+          // Salva as notas
+          if (dadosImportados.notas)
+            localStorage.setItem("notas-" + perfilAtivo, dadosImportados.notas);
+
+          if (dadosImportados.pagarNotas)
+            localStorage.setItem("pagarNotas-" + perfilAtivo, dadosImportados.pagarNotas);
+
+          if (dadosImportados.gameNotes)
+            localStorage.setItem("gameNotes-" + perfilAtivo, dadosImportados.gameNotes);
+
+          // Atualiza as reclamações no localStorage
+          if (dadosImportados.complaints) {
+            localStorage.setItem("complaints-" + perfilAtivo, JSON.stringify(dadosImportados.complaints));
+          }
+
+          if (dadosImportados.nivel !== undefined)
+            localStorage.setItem("nivel" + perfilAtivo, dadosImportados.nivel);
+
+          if (dadosImportados.xp !== undefined)
+            localStorage.setItem("xp" + perfilAtivo, dadosImportados.xp);
+
+          atualizarPerfil(); // Atualiza a interface
+          alert("Perfil importado com sucesso!");
+        } catch (error) {
+          alert("Erro ao importar o perfil.");
+        }
+      };
       reader.readAsText(file);
     }
   });
@@ -1303,19 +1347,86 @@ bioPerfil.addEventListener("input", () => {
 
 // Quando o usuário mudar a seleção no dropdown, alteramos o perfil ativo
 perfilSelector.addEventListener("change", (event) => {
-  perfilAtivo = event.target.value; // Seleciona o perfil de acordo com a opção escolhida
-  localStorage.setItem("perfilAtivo", perfilAtivo); // Armazena o perfil ativo no localStorage
-  atualizarPerfil(); // Atualiza a tela com o novo perfil
+  perfilAtivo = event.target.value;
+  localStorage.setItem("perfilAtivo", perfilAtivo);
+
+  // Atualiza os dados do perfil e da interface (XP, nível, progresso etc.)
+  atualizarPerfil();
+  atualizarInterface();
+
+  const complaints = JSON.parse(localStorage.getItem("complaints-" + perfilAtivo)) || [];
+  loadComplaints(complaints);
 });
+
+function atualizarPerfil() {
+  const perfil = perfis[perfilAtivo];
+
+  // Exibe ou esconde o botão "Squad" dependendo do perfil
+  const squadBtn = document.getElementById('squad-btn');
+  if (perfilAtivo === "Joaquim") {
+    squadBtn.style.display = "block"; // Mostra o botão para o perfil "Joaquim"
+  } else {
+    squadBtn.style.display = "none"; // Esconde o botão para os outros perfis
+  }
+
+  perfil.nivel = parseInt(localStorage.getItem("nivel" + perfilAtivo)) || 1;
+  perfil.xp = parseInt(localStorage.getItem("xp" + perfilAtivo)) || 0;
+
+  const bioSalva = localStorage.getItem("bio" + perfilAtivo);
+  if (bioSalva) perfil.bio = bioSalva;
+
+  const notesBox = document.getElementById("notesBox");
+if (notesBox) {
+  notesBox.value = perfis[perfilAtivo].notesLer || "";
+}
+
+// Carrega as reclamações
+  const complaints = JSON.parse(localStorage.getItem("complaints-" + perfilAtivo)) || [];
+  loadComplaints(complaints);
+  
+const musicPlaceNotesBox = document.getElementById("musicPlaceNotes1"); // Aqui o id pode ser diferente
+  if (musicPlaceNotesBox) {
+    // Carrega as anotações específicas do musicPlace
+    musicPlaceNotesBox.value = perfil.musicPlaceNotes1 || "";
+  }
+
+  const gymNotesBox = document.getElementById("gymNotes"); // Aqui o id pode ser diferente
+  if (gymNotesBox) {
+    // Carrega as anotações do gym
+    gymNotesBox.value = perfil.gymNotes || "";
+  }
+
+  const notasBox = document.getElementById("notas");
+  if (notasBox) {
+    notasBox.value = perfil.notas || "";
+  }
+
+  const pagarNotasBox = document.getElementById("pagarNotas"); // Aqui o id pode ser diferente
+  if (pagarNotasBox) {
+    // Carrega as anotações de pagarNotas
+    pagarNotasBox.value = perfil.pagarNotas || "";
+  }
+
+  const gameNotesBox = document.getElementById("game");
+  if (gameNotesBox) {
+    gameNotesBox.value = perfil.gameNotes || "";
+  }
+
+  nomePerfil.textContent = perfil.nome;
+  bioPerfil.value = perfil.bio;
+  bioPerfil.disabled = perfilAtivo !== "Main";
+}
 
 // Define um intervalo para exibir a notificação a cada 10 minutos (600.000 ms)
 setInterval(createPeriodicNotification, 10 * 60 * 1000); // 10 minutos em milissegundos
 
 // Inicializa o perfil ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
-  // Define a escolha do perfil no dropdown de acordo com o perfil ativo
-  perfilSelector.value = perfilAtivo;
-  atualizarPerfil(); // Atualiza o perfil ativo ao carregar a página
+  perfilSelector.value = perfilAtivo; // Mostra o perfil ativo
+  // Carregar as reclamações ao carregar a página
+  const complaints = JSON.parse(localStorage.getItem("complaints-" + perfilAtivo)) || [];
+  loadComplaints(complaints);
+  atualizarPerfil();
   createPeriodicNotification();
 });
 
@@ -1609,11 +1720,29 @@ container.addEventListener('click', toggleSeguirMouse);
 // Lista de reclamações (carregada do localStorage, se houver)
 let complaints = JSON.parse(localStorage.getItem('complaints')) || [];
 
-// Carregar as reclamações no modal
+function closeComplaintForm() {
+  document.getElementById('complaintForm').style.display = 'none';
+  document.getElementById('addComplaintBtn').style.display = 'inline-block';
+  document.getElementById('complaintForm').reset(); // limpa os campos do formulário (opcional)
+}
+
+// Função para mostrar o formulário de reclamação
+function saveToLocalStorage(complaints) {
+  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main"; // Obtém o perfil ativo
+  localStorage.setItem(`complaints-${perfilAtivo}`, JSON.stringify(complaints)); // Salva as reclamações do perfil ativo
+}
+
+// Função para carregar as reclamações do perfil ativo
 function loadComplaints() {
+  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main"; // Obtém o perfil ativo
+  const perfil = JSON.parse(localStorage.getItem(`perfil-${perfilAtivo}`)) || {}; // Carrega o perfil ativo
+
+  // Acessa as reclamações
+  const complaints = perfil.complaints || []; // Se não houver reclamações, retorna um array vazio
+
   const complaintsList = document.getElementById('complaintsList');
   complaintsList.innerHTML = ''; // Limpa as reclamações atuais
-  
+
   complaints.forEach(complaint => {
     const complaintElement = document.createElement('div');
     complaintElement.classList.add('complaint-item');
@@ -1626,79 +1755,43 @@ function loadComplaints() {
   });
 }
 
-function closeComplaintForm() {
-  document.getElementById('complaintForm').style.display = 'none';
-  document.getElementById('addComplaintBtn').style.display = 'inline-block';
-  document.getElementById('complaintForm').reset(); // limpa os campos do formulário (opcional)
-}
-
-// Função para mostrar o formulário de reclamação
-function openAddComplaintForm() {
-  document.getElementById('complaintForm').style.display = 'block';
-  document.getElementById('addComplaintBtn').style.display = 'none';
-}
-
-// Função para salvar no localStorage
-function saveToLocalStorage() {
-  localStorage.setItem('complaints', JSON.stringify(complaints));
-}
-
-// Enviar nova reclamação
+// Função para adicionar uma nova reclamação
+// Função para adicionar uma nova reclamação
 document.getElementById('complaintForm').onsubmit = function(event) {
   event.preventDefault();
-  
+
+  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main"; // Obtém o perfil ativo
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const subject = document.getElementById('subject').value;
   const message = document.getElementById('message').value;
 
-  complaints.push({ id: complaints.length + 1, name, subject, message });
+  // Carrega o perfil do perfilAtivo
+  let perfil = JSON.parse(localStorage.getItem(`perfil-${perfilAtivo}`)) || {};
 
-  saveToLocalStorage(); // Salvar após adicionar
-  loadComplaints(); // Atualizar UI
+  // Se o perfil não existir, cria um novo perfil vazio
+  if (!perfil.complaints) {
+    perfil.complaints = [];
+  }
 
-  document.getElementById('complaintForm').reset(); // Limpa o formulário
+  // Adiciona a nova reclamação
+  perfil.complaints.push({ id: perfil.complaints.length + 1, name, subject, message });
+
+  // Salva o perfil atualizado no localStorage
+  saveToLocalStorage(perfil);
+
+  // Recarrega as reclamações
+  loadComplaints(perfil.complaints);
+
+  // Limpa o formulário
+  document.getElementById('complaintForm').reset();
   document.getElementById('complaintForm').style.display = 'none';
   document.getElementById('addComplaintBtn').style.display = 'inline-block';
 };
 
-// Exportar dados para JSON
-function exportData() {
-  const dataStr = JSON.stringify(complaints, null, 2);
-  const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
-
-  const downloadLink = document.createElement('a');
-  downloadLink.setAttribute('href', dataUri);
-  downloadLink.setAttribute('download', 'reclamacoes.json');
-  downloadLink.click();
-}
-
-// Importar dados de JSON
-function importData(event) {
-  const file = event.target.files[0];
-  if (file && file.type === 'application/json') {
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
-      try {
-        const importedData = JSON.parse(e.target.result);
-        if (Array.isArray(importedData)) {
-          complaints = importedData;
-          saveToLocalStorage(); // Salvar dados importados
-          loadComplaints();
-        } else {
-          alert('O arquivo JSON não contém dados válidos.');
-        }
-      } catch (error) {
-        alert('Erro ao processar o arquivo JSON.');
-      }
-    };
-
-    reader.readAsText(file);
-  } else {
-    alert('Por favor, selecione um arquivo JSON válido.');
-  }
-}
-
-// Inicializa a interface ao carregar a página
-document.addEventListener('DOMContentLoaded', loadComplaints);
+// Atualiza as reclamações quando o perfil for alterado
+document.getElementById('perfil-selector').addEventListener('change', function() {
+  const perfilAtivo = this.value; // Obtém o perfil selecionado
+  localStorage.setItem("perfilAtivo", perfilAtivo); // Salva o perfil ativo no localStorage
+  loadComplaints(); // Carrega as reclamações para o novo perfil
+});

@@ -129,7 +129,7 @@
 <body>
     <div class="button-group">
         <h3 style="margin-left: 10%;">Anotações</h3>
-        <div style="display: flex; justify-content: space-between;">
+        <div style="display: none; /* display: flex; */ justify-content: space-between;">
           <button class="btn2" onclick="exportNotes()" style="margin-left: 10px;">
             <i class="fas fa-file-export"></i>
           </button>
@@ -176,6 +176,8 @@
     <source src="/Music/Fundo/Agape.mp3" type="audio/mp3">
     Seu navegador não suporta o elemento de áudio.
   </audio>
+
+  <script src="Script/perfil-data.js"></script>
 
   <script>
     let timerInterval;
@@ -234,19 +236,15 @@
     }
 
     // Funções de anotações
-    function saveNotes() {
-      const notes = document.getElementById('notesBox').value;
-      localStorage.setItem('notes-ler', notes);
-    }
-
-    window.onload = function() {
-      // Carregar anotações salvas
-      const savedNotes = localStorage.getItem('notes-ler');
-      if (savedNotes) {
-        document.getElementById('notesBox').value = savedNotes;
-      }
-      document.getElementById('notesBox').addEventListener('input', saveNotes);
-    };
+function saveNotes() {
+  const notes = document.getElementById('notesBox').value;
+  localStorage.setItem(`notes-ler-${perfilAtivo}`, notes);  // Salva no localStorage
+}
+function carregarNotesBox() {
+  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";  // Define o perfilAtivo
+  const savedNotes = localStorage.getItem(`notes-ler-${perfilAtivo}`);
+  document.getElementById('notesBox').value = savedNotes || 'Nenhuma anotação salva';  // Exibe as anotações
+}
 
     function exportNotes() {
     const notes = document.getElementById('notesBox').value;
@@ -273,6 +271,10 @@
     };
     input.click();
   }
+
+  window.onload = function() {
+  carregarNotesBox(); // <-- Adiciona isso aqui
+};
   </script>
 </body>
 </html>

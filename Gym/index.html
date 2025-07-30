@@ -81,8 +81,8 @@ button i {
             <div id="notes-section">
                 <div class="button-group" style="margin-top: 22px;"> 
                     <h2>Relatório</h2>
-                    <button class="btn-export" onclick="exportNotes()" style="margin-left: 15px;"><i class="fas fa-file-export"></i></button>
-                    <button class="btn-import" onclick="importNotes()"><i class="fas fa-file-import"></i></button>
+                    <button class="btn-export" onclick="exportNotes()" style="margin-left: 15px; display: none;"><i class="fas fa-file-export"></i></button>
+                    <button class="btn-import" onclick="importNotes()" style="display: none;"><i class="fas fa-file-import"></i></button>
                 </div>
                 <textarea id="notesgym" placeholder="Registre suas anotações aqui..."></textarea>
             </div>
@@ -142,6 +142,7 @@ button i {
         </section>
     </main>
     
+    <script src="/Script/perfil-data.js"></script>
     <script src="script.js"></script>
     <script src="/Script/nivel.js"></script>
     <script>
@@ -204,18 +205,26 @@ document.getElementById('height').addEventListener('input', calculateIMC);
 
 const notesTextarea = document.getElementById("notesgym");
 
-    // Carrega o texto salvo no localStorage ao abrir a página
-    window.onload = () => {
-        const savedNotes = localStorage.getItem("savedNotes");
-        if (savedNotes) {
-            notesTextarea.value = savedNotes; // Preenche o textarea com o conteúdo salvo
-        }
-    };
+// Função para carregar as anotações ao carregar a página
+window.onload = () => {
+    // Obtém o perfil ativo
+    const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
 
-    // Salva o conteúdo do textarea no localStorage automaticamente
-    notesTextarea.addEventListener("input", () => {
-        localStorage.setItem("savedNotes", notesTextarea.value);
-    });
+    // Carrega as anotações do perfil ativo
+    const savedNotes = localStorage.getItem(`gymNotes-${perfilAtivo}`);
+    if (savedNotes) {
+        notesTextarea.value = savedNotes; // Preenche o textarea com o conteúdo salvo
+    }
+};
+
+// Função para salvar as anotações ao digitar
+notesTextarea.addEventListener("input", () => {
+    // Obtém o perfil ativo
+    const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
+
+    // Salva as anotações no localStorage com a chave dinâmica do perfil ativo
+    localStorage.setItem(`gymNotes-${perfilAtivo}`, notesTextarea.value);
+});
 
     // Função para exportar o conteúdo como arquivo .txt
     function exportNotes() {
