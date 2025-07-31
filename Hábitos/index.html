@@ -29,16 +29,20 @@
     <section class="caixa-anotacao">
         <div class="button-group" style="margin-left: 360px;"> 
             <h3>Anotações</h3>
-            <button class="btn-export" onclick="exportNotes()" style="margin-left: 10px;"><i class="fas fa-file-export"></i></button>
-            <button class="btn-import" onclick="importNotes()"><i class="fas fa-file-import"></i></button>
+            <button class="btn-export" onclick="exportNotes()" style="margin-left: 10px; display: none;"><i class="fas fa-file-export"></i></button>
+            <button class="btn-import" onclick="importNotes()" style="display: none;"><i class="fas fa-file-import"></i></button>
         </div>
         <textarea id="anotacoes3" rows="5" cols="50"></textarea>
     </section>
 
     <div style="margin-bottom: 30px;"></div>
 
-    <h2>Hábitos <button id="mostrarHorarioBtn" style="width: 10px; height: 40px; background-color: #141414; border: 1px solid #141414; margin-left: -5px;"><i class="fas fa-question-circle" style="margin-left: -10px;"></i></button></h2>
-
+    <div style="display: flex;">
+        <button id="mostrarHorarioBtn" style="width: 10px; height: 40px; background-color: #141414; border: 1px solid #141414; margin-left: -5px;"><i class="fas fa-question-circle" style="margin-left: -10px;"></i></button>
+        <h2 style="margin-left: 10px; margin-right: 15px; margin-top: 15px;">Hábitos</h2>
+        <button id="recarregarHabitosBtn" style="width: 10px; height: 40px; background-color: #141414; border: 1px solid #141414; margin-left: -5px;"><i class="fas fa-sync-alt" style="margin-left: -10px;"></i></button>
+    </div>
+    
     <div id="horarioExplicacao" style="display: none; margin-bottom: 20px; color: #fff;">
         <p><strong>Manhã:</strong> 06:00 - 12:00</p>
         <p><strong>Tarde:</strong> 12:00 - 18:00</p>

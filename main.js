@@ -1250,6 +1250,31 @@ exportarBtn.addEventListener("click", () => {
     perfil.gameNotes = gameNotesBox.value;
   }
 
+  const programadosTextarea = document.getElementById('programados');
+  if (programadosTextarea) {
+    perfil.programados = programadosTextarea.value;
+  }
+
+  const anotacoesTextarea = document.getElementById('anotacoes');
+  if (anotacoesTextarea) {
+    perfil.anotacoes = anotacoesTextarea.value;
+  }
+
+  const anotacoesTextarea2 = document.getElementById('anotacoes2');
+  if (anotacoesTextarea2) {
+    perfil.anotacoes2 = anotacoesTextarea2.value;
+  }
+
+  const anotacoesTextarea3 = document.getElementById('anotacoes3');
+  if (anotacoesTextarea3) {
+    perfil.anotacoes3 = anotacoesTextarea3.value;
+  }
+
+  const metasTextarea = document.getElementById('meta');
+  if (metasTextarea) {
+    perfil.metas = metasTextarea.value;
+  }
+
   // Inclui as reclamações no perfil
   perfil.complaints = perfis[perfilAtivo].complaints;
 
@@ -1313,6 +1338,21 @@ importarBtn.addEventListener("click", () => {
 
           if (dadosImportados.gameNotes)
             localStorage.setItem("gameNotes-" + perfilAtivo, dadosImportados.gameNotes);
+
+          if (dadosImportados.programados)
+            localStorage.setItem("programados-" + perfilAtivo, dadosImportados.programados);
+
+          if (dadosImportados.anotacoes)
+            localStorage.setItem("anotacoes-" + perfilAtivo, dadosImportados.anotacoes);
+
+          if (dadosImportados.anotacoes2)
+            localStorage.setItem("anotacoes2-" + perfilAtivo, dadosImportados.anotacoes2);
+
+          if (dadosImportados.anotacoes3)
+            localStorage.setItem("anotacoes3-" + perfilAtivo, dadosImportados.anotacoes3);
+
+          if (dadosImportados.metas)
+            localStorage.setItem("metas-" + perfilAtivo, dadosImportados.metas);
 
           // Atualiza as reclamações no localStorage
           if (dadosImportados.complaints) {
@@ -1410,6 +1450,31 @@ const musicPlaceNotesBox = document.getElementById("musicPlaceNotes1"); // Aqui 
   const gameNotesBox = document.getElementById("game");
   if (gameNotesBox) {
     gameNotesBox.value = perfil.gameNotes || "";
+  }
+
+  const programadosBox = document.getElementById("programados");
+  if (programadosBox) {
+    programadosBox.value = localStorage.getItem("programados-" + perfilAtivo) || "";
+  }
+
+  const anotacoesBox = document.getElementById("anotacoes");
+  if (anotacoesBox) {
+    anotacoesBox.value = localStorage.getItem("anotacoes-" + perfilAtivo) || "";
+  }
+
+  const anotacoes2Box = document.getElementById("anotacoes2");
+  if (anotacoes2Box) {
+    anotacoes2Box.value = localStorage.getItem("anotacoes2-" + perfilAtivo) || "";
+  }
+
+  const anotacoes3Box = document.getElementById("anotacoes3");
+  if (anotacoes3Box) {
+    anotacoes3Box.value = localStorage.getItem("anotacoes3-" + perfilAtivo) || "";
+  }
+
+  const metasBox = document.getElementById("metas");
+  if (metasBox) {
+    metasBox.value = localStorage.getItem("metas-" + perfilAtivo) || "";
   }
 
   nomePerfil.textContent = perfil.nome;
@@ -1728,20 +1793,17 @@ function closeComplaintForm() {
 
 // Função para mostrar o formulário de reclamação
 function saveToLocalStorage(complaints) {
-  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main"; // Obtém o perfil ativo
-  localStorage.setItem(`complaints-${perfilAtivo}`, JSON.stringify(complaints)); // Salva as reclamações do perfil ativo
+  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
+  localStorage.setItem(`complaints-${perfilAtivo}`, JSON.stringify(complaints));
 }
 
 // Função para carregar as reclamações do perfil ativo
 function loadComplaints() {
-  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main"; // Obtém o perfil ativo
-  const perfil = JSON.parse(localStorage.getItem(`perfil-${perfilAtivo}`)) || {}; // Carrega o perfil ativo
-
-  // Acessa as reclamações
-  const complaints = perfil.complaints || []; // Se não houver reclamações, retorna um array vazio
+  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
+  const complaints = JSON.parse(localStorage.getItem(`complaints-${perfilAtivo}`)) || [];
 
   const complaintsList = document.getElementById('complaintsList');
-  complaintsList.innerHTML = ''; // Limpa as reclamações atuais
+  complaintsList.innerHTML = '';
 
   complaints.forEach(complaint => {
     const complaintElement = document.createElement('div');
@@ -1756,34 +1818,26 @@ function loadComplaints() {
 }
 
 // Função para adicionar uma nova reclamação
-// Função para adicionar uma nova reclamação
 document.getElementById('complaintForm').onsubmit = function(event) {
   event.preventDefault();
 
-  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main"; // Obtém o perfil ativo
+  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
   const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
   const subject = document.getElementById('subject').value;
   const message = document.getElementById('message').value;
 
-  // Carrega o perfil do perfilAtivo
-  let perfil = JSON.parse(localStorage.getItem(`perfil-${perfilAtivo}`)) || {};
+  let complaints = JSON.parse(localStorage.getItem(`complaints-${perfilAtivo}`)) || [];
 
-  // Se o perfil não existir, cria um novo perfil vazio
-  if (!perfil.complaints) {
-    perfil.complaints = [];
-  }
+  complaints.push({
+    id: complaints.length + 1,
+    name,
+    subject,
+    message
+  });
 
-  // Adiciona a nova reclamação
-  perfil.complaints.push({ id: perfil.complaints.length + 1, name, subject, message });
+  saveToLocalStorage(complaints);
+  loadComplaints();
 
-  // Salva o perfil atualizado no localStorage
-  saveToLocalStorage(perfil);
-
-  // Recarrega as reclamações
-  loadComplaints(perfil.complaints);
-
-  // Limpa o formulário
   document.getElementById('complaintForm').reset();
   document.getElementById('complaintForm').style.display = 'none';
   document.getElementById('addComplaintBtn').style.display = 'inline-block';
@@ -1791,7 +1845,7 @@ document.getElementById('complaintForm').onsubmit = function(event) {
 
 // Atualiza as reclamações quando o perfil for alterado
 document.getElementById('perfil-selector').addEventListener('change', function() {
-  const perfilAtivo = this.value; // Obtém o perfil selecionado
-  localStorage.setItem("perfilAtivo", perfilAtivo); // Salva o perfil ativo no localStorage
-  loadComplaints(); // Carrega as reclamações para o novo perfil
+  const perfilAtivo = this.value;
+  localStorage.setItem("perfilAtivo", perfilAtivo);
+  loadComplaints(); // Isso agora funcionará corretamente
 });

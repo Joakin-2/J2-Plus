@@ -12,10 +12,17 @@ const perfis = {
     notesLer: localStorage.getItem("notes-ler-Joaquim") || "",
     musicPlaceNotes1: localStorage.getItem("musicPlaceNotes1-Joaquim") || "",
     gymNotes: localStorage.getItem("gymNotes-Joaquim") || "",
-    complaints: JSON.parse(localStorage.getItem("complaints-Joaquim")) || [], // Adicionando as reclamações para o perfil Joaquim
-    notas: localStorage.getItem("notas-Joaquim") || "", // Adicionando o campo de notas para o perfil Joaquim
-    pagarNotas: localStorage.getItem("pagarNotas-Joaquim") || "", // Adicionando o campo de pagarNotas para o perfil Joaquim
-    gameNotes: localStorage.getItem("gameNotes-Joaquim") || "" // Adicionando o campo de gameNotes para o perfil Joaquim
+    complaints: JSON.parse(localStorage.getItem("complaints-Joaquim")) || [],
+    notas: localStorage.getItem("notas-Joaquim") || "",
+    pagarNotas: localStorage.getItem("pagarNotas-Joaquim") || "",
+    gameNotes: localStorage.getItem("gameNotes-Joaquim") || "",
+    
+    // 🆕 Novos campos adicionados:
+    programados: localStorage.getItem("programados-Joaquim") || "",
+    anotacoes: localStorage.getItem("anotacoes-Joaquim") || "",
+    anotacoes2: localStorage.getItem("anotacoes2-Joaquim") || "",
+    anotacoes3: localStorage.getItem("anotacoes3-Joaquim") || "",
+    metas: localStorage.getItem("metas-Joaquim") || ""
   },
   Vitoria: {
     nome: "Vitória",
@@ -25,10 +32,17 @@ const perfis = {
     notesLer: localStorage.getItem("notes-ler-Vitoria") || "",
     musicPlaceNotes1: localStorage.getItem("musicPlaceNotes1-Vitoria") || "",
     gymNotes: localStorage.getItem("gymNotes-Vitoria") || "",
-    complaints: JSON.parse(localStorage.getItem("complaints-Vitoria")) || [], // Adicionando as reclamações para o perfil Vitória
-    notas: localStorage.getItem("notas-Vitoria") || "", // Adicionando o campo de notas para o perfil Vitória
-    pagarNotas: localStorage.getItem("pagarNotas-Vitoria") || "", // Adicionando o campo de pagarNotas para o perfil Vitória
-    gameNotes: localStorage.getItem("gameNotes-Vitoria") || "" // Adicionando o campo de gameNotes para o perfil Vitória
+    complaints: JSON.parse(localStorage.getItem("complaints-Vitoria")) || [],
+    notas: localStorage.getItem("notas-Vitoria") || "",
+    pagarNotas: localStorage.getItem("pagarNotas-Vitoria") || "",
+    gameNotes: localStorage.getItem("gameNotes-Vitoria") || "",
+
+    // 🆕 Novos campos
+    programados: localStorage.getItem("programados-Vitoria") || "",
+    anotacoes: localStorage.getItem("anotacoes-Vitoria") || "",
+    anotacoes2: localStorage.getItem("anotacoes2-Vitoria") || "",
+    anotacoes3: localStorage.getItem("anotacoes3-Vitoria") || "",
+    metas: localStorage.getItem("metas-Vitoria") || ""
   },
   Main: {
     nome: "Main",
@@ -38,10 +52,17 @@ const perfis = {
     notesLer: localStorage.getItem("notes-ler-Main") || "",
     musicPlaceNotes1: localStorage.getItem("musicPlaceNotes1-Main") || "",
     gymNotes: localStorage.getItem("gymNotes-Main") || "",
-    complaints: JSON.parse(localStorage.getItem("complaints-Main")) || [], // Adicionando as reclamações para o perfil Main
-    notas: localStorage.getItem("notas-Main") || "", // Adicionando o campo de notas para o perfil Main
-    pagarNotas: localStorage.getItem("pagarNotas-Main") || "", // Adicionando o campo de pagarNotas para o perfil Main
-    gameNotes: localStorage.getItem("gameNotes-Main") || "" // Adicionando o campo de gameNotes para o perfil Main
+    complaints: JSON.parse(localStorage.getItem("complaints-Main")) || [],
+    notas: localStorage.getItem("notas-Main") || "",
+    pagarNotas: localStorage.getItem("pagarNotas-Main") || "",
+    gameNotes: localStorage.getItem("gameNotes-Main") || "",
+
+    // 🆕 Novos campos
+    programados: localStorage.getItem("programados-Main") || "",
+    anotacoes: localStorage.getItem("anotacoes-Main") || "",
+    anotacoes2: localStorage.getItem("anotacoes2-Main") || "",
+    anotacoes3: localStorage.getItem("anotacoes3-Main") || "",
+    metas: localStorage.getItem("metas-Main") || ""
   }
 };
 
