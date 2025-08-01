@@ -122,31 +122,6 @@ function atualizarInterface() {
 
 document.addEventListener("DOMContentLoaded", atualizarInterface);
 
-function loadNotes() {
-    // Verifique se há anotações salvas para o perfil ativo
-    const savedNotes = localStorage.getItem(`musicPlaceNotes1-${perfilAtivo}`);
-
-    if (savedNotes) {
-        document.getElementById("notes1").value = savedNotes;
-    } else {
-        document.getElementById("notes1").value = '';
-    }
-}
-
-function saveNotes() {
-    const notesValue = document.getElementById("notes1").value;
-    // Salve as anotações no localStorage para o perfil ativo
-    localStorage.setItem(`musicPlaceNotes1-${perfilAtivo}`, notesValue);
-}
-
-// Adiciona o listener para salvar sempre que o texto for alterado
-document.getElementById("notes1").addEventListener("input", saveNotes);
-
-// Carrega as notas quando a página carregar
-window.onload = function() {
-    loadNotes();
-};
-
 function showLessons(instrument) {
     // Lógica para exibir lições do instrumento
     alert(`Mostrando lições de ${instrument}`);
@@ -270,3 +245,31 @@ function redirecionar(destino) {
             break;
     }
 }
+
+// Recupera o perfil ativo do localStorage
+perfilAtivo = localStorage.getItem('perfilAtivo') || 'Main';
+
+// Salvar as anotações do musicPlace para o perfil ativo
+function saveNotes() {
+    const notes = document.getElementById('notes1').value;
+    localStorage.setItem(`musicPlaceNotes1-${perfilAtivo}`, notes);
+}
+
+// Carregar as anotações salvas do localStorage para o perfil ativo
+function loadNotes() {
+    const savedNotes = localStorage.getItem(`musicPlaceNotes1-${perfilAtivo}`);
+
+    if (savedNotes) {
+        document.getElementById('notes1').value = savedNotes;
+    }
+}
+
+// Adicionar evento para salvar automaticamente ao digitar
+document.getElementById('notes1').addEventListener('input', function () {
+    saveNotes();
+});
+
+// Carregar as anotações ao iniciar a página
+document.addEventListener('DOMContentLoaded', function () {
+    loadNotes();
+});

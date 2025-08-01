@@ -744,15 +744,19 @@ const diasCorridosBtn = document.getElementById('diasCorridosBtn');
         });
     });
 
+    document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('recarregarHabitosBtn').addEventListener('click', () => {
-    // Se você quiser limpar os hábitos atuais antes de recarregar:
-    const secoes = ['manha', 'tarde', 'noite'];
-    secoes.forEach(secao => {
-        const container = document.getElementById(`habitos-${secao}`);
-        if (container) container.innerHTML = ''; // Limpa os hábitos anteriores
-    });
+        ['manha', 'tarde', 'noite'].forEach(secao => {
+            const container = document.getElementById(`habitos-${secao}`);
+            if (container) container.innerHTML = '';
+        });
 
-    carregarHabitosDoDia();
+        localStorage.removeItem('habitosData');
+        carregarHabitosDoDia();
+
+        // Recarrega a página para aplicar visualmente
+        location.reload();
+    });
 });
 
 function abrirSitesManha() {
