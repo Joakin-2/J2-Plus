@@ -1367,6 +1367,7 @@ importarBtn.addEventListener("click", () => {
 
           atualizarPerfil(); // Atualiza a interface
           alert("Perfil importado com sucesso!");
+          setTimeout(() => location.reload(), 500); // Recarrega após 0,5 segundo
         } catch (error) {
           alert("Erro ao importar o perfil.");
         }
