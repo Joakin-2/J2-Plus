@@ -250,8 +250,8 @@ function carregarHabitosDoDia() {
     const habitosPorPerfil = {
         Joaquim: {
         domingo: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Fazer Faxina', 'Limpar Fogão', 'Limpar Ouvido', 'Escola Dominical'],
-            tarde: ['Ler','Pele','Ensaiar','Estudar','Desenhar','Se Depile', 'Alise seu Pé', 'Lavar as Roupas', 'Lavar o Banheiro'],
+            manha: ['Orar','Gelo','Vácuo','Alongar','Fazer Faxina', 'Limpar Fogão', 'Limpar Ouvido', 'Escola Dominical'],
+            tarde: ['Ler','Pele','Ensaiar','Desenhar','Se Depile', 'Alise seu Pé', 'Lavar as Roupas', 'Lavar o Banheiro'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Culto da Família']
         },
         segunda: {
@@ -282,8 +282,8 @@ function carregarHabitosDoDia() {
             // noite: ['Culto as 19h30', 'Limpar Escritório']
         },
         sábado: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Correr (1 hora)', 'Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Ensaiar','Estudar','Desenhar','Conselho', 'Atualizações', 'Ensaio (UADEMIS)'],
+            manha: ['Orar','Gelo','Vácuo','Alongar','Devocional','Correr (1 hora)', 'Ensaiar (2 hora)'],
+            tarde: ['Ler','Pele','Ensaiar','Desenhar','Conselho', 'Atualizações', 'Ensaio (UADEMIS)'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
         },
     },
