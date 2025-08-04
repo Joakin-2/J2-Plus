@@ -256,7 +256,7 @@ function carregarHabitosDoDia() {
         },
         segunda: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Oração na Igreja'],
-            tarde: ['Ler','Pele','Ensaiar','Desenhar','Trabalho (Trade)'],
+            tarde: ['Ler','Pele','Ensaiar','Estudar','Desenhar','Trabalho (Trade)'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
         },
         terça: {
@@ -277,7 +277,7 @@ function carregarHabitosDoDia() {
         },
         sexta: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional'],
-            tarde: ['Ler','Pele','Ensaiar','Desenhar','Trabalho (Mídia)', 'Lavar Carro e Moto'],
+            tarde: ['Ler','Pele','Ensaiar','Estudar','Desenhar','Trabalho (Mídia)', 'Lavar Carro e Moto'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Limpar Escritório']
             // noite: ['Culto as 19h30', 'Limpar Escritório']
         },
