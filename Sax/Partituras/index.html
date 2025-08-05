@@ -238,6 +238,7 @@
                 <option value="sax-tenor">🎷 Sax Tenor</option>
                 <option value="clarinete">🎼 Clarinete</option>
                 <option value="teclado">🎹 Teclado</option>
+                <option value="baixo">🎸 Baixo</option>
             </select>
         </div>
         <button class="filter-button" onclick="showAll()">All</button>
@@ -345,6 +346,10 @@
             <i class="fas fa-file-pdf"></i>
             <span style="margin-left: 8px;">Cristo Virá</span>
         </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('Hino 48 - Sax Alto.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Hino 48</span>
+        </div>
         <div class="pdf-icon" onclick="openPDFModal('25.pdf')">
             <i class="fas fa-file-pdf"></i>
             <span style="margin-left: 8px;">Hino 25</span>
@@ -373,8 +378,9 @@
         <img class="image sax-tenor" src="Eterna Gratidão.jpg" alt="Eterna Gratidão" onclick="openModal(21)">
         <img class="image sax-alto" src="Subline e Grande Amor.jpeg" alt="Subline e Grande Amor" onclick="openModal(22)">
         <img class="image sax-tenor" src="Te agradeço.jpg" alt="Te agradeço" onclick="openModal(23)">
-        <img class="image" src="247.jpeg" alt="Imagem 247" onclick="openModal(24)">
-        <img class="image sax-alto" src="Yoshi_s Island.png" alt="Yoshi's Island" onclick="openModal(25)">
+        <img class="image baixo" src="Baixo.png" alt="Yoshi's Island" onclick="openModal(24)">
+        <img class="image" src="247.jpeg" alt="Imagem 247" onclick="openModal(25)">
+        <img class="image sax-alto" src="Yoshi_s Island.png" alt="Yoshi's Island" onclick="openModal(26)">
     </div>
     
     <!-- Modal for PDF -->
@@ -448,9 +454,10 @@
         '074 - Clarinete B.pdf',
         '074 - Sax tenor.pdf',
         '074 - Sax alto B.pdf',
+        'Hino 48 - Sax Alto.pdf',
         '25.pdf'
     ];
-        const images = ["Noite Feliz.jpg", "125.jpg", "093.jpg", "107.jpg", "109.jpg", "370.jpg", "459.jpg", "63.jpg", "89.jpg", "481.jpeg", "577.jpg", "Altar.png", "grato-a-ti.jpg", "96.jpeg", "559.jpeg", "535.jpeg", "525.jpg", "14.jpeg", "491.jpeg", "3.jpeg", "9.jpg", "Eterna Gratidão.jpg", "Subline e Grande Amor.jpeg", "Te agradeço.jpg", "247.jpeg", "Yoshi_s Island.png"];
+        const images = ["Noite Feliz.jpg", "125.jpg", "093.jpg", "107.jpg", "109.jpg", "370.jpg", "459.jpg", "63.jpg", "89.jpg", "481.jpeg", "577.jpg", "Altar.png", "grato-a-ti.jpg", "96.jpeg", "559.jpeg", "535.jpeg", "525.jpg", "14.jpeg", "491.jpeg", "3.jpeg", "9.jpg", "Eterna Gratidão.jpg", "Subline e Grande Amor.jpeg", "Te agradeço.jpg", "Baixo.png", "247.jpeg", "Yoshi_s Island.png"];
         let currentImageIndex = 0;
 
         function filtrarInstrumentos(tipo) {
