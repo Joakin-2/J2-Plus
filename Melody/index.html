@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Place</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="loader-container">
+        <div id="loader-background">
+            <video autoplay loop muted>
+                <source src="load.mp4" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
+    </div>
+
+    <header>
+        <h1>Bem-vindo ao Music Place</h1>
+    </header>
+
+    <main>
+        <div id="top-sections">
+            <section id="report-section">
+                <h2>Relatório</h2>
+                <div id="notes-section">
+                    <div class="button-group"> 
+                        <h3>Anotações</h3>
+                        <button class="btn-export" onclick="exportNotes()" style="margin-left: 15px; display: none;"><i class="fas fa-file-export"></i></button>
+                        <button class="btn-import" onclick="importNotes()" style="display: none;"><i class="fas fa-file-import"></i></button>
+                    </div>
+                    <textarea id="notes1" placeholder="Faça suas anotações aqui..."></textarea>
+                </div>
+                <div id="mensagem-xp"></div>
+                <div id="calendar-section">
+                    <h3>Calendário</h3>
+                    <div id="calendar"></div>
+                </div>
+                <section id="about-section">
+                    <h2>Sobre</h2>
+                    <p>Bem-vindo ao Music Place! Uma área feita especialmente para aprender e ensaiar com o Instrumento da sua escolha.</p>
+                </section>
+            </section>
+
+            <section id="instrument-buttons">
+                <h2>O que vamos Tocar hoje?</h2>
+                <button id="piano-button" class="instrument-button" onclick="openModal('piano')">
+                    <img src="1.png" alt="Teclado"> Teclado
+                </button>
+                
+                <button id="saxophone-button" class="instrument-button" onclick="openModal('saxophone')">
+                    <img src="3.png" alt="Saxofone"> Saxofone
+                </button>
+                
+                <button id="clarinet-button" class="instrument-button" onclick="openModal('clarinet')">
+                    <img src="4.png" alt="Clarinete"> Clarinete
+                </button>
+                
+                <button id="bass-button" class="instrument-button" onclick="openModal('bass')">
+                    <img src="2.png" alt="Baixo"> Baixo
+                </button>
+
+                <button id="voz-button" class="instrument-button" onclick="openModal('voz')">
+                    <img src="5.png" alt="Voz"> Voz
+                </button>
+
+                <section id="cleaning-button">
+                    <h2>Limpeza de Instrumentos</h2>
+                    <button id="clean-instruments" class="clean-instruments" onclick="openModal('cleaning')">Como Limpar</button>
+                </section>
+            </section>
+        </div>
+
+        <!-- Modal Teclado -->
+    <div id="pianoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('piano')">&times;</span>
+            <h2>Área do Teclado</h2>
+            <div class="container">
+                <button class="botao" onclick="redirecionar('Play')">
+                    <i class="fas fa-play" style="margin-right: 5px;"></i> Play
+                </button>
+                <button class="botao" onclick="redirecionar('Timer')">
+                    <i class="fas fa-clock" style="margin-right: 5px;"></i> Timer
+                </button>
+                <button class="botao" onclick="redirecionar('Teclado')">
+                    <i class="fas fa-keyboard" style="margin-right: 5px;"></i> Teclado
+                </button>
+                <button class="botao" onclick="redirecionar('Compasso')">
+                    <i class="fas fa-compass" style="margin-right: 5px;"></i> Compasso
+                </button>
+                <button class="botao" onclick="redirecionar('Partituras')">
+                    <i class="fas fa-music" style="margin-right: 5px;"></i> Partituras
+                </button>
+            </div>            
+        </div>
+    </div>
+
+        <!-- Modal Saxofone -->
+    <div id="saxophoneModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('saxophone')">&times;</span>
+            <h2>Área do Saxofone</h2>
+            <div class="container">
+                <button class="botao" onclick="redirecionar('Play')"><i class="fas fa-play" style="margin-right: 5px;"></i> Play</button>
+                <button class="botao" onclick="redirecionar('Timer')"><i class="fas fa-clock" style="margin-right: 5px;"></i> Timer</button>
+                <button class="botao" onclick="redirecionar('Lições-Sax')"><i class="fas fa-file" style="margin-right: 5px;"></i> Lições</button>
+                <button class="botao" onclick="redirecionar('Compasso')"><i class="fas fa-compass" style="margin-right: 5px;"></i> Compasso</button>
+                <button class="botao" onclick="redirecionar('Partituras')"><i class="fas fa-music" style="margin-right: 5px;"></i> Partituras</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Clarinete -->
+    <div id="clarinetModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('clarinet')">&times;</span>
+            <h2>Área do Clarinete</h2>
+            <div class="container">
+                <button class="botao" onclick="redirecionar('Play')"><i class="fas fa-play" style="margin-right: 5px;"></i> Play</button>
+                <button class="botao" onclick="redirecionar('Timer')"><i class="fas fa-clock" style="margin-right: 5px;"></i> Timer</button>
+                <button class="botao" onclick="redirecionar('Lições-Cla')"><i class="fas fa-file" style="margin-right: 5px;"></i> Lições</button>
+                <button class="botao" onclick="redirecionar('Compasso')"><i class="fas fa-compass" style="margin-right: 5px;"></i> Compasso</button>
+                <button class="botao" onclick="redirecionar('Partituras')"><i class="fas fa-music" style="margin-right: 5px;"></i> Partituras</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Baixo -->
+    <div id="bassModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('bass')">&times;</span>
+            <h2>Área do Baixo</h2>
+            <div class="container">
+                <button class="botao" onclick="redirecionar('Play')"><i class="fas fa-play" style="margin-right: 5px;"></i> Play</button>
+                <button class="botao" onclick="redirecionar('Timer')"><i class="fas fa-clock" style="margin-right: 5px;"></i> Timer</button>
+                <button class="botao" onclick="redirecionar('Lições')"><i class="fas fa-file" style="margin-right: 5px;"></i> Lições</button>
+                <button class="botao" onclick="redirecionar('Compasso')"><i class="fas fa-compass" style="margin-right: 5px;"></i> Compasso</button>
+                <button class="botao" onclick="redirecionar('Partituras')"><i class="fas fa-music" style="margin-right: 5px;"></i> Partituras</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Voz -->
+    <div id="vozModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('voz')">&times;</span>
+            <h2>Área de Voz</h2>
+            <div id="button-container">
+                <!-- Botões com links -->
+                 <button onclick="window.location.href='play.html'">Voice Play</button>
+                <button onclick="window.location.href='https://www.youtube.com/watch?v=jCk_ZLejOxY&list=WL&index=11&t=315s&ab_channel=CantarBem'">Cantar Bem</button>
+                <button onclick="window.location.href='https://youtu.be/yXw7PrBb8ok?si=VMy0Trc8n7yRqXf6'">3 Exercícios</button>
+                <button onclick="window.location.href='https://youtu.be/gsMq3eBaFi4?si=S2bxOEOS45crlctp'">Voz bonita</button>
+                <button onclick="window.location.href='https://youtu.be/CHjsg8ZJ9C0?si=oK_lNZEBmh_okbE0'">Treino Vocal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Limpeza de Instrumentos -->
+    <div id="cleaningModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cleaning')">&times;</span>
+            <h2>Área de Limpeza</h2>
+            <section id="instrument-buttons2">
+            
+                <button id="piano-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/HNrAskBRvG8?si=4mE8W0nguouubmpH'">Teclado</button>
+                
+                <button id="saxophone-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/INPBH8sbtRo?si=aSaVknzlFf_7jT0u'">Saxofone</button>
+                
+                <button id="clarinet-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/Ap3b3czkYXU?si=IHZFTChJy67Vo5hB'">Clarinete</button>
+                
+                <button id="bass-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/eVCCizvslmo?si=oHfzGeLLrGsdP18n'">Baixo</button>
+                                  
+            </section>     
+        </div>
+    </div>
+    </main>
+    
+    <script src="/Script/perfil-data.js"></script>
+    <script src="script.js"></script>
+    <script src="/Script/nivel.js"></script>
+</body>
+</html>

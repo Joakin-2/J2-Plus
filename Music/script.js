@@ -224,6 +224,7 @@
                 images: ['6.png', '6 - 1.png', '6 - 2.png', '6 - 3.gif', '6 - 4.jpeg', '6 - 5.png', '6 - 6.gif'],
                 tracks: [
                     'Gym/2K FREESTYLE.mp3',
+                    'Gym/4TAO - Super Slowed.mp3',
                     'Gym/21 Century Fox phonk.mp3',
                     'Gym/2099 SPED UP (Crisis x Spiderman).mp3',
                     'Gym/AGUA DE BEBER (spedup).mp3',
@@ -284,6 +285,7 @@
                     'Gym/Luci4 - BodyPartz (Edit Extended, Clean).mp3',
                     'Gym/MTG Distocida Japonesa (edit Slowed).mp3',
                     'Gym/Mangos (Tiktok Version).mp3',
+                    'Gym/MARIA VAI X BEAT ABSURDO (Ultra Slowed).mp3',
                     'Gym/Masha ultrafunk.mp3',
                     'Gym/Meet the Frownies x Lovely Bastards - TikTok Remix - (Slowed).mp3',
                     'Gym/Mi Mami Funk Vol 2.mp3',
@@ -592,6 +594,7 @@
             'Christ Gym/Repent (192).mp3': "Repent",
 
             'Gym/2K FREESTYLE.mp3': "2K FREESTYLE",
+            'Gym/4TAO - Super Slowed.mp3': "4TÃO - Super Slowed",
             'Gym/21 Century Fox phonk.mp3': "21 Century Fox phonk",
             'Gym/2099 SPED UP (Crisis x Spiderman).mp3': "2099 SPED UP (Crisis x Spiderman)",
             'Gym/AGUA DE BEBER (spedup).mp3': "ÁGUA DE BEBER (spedup)",
@@ -652,6 +655,7 @@
             'Gym/Luci4 - BodyPartz (Edit Extended, Clean).mp3': "BodyPartz (Edit Clean Extended)",
             'Gym/MTG Distocida Japonesa (edit Slowed).mp3': "MTG Distocida Japonesa (edit Slowed)",
             'Gym/Mangos (Tiktok Version).mp3': "Mangos (Tiktok Version)",
+            'Gym/MARIA VAI X BEAT ABSURDO (Ultra Slowed).mp3': "MARIA VAI X BEAT ABSURDO (Ultra Slowed)",
             'Gym/Masha ultrafunk.mp3': "Masha Ultrafunk",
             'Gym/Meet the Frownies x Lovely Bastards - TikTok Remix - (Slowed).mp3': "Meet the Frownies x Lovely Bastards - Slowed",
             'Gym/Mi Mami Funk Vol 2.mp3': "𝙈𝙄 𝙈𝘼𝙈𝙄 𝙁𝙐𝙉𝙆 𝙑𝙤𝙡.2",
