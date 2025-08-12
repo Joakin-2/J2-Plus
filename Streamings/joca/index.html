@@ -166,7 +166,6 @@
             <input type="text" id="search" name="search_query" placeholder="Pesquisar..." required="" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;" oninput="toggleSuggestions()"> <!-- Adicione o evento 'oninput' aqui -->
             <button type="submit" style="padding: 10px;background-color: #2e2e2e;color: white;border: none;border-radius: 5px;cursor: pointer;margin-left: 10px;margin-right: 10px;">Buscar</button>
             <button type="button" id="up" style="padding: 10px; background-color: #2e2e2e; color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="openSite()"><i class="fas fa-upload"></i> <!-- Ícone de upload --></button>
-            <button type="button" id="plus" style="padding: 10px;background-color: #2e2e2e;color: white;border: none;border-radius: 5px;cursor: pointer;" onclick="openSites()">+</button>
             <div id="suggestions" class="suggestions" style="margin-top: 10px;">
                 <!-- Sugestões vão aparecer aqui -->
             </div>
@@ -349,26 +348,11 @@
         }
     }
 
-    // Mover a função openSites para fora da função toggleSuggestions
-    function openSites() {
-        // URLs dos sites a serem abertos
-        const sites = [
-            "https://www.instagram.com/joakin_luiz/saved/all-posts/?theme=dark",        // Exemplo de site 1
-            "https://snapinsta.com.br/",   // Exemplo de site 2
-            "https://www.canva.com/",   // Exemplo de site 3
-            "https://y2down.cc/pt/"   // Exemplo de site 4
-        ];
-
-        // Abre cada site em uma nova aba
-        sites.forEach(site => {
-            window.open(site, '_blank');
-        });
-    }
-
     function openSite() {
         // URLs dos sites a serem abertos
         const sites = [
-            "https://studio.youtube.com/channel/UCUmyhRgqHgAA8XY9Kx5gPiQ/videos"
+            "https://studio.youtube.com/channel/UCUmyhRgqHgAA8XY9Kx5gPiQ/videos",
+            "https://www.instagram.com/joakin_luiz/saved/all-posts/?theme=dark"
         ];
 
         // Abre cada site em uma nova aba
