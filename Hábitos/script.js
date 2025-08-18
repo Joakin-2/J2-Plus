@@ -744,18 +744,26 @@ const diasCorridosBtn = document.getElementById('diasCorridosBtn');
         });
     });
 
-    recarregarHabitosBtn.addEventListener('click', function() {
-        ['manha', 'tarde', 'noite'].forEach(secao => {
-            const container = document.getElementById(`habitos-${secao}`);
-            if (container) container.innerHTML = '';
-        });
-
-        localStorage.removeItem('habitosData');
-        carregarHabitosDoDia();
-
-        alert("Recarregue a página!");
-        setTimeout(() => location.reload(), 500); // Recarrega após 0,5 segundo
-    });
+    function recarregar() {
+            const audio = document.getElementById('som-recarregar');
+            
+            if (audio) {
+                // Tocar o som
+                audio.play().then(() => {
+                    // Recarregar a página quando o áudio terminar
+                    audio.addEventListener('ended', () => {
+                        location.reload(); // Recarregar a página após o áudio terminar
+                    });
+                }).catch(err => {
+                    console.error('Erro ao tocar o som:', err);
+                    // Caso dê erro, recarregar mesmo assim
+                    location.reload();
+                });
+            } else {
+                console.error('Áudio não encontrado!');
+                location.reload(); // Se o áudio não for encontrado, recarregar a página de qualquer forma
+            }
+        }
 
 function abrirSitesManha() {
     const hoje = new Date();
