@@ -745,25 +745,42 @@ const diasCorridosBtn = document.getElementById('diasCorridosBtn');
     });
 
     function recarregar() {
-            const audio = document.getElementById('som-recarregar');
-            
-            if (audio) {
-                // Tocar o som
-                audio.play().then(() => {
-                    // Recarregar a página quando o áudio terminar
-                    audio.addEventListener('ended', () => {
-                        location.reload(); // Recarregar a página após o áudio terminar
-                    });
-                }).catch(err => {
-                    console.error('Erro ao tocar o som:', err);
-                    // Caso dê erro, recarregar mesmo assim
-                    location.reload();
-                });
-            } else {
-                console.error('Áudio não encontrado!');
-                location.reload(); // Se o áudio não for encontrado, recarregar a página de qualquer forma
-            }
-        }
+    const audio = document.getElementById('som-recarregar');
+    
+    if (audio) {
+        // Tocar o som
+        audio.play().then(() => {
+            // Recarregar os dados quando o áudio terminar
+            audio.addEventListener('ended', () => {
+                atualizarDados();
+            });
+        }).catch(err => {
+            console.error('Erro ao tocar o som:', err);
+            // Caso dê erro, ainda assim tenta atualizar os dados
+            atualizarDados();
+        });
+    } else {
+        console.error('Áudio não encontrado!');
+        atualizarDados(); // Se o áudio não for encontrado, tenta atualizar os dados
+    }
+    setTimeout(() => {
+            location.reload(); // Recarrega a página após o áudio e dados serem atualizados
+        }, 5500);
+}
+
+// Função para atualizar os dados da página
+function atualizarDados() {
+    // Limpa as seções de hábitos
+    ['manha', 'tarde', 'noite'].forEach(secao => {
+        const container = document.getElementById(`habitos-${secao}`);
+        if (container) container.innerHTML = '';
+    });
+
+    // Remove os dados armazenados no localStorage
+    localStorage.removeItem('habitosData');
+
+    // Chama a função para carregar os hábitos do dia
+    carregarHabitosDoDia();}
 
 function abrirSitesManha() {
     const hoje = new Date();
