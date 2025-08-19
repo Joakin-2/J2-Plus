@@ -223,12 +223,13 @@
             },
             'Gym': {
                 image: '6.png',
-                images: ['6.png', '6 - 1.png', '6 - 2.png', '6 - 3.gif', '6 - 4.jpeg', '6 - 5.png', '6 - 6.gif'],
+                images: ['6.png', '6 - 1.png', '6 - 2.png', '6 - 3.gif', '6 - 4.jpeg', '6 - 5.png', '6 - 6.gif', '6 - 7.png'],
                 tracks: [
                     'Gym/2K FREESTYLE.mp3',
                     'Gym/4TAO - Super Slowed.mp3',
                     'Gym/21 Century Fox phonk.mp3',
                     'Gym/2099 SPED UP (Crisis x Spiderman).mp3',
+                    'Gym/2099.mp3'
                     'Gym/AGUA DE BEBER (spedup).mp3',
                     'Gym/AMV Middle of the night.mp3',
                     'Gym/An audio for your final stand.mp3',
@@ -475,6 +476,7 @@
             'Vibe/Pou Teto.mp3': "Pou Teto",
             'Vibe/Reese Young edit-audio.mp3': "Reese Young edit-audio",
             'Vibe/Ridin (Dj Vm Remix).mp3': "Ridin (Dj Vm Remix)",
+            'Vibe/Reinado (Slowed).mp3': "Reinado (Slowed)",
             'Vibe/Ritmada Poderosa  edit.mp3': "Ritmada Poderosa edit",
             'Vibe/Rizz Song (4k Edit).mp3': "Rizz Song (4k Edit)",
             'Vibe/Roblox Runaway.mp3': "Roblox Runaway",
@@ -600,6 +602,7 @@
             'Gym/2K FREESTYLE.mp3': "2K FREESTYLE",
             'Gym/4TAO - Super Slowed.mp3': "4TÃO - Super Slowed",
             'Gym/21 Century Fox phonk.mp3': "21 Century Fox phonk",
+            'Gym/2099.mp3': "2099.",
             'Gym/2099 SPED UP (Crisis x Spiderman).mp3': "2099 SPED UP (Crisis x Spiderman)",
             'Gym/AGUA DE BEBER (spedup).mp3': "ÁGUA DE BEBER (spedup)",
             'Gym/AMV Middle of the night.mp3': "AMV Middle of the night",
