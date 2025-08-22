@@ -251,39 +251,39 @@ function carregarHabitosDoDia() {
         Joaquim: {
         domingo: {
             manha: ['Orar','Gelo','Vácuo','Alongar','Fazer Faxina', 'Limpar Fogão', 'Limpar Ouvido', 'Escola Dominical'],
-            tarde: ['Ler','Pele','Ensaiar','Desenhar','Se Depile', 'Alise seu Pé', 'Lavar as Roupas', 'Lavar o Banheiro'],
+            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Se Depile', 'Alise seu Pé', 'Lavar as Roupas', 'Lavar o Banheiro'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Culto da Família']
         },
         segunda: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Oração na Igreja'],
-            tarde: ['Ler','Pele','Ensaiar','Estudar','Desenhar','Trabalho (Trade)'],
+            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
         },
         terça: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional'],
-            tarde: ['Ler','Pele','Ensaiar','Estudar','Desenhar','Trabalho (Trade)'],
+            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
         },
         quarta: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Fazer Faxina', 'Aparar Barba', 'Limpar Fogão', 'Limpar Ouvido'],
-            tarde: ['Ler','Pele','Ensaiar','Estudar','Desenhar','Alise seu Pé', 'Trabalho (Trade)', 'Lavar as Roupas', 'Lavar o Banheiro'],
+            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Alise seu Pé', 'Trabalho (Trade)', 'Lavar as Roupas', 'Lavar o Banheiro'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
             // noite: ['Culto as 19h30']
         },
         quinta: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Começar Jejum'],
-            tarde: ['Ler','Pele','Ensaiar','Estudar','Desenhar','Trabalho (Trade)','Continuar Jejum'],
+            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)','Continuar Jejum'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Finalizar Jejum']
         },
         sexta: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional'],
-            tarde: ['Ler','Pele','Ensaiar','Estudar','Desenhar','Trabalho (Mídia)', 'Lavar Carro e Moto'],
+            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Mídia)', 'Lavar Carro e Moto'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Limpar Escritório']
             // noite: ['Culto as 19h30', 'Limpar Escritório']
         },
         sábado: {
             manha: ['Orar','Gelo','Vácuo','Alongar','Devocional','Correr (1 hora)', 'Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Ensaiar','Desenhar','Conselho', 'Atualizações', 'Ensaio (UADEMIS)'],
+            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Conselho', 'Atualizações', 'Ensaio (UADEMIS)'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
         },
     },
