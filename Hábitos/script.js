@@ -256,7 +256,7 @@ function carregarHabitosDoDia() {
         },
         segunda: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Oração na Igreja'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
+            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Cortar a Grama','Trabalho (Trade)'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
         },
         terça: {
