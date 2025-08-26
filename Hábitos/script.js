@@ -423,6 +423,27 @@ if (hoje.getDay() === 0) { // Hoje é domingo
     }
 }
 
+    // Verificar se há outra quarta-feira depois de hoje ainda neste mês
+    let temOutraQuartaDepois = false;
+    for (let d = dia + 1; d <= ultimoDiaDoMes; d++) {
+        const data = new Date(ano, mes, d);
+        if (data.getDay() === 3) {
+            temOutraQuartaDepois = true;
+            break;
+        }
+    }
+
+    if (!temOutraQuartaDepois) {
+        // Hoje é a última quarta-feira do mês
+        if (!habitosPorDia.quarta) {
+            habitosPorDia.quarta = {};
+        }
+        if (!habitosPorDia.quarta.tarde) {
+            habitosPorDia.quarta.tarde = [];
+        }
+        habitosPorDia.quarta.tarde.push("Cortar Unhas do Pé");
+    }
+
     // Carregar hábitos do dia
     if (habitosPorDia[diaAtual]) {
         const habitosDia = habitosPorDia[diaAtual];
