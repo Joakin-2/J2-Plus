@@ -366,66 +366,60 @@ function carregarHabitosDoDia() {
     const diasSemana = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
     const hoje = new Date();
     const diaAtual = diasSemana[hoje.getDay()];
-
-    const habitosPorDia = habitosPorPerfil[perfilAtivo];
-
+    const habitosPorDia = habitosPorPerfil[perfilAtivo]; // <-- Defina antes de usar
     if (!habitosPorDia) return;
 
-    // Verificar se é sábado
+// Verificar se é sábado
 if (hoje.getDay() === 6) {
     const diaDoMes = hoje.getDate();
 
     // Segundo sábado
     if (diaDoMes >= 8 && diaDoMes <= 14) {
-        if (!habitosPorDia.sábado.noite) {
-            habitosPorDia.sábado.noite = [];
-        }
+        if (!habitosPorDia.sábado) habitosPorDia.sábado = {};
+        if (!habitosPorDia.sábado.noite) habitosPorDia.sábado.noite = [];
         habitosPorDia.sábado.noite.push("Santa Ceia");
     }
 
     // Terceiro sábado
     if (diaDoMes >= 15 && diaDoMes <= 21) {
-        if (!habitosPorDia.sábado.manha) {
-            habitosPorDia.sábado.manha = [];
-        }
+        if (!habitosPorDia.sábado) habitosPorDia.sábado = {};
+        if (!habitosPorDia.sábado.manha) habitosPorDia.sábado.manha = [];
         habitosPorDia.sábado.manha.push("Banho no Gato");
     }
 }
 
 // Verificar se é o último domingo do mês
-if (hoje.getDay() === 0) { // Hoje é domingo
+if (hoje.getDay() === 0) {
     const ano = hoje.getFullYear();
     const mes = hoje.getMonth();
     const dia = hoje.getDate();
-
-    // Descobrir o último dia do mês
     const ultimoDiaDoMes = new Date(ano, mes + 1, 0).getDate();
 
-    // Verificar se há outro domingo após o dia de hoje neste mês
     let temOutroDomingoDepois = false;
     for (let d = dia + 1; d <= ultimoDiaDoMes; d++) {
         const data = new Date(ano, mes, d);
-        if (data.getDay() === 0) { // Outro domingo encontrado
+        if (data.getDay() === 0) {
             temOutroDomingoDepois = true;
             break;
         }
     }
 
     if (!temOutroDomingoDepois) {
-        // Hoje é o último domingo do mês
-        if (!habitosPorDia.domingo) {
-            habitosPorDia.domingo = {};
-        }
-        if (!habitosPorDia.domingo.noite) {
-            habitosPorDia.domingo.noite = [];
-        }
+        if (!habitosPorDia.domingo) habitosPorDia.domingo = {};
+        if (!habitosPorDia.domingo.noite) habitosPorDia.domingo.noite = [];
         habitosPorDia.domingo.noite.push("Entregar Dízimo");
     }
 }
 
-    // Verificar se há outra quarta-feira depois de hoje ainda neste mês
+// Verificar se é a última quarta-feira do mês
+if (hoje.getDay() === 3) {
+    const ano = hoje.getFullYear();
+    const mes = hoje.getMonth();
+    const diaDoMes = hoje.getDate();
+    const ultimoDiaDoMes = new Date(ano, mes + 1, 0).getDate();
+
     let temOutraQuartaDepois = false;
-    for (let d = dia + 1; d <= ultimoDiaDoMes; d++) {
+    for (let d = diaDoMes + 1; d <= ultimoDiaDoMes; d++) {
         const data = new Date(ano, mes, d);
         if (data.getDay() === 3) {
             temOutraQuartaDepois = true;
@@ -433,24 +427,41 @@ if (hoje.getDay() === 0) { // Hoje é domingo
         }
     }
 
+    // Última quarta-feira do mês
     if (!temOutraQuartaDepois) {
-        // Hoje é a última quarta-feira do mês
-        if (!habitosPorDia.quarta) {
-            habitosPorDia.quarta = {};
-        }
-        if (!habitosPorDia.quarta.tarde) {
-            habitosPorDia.quarta.tarde = [];
-        }
+        if (!habitosPorDia.quarta) habitosPorDia.quarta = {};
+        if (!habitosPorDia.quarta.tarde) habitosPorDia.quarta.tarde = [];
         habitosPorDia.quarta.tarde.push("Cortar Unhas do Pé");
     }
+}
 
-    // Carregar hábitos do dia
-    if (habitosPorDia[diaAtual]) {
-        const habitosDia = habitosPorDia[diaAtual];
-        for (const periodo in habitosDia) {
-            habitosDia[periodo].forEach(habito => criarHabito(habito, periodo));
+const habitosDeHoje = habitosPorDia[diaAtual];
+
+if (habitosDeHoje) {
+    ['manha', 'tarde', 'noite'].forEach(periodo => {
+        const lista = document.getElementById(`${periodo}Habitos`);
+        if (lista) {
+            // Limpa os hábitos anteriores
+            while (lista.firstChild) {
+                lista.removeChild(lista.firstChild);
+            }
+
+            const habitos = habitosDeHoje[periodo] || [];
+            habitos.forEach(habito => {
+                const li = document.createElement('li');
+                li.textContent = habito;
+
+                // Evento para marcar como concluído
+                li.addEventListener('click', () => {
+                    li.classList.toggle('concluido');
+                    saveHabitsState(); // Função para salvar estado
+                });
+
+                lista.appendChild(li);
+            });
         }
-    }
+    });
+}
 }
 
 function loadSavedData() {
