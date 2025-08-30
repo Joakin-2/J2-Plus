@@ -283,7 +283,7 @@ function carregarHabitosDoDia() {
         },
         sábado: {
             manha: ['Orar','Gelo','Vácuo','Alongar','Devocional','Correr (1 hora)', 'Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Conselho', 'Atualizações', 'Ensaio (UADEMIS)'],
+            tarde: ['Ler','Pele','Línguas','Desenhar','Conselho', 'Atualizações', 'Ensaio (UADEMIS)'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
         },
     },
