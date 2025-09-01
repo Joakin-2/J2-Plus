@@ -261,9 +261,17 @@
         <img class="image sax-tenor" src="9.jpg" alt="Imagem 9" onclick="openModal(19)">
         <img class="image sax-tenor" src="Te agradeço.jpg" alt="Te agradeço" onclick="openModal(20)">
         <img class="image" src="247.jpeg" alt="Imagem 247" onclick="openModal(21)">
+        <img class="video-icon baixo" src="baixoimg.jpg" alt="Vídeo Baixo" onclick="openVideoModal('1114948460')">
     </div>
     
-        <!-- Modal for PDF -->
+        <!-- Modal for Video -->
+    <div class="modal" id="videoModal" style="display: none;">
+  <span class="close" onclick="closeVideoModal()">&times;</span>
+  <iframe id="videoPlayer" src="" width="80%" height="60%" frameborder="0"
+          allow="autoplay; fullscreen" allowfullscreen></iframe>
+</div>
+
+    <!-- Modal for PDF -->
 <div class="modal" id="pdfModal">
     <span class="close" onclick="closePDFModal()">&times;</span>
     <span class="prev" onclick="changePDF(-1)">&#10094;</span>
@@ -368,6 +376,21 @@
             document.querySelectorAll('.pdf-icon').forEach(el => el.style.display = 'block');
             document.querySelectorAll('.image').forEach(el => el.style.display = 'block');
         }
+
+        function openVideoModal(videoId) {
+  const modal = document.getElementById("videoModal");
+  const iframe = document.getElementById("videoPlayer");
+  iframe.src = `https://player.vimeo.com/video/${videoId}`;
+  modal.style.display = "flex";
+}
+
+function closeVideoModal() {
+  const modal = document.getElementById("videoModal");
+  const iframe = document.getElementById("videoPlayer");
+  iframe.src = "";  // Remove o src para parar o vídeo
+  modal.style.display = "none";
+}
+
 
     let zoomLevel = 1.0;
     let currentAudio = null;
