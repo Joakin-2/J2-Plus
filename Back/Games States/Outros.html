@@ -108,10 +108,10 @@
                     <button class="botao" onclick="redirecionar('Surf')" aria-label="Ir para Surf"><i class="fas fa-water"></i> Surf</button>
                 </li>
                 <li>
-                    <button class="botao" onclick="redirecionar('Steam')" aria-label="Ir para Steam"><i class="fab fa-steam"></i> Steam</button>
+                    <button class="botao" onclick="redirecionar('Termo')" aria-label="Ir para Termo"><i class="fas fa-clipboard-list"></i> Termo</button>
                 </li>
                 <li>
-                    <button class="botao" onclick="redirecionar('Termo')" aria-label="Ir para Termo"><i class="fas fa-clipboard-list"></i> Termo</button>
+                    <button class="botao" onclick="redirecionar('Hordes')" aria-label="Ir para Hordes"><i class="fab fa-gamepad"></i> Hordes</button>
                 </li>
             </ul>
         </div>
@@ -138,11 +138,11 @@
     <script>
         function redirecionar(destino) {
             switch (destino) {
+                case 'Hordes':
+                    window.open('https://hordes.io');
+                    break;
                 case 'Surf':
                     window.open('https://www.microsoft.com/en-us/edge/features/surf-game?form=MA13FJ');
-                    break;
-                case 'Steam':
-                    window.open('https://store.steampowered.com/?l=portuguese');
                     break;
                 case 'Termo':
                     window.open('https://term.ooo/');
