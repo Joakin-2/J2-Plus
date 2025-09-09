@@ -223,7 +223,7 @@
             },
             'Gym': {
                 image: '6.png',
-                images: ['6.png', '6 - 1.png', '6 - 2.png', '6 - 3.gif', '6 - 4.jpeg', '6 - 5.png', '6 - 6.gif', '6 - 7.png'],
+                images: ['6.png', '6 - 1.png', '6 - 2.png', '6 - 3.gif', '6 - 4.jpeg', '6 - 5.png', '6 - 6.gif', '6 - 7.gif', '6 - 8.gif'],
                 tracks: [
                     'Gym/2K FREESTYLE.mp3',
                     'Gym/4TAO - Super Slowed.mp3',
@@ -271,6 +271,7 @@
                     'Gym/Eternxlkz - BRODYAGA FUNK.mp3',
                     'Gym/Eternxlkz - SLAY!.mp3',
                     'Gym/Face Off.mp3',
+                    'Gym/Funk Destravado (Slowed).mp3',
                     'Gym/FEEL NOTHING.mp3',
                     'Gym/FREDDIE DRED-LIMBO (SUPER SLOWED+REVERB)(GHOST).mp3',
                     'Gym/FUNK DO SURPRISE ULTRA SLOWED.mp3',
@@ -651,6 +652,7 @@
             'Gym/Eternxlkz - BRODYAGA FUNK.mp3': "BRODYAGA FUNK",
             'Gym/Eternxlkz - SLAY!.mp3': "SLAY!",
             'Gym/Face Off.mp3': "Face Off",
+            'Gym/Funk Destravado (Slowed).mp3': "Funk Destravado (Slowed)",
             'Gym/FEEL NOTHING.mp3': "FEEL NOTHING",
             'Gym/FREDDIE DRED-LIMBO (SUPER SLOWED+REVERB)(GHOST).mp3': "FREDDIE DRED LIMBO (SUPER SLOWED REVERB)",
             'Gym/FUNK DO SURPRISE ULTRA SLOWED.mp3': "FUNK DO SURPRISE ULTRA SLOWED",
