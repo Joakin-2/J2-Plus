@@ -106,15 +106,21 @@
 
         // Adicionar evento para verificar a tecla Enter
         document.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                // Ocultar mensagem inicial e exibir o temporizador
-                document.getElementById("initialMessage").style.display = "none";
-                document.getElementById("temporizador").style.display = "block";
-                document.getElementById("startButton").style.display = "block";
-                // Iniciar automaticamente o foco
-                iniciarPomodoro(); // Chame a função desejada (iniciarPomodoro neste caso)
-            }
-        });
+    if (event.key === "Enter") {
+        // Ocultar mensagem inicial e exibir o temporizador
+        document.getElementById("initialMessage").style.display = "none";
+        document.getElementById("temporizador").style.display = "block";
+        document.getElementById("startButton").style.display = "block";
+
+        // Iniciar automaticamente o foco
+        iniciarPomodoro(); // Chame a função desejada (iniciarPomodoro neste caso)
+
+        // Abrir três sites
+        window.open("https://www.youtube.com/watch?v=grHZkLaFOY8&list=RDgrHZkLaFOY8&start_radio=1", "_blank");
+        window.open("https://www.youtube.com/watch?v=6JQm5aSjX6g&list=RD6JQm5aSjX6g&start_radio=1&t=5244s", "_blank");
+        window.open("https://www.youtube.com/watch?v=JHW857NQ8vc&list=RDJHW857NQ8vc&start_radio=1", "_blank");
+    }
+});
 
     </script>
 </body>
