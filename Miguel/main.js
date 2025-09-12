@@ -50,20 +50,23 @@ document.getElementById("ativarBtn").addEventListener("click", () => {
 
 // Envia para a OpenAI
 async function consultarOpenAI(pergunta) {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
+   const response = await axios.post(
+    'https://api.openai.com/v1/chat/completions',
+    {
+        model: "gpt-3.5-turbo",
+        messages: [
+            { role: "system", content: "Você é um assistente simpático e divertido chamado Miguel." },
+            { role: "user", content: pergunta } // mensagem vem do front-end
+        ]
+    },
+    {
         headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer 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"
-        },
-        body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [
-                { role: "system", content: "Você é um assistente simpático e divertido chamado Miguel." },
-                { role: "user", content: pergunta }
-            ]
-        })
-    });
+            'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+            'Content-Type': 'application/json'
+        }
+    }
+);
+
 
     if (!response.ok) {
         const errorText = await response.text();
