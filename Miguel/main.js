@@ -61,7 +61,7 @@ async function consultarOpenAI(pergunta) {
     },
     {
         headers: {
-            'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+            'Authorization': `Bearer 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`,
             'Content-Type': 'application/json'
         }
     }

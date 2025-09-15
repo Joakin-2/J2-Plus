@@ -226,7 +226,7 @@
             },
             'Gym': {
                 image: '6.png',
-                images: ['6.png', '6 - 1.png', '6 - 2.png', '6 - 3.gif', '6 - 4.jpeg', '6 - 5.png', '6 - 6.gif', '6 - 7.gif', '6 - 8.gif'],
+                images: ['6.png', '6 - 1.png', '6 - 2.png', '6 - 3.gif', '6 - 4.jpeg', '6 - 5.png', '6 - 6.gif', '6 - 7.gif', '6 - 8.gif', '6 - 9.gif'],
                 tracks: [
                     'Gym/2K FREESTYLE.mp3',
                     'Gym/4TAO - Super Slowed.mp3',
@@ -244,6 +244,7 @@
                     'Gym/Aurea Cosmica (Instrumental Version Slowed).mp3',
                     'Gym/Avatar Edit.mp3',
                     'Gym/Backyardigans phonk X Perfume Exalando (Slowed to perfection).mp3',
+                    'Gym/BAD HABIT HORROR FUNK (Slowed Reverb).mp3',
                     'Gym/BAD PARENTING FUNK V2 (Slowed).mp3',
                     'Gym/Beeper Funk (Ultra slowed).mp3',
                     'Gym/Beeper funk x montagem vozes profundas (slowed).mp3',
@@ -628,6 +629,7 @@
             'Gym/Aurea Cosmica (Instrumental Version Slowed).mp3': "Áurea Cósmica (Instrumental Version Slowed)",
             'Gym/Avatar Edit.mp3': "Avatar Edit",
             'Gym/Backyardigans phonk X Perfume Exalando (Slowed to perfection).mp3': "Backyardigans X Perfume (Slowed to perfection)",
+            'Gym/BAD HABIT HORROR FUNK (Slowed Reverb).mp3': "BAD HABIT HORROR FUNK (Slowed Reverb)",
             'Gym/BAD PARENTING FUNK V2 (Slowed).mp3': "BAD PARENTING FUNK V2 (Slowed)",
             'Gym/Beeper Funk (Ultra slowed).mp3': "Beeper Funk (Ultra slowed)",
             'Gym/Beeper funk x montagem vozes profundas (slowed).mp3': "Beeper funk x Montagem vozes profundas (slowed)",
