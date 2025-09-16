@@ -49,16 +49,82 @@
         .btn:hover {
             transform: scale(1.1); /* Aumenta o botão ao passar o mouse */
         }
+
+        /* Estilo do modal */
+.modal {
+  display: none; /* Inicialmente o modal está escondido */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+/* Conteúdo do modal */
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 800px;
+}
+
+/* Estilo do botão de fechar */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
     </style>
 </head>
 <body>
     <div class="container" id="ripple-container">
         <p id="transcript"></p>
         <div class="button-container">
-            <a href="comprar/index.html" target="_blank" class="btn" id="viBtn">Compras</a>
-            <a href="pagar/index.html" target="_blank" class="btn" id="noteBtn">Pagar</a>
-            <a href="pc/index.html" target="_blank" class="btn" id="noteBtn">PC</a>
-            <a href="project/index.html" target="_blank" class="btn" id="noteBtn">Projetos</a>
+            <!-- Botões -->
+<a href="javascript:void(0);" class="btn" onclick="openModal('compras')">Compras</a>
+<a href="javascript:void(0);" class="btn" onclick="openModal('pagar')">Pagar</a>
+<a href="javascript:void(0);" class="btn" onclick="openModal('pc')">PC</a>
+<a href="javascript:void(0);" class="btn" onclick="openModal('project')">Projetos</a>
+
+<!-- Modais -->
+<div id="comprasModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('compras')">&times;</span>
+    <iframe src="comprar/index.html" width="100%" height="500px"></iframe>
+  </div>
+</div>
+
+<div id="pagarModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('pagar')">&times;</span>
+    <iframe src="pagar/index.html" width="100%" height="500px"></iframe>
+  </div>
+</div>
+
+<div id="pcModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('pc')">&times;</span>
+    <iframe src="pc/index.html" width="100%" height="500px"></iframe>
+  </div>
+</div>
+
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('project')">&times;</span>
+    <iframe src="project/index.html" width="100%" height="500px"></iframe>
+  </div>
+</div>
             <a href="javascript:void(0);" class="btn" id="noteBtn" onclick="openSites()">Proteína</a>
         </div>
     </div>
@@ -68,5 +134,25 @@
     window.open('https://www.gsuplementos.com.br/basic-whey-protein-1kg-growth-supplements-p986000', '_blank');  // Abre o primeiro site
     window.open('https://www.gsuplementos.com.br/creatina-250g-creapure-growth-supplements-p985824', '_blank');  // Abre o segundo site
   }
+
+  // Função para abrir o modal
+function openModal(modalName) {
+  document.getElementById(modalName + 'Modal').style.display = 'block';
+}
+
+// Função para fechar o modal
+function closeModal(modalName) {
+  document.getElementById(modalName + 'Modal').style.display = 'none';
+}
+
+// Fechar modal quando clicar fora dele
+window.onclick = function(event) {
+  if (event.target.className == 'modal') {
+    closeModal('compras');
+    closeModal('pagar');
+    closeModal('pc');
+    closeModal('project');
+  }
+}
 </script>
 </html>

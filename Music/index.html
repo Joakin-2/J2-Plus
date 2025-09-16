@@ -14,12 +14,29 @@
             <img src="icone.png" alt="Icon" style="width: 44px; height: auto; margin-left: 10px; margin-right: 10px;"> 
             J2 Music
         </h1>
-        <div id="pesquisa" style="display: none; margin-top: 10px;">
+        <div id="pesquisa" style="display: none; padding: 10px; width: 45%; margin: auto;">
             <input type="text" id="inputPesquisa" placeholder="Pesquisar..." style="padding: 10px;border-radius: 5px;border: 1px solid #ccc;background-color: #444;color: #fff;width: calc(92% - 22px);">
-            <button onclick="buscar()" style="height: 40px; padding: 10px; background-color: #aa72fe; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">Buscar</button>
+            <button onclick="buscar()" style="height: 40px; padding: 10px; background-color: #aa72fe; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;"><i class="fas fa-search"></i></button>
         <button style="height: 40px; padding: 10px; background-color: #aa72fe; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;" onclick="window.location.href='https://www.youtube.com/watch?v=57wccTN-ZyE&amp;list=WL&amp;index=1&amp;t=17s&amp;pp=gAQBiAQB8AUB'">Sax</button>
         </div>
     </header>
+
+    <div class="container" id="sugestoes">
+    <button class="carousel-btn prev" onclick="moverCarrossel('prev')">❮</button>
+       <div class="carousel">
+    <div class="musica-item">
+        <h3 data-caminho="Hip Praise/Mais-Existe-um-Lugar-_Remix_.mp3">▶️ Mais Existe um Lugar Remix</h3>
+    </div>
+    <div class="musica-item">
+        <h3 data-caminho="Hip Praise/Santo-Slowed.mp3">▶️ Santo Slowed</h3>
+    </div>
+    <div class="musica-item">
+        <h3 data-caminho="Vibe/James Brown -  Poison (Jersey Club Remix).mp3">▶️ James Brown - Poison</h3>
+    </div>
+               <!-- Mais itens de música -->
+        </div>
+    <button class="carousel-btn next" onclick="moverCarrossel('next')">❯</button>
+</div>
     
     <div class="container">
         <a href="#" class="video christ-gym" onclick="showPlaylist('Christ Gym');"
@@ -98,28 +115,28 @@
     <div class="music-player" id="musicPlayer">
         <div class="music-player-content">
             <div id="musicHeader" style="display: flex; align-items: center; margin-bottom: 20px;">
-                <button class="back-button" onclick="hideMusicPlayer()" style="cursor: pointer; margin-right: 10px; background: #0d0d0d; border: none; color: white; padding: 10px; border-radius: 5px;">
+                <button class="back-button" onclick="hideMusicPlayer()" style="position: static; cursor: pointer; margin-right: 10px; background: #0d0d0d; border: none; color: white; padding: 10px; border-radius: 5px;">
                     <i class="fas fa-arrow-left"></i> <!-- Ícone de voltar -->
                 </button>
                 <!-- Dentro de #musicHeader, ao lado do botão de voltar -->
                 <button class="outros-button" onclick="showMusicSelection()" style="cursor: pointer; margin-left: 10px; background: #0d0d0d; border: none; color: white; padding: 10px; border-radius: 5px;">
                     <i class="fas fa-list"></i> <!-- Ícone de lista -->
                 </button>
-                <h2 id="currentPlaylistTitle" style="flex-grow: 0.55; text-align: center;">Nome da Playlist</h2>
-                <button id="shareButton" style="margin-left: 360px; position: absolute; background: rgb(13, 13, 13); border: none; width: 40px; cursor: pointer; padding: 10px; display: inline-block;">🔗</button>
+                <h2 id="currentPlaylistTitle" style="margin-left: 320px; text-align: center;">Nome da Playlist</h2>
+                <button id="shareButton" style="margin-left: 360px; background: rgb(13, 13, 13); border: none; width: 40px; cursor: pointer; padding: 10px; display: inline-block;">🔗</button>
                 <!-- Botão para mudar a imagem da playlist - inicialmente escondido -->
-            <button id="changeImageButton" class="outros-button" onclick="changeImage()" style="margin-left: 400px; position: absolute; background: rgb(13, 13, 13); border: none; width: 40px; cursor: pointer; padding: 10px; display: none;">
+            <button id="changeImageButton" class="outros-button" onclick="changeImage()" style="background: rgb(13, 13, 13); border: none; width: 40px; cursor: pointer; padding: 10px; display: none;">
                 <i class="fas fa-image"></i> <!-- Ícone de imagem -->
             </button>
             </div>
             <img src="" id="playlistImage" alt="Playlist Image" style="cursor: pointer;">
             <h2 id="musicTitle"></h2>
             <h3 id="songName" style="margin: 30px;"></h3>
-            <div class="progress-container">
+            <div class="progress-container" style="margin: auto;">
                 <div class="progress-bar" id="progress-bar"></div>
                 <div class="progress-dot" id="progress-dot"></div>
             </div>
-            <div class="time" style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <div class="time" style="display: flex; justify-content: space-between; padding: 10px; width: 50%; margin: auto;">
                 <span id="current-time">00:00</span>
                 <span id="duration">00:00</span>
             </div>            
@@ -168,10 +185,10 @@
 
         document.getElementById('playlistImage').addEventListener('click', function() {
     // Verifica se a imagem já está com 50% de largura
-    if (this.style.maxWidth === '50%') {
-        this.style.maxWidth = '100%'; // Se sim, volta para 100%
+    if (this.style.maxWidth === '40%') {
+        this.style.maxWidth = '50%'; // Se sim, volta para 100%
     } else {
-        this.style.maxWidth = '50%'; // Caso contrário, diminui para 50%
+        this.style.maxWidth = '40%'; // Caso contrário, diminui para 50%
     }
 });
 
@@ -705,6 +722,69 @@ function previousTrack() {
 
             console.log(isFavorite ? "Adicionado aos favoritos" : "Removido dos favoritos");
         }
+
+        let currentIndex0 = 0;  // Índice atual do carrossel
+const itensPorCarrossel = document.querySelectorAll(".musica-item").length;
+const carousel = document.querySelector(".carousel");
+
+function moverCarrossel(direcao) {
+    if (direcao === 'next') {
+        currentIndex0 = (currentIndex0 + 1) % itensPorCarrossel;
+    } else {
+        currentIndex0 = (currentIndex0 - 1 + itensPorCarrossel) % itensPorCarrossel;
+    }
+
+    const novoTransform = -currentIndex0 * 270;  // A largura dos itens + espaçamento
+    carousel.style.transform = `translateX(${novoTransform}px)`;
+}
+
+function tocarMusica(caminho) {
+    // Obter o elemento do player e do áudio
+    const audio = document.getElementById('audioPlayer');
+    const player = document.getElementById('musicPlayer');
+    
+    // Se o player e o áudio não existirem, não faz sentido continuar
+    if (!audio || !player) {
+        console.error("Elemento de áudio ou player não encontrado!");
+        return;
+    }
+
+    // Atualizar o caminho da música no player
+    audio.src = caminho;
+
+    // Exibir o player se estiver escondido
+    player.style.display = 'block';
+
+    // Iniciar a reprodução
+    audio.play();
+
+    // Atualizar o título da música no player
+    const songName = caminho.split('/').pop().replace(/_/g, " ").replace(".mp3", "");
+    document.getElementById('songName').textContent = songName;
+
+    // Atualizar a imagem da playlist (aqui você pode adicionar uma lógica para mudar a imagem da playlist, se necessário)
+    document.getElementById('playlistImage').src = "1.png";  // Substitua com a URL da imagem correta (opcional)
+    document.getElementById('currentPlaylistTitle').textContent = "Escolhas rápidas";  // Substitua com o nome da playlist (opcional)
+}
+
+// Adicionar o evento de click para tocar a música ao clicar no carrossel
+document.querySelectorAll('.musica-item h3').forEach(function(item) {
+    item.addEventListener('click', function() {
+        const caminho = item.getAttribute('data-caminho');
+        if (caminho) {
+            tocarMusica(caminho);
+        } else {
+            console.warn("Caminho da música não encontrado!");
+        }
+    });
+});
+
+// Adicionando o evento de click dinamicamente
+document.querySelectorAll('.musica-item h3').forEach(function(item) {
+    item.addEventListener('click', function() {
+        tocarMusica(item.getAttribute('data-caminho'));
+    });
+});
 
     </script>
 </body>
