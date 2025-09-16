@@ -465,6 +465,14 @@
     margin-bottom: 30px;
 }
 
+#shareButton {
+        margin-left: 360px;
+    }
+
+#currentPlaylistTitle {
+        margin-left: 320px;
+    }
+
 .musica-item {
     background-color: #1d1d1d;
     border-radius: 10px;
@@ -504,7 +512,7 @@
 #sugestoes {
     display: flex;
     align-items: center;
-    width: 40%;
+    width: 38%;
     position: relative;
     overflow: hidden;         /* Oculta o excesso da rolagem */
     margin: 0 auto;
@@ -578,5 +586,14 @@
             @media (max-width: 768px) {
     #sugestoes {
         width: 70%;  /* Para telas menores (como celulares) */
+    }
+    #shareButton {
+        margin-left: 1px;  /* Para telas menores (como celulares) */
+    }
+    #currentPlaylistTitle {
+        margin-left: 10px;
+    }
+    .music-player-content img {
+        width: 40%;  /* Para telas menores (como celulares) */
     }
 }
