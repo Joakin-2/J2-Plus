@@ -51,9 +51,23 @@
                 <li><a href="https://j2plus.netlify.app/gym">JokGym</a></li>
                 <li><a href="#" onclick="openModal('modalReclamar'); return false;">Reclamar</a></li>
                 <li><a href="https://j2plus.netlify.app/melody">Music Place</a></li>
+                <li><a href="#" id="openModal">Dicionário/Línguas</a></li>
             </ul>
         </div>
     </aside>
+
+    <!-- Modal de Línguas -->
+    <div id="languageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Escolha o Dicionário</h2>
+            <ul>
+                <li><a href="#">Inglês</a></li>
+                <li><a href="#">Espanhol</a></li>
+                <li><a href="#">Libras</a></li>
+            </ul>
+        </div>
+    </div>
 
     <!-- Modal Camera -->
 <div id="cameraModal" class="modal" style="display: none;">
@@ -976,6 +990,28 @@ const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
             parent.insertBefore(placarSection, stocks); // Coloca o placar antes do mercado
         }
     }
+
+    // Selecionando elementos
+var modal2 = document.getElementById("languageModal"); // Alterado para modal2
+var openModalButton = document.getElementById("openModal");
+var closeModalButton = document.getElementById("closeModal");
+
+// Abrir o modal
+openModalButton.onclick = function() {
+    modal2.style.display = "block";  // Alterado para modal2
+}
+
+// Fechar o modal
+closeModalButton.onclick = function() {
+    modal2.style.display = "none";  // Alterado para modal2
+}
+
+// Fechar o modal se clicar fora dele
+window.onclick = function(event) {
+    if (event.target == modal2) {   // Alterado para modal2
+        modal2.style.display = "none";  // Alterado para modal2
+    }
+}
 
     // Atualizar o placar a cada 5 segundos
     //setInterval(getLiveScores, 5000);
