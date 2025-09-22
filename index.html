@@ -57,17 +57,47 @@
     </aside>
 
     <!-- Modal de Línguas -->
-    <div id="languageModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
-            <h2>Escolha o Dicionário</h2>
-            <ul>
-                <li><a href="#">Inglês</a></li>
-                <li><a href="#">Espanhol</a></li>
-                <li><a href="#">Libras</a></li>
-            </ul>
-        </div>
+<div id="languageModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Escolha o Dicionário</h2>
+        <ul>
+            <li><a href="#" onclick="showDictionary('english')">Inglês</a></li>
+            <li><a href="#" onclick="showDictionary('spanish')">Espanhol</a></li>
+            <li><a href="#" onclick="showDictionary('libras')">Libras</a></li>
+        </ul>
     </div>
+</div>
+
+<!-- Conteúdo dos dicionários -->
+<div id="dictionaryContent" class="dictionary-content">
+    <div id="english" class="dictionary hidden">
+        <h3>Dicionário de Inglês</h3>
+        <ul>
+            <li>Casa - House</li>
+            <li>Água - Water</li>
+            <li>Amor - Love</li>
+        </ul>
+    </div>
+
+    <div id="spanish" class="dictionary hidden">
+        <h3>Dicionário de Espanhol</h3>
+        <ul>
+            <li>Casa - Casa</li>
+            <li>Água - Agua</li>
+            <li>Amor - Amor</li>
+        </ul>
+    </div>
+
+    <div id="libras" class="dictionary hidden">
+        <h3>Dicionário de Libras</h3>
+        <ul>
+            <li>Casa - 🤟 (imagem ou gesto)</li>
+            <li>Água - ✋ (imagem ou gesto)</li>
+            <li>Amor - ❤️ (imagem ou gesto)</li>
+        </ul>
+    </div>
+</div>
 
     <!-- Modal Camera -->
 <div id="cameraModal" class="modal" style="display: none;">
@@ -1010,6 +1040,22 @@ closeModalButton.onclick = function() {
 window.onclick = function(event) {
     if (event.target == modal2) {   // Alterado para modal2
         modal2.style.display = "none";  // Alterado para modal2
+    }
+}
+
+// Mostra o dicionário escolhido
+function showDictionary(id) {
+    // Fecha o modal
+    modal2.style.display = "none";
+
+    // Oculta todos os dicionários
+    const dictionaries = document.querySelectorAll(".dictionary");
+    dictionaries.forEach(dic => dic.classList.add("hidden"));
+
+    // Exibe o dicionário escolhido
+    const selected = document.getElementById(id);
+    if (selected) {
+        selected.classList.remove("hidden");
     }
 }
 

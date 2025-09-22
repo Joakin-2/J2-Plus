@@ -787,10 +787,15 @@ button:hover {
 }
 
 .flower {
-    position: absolute;
-    font-size: 2rem;
-    animation: bloom 5s infinite;
-}
+    position: fixed;
+    top: -10px;
+    pointer-events: none;
+    font-size: 30px;
+    color: #fff;
+    z-index: 9999;
+    user-select: none;
+    animation: fall 10s linear infinite;
+  }
 
 .sunshine {
     position: absolute;
@@ -1137,6 +1142,14 @@ ul li:hover {
     to {
         opacity: 1;
     }
+}
+
+.dictionary-content {
+    margin: 30px;
+}
+
+.hidden {
+    display: none;
 }
 
 /* Para navegadores baseados em WebKit (como Chrome, Safari e Edge) */
