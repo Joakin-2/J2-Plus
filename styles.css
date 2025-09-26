@@ -1144,12 +1144,16 @@ ul li:hover {
     }
 }
 
-.dictionary-content {
-    margin: 30px;
+p {
+  color: white;
 }
 
-.hidden {
+.language-section {
     display: none;
+}
+
+.language-select button {
+    margin-right: 10px;
 }
 
 /* Para navegadores baseados em WebKit (como Chrome, Safari e Edge) */

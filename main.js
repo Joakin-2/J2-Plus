@@ -1850,3 +1850,16 @@ document.getElementById('perfil-selector').addEventListener('change', function()
   localStorage.setItem("perfilAtivo", perfilAtivo);
   loadComplaints(); // Isso agora funcionará corretamente
 });
+
+// Função para mostrar a seção do idioma selecionado
+function showLanguage(language) {
+    var languages = ['english', 'spanish', 'libras'];
+
+    // Esconde todas as seções
+    languages.forEach(function(lang) {
+        document.getElementById(lang).style.display = 'none';
+    });
+
+    // Exibe a seção do idioma escolhido
+    document.getElementById(language).style.display = 'block';
+}

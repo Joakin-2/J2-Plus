@@ -51,79 +51,62 @@
                 <li><a href="https://j2plus.netlify.app/gym">JokGym</a></li>
                 <li><a href="#" onclick="openModal('modalReclamar'); return false;">Reclamar</a></li>
                 <li><a href="https://j2plus.netlify.app/melody">Music Place</a></li>
-                <li><a href="#" id="openModal">Dicionário/Línguas</a></li>
+                <li><a href="#" onclick="openModal('languageModal'); return false;">Dicionário/Línguas</a></li>
             </ul>
         </div>
     </aside>
 
-    <!-- Modal de Línguas -->
+<!-- Modal de Línguas -->
 <div id="languageModal" class="modal">
     <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span>
-        <h2>Escolha o Dicionário</h2>
-        <ul>
-            <li><a href="#" onclick="showDictionary('english')">Inglês</a></li>
-            <li><a href="#" onclick="showDictionary('spanish')">Espanhol</a></li>
-            <li><a href="#" onclick="showDictionary('libras')">Libras</a></li>
-        </ul>
+        <span class="menu-button" onclick="closeModal('languageModal')">Voltar</span>
+        <h2 style="text-align: center;">Escolha um idioma</h2>
+        
+        <div class="language-select" style="text-align: center;">
+            <button style="width: 150px;height: 70px;font-size: larger;" onclick="showLanguage('english')">Inglês</button>
+            <button style="width: 150px;height: 70px;font-size: larger;" onclick="showLanguage('spanish')">Espanhol</button>
+            <button style="width: 150px;height: 70px;font-size: larger;" onclick="showLanguage('libras')">Libras</button>
+        </div>
+
+        <div id="english" class="language-section" style="margin-top: 50px; text-align: center;"> 
+            <h3>Inglês</h3>
+            <p>Palavra: <strong>Hello</strong></p>
+            <p>Tradução: <strong>Olá</strong></p>
+            <p>Palavra: <strong>Goodbye</strong></p>
+            <p>Tradução: <strong>Até logo</strong></p>
+            <p>Palavra: <strong>Thank you</strong></p>
+            <p>Tradução: <strong>Obrigado</strong></p>
+        </div>
+
+        <div id="spanish" class="language-section" style="margin-top: 50px; text-align: center;">
+            <h3>Espanhol</h3>
+            <p>Palabra: <strong>Hola</strong></p>
+            <p>Traducción: <strong>Olá</strong></p>
+            <p>Palabra: <strong>Adiós</strong></p>
+            <p>Traducción: <strong>Até logo</strong></p>
+            <p>Palabra: <strong>Gracias</strong></p>
+            <p>Traducción: <strong>Obrigado</strong></p>
+        </div>
+
+        <div id="libras" class="language-section" style="margin-top: 50px; text-align: center;">
+            <h3>Libras</h3>
+
+            <img src="Script/img/0.jpg" alt="Gesto de Olá em Libras" style="width: 200px; height: auto; margin-top: 20px;">
+            
+            <p>Gesto para: <strong>Casa</strong></p>
+            <img src="Script/img/1.png" alt="Gesto de Olá em Libras" style="width: 200px; height: auto; margin-top: 20px;">
+
+            <!-- Gesto para "Olá" 
+            <p>Gesto para: <strong>Olá</strong></p>
+            <img src="Script/img/" alt="Gesto de Olá em Libras" style="width: 200px; height: auto; margin-top: 20px;">
+
+            <p>Gesto para: <strong>Até logo</strong></p>
+            <img src="https://example.com/gesto-ate-logo-libras.png" alt="Gesto de Até logo em Libras" style="width: 200px; height: auto; margin-top: 20px;">
+
+            <p>Gesto para: <strong>Obrigado</strong></p>
+            <img src="https://example.com/gesto-obrigado-libras.png" alt="Gesto de Obrigado em Libras" style="width: 200px; height: auto; margin-top: 20px;"> -->
+        </div>
     </div>
-</div>
-
-<!-- Conteúdo dos dicionários -->
-<div id="dictionaryContent" class="dictionary-content">
-    <div id="english" class="dictionary hidden">
-    <h3>Dicionário de Inglês</h3>
-    <ul>
-        <li>Casa - House</li>
-        <li>Água - Water</li>
-        <li>Amor - Love</li>
-        <li>Prazer em conhecê-lo - Nice to meet you</li>
-        <li>Como vai? - How are you?</li>
-        <li>Obrigado pela ajuda - Thank you for your help</li>
-        <li>Qual é o seu nome? - What is your name?</li>
-        <li>Onde fica o banheiro? - Where is the bathroom?</li>
-        <li>Bom dia - Good morning</li>
-        <li>Boa tarde - Good afternoon</li>
-        <li>Boa noite - Good night</li>
-        <li>Oi, tudo bem? - Hi, how are you?</li>
-    </ul>
-</div>
-
-<div id="spanish" class="dictionary hidden">
-    <h3>Dicionário de Espanhol</h3>
-    <ul>
-        <li>Casa - Casa</li>
-        <li>Água - Agua</li>
-        <li>Amor - Amor</li>
-        <li>Prazer em conhecê-lo - Mucho gusto</li>
-        <li>Como vai? - ¿Cómo estás?</li>
-        <li>Obrigado pela ajuda - Gracias por tu ayuda</li>
-        <li>Qual é o seu nome? - ¿Cuál es tu nombre?</li>
-        <li>Onde fica o banheiro? - ¿Dónde está el baño?</li>
-        <li>Bom dia - Buenos días</li>
-        <li>Boa tarde - Buenas tardes</li>
-        <li>Boa noite - Buenas noches</li>
-        <li>Oi, tudo bem? - Hola, ¿cómo estás?</li>
-    </ul>
-</div>
-
-<div id="libras" class="dictionary hidden">
-    <h3>Dicionário de Libras</h3>
-    <ul>
-        <li>Casa - 🤟 (imagem ou gesto)</li>
-        <li>Água - ✋ (imagem ou gesto)</li>
-        <li>Amor - ❤️ (imagem ou gesto)</li>
-        <li>Prazer em conhecê-lo - 🤝 (gesto de cumprimento)</li>
-        <li>Como vai? - 👋 (gesto de saudação, com a mão aberta e movimentando levemente)</li>
-        <li>Obrigado pela ajuda - 🙏 (gesto de agradecimento, com as palmas unidas)</li>
-        <li>Qual é o seu nome? - 🧑‍🤝‍🧑 (gesto de apontar para a pessoa e para si mesmo, sinalizando nome)</li>
-        <li>Onde fica o banheiro? - 🚻 (gesto de indicar o banheiro, com os dedos apontando em direção ao lugar)</li>
-        <li>Bom dia - 🌅 (gesto de cumprimento com a mão aberta em frente ao rosto)</li>
-        <li>Boa tarde - 🌞 (gesto de saudação com a mão aberta, movendo-se levemente)</li>
-        <li>Boa noite - 🌙 (gesto de boa noite com a mão fechada, levando até o rosto)</li>
-        <li>Oi, tudo bem? - 👋 (gesto de saudação com a mão acenando)</li>
-    </ul>
-</div>
 </div>
 
     <!-- Modal Camera -->
@@ -1047,44 +1030,6 @@ const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
             parent.insertBefore(placarSection, stocks); // Coloca o placar antes do mercado
         }
     }
-
-    // Selecionando elementos
-var modal2 = document.getElementById("languageModal"); // Alterado para modal2
-var openModalButton = document.getElementById("openModal");
-var closeModalButton = document.getElementById("closeModal");
-
-// Abrir o modal
-openModalButton.onclick = function() {
-    modal2.style.display = "block";  // Alterado para modal2
-}
-
-// Fechar o modal
-closeModalButton.onclick = function() {
-    modal2.style.display = "none";  // Alterado para modal2
-}
-
-// Fechar o modal se clicar fora dele
-window.onclick = function(event) {
-    if (event.target == modal2) {   // Alterado para modal2
-        modal2.style.display = "none";  // Alterado para modal2
-    }
-}
-
-// Mostra o dicionário escolhido
-function showDictionary(id) {
-    // Fecha o modal
-    modal2.style.display = "none";
-
-    // Oculta todos os dicionários
-    const dictionaries = document.querySelectorAll(".dictionary");
-    dictionaries.forEach(dic => dic.classList.add("hidden"));
-
-    // Exibe o dicionário escolhido
-    const selected = document.getElementById(id);
-    if (selected) {
-        selected.classList.remove("hidden");
-    }
-}
 
     // Atualizar o placar a cada 5 segundos
     //setInterval(getLiveScores, 5000);
