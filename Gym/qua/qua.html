@@ -19,6 +19,12 @@
             overflow: hidden;
         }
 
+        #preparation-screen {
+            display: none;
+            text-align: center;
+            font-size: 2rem;
+        }
+
         #initial-screen, #workout-screen, #completion-screen {
             display: none;
             justify-content: center;
@@ -77,7 +83,7 @@
         #imagem-container {
             margin: 20px 0;
             width: auto;
-            height: 400px;
+            margin-left: 460px;
             justify-content: center;
         }
 
@@ -154,6 +160,17 @@
         <button id="startButton" onclick="startWorkout()">Começar</button>
     </div>
 
+    <!-- Tela de Preparação -->
+    <div id="preparation-screen">
+        <h1>Preparando...</h1>
+        <p>Início em: <span id="countdown">3</span></p>
+    </div>
+
+    <div id="restModal" style="display: none;">
+        <h2 style="color: white;">Descanso</h2>
+        <p style="color: #FFB800;font-size: 20px;">Você está em pausa! <span id="restTimer">30</span> segundos...</p>
+    </div>
+
     <!-- Tela de Treino -->
     <div id="workout-screen">
         <div id="imagem-container">
@@ -188,6 +205,73 @@
     </div>
 
     <script>
+        let countdownTime = 5; // Contagem regressiva de 5 segundos
+
+function startTraining() {
+            // Mostrar o primeiro exercício
+            showCurrentExercise();
+
+            // Iniciar o timer do treino após a contagem regressiva
+            if (!isTimerRunning) {
+                timerId = setInterval(updateTimer, 1000);
+                isTimerRunning = true;
+            }
+        }
+
+// Função para mostrar o modal de descanso e iniciar o timer de descanso
+function nextExercise() {
+    if (currentIndex < exercises.length - 1) {
+        // Pausa o tempo total durante o descanso
+        pauseTotalTime();
+
+        // Exibe o modal de descanso
+        showRestModal();
+
+        // Timer de descanso de 30 segundos
+        let restTime = 30;
+        restTimerInterval = setInterval(function() {
+            restTime--;
+            document.getElementById("restTimer").textContent = restTime;
+
+            if (restTime <= 0) {
+                clearInterval(restTimerInterval);
+                hideRestModal(); // Esconde o modal de descanso
+                currentIndex++;
+                showCurrentExercise(); // Mostra o próximo exercício
+                resumeTotalTime(); // Retoma a contagem do tempo total
+            }
+        }, 1000);
+    } else {
+        showCompletionScreen();
+    }
+}
+
+// Função para pausar o tempo total
+function pauseTotalTime() {
+    clearInterval(timerId);
+    isTimerRunning = false;
+    isPaused = true;
+}
+
+// Função para retomar o tempo total
+function resumeTotalTime() {
+    timerId = setInterval(updateTimer, 1000);
+    isTimerRunning = true;
+    isPaused = false;
+}
+
+// Função para exibir o modal de descanso
+    function showRestModal() {
+        var modal = document.getElementById('restModal');
+        modal.style.display = 'block'; // Exibe o modal
+    }
+
+    // Função para esconder o modal de descanso
+    function hideRestModal() {
+        var modal = document.getElementById('restModal');
+        modal.style.display = 'none'; // Esconde o modal
+    }
+
         const exercises = ['Agachamento', 'Inferior', 'Prancha', 'Abdômen Polia', 'Abdômen Infra', 'Abdômen Supra', 'Abdômen Máquina'];
         let currentIndex = 0;
         let timeInSeconds = 0;
@@ -256,29 +340,46 @@
         }
 
         function startWorkout() {
+            // Exibir a tela de preparação
+            const preparationScreen = document.getElementById("preparation-screen");
             const initialScreen = document.getElementById("initial-screen");
             const workoutScreen = document.getElementById("workout-screen");
-            const completionScreen = document.getElementById("completion-screen");
-            const timer = document.getElementById("timer");
-            const imagemContainer = document.getElementById("imagem-container");
-            const controls = document.getElementById("controls");
             const startButton = document.getElementById("startButton");
-
-            if (initialScreen) initialScreen.style.display = "none";
-            if (workoutScreen) workoutScreen.style.display = "flex";
-            if (completionScreen) completionScreen.style.display = "none";
+            const timer = document.getElementById("timer");
+            
             if (timer) timer.style.display = "block";
-            if (imagemContainer) imagemContainer.style.display = "flex";
-            if (controls) controls.style.display = "flex";
-            if (startButton) startButton.style.display = "none";
+            if (initialScreen) initialScreen.style.display = "none";
+            if (workoutScreen) workoutScreen.style.display = "none";
+            if (preparationScreen) preparationScreen.style.display = "block";
+            
+            let countdownDisplay = document.getElementById("countdown");
 
-            if (!isTimerRunning) {
-                timerId = setInterval(updateTimer, 1000);
-                isTimerRunning = true;
-            }
+            // Iniciar contagem regressiva
+            countdownTime = 3; // tempo de contagem regressiva, ex: 3 segundos
+            countdownDisplay.textContent = countdownTime;
 
-            showCurrentExercise();
+            countdownId = setInterval(function() {
+                countdownTime--;
+                countdownDisplay.textContent = countdownTime;
+                
+                if (countdownTime === 0) {
+                    clearInterval(countdownId); // Parar a contagem regressiva
+                    preparationScreen.style.display = "none";  // Esconde a tela de preparação
+                    workoutScreen.style.display = "block";    // Exibe a tela de treino
+                    startTraining(); // Iniciar o treino
+                }
+            }, 1000);
         }
+
+function startTimer() {
+    const timer = document.getElementById("timer");
+    
+    // Certifique-se de que a variável global `isTimerRunning` esteja definida corretamente em algum lugar
+    if (!isTimerRunning) {
+        timerId = setInterval(updateTimer, 1000); // Inicia o timer do treino
+        isTimerRunning = true;
+    }
+}
 
         function showCurrentExercise() {
             const exercicioImagem = document.getElementById('exercicio-imagem');
@@ -300,15 +401,6 @@
                 exercicioVideo.style.display = "block";
                 exercicioVideo.load();
                 exercicioVideo.play();
-            }
-        }
-
-        function nextExercise() {
-            if (currentIndex < exercises.length - 1) {
-                currentIndex++;
-                showCurrentExercise();
-            } else {
-                showCompletionScreen();
             }
         }
 

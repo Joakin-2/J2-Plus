@@ -19,6 +19,12 @@
             overflow: hidden;
         }
 
+        #preparation-screen {
+            display: none;
+            text-align: center;
+            font-size: 2rem;
+        }
+
         #initial-screen, #workout-screen, #completion-screen, #info-screen {
             display: none;
             justify-content: center;
@@ -167,6 +173,17 @@
         <button id="infoButton" onclick="showInfoScreen()">Informação</button>
     </div>
 
+    <!-- Tela de Preparação -->
+    <div id="preparation-screen">
+        <h1>Preparando...</h1>
+        <p>Início em: <span id="countdown">3</span></p>
+    </div>
+
+    <div id="restModal" style="display: none;">
+        <h2 style="color: white;">Descanso</h2>
+        <p style="color: #FFB800;font-size: 20px;">Você está em pausa! <span id="restTimer">30</span> segundos...</p>
+    </div>
+
     <!-- Tela de Informação -->
     <div id="info-screen">
         <video id="info-video" controls>
@@ -215,6 +232,82 @@
     <audio id="countdown-sound" src="countdown.mp3" preload="auto"></audio>
 
     <script>
+        let countdownTime = 5; // Contagem regressiva de 5 segundos
+
+function startTraining() {
+    // Exibir a tela de treino
+    const workoutScreen = document.getElementById("workout-screen");
+    const controls = document.getElementById("controls");
+    const startButton = document.getElementById("startButton");
+
+    if (workoutScreen) workoutScreen.style.display = "flex";
+    if (controls) controls.style.display = "flex";
+    if (startButton) startButton.style.display = "none";
+
+    // Iniciar o timer
+    if (!isTimerRunning) {
+        timerId = setInterval(updateTimer, 1000);
+        isTimerRunning = true;
+    }
+
+    // Mostrar o primeiro exercício
+    showCurrentExercise();
+}
+
+// Função para mostrar o modal de descanso e iniciar o timer de descanso
+function nextExercise() {
+    if (currentIndex < exercises.length - 1) {
+        // Pausa o tempo total durante o descanso
+        pauseTotalTime();
+
+        // Exibe o modal de descanso
+        showRestModal();
+
+        // Timer de descanso de 30 segundos
+        let restTime = 30;
+        restTimerInterval = setInterval(function() {
+            restTime--;
+            document.getElementById("restTimer").textContent = restTime;
+
+            if (restTime <= 0) {
+                clearInterval(restTimerInterval);
+                hideRestModal(); // Esconde o modal de descanso
+                currentIndex++;
+                showCurrentExercise(); // Mostra o próximo exercício
+                resumeTotalTime(); // Retoma a contagem do tempo total
+            }
+        }, 1000);
+    } else {
+        showCompletionScreen();
+    }
+}
+
+// Função para pausar o tempo total
+function pauseTotalTime() {
+    clearInterval(timerId);
+    isTimerRunning = false;
+    isPaused = true;
+}
+
+// Função para retomar o tempo total
+function resumeTotalTime() {
+    timerId = setInterval(updateTimer, 1000);
+    isTimerRunning = true;
+    isPaused = false;
+}
+
+// Função para exibir o modal de descanso
+    function showRestModal() {
+        var modal = document.getElementById('restModal');
+        modal.style.display = 'block'; // Exibe o modal
+    }
+
+    // Função para esconder o modal de descanso
+    function hideRestModal() {
+        var modal = document.getElementById('restModal');
+        modal.style.display = 'none'; // Esconde o modal
+    }
+
         const exercises = ['Prancha', 'Abdômen Polia', 'Abdômen Infra', 'Abdômen Supra', 'Abdômen Máquina'];
         let currentIndex = 0;
         let timeInSeconds = 0;
@@ -272,25 +365,56 @@ function copiarTexto() {
         }
 
         function startWorkout() {
-            const initialScreen = document.getElementById("initial-screen");
-            const workoutScreen = document.getElementById("workout-screen");
-            const completionScreen = document.getElementById("completion-screen");
-            const timer = document.getElementById("timer");
-            const countdown = document.getElementById("countdown");
-            const imagemContainer = document.getElementById("imagem-container");
-            const controls = document.getElementById("controls");
-            const startButton = document.getElementById("startButton");
+    const initialScreen = document.getElementById("initial-screen");
+    const workoutScreen = document.getElementById("workout-screen");
+    const completionScreen = document.getElementById("completion-screen");
+    const timer = document.getElementById("timer");
+    const imagemContainer = document.getElementById("imagem-container");
+    const controls = document.getElementById("controls");
+    const startButton = document.getElementById("startButton");
 
-            if (initialScreen) initialScreen.style.display = "none";
-            if (workoutScreen) workoutScreen.style.display = "flex";
-            if (completionScreen) completionScreen.style.display = "none";
-            if (timer) timer.style.display = "block";
-            if (imagemContainer) imagemContainer.style.display = "flex";
-            if (controls) controls.style.display = "flex";
-            if (startButton) startButton.style.display = "none";
+    if (initialScreen) initialScreen.style.display = "none";
+    if (workoutScreen) workoutScreen.style.display = "flex";
+    if (completionScreen) completionScreen.style.display = "none";
+    if (timer) timer.style.display = "block";
+    if (imagemContainer) imagemContainer.style.display = "flex";
+    if (controls) controls.style.display = "flex";
+    if (startButton) startButton.style.display = "none";
 
-            showCountdown();
+    // Exibir a tela de preparação
+    const preparationScreen = document.getElementById("preparation-screen");
+    
+    if (initialScreen) initialScreen.style.display = "none";
+    if (preparationScreen) preparationScreen.style.display = "block";
+    
+    let countdownDisplay = document.getElementById("countdown");
+    let countdownTime = 3; // tempo de contagem regressiva, ex: 3 segundos
+
+    // Iniciar contagem regressiva
+    const countdownInterval = setInterval(function() {
+        countdownTime--;
+        countdownDisplay.textContent = countdownTime;
+        
+        if (countdownTime === 0) {
+            clearInterval(countdownInterval); // Parar a contagem regressiva
+            preparationScreen.style.display = "none"; // Esconder a tela de preparação
+            startTraining(); // Iniciar o treino
+            startTimer(); // Iniciar o timer total após a contagem regressiva
         }
+    }, 1000);
+
+    showCurrentExercise();
+}
+
+function startTimer() {
+    const timer = document.getElementById("timer");
+    
+    // Certifique-se de que a variável global `isTimerRunning` esteja definida corretamente em algum lugar
+    if (!isTimerRunning) {
+        timerId = setInterval(updateTimer, 1000); // Inicia o timer do treino
+        isTimerRunning = true;
+    }
+}
 
         function showCountdown() {
             const countdown = document.getElementById('countdown');
@@ -338,16 +462,6 @@ function copiarTexto() {
         isTimerRunning = true;
     }
 }
-
-
-        function nextExercise() {
-            if (currentIndex < exercises.length - 1) {
-                currentIndex++;
-                showCountdown(); // Show countdown before the next exercise
-            } else {
-                showCompletionScreen();
-            }
-        }
 
         function previousExercise() {
             if (currentIndex > 0) {
