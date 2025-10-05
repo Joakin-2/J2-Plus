@@ -251,6 +251,10 @@
         <br><br>
         <div id="recomendacoes"></div>
 
+        <div id="saudacao" style="position: absolute; top: 13%; font-size: 20px; font-weight: bold;">
+            <!-- A saudação será inserida aqui com JavaScript -->
+        </div>
+
         <p style="margin-left: 80%; position: absolute; margin-top: 10%;">Nível Atual: <span id="nivel">1</span></p>
         <p style="margin-left: 80%; position: absolute; margin-top: 12%;">XP Atual: <span id="xp-atual">0</span> / <span id="xp-necessario">100</span></p>
 
@@ -1030,6 +1034,41 @@ const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
             parent.insertBefore(placarSection, stocks); // Coloca o placar antes do mercado
         }
     }
+
+    function exibirSaudacao() {
+    // Captura a hora atual
+    const horaAtual = new Date().getHours();
+
+    // Variáveis para armazenar a saudação e o nome do perfil
+    let saudacaoBase = "";  // Saudação que vai depender da hora
+
+    // Define a saudação com base no horário
+    if (horaAtual >= 6 && horaAtual < 12) {
+        saudacaoBase = "Bom dia! ";
+    } else if (horaAtual >= 12 && horaAtual < 18) {
+        saudacaoBase = "Boa tarde! ";
+    } else {
+        saudacaoBase = "Boa noite! ";
+    }
+
+    // Saudação completa com o nome do perfil
+    const saudacaoCompleta = saudacaoBase + perfilAtivo;
+
+    // Obtém o elemento da saudação
+    const saudacaoElement = document.getElementById('saudacao');
+
+    // Exibe a animação de digitação para a saudação completa (com nome)
+    saudacaoElement.innerHTML = `<span class="typing-animation">${saudacaoCompleta}</span>`;
+
+    // Após 5 segundos, remove o nome e deixa apenas a saudação
+    setTimeout(() => {
+        saudacaoElement.innerHTML = `<span class='typing-animation'>${saudacaoBase}</span>`;
+    }, 5000);  // 5 segundos
+}
+
+// Chama a função para exibir a saudação ao carregar a página
+window.onload = exibirSaudacao;
+
 
     // Atualizar o placar a cada 5 segundos
     //setInterval(getLiveScores, 5000);
