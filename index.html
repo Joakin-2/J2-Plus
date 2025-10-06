@@ -282,13 +282,7 @@
             <li id="dolarItem">Dólar - carregando...</li>
         </ul>
                 </div>
-                <!-- Seção de Placar de Futebol
-                <div class="placar" id="placarSection">
-        <button class="texto" onclick="toggleGame()">Placar de Futebol</button>
-        <div id="placar" class="placar-content">
-        </div> 
-                </div>    -->   
-            </div>
+                </div>
             <a>
                 <div id="container" class="avatar">
                     <div id="Hat" class="birthday-hat" style="display:none;"></div>
@@ -315,6 +309,7 @@
                 </div>
             </a>            
             <div class="right-side">
+                <button class="texto" id="openModalBtnjogo" style="margin-bottom: -20px;margin-left: 24px;"><i class="fas fa-futbol"></i> Ver Jogos</button>
                 <div class="weather">
                     <a href="https://www.msn.com/pt-br/clima/forecast/in-Jacupiranga,S%C3%A3o-Paulo?ocid=msedgntphdr&cvid=bb73bd20fe56462399e7e714692deb87&loc=eyJsIjoiSmFjdXBpcmFuZ2EiLCJyIjoiU8OjbyBQYXVsbyIsImMiOiJCcmFzaWwiLCJpIjoiQlIiLCJ0IjoxMDIsImciOiJwdC1iciIsIngiOiItNDguMDA2MDk5NzAwOTI3NzM0IiwieSI6Ii0yNC43MDM4MDAyMDE0MTYwMTYifQ%3D%3D&weadegreetype=C" target="_blank">
                         <button class="texto">Previsão do Tempo</button>
@@ -323,7 +318,7 @@
                       <span id="weatherIcon"></span>                      
                 </div>
                 <div class="news">
-                    <button class="texto" onclick="abrirSites()">Últimas Notícias</button> 
+                    <button class="texto" onclick="abrirSites()" style=" margin-top: 10px;">Últimas Notícias</button> 
                     <ul>
                         <li>Sem Notícias...</li>
                     </ul>
@@ -350,6 +345,17 @@
             </footer>
         </div>        
     </div>
+
+      <!-- Modal de Futebol -->
+    <div id="gamesModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Placar de Jogos de Futebol</h2>
+        <div id="gamesList" class="games">
+            <!-- Jogos serão carregados aqui -->
+        </div>
+    </div>
+</div>
 
   <!-- Modal Privacidade -->
   <div id="modalPrivacidade" class="modal">
@@ -975,66 +981,6 @@ window.onclick = function(event) {
   checkSeason2();
 };
 
-// Variáveis da API de Futebol
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const footballApiUrl = 'https://api.football-data.org/v4/matches';  // URL da API de futebol
-    const footballApiKey = '3c9a27c625a643de99b9f10eda20b4dc'; // Substitua pela sua chave de API
-
-    // Função para obter os placares ao vivo
-    function getLiveScores() {
-        fetch(proxyUrl + footballApiUrl, {
-            method: 'GET',
-            headers: {
-                'X-Auth-Token': footballApiKey
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            const matches = data.matches;
-            if (matches.length > 0) {
-                // Selecionar um jogo aleatório para mostrar o placar
-                const match = matches[Math.floor(Math.random() * matches.length)];
-                const homeTeam = match.homeTeam.name;
-                const awayTeam = match.awayTeam.name;
-                const scoreHome = match.score.fullTime.homeTeam;
-                const scoreAway = match.score.fullTime.awayTeam;
-
-                // Atualiza o conteúdo do placar
-                document.getElementById('placar').innerHTML = `
-                    <p><strong>${homeTeam} ${scoreHome} - ${scoreAway} ${awayTeam}</strong></p>
-                `;
-            } else {
-                document.getElementById('placar').innerHTML = 'Nenhum jogo ao vivo no momento.';
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao carregar os dados do placar:', error);
-            document.getElementById('placar').innerHTML = 'Erro ao carregar placar.';
-        });
-    }
-
-    // Função para alternar entre as seções de Mercado Financeiro e Placar de Futebol
-    function toggleGame() {
-        const placarSection = document.getElementById('placarSection');
-        if (placarSection.style.display === 'none' || placarSection.style.display === '') {
-            placarSection.style.display = 'block';
-        } else {
-            placarSection.style.display = 'none';
-        }
-    }
-
-    // Função para trocar a posição das seções de Mercado Financeiro e Placar de Futebol
-    function swapSections() {
-        const stocks = document.getElementById('stocks');
-        const placarSection = document.getElementById('placarSection');
-        
-        // Troca de lugar entre as seções
-        if (stocks && placarSection) {
-            const parent = stocks.parentNode;
-            parent.insertBefore(placarSection, stocks); // Coloca o placar antes do mercado
-        }
-    }
-
     function exibirSaudacao() {
     // Captura a hora atual
     const horaAtual = new Date().getHours();
@@ -1068,6 +1014,85 @@ const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
 // Chama a função para exibir a saudação ao carregar a página
 window.onload = exibirSaudacao;
+
+const modaljogo = document.getElementById('gamesModal');
+const openModalBtnjogo = document.getElementById('openModalBtnjogo');  // Atualizado para o novo id
+const gamesList = document.getElementById('gamesList');  // Definindo a variável gamesList
+
+// Variáveis da API de Futebol
+const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+const footballApiUrl = 'https://api.football-data.org/v4/matches';  // URL da API de futebol
+const footballApiKey = '3c9a27c625a643de99b9f10eda20b4dc'; // Sua chave da API de futebol
+
+// Função para exibir os jogos no modal
+function displayGames(games) {
+    const gamesList = document.getElementById('gamesList');
+    gamesList.innerHTML = '';  // Limpa a lista antes de adicionar novos jogos
+
+    // Verificar se a variável games não está vazia ou indefinida
+    if (games && games.length > 0) {
+        games.forEach(game => {
+            const gameDiv = document.createElement('div');
+            gameDiv.classList.add('game');
+            
+            const homeTeam = game.homeTeam.name;
+            const awayTeam = game.awayTeam.name;
+            const scoreHome = game.score.fullTime.homeTeam;
+            const scoreAway = game.score.fullTime.awayTeam;
+
+            gameDiv.innerHTML = `
+                <span>${homeTeam} vs ${awayTeam}</span>
+                <span class="score">${scoreHome} - ${scoreAway}</span>
+            `;
+            
+            gamesList.appendChild(gameDiv);
+        });
+    } else {
+        gamesList.innerHTML = '<p>Não foi possível carregar os jogos no momento.</p>';
+    }
+}
+
+// Função para buscar os jogos
+async function fetchGames() {
+    const url = `${proxyUrl}${footballApiUrl}`; // Concatenando o proxy com a URL da API
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'X-Auth-Token': footballApiKey // Enviando a chave de autenticação da API
+            }
+        });
+
+        // Verifica se a resposta foi bem-sucedida
+        if (response.ok) {
+            const data = await response.json();
+            return data.matches;  // Retorna os jogos
+        } else {
+            console.error('Erro ao buscar jogos:', response.status);
+            return []; // Retorna uma lista vazia se houver erro
+        }
+    } catch (error) {
+        console.error('Erro ao buscar jogos:', error);
+        return []; // Retorna uma lista vazia em caso de erro de rede
+    }
+}
+
+// Abrir o modal quando o botão for clicado
+openModalBtnjogo.onclick = async function() {
+    const games = await fetchGames();  // Puxa os jogos
+    displayGames(games);  // Exibe os jogos no modal
+    const modaljogo = document.getElementById('gamesModal');
+    modaljogo.style.display = 'block';
+}
+
+// Fechar o modal se o usuário clicar fora do conteúdo
+window.onclick = function(event) {
+    const modaljogo = document.getElementById('gamesModal');
+    if (event.target === modaljogo) {
+        modaljogo.style.display = 'none';
+    }
+}
 
 
     // Atualizar o placar a cada 5 segundos
