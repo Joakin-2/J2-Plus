@@ -377,7 +377,7 @@ if (hoje.getDay() === 6) {
     if (diaDoMes >= 8 && diaDoMes <= 14) {
         if (!habitosPorDia.sábado) habitosPorDia.sábado = {};
         if (!habitosPorDia.sábado.noite) habitosPorDia.sábado.noite = [];
-        habitosPorDia.sábado.noite.push("Santa Ceia");
+        habitosPorDia.sábado.noite.push("Culto de Santa Ceia");
     }
 
     // Terceiro sábado
