@@ -256,7 +256,7 @@ function carregarHabitosDoDia() {
         },
         segunda: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Oração na Igreja'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Cortar a Grama','Trabalho (Trade)'],
+            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
         },
         terça: {
@@ -432,6 +432,17 @@ if (hoje.getDay() === 3) {
         if (!habitosPorDia.quarta) habitosPorDia.quarta = {};
         if (!habitosPorDia.quarta.tarde) habitosPorDia.quarta.tarde = [];
         habitosPorDia.quarta.tarde.push("Cortar Unhas do Pé");
+    }
+}
+
+    // Verificar se é a terceira segunda-feira do mês
+if (hoje.getDay() === 1) {
+    const diaDoMes = hoje.getDate();
+    // Terceira segunda-feira (8-14)
+    if (diaDoMes >= 8 && diaDoMes <= 14) {
+        if (!habitosPorDia.segunda) habitosPorDia.segunda = {};
+        if (!habitosPorDia.segunda.tarde) habitosPorDia.segunda.tarde = [];
+        habitosPorDia.segunda.tarde.push("Cortar a Grama");
     }
 }
 
