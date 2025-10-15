@@ -24,6 +24,12 @@ label {
     color: white;
 }
 
+.digestao {
+  color: #888;
+  font-style: italic;
+  margin-left: 8px;
+}
+
         @media (max-width: 768px) {
             /* Ajuste para telas menores, como tablets e smartphones */
             body {
@@ -286,31 +292,31 @@ li {
               
                   <div class="pagina" id="pagina1">
                     <ul>
-                      <li><span class="alimento">Pão</span> <span class="gramas">50g</span> <span class="kcal">80 kcal</span></li>
-                      <li><span class="alimento">Ovo</span> <span class="gramas">50g</span> <span class="kcal">70 kcal</span></li>
-                      <li><span class="alimento">Café</span> <span class="gramas">200ml</span> <span class="kcal">5 kcal</span></li>
-                      <li><span class="alimento">Fruta</span> <span class="gramas">100g</span> <span class="kcal">50 kcal</span></li>
-                      <li><span class="alimento">Arroz</span> <span class="gramas">125g</span> <span class="kcal">130 kcal</span></li>
+                      <li><span class="alimento">Pão</span> <span class="gramas">50g</span> <span class="kcal">80 kcal</span> <span class="digestao">~2h</span></li>
+                      <li><span class="alimento">Ovo</span> <span class="gramas">50g</span> <span class="kcal">70 kcal</span> <span class="digestao">~3h</span></li>
+                      <li><span class="alimento">Café</span> <span class="gramas">200ml</span> <span class="kcal">5 kcal</span> <span class="digestao">~30min</span></li>
+                      <li><span class="alimento">Fruta</span> <span class="gramas">100g</span> <span class="kcal">50 kcal</span> <span class="digestao">~1h</span></li>
+                      <li><span class="alimento">Arroz</span> <span class="gramas">125g</span> <span class="kcal">130 kcal</span> <span class="digestao">~2h30min</span></li>
                     </ul>
                   </div>
-              
+
                   <div class="pagina" id="pagina2" style="display:none;">
                     <ul>
-                      <li><span class="alimento">Feijão</span> <span class="gramas">100g</span> <span class="kcal">95 kcal</span></li>
-                      <li><span class="alimento">Queijo</span> <span class="gramas">30g</span> <span class="kcal">120 kcal</span></li>
-                      <li><span class="alimento">Leite</span> <span class="gramas">200ml</span> <span class="kcal">60 kcal</span></li>
-                      <li><span class="alimento">Tapioca</span> <span class="gramas">50g</span> <span class="kcal">100 kcal</span></li>
-                      <li><span class="alimento">Linguiça</span> <span class="gramas">100g</span> <span class="kcal">200 kcal</span></li>
+                      <li><span class="alimento">Feijão</span> <span class="gramas">100g</span> <span class="kcal">95 kcal</span> <span class="digestao">~3h</span></li>
+                      <li><span class="alimento">Queijo</span> <span class="gramas">30g</span> <span class="kcal">120 kcal</span> <span class="digestao">~4h</span></li>
+                      <li><span class="alimento">Leite</span> <span class="gramas">200ml</span> <span class="kcal">60 kcal</span> <span class="digestao">~2h</span></li>
+                      <li><span class="alimento">Tapioca</span> <span class="gramas">50g</span> <span class="kcal">100 kcal</span> <span class="digestao">~2h</span></li>
+                      <li><span class="alimento">Linguiça</span> <span class="gramas">100g</span> <span class="kcal">200 kcal</span> <span class="digestao">~4h</span></li>
                     </ul>
                   </div>
-              
+
                   <div class="pagina" id="pagina3" style="display:none;">
                     <ul>
-                      <li><span class="alimento">Salsicha</span> <span class="gramas">50g</span> <span class="kcal">140 kcal</span></li>
-                      <li><span class="alimento">Mortadela</span> <span class="gramas">50g</span> <span class="kcal">150 kcal</span></li>
-                      <li><span class="alimento">Amendoim</span> <span class="gramas">30g</span> <span class="kcal">180 kcal</span></li>
-                      <li><span class="alimento">Sanduíche</span> <span class="gramas">150g</span> <span class="kcal">300 kcal</span></li>
-                      <li><span class="alimento">Hambúrguer</span> <span class="gramas">130g</span> <span class="kcal">250 kcal</span></li>
+                      <li><span class="alimento">Salsicha</span> <span class="gramas">50g</span> <span class="kcal">140 kcal</span> <span class="digestao">~3h30min</span></li>
+                      <li><span class="alimento">Mortadela</span> <span class="gramas">50g</span> <span class="kcal">150 kcal</span> <span class="digestao">~4h</span></li>
+                      <li><span class="alimento">Amendoim</span> <span class="gramas">30g</span> <span class="kcal">180 kcal</span> <span class="digestao">~6h</span></li>
+                      <li><span class="alimento">Sanduíche</span> <span class="gramas">150g</span> <span class="kcal">300 kcal</span> <span class="digestao">~3h30min</span></li>
+                      <li><span class="alimento">Hambúrguer</span> <span class="gramas">130g</span> <span class="kcal">250 kcal</span> <span class="digestao">~4h</span></li>
                     </ul>
                   </div>
               
@@ -406,12 +412,12 @@ li {
             <span class="close" onclick="fecharMenuRefeicoes()">&times;</span>
             <h3 id="menuTitle">Menu de Refeições</h3>
             <ul id="listaRefeicoes">
-                <li>6h: Ovo - 70 kcal</li>
-                <li>9h: Pão com Queijo - 200 kcal</li>
-                <li>12h: Frango com Arroz - 450 kcal</li>
-                <li>15h: Salada de Frutas - 150 kcal</li>
-                <li>18h: Sopa de Legumes - 300 kcal</li>
-                <li>21h: Iogurte Natural - 100 kcal</li>
+                <li>6h: Ovo - 70 kcal (Digestão: ~3h)</li>
+                <li>9h: Pão com Queijo - 200 kcal (Digestão: ~4h)</li>
+                <li>12h: Frango com Arroz - 450 kcal (Digestão: ~4-6h)</li>
+                <li>15h: Salada de Frutas - 150 kcal (Digestão: ~1h)</li>
+                <li>18h: Sopa de Legumes - 300 kcal (Digestão: ~2-3h)</li>
+                <li>21h: Iogurte Natural - 100 kcal (Digestão: ~1-2h)</li>
             </ul>
             <div>
                 <button id="modoJejumBtn">Modo Jejum</button>
@@ -653,21 +659,27 @@ function closeDragElement() {
             gramsInput.value = "";
         });
 
-        // Faz o cálculo estimativo de calorias
-        calculateButton.addEventListener("click", () => {
+        // Faz o cálculo estimativo de calorias e tempo de digestão
+calculateButton.addEventListener("click", () => {
     const grams = parseFloat(gramsInput.value);
 
     if (isNaN(grams) || grams <= 0) {
         result.textContent = "Por favor, insira uma quantidade válida de gramas.";
-        return; // Saia da função se a entrada não for válida
+        return;
     }
 
     // Supondo que cada 100g de comida tenha 250 kcal (valor estimado)
     const caloriesPer100g = 250;
     const estimatedCalories = (grams / 100) * caloriesPer100g;
 
-    result.textContent = `Você consumiu aproximadamente ${estimatedCalories.toFixed(2)} kcal.`;
+    // Supondo que cada 100g leva 2 horas para ser digerido
+    const digestionTimePer100g = 2; // horas
+    const estimatedDigestionTime = (grams / 100) * digestionTimePer100g;
+
+    result.textContent = `Você consumiu aproximadamente ${estimatedCalories.toFixed(2)} kcal. 
+Tempo estimado de digestão: ${estimatedDigestionTime.toFixed(1)} horas.`;
 });
+
         document.addEventListener('DOMContentLoaded', function() {
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
@@ -819,12 +831,12 @@ document.getElementById('modoJejumBtn').addEventListener('click', () => {
 
     // Alterar para o "Modo Jejum"
     listaRefeicoes.innerHTML = `
-        <li>6h: Chá verde - 0 kcal</li>
-        <li>9h: Frutas vermelhas - 50 kcal</li>
-        <li>12h: Salada com folhas verdes e limão - 80 kcal</li>
-        <li>15h: Água com limão - 0 kcal</li>
-        <li>18h: Sopa de legumes sem óleo - 100 kcal</li>
-        <li>21h: Chá de camomila - 0 kcal</li>
+        <li>6h: Chá verde - 0 kcal <span class="digestao">~18min</span></li>
+        <li>9h: Frutas vermelhas - 50 kcal <span class="digestao">~1h</span></li>
+        <li>12h: Salada com folhas verdes e limão - 80 kcal <span class="digestao">~1h30min</span></li>
+        <li>15h: Água com limão - 0 kcal <span class="digestao">~18min</span></li>
+        <li>18h: Sopa de legumes sem óleo - 100 kcal <span class="digestao">~1h30min</span></li>
+        <li>21h: Chá de camomila - 0 kcal <span class="digestao">~18min</span></li>
     `;
     titulo.textContent = 'Menu de Refeições - Modo Jejum';
 });
