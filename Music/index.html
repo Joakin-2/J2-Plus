@@ -11,7 +11,7 @@
 <body>
     <header>
         <h1 id="titulo" style="display: flex; align-items: center; cursor: pointer;">
-            <img src="icone.png" alt="Icon" style="width: 44px; height: auto; margin-left: 10px; margin-right: 10px;"> 
+            <img src="icone.png" alt="Icon" onclick="window.location.href='index2.html'" style="width: 44px; height: auto; margin-left: 10px; margin-right: 10px;"> 
             J2 Music
         </h1>
         <div id="pesquisa" style="display: none; padding: 10px; width: 45%; margin: auto;">
@@ -136,12 +136,12 @@
                 <div class="progress-bar" id="progress-bar"></div>
                 <div class="progress-dot" id="progress-dot"></div>
             </div>
-            <div class="time" style="display: flex; justify-content: space-between; padding: 10px; width: 50%; margin: auto;">
+            <div class="time" style="display: flex; justify-content: space-between; padding: 10px; width: 80%; margin: auto;">
                 <span id="current-time">00:00</span>
                 <span id="duration">00:00</span>
             </div>            
             <br>
-            <div class="controls" style="display: flex; align-items: center; justify-content: center;">
+            <div class="controls" style="display: flex; width: 400px; align-items: center; justify-content: center;">
                 <!-- Botão de Loop -->
                 <button class="outros-button" onclick="toggleLoop()" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px;">
                     <i class="fas fa-redo"></i> <!-- Loop Icon -->
@@ -185,10 +185,10 @@
 
         document.getElementById('playlistImage').addEventListener('click', function() {
     // Verifica se a imagem já está com 50% de largura
-    if (this.style.maxWidth === '40%') {
+    if (this.style.maxWidth === '80%') {
         this.style.maxWidth = '50%'; // Se sim, volta para 100%
     } else {
-        this.style.maxWidth = '40%'; // Caso contrário, diminui para 50%
+        this.style.maxWidth = '80%'; // Caso contrário, diminui para 50%
     }
 });
 

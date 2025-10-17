@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J2 Music</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 id="titulo" style="display: flex; align-items: center; cursor: pointer;">
+            <img src="icone.png" alt="Icon" style="width: 44px; height: auto; margin-left: 10px; margin-right: 10px;"> 
+            J2 Music
+        </h1>
+        <div id="pesquisa" style="display: none; padding: 10px; width: 45%; margin: auto;">
+            <input type="text" id="inputPesquisa" placeholder="Pesquisar..." style="padding: 10px;border-radius: 5px;border: 1px solid #ccc;background-color: #444;color: #fff;width: calc(92% - 22px);">
+            <button onclick="buscar()" style="height: 40px; padding: 10px; background-color: #aa72fe; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;"><i class="fas fa-search"></i></button>
+        <button style="height: 40px; padding: 10px; background-color: #aa72fe; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;" onclick="window.location.href='https://www.youtube.com/watch?v=57wccTN-ZyE&amp;list=WL&amp;index=1&amp;t=17s&amp;pp=gAQBiAQB8AUB'">Sax</button>
+        </div>
+    </header>
+
+    <div class="container" id="sugestoes" style="width: 45%;">
+    <button class="carousel-btn prev" onclick="moverCarrossel('prev')">❮</button>
+       <div class="carousel">
+    <div class="musica-item">
+        <h3 data-caminho="Hip Praise/Mais-Existe-um-Lugar-_Remix_.mp3">▶️ Mais Existe um Lugar Remix</h3>
+    </div>
+    <div class="musica-item">
+        <h3 data-caminho="Hip Praise/Santo-Slowed.mp3">▶️ Santo Slowed</h3>
+    </div>
+    <div class="musica-item">
+        <h3 data-caminho="Vibe/James Brown -  Poison (Jersey Club Remix).mp3">▶️ James Brown - Poison</h3>
+    </div>
+               <!-- Mais itens de música -->
+        </div>
+    <button class="carousel-btn next" onclick="moverCarrossel('next')">❯</button>
+</div>
+    
+    <div class="container">
+        <a href="#" class="video christ-gym" onclick="showPlaylist('Christ Gym');"
+        onmousedown="startLock(this, 'Christ Gym')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
+            <h2>Christ Gym</h2>
+        </a>
+        <a href="#" class="video hip-praise" onclick="showPlaylist('Hip Praise');"
+        onmousedown="startLock(this, 'Hip Praise')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
+            <h2>Hip Praise</h2>
+        </a>
+    </div>
+    <div class="container">
+        <a href="#" class="video praise" onclick="showPlaylist('Praise');"
+        onmousedown="startLock(this, 'Praise')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
+            <h2>Praise</h2>
+        </a>
+        <a href="#" class="video fundo" onclick="showPlaylist('Fundo');"
+        onmousedown="startLock(this, 'Fundo')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
+            <h2>Fundo</h2>
+        </a>
+    </div>
+    <div class="container">
+        <a href="#" class="video vibes" onclick="showPlaylist('Vibes');"
+        onmousedown="startLock(this, 'Vibes')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
+            <h2>Vibes</h2>
+        </a>
+        <a href="#" class="video gym" onclick="showPlaylist('Gym');"
+        onmousedown="startLock(this, 'Gym')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
+            <h2>Gym</h2>
+        </a>
+    </div>
+    <div class="container">
+        <a href="#" class="video fnf" onclick="showPlaylist('FNF');"
+        onmousedown="startLock(this, 'FNF')" 
+        onmouseup="stopLock(this)" 
+        onmouseleave="stopLock(this)">
+         <h2>FNF</h2>
+     </a>
+        <a href="#" class="video upload" onclick="uploadMusic();">
+            <h2>+ Upload</h2>
+        </a>
+    </div>
+            
+    <div id="uploadModal">
+        <div class="modal-content">
+            <h2 style="text-align: center;">Upload de Música</h2>
+            <div class="upload-form">
+                <form id="uploadForm">
+                    <label for="musicTitle">Título da Música:</label>
+                    <input type="text" id="musicTitle" name="musicTitle" required>
+
+                    <label for="musicFile">Escolha um arquivo de música:</label>
+                    <input type="file" id="musicFile" name="musicFile" accept=".mp3,.ogg,.wav" required>
+
+                    <input type="submit" value="Enviar Música">
+                </form>
+            </div>
+            <div class="close">
+                <button onclick="closeModal();">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="music-player" id="musicPlayer">
+        <div class="music-player-content">
+            <div id="musicHeader" style="display: flex; align-items: center; margin-bottom: 20px;">
+                <button class="back-button" onclick="hideMusicPlayer()" style="position: static; cursor: pointer; margin-right: 10px; background: #0d0d0d; border: none; color: white; padding: 10px; border-radius: 5px;">
+                    <i class="fas fa-arrow-left"></i> <!-- Ícone de voltar -->
+                </button>
+                <!-- Dentro de #musicHeader, ao lado do botão de voltar -->
+                <button class="outros-button" onclick="showMusicSelection2()" style="cursor: pointer; margin-left: 10px; background: #0d0d0d; border: none; color: white; padding: 10px; border-radius: 5px;">
+                    <i class="fas fa-list"></i> <!-- Ícone de lista -->
+                </button>
+                <h2 id="currentPlaylistTitle" style="text-align: center;">Nome da Playlist</h2>
+                <button id="shareButton" style="background: rgb(13, 13, 13); border: none; width: 40px; cursor: pointer; padding: 10px; display: inline-block;">🔗</button>
+                <!-- Botão para mudar a imagem da playlist - inicialmente escondido -->
+            <button id="changeImageButton" class="outros-button" onclick="changeImage()" style="background: rgb(13, 13, 13); border: none; width: 40px; cursor: pointer; padding: 10px; display: none;">
+                <i class="fas fa-image"></i> <!-- Ícone de imagem -->
+            </button>
+            </div>
+            <img src="" id="playlistImage" alt="Playlist Image" style="cursor: pointer;">
+            <h2 id="musicTitle"></h2>
+            <h3 id="songName" style="margin: 30px;"></h3>
+            <div class="progress-container" style="margin: auto; width: 50%;">
+                <div class="progress-bar" id="progress-bar"></div>
+                <div class="progress-dot" id="progress-dot"></div>
+            </div>
+            <div class="time" style="display: flex; justify-content: space-between; padding: 10px; width: 50%; margin: auto;">
+                <span id="current-time">00:00</span>
+                <span id="duration">00:00</span>
+            </div>            
+            <br>
+            <div class="controls" style="display: flex; align-items: center; justify-content: center;">
+                <!-- Botão de Loop -->
+                <button class="outros-button" onclick="toggleLoop()" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px;">
+                    <i class="fas fa-redo"></i> <!-- Loop Icon -->
+                </button>
+                <button class="outros-button" onclick="previousTrack()" style="background: #1a1a1a; border: none; cursor: pointer; padding: 10px;">
+                    <i class="fas fa-backward"></i> <!-- Ícone de voltar -->
+                </button>
+                <button class="outros-button" id="playPauseButton" onclick="togglePlayPause()" style="background: #1a1a1a; border: none; color: white; padding: 10px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
+                        <path d="M5.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0v-9A.5.5 0 0 1 5.5 3zM10.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0v-9a.5.5 0 0 1 .5-.5z"></path>
+                    </svg>
+                </button>
+                <button class="outros-button" onclick="nextTrack()" style="background: #1a1a1a; border: none; cursor: pointer; padding: 10px;">
+                    <i class="fas fa-forward"></i> <!-- Ícone de avançar -->
+                </button>
+                <!-- Botão de Coração (Favoritar) -->
+                <button class="outros-button" onclick="toggleFavorite()" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px;">
+                    <i class="fas fa-heart"></i> <!-- Ícone de coração -->
+                </button>
+            </div>
+        </div>
+    </div>    
+    
+    <audio id="audioPlayer" controls style="visibility: hidden;"></audio>
+    
+    <div id="musicSelection">
+        <div id="musicTitleContainer" style="display: flex; align-items: center;">
+            <i class="fas fa-arrow-left back-button" onclick="hideMusicSelection()"></i>
+            <h2 id="playlistTitle"></h2> <!-- Título da seleção de músicas -->
+        </div>
+        <ul id="musicList"></ul>
+    </div>  
+
+    <script src="script.js"></script>
+    <script>
+        // Variáveis globais
+        var currentPlaylist = null;
+        var currentTrackIndex = 0;
+        var audioPlayer = document.getElementById('audioPlayer');
+        var playlistImage = document.getElementById('playlistImage');
+
+        document.getElementById('playlistImage').addEventListener('click', function() {
+    // Verifica se a imagem já está com 50% de largura
+    if (this.style.maxWidth === '40%') {
+        this.style.maxWidth = '50%'; // Se sim, volta para 100%
+    } else {
+        this.style.maxWidth = '40%'; // Caso contrário, diminui para 50%
+    }
+});
+
+        document.getElementById('playlistImage').addEventListener('dblclick', function () {
+            const audio = document.getElementById('audioPlayer');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        });
+        function seek(event) {
+            const progressBar = document.querySelector('.progress-container');
+            const audio = document.getElementById('audioPlayer');
+            const clickX = event.clientX - progressBar.getBoundingClientRect().left;
+            const progressWidth = progressBar.offsetWidth;
+            const newTime = (clickX / progressWidth) * audio.duration;
+
+            audio.currentTime = newTime;
+        }
+
+        document.querySelector('.progress-container').addEventListener('click', seek);
+
+        let lockTimeout; // Variável para rastrear o timeout do bloqueio
+
+        function startLock(element, playlistName) {
+    lockTimeout = setTimeout(() => {
+        // Adiciona classe bloqueada
+        element.classList.add('locked');
+        
+        // Define o conteúdo do botão com o título e o ícone
+        element.innerHTML = `
+            <h2>${playlistName}</h2>
+            <span class="lock-icon">🔒</span>
+        `;
+        element.onclick = null; // Remove a ação de clique
+    }, 1500); // Tempo para segurar
+}
+
+function stopLock(element) {
+    // Cancela o timeout se o botão for solto antes do tempo
+    clearTimeout(lockTimeout);
+}
+
+function showMusicSelection() {
+    const musicSelection = document.getElementById("musicSelection");
+    musicSelection.style.display = "block";
+
+    // Exibe o nome da playlist atual
+    const playlistTitle = document.getElementById("currentPlaylistTitle").innerText;
+    document.getElementById("playlistTitle").innerText = playlistTitle;
+
+    // Supondo que você tenha uma variável com as faixas da playlist atual
+    loadPlaylistTracks(playlistTitle);
+}
+
+function showMusicSelection2() {
+    const musicSelection = document.getElementById("musicSelection");
+    musicSelection.style.display = "block";
+    musicSelection.style.width = "400px"; // Define a largura
+
+    // Esconde o título da playlist
+    const playlistTitleElement = document.getElementById("playlistTitle");
+    playlistTitleElement.style.display = "none";
+
+    // Exibe o nome da playlist atual (pega de outro lugar)
+    const playlistTitle = document.getElementById("currentPlaylistTitle").innerText;
+
+    // (Opcional) Atualiza o texto mesmo escondido
+    playlistTitleElement.innerText = playlistTitle;
+
+    // Carrega as faixas da playlist
+    loadPlaylistTracks(playlistTitle);
+}
+
+function hideMusicSelection() {
+    document.getElementById("musicSelection").style.display = "none";
+}
+
+function loadPlaylistTracks(playlistName) {
+    // Atualiza o título da playlist
+    var playlistTitle = document.getElementById('playlistTitle');
+    playlistTitle.textContent = playlistName;
+    playlistTitle.style.flexGrow = '1';
+    playlistTitle.style.textAlign = 'center';
+
+    // Obtém a lista de músicas
+    var musicList = document.getElementById('musicList');
+    musicList.innerHTML = ''; // Limpa a lista antes de adicionar novas músicas
+    musicList.style.textAlign = '-webkit-center';
+
+    // Itera sobre a lista de faixas e cria elementos para cada uma
+    currentPlaylist.forEach(function (track, index) {
+        var listItem = document.createElement('li');
+
+        // Cria o elemento para a linha vertical
+        var colorLine = document.createElement('div');
+        colorLine.style.width = '5px'; // Largura da linha
+        colorLine.style.height = '30px'; // Altura da linha
+        colorLine.style.background = 'linear-gradient(45deg, #ff4500, yellow)'; // Gradiente RGB
+        colorLine.style.marginRight = '10px'; // Espaçamento entre a linha e o título
+        colorLine.style.display = 'inline-block'; // Faz com que a linha fique ao lado do texto
+
+        // Cria o elemento para o título da música
+        var musicTitle = document.createElement('span');
+        musicTitle.classList.add('music-title');
+        musicTitle.textContent = songNames[track]; // Certifique-se de que 'track' é o índice correto em 'songNames'
+
+        // Cria o elemento para os ícones de controle
+        var icons = document.createElement('span');
+        icons.classList.add('icons');
+        icons.innerHTML = `
+            <i class="fas fa-play" onclick="playMusic(${index})" style="cursor: pointer;"></i>
+            <i class="fas fa-heart" style="cursor: pointer;"></i>
+        `;
+
+        // Adiciona os elementos ao item da lista
+        // listItem.appendChild(colorLine);
+        listItem.appendChild(musicTitle);
+        listItem.appendChild(icons);
+        musicList.appendChild(listItem);
+    });
+}
+
+        document.getElementById('shareButton').addEventListener('click', () => {
+    const audio = document.getElementById('audioPlayer');
+
+    // Pega a URL da música atual
+    const currentTrackUrl = audio.src;
+    const currentTrackName = songNames[currentPlaylist[currentTrackIndex]] || 'Ouça essa música!';
+
+    if (navigator.share) {
+        navigator.share({
+            title: 'Escute essa música!',
+            text: currentTrackName,
+            url: currentTrackUrl
+        }).then(() => {
+            console.log('Compartilhado com sucesso!');
+        }).catch((error) => {
+            console.error('Erro ao compartilhar:', error);
+        });
+    } else {
+        alert('O compartilhamento não é suportado neste navegador.');
+    }
+});
+
+        const progressContainer = document.querySelector('.progress-container');
+const progressBar = document.getElementById('progress-bar');
+const progressDot = document.getElementById('progress-dot');
+const audio = document.getElementById('audioPlayer');
+
+// Função para atualizar a posição da bolinha e da barra
+function updateProgress(event) {
+    const rect = progressContainer.getBoundingClientRect();
+    const offsetX = event.clientX - rect.left; // Posição do clique em relação ao container
+    const width = rect.width; // Largura do container
+    const percentage = Math.min(Math.max(offsetX / width, 0), 1); // Garante que o valor esteja entre 0 e 1
+
+    progressBar.style.width = (percentage * 100) + '%'; // Atualiza a barra
+    progressDot.style.left = (percentage * 100) + '%'; // Atualiza a bolinha
+
+    // Atualiza o tempo do áudio
+    audio.currentTime = percentage * audio.duration;
+}
+
+window.onload = () => {
+    const playlistImage = document.getElementById('playlistImage');
+
+    // Verifique se a variável 'playlist' está definida e contém a chave 'Gym'
+    if (playlist && playlist['Gym'] && playlist['Gym'].images && playlist['Gym'].images.length > 0) {
+        // Atribui a primeira imagem da lista de imagens da playlist
+        playlistImage.src = playlist['Gym'].images[0];  
+    } else {
+        // Se não houver imagens, exibe uma imagem padrão
+        playlistImage.src = '6.png';  
+    }
+};
+
+window.onload = () => {
+    const playlistImage = document.getElementById('playlistImage');
+
+    // Verifique se a variável 'playlist' está definida e contém a chave 'Fundo'
+    if (playlist && playlist['Fundo'] && playlist['Fundo'].images && playlist['Fundo'].images.length > 0) {
+        // Atribui a primeira imagem da lista de imagens da playlist
+        playlistImage.src = playlist['Fundo'].images[0];  
+    } else {
+        // Se não houver imagens, exibe uma imagem padrão
+        playlistImage.src = '4.jpg';  
+    }
+};
+
+window.onload = () => {
+    const playlistImage = document.getElementById('playlistImage');
+
+    // Verifique se a variável 'playlist' está definida e contém a chave 'Praise'
+    if (playlist && playlist['Praise'] && playlist['Praise'].images && playlist['Praise'].images.length > 0) {
+        // Atribui a primeira imagem da lista de imagens da playlist
+        playlistImage.src = playlist['Praise'].images[0];  
+    } else {
+        // Se não houver imagens, exibe uma imagem padrão
+        playlistImage.src = '3.png';  
+    }
+};
+
+window.onload = () => {
+    const playlistImage = document.getElementById('playlistImage');
+
+    // Verifique se a variável 'playlist' está definida e contém a chave 'Vibes'
+    if (playlist && playlist['Vibes'] && playlist['Vibes'].images && playlist['Vibes'].images.length > 0) {
+        // Atribui a primeira imagem da lista de imagens da playlist
+        playlistImage.src = playlist['Vibes'].images[0];  
+    } else {
+        // Se não houver imagens, exibe uma imagem padrão
+        playlistImage.src = '5.jpg';  
+    }
+};
+
+function updateProgressBar() {
+    const audio = document.getElementById('audioPlayer');
+    const progressBar = document.getElementById('progress-bar');
+    const progressDot = document.getElementById('progress-dot'); // Adicione esta linha
+    const currentTime = document.getElementById('current-time');
+    const duration = document.getElementById('duration');
+
+    if (audio.duration) {
+        // Atualiza o tempo atual e a duração
+        const progress = (audio.currentTime / audio.duration) * 100;
+        progressBar.style.width = progress + '%';
+
+        // Atualiza a posição da bolinha
+        progressDot.style.left = progress + '%'; // Adiciona esta linha
+
+        // Formata o tempo
+        const formatTime = (time) => {
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+            return `${minutes}:${seconds}`;
+        };
+
+        currentTime.textContent = formatTime(audio.currentTime);
+        duration.textContent = formatTime(audio.duration);
+    }
+}
+
+
+// Adiciona o evento de clique
+progressContainer.addEventListener('click', updateProgress);
+
+// Adiciona evento de arrastar
+let isDragging = false;
+
+progressDot.addEventListener('mousedown', () => {
+    isDragging = true;
+});
+
+document.addEventListener('mouseup', () => {
+    isDragging = false;
+});
+
+document.addEventListener('mousemove', (event) => {
+    if (isDragging) {
+        updateProgress(event);
+    }
+});
+
+        document.getElementById('audioPlayer').addEventListener('timeupdate', updateProgressBar);
+
+
+        // Event listener para detectar o término da música
+        audioPlayer.addEventListener('ended', function () {
+            nextTrack();
+        });
+
+        // Função para mostrar a lista de músicas de uma playlist
+        function showPlaylist(playlistName) {
+            currentPlaylistName = playlistName
+    currentPlaylist = playlist[playlistName].tracks;
+    currentTrackIndex = 0;
+    
+    // Definir a imagem da playlist
+    document.getElementById('playlistImage').src = playlist[playlistName].image; 
+    document.getElementById('currentPlaylistTitle').textContent = playlistName; // Atualiza o título no player
+    document.getElementById('playlistTitle').textContent = playlistName; // Atualiza o título na seleção
+    
+    displayMusicSelection(playlistName);
+
+    // Exibir o botão de troca de imagem apenas para as playlists 'Gym' ou 'Fundo' ou 'Vibes' ou 'Praise'
+    if (playlistName === 'Gym' || playlistName === 'Fundo' || playlistName === 'Vibes' || playlistName === 'Praise') {
+        changeImageButton.style.display = 'inline-block'; // Exibe o botão
+    } else {
+        changeImageButton.style.display = 'none'; // Esconde o botão
+    }
+}
+
+// Função genérica para trocar a imagem da playlist
+let currentImageIndex = 0;
+
+function changeImage(playlistName) {
+    if (playlist[playlistName] && playlist[playlistName].images) {
+        currentImageIndex++;
+        if (currentImageIndex >= playlist[playlistName].images.length) {
+            currentImageIndex = 0; // Se alcançar a última imagem, volta para a primeira
+        }
+
+        const playlistImage = document.getElementById('playlistImage');
+        playlistImage.src = playlist[playlistName].images[currentImageIndex];
+    }
+}
+
+// Atribuindo a função de alternância de imagem aos botões
+changeImageButton.addEventListener('click', () => {
+    const currentPlaylistName = document.getElementById('playlistTitle').textContent;
+    changeImage(currentPlaylistName);
+});
+
+        // Função para exibir a seleção de músicas
+function displayMusicSelection(playlistName) {
+    // Atualiza o título da playlist
+    var playlistTitle = document.getElementById('playlistTitle');
+    playlistTitle.textContent = playlistName;
+
+    // Obtém a lista de músicas
+    var musicList = document.getElementById('musicList');
+    musicList.innerHTML = ''; // Limpa a lista antes de adicionar novas músicas
+
+    // Itera sobre a lista de faixas e cria elementos para cada uma
+    currentPlaylist.forEach(function (track, index) {
+        var listItem = document.createElement('li');
+
+        // Cria o elemento para a linha vertical
+        var colorLine = document.createElement('div');
+        colorLine.style.width = '5px'; // Largura da linha
+        colorLine.style.height = '30px'; // Altura da linha
+        colorLine.style.background = 'linear-gradient(45deg, #ff4500, yellow)'; // Gradiente RGB
+        colorLine.style.marginRight = '10px'; // Espaçamento entre a linha e o título
+        colorLine.style.display = 'inline-block'; // Faz com que a linha fique ao lado do texto
+
+        // Cria o elemento para o título da música
+        var musicTitle = document.createElement('span');
+        musicTitle.classList.add('music-title');
+        musicTitle.textContent = songNames[track]; // Certifique-se de que 'track' é o índice correto em 'songNames'
+
+        // Cria o elemento para os ícones de controle
+        var icons = document.createElement('span');
+        icons.classList.add('icons');
+        icons.innerHTML = `
+            <i class="fas fa-play" onclick="playMusic(${index})" style="cursor: pointer;"></i>
+            <i class="fas fa-heart" style="cursor: pointer;"></i>
+        `;
+
+        // Adiciona os elementos ao item da lista
+        // listItem.appendChild(colorLine);
+        listItem.appendChild(musicTitle);
+        listItem.appendChild(icons);
+        musicList.appendChild(listItem);
+    });
+
+    // Exibe a seleção de músicas
+    document.getElementById('musicSelection').style.display = 'flex';
+}
+
+        // Função para esconder a seleção de músicas
+        function hideMusicSelection() {
+            document.getElementById('musicSelection').style.display = 'none';
+        }
+
+        var currentSongTitle = "J2 Music"; // título atual da música
+        
+        audio.addEventListener('pause', function() {
+            document.title = "J2 Music";
+        });
+
+        audio.addEventListener('ended', function() {
+            document.title = "J2 Music";
+        });
+
+        audio.addEventListener('play', function() {
+            document.title = currentSongTitle; // volta a mostrar o nome da música
+        });
+
+        function playMusic(index) {
+    var track = currentPlaylist[index];
+    var musicPlayer = document.getElementById('musicPlayer');
+    var musicTitle = document.getElementById('musicTitle');
+    var songName = document.getElementById('songName');
+    var musicSource = document.getElementById('audioPlayer');
+
+    musicTitle.textContent = songNames[track];
+    songName.textContent = songNames[track]; // Mostra o nome da música
+    musicSource.src = track;
+    musicSource.load();
+    musicSource.play();
+    musicPlayer.classList.add('show');
+
+    currentSongTitle = songNames[track]; // salva o nome da música
+    document.title = currentSongTitle; // atualiza o título da aba
+
+    // Atualiza o índice atual
+    currentTrackIndex = index;
+
+    hideMusicSelection();
+}
+
+        // Função para exibir o player de música
+        function showMusicPlayer() {
+            var musicPlayer = document.getElementById('musicPlayer');
+            musicPlayer.classList.add('show');
+        }
+
+        // Função para pausar ou reproduzir música
+        function togglePlayPause() {
+    const audio = document.getElementById('audioPlayer');
+    const button = document.getElementById('playPauseButton');
+    const isPlaying = !audio.paused;
+
+    // Obtém o nome da playlist atual
+    const currentPlaylistName = document.getElementById('playlistTitle').textContent;
+
+    if (isPlaying) {
+        audio.pause();
+        button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16"><path d="M11.596 8.697a.5.5 0 0 1 0 .607l-6 4.5a.5.5 0 0 1-.896-.447V3.75a.5.5 0 0 1 .896-.447l6 4.5z"/></svg>';
+        
+        // Quando a música for pausada, definimos a imagem fixa da playlist
+        const playlistImage = document.getElementById('playlistImage');
+        playlistImage.src = playlist[currentPlaylistName].image;  // Define a imagem fixa da playlist
+    } else {
+        audio.play();
+        button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16"><path d="M5.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h1zM11 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h1z"/></svg>';
+        
+        // Quando a música for reproduzida, volta à lógica de alternância de imagem
+        //changeImage(currentPlaylistName);
+    }
+}
+
+        // Função para avançar para a próxima música
+function nextTrack() {
+    if (!currentPlaylist || currentPlaylist.length === 0) return;
+
+    // Incrementa o índice
+    currentTrackIndex = (currentTrackIndex + 1) % currentPlaylist.length;
+    playMusic(currentTrackIndex);
+}
+
+// Função para voltar para a música anterior
+function previousTrack() {
+    if (!currentPlaylist || currentPlaylist.length === 0) return;
+
+    // Decrementa o índice, com wrap-around
+    currentTrackIndex = (currentTrackIndex - 1 + currentPlaylist.length) % currentPlaylist.length;
+    playMusic(currentTrackIndex);
+}
+
+        // Função para esconder o player de música
+        function hideMusicPlayer() {
+    var musicPlayer = document.getElementById('musicPlayer');
+    musicPlayer.classList.remove('show'); // Esconde o player de música
+
+    // Pausa a música se estiver tocando
+    audioPlayer.pause();
+
+    // Exibe a seleção de músicas da playlist atual
+    if (currentPlaylistName) {
+        displayMusicSelection(currentPlaylistName);
+    }
+}
+
+        // Função para abrir o modal de upload de música
+        function uploadMusic() {
+            window.open("https://www.youtube.com/", "_blank");
+            window.open("https://y2meta.is/pt/youtube-to-mp3/", "_blank");
+            window.open("https://github.com/Juca3/J2-Plus/tree/main/Music", "_blank");
+            window.open("https://keep.google.com/u/4/#NOTE/1lxsok0TJ_ko5PdXoxxx8Y7ggYXKjow9HdY9uizqrNf0-StbCOMVeRef7xWY6cg", "_blank");
+            //var uploadModal = document.getElementById('uploadModal');
+            //uploadModal.style.display = 'flex';
+        }
+
+        // Função para fechar o modal de upload de música
+        function closeModal() {
+            var uploadModal = document.getElementById('uploadModal');
+            uploadModal.style.display = 'none';
+        }
+
+        // Evento para detectar o envio de música
+        var uploadForm = document.getElementById('uploadForm');
+        uploadForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            var musicTitle = formData.get('musicTitle');
+            var musicFile = formData.get('musicFile');
+            // Aqui você pode adicionar lógica para enviar o arquivo para o servidor
+            console.log('Título da música:', musicTitle);
+            console.log('Arquivo de música:', musicFile);
+            closeModal();
+        });
+
+        // Função para lidar com eventos de controle de mídia
+        function handleMediaKeyEvent(event) {
+            switch (event.code) {
+                case 'MediaPlayPause':
+                    togglePlayPause();
+                    break;
+                case 'MediaNextTrack':
+                    nextTrack();
+                    break;
+                case 'MediaPreviousTrack':
+                    previousTrack();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // Adiciona um listener para eventos de controle de mídia
+        document.addEventListener('keydown', handleMediaKeyEvent);
+
+        document.getElementById('titulo').addEventListener('click', function () {
+            const pesquisaDiv = document.getElementById('pesquisa');
+            pesquisaDiv.style.display = pesquisaDiv.style.display === 'none' ? 'flex' : 'none';
+        });
+
+        function buscar() {
+            const input = document.getElementById('inputPesquisa').value.trim();
+            if (input) {
+                window.location.href = `https://music.youtube.com/results?search_query=${encodeURIComponent(input)}`;
+            }
+        }
+
+        let isLooping = false;  // Para controlar o estado de loop
+        let isFavorite = false;  // Para controlar o estado de favorito
+
+        function toggleLoop() {
+    isLooping = !isLooping;
+    audioPlayer.loop = isLooping; // Enable/disable loop on the audio element
+    const loopButton = document.querySelector(".outros-button i.fa-redo");
+    loopButton.style.color = isLooping ? "purple" : ""; // Highlight button when loop is active
+    console.log(isLooping ? "Loop activated" : "Loop deactivated");
+}
+
+        // Função para alternar o favorito
+        function toggleFavorite() {
+            isFavorite = !isFavorite;
+            const heartButton = document.querySelector(".outros-button i.fa-heart");
+
+            // Altere o ícone ou o estilo conforme necessário
+            if (isFavorite) {
+                heartButton.style.color = "purple";  // Exemplo: cor vermelha quando favorito
+            } else {
+                heartButton.style.color = "";  // Cor padrão
+            }
+
+            console.log(isFavorite ? "Adicionado aos favoritos" : "Removido dos favoritos");
+        }
+
+        let currentIndex0 = 0;  // Índice atual do carrossel
+const itensPorCarrossel = document.querySelectorAll(".musica-item").length;
+const carousel = document.querySelector(".carousel");
+
+function moverCarrossel(direcao) {
+    if (direcao === 'next') {
+        currentIndex0 = (currentIndex0 + 1) % itensPorCarrossel;
+    } else {
+        currentIndex0 = (currentIndex0 - 1 + itensPorCarrossel) % itensPorCarrossel;
+    }
+
+    const novoTransform = -currentIndex0 * 270;  // A largura dos itens + espaçamento
+    carousel.style.transform = `translateX(${novoTransform}px)`;
+}
+
+function tocarMusica(caminho) {
+    // Obter o elemento do player e do áudio
+    const audio = document.getElementById('audioPlayer');
+    const player = document.getElementById('musicPlayer');
+    
+    // Se o player e o áudio não existirem, não faz sentido continuar
+    if (!audio || !player) {
+        console.error("Elemento de áudio ou player não encontrado!");
+        return;
+    }
+
+    // Atualizar o caminho da música no player
+    audio.src = caminho;
+
+    // Exibir o player se estiver escondido
+    player.style.display = 'block';
+
+    // Iniciar a reprodução
+    audio.play();
+
+    // Atualizar o título da música no player
+    const songName = caminho.split('/').pop().replace(/_/g, " ").replace(".mp3", "");
+    document.getElementById('songName').textContent = songName;
+
+    // Atualizar a imagem da playlist (aqui você pode adicionar uma lógica para mudar a imagem da playlist, se necessário)
+    document.getElementById('playlistImage').src = "1.png";  // Substitua com a URL da imagem correta (opcional)
+    document.getElementById('currentPlaylistTitle').textContent = "Escolhas rápidas";  // Substitua com o nome da playlist (opcional)
+}
+
+// Adicionar o evento de click para tocar a música ao clicar no carrossel
+document.querySelectorAll('.musica-item h3').forEach(function(item) {
+    item.addEventListener('click', function() {
+        const caminho = item.getAttribute('data-caminho');
+        if (caminho) {
+            tocarMusica(caminho);
+        } else {
+            console.warn("Caminho da música não encontrado!");
+        }
+    });
+});
+
+// Adicionando o evento de click dinamicamente
+document.querySelectorAll('.musica-item h3').forEach(function(item) {
+    item.addEventListener('click', function() {
+        tocarMusica(item.getAttribute('data-caminho'));
+    });
+});
+
+    </script>
+</body>
+</html>
