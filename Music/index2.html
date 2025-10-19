@@ -21,7 +21,7 @@
         </div>
     </header>
 
-    <div class="container" id="sugestoes" style="width: 45%;">
+    <div class="container" id="sugestoes" style="width: 600px;">
     <button class="carousel-btn prev" onclick="moverCarrossel('prev')">❮</button>
        <div class="carousel">
     <div class="musica-item">
@@ -169,7 +169,7 @@
     
     <div id="musicSelection">
         <div id="musicTitleContainer" style="display: flex; align-items: center;">
-            <i class="fas fa-arrow-left back-button" onclick="hideMusicSelection()"></i>
+            <i class="fas fa-arrow-left back-button" onclick="hideMusicSelection2()"></i>
             <h2 id="playlistTitle"></h2> <!-- Título da seleção de músicas -->
         </div>
         <ul id="musicList"></ul>
@@ -266,6 +266,15 @@ function showMusicSelection2() {
 
 function hideMusicSelection() {
     document.getElementById("musicSelection").style.display = "none";
+}
+
+function hideMusicSelection2() {
+    const musicSelection = document.getElementById("musicSelection");
+    musicSelection.style.display = "none";
+    musicSelection.style.width = ""; // Remove largura fixa (volta ao CSS padrão)
+
+    const playlistTitleElement = document.getElementById("playlistTitle");
+    playlistTitleElement.style.display = "block"; // Mostra de novo o título da playlist
 }
 
 function loadPlaylistTracks(playlistName) {
