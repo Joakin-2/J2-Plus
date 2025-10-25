@@ -826,48 +826,48 @@ window.onclick = function(event) {
 }
         // Função para verificar os aniversários
         function checkBirthday() {
-            // Defina os aniversários com nome, mês e dia
-            const birthdays = [
-                { name: "Pipoca", month: 1, day: 24 },     // 24 de janeiro
-                { name: "Joaquim", month: 2, day: 5 },     // 5 de fevereiro
-                { name: "Joaquim, pelo Aniversário de Batismo", month: 2, day: 22 },     // 22 de fevereiro
-                { name: "Vitória", month: 6, day: 4 },     // 4 de julho
-                { name: "Adeir", month: 9, day: 7 } ,       // 7 de setembro
-                { name: "Paula", month: 10, day: 24 },     // 24 de outubro
-                { name: "Mia", month: 11, day: 23 }        // 23 de novembro
-            ];
+    // Defina os aniversários com nome, mês e dia
+    const birthdays = [
+        { name: "Pipoca", month: 1, day: 24 },     // 24 de janeiro
+        { name: "Joaquim", month: 2, day: 5 },     // 5 de fevereiro
+        { name: "Joaquim, pelo Aniversário de Batismo", month: 2, day: 22 },     // 22 de fevereiro
+        { name: "Vitória", month: 6, day: 4 },     // 4 de julho
+        { name: "Adeir", month: 9, day: 7 },       // 7 de setembro
+        { name: "Paula", month: 10, day: 24 },     // 24 de outubro
+        { name: "Mia", month: 11, day: 23 }        // 23 de novembro
+    ];
 
-            // Obtém a data atual
-            const today = new Date();
-            const todayMonth = today.getMonth() + 1; // Mês atual (1-12)
-            const todayDay = today.getDate();        // Dia atual (1-31)
+    // Obtém a data atual
+    const today = new Date();
+    const todayMonth = today.getMonth() + 1; // Mês atual (1-12)
+    const todayDay = today.getDate();        // Dia atual (1-31)
 
-            let message = '';
+    let message = '';
 
-            // Verifica se a data de hoje é o aniversário de alguém
-            birthdays.forEach(birthday => {
-                if (todayMonth === birthday.month && todayDay === birthday.day) {
-                    message = `🎉 Parabéns, ${birthday.name}! 🎂`; // Cria uma mensagem personalizada
-                    falar(`Parabéns, ${birthday.name}! Espero que seu dia seja incrível!`); // Faz o navegador falar
+    // Verifica se a data de hoje é o aniversário de alguém
+    birthdays.forEach(birthday => {
+        if (todayMonth === birthday.month && todayDay === birthday.day) {
+            message = `🎉 Parabéns, ${birthday.name}! 🎂`; // Cria uma mensagem personalizada
+            falar(`Parabéns, ${birthday.name}! Espero que seu dia seja incrível!`); // Faz o navegador falar
 
-                    // Adiciona a notificação de aniversário
-                    notifications.push(`Hoje é o aniversário de ${birthday.name}! 🎉`);
+            // Adiciona a notificação de aniversário
+            notifications.push(`Hoje é o aniversário de ${birthday.name}! 🎉`);
 
-                    // Exibe a notificação no ícone de notificação
-                    document.getElementById("notificationCount").innerText = notifications.length;
-                }
-            });
-
-            // Se algum aniversário for hoje, exibe a mensagem
-            if (message) {
-                document.getElementById('Text').innerText = message; // Atualiza o texto da mensagem
-                document.getElementById('Message').style.display = 'block'; // Exibe o div
-                document.getElementById('Hat').style.display = 'inline'; // Exibe o chapéu
-
-                // Criar confetes
-                createConfetti();
-            }
+            // Exibe a notificação no ícone de notificação
+            document.getElementById("notificationCount").innerText = notifications.length;
         }
+    });
+
+    // Se algum aniversário for hoje, exibe a mensagem
+    if (message) {
+        document.getElementById('Text').innerText = message; // Atualiza o texto da mensagem
+        document.getElementById('Message').style.display = 'block'; // Exibe o div
+        document.getElementById('Hat').style.display = 'inline'; // Exibe o chapéu
+
+        // Criar confetes
+        createConfetti();
+    }
+}
 
         // Função para criar confetes
         function createConfetti() {
@@ -972,15 +972,6 @@ window.onclick = function(event) {
   }
 }
 
-        // Chama a função quando a página for carregada
-        window.onload = function() {
-  checkBirthday();
-  checkChristmas();
-  checkNewYear();
-  checkSeason();
-  checkSeason2();
-};
-
     function exibirSaudacao() {
     // Captura a hora atual
     const horaAtual = new Date().getHours();
@@ -1011,9 +1002,6 @@ window.onclick = function(event) {
         saudacaoElement.innerHTML = `<span class='typing-animation'>${saudacaoBase}</span>`;
     }, 5000);  // 5 segundos
 }
-
-// Chama a função para exibir a saudação ao carregar a página
-window.onload = exibirSaudacao;
 
 const modaljogo = document.getElementById('gamesModal');
 const openModalBtnjogo = document.getElementById('openModalBtnjogo');  // Atualizado para o novo id
@@ -1094,6 +1082,15 @@ window.onclick = function(event) {
     }
 }
 
+// Chama a função quando a página for carregada
+        window.onload = function() {
+  checkBirthday();
+  checkChristmas();
+  checkNewYear();
+  checkSeason();
+  checkSeason2();
+  exibirSaudacao();
+};
 
     // Atualizar o placar a cada 5 segundos
     //setInterval(getLiveScores, 5000);
