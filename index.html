@@ -494,7 +494,12 @@
         { name: "Vitória", month: 6, day: 4 },
         { name: "Adeir", month: 9, day: 7 },
         { name: "Paula", month: 10, day: 24 },
-        { name: "Mia", month: 11, day: 23 }
+
+        { name: "J2+", month: 9, day: 2 }, // 2 Setembro 2024
+        { name: "J2", month: 5, day: 12 }, // 12 Maio 2023
+        { name: "Rhafael", month: 5, day: 31 }, // 31 Maio 2025
+        { name: "Miguel", month: 3, day: 10 }, // 10 Março 2025
+        { name: "Kalton", month: 6, day: 27 } // 27 Junho 2025
     ];
 
     function isChristmasTime() {
@@ -834,7 +839,6 @@ window.onclick = function(event) {
         { name: "Vitória", month: 6, day: 4 },     // 4 de julho
         { name: "Adeir", month: 9, day: 7 },       // 7 de setembro
         { name: "Paula", month: 10, day: 24 },     // 24 de outubro
-        { name: "Mia", month: 11, day: 23 }        // 23 de novembro
     ];
 
     // Obtém a data atual
@@ -868,6 +872,54 @@ window.onclick = function(event) {
         createConfetti();
     }
 }
+
+            function checkBirthday2() {
+    // Defina os novos aniversários com nome, mês e dia
+    const birthdays = [
+        { name: "J2+", month: 9, day: 2 },   // 2 Setembro 2024
+        { name: "J2", month: 5, day: 12 },    // 12 Maio 2023
+        { name: "Rhafael", month: 5, day: 31 },  // 31 Maio 2025
+        { name: "Miguel", month: 3, day: 10 },// 10 Março 2025
+        { name: "Kalton", month: 6, day: 27 } // 27 Junho 2025
+    ];
+
+    // Obtém a data atual
+    const today = new Date();
+    const todayMonth = today.getMonth() + 1; // Mês atual (1-12)
+    const todayDay = today.getDate();        // Dia atual (1-31)
+
+    let message = '';
+
+    // Verifica se a data de hoje é o aniversário de alguém
+    birthdays.forEach(birthday => {
+        if (todayMonth === birthday.month && todayDay === birthday.day) {
+            if (birthday.name === "j2+") {
+                message = `🎉 Hoje é meu aniversário! 🎂`; // Mensagem especial para j2+
+                falar("Hoje é meu aniversário! Que dia incrível!"); // Faz o navegador falar
+            } else {
+                message = `🎉 Parabéns, ${birthday.name}! 🎂`; // Mensagem normal
+                falar(`Parabéns, ${birthday.name}! Espero que seu dia seja incrível!`); // Faz o navegador falar
+            }
+
+            // Adiciona a notificação de aniversário
+            notifications.push(`Hoje é o aniversário de ${birthday.name}! 🎉`);
+
+            // Exibe a notificação no ícone de notificação
+            document.getElementById("notificationCount").innerText = notifications.length;
+        }
+    });
+
+    // Se algum aniversário for hoje, exibe a mensagem
+    if (message) {
+        document.getElementById('Text').innerText = message; // Atualiza o texto da mensagem
+        document.getElementById('Message').style.display = 'block'; // Exibe o div
+        document.getElementById('Hat').style.display = 'inline'; // Exibe o chapéu
+
+        // Criar confetes
+        createConfetti();
+    }
+}
+
 
         // Função para criar confetes
         function createConfetti() {
@@ -1085,6 +1137,7 @@ window.onclick = function(event) {
 // Chama a função quando a página for carregada
         window.onload = function() {
   checkBirthday();
+  checkBirthday2();
   checkChristmas();
   checkNewYear();
   checkSeason();
