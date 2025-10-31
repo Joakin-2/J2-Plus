@@ -741,7 +741,7 @@ const diasCorridosBtn = document.getElementById('diasCorridosBtn');
         habitosDiasCorridosList.style.display = 'block';
 
         // Alterar o tamanho do modal
-        modalConteudo.style.height = '550px';
+        modalConteudo.style.height = '450px';
 
         // Alternar visibilidade dos botões
         diasCorridosBtn.style.display = 'none';
@@ -754,7 +754,7 @@ const diasCorridosBtn = document.getElementById('diasCorridosBtn');
         habitosDiasCorridosList.style.display = 'none';
 
         // Alterar o tamanho do modal
-        modalConteudo.style.height = '430px';
+        modalConteudo.style.height = '380px';
 
         // Alternar visibilidade dos botões
         diasCorridosBtn.style.display = 'inline-block';
