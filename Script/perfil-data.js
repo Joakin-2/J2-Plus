@@ -22,7 +22,11 @@ const perfis = {
     anotacoes: localStorage.getItem("anotacoes-Joaquim") || "",
     anotacoes2: localStorage.getItem("anotacoes2-Joaquim") || "",
     anotacoes3: localStorage.getItem("anotacoes3-Joaquim") || "",
-    metas: localStorage.getItem("metas-Joaquim") || ""
+    metas: localStorage.getItem("metas-Joaquim") || "",
+
+    // 🆕 Campos file1 e file2
+    file1: localStorage.getItem("file1-Joaquim") || "",
+    file2: localStorage.getItem("file2-Joaquim") || ""
   },
   Vitoria: {
     nome: "Vitória",
@@ -42,7 +46,11 @@ const perfis = {
     anotacoes: localStorage.getItem("anotacoes-Vitoria") || "",
     anotacoes2: localStorage.getItem("anotacoes2-Vitoria") || "",
     anotacoes3: localStorage.getItem("anotacoes3-Vitoria") || "",
-    metas: localStorage.getItem("metas-Vitoria") || ""
+    metas: localStorage.getItem("metas-Vitoria") || "",
+
+    // 🆕 Campos file1 e file2
+    file1: localStorage.getItem("file1-Vitoria") || "",
+    file2: localStorage.getItem("file2-Vitoria") || ""
   },
   Main: {
     nome: "Main",
@@ -62,7 +70,11 @@ const perfis = {
     anotacoes: localStorage.getItem("anotacoes-Main") || "",
     anotacoes2: localStorage.getItem("anotacoes2-Main") || "",
     anotacoes3: localStorage.getItem("anotacoes3-Main") || "",
-    metas: localStorage.getItem("metas-Main") || ""
+    metas: localStorage.getItem("metas-Main") || "",
+    
+    // 🆕 Campos file1 e file2
+    file1: localStorage.getItem("file1-Main") || "",
+    file2: localStorage.getItem("file2-Main") || ""
   }
 };
 

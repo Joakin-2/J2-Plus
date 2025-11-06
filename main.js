@@ -1275,6 +1275,11 @@ exportarBtn.addEventListener("click", () => {
     perfil.metas = metasTextarea.value;
   }
 
+  const file1 = document.getElementById("file1").value;
+  const file2 = document.getElementById("file2").value;
+  perfil.file1 = file1;
+  perfil.file2 = file2;
+
   // Inclui as reclamações no perfil
   perfil.complaints = perfis[perfilAtivo].complaints;
 
@@ -1353,6 +1358,12 @@ importarBtn.addEventListener("click", () => {
 
           if (dadosImportados.metas)
             localStorage.setItem("metas-" + perfilAtivo, dadosImportados.metas);
+
+          if (dadosImportados.file1)
+            document.getElementById("file1").value = dadosImportados.file1;
+
+          if (dadosImportados.file2)
+            document.getElementById("file2").value = dadosImportados.file2;
 
           // Atualiza as reclamações no localStorage
           if (dadosImportados.complaints) {
@@ -1476,6 +1487,16 @@ const musicPlaceNotesBox = document.getElementById("musicPlaceNotes1"); // Aqui 
   const metasBox = document.getElementById("metas");
   if (metasBox) {
     metasBox.value = localStorage.getItem("metas-" + perfilAtivo) || "";
+  }
+
+  const file1Box = document.getElementById("file1");
+  if (file1Box) {
+    file1Box.value = perfil.file1 || "";
+  }
+
+  const file2Box = document.getElementById("file2");
+  if (file2Box) {
+    file2Box.value = perfil.file2 || "";
   }
 
   nomePerfil.textContent = perfil.nome;

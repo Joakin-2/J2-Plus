@@ -145,31 +145,26 @@
     </div>
 </div>
 
-<!-- Squad -->
+<!-- Squad 
 <div id="modal-squad" class="modal">
     <span class="close-btn">&times;</span>
     <div class="modal-content">
       <h1>Jok Squad</h1>
   
-      <!-- Layout dividido em dois painéis: Perfis e Chat -->
       <div class="modal-body" style="display: flex;">
-        <!-- Painel de Perfis -->
         <div class="profiles-panel">
           <h3>J2 System</h3>
           
-          <!-- Perfil 1: Android -->
           <div class="profile" id="profile-1">
             <img src="https://t2.tudocdn.net/615839?w=824&h=494" alt="Perfil 1" class="profile-img">
             <p>Apps</p>
           </div>
           
-          <!-- Perfil 2: Cérebro -->
           <div class="profile" id="profile-2">
             <img src="https://brasil.perfil.com/wp-content/uploads/2024/09/Abre-PERFIL-BRASIL-8-7.jpg" alt="Perfil 2" class="profile-img">
             <p>Jok Squad</p>
           </div>
           
-          <!-- Perfil 3: Engrenagem -->
           <div class="profile" id="profile-3">
             <img src="https://thumbs.dreamstime.com/b/engrenagens-em-um-fundo-preto-ilustra%C3%A7%C3%A3o-do-vetor-%C3%ADcone-s%C3%B3lido-liso-eps-108961303.jpg" alt="Perfil 3" class="profile-img">
             <p>Protótipos</p>
@@ -183,7 +178,6 @@
 
         </div>          
   
-        <!-- Painel de Chat -->
         <div class="chat-panel">
           <h3>Chat</h3>
           <div id="chat-container" class="chat-container" style="height: 50px;">
@@ -196,7 +190,36 @@
       </div>
   
     </div>
-  </div>  
+  </div>  -->
+  <div id="modal-squad" class="modal">
+    <span class="close-btn" style="
+    color: white;
+">&times;</span>
+    <div class="modal-content">
+        <h1 style="
+    color: white;
+">Jok Squad</h1>
+        <!-- Painel de Blocos de Notas -->
+        <div class="chat-panel">
+          <h3>J2 System</h3>
+            
+            <div style="margin-bottom: 20px;">
+                <h4 style="
+    color: white;
+">Apps</h4>
+                <textarea id="file1" placeholder="Escreva algo aqui..." rows="10" style="color: white; width: 100%;"></textarea>
+            </div>
+            
+            <div>
+                <h4 style="
+    color: white;
+">Protótipos</h4>
+                <textarea id="file2" placeholder="Escreva algo aqui..." rows="10" style="color: white; width: 100%;"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Calendário que ficará escondido inicialmente -->
 <div id="calendar" style="display: none;">
@@ -627,6 +650,7 @@ const importFileInput = document.getElementById('import-file');
 // Função para abrir o modal
 btn.addEventListener('click', function() {
   modal.style.display = 'block';
+  loadNoteContent();
 });
 
 // Função para fechar o modal
@@ -634,95 +658,37 @@ closeBtn.addEventListener('click', function() {
   modal.style.display = 'none';
 });
 
-// Fecha o modal se clicar fora do conteúdo
-window.addEventListener('click', function(event) {
-  if (event.target === modal) {
-    modal.style.display = 'none';
-  }
-});
-
-// Função para salvar as mensagens de cada perfil no localStorage
-function saveMessageForProfile(profileId, message) {
-  const messages = JSON.parse(localStorage.getItem('messages')) || {};
-  messages[profileId] = message;
-  localStorage.setItem('messages', JSON.stringify(messages));
+// Função para salvar o conteúdo do bloco de notas
+function saveNoteContent() {
+    const file1 = document.getElementById("file1").value;
+    const file2 = document.getElementById("file2").value;
+    
+    localStorage.setItem("file1", file1); // Salva o conteúdo do Bloco 1 no localStorage
+    localStorage.setItem("file2", file2); // Salva o conteúdo do Bloco 2 no localStorage
 }
 
-// Função para carregar as mensagens de um perfil
-function loadMessagesForProfile(profileId) {
-  const messages = JSON.parse(localStorage.getItem('messages')) || {};
-  return messages[profileId] || '';
+// Função para carregar o conteúdo salvo nos blocos
+function loadNoteContent() {
+    const file1 = localStorage.getItem("file1");
+    const file2 = localStorage.getItem("file2");
+    
+    if (file1) {
+        document.getElementById("file1").value = file1; // Preenche o Bloco 1 com o conteúdo salvo
+    }
+    
+    if (file2) {
+        document.getElementById("file2").value = file2; // Preenche o Bloco 2 com o conteúdo salvo
+    }
 }
 
-function formatTextWithLineBreaks(text) {
-  return text.replace(/\n/g, '<br>');
-}
+// Adicionar event listeners para salvar automaticamente
+document.getElementById("file1").addEventListener("input", saveNoteContent);
+document.getElementById("file2").addEventListener("input", saveNoteContent);
 
-// Função para exibir o chat e carregar as anotações
-profiles.forEach(profile => {
-  profile.addEventListener('click', function() {
-    const profileName = profile.querySelector('p').innerText;
-    const profileId = profile.id; // ID único do perfil
-
-    // Atualiza o chat com uma mensagem personalizada
-    chatContainer.innerHTML = `<p style="color: #8561ff;"><strong>${profileName}</strong> está online! Inicie a conversa abaixo.</p>`;
-
-    // Carrega as mensagens salvas para o perfil
-    noteTextarea.value = loadMessagesForProfile(profileId);
-
-    // Exibe a caixa de anotações
-    noteBox.style.display = 'block';
-
-    // Define o título da caixa de anotações
-    noteTextarea.placeholder = `Anote algo para o ${profileName}`;
-
-    // Salva a mensagem ao digitar
-    noteTextarea.addEventListener('input', function() {
-      saveMessageForProfile(profileId, noteTextarea.value);
-    });
-  });
-});
-
-// Função para exportar as mensagens para um arquivo JSON
-exportBtn.addEventListener('click', function() {
-  const messages = localStorage.getItem('messages');
-  if (messages) {
-    const blob = new Blob([messages], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'squad.json';
-    a.click();
-    URL.revokeObjectURL(url);
-  } else {
-    alert("Não há mensagens para exportar.");
-  }
-});
-
-// Função para importar os dados de um arquivo JSON
-importBtn.addEventListener('click', function() {
-  importFileInput.click();
-});
-
-// Lê o arquivo JSON importado e carrega as mensagens
-importFileInput.addEventListener('change', function(event) {
-  const file = event.target.files[0];
-  if (file && file.type === 'application/json') {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      try {
-        const data = JSON.parse(e.target.result);
-        localStorage.setItem('messages', JSON.stringify(data));
-        alert("Dados importados com sucesso!");
-      } catch (error) {
-        alert("Erro ao importar os dados.");
-      }
-    };
-    reader.readAsText(file);
-  } else {
-    alert("Por favor, selecione um arquivo JSON.");
-  }
-});
+const file1Value = document.getElementById("file1").value;
+const file2Value = document.getElementById("file2").value;
+localStorage.setItem("file1-" + perfilAtivo, file1Value);
+localStorage.setItem("file2-" + perfilAtivo, file2Value);
 
         // Função para alternar o som da página
     document.getElementById('muteButton').addEventListener('click', function () {
