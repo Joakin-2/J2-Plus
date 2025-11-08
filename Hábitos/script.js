@@ -727,64 +727,41 @@ window.addEventListener('click', function(event) {
 });
 
 // Hábitos de Fim de Dia
-const diasCorridosBtn = document.getElementById('diasCorridosBtn');
-    const diasNormaisBtn = document.getElementById('diasNormaisBtn');
-    const habitosFinaisList = document.getElementById('habitosFinaisList');
-    const habitosDiasCorridosList = document.getElementById('habitosDiasCorridosList');
-    const modalConteudo = document.getElementById('modalConteudo'); // Referência ao conteúdo do modal
+const noiteTitulo = document.getElementById('noiteTitulo');
+    const modalFim = document.getElementById('modalFim');
+    const fecharModalBtn = document.getElementById('fecharModalBtn');
     const copyButton = document.getElementById('copyButton');
+    const habitosList = document.getElementById('habitosFinaisList');
 
-    // Alternar entre hábitos normais e dias corridos
-    diasCorridosBtn.addEventListener('click', () => {
-        // Exibir hábitos dos dias corridos
-        habitosFinaisList.style.display = 'none';
-        habitosDiasCorridosList.style.display = 'block';
-
-        // Alterar o tamanho do modal
-        modalConteudo.style.height = '450px';
-
-        // Alternar visibilidade dos botões
-        diasCorridosBtn.style.display = 'none';
-        diasNormaisBtn.style.display = 'inline-block';
+    // Mostrar modal
+    noiteTitulo.addEventListener('click', () => {
+        modalFim.style.display = 'block';
     });
 
-    diasNormaisBtn.addEventListener('click', () => {
-        // Voltar para hábitos normais
-        habitosFinaisList.style.display = 'block';
-        habitosDiasCorridosList.style.display = 'none';
-
-        // Alterar o tamanho do modal
-        modalConteudo.style.height = '380px';
-
-        // Alternar visibilidade dos botões
-        diasCorridosBtn.style.display = 'inline-block';
-        diasNormaisBtn.style.display = 'none';
+    // Fechar modal
+    fecharModalBtn.addEventListener('click', () => {
+        modalFim.style.display = 'none';
     });
 
-    // Função para copiar os hábitos formatados com base no estado atual (normal ou corrido)
-    copyButton.addEventListener('click', () => {
-        let habitosArray = [];
-
-        // Verificar qual lista está visível e pegar os itens
-        if (habitosFinaisList.style.display === 'block') {
-            // Copiar hábitos normais
-            const habitosItems = document.querySelectorAll('#habitosFinaisList li span');
-            habitosArray = Array.from(habitosItems).map(item => item.innerText.trim());
-        } else if (habitosDiasCorridosList.style.display === 'block') {
-            // Copiar hábitos dias corridos
-            const habitosItems = document.querySelectorAll('#habitosDiasCorridosList li span');
-            habitosArray = Array.from(habitosItems).map(item => item.innerText.trim());
+    // Fechar clicando fora do conteúdo
+    window.addEventListener('click', (event) => {
+        if (event.target === modalFim) {
+            modalFim.style.display = 'none';
         }
+    });
 
-        // Formatar o texto com vírgulas
-        const habitosFormatados = habitosArray.join(', ');
+    // Copiar lista de hábitos
+    copyButton.addEventListener('click', async () => {
+        const itens = [...habitosList.querySelectorAll('li span')].map(li => li.textContent.trim());
+        const texto = itens.join(', ');
 
-        // Usar a API Clipboard para copiar o texto formatado
-        navigator.clipboard.writeText(habitosFormatados).then(function() {
-            alert('Hábitos copiados!');
-        }).catch(function(err) {
-            console.error('Erro ao copiar: ', err);
-        });
+        try {
+            await navigator.clipboard.writeText(texto);
+            copyButton.textContent = 'Copiado!';
+            setTimeout(() => copyButton.textContent = 'Copy', 2000);
+        } catch (err) {
+            alert('Erro ao copiar: ' + err);
+        }
     });
 
     function recarregar() {
