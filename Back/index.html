@@ -45,20 +45,14 @@
                 musicaIniciada = false;
             }
 
-            if (horas === 18 && minutos === 25) {
-                tocarAlarme1();
-            } else if (horas === 23 && minutos === 0) {
+            if (horas === 23 && minutos === 0) {
                 window.open('https://j2plus.netlify.app/back/sleep.html');
             } else if (horas === 23 && minutos === 30) {
-                tocarAlarme2();
+                tocarAlarme();
             }
         }
 
-        function tocarAlarme1() {
-            var alarmeAudio = new Audio('Escola.wav');
-            alarmeAudio.play();
-        }
-        function tocarAlarme2() {
+        function tocarAlarme() {
             var alarmeAudio = new Audio('Dormir.wav');
             alarmeAudio.play();
         }
