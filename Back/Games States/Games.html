@@ -52,7 +52,7 @@
         .area-anotacoes {
             margin-top: 20px;
             width: 425px;
-            height: 200px;
+            height: 305px;
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 10px;
@@ -82,15 +82,14 @@
     <div class="containers">
         <!-- Primeiro contêiner -->
         <div class="container">
-            <button class="botao" onclick="redirecionar('Ticks')"><i class="fas fa-square"></i> Ticks</button>
-            <button class="botao" onclick="redirecionar('Balloon Fly')"><i class="fas fa-cloud"></i> Balloon Fly</button>
-            <button class="botao" onclick="redirecionar('Sky of Wars')"><i class="fas fa-rocket"></i> Sky of Wars</button>
+            <button class="botao" onclick="redirecionar('Surf')" aria-label="Ir para Surf"><i class="fas fa-water"></i> Surf</button>
+            <button class="botao" onclick="redirecionar('Krunker')" aria-label="Ir para Krunker"><i class="fas fa-crosshairs"></i> Krunker</button>
+            <button class="botao" onclick="redirecionar('Hordes')" aria-label="Ir para Hordes"><i class="fas fa-gamepad"></i> Hordes</button>
         </div>   
         
         <!-- Segundo contêiner -->
         <div class="container">
             <textarea class="area-anotacoes" id="game" placeholder="Anote aqui..."></textarea>
-            <button class="botao" onclick="redirecionar('+ Mais')">+ Mais</button>
         </div>   
     </div>
     
@@ -115,16 +114,20 @@
 
         // Função para redirecionar
         function redirecionar(destino) {
-            const pages = {
-                '+ Mais': 'Outros.html',
-                'Ticks': 'Ticks.html',
-                'Balloon Fly': 'Balloon Fly.html',
-                'Sky of Wars': 'Sky of Wars.html',
-            };
-
-            if (pages[destino]) {
-                window.close('Games.html');
-                window.open(pages[destino]);
+            switch (destino) {
+                case 'Hordes':
+                    window.open('https://hordes.io');
+                    break;
+                case 'Surf':
+                    window.open('https://www.microsoft.com/en-us/edge/features/surf-game?form=MA13FJ');
+                    break;
+                    break;
+                case 'Krunker':
+                    window.open('https://krunker.io');
+                    break;
+                    break;
+                default:
+                    break;
             }
         }
     </script>
