@@ -118,26 +118,13 @@
     <div class="container">
         <div class="row">
           <button class="botao" onclick="redirecionar('focus')"><i class="fas fa-crosshairs"></i> Focos</button>
-          <button class="botao" onclick="abrirModal('contas')"><i class="fas fa-wallet"></i> Contas</button>
+          <button class="botao" onclick="redirecionar('contas')"><i class="fas fa-wallet"></i> Contas</button>
           <button class="botao" onclick="redirecionar('edit')"><i class="fas fa-edit"></i> Edição</button>
         </div>
         <div class="row">
-          <button class="botao" onclick="redirecionar('Anúncios')"><i class="fas fa-money-bill"></i> Anúncios</button>
+          <button class="botao" onclick="redirecionar('Guilherme')"><i class="fas fa-money-bill"></i> Guilherme</button>
           <button class="botao" onclick="abrirModal('trabalho')"><i class="fas fa-briefcase"></i> Trabalho</button>
           <button class="botao" onclick="redirecionar('investimento')"><i class="fas fa-chart-line"></i> Investimento</button>
-        </div>
-      </div>
-    
-      <!-- Modal Contas -->
-      <div id="contasModal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeModal('contas')">&times;</span>
-          <div class="modal-header">Contas</div>
-          <div class="container">
-            <button class="botao" onclick="redirecionar('Inter')"><i class="fas fa-university"></i> Inter</button>
-            <button class="botao" onclick="redirecionar('Nuivest')"><i class="fas fa-hand-holding-usd"></i> Nuivest</button>
-            <button class="botao" onclick="redirecionar('Binance')"><i class="fas fa-coins"></i> Binance</button>
-        </div>
         </div>
       </div>
     
@@ -149,54 +136,10 @@
           <div class="container">
             <div class="row">
                 <button class="botao" onclick="redirecionar('Social Mídia')"><i class="fab fa-instagram"></i> Social Mídia</button>
-                <button class="botao" onclick="abrirModal('pulike')"><i class="fas fa-print"></i> Pulike</button>
+                <button class="botao" onclick="redirecionar('pulike')"><i class="fas fa-print"></i> Pulike</button>
                 <button class="botao" onclick="redirecionar('curso')"><i class="fas fa-graduation-cap"></i> Curso</button>
             </div>
             </div>
-        </div>
-      </div>
-    
-      <!-- Modal Pulike -->
-      <div id="pulikeModal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeModal('pulike')">&times;</span>
-          <div class="modal-header">Pulike - Jin-Sei Art</div>
-          <table>
-            <thead>
-              <tr>
-                <th>Tipo de Conteúdo</th>
-                <th>Plataforma</th>
-                <th>Frequência</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Vídeo Longo</td>
-                <td>YouTube</td>
-                <td>1 vez por semana (4/mês)</td>
-              </tr>
-              <tr>
-                <td>Shorts e Reels</td>
-                <td>YouTube e Instagram</td>
-                <td>5 vezes por semana (20/mês)</td>
-              </tr>
-              <tr>
-                <td>Publicações no Feed</td>
-                <td>Instagram</td>
-                <td>3 vezes por semana (12/mês)</td>
-              </tr>
-              <tr>
-                <td>Stories</td>
-                <td>Instagram</td>
-                <td>1 por dia (30/mês)</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="container" style="display: flex; justify-content: center; height: 80vh; align-items: center; flex-direction: inherit; margin-top: -250px;">
-            <button class="botao" onclick="redirecionar('Pulike')"><i class="fas fa-edit"></i> Plus</button>
-            <button class="botao" onclick="redirecionar('Pulike2')"><i class="fas fa-arrow-right"></i> Plano</button>
-            <button class="botao" onclick="redirecionar('Pulike3')"><i class="fas fa-wallet"></i> Contas</button>
-        </div>
         </div>
       </div>
 
@@ -255,44 +198,28 @@
                     window.open('https://www.linkedin.com/in/joaquim-luiz-b32810323/');
                     window.open('https://business.facebook.com/latest/home?asset_id=244402432098789&business_id=954939336298894&nav_ref=media_manager_redirect_home');
                     break;
-                case 'Marketing':
-                    window.open('https://hpanel.hostinger.com/');
-                    window.open('https://qr.io/dashboard/');
-                    break;
                 case 'Pulike':
                     //window.open('https://learn.microsoft.com/pt-br/');window.open('https://unhideschool.com/cursos?orderby=RECENT&search=impress%C3%A3o%203d');
                     window.open('https://trello.com/b/72e7GwSj/gestao-jin-sei-arts');
                     window.open('https://trello.com/c/hBewPaS8/11-social-m%C3%ADdia-redes-sociais');
                     //window.open('https://learn.microsoft.com/pt-br/');window.open('https://learn.microsoft.com/pt-br/credentials/applied-skills/build-natural-language-solution-azure-ai/?wt.mc_id=fsi_msle_landingpage_wwl_ailanguage');
                     window.open('https://discord.com/channels/@me/1066833055723028603');
-                    //window.open('https://learn.microsoft.com/pt-br/');
-                    break;
-                case 'Pulike2':
                     window.open('https://business.facebook.com/latest/?asset_id=603116216208940&business_id=2349354548756195&nav_ref=mfb_get_started_header_cta');
                     window.open('https://miro.com/app/dashboard/');
-                    break;
-                case 'Pulike3':
                     window.open('https://shopee.com.br/m/afiliados?gad_source=1&gclid=EAIaIQobChMIrP2ijO3ciwMVCVNIAB1nLw-nEAAYASAAEgKumvD_BwE');
                     window.open('https://associados.amazon.com.br/home');
                     window.open('https://portals.aliexpress.com/affiportals/web/portals.htm#/home');
                     break;
-                case 'Inter':
+                case 'Contas':
                     window.open('https://contadigital.inter.co/home');
-                    break;
-                case 'Nuivest':
                     window.open('https://www.nuinvest.com.br/home');
-                    break;
-                case 'Binance':
                     window.open('https://www.binance.com/pt-BR/my/dashboard');
                     Window.open('https://www.binance.com/en/trading-bots')
                     break;
-                case 'Loop':
-                    window.open('https://loop.cloud.microsoft/');
-                    break;
-                case 'Anúncios':
+                case 'Guilherme':
                     window.open('https://ads.google.com/nav/selectaccount?euid=600731258&__u=3050528042&authuser=6&subid=br-pt-br-awhp-g-aw-c-home-signin-bgc!o2&_gl=1*9og4vp*_ga*NTE2ODA2OTgyLjE3NjI3OTUyMTg.*_ga_V9K47ZG8NP*czE3NjI4NzMzODUkbzIkZzEkdDE3NjI4NzM5OTIkajU4JGwwJGgw*_ga_J51Y85KVRZ*czE3NjI4NzMzODQkbzIkZzEkdDE3NjI4NzM5OTIkajU5JGwwJGgw&sourceid=emp&f.sid=3602766223148790654');
-                    window.open('https://ads.google.com/aw/overview?ocid=1292038484&euid=889301739&__u=1365571411&uscid=1292038484&__c=7686292916&authuser=0&subid=ww-ww-xs-ip-awhc-a-ogb_cons!o2m--ahpm-0000000127-0000000000-awhp-hv-01-22');
-                    window.open('https://business.facebook.com/latest/home?nav_ref=bm_home_redirect&business_id=1094998265234232&asset_id=115913178149808');
+                    //window.open('https://business.facebook.com/latest/home?nav_ref=bm_home_redirect&business_id=1094998265234232&asset_id=115913178149808');
+                    window.open('https://hpanel.hostinger.com/');
                     break;
                 default:
                     break;
