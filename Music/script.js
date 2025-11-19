@@ -114,7 +114,7 @@
             },
             'Vibes': {
                 image: '5.jpg',
-                images: ['5.jpg', '5.gif', '5 - 1.gif'],
+                images: ['5.jpg', '5.gif', '5 - 1.gif', '5 - 2.gif'],
                 tracks: [
                     'Vibe/A COLORS ENCORE.mp3',
                     'Vibe/After Party (Official Audio).mp3',
@@ -144,6 +144,7 @@
                     'Vibe/CHEIRO DE PNEU (EXTENDED).mp3',
                     'Vibe/Chuck Berry.mp3',
                     'Vibe/Confess your love.mp3',
+                    'Vibe/CONFESS YOUR LOVE FUNK.mp3',
                     'Vibe/CJ SO COOL - Tired.mp3',
                     'Vibe/Cupid (twin version) - pmv.mp3',
                     'Vibe/Cupid Kiko.mp3',
@@ -463,6 +464,7 @@
             'Vibe/CHEIRO DE PNEU (EXTENDED).mp3': "CHEIRO DE PNEU (EXTENDED)",
             'Vibe/Chuck Berry.mp3': "Chuck Berry",
             'Vibe/Confess your love.mp3': "Confess your love",
+            'Vibe/CONFESS YOUR LOVE FUNK.mp3': "CONFESS YOUR LOVE FUNK",
             'Vibe/CJ SO COOL - Tired.mp3': "CJ SO COOL - Tired",
             'Vibe/Cupid (twin version) - pmv.mp3': "Cupid (twin version)",
             'Vibe/Cupid Kiko.mp3': "Cupid (kiko version)",
