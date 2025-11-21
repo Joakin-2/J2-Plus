@@ -28,30 +28,6 @@ const perfis = {
     file1: localStorage.getItem("file1-Joaquim") || "",
     file2: localStorage.getItem("file2-Joaquim") || ""
   },
-  Vitoria: {
-    nome: "Vitória",
-    bio: localStorage.getItem("bioVitoria") || "Irmã mais nova",
-    nivel: parseInt(localStorage.getItem("nivelVitoria")) || 1,
-    xp: parseInt(localStorage.getItem("xpVitoria")) || 0,
-    notesLer: localStorage.getItem("notes-ler-Vitoria") || "",
-    musicPlaceNotes1: localStorage.getItem("musicPlaceNotes1-Vitoria") || "",
-    gymNotes: localStorage.getItem("gymNotes-Vitoria") || "",
-    complaints: JSON.parse(localStorage.getItem("complaints-Vitoria")) || [],
-    notas: localStorage.getItem("notas-Vitoria") || "",
-    pagarNotas: localStorage.getItem("pagarNotas-Vitoria") || "",
-    gameNotes: localStorage.getItem("gameNotes-Vitoria") || "",
-
-    // 🆕 Novos campos
-    programados: localStorage.getItem("programados-Vitoria") || "",
-    anotacoes: localStorage.getItem("anotacoes-Vitoria") || "",
-    anotacoes2: localStorage.getItem("anotacoes2-Vitoria") || "",
-    anotacoes3: localStorage.getItem("anotacoes3-Vitoria") || "",
-    metas: localStorage.getItem("metas-Vitoria") || "",
-
-    // 🆕 Campos file1 e file2
-    file1: localStorage.getItem("file1-Vitoria") || "",
-    file2: localStorage.getItem("file2-Vitoria") || ""
-  },
   Main: {
     nome: "Main",
     bio: localStorage.getItem("bioMain") || "Perfil principal",
