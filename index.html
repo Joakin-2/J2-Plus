@@ -238,7 +238,9 @@
         <button class="calenbutton" aria-label="Abrir calendário">
             <i class="fas fa-calendar-alt"></i> <!-- Ícone de calendário -->
         </button>
-        <button id="miguel-btn"><img src="/Miguel/icon.png" alt="Ícone de perfil"></button>
+        <button id="switch-btn"><i class="fas fa-exchange-alt"></i></button>
+        <button id="miguel-btn" class="active"><img src="/Miguel/icon.png" alt="Ícone de perfil"></button>
+        <button id="rafa-btn" class="hidden"><img src="/Proto/icon.png" alt="Ícone de perfil"></button>
         <button id="perfil-btn">Perfil</button>
         <button onclick="window.location.href='https://j2plus.netlify.app/conselho/new.html'" style="display:none; position: absolute; margin-top: 440px;" id="botao31Dezembro">Refexão desse Ano!</button>
         <button class="chatg" onclick="window.location.href='https://chat.openai.com/chat'"></button>
@@ -487,6 +489,9 @@
     <script>
       document.getElementById("miguel-btn").addEventListener("click", function() {
       window.location.href = "/Miguel/index.html"; // Substitua pelo URL desejado
+    });
+    document.getElementById("rafa-btn").addEventListener("click", function() {
+      window.location.href = "/Proto/rafa.html"; // Substitua pelo URL desejado
     });
         document.addEventListener('DOMContentLoaded', function() {
     const backgroundMusic = document.getElementById('backgroundMusic');

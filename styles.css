@@ -888,25 +888,48 @@ button:hover {
     font-size: 1em;
 }
 
-#miguel-btn {
-    position: absolute;
-    margin-left: 90%;
-    margin-top: 1%;
-    width: 40px;
-    height: 40px;
-    display: flex;
+#miguel-btn, #rafa-btn {
+  position: absolute;
+  margin-left: 90%;
+  margin-top: 1%;
+  width: 40px;
+  height: 40px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0; /* Garante que não há espaçamento interno */
-  border: none; /* Se for um botão, evita bordas indesejadas */
-  background: none; /* Remove fundo, se necessário */
+  padding: 0;
+  border: none;
+  background: none;
+  transition: all 0.3s ease; /* Adicionando transição para suavizar o movimento */
 }
 
-#miguel-btn img {
+#miguel-btn img, #rafa-btn img {
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  object-fit: contain; /* Garante ajuste proporcional */
+  object-fit: contain;
+}
+
+#switch-btn {
+  position: absolute;
+  margin-left: 94.5%;
+  margin-top: 1%;
+  width: 30px;
+  height: 20px;
+  display: flex;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: none;
+}
+
+.active {
+  z-index: 2; /* Define que o botão ativo sempre ficará acima do outro */
+}
+
+.hidden {
+  z-index: 1; /* Define que o botão escondido ficará abaixo do outro */
 }
 
   /* Estilo do botão de perfil */
