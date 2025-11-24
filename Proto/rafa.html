@@ -6,9 +6,172 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <head>
+    <!-- Link do Google Fonts para importar a fonte Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
+    <style>
+        body {
+    font-family: 'Roboto', sans-serif;
+}
+        /* Estilo para a lista e os botões */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        li {
+            margin: 10px 0;
+        }
 
+        .btn-day {
+            font-size: 16px;
+            width: 200px;
+            padding: 20px;
+            background-color: #2b4dbd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-day:hover {
+            background-color: #223881;
+        }
 
+        .xp-container {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-<script src="Script/perfil-data.js"></script>
-<script src="Script/nivel.js"></script>
+        .xp-counter {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Barra de progresso */
+        #progress-bar {
+            width: 100%;
+            height: 25px;
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            margin-top: 10px;
+            position: relative;
+        }
+        #progress-bar div {
+            height: 100%;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+        }
+        /* Estilizando o título "XP atual" */
+    p {
+        font-size: 18px;
+        font-weight: 600;  /* Tornando o texto um pouco mais grosso */
+        color: #555;
+        margin: 10px 0;
+    }
+
+    /* Estilizando o contador de XP */
+    .xp-counter {
+        color: #7a4efd;
+        background-color: #341b67;
+        font-size: 24px; /* Aumentando o tamanho da fonte */
+        font-weight: 700; /* Deixando o texto mais negrito */
+        padding: 5px 15px;
+        border-radius: 5px;
+        display: inline-block;
+    }
+    </style>
+</head>
+<body> 
+
+    <!-- Lista de botões para os dias da semana -->
+    <ul style="margin-top: 80px;">
+        <li><button id="sunday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Domingo: 20 hábitos</button></li>
+        <li><button id="monday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Segunda-feira: 19 hábitos</button></li>
+        <li><button id="tuesday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Terça-feira: 18 hábitos</button></li>
+        <li><button id="wednesday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Quarta-feira: 25 hábitos</button></li>
+        <li><button id="thursday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Quinta-feira: 21 hábitos</button></li>
+        <li><button id="friday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Sexta-feira: 20 hábitos</button></li>
+        <li><button id="saturday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Sábado: 23 hábitos</button></li>
+        <li><button onclick="window.location.href='https://j2plus.netlify.app/conselho/relatorio.html'" class="btn-day"><i class="fas fa-calendar-day"></i> Relatório</button></li>
+    </ul>
+
+    <!-- Exibição de XP e barra de progresso -->
+    <div class="xp-container">
+        <p>XP atual:</p><div class="xp-counter" id="xp-counter">0 XP</div>
+        <p style="display: none;">Nível: <span id="nivel">1</span></p>
+        <p style="display: none;">XP necessário para o próximo nível: <span id="xp-necessario">100</span></p>
+        <div id="progress-bar" style="display: none;"><div></div></div>
+    </div>
+
+    <!-- Scripts externos -->
+    <script src="/Script/perfil-data.js"></script>
+    <script src="/Script/nivel.js"></script>
+
+    <script>
+        // Mapeamento de hábitos para XP
+        const habitXP = {
+            "sunday": 200,
+            "monday": 190,
+            "tuesday": 180,
+            "wednesday": 250,
+            "thursday": 210,
+            "friday": 200,
+            "saturday": 230
+        };
+
+        // Atualiza a interface (chamada da função do script externo)
+        function atualizarInterface() {
+            // Garantir que o código só execute após carregar os dados de localStorage
+            const perfil = perfis[perfilAtivo];
+            const progressBar = document.getElementById("progress-bar");
+            const nivelSpan = document.getElementById("nivel");
+            const xpAtualSpan = document.getElementById("xp-counter");
+            const xpNecessarioSpan = document.getElementById("xp-necessario");
+
+            const xpNecessario = 100 * (perfil.nivel * perfil.nivel);
+
+            if (nivelSpan && xpAtualSpan && xpNecessarioSpan && progressBar) {
+                nivelSpan.textContent = perfil.nivel;
+                xpAtualSpan.textContent = perfil.xp + " XP";
+                xpNecessarioSpan.textContent = xpNecessario;
+
+                const progresso = (perfil.xp / xpNecessario) * 100;
+                progressBar.firstElementChild.style.width = `${progresso}%`;
+                progressBar.firstElementChild.textContent = `${Math.round(progresso)}%`;
+            }
+        }
+
+        // Função para adicionar XP e chamar a função do nivel.js
+        function addXP(day) {
+            const xp = habitXP[day];
+            ganharXp(xp); // Chama a função ganharXp do nivel.js para adicionar XP
+
+            // Atualiza a interface após adicionar XP
+            atualizarInterface();
+        }
+
+        // Eventos de clique nos botões
+        document.getElementById("sunday-btn").addEventListener("click", function() { addXP("sunday"); });
+        document.getElementById("monday-btn").addEventListener("click", function() { addXP("monday"); });
+        document.getElementById("tuesday-btn").addEventListener("click", function() { addXP("tuesday"); });
+        document.getElementById("wednesday-btn").addEventListener("click", function() { addXP("wednesday"); });
+        document.getElementById("thursday-btn").addEventListener("click", function() { addXP("thursday"); });
+        document.getElementById("friday-btn").addEventListener("click", function() { addXP("friday"); });
+        document.getElementById("saturday-btn").addEventListener("click", function() { addXP("saturday"); });
+
+        // Inicializa a interface ao carregar a página
+        document.addEventListener("DOMContentLoaded", atualizarInterface);
+    </script>
+
+</body>
+</html>

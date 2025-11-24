@@ -47,10 +47,6 @@ const perfis = {
     anotacoes2: localStorage.getItem("anotacoes2-Main") || "",
     anotacoes3: localStorage.getItem("anotacoes3-Main") || "",
     metas: localStorage.getItem("metas-Main") || "",
-    
-    // 🆕 Campos file1 e file2
-    file1: localStorage.getItem("file1-Main") || "",
-    file2: localStorage.getItem("file2-Main") || ""
   }
 };
 
