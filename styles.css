@@ -302,6 +302,7 @@ input, textarea {
     width: 45%; /* Largura das listas */
     display: inline-block; /* Para que as listas fiquem lado a lado */
     vertical-align: top; /* Alinha as listas ao topo */
+    margin-left: 20px;
 }
 
 .menu-content ul li {
