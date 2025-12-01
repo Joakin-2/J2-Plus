@@ -255,7 +255,7 @@ function carregarHabitosDoDia() {
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Culto da Família']
         },
         segunda: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Oração na Igreja'],
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional'],
             tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
         },
@@ -779,7 +779,7 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Culto da Família']
         },
         segunda: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Oração na Igreja'],
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional'],
             tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
             noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
         },
