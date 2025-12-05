@@ -920,7 +920,6 @@ function abrirSitesManha() {
         window.open('https://j2plus.netlify.app/gym/', '_blank');
         window.open('https://j2plus.netlify.app/melody/', '_blank');
         window.open('https://j2plus.netlify.app/proto/christ/crist.html', '_blank');
-        window.open('https://saladofuturo.educacao.sp.gov.br/escolha-de-perfil', '_blank');
         window.open('https://j2plus.netlify.app/works/', '_blank');
     }
 }
