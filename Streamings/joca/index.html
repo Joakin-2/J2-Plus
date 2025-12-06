@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="yt/yt.png" type="image/x-icon">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<title>YouTube</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>YouTube</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -160,7 +160,17 @@
 <body>
     <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
         <h1 style="display: flex; align-items: center; margin-left: 120px;">Productive Youtube 
-            <img src="yt/yt.png" alt="YouTube Icon" style="width: 44px; margin-left: 10px;">
+            <span class="yt-icon-shape style-scope yt-icon ytSpecIconShapeHost">
+    <div style="margin-left: 10px; margin-bottom: 5px; width: 150px; height: 100%; display: block;">
+        <svg xmlns="http://www.w3.org/2000/svg" id="yt-ringo2-svg_yt9" width="93" height="20" viewBox="0 0 93 20" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+            <g>
+                <path d="M14.4848 20C14.4848 20 23.5695 20 25.8229 19.4C27.0917 19.06 28.0459 18.08 28.3808 16.87C29 14.65 29 9.98 29 9.98C29 9.98 29 5.34 28.3808 3.14C28.0459 1.9 27.0917 0.94 25.8229 0.61C23.5695 0 14.4848 0 14.4848 0C14.4848 0 5.42037 0 3.17711 0.61C1.9286 0.94 0.954148 1.9 0.59888 3.14C0 5.34 0 9.98 0 9.98C0 9.98 0 14.65 0.59888 16.87C0.954148 18.08 1.9286 19.06 3.17711 19.4C5.42037 20 14.4848 20 14.4848 20Z" fill="#FF0033"></path>
+                <path d="M19 10L11.5 5.75V14.25L19 10Z" fill="white"></path>
+            </g>
+
+        </svg>
+    </div>
+</span> 
         </h1>
         <form action="https://www.youtube.com/results" method="GET" style="position: relative;">
             <input type="text" id="search" name="search_query" placeholder="Pesquisar..." required="" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;" oninput="toggleSuggestions()"> <!-- Adicione o evento 'oninput' aqui -->
@@ -172,136 +182,110 @@
         </form>
     </header>
 
-    <div class="container"> <!-- Mudar imagens -->
-        <a href="meme.html" class="video" id="openFilterModal">
-            <img src="yt/short-video.png" alt="video 1">
-            <h2>Shorts</h2>
-            <p>Videos Curtos e Cortes</p>
-            <div class="channel-logo"><img src="yt/eu.jpg" alt="video 1"></div>
-        </a>
-        <a href="poop.html" class="video" id="openFilterModal">
-            <img src="yt/poop-video.png" alt="video 1">
-            <h2>Poops</h2>
-            <p>Melhores Videos</p>
-            <div class="channel-logo"><img src="yt/eu.jpg" alt="video 1"></div>
-        </a>
-        <a href="meme2.html" class="video" id="openFilterModal">
-            <img src="yt/corte-video.png" alt="video 1">
-            <h2>Cortes</h2>
-            <p>Cortes de Videos</p>
-            <div class="channel-logo"><img src="yt/eu.jpg" alt="video 1"></div>
-        </a>
-        <a href="https://www.youtube.com/@IsraelSubira" class="video">
-            <img src="yt/isra-video.jpeg" alt="Video 1">
-            <h2>Isra</h2>
-            <p>Você já ouviu as boas novas?</p>
-            <div class="channel-logo"><img src="yt/isra.jpg" alt="SAX"></div>
-        </a>
-    </div>
     <div class="container">
-        <a href="https://www.youtube.com/@saxworldwide/videos" class="video">
-            <img src="yt/sax-video.jpeg" alt="Video 1">
-            <h2>SAX</h2>
-            <p>Welcome to the SAX Youtube Channel!</p>
-            <div class="channel-logo"><img src="yt/sax.jpg" alt="SAX"></div>
-        </a>
-        <a href="https://m.youtube.com/@PrOsielGomes/videos" class="video">
-            <img src="yt/osiel-video.jpg" alt="Video 1">
-            <h2>Pr. Osiel Gomes</h2>
-            <p>Presidente da Igreja Evangélica...</p>
-            <div class="channel-logo"><img src="yt/osiel.jpg" alt="SAX"></div>
-        </a>
-        <a href="https://www.youtube.com/c/@VidadeFé/videos" class="video">
-            <img src="yt/fé-video.jpeg" alt="Video 2">
-            <h2>Vida de Fé</h2>
-            <p>Olá, seja muito bem-vindo ao canal Vida de Fé!</p>
-            <div class="channel-logo"><img src="yt/fé.jpg" alt="Channel 2"></div>
-        </a>
-        <a href="https://www.youtube.com/@jesus_copy/videos" class="video">
-            <img src="yt/jesuscopy-video.jpeg" alt="video 2">
-            <h2>JesusCopy </h2>
-            <p>Jesuscopy é um movimento que ensina como ser cópias de Jesus</p>
-            <div class="channel-logo"><img src="yt/jesuscopy.jpg" alt="video 2"></div>
-        </a>
-    </div>
-    <div class="container">
-        <a href="https://www.youtube.com/@Pinhotube" class="video">
-            <img src="yt/pinho-video.jpeg" alt="Video 2">
-            <h2>Pinho</h2>
-            <p>Minha missão é ajudar as pessoas.</p>
-            <div class="channel-logo"><img src="yt/pinho.jpg" alt="Channel 2"></div>
-        </a>
-        <a href="https://www.youtube.com/@republicacoisadenerd/videos" class="video">
-            <img src="yt/nerd-video.jpeg" alt="Video 1">
-            <h2>Leon e Nilce</h2>
-            <p>Neste canal atendemos os pedidos da comunidade.</p>
-            <div class="channel-logo"><img src="yt/nerd.jpg" alt="SAX"></div>
-        </a>
-        <a href="https://www.youtube.com/@kurzgesagt_br/videos" class="video">
-            <img src="yt/kurz-video.jpg" alt="video 1">
-            <h2>Kurzgesagt</h2>
-            <p>Vídeos de animação explicando as coisas com niilismo otimista</p>
-            <div class="channel-logo"><img src="yt/kurz.jpg" alt="video 1"></div>
-        </a>
-        <a href="https://www.youtube.com/@falaseriofatos/videos" class="video">
-            <img src="yt/serio-video.jpg" alt="video 1">
-            <h2>Fala Sério</h2>
-            <p>Vídeos surpreendentemente interessantes</p>
-            <div class="channel-logo"><img src="yt/serio.jpg" alt="video 1"></div>
-        </a>
-    </div>
-    <div class="container">
-        <a href="https://www.youtube.com/watch?v=upTSY5pNV8Q&list=PLXVq6PJUegfxSySK6JrVEVtq2RBBTG-2L" class="video">
-            <img src="yt/fnaf-video.jpeg" alt="video 1">
-            <h2>FnF Doom</h2>
-            <p>Com Gruzinho</p>
-            <div class="channel-logo"><img src="yt/gru.jpg" alt="video 1"></div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=GXqUXJKg7K4&list=PLJC6MSkiDOlHpmnU8InCnbW_bMwScK6WW" class="video">
-            <img src="yt/mineiro-video.jpeg" alt="video 2">
-            <h2>Mineiro Aranha</h2>
-            <p>Com Gruzinho</p>
-            <div class="channel-logo"><img src="yt/gru.jpg" alt="video 2"></div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=Bm2pYXJS9_o&list=PL86335E6uxZ9Ih05mrtF21_LnuAqanVoW&ab_channel=PaiTroll" class="video">
-            <img src="yt/mario-vdeo.jpeg" alt="video 1">
-            <h2>Super Mario Maker</h2>
-            <p>FUI TORTURADO SEM DÓ!</p>
-            <div class="channel-logo"><img src="yt/paitrol.jpg" alt="video 1"></div>
-        </a>
-        <a href="https://www.youtube.com/c/La%C3%A9rcioRefundini/videos" class="video">
-            <img src="yt/lala-video.jpeg" alt="Video 1">
-            <h2>Laércio Refundini</h2>
-            <p>Laércio Refundini é Personal Trainer.</p>
-            <div class="channel-logo"><img src="yt/lala.jpg" alt="SAX"></div>
-        </a>
-    </div>
-    <div class="container">
-        <a href="https://www.youtube.com/@Jazzghost/videos" class="video">
-            <img src="yt/jazz-video.jpeg" alt="Video 1">
-            <h2>Jazzghost</h2>
-            <p>Jogo uns jogos e passo vergonha.</p>
-            <div class="channel-logo"><img src="yt/jazz.jpg" alt="SAX"></div>
-        </a>
-        <a href="https://www.youtube.com/@GamesEduUu/videos" class="video">
-            <img src="yt/gamesedu-video.jpg" alt="video 2">
-            <h2>Games EduUu</h2>
-            <p>A zoeira não tem limites, não tem!</p>
-            <div class="channel-logo"><img src="yt/gamesedu.jpg" alt="video 2"></div>
-        </a>
-        <a href="https://www.youtube.com/@CienciaTodoDia/videos" class="video">
-            <img src="yt/ciencia-video.jpg" alt="video 2">
-            <h2>Ciência Todo Dia</h2>
-            <p>Mantendo seu cérebro sempre ativo!</p>
-            <div class="channel-logo"><img src="yt/ciencia.jpg" alt="video 2"></div>
-        </a>
-        <a href="https://www.youtube.com/user/fatosdesconhecidos/videos" class="video">
-            <img src="yt/fatos-video.jpeg" alt="Video 1">
-            <h2>Fatos Desconhecidos</h2>
-            <p>A Fatos Desconhecidos começou no ano de 2010.</p>
-            <div class="channel-logo"><img src="yt/fatos.jpg" alt="SAX"></div>
-        </a>
-    </div>
+    <a href="poop.html" class="video" id="openFilterModal">
+        <img src="https://creations.panzoid.com/creation-thumbnails/757757.jpg" alt="video 1">
+        <h2>Poops</h2>
+        <p>Melhores Videos</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/DEo446QWiw7RB5TRUhq_nnZ3F5rICjSqzDFJZpmWvYQEWDse1SYAKD7Z-S37GuFbiT6j7zOCk_I=s88-c-k-c0x00ffffff-no-rj" alt="video 1"></div>
+    </a>
+    <a href="meme2.html" class="video" id="openFilterModal">
+        <img src="https://cdn.pixabay.com/video/2022/01/10/103984-664525664_tiny.jpg" alt="video 1">
+        <h2>Cortes</h2>
+        <p>Cortes de Videos</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/DEo446QWiw7RB5TRUhq_nnZ3F5rICjSqzDFJZpmWvYQEWDse1SYAKD7Z-S37GuFbiT6j7zOCk_I=s88-c-k-c0x00ffffff-no-rj" alt="video 1"></div>
+    </a>
+    <a href="meme.html" class="video" id="openFilterModal">
+        <img src="data:image/png;base64,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" alt="video 1">
+        <h2>Shorts</h2>
+        <p>Videos Curtos e Cortes</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/DEo446QWiw7RB5TRUhq_nnZ3F5rICjSqzDFJZpmWvYQEWDse1SYAKD7Z-S37GuFbiT6j7zOCk_I=s88-c-k-c0x00ffffff-no-rj" alt="video 1"></div>
+    </a>
+    <a href="https://www.youtube.com/@IsraelSubira" class="video">
+        <img src="https://i.ytimg.com/vi/XHOgoIJ3oLk/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAvmriFKY6sphwCjyubdZGSE6c3TQ" alt="Video 1">
+        <h2>Isra</h2>
+        <p>Você já ouviu as boas novas?</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/ZA6NTdh8TxjrFc1CVhl-iMyDnts8SEtn027XLGK0nljOs6zGRTq2LLqYGJ5vth3FEfb2xDfVfSo=s72-c-k-c0x00ffffff-no-rj" alt="SAX"></div>
+    </a>
+</div>
+<div class="container">
+    <a href="https://www.youtube.com/@saxworldwide/videos" class="video">
+        <img src="https://i.ytimg.com/vi/LrERGqqpPv4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBwzOsUVxvBVRW1P2cevBO1K7E2RQ" alt="Video 1">
+        <h2>SAX</h2>
+        <p>Welcome to the SAX Youtube Channel!</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/9FQqnlDMArTldJHIUmVlannV80BgeZENBJrw6whVPHKLuNC2_bnF4jwTZeABXj_GWVivs6_q_Q=s72-c-k-c0x00ffffff-no-rj" alt="SAX"></div>
+    </a>
+    <a href="https://m.youtube.com/@PrOsielGomes/videos" class="video">
+        <img src="https://i.ytimg.com/vi/M3eKYqGm8Q4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCG9Rjp6qq35klFdxQYe3SyLO3kwA" alt="Video 1">
+        <h2>Pr. Osiel Gomes</h2>
+        <p>Presidente da Igreja Evangélica...</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/3zmZxsyS15Ltmnh7BzbdAwgJWX_2IoOi-4bmI5WJ012HfddTPhkLtaHAku-dZdKm7BlxmK7Mc2k=s160-c-k-c0x00ffffff-no-rj" alt="SAX"></div>
+    </a>
+    <a href="https://www.youtube.com/@jesus_copy/videos" class="video">
+        <img src="https://i.ytimg.com/vi/s4FGfa9QOAg/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBhseFLV4VqSoNeloYC3HZ5NPzZVQ" alt="video 2">
+        <h2>JesusCopy </h2>
+        <p>Jesuscopy é um movimento que ensina como ser cópias de Jesus</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/P-zjZTJhWvSOeoZqnEabLI1knPYv7Y-9KY6L4X06q-hTE9jjQIMrcTGCaqQWSfpa972IZt-LKQ=s72-c-k-c0x00ffffff-no-rj" alt="video 2"></div>
+    </a>
+    <a href="https://www.youtube.com/@Pinhotube" class="video">
+        <img src="https://i.ytimg.com/vi/oi2uwpCRljY/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLANH1SGK4rb5QNuDY-1Vwqx481zzA" alt="Video 2">
+        <h2>Pinho</h2>
+        <p>Minha missão é ajudar as pessoas.</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/XI7CWGP4qRoKl-RC-6hDgsVgpFsGoPgfddZHmhWCGFwXZ_6Yx-OEKS6cNF3Br-kgNneXp4OBQNs=s72-c-k-c0x00ffffff-no-rj" alt="Channel 2"></div>
+    </a>
+</div>
+<div class="container">
+    <a href="https://www.youtube.com/@republicacoisadenerd/videos" class="video">
+        <img src="https://i.ytimg.com/vi/CZv624T1mwI/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDCJssNCe_8AUTbF21a8OKrMOsImA" alt="Video 1">
+        <h2>Leon e Nilce</h2>
+        <p>Neste canal atendemos os pedidos da comunidade.</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/ytc/AIdro_kBZPXu905PtNiYhrJNyF-Fk5Ed3vUvzvmzE0fgW1jCzCY=s72-c-k-c0x00ffffff-no-rj" alt="SAX"></div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=GXqUXJKg7K4&list=PLJC6MSkiDOlHpmnU8InCnbW_bMwScK6WW" class="video">
+        <img src="https://i.ytimg.com/vi/GXqUXJKg7K4/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLBwuT9_vLHl6Z2h4RJEtfe-ZzmNhw" alt="video 2">
+        <h2>Mineiro Aranha</h2>
+        <p>Com Gruzinho</p>
+        <div class="channel-logo"><img src="https://yt3.ggpht.com/MYEx6ANwCNxncjANiNuNOECuj_dh_yQUoSDs7mI0ux_18VGjy8Pod_bL3OxtTA_jbRnuKZSvPLE=s48-c-k-c0x00ffffff-no-rj" alt="video 2"></div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=Bm2pYXJS9_o&list=PL86335E6uxZ9Ih05mrtF21_LnuAqanVoW&ab_channel=PaiTroll" class="video">
+        <img src="https://i.ytimg.com/vi/AtoXHcgMfuo/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCHIWqhAzu3Y12oyNiqwRSGGzWzOA" alt="video 1">
+        <h2>Super Mario Maker</h2>
+        <p>FUI TORTURADO SEM DÓ!</p>
+        <div class="channel-logo"><img src="https://yt3.ggpht.com/ytc/AIdro_nhyYxNxuN0p1zsdcY9_4N4VIwQfE0F3t7Zc9fsz5cWGrc=s48-c-k-c0x00ffffff-no-rj" alt="video 1"></div>
+    </a>
+    <a href="https://www.youtube.com/c/La%C3%A9rcioRefundini/videos" class="video">
+        <img src="https://i.ytimg.com/vi/dIqqnYykwNM/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBGqF1xk98gQCajkFm0Vl1Z9E9r3g" alt="Video 1">
+        <h2>Laércio Refundini</h2>
+        <p>Laércio Refundini é Personal Trainer.</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/I_71-BJaBQ5E9V6JePitt6-emcdzfDcXD4JeYV5bj1gS2PjD3HtxoGLAz_pzvOTFWYFfR-6lGQ=s72-c-k-c0x00ffffff-no-rj" alt="SAX"></div>
+    </a>
+</div>
+<div class="container">
+    <a href="https://www.youtube.com/@Jazzghost/videos" class="video">
+        <img src="https://i.ytimg.com/vi/kbMxDtJX0nA/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBLV7agwcmvC-Lh9A_-rPlkN9NZlw" alt="Video 1">
+        <h2>Jazzghost</h2>
+        <p>Jogo uns jogos e passo vergonha.</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/sAvs5V1ICTt3pLRi2tfuIV3OyIeR_rCi6TZyBAjxF0KyQV86QD_xaY3MEcBCZurIOwI4ewKeets=s120-c-k-c0x00ffffff-no-rj" alt="SAX"></div>
+    </a>
+    <a href="https://www.youtube.com/@GamesEduUu/videos" class="video">
+        <img src="https://i.ytimg.com/vi/z9RgNPwAvSw/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA6c9x4QH3Q8Z3_NCZx4O4_6RPABg" alt="video 2">
+        <h2>Games EduUu</h2>
+        <p>A zoeira não tem limites, não tem!</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/ytc/AIdro_mnYfCHCK6zQ1uEVX2IE3tep9N0tf60LuocEFHShXvajTU=s72-c-k-c0x00ffffff-no-rj" alt="video 2"></div>
+    </a>
+    <a href="https://www.youtube.com/@kurzgesagt_br/videos" class="video">
+        <img src="https://i.ytimg.com/vi/DPIgDSD4hc4/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLALch21B22r0CAILMq27UbeH_WYXA" alt="video 1">
+        <h2>Kurzgesagt</h2>
+        <p>Vídeos de animação explicando as coisas com niilismo otimista</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/NiOHk4jbNm1TRha4bV4viASdHTPeGbT3NQMdN0D75kERTZkL15v_DyPdttCR2tzG1viSVta0Cjg=s72-c-k-c0x00ffffff-no-rj" alt="video 1"></div>
+    </a>
+    <a href="https://www.youtube.com/@falaseriofatos/videos" class="video">
+        <img src="https://i.ytimg.com/vi/BxZmI4HGrDE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCHNNi1oU2EvOZy9QATxlBLTcfseA" alt="video 1">
+        <h2>Fala Sério</h2>
+        <p>Vídeos surpreendentemente interessantes</p>
+        <div class="channel-logo"><img src="https://yt3.googleusercontent.com/ytc/AIdro_lJDsFNeW3HGGOc4Bj9AwjgyPLr4Cq59zwsvM093H8u9g=s72-c-k-c0x00ffffff-no-rj" alt="video 1"></div>
+    </a>
+</div>
 
     <script>
         function toggleSuggestions() {
