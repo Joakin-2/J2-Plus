@@ -86,32 +86,9 @@
             <button class="botao" onclick="redirecionar('Krunker')" aria-label="Ir para Krunker"><i class="fas fa-crosshairs"></i> Krunker</button>
             <button class="botao" onclick="redirecionar('Hordes')" aria-label="Ir para Hordes"><i class="fas fa-gamepad"></i> Hordes</button>
         </div>   
-        
-        <!-- Segundo contêiner -->
-        <div class="container">
-            <textarea class="area-anotacoes" id="game" placeholder="Anote aqui..."></textarea>
-        </div>   
     </div>
     
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Define o perfil ativo a partir do localStorage (ou usa "Main" por padrão)
-            const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
-            
-            // Recupera o textarea e tenta carregar as notas salvas para o perfil ativo
-            const notesTextarea = document.getElementById("game");
-            const savedNotes = localStorage.getItem("gameNotes-" + perfilAtivo);
-
-            if (savedNotes) {
-                notesTextarea.value = savedNotes;  // Carrega as notas no textarea
-            }
-
-            // Salvar automaticamente as anotações quando o usuário digitar
-            notesTextarea.addEventListener("input", () => {
-                localStorage.setItem("gameNotes-" + perfilAtivo, notesTextarea.value);  // Salva as notas no localStorage para o perfil ativo
-            });
-        });
-
         // Função para redirecionar
         function redirecionar(destino) {
             switch (destino) {
