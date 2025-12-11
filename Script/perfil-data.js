@@ -15,7 +15,6 @@ const perfis = {
     complaints: JSON.parse(localStorage.getItem("complaints-Joaquim")) || [],
     notas: localStorage.getItem("notas-Joaquim") || "",
     pagarNotas: localStorage.getItem("pagarNotas-Joaquim") || "",
-    gameNotes: localStorage.getItem("gameNotes-Joaquim") || "",
     
     // 🆕 Novos campos adicionados:
     programados: localStorage.getItem("programados-Joaquim") || "",
@@ -39,7 +38,6 @@ const perfis = {
     complaints: JSON.parse(localStorage.getItem("complaints-Main")) || [],
     notas: localStorage.getItem("notas-Main") || "",
     pagarNotas: localStorage.getItem("pagarNotas-Main") || "",
-    gameNotes: localStorage.getItem("gameNotes-Main") || "",
 
     // 🆕 Novos campos
     programados: localStorage.getItem("programados-Main") || "",
