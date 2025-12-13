@@ -1240,11 +1240,6 @@ exportarBtn.addEventListener("click", () => {
     perfil.notas = notasBox.value;
   }
 
-  const pagarNotasBox = document.getElementById('pagarNotas'); // Supondo que o id seja 'pagarNotas'
-  if (pagarNotasBox) {
-    perfil.pagarNotas = pagarNotasBox.value; // Captura o conteúdo da área de notas para pagar
-  }
-
   const programadosTextarea = document.getElementById('programados');
   if (programadosTextarea) {
     perfil.programados = programadosTextarea.value;
@@ -1332,9 +1327,6 @@ importarBtn.addEventListener("click", () => {
           // Salva as notas
           if (dadosImportados.notas)
             localStorage.setItem("notas-" + perfilAtivo, dadosImportados.notas);
-
-          if (dadosImportados.pagarNotas)
-            localStorage.setItem("pagarNotas-" + perfilAtivo, dadosImportados.pagarNotas);
 
           if (dadosImportados.programados)
             localStorage.setItem("programados-" + perfilAtivo, dadosImportados.programados);
@@ -1443,12 +1435,6 @@ const musicPlaceNotesBox = document.getElementById("musicPlaceNotes1"); // Aqui 
   const notasBox = document.getElementById("notas");
   if (notasBox) {
     notasBox.value = perfil.notas || "";
-  }
-
-  const pagarNotasBox = document.getElementById("pagarNotas"); // Aqui o id pode ser diferente
-  if (pagarNotasBox) {
-    // Carrega as anotações de pagarNotas
-    pagarNotasBox.value = perfil.pagarNotas || "";
   }
 
   const programadosBox = document.getElementById("programados");
