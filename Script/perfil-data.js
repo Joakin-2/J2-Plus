@@ -14,16 +14,11 @@ const perfis = {
     gymNotes: localStorage.getItem("gymNotes-Joaquim") || "",
     complaints: JSON.parse(localStorage.getItem("complaints-Joaquim")) || [],
     notas: localStorage.getItem("notas-Joaquim") || "",
-    pagarNotas: localStorage.getItem("pagarNotas-Joaquim") || "",
-    
-    // 🆕 Novos campos adicionados:
     programados: localStorage.getItem("programados-Joaquim") || "",
     anotacoes: localStorage.getItem("anotacoes-Joaquim") || "",
     anotacoes2: localStorage.getItem("anotacoes2-Joaquim") || "",
     anotacoes3: localStorage.getItem("anotacoes3-Joaquim") || "",
     metas: localStorage.getItem("metas-Joaquim") || "",
-
-    // 🆕 Campos file1 e file2
     file1: localStorage.getItem("file1-Joaquim") || "",
     file2: localStorage.getItem("file2-Joaquim") || ""
   },
@@ -37,9 +32,6 @@ const perfis = {
     gymNotes: localStorage.getItem("gymNotes-Main") || "",
     complaints: JSON.parse(localStorage.getItem("complaints-Main")) || [],
     notas: localStorage.getItem("notas-Main") || "",
-    pagarNotas: localStorage.getItem("pagarNotas-Main") || "",
-
-    // 🆕 Novos campos
     programados: localStorage.getItem("programados-Main") || "",
     anotacoes: localStorage.getItem("anotacoes-Main") || "",
     anotacoes2: localStorage.getItem("anotacoes2-Main") || "",
