@@ -1,6 +1,4 @@
-// Limpar Músicas
-        
-        // Listas de músicas
+// Listas de músicas
         var playlist = {
             'Christ Gym': {
                 image: '1.png',
@@ -145,6 +143,7 @@
                     'Vibe/Chuck Berry.mp3',
                     'Vibe/Confess your love.mp3',
                     'Vibe/CONFESS YOUR LOVE FUNK.mp3',
+                    'Vibe/Calma vida ta de boa.mp3',
                     'Vibe/CJ SO COOL - Tired.mp3',
                     'Vibe/Cupid (twin version) - pmv.mp3',
                     'Vibe/Cupid Kiko.mp3',
@@ -472,6 +471,7 @@
             'Vibe/Chuck Berry.mp3': "Chuck Berry",
             'Vibe/Confess your love.mp3': "Confess your love",
             'Vibe/CONFESS YOUR LOVE FUNK.mp3': "CONFESS YOUR LOVE FUNK",
+            'Vibe/Calma vida ta de boa.mp3': "Calma vida tá de boa",
             'Vibe/CJ SO COOL - Tired.mp3': "CJ SO COOL - Tired",
             'Vibe/Cupid (twin version) - pmv.mp3': "Cupid (twin version)",
             'Vibe/Cupid Kiko.mp3': "Cupid (kiko version)",
