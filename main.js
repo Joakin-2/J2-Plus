@@ -1265,10 +1265,15 @@ exportarBtn.addEventListener("click", () => {
     perfil.metas = metasTextarea.value;
   }
 
-  const file1 = document.getElementById("file1").value;
-  const file2 = document.getElementById("file2").value;
-  perfil.file1 = file1;
-  perfil.file2 = file2;
+  const file1 = document.getElementById('file1');
+  if (file1) {
+    perfil.file1 = file1.value;
+  }
+
+  const file2 = document.getElementById('file2');
+  if (file2) {
+    perfil.file2 = file2.value;
+  }
 
   // Inclui as reclamações no perfil
   perfil.complaints = perfis[perfilAtivo].complaints;
