@@ -1515,6 +1515,12 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Vitória", month: 6, day: 4 },
     { name: "Adeir", month: 9, day: 7 },
     { name: "Paula", month: 10, day: 24 },
+
+    { name: "J2+", month: 9, day: 2 },   // 2 Setembro 2024
+    { name: "J2", month: 5, day: 12 },    // 12 Maio 2023
+    { name: "Rhafael", month: 5, day: 31 },  // 31 Maio 2025
+    { name: "Miguel", month: 3, day: 10 },// 10 Março 2025
+    { name: "Kalton", month: 6, day: 27 } // 27 Junho 2025
   ];
 
   const specialEvents = [
@@ -1529,9 +1535,17 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Proclamação da República", month: 11, day: 15 },
     { name: "Finados", month: 11, day: 2 },
     { name: "Dia da Consciência Negra", month: 11, day: 20 },
-
     { name: "Dia dos Namorados", month: 6, day: 12 },
-    // Sexta-feira 13 (pode mudar de ano e mês)
+
+    // Eventos pessoais
+    { name: "Casamento dos Pais (Civil)", month: 11, day: 14 },
+    { name: "Casamento dos Pais (Religioso)", month: 11, day: 15 },
+    { name: "Formatura do Joaquim", month: 12, day: 16 }, // de 2025
+
+    // Eventos móveis
+    { name: "Páscoa", type: "movel", rule: "domingo de páscoa" },
+    { name: "Sexta-feira 13", type: "movel", rule: "sexta-feira dia 13" },
+    { name: "Dia da Bíblia", type: "movel", rule: "2º domingo de dezembro" },
   ];
 
   let currentYear = new Date().getFullYear();
