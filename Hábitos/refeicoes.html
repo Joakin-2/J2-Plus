@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Refeições</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         /* Estilos para as seções */
         #anotarRefeicoes,
@@ -320,12 +321,17 @@ li {
                     </ul>
                   </div>
               
+                  <div>
+                    <button style="width: 150px;" onclick="copiarLista()"><i class="fas fa-list"></i></button>
+                    <button style="width: 150px;" onclick="abrirSitesProteinas()"><i class="fas fa-capsules"></i></button>
+                  </div>
+
                   <div class="paginacao">
-                    <button style="width: 150px;" onclick="mudarPagina(-1)">Anterior</button>
-                    <button style="width: 150px;" onclick="mudarPagina(1)">Próximo</button>
+                    <button style="width: 50px;" onclick="mudarPagina(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button style="width: 200px;" id="menuRefeicoesBtn">Cardápio</button>
+                    <button style="width: 50px;" onclick="mudarPagina(1)"><i class="fas fa-chevron-right"></i></button>
                   </div>
               
-                  <button id="menuRefeicoesBtn">Cardápio</button>
                 </div>
               </div>
               
@@ -492,6 +498,39 @@ li {
     </div>    
     
     <script>
+        function abrirSitesProteinas() {
+    // Abre dois sites em abas diferentes
+    window.open('https://www.gsuplementos.com.br/creatina-monohidratada-250gr-growth-supplements-p985931', '_blank');
+    window.open('https://www.gsuplementos.com.br/basic-whey-protein-1kg-growth-supplements-p986000', '_blank');
+  }
+
+        function copiarLista() {
+    const listaDeCompras = `Laranja, Maçã, Banana, Limão, Ovo, Frios, Leite, Café, Aveia Farelo, Chá Verde, Pão`;
+
+    const listaDeCompras0 = `
+      1. Arroz
+      2. Feijão
+      3. Frango
+      4. Ovos
+      5. Batata-doce
+      6. Brócolis
+      7. Macarrão integral
+      8. Leite
+      9. Maçã
+      10. Pão integral
+    `;
+    
+    // Criando um campo de texto temporário para copiar
+    const textarea = document.createElement('textarea');
+    textarea.value = listaDeCompras;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+
+    alert('Lista de compras copiada para a área de transferência!');
+  }
+
         const resetarLitroBtn = document.getElementById('resetarLitroBtn');
         const resetModal = document.getElementById('resetModal');
         const closeResetButton = document.getElementById('closeResetButton');
