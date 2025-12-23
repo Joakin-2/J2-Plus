@@ -250,41 +250,39 @@ function carregarHabitosDoDia() {
     const habitosPorPerfil = {
         Joaquim: {
         domingo: {
-            manha: ['Orar','Gelo','Vácuo','Alongar','Fazer Faxina', 'Limpar Fogão', 'Escola Dominical'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar', 'Lavar as Roupas', 'Lavar o Banheiro'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Culto da Família']
+            manha: ['Orar','Gelo','Vácuo','Alongar','Abdômen','Fazer Faxina','Limpar Fogão','Escola Dominical'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar', 'Lavar as Roupas', 'Lavar o Banheiro'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Culto da Família']
         },
         segunda: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão']
         },
         terça: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão']
         },
         quarta: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Fazer Faxina', 'Aparar Barba', 'Limpar Fogão', 'Limpar Ouvido'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Alise seu Pé', 'Trabalho (Trade)', 'Lavar as Roupas', 'Lavar o Banheiro'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
-            // noite: ['Culto as 19h30']
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional','Fazer Faxina', 'Aparar Barba', 'Limpar Fogão', 'Limpar Ouvido'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Alise seu Pé', 'Trabalho (Trade)', 'Lavar as Roupas', 'Lavar o Banheiro'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Culto as 19h30','Preparar Limão']
         },
         quinta: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Começar Jejum'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)','Continuar Jejum'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Finalizar Jejum']
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional','Começar Jejum'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Trade)','Continuar Jejum'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Finalizar Jejum']
         },
         sexta: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Mídia)', 'Lavar Carro e Moto'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Limpar Escritório']
-            // noite: ['Culto as 19h30', 'Limpar Escritório']
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Mídia)', 'Lavar Carro e Moto'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Culto as 19h30','Preparar Limão','Limpar Escritório']
         },
         sábado: {
-            manha: ['Orar','Gelo','Vácuo','Alongar', 'Se Depile', 'Devocional', 'Alise seu Pé','Correr (1 hora)', 'Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Línguas','Desenhar','Conselho', 'Atualizações', 'Limpar Ouvido', 'Ensaio (UADEMIS)'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
+            manha: ['Orar','Gelo','Vácuo','Alongar', 'Abdômen', 'Se Depile', 'Devocional', 'Alise seu Pé','Correr (1 hora)', 'Ensaiar (2 hora)'],
+            tarde: ['Ler','Pele','Águas','Línguas','Desenhar','Conselho', 'Atualizações', 'Limpar Ouvido', 'Ensaio (UADEMIS)'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão']
         },
     },
         Main: {
@@ -666,68 +664,7 @@ document.getElementById('mostrarHorarioBtn').addEventListener('click', function 
     }
 });
 
-// Mostrar o modal de Encerramento do Dia ao clicar em "Noite"
-document.getElementById('noiteTitulo').addEventListener('click', function() {
-    const perfilAtivo = localStorage.getItem("perfilAtivo");
-    if (perfilAtivo !== "Joaquim") return; // Só mostra o modal se o perfil for Joaquim
-
-    const modalFim = document.getElementById('modalFim');
-    modalFim.style.display = 'flex';
-});
-
-// Fechar o modal quando clicar no botão "Fechar"
-document.getElementById('fecharModalBtn').addEventListener('click', function() {
-    const modalFim = document.getElementById('modalFim');
-    modalFim.style.display = 'none';
-});
-
-// Fechar o modal quando clicar fora da área do conteúdo
-window.addEventListener('click', function(event) {
-    const modalFim = document.getElementById('modalFim');
-    if (event.target === modalFim) {
-        modalFim.style.display = 'none';
-    }
-});
-
-// Hábitos de Fim de Dia
-const noiteTitulo = document.getElementById('noiteTitulo');
-    const modalFim = document.getElementById('modalFim');
-    const fecharModalBtn = document.getElementById('fecharModalBtn');
-    const copyButton = document.getElementById('copyButton');
-    const habitosList = document.getElementById('habitosFinaisList');
-
-    // Mostrar modal
-    noiteTitulo.addEventListener('click', () => {
-        modalFim.style.display = 'block';
-    });
-
-    // Fechar modal
-    fecharModalBtn.addEventListener('click', () => {
-        modalFim.style.display = 'none';
-    });
-
-    // Fechar clicando fora do conteúdo
-    window.addEventListener('click', (event) => {
-        if (event.target === modalFim) {
-            modalFim.style.display = 'none';
-        }
-    });
-
-    // Copiar lista de hábitos
-    copyButton.addEventListener('click', async () => {
-        const itens = [...habitosList.querySelectorAll('li span')].map(li => li.textContent.trim());
-        const texto = itens.join(', ');
-
-        try {
-            await navigator.clipboard.writeText(texto);
-            copyButton.textContent = 'Copiado!';
-            setTimeout(() => copyButton.textContent = 'Copy', 2000);
-        } catch (err) {
-            alert('Erro ao copiar: ' + err);
-        }
-    });
-
-    function recarregar() {
+function recarregar() {
     const audio = document.getElementById('som-recarregar');
     
     if (audio) {
@@ -774,41 +711,39 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
     const habitosPorPerfil = {
         Joaquim: {
         domingo: {
-            manha: ['Orar','Gelo','Vácuo','Alongar','Fazer Faxina', 'Limpar Fogão', 'Escola Dominical'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar', 'Lavar as Roupas', 'Lavar o Banheiro'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Culto da Família']
+            manha: ['Orar','Gelo','Vácuo','Alongar','Abdômen','Fazer Faxina','Limpar Fogão','Escola Dominical'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar', 'Lavar as Roupas', 'Lavar o Banheiro'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Culto da Família']
         },
         segunda: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão']
         },
         terça: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão']
         },
         quarta: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Fazer Faxina', 'Aparar Barba', 'Limpar Fogão', 'Limpar Ouvido'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Alise seu Pé', 'Trabalho (Trade)', 'Lavar as Roupas', 'Lavar o Banheiro'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
-            // noite: ['Culto as 19h30']
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional','Fazer Faxina', 'Aparar Barba', 'Limpar Fogão', 'Limpar Ouvido'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Alise seu Pé', 'Trabalho (Trade)', 'Lavar as Roupas', 'Lavar o Banheiro'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Culto as 19h30','Preparar Limão']
         },
         quinta: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional','Começar Jejum'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Trade)','Continuar Jejum'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Finalizar Jejum']
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional','Começar Jejum'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Trade)','Continuar Jejum'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Finalizar Jejum']
         },
         sexta: {
-            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Devocional'],
-            tarde: ['Ler','Pele','Ensaiar','Línguas','Desenhar','Trabalho (Mídia)', 'Lavar Carro e Moto'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão','Limpar Escritório']
-            // noite: ['Culto as 19h30', 'Limpar Escritório']
+            manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Mídia)', 'Lavar Carro e Moto'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Culto as 19h30','Preparar Limão','Limpar Escritório']
         },
         sábado: {
-            manha: ['Orar','Gelo','Vácuo','Alongar', 'Se Depile', 'Devocional', 'Alise seu Pé','Correr (1 hora)', 'Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Línguas','Desenhar','Conselho', 'Atualizações', 'Limpar Ouvido', 'Ensaio (UADEMIS)'],
-            noite: ['Orar','Alongar','Chá Verde','Arrumar Gelo','Arrumar Café','Preparar Limão']
+            manha: ['Orar','Gelo','Vácuo','Alongar', 'Abdômen', 'Se Depile', 'Devocional', 'Alise seu Pé','Correr (1 hora)', 'Ensaiar (2 hora)'],
+            tarde: ['Ler','Pele','Águas','Línguas','Desenhar','Conselho', 'Atualizações', 'Limpar Ouvido', 'Ensaio (UADEMIS)'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão']
         },
     },
         Main: {
@@ -926,4 +861,9 @@ function abrirSitesManha() {
 
 function abrirSitesTarde() {
     window.open('https://j2plus.netlify.app/conselho/relatorio.html', '_blank');
+}
+
+function abrirSitesNoite() {
+    window.open('https://j2plus.netlify.app/gym/alongar.html', '_blank');
+    window.open('https://web.whatsapp.com/', '_blank');
 }
