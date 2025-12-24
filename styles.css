@@ -809,6 +809,7 @@ button:hover {
     border-radius: 50%;
     box-shadow: 0 0 50px yellow;
     animation: shine 2s infinite;
+    z-index: -1;
 }
 
 .leaf {
