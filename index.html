@@ -28,14 +28,14 @@
                 <li><a href="https://j2plus.netlify.app/works/ler.html">Leitura</a></li>
                 <li><a href="https://j2plus.netlify.app/h%C3%A1bitos/">Hábitos</a></li>
                 <li><a href="https://j2plus.netlify.app/proto/christ/crist.html">Renovar</a></li>
-                <li><a href="https://j2plus.netlify.app/works/">Trabalho</a></li>
+                <li><a onclick="Trabalho()">Trabalho</a></li>
             </ul>
             <ul>
                 <li><a href="Control/itens.html">Itens</a></li>
                 <li><a href="https://j2plus.netlify.app/finan%C3%A7as/">Finanças</a></li>
-                <li><a href="https://j2plus.netlify.app/control/">Controles</a></li>
+                <li><a href="https://j2plus.netlify.app/control/pcs.html">Controles</a></li>
                 <li><a href="https://j2plus.netlify.app/streamings/">Streamings</a></li>
-                <li><a href="https://j2plus.netlify.app/back/games%20states/games">Game State</a></li>
+                <li><a onclick="GameState()">Games Web</a></li>
             </ul>
             <ul>
                 <li><a href="https://j2plus.netlify.app/music">Music</a></li>
@@ -487,6 +487,17 @@
     <script src="Script/nivel.js"></script>
     <script src="main.js"></script> <!-- JavaScript externo -->
     <script>
+        function GameState() {
+            window.open('https://www.microsoft.com/en-us/edge/features/surf-game?form=MA13FJ', '_blank');
+            window.open('https://krunker.io', '_blank');
+            window.open('https://hordes.io', '_blank');
+        }
+        
+        function Trabalho() {
+            window.open('https://j2plus.netlify.app/works/', '_blank');
+            window.open('https://j2plus.netlify.app/works/foco', '_blank');
+        }
+
       document.getElementById("miguel-btn").addEventListener("click", function() {
       window.location.href = "/Miguel/index.html"; // Substitua pelo URL desejado
     });

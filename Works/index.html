@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="icon" href="ícone.ico" type="image/x-icon">
     <meta charset="UTF-8">
+    <link rel="icon" href="ícone.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Área Principal</title>
-    <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
+    <title>Área de Investir</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
@@ -18,134 +18,221 @@
 
         .container {
             display: flex;
-            flex-direction: column; /* Muda a direção para coluna (um embaixo do outro) */
             justify-content: center;
             align-items: center;
-            height: 90vh;
+            margin-top: 8%;
+            gap: 40px; /* Aumenta a distância entre os botões */
         }
 
-        .row {
-            display: flex;
-            justify-content: space-around;
-            width: 60%;
+        .meta-container {
+            margin: 20px;
+        }
+
+        .calendar-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            width: 20%;
+            margin-top: 20px;
+        }
+
+        .day {
+            background-color: #2d2d2d;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .day-name {
+            font-weight: bold;
+            background-color: #1a1a1a;
+            color: #aaa;
+        }
+
+        .day-number {
+            background-color: #444;
+            color: white;
+        }
+
+        .day-number:hover {
+            background-color: #833fd1;
+        }
+
+        .has-ganho {
+            background-color: #673ab7;
+        }
+
+        input[type="number"], input[type="date"] {
+            background: #181818;
+            color: white;
+            width: 300px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #833fd1;
+            color: white;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
         }
 
         .botao {
             background-color: #833fd1;
             color: white;
             border: none;
-            padding: 50px; /* Tamanho uniforme para todos os botões */
+            padding: 50px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
             font-size: 24px;
-            margin: 10px 10px; /* Adicionei um espaço uniforme entre os botões */
+            margin: 4px 2px;
             cursor: pointer;
             border-radius: 8px;
-            width: 300px; /* Largura fixa para os botões */
-        }
-
-    .modal {
-            display: none;  /* Modificado para "none" por padrão */
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7); /* Fundo semitransparente */
+            width: 300px;
+            height: 150px;
+            display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
-        .modal-content {
-            background-color: #121212;
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
-        }
+        .button-group {
+    display: flex;
+}
 
-    .close {
-      color: white;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.btn-export, .btn-import {
+    background-color: #121212;
+    color: white;
+    border: none;
+    width: 40px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-    .close:hover,
-    .close:focus {
-      color: #833fd1;
-      text-decoration: none;
-      cursor: pointer;
-    }
+.xp-gain {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #b382ed;
+    font-size: 2em;
+    font-weight: bold;
+    animation: fade-out 1.5s forwards;
+    pointer-events: none;
+}
 
-    .modal-header {
-      font-size: 1.5em;
-      margin-bottom: 15px;
+        .comemoracao {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+    animation: aparecer 0.5s ease, desaparecer 0.5s ease 2.5s;
+  }
+  
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
     }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
+  @keyframes desaparecer {
+    from {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+  }  
 
-    .modal-body {
-      font-size: 1.2em;
-    }
-
-    table {
-      width: 64%;
-      margin: auto;
-      margin-top: 160px;
-      border-collapse: collapse;
-      background-color: #121212;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    th, td {
-      border: 1px solid #ccc;
-      background-color: #121212;
-      padding: 15px;
-      text-align: center;
-    }
-    th {
-      background-color: #833fd1;
-      color: white;
-    }
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
     </style>
-
 </head>
 <body>
+
+    <!-- Calendário -->
+    <div class="calendar-container" style="display: flex; margin-left: 250px;">
+        <h3 style="margin-left: 90px; position: absolute; margin-top: 50px;">Calendário</h3>
+        <div id="calendar-section" style="margin-top: 80px;">
+            <div id="calendar" class="calendar" style="margin-left: 20%;">
+                <div class="day day-name">Dom</div>
+                <div class="day day-name">Seg</div>
+                <div class="day day-name">Ter</div>
+                <div class="day day-name">Qua</div>
+                <div class="day day-name">Qui</div>
+                <div class="day day-name">Sex</div>
+                <div class="day day-name">Sáb</div>
+                <!-- Dias do mês -->
+                <!-- A geração dos dias será feita via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Meta de Ganho -->
+    <div class="meta-container" style="position: absolute; margin-left: 60%; top: 50px;">
+        <h3 style="margin-top: 0px;">Meta</h3>
+        <div class="button-group"> 
+            <h2>Dia R$<span id="metaGanho">80.00</span> | Mês R$<span id="meta-mes">1.700,00</span></h2>
+            <!-- <h2>Dia R$<span id="meta-dia">80.00</span> | Mês R$<span id="meta-mes">1.700,00</span></h2> -->
+            <button class="btn-export" onclick="exportarDados()" style="margin-left: 15px;"><i class="fas fa-file-export"></i></button>
+            <button class="btn-import" onclick="importarDados()"><i class="fas fa-file-import"></i></button>
+        </div>
+        <h4>Selecione um dia e registre seu ganho:</h4>
+        <div>
+            <input type="date" id="data-selecionada" style="display: block; margin-bottom: 10px;">
+        </div>
+        <div>
+            <input type="number" id="valor-ganho" placeholder="Valor ganho" style="display: block; margin-bottom: 10px;">
+        </div>        
+            <div class="button-group">
+            <button onclick="registrarGanho()">Registrar</button>
+            <button onclick="salvarPDF()" style="margin-left: 5px;">Salvar PDF</button>
+            <button onclick="reiniciarProgresso()" style="margin-left: 5px;">Reiniciar Tudo</button>
+            </div>
+            <h3>Total de Ganhos: R$<span id="total-ganhos">0.00</span></h3>
+            <!-- <h4>Código do CIEE - EG24962</h4> -->
+    </div>
+
+    <!-- Container de Botões -->
     <div class="container">
-        <div class="row">
-          <button class="botao" onclick="redirecionar('focus')"><i class="fas fa-crosshairs"></i> Focos</button>
-          <button class="botao" onclick="redirecionar('contas')"><i class="fas fa-wallet"></i> Contas</button>
-          <button class="botao" onclick="redirecionar('edit')"><i class="fas fa-edit"></i> Edição</button>
-        </div>
-        <div class="row">
-          <button class="botao" onclick="redirecionar('Guilherme')"><i class="fas fa-money-bill"></i> Guilherme</button>
-          <button class="botao" onclick="abrirModal('trabalho')"><i class="fas fa-briefcase"></i> Trabalho</button>
-          <button class="botao" onclick="redirecionar('investimento')"><i class="fas fa-chart-line"></i> Investimento</button>
-        </div>
-      </div>
-    
-      <!-- Modal Trabalho -->
-      <div id="trabalhoModal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeModal('trabalho')">&times;</span>
-          <div class="modal-header">Trabalho</div>
-          <div class="container">
-            <div class="row">
-                <button class="botao" onclick="redirecionar('Social Mídia')"><i class="fab fa-instagram"></i> Social Mídia</button>
-                <button class="botao" onclick="redirecionar('pulike')"><i class="fas fa-print"></i> Pulike</button>
-                <button class="botao" onclick="redirecionar('curso')"><i class="fas fa-graduation-cap"></i> Curso</button>
-            </div>
-            </div>
-        </div>
-      </div>
+        <button class="botao" onclick="redirecionar('edit')"><i class="fas fa-edit"></i> Edição</button>
+        <button class="botao" onclick="redirecionar('Day Trade')"><i class="fas fa-chart-line"></i> Day Trade</button>
+        <button class="botao" onclick="redirecionar('Social Mídia')"><i class="fab fa-instagram"></i> Social Mídia</button>
+    </div>
 
+    <div class="container" style="margin-top: 20px">
+        <button class="botao" onclick="redirecionar('Guilherme')"><i class="fas fa-money-bill"></i> Guilherme</button>
+        <button class="botao" onclick="redirecionar('Pulike')"><i class="fas fa-print"></i> Pulike</button>
+        <button class="botao" onclick="redirecionar('curso')"><i class="fas fa-graduation-cap"></i> Curso</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-
-     // Função para abrir o modal
         function abrirModal(modalId) {
             const modal = document.getElementById(modalId + 'Modal');
             modal.style.display = "block";  // Torna o modal visível
@@ -162,16 +249,271 @@
             modal.style.display = "none";
         }
 
-        // Fechar modais ao clicar fora deles
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                closeModal(event.target.id.replace('Modal', ''));
+        // Objetos para armazenar os dados de ganhos por dia
+        let ganhosPorData = {};
+        // let metaGanho = 80;
+
+        function salvarPDF() {
+    const { jsPDF } = window.jspdf; // Obtendo o objeto jsPDF
+    const doc = new jsPDF();
+
+    // Título do PDF
+    doc.setFontSize(18);
+    doc.text("Ganhos do Mês", 20, 20);
+
+    // Data atual
+    const dataAtual = new Date();
+    const mesAtual = dataAtual.toLocaleString('default', { month: 'long' });
+    const anoAtual = dataAtual.getFullYear();
+    doc.text(`Mês: ${mesAtual} ${anoAtual}`, 20, 30);
+
+    // Cabeçalho da tabela
+    doc.setFontSize(12);
+    doc.text("Data", 20, 50);
+    doc.text("Valor Ganho (R$)", 100, 50);
+
+    // Linha divisória
+    doc.line(20, 55, 190, 55);
+
+    let yPosition = 60; // Posição inicial para os dados
+
+    // Adiciona os dados dos ganhos
+    let dadosAdicionados = false; // Para verificar se há dados no mês atual
+    for (let data in ganhosPorData) {
+        const [ano, mes] = data.split('-'); // Extrai ano e mês da data
+        if (parseInt(ano) === anoAtual && parseInt(mes) === (dataAtual.getMonth() + 1)) {
+            const valorGanho = ganhosPorData[data];
+            doc.text(data, 20, yPosition);
+            doc.text(`R$ ${valorGanho.toFixed(2)}`, 100, yPosition);
+            yPosition += 10;
+            dadosAdicionados = true;
+
+            // Adiciona nova página se necessário
+            if (yPosition > 280) {
+                doc.addPage();
+                yPosition = 20;
+            }
+        }
+    }
+
+    // Mensagem caso não haja ganhos no mês atual
+    if (!dadosAdicionados) {
+        doc.setFontSize(14);
+        doc.text("Nenhum ganho registrado para este mês.", 20, 70);
+    }
+
+    // Salva o PDF
+    doc.save(`Ganhos ${mesAtual}.pdf`);
+}
+
+        // Função para registrar o ganho no dia selecionado
+        function registrarGanho() {
+            const dataSelecionada = document.getElementById('data-selecionada').value;
+            const valorGanho = parseFloat(document.getElementById('valor-ganho').value);
+
+            if (!dataSelecionada || isNaN(valorGanho) || valorGanho <= 0) {
+                alert("Por favor, insira uma data válida e um valor de ganho.");
+                return;
+            }
+
+            if (!ganhosPorData[dataSelecionada]) {
+                ganhosPorData[dataSelecionada] = 0;
+            }
+
+            ganhosPorData[dataSelecionada] += valorGanho;
+
+            // Atualiza a cor do dia selecionado no calendário
+            marcarDiaComGanho(dataSelecionada);
+
+            // Limpa os campos
+            document.getElementById('valor-ganho').value = '';
+            document.getElementById('data-selecionada').value = '';
+
+            alert(`Ganho de R$${valorGanho} registrado para o dia ${dataSelecionada}.`);
+            salvarProgresso();
+            atualizarTotalGanhos();
+        }
+
+        // Função para marcar os dias com ganho
+        function marcarDiaComGanho(data) {
+            const dias = document.querySelectorAll('.day-number');
+            dias.forEach(dia => {
+                const diaData = dia.getAttribute('data-day');
+                const anoMes = new Date().toISOString().slice(0, 7); // Ano e mês no formato YYYY-MM
+                const dataDia = `${anoMes}-${diaData.padStart(2, '0')}`;
+
+                if (dataDia === data && ganhosPorData[dataDia]) {
+                    dia.classList.add('has-ganho');
+                }
+            });
+        }
+
+        // Função para gerar os dias do mês no calendário
+        function gerarCalendario() {
+    const dataAtual = new Date();
+    const anoAtual = dataAtual.getFullYear();
+    const mesAtual = dataAtual.getMonth(); 
+
+    const diasDoMes = new Date(anoAtual, mesAtual + 1, 0).getDate(); 
+    const primeiroDiaSemana = new Date(anoAtual, mesAtual, 1).getDay(); // Obtém o dia da semana do primeiro dia do mês
+    
+    const calendario = document.getElementById('calendar');
+    calendario.innerHTML = '';
+
+    const diasSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+    diasSemana.forEach(dia => {
+        const divDia = document.createElement('div');
+        divDia.classList.add('day', 'day-name');
+        divDia.textContent = dia;
+        calendario.appendChild(divDia);
+    });
+
+    // Adiciona espaços vazios antes do primeiro dia do mês
+    for (let i = 0; i < primeiroDiaSemana; i++) {
+        const vazio = document.createElement('div');
+        vazio.classList.add('day', 'empty');
+        calendario.appendChild(vazio);
+    }
+
+    // Gera os dias do mês
+    for (let i = 1; i <= diasDoMes; i++) {
+        const dia = document.createElement('div');
+        dia.classList.add('day', 'day-number');
+        dia.setAttribute('data-day', i);
+        dia.textContent = i;
+        dia.addEventListener('click', function() {
+            document.getElementById('data-selecionada').value = `${anoAtual}-${(mesAtual + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
+        });
+        calendario.appendChild(dia);
+    }
+
+    // Marcar os dias com ganho ao carregar
+    for (let data in ganhosPorData) {
+        const anoMes = new Date().toISOString().slice(0, 7);
+        if (data.startsWith(anoMes)) {
+            marcarDiaComGanho(data);
+        }
+    }
+}
+
+        // Função para salvar progresso
+        function salvarProgresso() {
+            localStorage.setItem("ganhosPorData", JSON.stringify(ganhosPorData));
+            localStorage.setItem("metaGanho", metaGanho);
+        }
+
+        // Função para carregar progresso
+        function carregarProgresso() {
+            const dados = JSON.parse(localStorage.getItem("ganhosPorData"));
+            if (dados) {
+                ganhosPorData = dados;
+            }
+
+            //const meta = parseFloat(localStorage.getItem("metaGanho"));
+            //if (meta) {
+            //    metaGanho = meta;
+            //    document.getElementById('meta-ganho-valor').textContent = metaGanho.toFixed(2);
+            //}
+        }
+
+        // Função para exportar dados
+        function exportarDados() {
+            const dados = {
+                //metaGanho: metaGanho,
+                ganhosPorData: ganhosPorData
+            };
+            const blob = new Blob([JSON.stringify(dados)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'ganhos.json';
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Função para importar dados
+function importarDados() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const dados = JSON.parse(e.target.result);
+            
+            // Atualiza a meta de ganho e os ganhos por data a partir dos dados importados
+            //metaGanho = dados.metaGanho;
+            ganhosPorData = dados.ganhosPorData;
+
+            // Atualiza a interface com os novos dados
+            //document.getElementById('meta-ganho-valor').textContent = metaGanho.toFixed(2);
+            
+            // Regenera o calendário para refletir os dados importados
+            gerarCalendario();
+            
+            // Salva os dados importados no localStorage para persistência
+            salvarProgresso();
+            
+            alert("Dados importados e salvos com sucesso!");
+        };
+        reader.readAsText(file);
+    });
+    input.click();
+}
+
+        // Função para reiniciar os dados
+        function reiniciarProgresso() {
+            if (confirm("Você tem certeza que deseja reiniciar os dados?")) {
+                ganhosPorData = {};
+                metaGanho = 80;
+                document.getElementById('meta-ganho-valor').textContent = metaGanho.toFixed(2);
+                atualizarTotalGanhos();
+                salvarProgresso();
+                gerarCalendario();
             }
         }
 
+        // Função para atualizar o total de ganhos
+        function atualizarTotalGanhos() {
+            let total = 0;
+            for (let data in ganhosPorData) {
+                total += ganhosPorData[data];
+            }
+            document.getElementById('total-ganhos').textContent = total.toFixed(2);
+        }
+
+        // Carregar o progresso ao iniciar
+        document.addEventListener("DOMContentLoaded", function() {
+            carregarProgresso();
+            gerarCalendario();
+            atualizarTotalGanhos();
+        });
+
+        // Redirecionamento para as páginas de investimento
         function redirecionar(destino) {
+            const hoje = new Date();
+            const diaSemana = hoje.getDay(); // 0 = domingo, 1 = segunda, ..., 5 = sexta
+
             switch (destino) {
-                case 'focus':
+                case 'Day Trade':
+                    alert("InvestiBot: Abra a XP Trade para investir");
+
+                    if (diaSemana === 5) {
+                        // Sexta-feira: abrir apenas 3 sites
+                        window.open('https://br.investing.com/');
+                        window.open('https://br.tradingview.com/chart/wJjwLtXA/?symbol=BMFBOVESPA%3AIBOV');
+                    } else {
+                        // Outros dias: abrir todos os sites
+                        window.open('https://br.investing.com/');
+                        window.open('https://br.tradingview.com/chart/wJjwLtXA/?symbol=BMFBOVESPA%3AIBOV');
+                        window.open('https://www.youtube.com/@cmcapitalaovivo');
+                        window.open('https://www.youtube.com/results?search_query=laatus+reuni%C3%A3o+matinal');
+                        //window.open('https://salaprime.com.br/youtube-sem-delay/');
+                    }
+                    break;
+                    break;
+case 'focus':
                     window.location.href = 'https://j2plus.netlify.app/works/foco';
                     break;
                 case 'curso':
@@ -182,18 +524,15 @@
                     window.location.href = 'invest.html';
                     break;
                 case 'edit':
-                    window.open('https://www.iloveimg.com/pt/ampliar-imagem')
-                    window.open('https://www.remove.bg/pt-br')
                     window.open('https://app.paperanimator.com/text-match-cut')
                     window.open('https://www.fotor.com/pt/video-enhancer/')
-                    window.open('https://www.capcut.com/my-edit?start_tab=video')
                     window.open('https://www.lovart.ai/')
                     window.open('https://viggle.ai/app/home')
                     window.open('https://picsart.com/')
                     break;
                 case 'Social Mídia':
-                    window.open('https://chat.openai.com/');
                     window.open('https://www.instagram.com/');
+                    window.open('https://www.youtube.com/@joakin_luiz');
                     window.open('https://www.tiktok.com/business-suite/homepage');
                     window.open('https://www.linkedin.com/in/joaquim-luiz-b32810323/');
                     window.open('https://business.facebook.com/latest/home?asset_id=244402432098789&business_id=954939336298894&nav_ref=media_manager_redirect_home');
