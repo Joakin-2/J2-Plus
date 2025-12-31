@@ -1546,7 +1546,11 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Páscoa", type: "movel", rule: "domingo de páscoa" },
     { name: "Sexta-feira 13", type: "movel", rule: "sexta-feira dia 13" },
     { name: "Dia da Bíblia", type: "movel", rule: "2º domingo de dezembro" },
-  ];
+    
+    // Vésperas
+    { name: "Véspera de Natal", month: 12, day: 24 },
+    { name: "Véspera de Ano Novo", month: 12, day: 31 },
+];
 
   let currentYear = new Date().getFullYear();
   let currentMonth = new Date().getMonth(); // Mês atual (0 = Janeiro, 1 = Fevereiro, ...)

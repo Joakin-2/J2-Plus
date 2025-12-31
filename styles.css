@@ -612,7 +612,7 @@ button:hover {
 }
 
 .texto {
-    background-color: #121212;
+    background-color: inherit;
     color: #fff; /* Cor do texto */
     font-size: 1.17em;
     margin-block-start: 1em;
@@ -624,7 +624,7 @@ button:hover {
 }
 
 .texto:hover {
-    background-color: #121212;
+    background-color: inherit;
 }
 
 .dropdown {

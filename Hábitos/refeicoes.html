@@ -69,7 +69,7 @@ label {
 
 /* Estilo para os inputs de texto */
 input[type="text"] {
-    width: calc(90% - 12px); /* Leva em consideração a largura dos borders */
+    /*width: calc(90% - 12px); /* Leva em consideração a largura dos borders */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -103,19 +103,19 @@ fieldset button:hover {
 #botoesControle button {
     width: 48%; /* Ajuste a largura conforme necessário */
 }
-#calculatorModal, #notesModal {
+#calculatorModal {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #2b2b2b;
-    padding: 20px;
+    padding: 10px;
     border: 2px solid #ddd;
     border-radius: 4px;
     z-index: 1000;
     width: 500px;
-    height: 420px;
+    height: 540px;
         }
 
         #calculatorModal input {
@@ -433,36 +433,39 @@ li {
     </div>
 
     <div id="modalOverlay"></div>
-    <div id="calculatorModal">
-        <div style="display: inline-flex; align-items: center; margin-bottom: 20px;">
-            <h2 style="display: inline-block; margin-right: 10px;">Calculadora de Calorias</h2>
-            <button type="button" class="sugestao-btn" onclick="openNotesModal()">?</button>
-        </div>
-        <br>
-        <label for="gramsInput">Quantos gramas de comida você comeu?</label>
-        <input type="number" id="gramsInput" placeholder="Digite os gramas" />
-        <button id="calculateButton">Calcular Calorias</button>
-        <p id="result"></p>
-        <button id="closeButton">Fechar</button>
+<div id="calculatorModal">
+    <div style="display: inline-flex; align-items: center; margin-bottom: 20px;">
+        <h2 style="display: inline-block; margin-right: 10px; margin-bottom: 10px;">Anotações</h2>
+        <button type="button" class="sugestao-btn" onclick="openCalModal()">+/-</button>
     </div>
 
-    <!-- Modal de anotações -->
-    <div id="notesModal">
-        <div style="display: inline-flex; align-items: center; margin-bottom: 20px;">
-            <h2 style="display: inline-block; margin-right: 10px; margin-bottom: 10px;">Anotações</h2>
-            <button type="button" class="sugestao-btn" onclick="openCalModal()">+/-</button>
-        </div>
-        <textarea id="notesTextAreaComer" placeholder="Escreva suas anotações aqui..." style="height: 120px; border: 1px solid #ccc; background-color: #2b2b2b; color: white;"></textarea>
-        <p>Sua taxa metabólica basal (TMB) é 1.750 kcal por dia.</p>
-        <p>A quantidade de calorias varia conforme o tipo de alimento. Para um cálculo mais preciso, consulte uma tabela nutricional.</p>
-        <button onclick="closeNotesModal()">Fechar</button>
+    <label for="gramsInput">Quantos gramas de comida você comeu?</label>
+    <input type="number" id="gramsInput" style="margin-bottom: -0px;" placeholder="Digite os gramas" />
+
+    <p id="result"></p>
+    
+    <!-- Campos para calorias -->
+    <div>
+        <input type="number" id="caloriasComidas" style="width: calc(60% - 20px); padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; margin-top: 5px; margin-bottom: 5px; background-color: #000000; color: white;" placeholder="Calorias consumidas" oninput="calcularTotal()">
     </div>
+    <div>
+        <input type="number" id="caloriasQueimadas" style="width: calc(60% - 20px); padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; margin-top: 5px; margin-bottom: 5px; background-color: #000000; color: white;" placeholder="Calorias queimadas" oninput="calcularTotal()">
+    </div>
+    <div>
+        <p><strong>Total:</strong> <span id="totalCalorias">0</span> kcal</p>
+    </div>
+
+    <p>Sua taxa metabólica basal (TMB) é 1.750 kcal por dia.</p>
+    <p>A quantidade de calorias varia conforme o tipo de alimento. Para um cálculo mais preciso, consulte uma tabela nutricional.</p>
+
+    <button onclick="closeNotesModal()">Fechar</button>
+</div>
 
     <!-- Modal da Calculadora -->
     <div id="calcModal" class="modal" style="z-index: 1000; height: 410px; width: 380px; background: rgb(0 0 0 / 0%);">
         <div class="modal-content" onmousedown="dragMouseDown(event)" style="background: #252424; height: 330px; width: 280px; border: 2px solid #ddd; border-radius: 4px;">
             <div class="calculator">
-                <span class="close" onclick="closeCalModal()">&times;</span>
+                <span class="close" style="position: static;margin-top: 10px;" onclick="closeCalModal()">&times;</span>
                 <input type="text" id="display" disabled>
                 <div class="buttoncal" style="display: grid; grid-template-columns: repeat(4, 0fr); grid-gap: 10px; padding: 10px;">
                     <button onclick="appendToDisplay('7')">7</button>
@@ -498,6 +501,18 @@ li {
     </div>    
     
     <script>
+        function calcularTotal() {
+    // Obtém os valores de calorias consumidas e queimadas
+    let caloriasComidas = parseFloat(document.getElementById("caloriasComidas").value) || 0;
+    let caloriasQueimadas = parseFloat(document.getElementById("caloriasQueimadas").value) || 0;
+    
+    // Calcula o total (calorias consumidas - calorias queimadas)
+    let total = caloriasComidas - caloriasQueimadas;
+    
+    // Atualiza o campo de total
+    document.getElementById("totalCalorias").textContent = total.toFixed(2); // 2 casas decimais
+}
+
         function abrirSitesProteinas() {
     // Abre dois sites em abas diferentes
     window.open('https://www.gsuplementos.com.br/creatina-monohidratada-250gr-growth-supplements-p985931', '_blank');
@@ -667,39 +682,31 @@ function closeDragElement() {
     document.onmousemove = null;
 }
 
-        // Monitorar mudanças na caixa de texto e salvar automaticamente
-        document.getElementById("notesTextAreaComer").addEventListener("input", saveNotes);
-
-        function openNotesModal() {
-            document.getElementById("notesModal").style.display = "block";
-        }
-
-        function closeNotesModal() {
-            document.getElementById("notesModal").style.display = "none";
-        }
-
         function salvarContador() {
             // Salvar o valor atualizado do contador no localStorage
             localStorage.setItem('contadorLitros', contadorLitros.textContent);
         }
 
         const calculatorModal = document.getElementById("calculatorModal");
-        const modalOverlay = document.getElementById("modalOverlay");
-        const calculateButton = document.getElementById("calculateButton");
-        const closeButton = document.getElementById("closeButton");
-        const gramsInput = document.getElementById("gramsInput");
-        const result = document.getElementById("result");
+const modalOverlay = document.getElementById("modalOverlay");
+const gramsInput = document.getElementById("gramsInput");
+const result = document.getElementById("result");
+const caloriasComidasInput = document.getElementById("caloriasComidas");
+const caloriasQueimadasInput = document.getElementById("caloriasQueimadas");
+const totalCalorias = document.getElementById("totalCalorias");
 
-        // Fecha a calculadora
-        closeButton.addEventListener("click", () => {
-            calculatorModal.style.display = "none";
-            modalOverlay.style.display = "none";
-            result.textContent = "";
-            gramsInput.value = "";
-        });
+// Função para calcular as calorias consumidas e queimadas
+function calcularTotal() {
+    const caloriasComidas = parseFloat(caloriasComidasInput.value) || 0;
+    const caloriasQueimadas = parseFloat(caloriasQueimadasInput.value) || 0;
 
-        // Faz o cálculo estimativo de calorias e tempo de digestão
-calculateButton.addEventListener("click", () => {
+    // Calcula o total de calorias (consumidas - queimadas)
+    const total = caloriasComidas - caloriasQueimadas;
+    totalCalorias.textContent = total.toFixed(2); // Exibe o resultado com 2 casas decimais
+}
+
+// Evento de cálculo estimativo
+gramsInput.addEventListener("input", () => {
     const grams = parseFloat(gramsInput.value);
 
     if (isNaN(grams) || grams <= 0) {
@@ -707,17 +714,26 @@ calculateButton.addEventListener("click", () => {
         return;
     }
 
-    // Supondo que cada 100g de comida tenha 250 kcal (valor estimado)
-    const caloriesPer100g = 250;
-    const estimatedCalories = (grams / 100) * caloriesPer100g;
+    // Aqui você pode adicionar a lógica para calcular as calorias com base nos gramas
+    // Exemplo simples: 1,3 calorias por grama de arroz (exemplo genérico)
+    const caloriasPorGrama = 1.3; // Defina a caloria por grama do alimento
+    const caloriasConsumidas = grams * caloriasPorGrama;
 
-    // Supondo que cada 100g leva 2 horas para ser digerido
-    const digestionTimePer100g = 2; // horas
-    const estimatedDigestionTime = (grams / 100) * digestionTimePer100g;
+    result.textContent = `Você consumiu aproximadamente ${caloriasConsumidas.toFixed(2)} kcal.`;
 
-    result.textContent = `Você consumiu aproximadamente ${estimatedCalories.toFixed(2)} kcal. 
-Tempo estimado de digestão: ${estimatedDigestionTime.toFixed(1)} horas.`;
+    // Atualiza o campo de calorias consumidas
+    caloriasComidasInput.value = caloriasConsumidas.toFixed(2);
 });
+
+// Função para fechar o modal
+function closeNotesModal() {
+    calculatorModal.style.display = "none";
+    modalOverlay.style.display = "none";
+    result.textContent = "";
+    gramsInput.value = "";
+    caloriasComidasInput.value = "";
+    caloriasQueimadasInput.value = "";
+}
 
         document.addEventListener('DOMContentLoaded', function() {
     const menuBtn = document.getElementById('menuBtn');
