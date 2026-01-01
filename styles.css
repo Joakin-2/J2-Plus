@@ -582,7 +582,7 @@ input[type="text"] {
 }
 
 .detalhes {
-    background-color: #121212; /* Roxo para o botão */
+    background-color: inherit; /* Roxo para o botão */
     color: #fff; /* Cor do texto */
     border: none; /* Sem borda */
     border-radius: 5px; /* Bordas arredondadas */
