@@ -391,7 +391,7 @@ h2, h3 {
 .avatar {
     width: 100px; /* Largura do avatar */
     margin: 0 40px; /* Margem para separar o avatar dos lados */
-    margin-right: 70px;
+    margin-right: 40px;
 }
 
 /* Ajustes adicionais para garantir que tudo fique alinhado corretamente */

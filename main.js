@@ -1784,6 +1784,21 @@ function seguirMouse(event) {
   moverOlhoIndependente(olhoDireito);
 }
 
+const avatarLink = document.querySelector('.avatar-link');
+const avatar = document.getElementById('container');
+
+avatar.addEventListener('mouseleave', () => {
+    if (seguindoMouse) {
+        resetarPosicaoOlhos();
+    }
+});
+
+avatarLink.addEventListener('mouseleave', () => {
+    if (seguindoMouse) {
+        resetarPosicaoOlhos();
+    }
+});
+
 // Função para resetar a posição dos olhos suavemente com margin-left: 10px
 function resetarPosicaoOlhos() {
   // Restaura a posição inicial dos olhos com transição suave e desloca 10px para a esquerda
@@ -1798,7 +1813,6 @@ function resetarPosicaoOlhos() {
 
 // Adiciona o evento de clique para alternar entre seguir e parar de seguir o mouse
 container.addEventListener('click', toggleSeguirMouse);
-
 
 // Lista de reclamações (carregada do localStorage, se houver)
 let complaints = JSON.parse(localStorage.getItem('complaints')) || [];
