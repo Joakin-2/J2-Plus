@@ -1,4 +1,36 @@
 /* Estilos CSS */
+#timer {
+    font-size: 2em;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#calories {
+    font-size: 1.5em;
+    color: #ffe893;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#startButton {
+    font-size: 1.5em;
+    margin-left: 28%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #ffe893;
+    color: rgb(0, 0, 0);
+    padding: 10px 45px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
