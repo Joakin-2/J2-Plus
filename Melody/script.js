@@ -224,6 +224,11 @@ function redirecionar(destino) {
                 window.open('https://promus.musica.ufrj.br/wp-content/uploads/2022/07/Omar-Pacheco-prod.-pedagogico-cadernobrasileiroparacontrabaixo.pdf');
                 window.open('https://www.google.com.br/search?q=can+i+kick+it+bass&sca_esv=70821a11ccbed8f3&authuser=4&sxsrf=ACQVn0_s3qvTQTq84WxFpqq9Os4Y6LsD4A%3A1711309701419&source=hp&ei=hYMAZsveFs225OUPyJmIgAs&iflsig=ANes7DEAAAAAZgCRlYoDFsLXkKPhTQcZlyA_SbvZXw6Q&udm=&ved=0ahUKEwiLtee21Y2FAxVNG7kGHcgMArAQ4dUDCBU&uact=5&oq=can+i+kick+it+bass&gs_lp=Egdnd3Mtd2l6IhJjYW4gaSBraWNrIGl0IGJhc3MyBxAAGIAEGBMyBxAAGIAEGBMyCBAAGBYYHhgTMggQABgWGB4YEzIIEAAYFhgeGBMyCBAAGBYYHhgTMgoQABgWGB4YDxgTMggQABgWGB4YE0izwQFQAFifwAFwBngAkAEAmAGLAqABiBmqAQYwLjEyLje4AQPIAQD4AQGYAhmgApIbwgIIEC4YgAQYsQPCAgsQABiABBixAxiDAcICFBAuGIAEGIoFGLEDGIMBGMcBGNEDwgIFEAAYgATCAg4QLhiABBixAxjHARjRA8ICCxAuGIAEGLEDGIMBwgIIEAAYgAQYsQPCAhEQLhiABBixAxiDARjHARjRA8ICDhAuGMcBGLEDGNEDGIAEwgILEC4YgwEYsQMYgATCAg4QLhiABBiKBRixAxiDAcICBRAuGIAEwgIIEC4YgAQY1ALCAg4QABiABBiKBRixAxiDAcICDhAuGIAEGLEDGIMBGNQCwgIHEAAYgAQYCsICBhAAGBYYHsICBxAuGBMYgATCAgcQLhiABBgTmAMAkgcGNi4xMi43oAfSvgE&sclient=gws-wiz');
                 break;
+        case 'Lições-Vio':
+                window.open('https://www.youtube.com/watch?v=RpIAIHUEGBM');
+                window.open('https://www.youtube.com/watch?v=2TD3u30oQtM');
+                window.open('https://www.viamusical.com.br/cursos/motivacional/como-aprender-a-tocar-violao:-10-dicas-para-acelerar-seu-aprendizado');
+                break;
         case 'Lições-Cla':
                 window.open('Partituras/clarinete.pdf');
                 break;
