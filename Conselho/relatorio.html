@@ -125,7 +125,8 @@
             <label>Tempo de ensaio (minutos)?
                 <input type="text" id="tempoEnsaio">
             </label>
-            <label>Treinou hoje? (sim/não)
+            <label>
+                <span id="labelTreino">Treinou hoje? (sim/não)</span>
                 <input type="text" id="treino">
             </label>
             <label>Você orou? (sim/não)
@@ -200,6 +201,19 @@
             xpGainElement.style.display = "none";
         }, 1500);
     }
+
+    function verificarDomingo() {
+        const hoje = new Date();
+        const diaSemana = hoje.getDay(); // 0 = Domingo
+
+        const labelTreino = document.getElementById("labelTreino");
+
+        if (diaSemana === 0) {
+            labelTreino.textContent = "Foi à Escola Dominical? (sim/não)";
+        }
+    }
+
+    verificarDomingo();
     
     function gerarRelatorio() {
         const escovouDentes = parseInt(document.getElementById("escovouDentes").value) || 0;
