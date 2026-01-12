@@ -250,8 +250,8 @@ function carregarHabitosDoDia() {
     const habitosPorPerfil = {
         Joaquim: {
         domingo: {
-            manha: ['Orar','Gelo','Vácuo','Alongar','Abdômen','Fazer Faxina','Limpar Fogão','Escola Dominical'],
-            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar', 'Lavar as Roupas', 'Lavar o Banheiro'],
+            manha: ['Orar','Gelo','Vácuo','Alongar','Abdômen','Escola Dominical'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Culto da Família']
         },
         segunda: {
@@ -276,13 +276,13 @@ function carregarHabitosDoDia() {
         },
         sexta: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
-            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Mídia)', 'Lavar Carro e Moto'],
-            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Culto as 19h30','Preparar Limão','Limpar Escritório']
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Mídia)'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Culto as 19h30','Preparar Limão']
         },
         sábado: {
-            manha: ['Orar','Gelo','Vácuo','Alongar', 'Abdômen', 'Se Depile', 'Devocional', 'Alise seu Pé','Correr (1 hora)', 'Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Águas','Línguas','Desenhar','Conselho', 'Atualizações', 'Limpar Ouvido', 'Ensaio (UADEMIS)'],
-            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão']
+            manha: ['Orar','Gelo','Vácuo','Alongar', 'Abdômen', 'Se Depile', 'Devocional', 'Fazer Faxina', 'Limpar Fogão', 'Alise seu Pé','Correr (1 hora)', 'Ensaiar (2 hora)'],
+            tarde: ['Ler','Pele','Águas','Línguas','Desenhar','Conselho', 'Atualizações', 'Lavar as Roupas', 'Lavar o Banheiro', 'Limpar Ouvido', 'Ensaio (UADEMIS)', 'Lavar Carro e Moto'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Limpar Escritório']
         },
     },
         Main: {
@@ -711,8 +711,8 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
     const habitosPorPerfil = {
         Joaquim: {
         domingo: {
-            manha: ['Orar','Gelo','Vácuo','Alongar','Abdômen','Fazer Faxina','Limpar Fogão','Escola Dominical'],
-            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar', 'Lavar as Roupas', 'Lavar o Banheiro'],
+            manha: ['Orar','Gelo','Vácuo','Alongar','Abdômen','Escola Dominical'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Culto da Família']
         },
         segunda: {
@@ -737,13 +737,13 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
         },
         sexta: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
-            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Mídia)', 'Lavar Carro e Moto'],
-            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Culto as 19h30','Preparar Limão','Limpar Escritório']
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Mídia)'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Culto as 19h30','Preparar Limão']
         },
         sábado: {
-            manha: ['Orar','Gelo','Vácuo','Alongar', 'Abdômen', 'Se Depile', 'Devocional', 'Alise seu Pé','Correr (1 hora)', 'Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Águas','Línguas','Desenhar','Conselho', 'Atualizações', 'Limpar Ouvido', 'Ensaio (UADEMIS)'],
-            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão']
+            manha: ['Orar','Gelo','Vácuo','Alongar', 'Abdômen', 'Se Depile', 'Devocional', 'Fazer Faxina', 'Limpar Fogão', 'Alise seu Pé','Correr (1 hora)', 'Ensaiar (2 hora)'],
+            tarde: ['Ler','Pele','Águas','Línguas','Desenhar','Conselho', 'Atualizações', 'Lavar as Roupas', 'Lavar o Banheiro', 'Limpar Ouvido', 'Ensaio (UADEMIS)', 'Lavar Carro e Moto'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Limpar Escritório']
         },
     },
         Main: {
@@ -788,14 +788,62 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
     const diasSemana = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
     const hoje = new Date();
     const diaAtual = diasSemana[hoje.getDay()];
-    
-    // Obter os hábitos do dia atual para o perfil ativo
-    const habitosDoDia = habitosPorPerfil[perfilAtivo] && habitosPorPerfil[perfilAtivo][diaAtual];
 
-    // Verificar se existem hábitos para o dia e perfil selecionado
+    const habitosPorDia = habitosPorPerfil[perfilAtivo];
+    const habitosDoDia = habitosPorDia && habitosPorDia[diaAtual];
+
     if (!habitosDoDia) {
         alert('Não há hábitos disponíveis para hoje!');
         return;
+    }
+
+    // Segundo sábado
+    if (hoje.getDay() === 6 && hoje.getDate() >= 8 && hoje.getDate() <= 14) {
+        habitosPorDia.sábado.noite.push("Culto de Santa Ceia");
+    }
+
+    // Terceiro sábado
+    if (hoje.getDay() === 6 && hoje.getDate() >= 15 && hoje.getDate() <= 21) {
+        habitosPorDia.sábado.manha.push("Banho no Gato");
+    }
+
+    // Último domingo
+    if (hoje.getDay() === 0) {
+        const ultimoDia = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate();
+        let temOutroDomingo = false;
+
+        for (let d = hoje.getDate() + 1; d <= ultimoDia; d++) {
+            if (new Date(hoje.getFullYear(), hoje.getMonth(), d).getDay() === 0) {
+                temOutroDomingo = true;
+                break;
+            }
+        }
+
+        if (!temOutroDomingo) {
+            habitosPorDia.domingo.noite.push("Entregar Dízimo");
+        }
+    }
+
+    // Última quarta
+    if (hoje.getDay() === 3) {
+        const ultimoDia = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate();
+        let temOutraQuarta = false;
+
+        for (let d = hoje.getDate() + 1; d <= ultimoDia; d++) {
+            if (new Date(hoje.getFullYear(), hoje.getMonth(), d).getDay() === 3) {
+                temOutraQuarta = true;
+                break;
+            }
+        }
+
+        if (!temOutraQuarta) {
+            habitosPorDia.quarta.tarde.push("Cortar Unhas do Pé");
+        }
+    }
+
+    // Terceira segunda
+    if (hoje.getDay() === 1 && hoje.getDate() >= 8 && hoje.getDate() <= 14) {
+        habitosPorDia.segunda.tarde.push("Cortar a Grama");
     }
 
     // Formatar os hábitos para exibição
@@ -803,26 +851,16 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
 
     // Formatar os hábitos por período (manhã, tarde, noite)
     ['manha', 'tarde', 'noite'].forEach(periodo => {
-        const listaHabitos = habitosDoDia[periodo] || [];
-        if (listaHabitos.length > 0) {
-            habitosText += `${periodo.charAt(0).toUpperCase() + periodo.slice(1)}:\n`;
-            listaHabitos.forEach(habito => {
-                habitosText += `- ${habito}\n`;
-            });
+        const lista = habitosDoDia[periodo] || [];
+        if (lista.length) {
+            habitosText += `${periodo.toUpperCase()}:\n`;
+            lista.forEach(h => habitosText += `- ${h}\n`);
             habitosText += '\n';
         }
     });
 
-    // Copiar os hábitos para a área de transferência (clipboard)
-    const textArea = document.createElement('textarea');
-    textArea.value = habitosText;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
-
-    // Confirmar que os hábitos foram copiados
-    alert('Hábitos copiados para a área de transferência!');
+    navigator.clipboard.writeText(habitosText);
+    alert('Hábitos copiados com sucesso!');
 });
 
 function abrirSitesManha() {
