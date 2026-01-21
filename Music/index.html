@@ -611,6 +611,7 @@ function nextTrack() {
     // Incrementa o índice
     currentTrackIndex = (currentTrackIndex + 1) % currentPlaylist.length;
     playMusic(currentTrackIndex);
+    changePlaylistImageRandom();
 }
 
 // Função para voltar para a música anterior
@@ -620,6 +621,19 @@ function previousTrack() {
     // Decrementa o índice, com wrap-around
     currentTrackIndex = (currentTrackIndex - 1 + currentPlaylist.length) % currentPlaylist.length;
     playMusic(currentTrackIndex);
+    changePlaylistImageRandom();
+}
+
+function changePlaylistImageRandom() {
+    const img = document.getElementById("playlistImage");
+    const currentPlaylist = playlist[currentPlaylistName];
+
+    if (!currentPlaylist || !currentPlaylist.images) return;
+
+    const images = currentPlaylist.images;
+    const randomIndex = Math.floor(Math.random() * images.length);
+
+    img.src = images[randomIndex];
 }
 
         // Função para esconder o player de música

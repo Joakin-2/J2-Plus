@@ -2,6 +2,7 @@
         var playlist = {
             'Christ Gym': {
                 image: '1.png',
+                images: ['1.png'],
                 tracks: [
                     'Christ Gym/Coral Resgate - TUDO COOPERA PARA O BEM.mp3',
                     'Christ Gym/E Tudo Sobre Voce (Ao Vivo) (192).mp3',
@@ -11,6 +12,7 @@
             },
             'Hip Praise': {
                 image: '2.png',
+                images: ['2.png'],
                 tracks: [
                     'Hip Praise/A Presenca.mp3',
                     'Hip Praise/Atos-2.mp3',
@@ -418,6 +420,7 @@
             },
             'FNF': {
                 image: '7.png',
+                images: ['7.png'],
                 tracks: [
                     'FNF/Blammed.mp3',
                     'FNF/Bopeebo.mp3',
