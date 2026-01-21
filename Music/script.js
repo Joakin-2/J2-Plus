@@ -307,6 +307,7 @@
                     'Gym/FUNK LIMINAL (SUPER SLOWED REVERB).mp3',
                     'Gym/GOTHAM.mp3',
                     'Gym/Get Get Down.mp3',
+                    'Gym/HERO FUNK (Slowed).mp3',
                     'Gym/heartburn Ultra slowed.mp3',
                     'Gym/Horizonte de Diamante (Slowed Reverb).mp3',
                     'Gym/I feel like god (slowed reverb).mp3',
@@ -324,6 +325,7 @@
                     'Gym/Luci4 - BodyPartz (Edit Extended, Clean).mp3',
                     'Gym/MTG Distocida Japonesa (edit Slowed).mp3',
                     'Gym/𝙈𝙐𝙉𝘾𝙃𝘼𝙐𝙎𝙀𝙉 𝙁𝙐𝙉𝙆 (𝙎𝙪𝙥𝙚𝙧 𝙎𝙡𝙤𝙬𝙚𝙙).mp3',
+                    'Gym/MY HIGH FUNK.mp3',
                     'Gym/Mangos (Tiktok Version).mp3',
                     'Gym/MARIA VAI X BEAT ABSURDO (Ultra Slowed).mp3',
                     'Gym/𝙈𝙀𝙇𝙊𝘿𝙄𝘼 𝘿𝘼 𝙋𝙍𝘼 𝙉𝙊𝙄𝙎 (𝙪𝙡𝙩𝙧𝙖 𝙨𝙡𝙤𝙬𝙚𝙙).mp3',
@@ -411,6 +413,7 @@
                     'Gym/yeat - swerved it (slowed+reverb).mp3',
                     'Gym/Yeat money so big edit audio (Extended Looped).mp3',
                     'Gym/Your final stand - KENTENSHI paranoia.mp3',
+                    'Gym/𝙔𝙊𝙐𝙉𝙂 𝙂𝙄𝙍𝙇 𝙁𝙐𝙉𝙆 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿).mp3',
                 ]
             },
             'FNF': {
@@ -734,6 +737,7 @@
             'Gym/FUNK LIMINAL (SUPER SLOWED REVERB).mp3': "FUNK LIMINAL (SUPER SLOWED REVERB)",
             'Gym/GOTHAM.mp3': "GOTHAM",
             'Gym/Get Get Down.mp3': "Get Get Down",
+            'Gym/HERO FUNK (Slowed).mp3': "HERO FUNK (Slowed)",
             'Gym/heartburn Ultra slowed.mp3': "heartburn Ultra slowed",
             'Gym/Horizonte de Diamante (Slowed Reverb).mp3': "Horizonte de Diamante (Slowed Reverb)",
             'Gym/I feel like god (slowed reverb).mp3': "I feel like god (slowed reverb)",
@@ -751,6 +755,7 @@
             'Gym/Luci4 - BodyPartz (Edit Extended, Clean).mp3': "BodyPartz (Edit Clean Extended)",
             'Gym/MTG Distocida Japonesa (edit Slowed).mp3': "MTG Distocida Japonesa (edit Slowed)",
             'Gym/𝙈𝙐𝙉𝘾𝙃𝘼𝙐𝙎𝙀𝙉 𝙁𝙐𝙉𝙆 (𝙎𝙪𝙥𝙚𝙧 𝙎𝙡𝙤𝙬𝙚𝙙).mp3': "𝙈𝙐𝙉𝘾𝙃𝘼𝙐𝙎𝙀𝙉 𝙁𝙐𝙉𝙆 (𝙎𝙪𝙥𝙚𝙧 𝙎𝙡𝙤𝙬𝙚𝙙)",
+            'Gym/MY HIGH FUNK.mp3': "MY HIGH FUNK",
             'Gym/Mangos (Tiktok Version).mp3': "Mangos (Tiktok Version)",
             'Gym/MARIA VAI X BEAT ABSURDO (Ultra Slowed).mp3': "MARIA VAI X BEAT ABSURDO (Ultra Slowed)",
             'Gym/𝙈𝙀𝙇𝙊𝘿𝙄𝘼 𝘿𝘼 𝙋𝙍𝘼 𝙉𝙊𝙄𝙎 (𝙪𝙡𝙩𝙧𝙖 𝙨𝙡𝙤𝙬𝙚𝙙).mp3': "𝙈𝙀𝙇𝙊𝘿𝙄𝘼 𝘿𝘼 𝙋𝙍𝘼 𝙉𝙊𝙄𝙎 (𝙪𝙡𝙩𝙧𝙖 𝙨𝙡𝙤𝙬𝙚𝙙)",
@@ -838,4 +843,5 @@
             'Gym/yeat - swerved it (slowed+reverb).mp3': "yeat - swerved it (slowed+reverb)",
             'Gym/Yeat money so big edit audio (Extended Looped).mp3': "Yeat money so big - edit audio",
             'Gym/Your final stand - KENTENSHI paranoia.mp3': "Your final stand - KENTENSHI paranoia",
+            'Gym/𝙔𝙊𝙐𝙉𝙂 𝙂𝙄𝙍𝙇 𝙁𝙐𝙉𝙆 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿).mp3': "𝙔𝙊𝙐𝙉𝙂 𝙂𝙄𝙍𝙇 𝙁𝙐𝙉𝙆 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿)",
         };
