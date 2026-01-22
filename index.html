@@ -135,81 +135,14 @@
     </div>
 </div>
 
-<!-- Squad 
+<!-- Squad -->
 <div id="modal-squad" class="modal">
-    <span class="close-btn">&times;</span>
+    <span class="close-btn" style="color: white;">&times;</span>
     <div class="modal-content">
-      <h1>Jok Squad</h1>
-  
-      <div class="modal-body" style="display: flex;">
-        <div class="profiles-panel">
-          <h3>J2 System</h3>
-          
-          <div class="profile" id="profile-1">
-            <img src="https://t2.tudocdn.net/615839?w=824&h=494" alt="Perfil 1" class="profile-img">
-            <p>Apps</p>
-          </div>
-          
-          <div class="profile" id="profile-2">
-            <img src="https://brasil.perfil.com/wp-content/uploads/2024/09/Abre-PERFIL-BRASIL-8-7.jpg" alt="Perfil 2" class="profile-img">
-            <p>Jok Squad</p>
-          </div>
-          
-          <div class="profile" id="profile-3">
-            <img src="https://thumbs.dreamstime.com/b/engrenagens-em-um-fundo-preto-ilustra%C3%A7%C3%A3o-do-vetor-%C3%ADcone-s%C3%B3lido-liso-eps-108961303.jpg" alt="Perfil 3" class="profile-img">
-            <p>Protótipos</p>
-          </div>
-
-          <div class="modal-footer" style="display: none;">
-            <button id="export-btn" class="modal-btn">Exportar Dados</button>
-            <input type="file" id="import-file" class="modal-btn" style="display: none;">
-            <button id="import-btn" class="modal-btn">Importar Dados</button>
-          </div>
-
-        </div>          
-  
-        <div class="chat-panel">
-          <h3>Chat</h3>
-          <div id="chat-container" class="chat-container" style="height: 50px;">
-            <p style="color: #8561ff;">Escolha um perfil para iniciar o chat.</p>
-          </div>
-          <div id="note-box" class="note-box" style="display: none;">
-            <textarea id="note-textarea" placeholder="Faça suas anotações..." style="color: white; height: 140px;"></textarea>
-          </div>
-        </div>
-      </div>
-  
-    </div>
-  </div>  -->
-  <div id="modal-squad" class="modal">
-    <span class="close-btn" style="
-    color: white;
-">&times;</span>
-    <div class="modal-content">
-        <h1 style="
-    color: white;
-">Jok Squad</h1>
-        <!-- Painel de Blocos de Notas -->
-        <div class="chat-panel">
-          <h3>J2 System</h3>
-            
-            <div style="margin-bottom: 20px;">
-                <h4 style="
-    color: white;
-">Apps</h4>
-                <textarea id="file1" placeholder="Escreva algo aqui..." rows="10" style="color: white; width: 100%;"></textarea>
-            </div>
-            
-            <div>
-                <h4 style="
-    color: white;
-">Protótipos</h4>
-                <textarea id="file2" placeholder="Escreva algo aqui..." rows="10" style="color: white; width: 100%;"></textarea>
-            </div>
-        </div>
+        <h1 style="color: white;">Jok Squad</h1>
+        <textarea id="squadFiles" placeholder="Escreva algo aqui..." rows="10" style="color: white; width: 100%;"></textarea>
     </div>
 </div>
-
 
 <!-- Calendário que ficará escondido inicialmente -->
 <div id="calendar" style="display: none;">
@@ -217,6 +150,7 @@
         <button id="prevYear" style="margin-left: 220px; margin-right: 15px;"><</button>
         <div id="year" style="margin-left: 5px; margin-top: 10px;"></div>
         <button id="nextYear" style="margin-left: 20px;">></button>
+        <div id="date" style="margin-left: 20px; margin-top: 8px;"></div>
     </div>
     <div id="calendarGrid"></div>
 </div>
@@ -243,8 +177,13 @@
         <button id="rafa-btn" class="hidden"><img src="/Proto/icon.png" alt="Ícone de perfil"></button>
         <button id="perfil-btn">Perfil</button>
         <button onclick="window.location.href='https://j2plus.netlify.app/conselho/new.html'" style="display:none; position: absolute; margin-top: 385px; margin-left: -28px;" id="botao31Dezembro">Refexão desse Ano!</button>
-        <button class="chatg" onclick="window.location.href='https://chat.openai.com/chat'"></button>
         <span class="clock">
+            <div class="address-bar">
+                <i class="fas fa-search" style="margin-right: 10px;"></i>
+                <input style="background: #1a1a1c; color: #8c52ff;" type="text" id="urlInput" placeholder="Faça sua pesquisa...">
+                <button id="goButton">Ir</button>
+            </div>
+            <button class="chatg" onclick="window.location.href='https://chat.openai.com/chat'"><i class="fa-solid fa-comments"></i></button>
             <i id="toggleMusicBtn" class="fas fa-volume-up" style="cursor: pointer;"></i>
             <i id="muteButton" class="fas fa-volume-up" style="display: none; cursor: pointer;"></i>
             <i id="openCamera" class="fas fa-camera" style="cursor: pointer;"></i>
@@ -255,7 +194,7 @@
               </i>
             <i id="openWifi" class="fas fa-wifi" style="cursor: pointer;"></i>
             <i id="openClock" class="fas fa-clock"></i> <!-- Ícone de relógio -->
-            <span id="clock">00:00</span>
+            <span id="clock">00:00:00</span>
         </span>    
         <!-- Lista de câmeras disponíveis -->
         <div id="cameraOptions" style="background: rgb(18, 18, 18); color: white; display: none; margin-left: 66%;margin-top: 60px; position: fixed; z-index: 1000;">
@@ -487,6 +426,42 @@
     <script src="Script/nivel.js"></script>
     <script src="main.js"></script> <!-- JavaScript externo -->
     <script>
+        const input = document.getElementById("urlInput");
+  const button = document.getElementById("goButton");
+
+  function pesquisar() {
+    const query = input.value.trim();
+    if (query !== "") {
+      window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(query);
+    }
+  }
+
+  // Clique no botão
+  button.addEventListener("click", pesquisar);
+
+  // Pressionar Enter
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      pesquisar();
+    }
+  });
+
+        function updateDate2() {
+    const now = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let formattedDate = now.toLocaleDateString('pt-br', options);
+
+    // Remove "-feira" dos dias da semana
+    formattedDate = formattedDate.replace(/segunda-feira|terça-feira|quarta-feira|quinta-feira|sexta-feira/gi, function (match) {
+        return match.replace('-feira', '');
+    });
+
+    document.getElementById('date').textContent = formattedDate;
+}
+
+// Chama as funções ao carregar a página e a cada segundo
+updateDate2();
+
         function GameState() {
             window.open('https://www.microsoft.com/en-us/edge/features/surf-game?form=MA13FJ', '_blank');
             window.open('https://krunker.io', '_blank');
@@ -654,45 +629,12 @@ const importFileInput = document.getElementById('import-file');
 // Função para abrir o modal
 btn.addEventListener('click', function() {
   modal.style.display = 'block';
-  loadNoteContent();
 });
 
 // Função para fechar o modal
 closeBtn.addEventListener('click', function() {
   modal.style.display = 'none';
 });
-
-// Função para salvar o conteúdo do bloco de notas
-function saveNoteContent() {
-    const file1 = document.getElementById("file1").value;
-    const file2 = document.getElementById("file2").value;
-    
-    localStorage.setItem("file1", file1); // Salva o conteúdo do Bloco 1 no localStorage
-    localStorage.setItem("file2", file2); // Salva o conteúdo do Bloco 2 no localStorage
-}
-
-// Função para carregar o conteúdo salvo nos blocos
-function loadNoteContent() {
-    const file1 = localStorage.getItem("file1");
-    const file2 = localStorage.getItem("file2");
-    
-    if (file1) {
-        document.getElementById("file1").value = file1; // Preenche o Bloco 1 com o conteúdo salvo
-    }
-    
-    if (file2) {
-        document.getElementById("file2").value = file2; // Preenche o Bloco 2 com o conteúdo salvo
-    }
-}
-
-// Adicionar event listeners para salvar automaticamente
-document.getElementById("file1").addEventListener("input", saveNoteContent);
-document.getElementById("file2").addEventListener("input", saveNoteContent);
-
-const file1Value = document.getElementById("file1").value;
-const file2Value = document.getElementById("file2").value;
-localStorage.setItem("file1-" + perfilAtivo, file1Value);
-localStorage.setItem("file2-" + perfilAtivo, file2Value);
 
         // Função para alternar o som da página
     document.getElementById('muteButton').addEventListener('click', function () {
@@ -1114,16 +1056,6 @@ window.onclick = function(event) {
   checkSeason2();
   exibirSaudacao();
 };
-
-    // Atualizar o placar a cada 5 segundos
-    //setInterval(getLiveScores, 5000);
-
-    // Carregar o placar inicial ao carregar a página
-    //getLiveScores();
-
-    // Trocar a posição a cada 5 segundos
-    //setInterval(swapSections, 5000);
-    </script>
-    
+    </script>  
 </body>
 </html>

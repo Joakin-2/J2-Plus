@@ -591,13 +591,15 @@ function updateClock() {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
     const clock = document.getElementById('clock');
-    clock.textContent = `${hours}:${minutes}`;
+    clock.textContent = `${hours}:${minutes}:${seconds}`;
 }
 
-// Atualiza o relógio a cada minuto
-setInterval(updateClock, 60000);
-// Chama a função uma vez para não esperar um minuto
+// Atualiza o relógio a cada segundo
+setInterval(updateClock, 1000);
+// Chama imediatamente
 updateClock();
 
 async function fetchCotacaoDolar() {
@@ -1250,29 +1252,9 @@ exportarBtn.addEventListener("click", () => {
     perfil.anotacoes = anotacoesTextarea.value;
   }
 
-  const anotacoesTextarea2 = document.getElementById('anotacoes2');
-  if (anotacoesTextarea2) {
-    perfil.anotacoes2 = anotacoesTextarea2.value;
-  }
-
-  const anotacoesTextarea3 = document.getElementById('anotacoes3');
-  if (anotacoesTextarea3) {
-    perfil.anotacoes3 = anotacoesTextarea3.value;
-  }
-
-  const metasTextarea = document.getElementById('meta');
-  if (metasTextarea) {
-    perfil.metas = metasTextarea.value;
-  }
-
-  const file1 = document.getElementById('file1');
-  if (file1) {
-    perfil.file1 = file1.value;
-  }
-
-  const file2 = document.getElementById('file2');
-  if (file2) {
-    perfil.file2 = file2.value;
+  const squadFilesBox = document.getElementById("squadFiles");
+  if (squadFilesBox) {
+    perfil.squadFiles = squadFilesBox.value;
   }
 
   // Inclui as reclamações no perfil
@@ -1329,7 +1311,6 @@ importarBtn.addEventListener("click", () => {
           if (dadosImportados.gymNotes)
             localStorage.setItem("gymNotes-" + perfilAtivo, dadosImportados.gymNotes); // Salva as anotações de gym
 
-          // Salva as notas
           if (dadosImportados.notas)
             localStorage.setItem("notas-" + perfilAtivo, dadosImportados.notas);
 
@@ -1339,20 +1320,9 @@ importarBtn.addEventListener("click", () => {
           if (dadosImportados.anotacoes)
             localStorage.setItem("anotacoes-" + perfilAtivo, dadosImportados.anotacoes);
 
-          if (dadosImportados.anotacoes2)
-            localStorage.setItem("anotacoes2-" + perfilAtivo, dadosImportados.anotacoes2);
-
-          if (dadosImportados.anotacoes3)
-            localStorage.setItem("anotacoes3-" + perfilAtivo, dadosImportados.anotacoes3);
-
-          if (dadosImportados.metas)
-            localStorage.setItem("metas-" + perfilAtivo, dadosImportados.metas);
-
-          if (dadosImportados.file1)
-            document.getElementById("file1").value = dadosImportados.file1;
-
-          if (dadosImportados.file2)
-            document.getElementById("file2").value = dadosImportados.file2;
+          if (dadosImportados.squadFiles) {
+            localStorage.setItem("squadFiles-" + perfilAtivo, dadosImportados.squadFiles);
+          }
 
           // Atualiza as reclamações no localStorage
           if (dadosImportados.complaints) {
@@ -1452,29 +1422,9 @@ const musicPlaceNotesBox = document.getElementById("musicPlaceNotes1"); // Aqui 
     anotacoesBox.value = localStorage.getItem("anotacoes-" + perfilAtivo) || "";
   }
 
-  const anotacoes2Box = document.getElementById("anotacoes2");
-  if (anotacoes2Box) {
-    anotacoes2Box.value = localStorage.getItem("anotacoes2-" + perfilAtivo) || "";
-  }
-
-  const anotacoes3Box = document.getElementById("anotacoes3");
-  if (anotacoes3Box) {
-    anotacoes3Box.value = localStorage.getItem("anotacoes3-" + perfilAtivo) || "";
-  }
-
-  const metasBox = document.getElementById("metas");
-  if (metasBox) {
-    metasBox.value = localStorage.getItem("metas-" + perfilAtivo) || "";
-  }
-
-  const file1Box = document.getElementById("file1");
-  if (file1Box) {
-    file1Box.value = perfil.file1 || "";
-  }
-
-  const file2Box = document.getElementById("file2");
-  if (file2Box) {
-    file2Box.value = perfil.file2 || "";
+  const squadFilesBox = document.getElementById("squadFiles");
+  if (squadFilesBox) {
+    squadFilesBox.value = localStorage.getItem("squadFiles-" + perfilAtivo) ||"";
   }
 
   nomePerfil.textContent = perfil.nome;

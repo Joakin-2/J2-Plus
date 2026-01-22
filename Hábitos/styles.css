@@ -29,14 +29,14 @@ body {
     position: absolute;
     width: 100px;
     height: 50px;
-    top: 50px;
+    top: 2%;
     left: 220px;
     font-size: 20px;
 }
 
 #relogio {
     position: absolute;
-    top: 48px; /* Ajuste conforme necessário */
+    top: 2%; /* Ajuste conforme necessário */
     right: 220px; /* Posiciona 20px a partir da borda direita */
     font-size: 24px;
     color: white;
@@ -71,7 +71,7 @@ h2 {
 }
 
 h3 {
-    margin: 20px 0;
+    margin: 10px;
     font-size: 15px;
     color: rgb(255, 255, 255);
 }
@@ -83,31 +83,6 @@ h3 {
     color: white;
     border: 1px solid #ddd;
     padding: 20px;
-}
-
-.caixa-anotacao h2 {
-    margin-bottom: 10px;
-}
-
-.caixa-anotacao2 {
-    width: 389px;
-    border-radius: 8px;
-    background-color: #2b2b2b;
-    color: white;
-    border: 1px solid #ddd;
-    padding: 25px;
-}
-
-.meta-container {
-    width: 840px;
-    background-color: #2b2b2b;
-    color: white;
-    border: 1px solid #ddd;
-    padding: 20px;
-}
-
-.caixa-anotacao2 h2 {
-    margin-bottom: 10px;
 }
 
 .button-container {
@@ -126,7 +101,6 @@ h3 {
 }
 
 textarea {
-    width: 90%;
     height: 200px;
     border: none;
     background-color: #333;
@@ -301,7 +275,6 @@ ul li {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom: 30px;
 }
 
 .caixa {

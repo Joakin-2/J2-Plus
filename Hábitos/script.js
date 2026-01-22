@@ -176,7 +176,7 @@ if (programadosSalvos) {
     programadosTextarea.value = programadosSalvos;
 }
 
-// Campo 'O que não fazer'
+// Campo 'Anotações'
 const anotacoesTextarea = document.getElementById('anotacoes');
 anotacoesTextarea.addEventListener('input', function() {
     localStorage.setItem('anotacoes-' + perfilAtivo, this.value);
@@ -185,39 +185,6 @@ anotacoesTextarea.addEventListener('input', function() {
 const anotacoesSalvas = localStorage.getItem('anotacoes-' + perfilAtivo);
 if (anotacoesSalvas) {
     anotacoesTextarea.value = anotacoesSalvas;
-}
-
-// Campo 'O que melhorar'
-const anotacoesTextarea2 = document.getElementById('anotacoes2');
-anotacoesTextarea2.addEventListener('input', function() {
-    localStorage.setItem('anotacoes2-' + perfilAtivo, this.value);
-});
-
-const anotacoesSalvas2 = localStorage.getItem('anotacoes2-' + perfilAtivo);
-if (anotacoesSalvas2) {
-    anotacoesTextarea2.value = anotacoesSalvas2;
-}
-
-// Campo 'Anotações'
-const anotacoesTextarea3 = document.getElementById('anotacoes3');
-anotacoesTextarea3.addEventListener('input', function() {
-    localStorage.setItem('anotacoes3-' + perfilAtivo, this.value);
-});
-
-const anotacoesSalvas3 = localStorage.getItem('anotacoes3-' + perfilAtivo);
-if (anotacoesSalvas3) {
-    anotacoesTextarea3.value = anotacoesSalvas3;
-}
-
-// Campo 'Metas'
-const metasTextarea = document.getElementById('meta');
-metasTextarea.addEventListener('input', function() {
-    localStorage.setItem('metas-' + perfilAtivo, this.value);
-});
-
-const metasSalvas = localStorage.getItem('metas-' + perfilAtivo);
-if (metasSalvas) {
-    metasTextarea.value = metasSalvas;
 }
 
     // Carregar hábitos salvos do localStorage ao carregar a página

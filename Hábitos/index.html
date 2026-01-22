@@ -24,18 +24,11 @@
 
     <h1>Monitor de Hábitos</h1>
 
-    <div style="margin-bottom: 30px;"></div>
-
-    <section class="caixa-anotacao">
-        <div class="button-group" style="margin-left: 360px;"> 
-            <h3>Anotações</h3>
-            <button class="btn-export" onclick="exportNotes()" style="margin-left: 10px; display: none;"><i class="fas fa-file-export"></i></button>
-            <button class="btn-import" onclick="importNotes()" style="display: none;"><i class="fas fa-file-import"></i></button>
-        </div>
-        <textarea id="anotacoes3" rows="5" cols="50"></textarea>
+    <section class="caixa-anotacao" style="margin-bottom: 10px;">
+        <h3>Anotações</h3>
+        <textarea id="anotacoes" rows="5" cols="50"></textarea>
+        <textarea id="programados" rows="5" cols="50"></textarea>
     </section>
-
-    <div style="margin-bottom: 30px;"></div>
 
     <div style="display: flex;">
         <button id="mostrarHorarioBtn" style="width: 10px; height: 40px; background-color: #141414; border: 1px solid #141414; margin-left: -5px;"><i class="fas fa-question-circle" style="margin-left: -10px;"></i></button>
@@ -77,34 +70,6 @@
         <button id="desmarcarHabitosBtn">Desmarcar Hábitos</button>
         <button id="excluirHabitosBtn">Excluir Hábitos</button>
     </div>    
-
-    <div style="margin-bottom: 30px;"></div>
-
-    <div class="section-container">
-        <section class="caixa-anotacao2">
-            <h3>Metas</h3>
-            <textarea id="meta" rows="5" cols="50"></textarea>
-        </section>
-
-        <section class="caixa-anotacao2">
-            <h3>Programados</h3>
-            <textarea id="programados" rows="5" cols="50"></textarea>
-        </section>
-    </div>
-
-    <div style="margin-bottom: 30px;"></div>
-
-    <div class="section-container">
-        <section class="caixa-anotacao2">
-            <h2>O que melhorar</h2>
-            <textarea id="anotacoes2" rows="5" cols="50"></textarea>
-        </section>
-
-        <section class="caixa-anotacao2">
-            <h2>O que não fazer</h2>
-            <textarea id="anotacoes" rows="5" cols="50"></textarea>
-        </section>
-    </div>
 
     <div class="modal" id="myModal">
         <div class="modal-conteudo">

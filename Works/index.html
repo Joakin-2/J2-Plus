@@ -12,7 +12,6 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212;
             color: #ffffff;
         }
 
@@ -20,18 +19,70 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 8%;
             gap: 40px; /* Aumenta a distância entre os botões */
         }
 
-        .meta-container {
-            margin: 20px;
-        }
+        .dashboard {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  align-items: flex-start;
+  max-width: 1200px;   /* largura máxima */
+  margin: 0 auto; 
+}
 
-        .calendar-container {
-            margin-top: 20px;
-            text-align: center;
-        }
+/* Textos copiáveis */
+.copy-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Caixas */
+.copy-box, .calendar-container, .meta-container {
+  background: #1a1a1c;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+}
+
+/* Larguras */
+.copy-box {
+  width: 320px;
+}
+
+.calendar-container {
+  width: 400px;
+}
+
+.meta-container {
+  width: 360px;
+}
+
+.copy-box {
+  background: #1a1a1c;
+  color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  width: 320px;
+  position: relative;
+}
+
+.copy-box pre {
+  white-space: pre-wrap;
+  font-family: Arial, sans-serif;
+  color: #8c52ff;
+  margin: 0 0 10px 0;
+}
+
+.copy-box button {
+  background: #8c52ff;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
         .calendar {
             display: grid;
@@ -87,6 +138,7 @@
             border: none;
             cursor: pointer;
             margin-top: 10px;
+            margin-left: 10px;
         }
 
         .botao {
@@ -117,8 +169,8 @@
     background-color: #121212;
     color: white;
     border: none;
-    width: 40px;
-    padding: 5px 10px;
+    margin-top: 5px;
+    height: 50px;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -175,48 +227,70 @@
 </head>
 <body>
 
-    <!-- Calendário -->
-    <div class="calendar-container" style="display: flex; margin-left: 250px;">
-        <h3 style="margin-left: 90px; position: absolute; margin-top: 50px;">Calendário</h3>
-        <div id="calendar-section" style="margin-top: 80px;">
-            <div id="calendar" class="calendar" style="margin-left: 20%;">
-                <div class="day day-name">Dom</div>
-                <div class="day day-name">Seg</div>
-                <div class="day day-name">Ter</div>
-                <div class="day day-name">Qua</div>
-                <div class="day day-name">Qui</div>
-                <div class="day day-name">Sex</div>
-                <div class="day day-name">Sáb</div>
-                <!-- Dias do mês -->
-                <!-- A geração dos dias será feita via JavaScript -->
-            </div>
-        </div>
+    <div class="dashboard" style="margin-top: 4%;">
+
+  <!-- Textos copiáveis -->
+  <div class="copy-container">
+    <div class="copy-box">
+      <pre id="text1">Siga-nos para mais conteúdos que edificam a sua fé 🙏
+.
+.
+.
+#fy #jesus #jesusisking #pecado #Deus</pre>
+      <button onclick="copyText('text1')">Copiar</button>
     </div>
 
-    <!-- Meta de Ganho -->
-    <div class="meta-container" style="position: absolute; margin-left: 60%; top: 50px;">
-        <h3 style="margin-top: 0px;">Meta</h3>
-        <div class="button-group"> 
-            <h2>Dia R$<span id="metaGanho">80.00</span> | Mês R$<span id="meta-mes">1.700,00</span></h2>
-            <!-- <h2>Dia R$<span id="meta-dia">80.00</span> | Mês R$<span id="meta-mes">1.700,00</span></h2> -->
-            <button class="btn-export" onclick="exportarDados()" style="margin-left: 15px;"><i class="fas fa-file-export"></i></button>
-            <button class="btn-import" onclick="importarDados()"><i class="fas fa-file-import"></i></button>
-        </div>
-        <h4>Selecione um dia e registre seu ganho:</h4>
-        <div>
-            <input type="date" id="data-selecionada" style="display: block; margin-bottom: 10px;">
-        </div>
-        <div>
-            <input type="number" id="valor-ganho" placeholder="Valor ganho" style="display: block; margin-bottom: 10px;">
-        </div>        
-            <div class="button-group">
-            <button onclick="registrarGanho()">Registrar</button>
-            <button onclick="salvarPDF()" style="margin-left: 5px;">Salvar PDF</button>
-            <button onclick="reiniciarProgresso()" style="margin-left: 5px;">Reiniciar Tudo</button>
-            </div>
-            <h3>Total de Ganhos: R$<span id="total-ganhos">0.00</span></h3>
-            <!-- <h4>Código do CIEE - EG24962</h4> -->
+    <div class="copy-box">
+      <pre id="text2">👀 Siga-nos para ver mais projetos incríveis!
+🚀 Transformando ideias em realidade!
+.
+.
+.
+#3dprinter #3dprint #geek #impressao3d #fyp</pre>
+      <button onclick="copyText('text2')">Copiar</button>
     </div>
+  </div>
+
+  <!-- Calendário -->
+  <div class="calendar-container" style="height: 370px;">
+    <h3 style="text-align: center;">Calendário</h3>
+    <div id="calendar" class="calendar">
+      <div class="day day-name">Dom</div>
+      <div class="day day-name">Seg</div>
+      <div class="day day-name">Ter</div>
+      <div class="day day-name">Qua</div>
+      <div class="day day-name">Qui</div>
+      <div class="day day-name">Sex</div>
+      <div class="day day-name">Sáb</div>
+    </div>
+  </div>
+
+  <!-- Meta -->
+  <div class="meta-container">
+    <div class="button-group" style="margin-left: 26%;">
+        <h3>Meta</h3>
+    <button class="btn-export" onclick="exportarDados()">
+      <i class="fas fa-file-export"></i>
+    </button>
+    <button class="btn-import" onclick="importarDados()">
+      <i class="fas fa-file-import"></i>
+    </button>
+    </div>
+    
+    <h2>Dia R$80 | Mês R$1.700</span></h2>
+    <input type="date" id="data-selecionada">
+    <input type="number" id="valor-ganho" placeholder="Valor ganho">
+
+    <div class="button-group">
+      <button onclick="registrarGanho()">Registrar</button>
+      <button onclick="salvarPDF()">Salvar PDF</button>
+      <button onclick="reiniciarProgresso()">Reiniciar</button>
+    </div>
+
+    <h3>Total de Ganhos: R$<span id="total-ganhos">0.00</span></h3>
+  </div>
+
+</div>
 
     <!-- Container de Botões -->
     <div class="container">
@@ -233,6 +307,13 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
+        function copyText(id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Texto copiado!");
+  });
+}
+
         function abrirModal(modalId) {
             const modal = document.getElementById(modalId + 'Modal');
             modal.style.display = "block";  // Torna o modal visível

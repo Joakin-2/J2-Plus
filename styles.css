@@ -8,6 +8,16 @@ body {
     color: #e0e0e0; /* Cor de texto clara */
 }
 
+.address-bar {
+    display: flex;
+    width: 60%;
+    align-items: center;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    left: 130px;
+    position: fixed;
+}
+
 .positivo {
         color: green;
     }
@@ -249,8 +259,8 @@ input, textarea {
 
 .clock {
     font-size: 1.2em; /* Tamanho da fonte do relógio */
-    margin-left: 60%;
-    margin-top: 0.2%;
+    margin-left: 50%;
+    margin-top: 1.2%;
 }
 
 .clock i {
@@ -572,13 +582,18 @@ input[type="text"] {
 }
 
 .chatg {
-    background-color: #1a1a1c; /* Roxo para o botão */
+    background-color: #121212; /* Roxo para o botão */
     color: #fff; /* Cor do texto */
     border: none; /* Sem borda */
     border-radius: 5px; /* Bordas arredondadas */
     cursor: pointer; /* Cursor pointer */
     transition: background-color 0.3s; /* Transição suave */
-    margin-left: 5px;
+    margin-right: -20px;
+    font-size: 16px;
+}
+
+.chatg:hover {
+    background-color: #181818; /* Roxo mais escuro no hover */
 }
 
 .detalhes {

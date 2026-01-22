@@ -12,15 +12,11 @@ const perfis = {
     notesLer: localStorage.getItem("notes-ler-Joaquim") || "",
     musicPlaceNotes1: localStorage.getItem("musicPlaceNotes1-Joaquim") || "",
     gymNotes: localStorage.getItem("gymNotes-Joaquim") || "",
-    complaints: JSON.parse(localStorage.getItem("complaints-Joaquim")) || [],
     notas: localStorage.getItem("notas-Joaquim") || "",
     programados: localStorage.getItem("programados-Joaquim") || "",
     anotacoes: localStorage.getItem("anotacoes-Joaquim") || "",
-    anotacoes2: localStorage.getItem("anotacoes2-Joaquim") || "",
-    anotacoes3: localStorage.getItem("anotacoes3-Joaquim") || "",
-    metas: localStorage.getItem("metas-Joaquim") || "",
-    file1: localStorage.getItem("file1-Joaquim") || "",
-    file2: localStorage.getItem("file2-Joaquim") || ""
+    squadFiles: localStorage.getItem("squadFiles-Joaquim") || "",
+    complaints: JSON.parse(localStorage.getItem("complaints-Joaquim")) || [],
   },
   Main: {
     nome: "Main",
@@ -30,13 +26,10 @@ const perfis = {
     notesLer: localStorage.getItem("notes-ler-Main") || "",
     musicPlaceNotes1: localStorage.getItem("musicPlaceNotes1-Main") || "",
     gymNotes: localStorage.getItem("gymNotes-Main") || "",
-    complaints: JSON.parse(localStorage.getItem("complaints-Main")) || [],
     notas: localStorage.getItem("notas-Main") || "",
     programados: localStorage.getItem("programados-Main") || "",
     anotacoes: localStorage.getItem("anotacoes-Main") || "",
-    anotacoes2: localStorage.getItem("anotacoes2-Main") || "",
-    anotacoes3: localStorage.getItem("anotacoes3-Main") || "",
-    metas: localStorage.getItem("metas-Main") || "",
+    complaints: JSON.parse(localStorage.getItem("complaints-Main")) || [],
   }
 };
 
