@@ -412,10 +412,7 @@ function loadSavedData() {
         console.log('Dados carregados:', data);
 
         // Preenche os campos com os dados carregados
-        document.getElementById('anotacoes3').value = data.anotacoes || '';
-        document.getElementById('meta').value = data.meta || '';
         document.getElementById('programados').value = data.programados || '';
-        document.getElementById('anotacoes2').value = data.melhorar || '';
         document.getElementById('anotacoes').value = data.naoFazer || '';
 
         // Limpa os hábitos anteriores antes de adicionar os novos
@@ -534,10 +531,7 @@ loadSavedData();
 
 function exportNotes() {
     // Gather data from textareas
-    const anotacoes = document.getElementById('anotacoes3').value;
-    const meta = document.getElementById('meta').value;
     const programados = document.getElementById('programados').value;
-    const melhorar = document.getElementById('anotacoes2').value;
     const naoFazer = document.getElementById('anotacoes').value;
 
     // Coleta os dados dos hábitos
@@ -555,10 +549,7 @@ function exportNotes() {
     // Prepare data object
     const data = {
         anotacoes,
-        meta,
         programados,
-        melhorar,
-        naoFazer,
         habitos
     };
 
@@ -601,10 +592,7 @@ function importNotes() {
                 console.log('Imported data:', data);
 
                 // Update textareas with imported data
-                document.getElementById('anotacoes3').value = data.anotacoes || '';
-                document.getElementById('meta').value = data.meta || '';
                 document.getElementById('programados').value = data.programados || '';
-                document.getElementById('anotacoes2').value = data.melhorar || '';
                 document.getElementById('anotacoes').value = data.naoFazer || '';
 
                 // Save the imported data to localStorage
