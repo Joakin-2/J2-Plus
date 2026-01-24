@@ -146,20 +146,46 @@ document.addEventListener('keydown', handleEscapeKey);
 function falar(texto) {
     const synth = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(texto);
-    utterance.lang = 'pt-BR'; // Define o idioma para português
-    synth.speak(utterance);
+    utterance.lang = 'pt-BR';
+
+    // Ajustes de voz (mais natural e feminina)
+    utterance.rate = 0.95;   // velocidade
+    utterance.pitch = 1.1;   // tom feminino
+    utterance.volume = 1;    // volume
+
+    function escolherVoz() {
+        const vozes = synth.getVoices();
+
+        // Prioriza vozes femininas do Edge
+        const vozFeminina = vozes.find(voz =>
+            voz.name.includes("Francisca") ||
+            voz.name.includes("Thalita")
+        );
+
+        utterance.voice = vozFeminina || vozes.find(voz => voz.lang === 'pt-BR');
+        synth.speak(utterance);
+    }
+
+    if (synth.getVoices().length === 0) {
+        synth.onvoiceschanged = escolherVoz;
+    } else {
+        escolherVoz();
+    }
 }
 
-// Mensagens de saudação inicial
+// Saudação
 const saudacoesIniciais = [
     "Preparando as coisas... Olá, estou à sua disposição!",
     "Aguarde um instante... Olá",
     "Iniciando o sistema... Pronto",
-    "Preparando Configurações... Olá, estou à disposição!",
+    "Preparando configurações... Olá, estou à disposição!",
     "Carregando recursos... Olá, como posso ser útil?",
-    "Aguarde um momento... Olá, estou aqui para ajudar!",
+    "Aguarde um momento... Olá, estou aqui para ajudar!"
 ];
-const saudacaoInicial = saudacoesIniciais[Math.floor(Math.random() * saudacoesIniciais.length)];
+
+const saudacaoInicial =
+    saudacoesIniciais[Math.floor(Math.random() * saudacoesIniciais.length)];
+
 falar(saudacaoInicial);
 
 // Recomendação inicial
