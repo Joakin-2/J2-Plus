@@ -1,8 +1,8 @@
 // Listas de músicas
         var playlist = {
             'Christ Gym': {
-                image: '1.png',
-                images: ['1.png'],
+                image: 'https://ih1.redbubble.net/image.3584855706.4055/raf,360x360,075,t,fafafa:ca443f4786.jpg',
+                images: ['https://ih1.redbubble.net/image.3584855706.4055/raf,360x360,075,t,fafafa:ca443f4786.jpg'],
                 tracks: [
                     'Christ Gym/Coral Resgate - TUDO COOPERA PARA O BEM.mp3',
                     'Christ Gym/E Tudo Sobre Voce (Ao Vivo) (192).mp3',
@@ -11,8 +11,8 @@
                 ]
             },
             'Hip Praise': {
-                image: '2.png',
-                images: ['2.png'],
+                image: 'https://i.pinimg.com/originals/63/f0/62/63f062b6ab8b503e4bb6fccffb65b0a0.jpg',
+                images: ['https://i.pinimg.com/originals/63/f0/62/63f062b6ab8b503e4bb6fccffb65b0a0.jpg'],
                 tracks: [
                     'Hip Praise/A Presenca.mp3',
                     'Hip Praise/Atos-2.mp3',
@@ -46,8 +46,8 @@
                 ]
             },
             'Praise': {
-                image: '3.png',
-                images: ['3.png', '3 - 1.png', '3 - 2.png'],
+                image: 'https://cdn.create.vista.com/api/media/small/470988906/stock-vector-bible-gold-plated-metalic-icon-logo-vector',
+                images: ['https://cdn.create.vista.com/api/media/small/470988906/stock-vector-bible-gold-plated-metalic-icon-logo-vector', 'https://preview.redd.it/defina-em-2-palavras-suas-sensa%C3%A7%C3%B5es-ao-ver-esta-foto-v0-nsjbcg2yqite1.jpeg?auto=webp&s=e631137f83d9bdc562d493256e1cf3c840e2b65e', 'https://i1.sndcdn.com/artworks-FP4pbZ1AQzlZVIbd-blVJ8w-t1080x1080.jpg'],
                 tracks: [
                     'Praise/A Boa Parte (Ao Vivo).mp3',
                     'Praise/A Face Adorada.mp3',
@@ -94,8 +94,8 @@
                 ]
             },
             'Fundo': {
-                image: '4.jpg',
-                images: ['4.jpg', '4.gif'],
+                image: 'https://i1.sndcdn.com/artworks-1yyNzLozVjYYVkdK-UBkviQ-t500x500.jpg',
+                images: ['https://i1.sndcdn.com/artworks-1yyNzLozVjYYVkdK-UBkviQ-t500x500.jpg', 'https://i.pinimg.com/originals/32/2c/d3/322cd367e42b07538a3d49fd476b63e1.gif'],
                 tracks: [
                     'Fundo/432 Hz.mp3',
                     'Fundo/852 Hz.mp3',
@@ -113,8 +113,8 @@
                 ]
             },
             'Vibes': {
-                image: '5.jpg',
-                images: ['5.jpg', '5.gif', '5 - 1.gif', '5 - 2.gif'],
+                image: 'https://i.scdn.co/image/ab67616d0000b273afeb818f0641df8a027bb91b',
+                images: ['https://i.scdn.co/image/ab67616d0000b273afeb818f0641df8a027bb91b', 'https://i.pinimg.com/originals/48/03/98/480398182051724ebf47a64376d169ba.gif', 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2h4M3p1Y2s0aDZ3dnl6N20wZWRzbnZxemkwNzJmdm9yMHdlZDRkeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ORjfgiG9ZtxcQQwZzv/giphy.gif', 'https://i.pinimg.com/originals/16/1a/d5/161ad58e27b5d59f59fb8ba1ee6eaae2.gif'],
                 tracks: [
                     'Vibe/A COLORS ENCORE.mp3',
                     'Vibe/After Party (Official Audio).mp3',
@@ -245,8 +245,8 @@
                 ]
             },
             'Gym': {
-                image: '6.png',
-                images: ['6.png', '6 - 1.png', '6 - 2.png', '6 - 3.gif', '6 - 4.jpeg', '6 - 5.png', '6 - 6.gif', '6 - 7.gif', '6 - 8.gif', '6 - 9.gif'],
+                image: 'https://play-lh.googleusercontent.com/ixn6Eatx2XtOZiIf1EGxDOcRNQ9-wiZNAZHZBHb1YhRKYTlm5DWWYlBGew97D1i1rOs',
+                images: ['https://play-lh.googleusercontent.com/ixn6Eatx2XtOZiIf1EGxDOcRNQ9-wiZNAZHZBHb1YhRKYTlm5DWWYlBGew97D1i1rOs', 'https://i.redd.it/xgbtq3ehqb4f1.png', 'https://media1.tenor.com/m/JrmnrTcgt1QAAAAd/invincible-invincible-war.gif', 'https://64.media.tumblr.com/0a598ca2635acf9e510efa82c106a982/7307e41ae7e569e2-00/s540x810/1378d68f041b3c821fafaf2565b3d55b2dc45600.gifv', 'https://cdn.polyspeak.ai/speakmaster/b786ec3cafd4105216a00042de45ec24.webp', 'https://i.ytimg.com/vi/q20NzJ1Ft1A/oardefault.jpg?sqp=-oaymwEiCNAFENAFSFqQAgHyq4qpAxEIARUAAAAAJQAAyEI9AICiQw==&rs=AOn4CLAVZzo2v6_iijtjuYwPdiaOS5opZw', 'https://i.pinimg.com/originals/7c/d3/e9/7cd3e99ec3e14cb3c9efbb8f87a5d9ca.gif', 'https://media1.tenor.com/m/_YauivWNmfgAAAAd/gamma-jack-edit.gif', 'https://i1.sndcdn.com/avatars-RNVAVn2djfdWZTy5-DWnv8A-t1080x1080.jpg'],
                 tracks: [
                     'Gym/2K FREESTYLE.mp3',
                     'Gym/4TAO - Super Slowed.mp3',
@@ -420,8 +420,8 @@
                 ]
             },
             'FNF': {
-                image: '7.png',
-                images: ['7.png'],
+                image: 'https://ih1.redbubble.net/image.2173796957.6322/st,small,507x507-pad,600x600,f8f8f8.jpg',
+                images: ['https://ih1.redbubble.net/image.2173796957.6322/st,small,507x507-pad,600x600,f8f8f8.jpg'],
                 tracks: [
                     'FNF/Blammed.mp3',
                     'FNF/Bopeebo.mp3',
