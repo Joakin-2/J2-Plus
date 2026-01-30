@@ -159,7 +159,7 @@ function falar(texto) {
         // Prioriza vozes femininas do Edge
         const vozFeminina = vozes.find(voz =>
             voz.name.includes("Francisca") ||
-            voz.name.includes("Thalita")
+            //voz.name.includes("Thalita")
         );
 
         utterance.voice = vozFeminina || vozes.find(voz => voz.lang === 'pt-BR');
