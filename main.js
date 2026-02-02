@@ -145,25 +145,31 @@ document.addEventListener('keydown', handleEscapeKey);
 // Função para falar um texto em português
 function falar(texto) {
     const synth = window.speechSynthesis;
+    synth.cancel(); // evita sobreposição/repetição
+
     const utterance = new SpeechSynthesisUtterance(texto);
     utterance.lang = 'pt-BR';
+    utterance.rate = 0.95;
+    utterance.pitch = 1.1;
+    utterance.volume = 1;
 
-    // Ajustes de voz (mais natural e feminina)
-    utterance.rate = 0.95;   // velocidade
-    utterance.pitch = 1.1;   // tom feminino
-    utterance.volume = 1;    // volume
+    let jaFalou = false;
 
     function escolherVoz() {
+        if (jaFalou) return;
+        jaFalou = true;
+
         const vozes = synth.getVoices();
 
-        // Prioriza vozes femininas do Edge
         const vozFeminina = vozes.find(voz =>
-            voz.name.includes("Francisca") //||
+            voz.name.includes("Francisca")//||
             //voz.name.includes("Thalita")
         );
 
-        utterance.voice = vozFeminina || vozes.find(voz => voz.lang === 'pt-BR');
+        utterance.voice = vozFeminina || vozes.find(v => v.lang === 'pt-BR');
         synth.speak(utterance);
+
+        synth.onvoiceschanged = null; // remove o listener
     }
 
     if (synth.getVoices().length === 0) {
