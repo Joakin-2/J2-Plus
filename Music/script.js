@@ -587,7 +587,7 @@
             'Vibe/Thing - A Cappella Piano (TIKTOK).mp3': "Thing A Cappella Piano (TIKTOK)",
             'Vibe/Trap Queen (Royalty remix edit).mp3': "Trap Queen (Royalty remix edit)",
             'Vibe/Tipo Narutin.mp3': "Tipo Narutin",
-            'Vibe/Vai Vai!!(ULTRA-SLOWED).mp3': "Vai Vai!!(ULTRA-SLOWED)",
+            'Vibe/Vai Vai!!(ULTRA-SLOWED).mp3': "Vai Vai!! (ULTRA-SLOWED)",
             'Vibe/Vibe Yondaime.mp3': "Vibe Yondaime",
             'Vibe/White Tee - (Rizz song slowed).mp3': "White Tee (Rizz song slowed)",
             'Vibe/White Tee (slowed + bass boost).mp3': "White Tee (slowed+bass boost)",
