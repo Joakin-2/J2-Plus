@@ -241,14 +241,11 @@
     </div>
 
     <div class="copy-box">
-      <pre id="text2">👀 Siga-nos para ver mais projetos incríveis!
-🚀 Transformando ideias em realidade!
-.
-.
-.
-#3dprinter #3dprint #geek #impressao3d #fyp</pre>
-      <button onclick="copyText('text2')">Copiar</button>
-    </div>
+  <pre id="text2"></pre>
+
+  <button onclick="trocarLegenda()">Mudar legenda</button>
+  <button onclick="copyText('text2')">Copiar</button>
+</div>
   </div>
 
   <!-- Calendário -->
@@ -307,6 +304,45 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
+        const legendas = [
+`👀 Siga-nos para ver mais projetos incríveis!
+🚀 Transformando ideias em realidade!
+.
+.
+.
+#3dprinter #3dprint #geek #impressao3d #fyp`,
+
+`🔥 Impressão 3D que dá vida às ideias!
+🧠 Criatividade sem limites.
+.
+.
+.
+#3dprinter #3dprint #geek #impressao3d #fyp`,
+
+`👀 Isso não existe em loja!  
+🖨️ Criamos peças únicas em impressão 3D.
+.
+.
+.
+#3dprinter #3dprint #geek #impressao3d #fyp`
+  ];
+
+  let indiceAtual = 0;
+
+  function trocarLegenda() {
+    indiceAtual = (indiceAtual + 1) % legendas.length;
+    document.getElementById("text2").textContent = legendas[indiceAtual];
+  }
+
+  // legenda inicial
+  document.getElementById("text2").textContent = legendas[0];
+
+  function copyText(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text);
+    alert("Legenda copiada!");
+  }
+  
         function copyText(id) {
   const text = document.getElementById(id).innerText;
   navigator.clipboard.writeText(text).then(() => {
@@ -605,11 +641,12 @@ case 'focus':
                     window.location.href = 'invest.html';
                     break;
                 case 'edit':
-                    window.open('https://app.paperanimator.com/text-match-cut')
-                    window.open('https://www.fotor.com/pt/video-enhancer/')
-                    window.open('https://www.lovart.ai/')
-                    window.open('https://viggle.ai/app/home')
-                    window.open('https://picsart.com/')
+                    window.open('https://app.paperanimator.com/text-match-cut');
+                    window.open('https://www.fotor.com/pt/video-enhancer/');
+                    window.open('https://www.lovart.ai/');
+                    window.open('https://viggle.ai/app/home');
+                    window.open('https://tunetank.com/');
+                    window.open('https://picsart.com/');
                     break;
                 case 'Social Mídia':
                     window.open('https://www.instagram.com/');
