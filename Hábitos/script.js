@@ -830,6 +830,7 @@ function abrirSitesManha() {
         window.open('https://j2plus.netlify.app/gym/', '_blank');
         window.open('https://j2plus.netlify.app/melody/', '_blank');
         window.open('https://j2plus.netlify.app/proto/christ/crist.html', '_blank');
+        window.open('https://www.mercadolivre.com.br/anuncios/lista?filters=OMNI_ACTIVE|OMNI_INACTIVE|CHANNEL_NO_PROXIMITY_AND_NO_MP_MERCHANTS&page=1&sort=DEFAULT', '_blank');
     } else if (diaSemana === 0) {
         // Domingo
         //window.open('https://www.twitch.tv/joakinbr', '_blank');
@@ -841,6 +842,7 @@ function abrirSitesManha() {
         // Dias úteis (Segunda a Sexta)
         //window.open('https://www.twitch.tv/joakinbr', '_blank');
         window.open('https://business.facebook.com/latest/content_calendar?business_id=2349354548756195&asset_id=617136918158059', '_blank');
+        window.open('https://www.mercadolivre.com.br/anuncios/lista?filters=OMNI_ACTIVE|OMNI_INACTIVE|CHANNEL_NO_PROXIMITY_AND_NO_MP_MERCHANTS&page=1&sort=DEFAULT', '_blank');
         window.open('https://app.libraslab.com.br/', '_blank');
         window.open('https://pt.duolingo.com/learn', '_blank');
         window.open('https://j2plus.netlify.app/gym/', '_blank');
