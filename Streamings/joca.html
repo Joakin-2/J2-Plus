@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>YouTube</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-color: #121212; /* Dark background color */
+        color: #fff; /* Text color */
+        overflow: auto; /* Permite rolagem quando necessário */
+        }
+
+        /* Personalização da barra de rolagem */
+        ::-webkit-scrollbar {
+            width: 12px; /* Largura da barra de rolagem */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #888; /* Cor do "polegar" da rolagem */
+            border-radius: 10px; /* Bordas arredondadas */
+            border: 3px solid #121212; /* Adiciona uma borda ao redor */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #555; /* Cor do polegar ao passar o mouse */
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #333; /* Cor de fundo da trilha da rolagem */
+            border-radius: 10px;
+        }
+
+    header {
+        background-color: #1f1f1f; /* YouTube red */
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+    }
+
+    .container {
+    padding: 20px;
+    display: inline-grid;
+    grid-template-columns: repeat(4, 1fr);
+    }
+
+    .video {
+        margin: 20px;
+        width: 80%;
+        background-color: #333; /* Darker background */
+        padding: 10px;
+        border-radius: 10px;
+        color: #fff; /* Text color */
+        text-decoration: none; /* Remove underline from anchor */
+    }
+    .video img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    .video h2 {
+        margin: 5px 0;
+    }
+    .video p {
+        margin: 0;
+    }
+    .channel-logo {
+        display: block;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .channel-logo img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    /* Hover effect */
+    .video:hover {
+        background-color: #444;
+    }
+
+    #search {
+        width: 400px;
+    }
+
+    #up {
+        margin-right: 10px;
+    }
+
+    #plus {
+        margin-right: 120px;
+    }
+
+    /* Media Query para telas de 1024x600 */
+@media screen and (max-width: 2040px) and (max-height: 600px) {
+    body {
+        background-color: #000; /* Mudar o fundo para um preto mais escuro */
+        color: #ddd; /* Clarear um pouco o texto para maior contraste */
+    }
+
+    .video {
+        width: 200px; /* Ajustar a largura dos vídeos */
+        margin: 8px;  /* Reduzir a margem dos vídeos */
+        padding: 5px;  /* Ajustar o espaçamento interno */
+    }
+
+    .video h2 {
+        margin: 4px 0;
+    }
+
+    header {
+        padding: 5px 10px; /* Reduzir o padding do cabeçalho */
+        font-size: 14px;   /* Diminuir o tamanho da fonte no cabeçalho */
+    }
+
+    h1 {
+        margin-left: 20px;
+    }
+
+    form {
+        width: 50%; /* O campo de busca ocupa 90% da tela */
+    }
+
+    button {
+        width: 70px; /* Botão ocupa toda a largura em telas menores */
+    }
+
+    .suggestions {
+            border: 1px solid #ddd;
+            max-height: 100px;
+            overflow-y: auto;
+            display: none; /* Oculto inicialmente */
+            background-color: #f9f9f9;
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+        }
+        .suggestion-item {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #ececec;
+        }
+
+    #search {
+        width: 100px;
+    }
+
+    #plus {
+        margin-right: 2px;
+    }
+</style>
+</head>
+<body>
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
+        <h1 style="display: flex; align-items: center; margin-left: 120px;">Productive Youtube 
+            <span class="yt-icon-shape style-scope yt-icon ytSpecIconShapeHost">
+    <div style="margin-left: 10px; margin-bottom: 5px; width: 150px; height: 100%; display: block;">
+        <svg xmlns="http://www.w3.org/2000/svg" id="yt-ringo2-svg_yt9" width="93" height="20" viewBox="0 0 93 20" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+            <g>
+                <path d="M14.4848 20C14.4848 20 23.5695 20 25.8229 19.4C27.0917 19.06 28.0459 18.08 28.3808 16.87C29 14.65 29 9.98 29 9.98C29 9.98 29 5.34 28.3808 3.14C28.0459 1.9 27.0917 0.94 25.8229 0.61C23.5695 0 14.4848 0 14.4848 0C14.4848 0 5.42037 0 3.17711 0.61C1.9286 0.94 0.954148 1.9 0.59888 3.14C0 5.34 0 9.98 0 9.98C0 9.98 0 14.65 0.59888 16.87C0.954148 18.08 1.9286 19.06 3.17711 19.4C5.42037 20 14.4848 20 14.4848 20Z" fill="#FF0033"></path>
+                <path d="M19 10L11.5 5.75V14.25L19 10Z" fill="white"></path>
+            </g>
+
+        </svg>
+    </div>
+</span> 
+        </h1>
+        <form action="https://www.youtube.com/results" method="GET" style="position: relative;">
+            <input type="text" id="search" name="search_query" placeholder="Pesquisar..." required="" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;" oninput="toggleSuggestions()"> <!-- Adicione o evento 'oninput' aqui -->
+            <button type="submit" style="padding: 10px;background-color: #2e2e2e;color: white;border: none;border-radius: 5px;cursor: pointer;margin-left: 10px;margin-right: 10px;">Buscar</button>
+            <button type="button" id="up" style="padding: 10px; background-color: #2e2e2e; color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="openSite()"><i class="fas fa-upload"></i> <!-- Ícone de upload --></button>
+            <div id="suggestions" class="suggestions" style="margin-top: 10px;">
+                <!-- Sugestões vão aparecer aqui -->
+            </div>
+        </form>
+    </header>
+    <div class="container" id="videoContainer"></div>
+    <script>
+        const videos = [
+  {
+    link: "https://www.youtube.com/playlist?list=PLZ35j5F1uvxrKqcfkzeCDFdAKGak6ucpc",
+    thumb: "https://creations.panzoid.com/creation-thumbnails/757757.jpg",
+    titulo: "Poops",
+    descricao: "Melhores Videos",
+    canalLogo: "https://yt3.googleusercontent.com/DEo446QWiw7RB5TRUhq_nnZ3F5rICjSqzDFJZpmWvYQEWDse1SYAKD7Z-S37GuFbiT6j7zOCk_I=s88-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    link: "https://www.youtube.com/playlist?list=PLZ35j5F1uvxouidpaltlu3iGSvzPv7JQo",
+    thumb: "https://cdn.pixabay.com/video/2022/01/10/103984-664525664_tiny.jpg",
+    titulo: "Cortes",
+    descricao: "Cortes de Videos",
+    canalLogo: "https://yt3.googleusercontent.com/DEo446QWiw7RB5TRUhq_nnZ3F5rICjSqzDFJZpmWvYQEWDse1SYAKD7Z-S37GuFbiT6j7zOCk_I=s88-c-k-c0x00ffffff-no-rj"
+  },
+  {
+  link: "meme.html",
+  thumb: "data:image/png;base64,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",
+  titulo: "Shorts",
+  descricao: "Videos Curtos e Cortes",
+  canalLogo: "https://yt3.googleusercontent.com/DEo446QWiw7RB5TRUhq_nnZ3F5rICjSqzDFJZpmWvYQEWDse1SYAKD7Z-S37GuFbiT6j7zOCk_I=s88-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@AndreGuedesCartoon/videos",
+  thumb: "https://i.ytimg.com/vi/75kbn9SEqwo/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBu2_VsZLj0xnp1PxhCJGfswyf6jw",
+  titulo: "André Guedes",
+  descricao: "O MITO fazendo a PROVA DO ENEM!",
+  canalLogo: "https://yt3.googleusercontent.com/ytc/AIdro_n1BStb6rnU3atlIh7-FPUO6wo7AMgV9u13xGVmczjYXQI=s160-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@IsraelSubira",
+  thumb: "https://i.ytimg.com/vi/XHOgoIJ3oLk/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAvmriFKY6sphwCjyubdZGSE6c3TQ",
+  titulo: "Isra",
+  descricao: "Você já ouviu as boas novas?",
+  canalLogo: "https://yt3.googleusercontent.com/ZA6NTdh8TxjrFc1CVhl-iMyDnts8SEtn027XLGK0nljOs6zGRTq2LLqYGJ5vth3FEfb2xDfVfSo=s72-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://m.youtube.com/@PrOsielGomes/videos",
+  thumb: "https://i.ytimg.com/vi/M3eKYqGm8Q4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCG9Rjp6qq35klFdxQYe3SyLO3kwA",
+  titulo: "Pr. Osiel Gomes",
+  descricao: "Presidente da Igreja Evangélica...",
+  canalLogo: "https://yt3.googleusercontent.com/3zmZxsyS15Ltmnh7BzbdAwgJWX_2IoOi-4bmI5WJ012HfddTPhkLtaHAku-dZdKm7BlxmK7Mc2k=s160-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@jesus_copy/videos",
+  thumb: "https://i.ytimg.com/vi/s4FGfa9QOAg/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBhseFLV4VqSoNeloYC3HZ5NPzZVQ",
+  titulo: "JesusCopy",
+  descricao: "Jesuscopy é um movimento que ensina como ser cópias de Jesus",
+  canalLogo: "https://yt3.googleusercontent.com/P-zjZTJhWvSOeoZqnEabLI1knPYv7Y-9KY6L4X06q-hTE9jjQIMrcTGCaqQWSfpa972IZt-LKQ=s72-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@Pinhotube",
+  thumb: "https://i.ytimg.com/vi/oi2uwpCRljY/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLANH1SGK4rb5QNuDY-1Vwqx481zzA",
+  titulo: "Pinho",
+  descricao: "Minha missão é ajudar as pessoas.",
+  canalLogo: "https://yt3.googleusercontent.com/XI7CWGP4qRoKl-RC-6hDgsVgpFsGoPgfddZHmhWCGFwXZ_6Yx-OEKS6cNF3Br-kgNneXp4OBQNs=s72-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@ColoniaContraAtaca/videos",
+  thumb: "https://i.ytimg.com/vi/rolvjmVDTnA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAnkehgu3Zu_dOfTIrcpeYY3-GX7A",
+  titulo: "Colônia Contra Ataca",
+  descricao: "FFG: Os 10 Principais Defeitos dos Controles!",
+  canalLogo: "https://yt3.googleusercontent.com/Aqyl-FDI2kFSyJMI9XHBnzDWTNOHIUN5hBe2Kb1Hy8pe-DLt2lYEXvJQvzXzK20K098B1oosFdY=s160-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/watch?v=GXqUXJKg7K4&list=PLJC6MSkiDOlHpmnU8InCnbW_bMwScK6WW",
+  thumb: "https://i.ytimg.com/vi/GXqUXJKg7K4/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLBwuT9_vLHl6Z2h4RJEtfe-ZzmNhw",
+  titulo: "Mineiro Aranha",
+  descricao: "Com Gruzinho",
+  canalLogo: "https://yt3.ggpht.com/MYEx6ANwCNxncjANiNuNOECuj_dh_yQUoSDs7mI0ux_18VGjy8Pod_bL3OxtTA_jbRnuKZSvPLE=s48-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/watch?v=Bm2pYXJS9_o&list=PL86335E6uxZ9Ih05mrtF21_LnuAqanVoW&ab_channel=PaiTroll",
+  thumb: "https://i.ytimg.com/vi/AtoXHcgMfuo/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCHIWqhAzu3Y12oyNiqwRSGGzWzOA",
+  titulo: "Super Mario Maker",
+  descricao: "FUI TORTURADO SEM DÓ!",
+  canalLogo: "https://yt3.ggpht.com/ytc/AIdro_nhyYxNxuN0p1zsdcY9_4N4VIwQfE0F3t7Zc9fsz5cWGrc=s48-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/c/La%C3%A9rcioRefundini/videos",
+  thumb: "https://i.ytimg.com/vi/dIqqnYykwNM/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBGqF1xk98gQCajkFm0Vl1Z9E9r3g",
+  titulo: "Laércio Refundini",
+  descricao: "Laércio Refundini é Personal Trainer.",
+  canalLogo: "https://yt3.googleusercontent.com/I_71-BJaBQ5E9V6JePitt6-emcdzfDcXD4JeYV5bj1gS2PjD3HtxoGLAz_pzvOTFWYFfR-6lGQ=s72-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@Jazzghost/videos",
+  thumb: "https://i.ytimg.com/vi/kbMxDtJX0nA/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBLV7agwcmvC-Lh9A_-rPlkN9NZlw",
+  titulo: "Jazzghost",
+  descricao: "Jogo uns jogos e passo vergonha.",
+  canalLogo: "https://yt3.googleusercontent.com/sAvs5V1ICTt3pLRi2tfuIV3OyIeR_rCi6TZyBAjxF0KyQV86QD_xaY3MEcBCZurIOwI4ewKeets=s120-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@GamesEduUu/videos",
+  thumb: "https://i.ytimg.com/vi/z9RgNPwAvSw/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA6c9x4QH3Q8Z3_NCZx4O4_6RPABg",
+  titulo: "Games EduUu",
+  descricao: "A zoeira não tem limites, não tem!",
+  canalLogo: "https://yt3.googleusercontent.com/ytc/AIdro_mnYfCHCK6zQ1uEVX2IE3tep9N0tf60LuocEFHShXvajTU=s72-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@kurzgesagt_br/videos",
+  thumb: "https://i.ytimg.com/vi/DPIgDSD4hc4/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLALch21B22r0CAILMq27UbeH_WYXA",
+  titulo: "Kurzgesagt",
+  descricao: "Vídeos de animação explicando as coisas com niilismo otimista",
+  canalLogo: "https://yt3.googleusercontent.com/NiOHk4jbNm1TRha4bV4viASdHTPeGbT3NQMdN0D75kERTZkL15v_DyPdttCR2tzG1viSVta0Cjg=s72-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@falaseriofatos/videos",
+  thumb: "https://i.ytimg.com/vi/BxZmI4HGrDE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCHNNi1oU2EvOZy9QATxlBLTcfseA",
+  titulo: "Fala Sério",
+  descricao: "Vídeos surpreendentemente interessantes",
+  canalLogo: "https://yt3.googleusercontent.com/ytc/AIdro_lJDsFNeW3HGGOc4Bj9AwjgyPLr4Cq59zwsvM093H8u9g=s72-c-k-c0x00ffffff-no-rj"
+}
+];
+
+const container = document.getElementById("videoContainer");
+
+videos.forEach(video => {
+    const card = document.createElement("a");
+    card.href = video.link;
+    card.className = "video";
+
+    card.innerHTML = `
+        <img src="${video.thumb}" alt="${video.titulo}">
+        <h2>${video.titulo}</h2>
+        <p>${video.descricao}</p>
+        <div class="channel-logo">
+            <img src="${video.canalLogo}" alt="Canal">
+        </div>
+    `;
+
+    container.appendChild(card);
+});
+
+//const suggestionsData = [
+//    "Kurzgesagt",
+//    "Jazzghost",
+//    "Games EduUu",
+//    "JesusCopy",
+//    "Mineiro Aranha"
+//];
+
+        function toggleSuggestions() {
+        const input = document.getElementById("search").value.toLowerCase();
+        const suggestionsContainer = document.getElementById("suggestions");
+
+        // Limpar sugestões anteriores
+        suggestionsContainer.innerHTML = '';
+
+        if (input === '') {
+            suggestionsContainer.style.display = 'none';
+            return;
+        }
+
+        // Verificar se o input é "/trade"
+        if (input === '/trade') {
+            // Abre os 3 sites diretamente em novas abas
+            window.open('https://www.youtube.com/results?search_query=laatus+reuni%C3%A3o+matinal', '_blank');
+            window.open('https://www.youtube.com/results?search_query=coringa+trade', '_blank');
+            window.open('https://www.youtube.com/@DayTradeAoVivoCoringaTreta/community', '_blank');
+            return;
+        }
+
+        // Cubo
+        if (input === '/cubo') {
+            window.open('https://drive.google.com/file/d/1QPq1QWbUukPoLg7zlA6vx4R1bWm4AMP4/view?usp=drive_link', '_blank');
+            return;
+        }
+
+        // Filtrar as sugestões
+        const filteredSuggestions = suggestionsData.filter(item => item.toLowerCase().includes(input));
+
+        // Mostrar as sugestões filtradas
+        if (filteredSuggestions.length > 0) {
+            suggestionsContainer.style.display = 'block';
+            filteredSuggestions.forEach(item => {
+                const suggestionItem = document.createElement('div');
+                suggestionItem.className = 'suggestion-item';
+                suggestionItem.textContent = item;
+                suggestionsContainer.appendChild(suggestionItem);
+            });
+        } else {
+            suggestionsContainer.style.display = 'none'; // Ocultar se não houver sugestões
+        }
+    }
+
+    function openSite() {
+        // URLs dos sites a serem abertos
+        const sites = [
+            "https://studio.youtube.com/channel/UCUmyhRgqHgAA8XY9Kx5gPiQ/videos",
+            "https://www.instagram.com/joakin_luiz/saved/all-posts/?theme=dark"
+        ];
+
+        // Abre cada site em uma nova aba
+        sites.forEach(site => {
+            window.open(site, '_blank');
+        });
+    }
+</script>
+</body>
+</html>

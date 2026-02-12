@@ -107,9 +107,9 @@ function openYouTube(profile) {
     console.log("Perfil selecionado:", profile);
 
     if (profile === 'perfil1') {
-        window.open("joca/index.html", "_blank");
+        window.open("joca.html", "_blank");
     } else if (profile === 'perfil2') {
-        window.open("vick/index.html", "_blank");
+        window.open("vick.html", "_blank");
     } else if (profile === 'perfil3' || profile === 'perfil4') {
         openParentalControl(profile);
     }

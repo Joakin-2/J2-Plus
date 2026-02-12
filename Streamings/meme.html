@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="yt/yt.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shorts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            height: 100vh;
+            overflow: auto; /* Permite rolagem quando necessário */
+        }
+
+        /* Personalização da barra de rolagem */
+        ::-webkit-scrollbar {
+            width: 12px; /* Largura da barra de rolagem */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #888; /* Cor do "polegar" da rolagem */
+            border-radius: 10px; /* Bordas arredondadas */
+            border: 3px solid #121212; /* Adiciona uma borda ao redor */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #555; /* Cor do polegar ao passar o mouse */
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #333; /* Cor de fundo da trilha da rolagem */
+            border-radius: 10px;
+        }
+
+        .filter-container {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        select {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 5px;
+            width: 400px;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            scroll-snap-align: start;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .video-feed {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="videosFeed" class="video-feed"></div>
+
+    <script>
+        const videos = [
+                "https://player.vimeo.com/video/1070066453?h=782e235b99", 
+                "https://player.vimeo.com/video/1070066345?h=782e235b99",
+                "https://player.vimeo.com/video/1070066145?h=51c581e27e",
+                "https://player.vimeo.com/video/1070071100?h=85e6b162a2",
+                "https://player.vimeo.com/video/1070071220?h=782e235b99",
+                "https://player.vimeo.com/video/1070071322?h=782e235b99",
+                "https://player.vimeo.com/video/1070071401?h=782e235b99",
+                "https://player.vimeo.com/video/1070071478?h=782e235b99",
+                "https://player.vimeo.com/video/1070071522?h=782e235b99",
+                "https://player.vimeo.com/video/1070073099?h=782e235b99",
+                "https://player.vimeo.com/video/1079863885?h=e16231f0dd",
+                "https://player.vimeo.com/video/1081523885?h=28a80c39df",
+                "https://player.vimeo.com/video/1083535070?h=dd04cf1b17",
+                "https://player.vimeo.com/video/1085694075?h=ddc8d7b7b9",
+                "https://player.vimeo.com/video/1087778318?h=b5f0bba957",
+                "https://player.vimeo.com/video/1089771128?h=8a3d895c89",
+                "https://player.vimeo.com/video/1091816905?h=fd07e08b09",
+                "https://player.vimeo.com/video/1093716518?h=cd9585d58e",
+                "https://player.vimeo.com/video/1095607904?h=61f2b4e518",
+                "https://player.vimeo.com/video/1097478016?h=ef66591a7c",
+                "https://player.vimeo.com/video/1103237492?h=61f2b4e518",
+                "https://player.vimeo.com/video/1103237260?h=ef66591a7c",
+                "https://player.vimeo.com/video/1105526248?h=782e235b99",
+                "https://player.vimeo.com/video/1109345347?h=782e235b99",
+                "https://player.vimeo.com/video/1123753758?h=782e235b99",
+                "https://player.vimeo.com/video/1127720540?h=782e235b99",
+                "https://player.vimeo.com/video/1131083817?h=782e235b99"
+            ];
+
+        // Função para carregar os vídeos
+        function loadVideos() {
+            const feed = document.getElementById("videosFeed");
+            feed.innerHTML = ''; // Limpa os vídeos atuais
+
+            videos.forEach(videoSrc => {
+                const videoContainer = document.createElement("div");
+                videoContainer.classList.add("video-container");
+
+                const iframe = document.createElement("iframe");
+                iframe.src = videoSrc;
+                iframe.frameBorder = "0";
+                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                iframe.allowFullscreen = true;
+
+                videoContainer.appendChild(iframe);
+                feed.appendChild(videoContainer);
+            });
+        }
+
+        loadVideos(); // Carrega os vídeos inicialmente
+    </script>
+</body>
+</html>
+
+
+
+

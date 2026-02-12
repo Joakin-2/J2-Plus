@@ -1,864 +1,1677 @@
-// Listas de músicas
-        var playlist = {
-            'Christ Gym': {
-                image: 'https://ih1.redbubble.net/image.3584855706.4055/raf,360x360,075,t,fafafa:ca443f4786.jpg',
-                images: ['https://ih1.redbubble.net/image.3584855706.4055/raf,360x360,075,t,fafafa:ca443f4786.jpg'],
-                tracks: [
-                    'Christ Gym/Coral Resgate - TUDO COOPERA PARA O BEM.mp3',
-                    'Christ Gym/E Tudo Sobre Voce (Ao Vivo) (192).mp3',
-                    'Christ Gym/Para Onde Eu Irei_ - Morada - Live Church (192).mp3',
-                    'Christ Gym/Repent (192).mp3',
-                ]
-            },
-            'Hip Praise': {
-                image: 'https://i.pinimg.com/originals/63/f0/62/63f062b6ab8b503e4bb6fccffb65b0a0.jpg',
-                images: ['https://i.pinimg.com/originals/63/f0/62/63f062b6ab8b503e4bb6fccffb65b0a0.jpg'],
-                tracks: [
-                    'Hip Praise/A Presenca.mp3',
-                    'Hip Praise/Atos-2.mp3',
-                    'Hip Praise/Bereianos.mp3',
-                    'Hip Praise/Big Asher - vivendo Cristo.mp3',
-                    'Hip Praise/Decisao.mp3',
-                    'Hip Praise/Deus-Nao-Usa-Rolex.mp3',
-                    'Hip Praise/Efesios-6.mp3',
-                    'Hip Praise/Eu Sal.mp3',
-                    'Hip Praise/Fogo De Palha.mp3',
-                    'Hip Praise/Hulvey_-Forrest-Frank-Altar-_Video-Letra-Oficial_.mp3',
-                    'Hip Praise/Joquebede Hip.mp3',
-                    'Hip Praise/Joquebede.mp3',
-                    'Hip Praise/LIFT MY HANDS.mp3',
-                    'Hip Praise/Limitado.mp3',
-                    'Hip Praise/Limitado-_Speed__1.mp3',
-                    'Hip Praise/Mais-Existe-um-Lugar-_Remix_.mp3',
-                    'Hip Praise/Mateus-6_6.mp3',
-                    'Hip Praise/Mortis-_feat.-Yago-Martins_.mp3',
-                    'Hip Praise/Nesk-Only-Multiplicacao.mp3',
-                    'Hip Praise/No Longer Bound (Im Free).mp3',
-                    'Hip Praise/Pecado-E-um-Clickbait-_Remix_.mp3',
-                    'Hip Praise/Pedro.mp3',
-                    'Hip Praise/Rei-Davi.mp3',
-                    'Hip Praise/Santo-Slowed.mp3',
-                    'Hip Praise/Santo-Speed.mp3',
-                    'Hip Praise/UP!.mp3',
-                    'Hip Praise/Vem com Josue.mp3',
-                    'Hip Praise/WC12 - La em Cima.mp3',
-                    'Hip Praise/WC12_-Gemao-e-ZEZIIN-Olho-pro-Ceu-_Prod.-Thiaguin_.mp3',
-                ]
-            },
-            'Praise': {
-                image: 'https://cdn.create.vista.com/api/media/small/470988906/stock-vector-bible-gold-plated-metalic-icon-logo-vector',
-                images: ['https://cdn.create.vista.com/api/media/small/470988906/stock-vector-bible-gold-plated-metalic-icon-logo-vector', 'https://preview.redd.it/defina-em-2-palavras-suas-sensa%C3%A7%C3%B5es-ao-ver-esta-foto-v0-nsjbcg2yqite1.jpeg?auto=webp&s=e631137f83d9bdc562d493256e1cf3c840e2b65e', 'https://i1.sndcdn.com/artworks-FP4pbZ1AQzlZVIbd-blVJ8w-t1080x1080.jpg'],
-                tracks: [
-                    'Praise/A Boa Parte (Ao Vivo).mp3',
-                    'Praise/A Face Adorada.mp3',
-                    'Praise/Arde Outra Vez.mp3',
-                    'Praise/Deus de perto - Thalles Lima.mp3',
-                    'Praise/E Ele (Ao Vivo).mp3',
-                    'Praise/E Tudo Sobre Voce (Ao Vivo) (192).mp3',
-                    'Praise/Eu-Nao-Perdi-o-Controle.mp3',
-                    'Praise/Eu quebro o meu vaso.mp3',
-                    'Praise/Elia Oliveira- Salmos 91.mp3',
-                    'Praise/Em Fervente Oracao.mp3',
-                    'Praise/Felipe Rodrigues & Theo Rubia - Eu Sou Teu (Ao Vivo) (192 kbps).mp3',
-                    'Praise/Gabriel-Guedes-Santo-Pra-Sempre.mp3',
-                    'Praise/GABRIELA ROCHA - ME ATRAIU.mp3',
-                    'Praise/Grandao da Galileia - Max do Corinho.mp3',
-                    'Praise/Grande Rei (Yeshua Esta Aqui) (Ao Vivo).mp3',
-                    'Praise/Grata Nova.mp3',
-                    'Praise/Ludmila-Ferber-Senhor-que-Cura.mp3',
-                    'Praise/Me-Ajude-A-Melhorar.mp3',
-                    'Praise/Nao mais Escravos - Fernandinho.mp3',
-                    'Praise/Moises Cantico A Moises Live.mp3',
-                    'Praise/Nara-Hellen-Estou-Contigo-Clipe-Oficial.mp3',
-                    'Praise/Nathalia-Braga-_-Eu-Nao-Perdi-o-Controle-_Cover-Samuel-Messias_.mp3',
-                    'Praise/Netto-Isaias-Saad-Bom-Demais-Para-Nao-Crer-_Clipe-Oficial_.mp3',
-                    'Praise/O FOGO ARDERA (AO VIVO).mp3',
-                    'Praise/O Rei esta Voltando.mp3',
-                    'Praise/PRIMEIRO AMOR (AO VIVO).mp3',
-                    'Praise/Para Onde Eu Irei_ - Morada - Live Church (192).mp3',
-                    'Praise/Promessas.mp3',
-                    'Praise/Quebrantado.mp3',
-                    'Praise/Saudade (Ao Vivo).mp3',
-                    'Praise/SE HOJE ME TOCA (LIVE SESSION).mp3',
-                    'Praise/Sobre as Ondas do Mar.mp3',
-                    'Praise/Sublime (Ao Vivo).mp3',
-                    'Praise/Third-Day-Your-Words-ft.-Harvest-_Official-Lyric-Video_.mp3',
-                    'Praise/Tua-Palavra-_Your-Words_-_Videoclipe_.mp3',
-                    'Praise/Tudo e teu.mp3',
-                    'Praise/Vencendo vem Jesus.mp3',
-                    'Praise/Vida aos Sepulcros.mp3',
-                    'Praise/Yeshua (Ao Vivo) (192 kbps).mp3',
-                    'Praise/Isadora Pompeo - Toca em Mim de Novo (Live Session).mp3',
-                    'Praise/ISAIAS SAAD - BONDADE DE DEUS.mp3',
-                    'Praise/Ja Posso Suportar (Ao Vivo) (192).mp3',
-                ]
-            },
-            'Fundo': {
-                image: 'https://i1.sndcdn.com/artworks-1yyNzLozVjYYVkdK-UBkviQ-t500x500.jpg',
-                images: ['https://i1.sndcdn.com/artworks-1yyNzLozVjYYVkdK-UBkviQ-t500x500.jpg', 'https://i.pinimg.com/originals/32/2c/d3/322cd367e42b07538a3d49fd476b63e1.gif'],
-                tracks: [
-                    'Fundo/432 Hz.mp3',
-                    'Fundo/852 Hz.mp3',
-                    'Fundo/Agape.mp3',
-                    'Fundo/bob sponge edit.wav',
-                    'Fundo/Dev Song.mp3',
-                    'Fundo/Dragonfly (Slowed).mp3',
-                    'Fundo/Gamers-React-Background-Music.wav',
-                    'Fundo/lovely - Billie Eilish Khalid (Cover Violin).mp3',
-                    'Fundo/Happy birthday.mp3',
-                    'Fundo/Lofi.mp3',
-                    'Fundo/Musica do Chis.mp3',
-                    'Fundo/Musica do Onibus.mp3',
-                    'Fundo/Natal.mp3'
-                ]
-            },
-            'Vibes': {
-                image: 'https://i.scdn.co/image/ab67616d0000b273afeb818f0641df8a027bb91b',
-                images: ['https://i.scdn.co/image/ab67616d0000b273afeb818f0641df8a027bb91b', 'https://i.pinimg.com/originals/48/03/98/480398182051724ebf47a64376d169ba.gif', 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2h4M3p1Y2s0aDZ3dnl6N20wZWRzbnZxemkwNzJmdm9yMHdlZDRkeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ORjfgiG9ZtxcQQwZzv/giphy.gif'],                
-                tracks: [
-                    'Vibe/A COLORS ENCORE.mp3',
-                    'Vibe/After Party (Official Audio).mp3',
-                    'Vibe/after party (sped up lyrics).mp3',
-                    'Vibe/Ainsi Bas la vida (Edit Slowed + Reverb).mp3',
-                    'Vibe/Ainsi Bas la vida.mp3',
-                    'Vibe/Alex on the spot.mp3',
-                    'Vibe/Animals.mp3',
-                    'Vibe/Arrocha.mp3',
-                    'Vibe/Automotivo Bibi Fogosa.mp3',
-                    'Vibe/ballin - roddy ricch (edit audio).mp3',
-                    'Vibe/Ballin (Cartoon Edit).mp3',
-                    'Vibe/BEAT CUTE - Musica Fofa do TikTok.mp3',
-                    'Vibe/BEAT DA RECUPERACAO II.mp3',
-                    'Vibe/BEAT DA RECUPERACAO III.mp3',
-                    'Vibe/BEAT FOFINHO - Kimi No Toriko.mp3',
-                    'Vibe/Baby Relaxes Fits The Vibe Uaaiti.mp3',
-                    'Vibe/Beat Gta San Andreas.mp3',
-                    'Vibe/BEAT RAVE NOSTALGICA.mp3',
-                    'Vibe/becane - yame [edit audio].mp3',
-                    'Vibe/becane - yame [edit live].mp3',
-                    'Vibe/Becane (Remix).mp3',
-                    'Vibe/Benio edit.mp3',
-                    'Vibe/Boom Boom Pow.mp3',
-                    'Vibe/Nave-Espacial.mp3',
-                    'Vibe/Can_i_kick_it.mp3',
-                    'Vibe/Cant Hold Us.mp3',
-                    'Vibe/Charlie Puth - Betty Boop Remix.mp3',
-                    'Vibe/CHEIRO DE PNEU (EXTENDED).mp3',
-                    'Vibe/Chuck Berry.mp3',
-                    'Vibe/Confess your love.mp3',
-                    'Vibe/CONFESS YOUR LOVE FUNK.mp3',
-                    'Vibe/Calma vida ta de boa.mp3',
-                    'Vibe/CJ SO COOL - Tired.mp3',
-                    'Vibe/Cupid (twin version) - pmv.mp3',
-                    'Vibe/Cupid Kiko.mp3',
-                    'Vibe/Dancin (Slowed Reverb).mp3',
-                    'Vibe/Despicable Me.mp3',
-                    'Vibe/Dj Pernambuco.mp3',
-                    'Vibe/Dont Stop Me Now.mp3',
-                    'Vibe/Doowit.mp3',
-                    'Vibe/Double Life.mp3',
-                    'Vibe/Dum ta ta x Wine Pon You.mp3',
-                    'Vibe/E QUE HOJE VAI TER FESTINHA Edit.mp3',
-                    'Vibe/Empire State Of Mind (Lyrics).mp3',
-                    'Vibe/envy.mp3',
-                    'Vibe/eu já sofri por amor mas não sofro mais.mp3',
-                    'Vibe/É-espetacular-o-sorriso-dessa-Princesa.mp3',
-                    'Vibe/Falling in love feels like.mp3',
-                    'Vibe/Forever.mp3',
-                    'Vibe/Four (Best Part Sped Up And Looped).mp3',
-                    'Vibe/Freedom.mp3',
-                    'Vibe/Hadal ahbek edit.mp3',
-                    'Vibe/Hadal ahbek.mp3',
-                    'Vibe/I Said girl why you keep callin.mp3',
-                    'Vibe/Im Ready.mp3',
-                    'Vibe/Im Way Up - Ready.mp3',
-                    'Vibe/idfc - (edit audio).mp3',
-                    'Vibe/Ir alem.mp3',
-                    'Vibe/Its Going Down Now.mp3',
-                    'Vibe/Its Tricky.mp3',
-                    'Vibe/James Brown -  Poison (Jersey Club Remix).mp3',
-                    'Vibe/Just Dance.mp3',
-                    'Vibe/Kali Uchis- Moonlight (sped up)_-gYfH6FTmek.mp3',
-                    'Vibe/KayArchon - new jeans.mp3',
-                    'Vibe/Lilbubblegum Af1 (slowed reverb).mp3',
-                    'Vibe/Lilbubblegum Af1.mp3',
-                    'Vibe/LMK (edit audio).mp3',
-                    'Vibe/LUNA BALA (Slowed).mp3',
-                    'Vibe/Masego and FKJ (edit audio).mp3',
-                    'Vibe/masquerade - siouxxie (edit audio).mp3',
-                    'Vibe/MUEVELOU (SLOWED + REVERB) Pocoyo Edit.mp3',
-                    'Vibe/Mustard - Ballin ft Roddy Rich (sped up version).mp3',
-                    'Vibe/MEHOY.mp3',
-                    'Vibe/MONTAGEM XONADA.mp3',
-                    'Vibe/Marca pra nos se ver.mp3',
-                    'Vibe/Mo Bamba.mp3',
-                    'Vibe/Montagem Miau (Super Slowed).mp3',
-                    'Vibe/Me diga entao.mp3',
-                    'Vibe/Neverita Cooking.mp3',
-                    'Vibe/NA HORA QUE ME ESCUTAR X BEAT OH OH.mp3',
-                    'Vibe/New Jeans Jersey Remix SLOWED.mp3',
-                    'Vibe/NewJeans 2 Remix.mp3',
-                    'Vibe/Nice try ditty.mp3',
-                    'Vibe/Noite toda uma zoada - 1.mp3',
-                    'Vibe/Noite toda uma zoada - 2.mp3',
-                    'Vibe/no - meghan trainor (edit audio).mp3',
-                    'Vibe/no signal.mp3',
-                    'Vibe/Not my problem.mp3',
-                    'Vibe/Patlamaya Devam.mp3',
-                    'Vibe/Pedro Pedro Pedro - Racoon Meme Full Version.mp3',
-                    'Vibe/PROD. EF x UGOVHB - Chove Chuva Phonk (Slowed and Reverb).mp3',
-                    'Vibe/Phao - 2 Phut Hon (KAIZ Remix).mp3',
-                    'Vibe/Pou Teto.mp3',
-                    'Vibe/Quando Chega A Noite (Slowed).mp3',
-                    'Vibe/Reese Young edit-audio.mp3',
-                    'Vibe/Ridin (Dj Vm Remix).mp3',
-                    'Vibe/Ritmada Poderosa  edit.mp3',
-                    'Vibe/Rizz Song (4k Edit).mp3',
-                    'Vibe/Roblox Runaway.mp3',
-                    'Vibe/Roddy Ricch - Down Below (TikTok Remix) [Lyrics].mp3',
-                    'Vibe/Roddy Ricch - Down Below.mp3',
-                    'Vibe/Run anemona.mp3',
-                    'Vibe/SAD FUNK (SLOWED).mp3',
-                    'Vibe/SATORU GOJO - ODETARI - KEEP UP.mp3',
-                    'Vibe/Scared of the Dark (Remix).mp3',
-                    'Vibe/See Tinh [Cukak-Remix].mp3',
-                    'Vibe/Ser um Hero - Raphyx.mp3',
-                    'Vibe/Shake It Bololo (BOLOLO HAHA) [Lyrics Edit].mp3',
-                    'Vibe/sigrid - everybody knows (slowed reverb).mp3',
-                    'Vibe/stay - edit audio.mp3',
-                    'Vibe/Stereo Hearts.mp3',
-                    'Vibe/Silento - Watch Me.mp3',
-                    'Vibe/Smells Like Teen Spirit.mp3',
-                    'Vibe/Sound Of Da Police.mp3',
-                    'Vibe/Take A Slice - Edit Audio.mp3',
-                    'Vibe/Take a Slice (Slowed Reverb looped).mp3',
-                    'Vibe/Te Amo, Te Odeio - Shadow.mp3',
-                    'Vibe/Ten Toes - Instrumental.mp3',
-                    'Vibe/Thing - A Cappella Piano (TIKTOK).mp3',
-                    'Vibe/Trap Queen (Royalty remix edit).mp3',
-                    'Vibe/Tipo Narutin.mp3',
-                    'Vibe/Vai Vai!!(ULTRA-SLOWED).mp3',
-                    'Vibe/Vibe Yondaime.mp3',
-                    'Vibe/White Tee - (Rizz song slowed).mp3',
-                    'Vibe/White Tee (slowed + bass boost).mp3',
-                    'Vibe/White Tee (Treat Me Like White Tees) - Edit Audio.mp3',
-                    'Vibe/Whats Up Danger.mp3',
-                    'Vibe/Work - Rihanna ft Dj Natttan.mp3',
-                    'Vibe/Yellow Light.mp3',
-                ]
-            },
-            'Gym': {
-                image: 'https://play-lh.googleusercontent.com/ixn6Eatx2XtOZiIf1EGxDOcRNQ9-wiZNAZHZBHb1YhRKYTlm5DWWYlBGew97D1i1rOs',
-                images: ['https://play-lh.googleusercontent.com/ixn6Eatx2XtOZiIf1EGxDOcRNQ9-wiZNAZHZBHb1YhRKYTlm5DWWYlBGew97D1i1rOs', 'https://i.redd.it/xgbtq3ehqb4f1.png', 'https://media1.tenor.com/m/JrmnrTcgt1QAAAAd/invincible-invincible-war.gif', 'https://64.media.tumblr.com/0a598ca2635acf9e510efa82c106a982/7307e41ae7e569e2-00/s540x810/1378d68f041b3c821fafaf2565b3d55b2dc45600.gifv', 'https://cdn.polyspeak.ai/speakmaster/b786ec3cafd4105216a00042de45ec24.webp', 'https://i.ytimg.com/vi/q20NzJ1Ft1A/oardefault.jpg?sqp=-oaymwEiCNAFENAFSFqQAgHyq4qpAxEIARUAAAAAJQAAyEI9AICiQw==&rs=AOn4CLAVZzo2v6_iijtjuYwPdiaOS5opZw', 'https://i.pinimg.com/originals/7c/d3/e9/7cd3e99ec3e14cb3c9efbb8f87a5d9ca.gif', 'https://media1.tenor.com/m/_YauivWNmfgAAAAd/gamma-jack-edit.gif', 'https://i1.sndcdn.com/avatars-RNVAVn2djfdWZTy5-DWnv8A-t1080x1080.jpg'],
-                tracks: [
-                    'Gym/2K FREESTYLE.mp3',
-                    'Gym/4TAO - Super Slowed.mp3',
-                    'Gym/21 Century Fox phonk.mp3',
-                    'Gym/2099 SPED UP (Crisis x Spiderman).mp3',
-                    'Gym/2099.mp3',
-                    'Gym/AGUA DE BEBER (spedup).mp3',
-                    'Gym/AMV Middle of the night.mp3',
-                    'Gym/An audio for your final stand.mp3',
-                    'Gym/Analog Horror Funk 2 (TikTok Version).mp3',
-                    'Gym/𝐀𝐧𝐚𝐥𝐨𝐠 𝐇𝐨𝐫𝐫𝐨𝐫 𝐅𝐮𝐧𝐤 𝟐.mp3',
-                    'Gym/Aquecimento Backyardigans (SPEED UP TIKTOK PHONK).mp3',
-                    'Gym/AUTOMOTIVO MANGOS.mp3',
-                    'Gym/AUTOMOTIVO MODERN TETRIS (slowed).mp3',
-                    'Gym/AUTOMOTIVO PA PA PAPAI (Slowed).mp3',
-                    'Gym/Aura Cosmica edit-audio.mp3',
-                    'Gym/Aurea Cosmica (Instrumental Version Slowed).mp3',
-                    'Gym/Avatar Edit.mp3',
-                    'Gym/Backyardigans phonk X Perfume Exalando (Slowed to perfection).mp3',
-                    'Gym/BAD HABIT HORROR FUNK (Slowed Reverb).mp3',
-                    'Gym/BAD HAPPENING FUNK x DARK RED FUNK.mp3',
-                    'Gym/BAD PARENTING FUNK V2 (Slowed).mp3',
-                    'Gym/Beeper Funk (Ultra slowed).mp3',
-                    'Gym/Beeper funk x montagem vozes profundas (slowed).mp3',
-                    'Gym/Blue Horizon Funk (ULTRA SLOWED REVERB).mp3',
-                    'Gym/BOSS SAPFIR (TIKTOK REMIX GYM EDIT).mp3',
-                    'Gym/BROLY RAGE x GOKU RAGE x BRAZILIAN DANCA PHONK (Ultra Slowed + Reverbed).mp3',
-                    'Gym/can you feel my heart - bring me the horizon [edit audio].mp3',
-                    'Gym/Can You Feel My Heart.mp3',
-                    'Gym/CANT HOLD x INDUSTRY BABY.mp3',
-                    'Gym/Centuries.mp3',
-                    'Gym/Cocomelon X hott headzz hmmm.mp3',
-                    'Gym/Comecar-_intro_.mp3',
-                    'Gym/Cool Beats.mp3',
-                    'Gym/Cowbell cult - COP KILLAZ (SUPER SLOWED).mp3',
-                    'Gym/Creed-2-OST-Desert-Training-Song.mp3',
-                    'Gym/Creed-Motivation-Training-2015-_HD_.mp3',
-                    'Gym/Creeds-Push-Up-_Slowed-Techno-Remix_.mp3',
-                    'Gym/crisis x spider man 2099 theme - jasiah [[[slowed + reverbed]]].mp3',
-                    'Gym/DANCING FUNK.mp3',
-                    'Gym/DARK AGE FUNK (SLOWED).mp3',
-                    'Gym/DOORS LIGHT FUNK - GAMMA JACK.mp3',
-                    'Gym/DOORS LIGHT FUNK - ( SLOWED ).mp3',
-                    'Gym/Desiigner - Panda (Lyrics Tiktok Song).mp3',
-                    'Gym/EA x Off the leash (slowed).mp3',
-                    'Gym/EGGSTREME-DUCK-PHONK-_Slowed_.mp3',
-                    'Gym/Eminem - Without Me (Lyrics).mp3',
-                    'Gym/ENOUGH! (Long Version).mp3',
-                    'Gym/EXE FUNK (Ultra Slowed).mp3',
-                    'Gym/Ela Vira Mortal - (ultra).mp3',
-                    'Gym/Epic Christian Edit.mp3',
-                    'Gym/Eternxlkz - BRODYAGA FUNK.mp3',
-                    'Gym/Eternxlkz - SLAY!.mp3',
-                    'Gym/𝐄𝐗𝐂𝐋𝐄𝐓𝐈𝐂𝐀 𝐍𝐀𝐍𝐎𝐋𝐈𝐂𝐈𝐓𝐀 𝟐 (𝗦𝗹𝗼𝘄𝗲𝗱 𝗮𝗻𝗱 𝗥𝗲𝘃𝗲𝗿𝗯).mp3',
-                    'Gym/Face Off.mp3',
-                    'Gym/Funk Destravado (Slowed).mp3',
-                    'Gym/FEEL NOTHING.mp3',
-                    'Gym/FREDDIE DRED-LIMBO (SUPER SLOWED+REVERB)(GHOST).mp3',
-                    'Gym/FUNK DO DIE (Super Slowed).mp3',
-                    'Gym/FUNK DO SURPRISE ULTRA SLOWED.mp3',
-                    'Gym/FUNK LIMINAL (SUPER SLOWED REVERB).mp3',
-                    'Gym/GOTHAM.mp3',
-                    'Gym/Get Get Down.mp3',
-                    'Gym/HERO FUNK (Slowed).mp3',
-                    'Gym/heartburn Ultra slowed.mp3',
-                    'Gym/Horizonte de Diamante (Slowed Reverb).mp3',
-                    'Gym/I feel like god (slowed reverb).mp3',
-                    'Gym/Industry Baby vs. E.T._.mp3',
-                    'Gym/Industry Baby x Beat It.mp3',
-                    'Gym/Invincible and Eve - edit music.mp3',
-                    'Gym/JOGO MORTO (Slowed).mp3',
-                    'Gym/Jack-Hanma.mp3',
-                    'Gym/Jet Set.mp3',
-                    'Gym/Kanye West - Runaway [Official Edit] (192).mp3',
-                    'Gym/KING BALDWIN IV x YEA (SLOWED + REVERB).mp3',
-                    'Gym/Komodo (slowed).mp3',
-                    'Gym/Los Pinguinos de Madagascar.mp3',
-                    'Gym/Love Game (Slowed).mp3',
-                    'Gym/Luci4 - BodyPartz (Edit Extended, Clean).mp3',
-                    'Gym/MTG Distocida Japonesa (edit Slowed).mp3',
-                    'Gym/𝙈𝙐𝙉𝘾𝙃𝘼𝙐𝙎𝙀𝙉 𝙁𝙐𝙉𝙆 (𝙎𝙪𝙥𝙚𝙧 𝙎𝙡𝙤𝙬𝙚𝙙).mp3',
-                    'Gym/MY HIGH FUNK.mp3',
-                    'Gym/Mangos (Tiktok Version).mp3',
-                    'Gym/MARIA VAI X BEAT ABSURDO (Ultra Slowed).mp3',
-                    'Gym/𝙈𝙀𝙇𝙊𝘿𝙄𝘼 𝘿𝘼 𝙋𝙍𝘼 𝙉𝙊𝙄𝙎 (𝙪𝙡𝙩𝙧𝙖 𝙨𝙡𝙤𝙬𝙚𝙙).mp3',
-                    'Gym/MENTE MA (Super Slowed).mp3',
-                    'Gym/𝗠𝗘𝗡𝗧𝗜𝗥A𝗢 - (𝗦𝘂𝗽𝗲𝗿 𝗦𝗹𝗼𝘄𝗲𝗱).mp3',
-                    'Gym/Masha ultrafunk.mp3',
-                    'Gym/Meet the Frownies x Lovely Bastards - TikTok Remix - (Slowed).mp3',
-                    'Gym/Mi Mami Funk Vol 2.mp3',
-                    'Gym/Money so big - yeat [ edit audio ].mp3',
-                    'Gym/Montagem Bandido.mp3',
-                    'Gym/MONTAGEM BIONICA ESPECTRAL 2 - SLOWED.mp3',
-                    'Gym/MONTAGEM BIONICA ESPECTRAL 2.mp3',
-                    'Gym/MONTAGEM BRAVO ( Slowed ).mp3',
-                    'Gym/MONTAGEM CRISTALIZED CONTENT (Extreme Slowed).mp3',
-                    'Gym/MONTAGEM DIRECAO - (super slowed).mp3',
-                    'Gym/MONTAGEM RABETA (ULTRA SLOWED).mp3',
-                    'Gym/𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙀𝙍𝙑𝘼 · 𝘿𝙅 𝙍𝘼𝙐𝙇𝙄𝙋𝙐𝙀𝙎 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿).mp3',
-                    'Gym/Montagem Invasao.mp3',
-                    'Gym/Montagem Lunar Esmeralda (ultra slowed reverb).mp3',
-                    'Gym/𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙍𝙀𝘽𝙊𝙇𝘼 (𝙎𝙪𝙥𝙚𝙧 𝙎𝙡𝙤𝙬𝙚𝙙).mp3',
-                    'Gym/MONTAGEM REBOLA (SLOWED REVERB).mp3',
-                    'Gym/MONTAGEM SANTA FE 2.mp3',
-                    'Gym/MONTAGEM VOZES TALENTINHO (Super Slowed Reverb).mp3',
-                    'Gym/MONTAGEM TEM QUE TIRAR O CHAPEU - (SUPER SLOWED).mp3',
-                    'Gym/MONTAGEM TOMADA SLOWED.mp3',
-                    'Gym/MONTAGEM VOZES PROFUNDAS.mp3',
-                    'Gym/𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙎𝙐𝙋𝙀𝙍𝙎𝙊𝙉𝙄𝘾.mp3',
-                    'Gym/morder.mp3',
-                    'Gym/My Ordinary Life (wally west solo).mp3',
-                    'Gym/NO ERA AMOR (Super Slowed).mp3',
-                    'Gym/NUNCA MUDA - SLOWED (Edit Audio).mp3',
-                    'Gym/OGAME.mp3',
-                    'Gym/OLD GENESIS.mp3',
-                    'Gym/OLHA MENSAGEM (SLOWED REVERB).mp3',
-                    'Gym/Open It Up TikTok remix.mp3',
-                    'Gym/PHONK DO MALAME AMARELO (Ultra Slowed).mp3',
-                    'Gym/PHONKGASKAR.mp3',
-                    'Gym/Pinguins Dancando Melodia Envolvente.mp3',
-                    'Gym/PLAYA - Swaggin in the Partment - (Slowed+Reverb).mp3',
-                    'Gym/PREMONICAO DO VAIA VAIA 1.0 - ( Slowed ).mp3',
-                    'Gym/Pose X Star Wars (Tik Tok Audio).mp3',
-                    'Gym/𝐏𝐎𝐖𝐄𝐑 𝐒𝐋𝐈𝐃𝐄 (𝐒𝐥𝐨𝐰𝐞𝐝).mp3',
-                    'Gym/funk de beleza (edit audio).mp3',
-                    'Gym/Push Up (Short Version).mp3',
-                    'Gym/RAHHHH (slowed reverb).mp3',
-                    'Gym/RISADA CHUCK (Super Slowed).mp3',
-                    'Gym/Rocking A Cardigan In Atlanta (Remix).mp3',
-                    'Gym/Rocking a cardigan in Atlanta X werkkk sped up.mp3',
-                    'Gym/rocking a cardigan in Atlanta(edit audio).mp3',
-                    'Gym/ROYALTY AMV.mp3',
-                    'Gym/Rj Pasin - Life Force (SLOWED REVERB).mp3',
-                    'Gym/Runnin.mp3',
-                    'Gym/shell-shocked-juicy-j_-wiz-khalifa_-ty-dolla-_ign-ft.-kill-the-noise-_-madsonik-_slowed_.mp3',
-                    'Gym/Slide da Treme Melodica v2 - Ultra Slowed.mp3',
-                    'Gym/Slide da Treme Melodica v2 (+Ultra Slowed).mp3',
-                    'Gym/SICKO MODE (TikTok Sped Up Extended).mp3',
-                    'Gym/Slave (Guitar Remix - Slowed Reverb).mp3',
-                    'Gym/Sleeping City Funk (Slowed).mp3',
-                    'Gym/SONGS TO DESTROY YOUR PR.mp3',
-                    'Gym/SPOOKY.mp3',
-                    'Gym/STOP POSTING ABOUT BALLER.mp3',
-                    'Gym/STEPHANIE FUNK (Slowed).mp3',
-                    'Gym/Se Paciente (Super Slowed).mp3',
-                    'Gym/Se Paciente - RD12.mp3',
-                    'Gym/Sicko Mode (edit audio).mp3',
-                    'Gym/TELESCOPE  (reverb + slowed + bass ).mp3',
-                    'Gym/Talk.mp3',
-                    'Gym/Tell Em X killing on demand-Hit me (Slowed + Reverb) Edit.mp3',
-                    'Gym/TORE UP.mp3',
-                    'Gym/Tore Up (TikTok Guitar Remix).mp3',
-                    'Gym/TOXIC.mp3',
-                    'Gym/TRALALERO TRALALA PHONK (Slowed).mp3',
-                    'Gym/TUNG SAHUR FUNK (Ultra Slowed).mp3',
-                    'Gym/UGOVHB - WTF 2 (perfect slowed).mp3',
-                    'Gym/Uma palavra adeus.mp3',
-                    'Gym/UNIVERSO (Slowed).mp3',
-                    'Gym/vampire heart (slowed reverb).mp3',
-                    'Gym/Venom - Eminem (Lyrics).mp3',
-                    'Gym/Where my head at.mp3',
-                    'Gym/Whethan - LOCK IT UP (feat. Yeat, midwxst & Matt Ox) [Animated Video] (192).mp3',
-                    'Gym/X-SLIDE (Ultra Slowed).mp3',
-                    'Gym/X-SLIDE.mp3',
-                    'Gym/X-TALI (SLOWED).mp3',
-                    'Gym/Yeah-Buddy_.mp3',
-                    'Gym/YEAT - Died Once (TikTok Version).mp3',
-                    'Gym/YEAT - FLAWLESS 2 (ft. LIL UZI VERT) [PROD. SKY x MYWAYBEATZ] (192).mp3',
-                    'Gym/Yeat - If We Being Real (Slowed & Reverb).mp3',
-                    'Gym/yeat - swerved it (slowed+reverb).mp3',
-                    'Gym/Yeat money so big edit audio (Extended Looped).mp3',
-                    'Gym/Your final stand - KENTENSHI paranoia.mp3',
-                    'Gym/𝙔𝙊𝙐𝙉𝙂 𝙂𝙄𝙍𝙇 𝙁𝙐𝙉𝙆 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿).mp3',
-                ]
-            },
-            'FNF': {
-                image: 'https://ih1.redbubble.net/image.2173796957.6322/st,small,507x507-pad,600x600,f8f8f8.jpg',
-                images: ['https://ih1.redbubble.net/image.2173796957.6322/st,small,507x507-pad,600x600,f8f8f8.jpg'],
-                tracks: [
-                    'FNF/Blammed.mp3',
-                    'FNF/Bopeebo.mp3',
-                    'FNF/Cocoa.mp3',
-                    'FNF/Dad Battle.mp3',
-                    'FNF/Fresh.mp3',
-                    'FNF/Guns.mp3',
-                    'FNF/High.mp3',
-                    'FNF/M.I.L.F.mp3',
-                    'FNF/Philly Nice.mp3',
-                    'FNF/Pico.mp3',
-                    'FNF/Satin Panties.mp3',
-                    'FNF/South.mp3',
-                    'FNF/Spookeez.mp3',
-                    'FNF/Stress.mp3',
-                    'FNF/Ugh.mp3',
-                ]
-            }
-        };
+const playlistButtons = [
+    { name: "Christ Gym", className: "christ-gym" },
+    { name: "Hip Praise", className: "hip-praise" },
+    { name: "Praise", className: "praise" },
+    { name: "Fundo", className: "fundo" },
+    { name: "Vibes", className: "vibes" },
+    { name: "Gym", className: "gym" },
+    { name: "FNF", className: "fnf" },
+    { name: "+ Upload", className: "upload", isUpload: true }
+  ];
 
-        // Nomes das músicas
-        var songNames = {
-            'FNF/Blammed.mp3': "Blammed",
-            'FNF/Bopeebo.mp3': "Bopeebo",
-            'FNF/Cocoa.mp3': "Cocoa",
-            'FNF/Dad Battle.mp3': "Dad Battle",
-            'FNF/Fresh.mp3': "Fresh",
-            'FNF/Guns.mp3': "Guns",
-            'FNF/High.mp3': "High",
-            'FNF/M.I.L.F.mp3': "M.I.L.F",
-            'FNF/Philly Nice.mp3': "Philly Nice",
-            'FNF/Pico.mp3': "Pico",
-            'FNF/Satin Panties.mp3': "Satin Panties",
-            'FNF/South.mp3': "South",
-            'FNF/Spookeez.mp3': "Spookeez",
-            'FNF/Stress.mp3': "Stress",
-            'FNF/Ugh.mp3': "Ugh",
+var playlists = {
+  "Christ Gym": {
+    image: "https://ih1.redbubble.net/image.3584855706.4055/raf,360x360,075,t,fafafa:ca443f4786.jpg",
+    images: ['https://ih1.redbubble.net/image.3584855706.4055/raf,360x360,075,t,fafafa:ca443f4786.jpg'],
+    tracks: [
+      {
+        file: "Christ Gym/Coral Resgate - TUDO COOPERA PARA O BEM.mp3",
+        title: "Tudo Coopera Para o Bem"
+      },
+      {
+        file: "Christ Gym/E Tudo Sobre Voce (Ao Vivo) (192).mp3",
+        title: "É Tudo Sobre Você (Ao Vivo)"
+      },
+      {
+        file: "Christ Gym/Para Onde Eu Irei_ - Morada - Live Church (192).mp3",
+        title: "Para Onde Eu Irei"
+      },
+      {
+        file: "Christ Gym/Repent (192).mp3",
+        title: "Repent"
+      }
+    ]
+  },
 
-            'Vibe/A COLORS ENCORE.mp3': "A COLORS ENCORE",
-            'Vibe/After Party (Official Audio).mp3': "After Party (Official Audio)",
-            'Vibe/after party (sped up lyrics).mp3': "After party (sped up lyrics)",
-            'Vibe/Ainsi Bas la vida (Edit Slowed + Reverb).mp3': "Ainsi Bas la vida (Edit Slowed + Reverb)",
-            'Vibe/Alex on the spot.mp3': "Alex on the spot",
-            'Vibe/Animals.mp3': "Animals",
-            'Vibe/Arrocha.mp3': "Arrocha",
-            'Vibe/Automotivo Bibi Fogosa.mp3': "Automotivo Bibi Fogosa",
-            'Vibe/Ainsi Bas la vida.mp3': "Ainsi Bas la vida",
-            'Vibe/ballin - roddy ricch (edit audio).mp3': "ballin - roddy ricch (edit audio)",
-            'Vibe/Ballin (Cartoon Edit).mp3': "Ballin (Cartoon Edit)",
-            'Vibe/Mustard - Ballin ft Roddy Rich (sped up version).mp3': "Ballin (sped up version)",
-            'Vibe/BEAT CUTE - Musica Fofa do TikTok.mp3': "BEAT CUTE (Música Fofa do TikTok)",
-            'Vibe/BEAT DA RECUPERACAO II.mp3': "BEAT DA RECUPERAÇÃO II",
-            'Vibe/BEAT DA RECUPERACAO III.mp3': "BEAT DA RECUPERAÇÃO III",
-            'Vibe/BEAT FOFINHO - Kimi No Toriko.mp3': "BEAT FOFINHO - Kimi No Toriko",
-            'Vibe/Baby Relaxes Fits The Vibe Uaaiti.mp3': "Baby Relaxes Fits The Vibe Uaaiti",
-            'Vibe/Beat Gta San Andreas.mp3': "Beat Gta San Andreas",
-            'Vibe/BEAT RAVE NOSTALGICA.mp3': "BEAT RAVE NOSTÁLGICA",
-            'Vibe/becane - yame [edit audio].mp3': "bécane - yamê [edit audio]",
-            'Vibe/becane - yame [edit live].mp3': "bécane - yamê [edit live]",
-            'Vibe/Becane (Remix).mp3': "Bécane (Remix)",
-            'Vibe/Benio edit.mp3': "Benio edit",
-            'Vibe/Boom Boom Pow.mp3': "Boom Boom Pow",
-            'Vibe/Can_i_kick_it.mp3': "Can I Kick It",
-            'Vibe/Cant Hold Us.mp3': "Can't Hold Us",
-            'Vibe/Charlie Puth - Betty Boop Remix.mp3': "Charlie Puth - Betty Boop Remix",
-            'Vibe/CHEIRO DE PNEU (EXTENDED).mp3': "CHEIRO DE PNEU (EXTENDED)",
-            'Vibe/Chuck Berry.mp3': "Chuck Berry",
-            'Vibe/Confess your love.mp3': "Confess your love",
-            'Vibe/CONFESS YOUR LOVE FUNK.mp3': "CONFESS YOUR LOVE FUNK",
-            'Vibe/Calma vida ta de boa.mp3': "Calma vida tá de boa",
-            'Vibe/CJ SO COOL - Tired.mp3': "CJ SO COOL - Tired",
-            'Vibe/Cupid (twin version) - pmv.mp3': "Cupid (twin version)",
-            'Vibe/Cupid Kiko.mp3': "Cupid (kiko version)",
-            'Vibe/Dancin (Slowed Reverb).mp3': "Dancin (Slowed Reverb)",
-            'Vibe/Despicable Me.mp3': "Despicable Me",
-            'Vibe/Dj Pernambuco.mp3': "Dj Pernambuco",
-            'Vibe/Dont Stop Me Now.mp3': "Don't Stop Me Now",
-            'Vibe/Doowit.mp3': "Doowit",
-            'Vibe/Double Life.mp3': "Double Life",
-            'Vibe/Dum ta ta x Wine Pon You.mp3': "Dum ta ta x Wine Pon You",
-            'Vibe/E QUE HOJE VAI TER FESTINHA Edit.mp3': "E QUE HOJE VAI TER FESTINHA EDIT",
-            'Vibe/Empire State Of Mind (Lyrics).mp3': "Empire State Of Mind (Lyrics)",
-            'Vibe/envy.mp3': "envy",
-            'Vibe/eu já sofri por amor mas não sofro mais.mp3': "eu já sofri por amor mas não sofro mais",
-            'Vibe/É-espetacular-o-sorriso-dessa-Princesa.mp3': "É-espetacular-o-sorriso-dessa-Princesa",
-            'Vibe/Falling in love feels like.mp3': "Falling in love feels like",
-            'Vibe/Forever.mp3': "Forever",
-            'Vibe/Four (Best Part Sped Up And Looped).mp3': "Four (Best Part Sped Up And Looped)",
-            'Vibe/Freedom.mp3': "Freedom",
-            'Vibe/Hadal ahbek edit.mp3': "Hadal ahbek edit",
-            'Vibe/Hadal ahbek.mp3': "Hadal ahbek",
-            'Vibe/I Said girl why you keep callin.mp3': "I Said girl why you keep callin",
-            'Vibe/idfc - (edit audio).mp3': "idfc - (edit audio)",
-            'Vibe/Im Ready.mp3': "Im Ready",
-            'Vibe/Im Way Up - Ready.mp3': "Im Way Up - Ready",
-            'Vibe/Ir alem.mp3': "Ir Além",
-            'Vibe/Its Going Down Now.mp3': "It's Going Down Now",
-            'Vibe/Its Tricky.mp3': "It's Tricky",
-            'Vibe/James Brown -  Poison (Jersey Club Remix).mp3': "James Brown -  Poison (Jersey Club Remix)",
-            'Vibe/Just Dance.mp3': "Just Dance",
-            'Vibe/Kali Uchis- Moonlight (sped up)_-gYfH6FTmek.mp3': "Kali Uchis Moonlight (sped up)",
-            'Vibe/KayArchon - new jeans.mp3': "KayArchon - New Jeans",
-            'Vibe/Lilbubblegum Af1 (slowed reverb).mp3': "Lilbubblegum Af1 (slowed reverb)",
-            'Vibe/Lilbubblegum Af1.mp3': "Lilbubblegum Af1",
-            'Vibe/LMK (edit audio).mp3': "LMK (edit audio)",
-            'Vibe/LUNA BALA (Slowed).mp3': "LUNA BALA (Slowed)",
-            'Vibe/Masego and FKJ (edit audio).mp3': "Masego and FKJ (edit audio)",
-            'Vibe/masquerade - siouxxie (edit audio).mp3': "Masquerade - siouxxie (edit audio)",
-            'Vibe/MUEVELOU (SLOWED + REVERB) Pocoyo Edit.mp3': "MUEVELOU (SLOWED + REVERB)",
-            'Vibe/Me diga entao.mp3': "Me diga então",
-            'Vibe/MEHOY.mp3': "MEHOY!",
-            'Vibe/MONTAGEM XONADA.mp3': "MONTAGEM XONADA",
-            'Vibe/Marca pra nos se ver.mp3': "Marca pra nós se ver",
-            'Vibe/Mo Bamba.mp3': "Mo Bamba",
-            'Vibe/Montagem Miau (Super Slowed).mp3': "Montagem Miau (Super Slowed)",
-            'Vibe/NA HORA QUE ME ESCUTAR X BEAT OH OH.mp3': "NA HORA QUE ME ESCUTAR X BEAT OH OH",
-            'Vibe/Nave-Espacial.mp3': "Nave Espacial",
-            'Vibe/Neverita Cooking.mp3': "Neverita Cooking",
-            'Vibe/New Jeans Jersey Remix SLOWED.mp3': "New Jeans Jersey (Remix SLOWED)",
-            'Vibe/NewJeans 2 Remix.mp3': "New Jeans 2 Remix",
-            'Vibe/Nice try ditty.mp3': "i just lost my dawg edit",
-            'Vibe/Noite toda uma zoada - 1.mp3': "Noite toda uma zoada - 1",
-            'Vibe/Noite toda uma zoada - 2.mp3': "Noite toda uma zoada - 2",
-            'Vibe/no - meghan trainor (edit audio).mp3': "no - meghan trainor (edit audio)",
-            'Vibe/no signal.mp3': "no signal",
-            'Vibe/Not my problem.mp3': "Not my problem",
-            'Vibe/Patlamaya Devam.mp3': "Patlamaya Devam",
-            'Vibe/Pedro Pedro Pedro - Racoon Meme Full Version.mp3': "Racoon Meme",
-            'Vibe/PROD. EF x UGOVHB - Chove Chuva Phonk (Slowed and Reverb).mp3': "Chove Chuva Phonk",
-            'Vibe/Phao - 2 Phut Hon (KAIZ Remix).mp3': "Phao - 2 Phut Hon (KAIZ Remix)",
-            'Vibe/Pou Teto.mp3': "Pou Teto",
-            'Vibe/Quando Chega A Noite (Slowed).mp3': "E Quando Chega A Noite (Slowed)",
-            'Vibe/Reese Young edit-audio.mp3': "Reese Young edit-audio",
-            'Vibe/Ridin (Dj Vm Remix).mp3': "Ridin (Dj Vm Remix)",
-            'Vibe/Reinado (Slowed).mp3': "Reinado (Slowed)",
-            'Vibe/Ritmada Poderosa  edit.mp3': "Ritmada Poderosa edit",
-            'Vibe/Rizz Song (4k Edit).mp3': "Rizz Song (4k Edit)",
-            'Vibe/Roblox Runaway.mp3': "Roblox Runaway",
-            'Vibe/Roddy Ricch - Down Below (TikTok Remix) [Lyrics].mp3': "Down Below (TikTok Remix)",
-            'Vibe/Roddy Ricch - Down Below.mp3': "Down Below",
-            'Vibe/Run anemona.mp3': "Run Anêmona",
-            'Vibe/SAD FUNK (SLOWED).mp3': "SAD FUNK (SLOWED)",
-            'Vibe/SATORU GOJO - ODETARI - KEEP UP.mp3': "SATORU GOJO - KEEP UP",
-            'Vibe/Scared of the Dark (Remix).mp3': "Scared of the Dark (Remix)",
-            'Vibe/See Tinh [Cukak-Remix].mp3': "See Tình「Cukak-Remix」",
-            'Vibe/Ser um Hero - Raphyx.mp3': "Ser um Hero - Raphyx",
-            'Vibe/Shake It Bololo (BOLOLO HAHA) [Lyrics Edit].mp3': "Shake It Bololo (BOLOLO HAHA) [Lyrics Edit]",
-            'Vibe/Silento - Watch Me.mp3': "Silento - Watch Me",
-            'Vibe/Smells Like Teen Spirit.mp3': "Smells Like Teen Spirit",
-            'Vibe/sigrid - everybody knows (slowed reverb).mp3': "Sigrid - everybody knows (slowed reverb)",
-            'Vibe/stay - edit audio.mp3': "Stay - edit audio",
-            'Vibe/Stereo Hearts.mp3': "Stereo Hearts",
-            'Vibe/Sound Of Da Police.mp3': "Sound Of Da Police",
-            'Vibe/Take A Slice - Edit Audio.mp3': "Take A Slice - Edit Audio",
-            'Vibe/Take a Slice (Slowed Reverb looped).mp3': "Take a Slice (Slowed Reverb looped)",
-            'Vibe/Te Amo, Te Odeio - Shadow.mp3': "Te Amo, Te Odeio - Shadow",
-            'Vibe/Ten Toes - Instrumental.mp3': "Ten Toes (Prod. BubbaGotBeatz) - Instrumental",
-            'Vibe/Thing - A Cappella Piano (TIKTOK).mp3': "Thing A Cappella Piano (TIKTOK)",
-            'Vibe/Trap Queen (Royalty remix edit).mp3': "Trap Queen (Royalty remix edit)",
-            'Vibe/Tipo Narutin.mp3': "Tipo Narutin",
-            'Vibe/Vai Vai!!(ULTRA-SLOWED).mp3': "Vai Vai!! (ULTRA-SLOWED)",
-            'Vibe/Vibe Yondaime.mp3': "Vibe Yondaime",
-            'Vibe/White Tee - (Rizz song slowed).mp3': "White Tee (Rizz song slowed)",
-            'Vibe/White Tee (slowed + bass boost).mp3': "White Tee (slowed+bass boost)",
-            'Vibe/White Tee (Treat Me Like White Tees) - Edit Audio.mp3': "White Tee - Edit Audio",
-            'Vibe/Whats Up Danger.mp3': "What Up Danger",
-            'Vibe/Work - Rihanna ft Dj Natttan.mp3': "Work - Rihanna ft Dj Natttan",
-            'Vibe/Yellow Light.mp3': "Yellow Light",
+  "Hip Praise": {
+    image: "https://i.pinimg.com/originals/63/f0/62/63f062b6ab8b503e4bb6fccffb65b0a0.jpg",
+    images: ['https://i.pinimg.com/originals/63/f0/62/63f062b6ab8b503e4bb6fccffb65b0a0.jpg'],
+    tracks: [
+      {
+        file: "Hip Praise/A Presenca.mp3",
+        title: "A Presença"
+      },
+      {
+        file: "Hip Praise/Atos-2.mp3",
+        title: "Atos 2"
+      },
+      {
+        file: "Hip Praise/Bereianos.mp3",
+        title: "Bereianos"
+      },
+      {
+    file: "Hip Praise/Big Asher - vivendo Cristo.mp3",
+    title: "Big Asher - Vivendo Cristo"
+  },
+  {
+    file: "Hip Praise/Decisao.mp3",
+    title: "Decisão"
+  },
+  {
+    file: "Hip Praise/Deus-Nao-Usa-Rolex.mp3",
+    title: "Deus Não Usa Rolex"
+  },
+  {
+    file: "Hip Praise/Efesios-6.mp3",
+    title: "Efésios 6"
+  },
+  {
+    file: "Hip Praise/Eu Sal.mp3",
+    title: "Eu Sal"
+  },
+  {
+    file: "Hip Praise/Fogo De Palha.mp3",
+    title: "Fogo de Palha"
+  },
+  {
+    file: "Hip Praise/Hulvey_-Forrest-Frank-Altar-_Video-Letra-Oficial_.mp3",
+    title: "Forrest Frank - Altar"
+  },
+  {
+    file: "Hip Praise/Joquebede Hip.mp3",
+    title: "Joquebede Hip"
+  },
+  {
+    file: "Hip Praise/Joquebede.mp3",
+    title: "Joquebede"
+  },
+  {
+    file: "Hip Praise/LIFT MY HANDS.mp3",
+    title: "Lift My Hands"
+  },
+  {
+    file: "Hip Praise/Limitado.mp3",
+    title: "Limitado"
+  },
+  {
+    file: "Hip Praise/Limitado-_Speed__1.mp3",
+    title: "Limitado (Speed)"
+  },
+  {
+    file: "Hip Praise/Mais-Existe-um-Lugar-_Remix_.mp3",
+    title: "Mais Existe um Lugar (Remix)"
+  },
+  {
+    file: "Hip Praise/Mateus-6_6.mp3",
+    title: "Mateus 6:6"
+  },
+  {
+    file: "Hip Praise/Mortis-_feat.-Yago-Martins_.mp3",
+    title: "Mortis (feat. Yago Martins)"
+  },
+  {
+    file: "Hip Praise/Nesk-Only-Multiplicacao.mp3",
+    title: "Nesk Only - Multiplicação"
+  },
+  {
+    file: "Hip Praise/No Longer Bound (Im Free).mp3",
+    title: "No Longer Bound (I'm Free)"
+  },
+  {
+    file: "Hip Praise/Pecado-E-um-Clickbait-_Remix_.mp3",
+    title: "Pecado É um Clickbait (Remix)"
+  },
+  {
+    file: "Hip Praise/Pedro.mp3",
+    title: "Pedro"
+  },
+  {
+    file: "Hip Praise/Rei-Davi.mp3",
+    title: "Rei Davi"
+  },
+  {
+    file: "Hip Praise/Santo-Slowed.mp3",
+    title: "Santo (Slowed)"
+  },
+  {
+    file: "Hip Praise/Santo-Speed.mp3",
+    title: "Santo (Speed)"
+  },
+  {
+    file: "Hip Praise/UP!.mp3",
+    title: "UP!"
+  },
+  {
+    file: "Hip Praise/Vem com Josue.mp3",
+    title: "Vem com Josué"
+  },
+  {
+    file: "Hip Praise/WC12 - La em Cima.mp3",
+    title: "WC12 - Lá em Cima"
+  },
+  {
+    file: "Hip Praise/WC12_-Gemao-e-ZEZIIN-Olho-pro-Ceu-_Prod.-Thiaguin_.mp3",
+    title: "Olho pro Céu (Prod. Thiaguin)"
+  }
+    ]
+  },
 
-            'Fundo/432 Hz.mp3': "432 Hz",
-            'Fundo/852 Hz.mp3': "852 Hz",
-            'Fundo/Agape.mp3': "Agape",
-            'Fundo/bob sponge edit.wav': "Bob Sponge Edit",
-            'Fundo/Dev Song.mp3': "Dev Song",
-            'Fundo/Dragonfly (Slowed).mp3': "Dragonfly (Slowed)",
-            'Fundo/Gamers-React-Background-Music.wav': "Background Music",
-            'Fundo/lovely - Billie Eilish Khalid (Cover Violin).mp3': "Billie Eilish (Violin)",
-            'Fundo/Happy birthday.mp3': "Happy Birthday",
-            'Fundo/Lofi.mp3': "Lo-fi",
-            'Fundo/Musica do Chis.mp3': "Música do Chis",
-            'Fundo/Musica do Onibus.mp3': "Chis no Onibus",
-            'Fundo/Natal.mp3': "Natal",
+  "Praise": {
+    image: 'https://cdn.create.vista.com/api/media/small/470988906/stock-vector-bible-gold-plated-metalic-icon-logo-vector',
+    images: ['https://cdn.create.vista.com/api/media/small/470988906/stock-vector-bible-gold-plated-metalic-icon-logo-vector', 'https://preview.redd.it/defina-em-2-palavras-suas-sensa%C3%A7%C3%B5es-ao-ver-esta-foto-v0-nsjbcg2yqite1.jpeg?auto=webp&s=e631137f83d9bdc562d493256e1cf3c840e2b65e', 'https://i1.sndcdn.com/artworks-FP4pbZ1AQzlZVIbd-blVJ8w-t1080x1080.jpg'],
+    tracks: [
+      {
+    file: "Praise/A Boa Parte (Ao Vivo).mp3",
+    title: "A Boa Parte (Ao Vivo)"
+  },
+  {
+    file: "Praise/A Face Adorada.mp3",
+    title: "A Face Adorada"
+  },
+  {
+    file: "Praise/Arde Outra Vez.mp3",
+    title: "Arde Outra Vez"
+  },
+  {
+    file: "Praise/Deus de perto - Thalles Lima.mp3",
+    title: "Deus de Perto - Thalles Lima"
+  },
+  {
+    file: "Praise/E Ele (Ao Vivo).mp3",
+    title: "E Ele (Ao Vivo)"
+  },
+  {
+    file: "Praise/E Tudo Sobre Voce (Ao Vivo) (192).mp3",
+    title: "E Tudo Sobre Você (Ao Vivo)"
+  },
+  {
+    file: "Praise/Eu-Nao-Perdi-o-Controle.mp3",
+    title: "Eu Não Perdi o Controle"
+  },
+  {
+    file: "Praise/Eu quebro o meu vaso.mp3",
+    title: "Eu Quebro o Meu Vaso"
+  },
+  {
+    file: "Praise/Elia Oliveira- Salmos 91.mp3",
+    title: "Elia Oliveira - Salmos 91"
+  },
+  {
+    file: "Praise/Em Fervente Oracao.mp3",
+    title: "Em Fervente Oração"
+  },
+  {
+    file: "Praise/Felipe Rodrigues & Theo Rubia - Eu Sou Teu (Ao Vivo) (192 kbps).mp3",
+    title: "Felipe Rodrigues & Theo Rubia - Eu Sou Teu (Ao Vivo)"
+  },
+  {
+    file: "Praise/Gabriel-Guedes-Santo-Pra-Sempre.mp3",
+    title: "Gabriel Guedes - Santo Pra Sempre"
+  },
+  {
+    file: "Praise/GABRIELA ROCHA - ME ATRAIU.mp3",
+    title: "Gabriela Rocha - Me Atraiu"
+  },
+  {
+    file: "Praise/Grandao da Galileia - Max do Corinho.mp3",
+    title: "Grandão da Galileia - Max do Corinho"
+  },
+  {
+    file: "Praise/Grande Rei (Yeshua Esta Aqui) (Ao Vivo).mp3",
+    title: "Grande Rei (Yeshua Está Aqui) (Ao Vivo)"
+  },
+  {
+    file: "Praise/Grata Nova.mp3",
+    title: "Grata Nova"
+  },
+  {
+    file: "Praise/Ludmila-Ferber-Senhor-que-Cura.mp3",
+    title: "Ludmila Ferber - Senhor Que Cura"
+  },
+  {
+    file: "Praise/Me-Ajude-A-Melhorar.mp3",
+    title: "Me Ajude a Melhorar"
+  },
+  {
+    file: "Praise/Nao mais Escravos - Fernandinho.mp3",
+    title: "Não Mais Escravos - Fernandinho"
+  },
+  {
+    file: "Praise/Moises Cantico A Moises Live.mp3",
+    title: "Moisés - Cântico a Moisés (Live)"
+  },
+  {
+    file: "Praise/Nara-Hellen-Estou-Contigo-Clipe-Oficial.mp3",
+    title: "Nara Hellen - Estou Contigo (Clipe Oficial)"
+  },
+  {
+    file: "Praise/Nathalia-Braga-_-Eu-Nao-Perdi-o-Controle-_Cover-Samuel-Messias_.mp3",
+    title: "Nathalia Braga - Eu Não Perdi o Controle (Cover Samuel Messias)"
+  },
+  {
+    file: "Praise/Netto-Isaias-Saad-Bom-Demais-Para-Nao-Crer-_Clipe-Oficial_.mp3",
+    title: "Netto / Isaias Saad - Bom Demais Para Não Crer (Clipe Oficial)"
+  },
+  {
+    file: "Praise/O FOGO ARDERA (AO VIVO).mp3",
+    title: "O Fogo Arderá (Ao Vivo)"
+  },
+  {
+    file: "Praise/O Rei esta Voltando.mp3",
+    title: "O Rei Está Voltando"
+  },
+  {
+    file: "Praise/PRIMEIRO AMOR (AO VIVO).mp3",
+    title: "Primeiro Amor (Ao Vivo)"
+  },
+  {
+    file: "Praise/Para Onde Eu Irei_ - Morada - Live Church (192).mp3",
+    title: "Para Onde Eu Irei - Morada (Live Church)"
+  },
+  {
+    file: "Praise/Promessas.mp3",
+    title: "Promessas"
+  },
+{
+    file: "Praise/Quebrantado.mp3",
+    title: "Quebrantado"
+  },
+  {
+    file: "Praise/Saudade (Ao Vivo).mp3",
+    title: "Saudade (Ao Vivo)"
+  },
+  {
+    file: "Praise/SE HOJE ME TOCA (LIVE SESSION).mp3",
+    title: "Se Hoje Me Toca (Live Session)"
+  },
+  {
+    file: "Praise/Sobre as Ondas do Mar.mp3",
+    title: "Sobre as Ondas do Mar"
+  },
+  {
+    file: "Praise/Sublime (Ao Vivo).mp3",
+    title: "Sublime (Ao Vivo)"
+  },
+  {
+    file: "Praise/Third-Day-Your-Words-ft.-Harvest-_Official-Lyric-Video_.mp3",
+    title: "Third Day - Your Words (ft. Harvest)"
+  },
+  {
+    file: "Praise/Tua-Palavra-_Your-Words_-_Videoclipe_.mp3",
+    title: "Tua Palavra / Your Words (Videoclipe)"
+  },
+  {
+    file: "Praise/Tudo e teu.mp3",
+    title: "Tudo É Teu"
+  },
+  {
+    file: "Praise/Vencendo vem Jesus.mp3",
+    title: "Vencendo Vem Jesus"
+  },
+  {
+    file: "Praise/Vida aos Sepulcros.mp3",
+    title: "Vida aos Sepulcros"
+  },
+  {
+    file: "Praise/Yeshua (Ao Vivo) (192 kbps).mp3",
+    title: "Yeshua (Ao Vivo)"
+  },
+  {
+    file: "Praise/Isadora Pompeo - Toca em Mim de Novo (Live Session).mp3",
+    title: "Isadora Pompeo - Toca em Mim de Novo (Live Session)"
+  },
+  {
+    file: "Praise/ISAIAS SAAD - BONDADE DE DEUS.mp3",
+    title: "Isaias Saad - Bondade de Deus"
+  },
+  {
+    file: "Praise/Ja Posso Suportar (Ao Vivo) (192).mp3",
+    title: "Já Posso Suportar (Ao Vivo)"
+  }
+    ]
+  },
 
-            'Praise/A Boa Parte (Ao Vivo).mp3': "A Boa Parte (Ao Vivo)",
-            'Praise/A Face Adorada.mp3': "A Face Adorada",
-            'Praise/Arde Outra Vez.mp3': "Arde Outra Vez",
-            'Praise/Deus de perto - Thalles Lima.mp3': "Deus de perto - Thalles Lima",
-            'Praise/E Ele (Ao Vivo).mp3': "É Ele (Ao Vivo)",
-            'Praise/E Tudo Sobre Voce (Ao Vivo) (192).mp3': "É Tudo Sobre Você",
-            'Praise/Eu-Nao-Perdi-o-Controle.mp3': "Eu Não Perdi o Controle",
-            'Praise/Eu quebro o meu vaso.mp3': "Eu quebro o meu vaso",
-            'Praise/Elia Oliveira- Salmos 91.mp3': "Salmos 91",
-            'Praise/Em Fervente Oracao.mp3': "Em Fervente Oração",
-            'Praise/Felipe Rodrigues & Theo Rubia - Eu Sou Teu (Ao Vivo) (192 kbps).mp3': "Eu Sou Teu",
-            'Praise/Gabriel-Guedes-Santo-Pra-Sempre.mp3': "Santo Pra Sempre",
-            'Praise/GABRIELA ROCHA - ME ATRAIU.mp3': "Me Atraiu",
-            'Praise/Grandao da Galileia - Max do Corinho.mp3': "Grandão da Galileia - Max do Corinho",
-            'Praise/Grande Rei (Yeshua Esta Aqui) (Ao Vivo).mp3': "Grande Rei (Yeshua Está Aqui) (Ao Vivo)",
-            'Praise/Grata Nova.mp3': "Grata Nova",
-            'Praise/Ludmila-Ferber-Senhor-que-Cura.mp3': "Senhor que Cura",
-            'Praise/Me-Ajude-A-Melhorar.mp3': "Me Ajude A Melhorar",
-            'Praise/Moises Cantico A Moises Live.mp3': "Cântico À Moisés",
-            'Praise/Nao mais Escravos - Fernandinho.mp3': "Não mais Escravos",
-            'Praise/Nara-Hellen-Estou-Contigo-Clipe-Oficial.mp3': "Estou Contigo",
-            'Praise/Nathalia-Braga-_-Eu-Nao-Perdi-o-Controle-_Cover-Samuel-Messias_.mp3': "Eu Não Perdi o Controle",
-            'Praise/Netto-Isaias-Saad-Bom-Demais-Para-Nao-Crer-_Clipe-Oficial_.mp3': "Bom Demais Para Não Crer",
-            'Praise/O FOGO ARDERA (AO VIVO).mp3': "O FOGO ARDERÁ (AO VIVO)",
-            'Praise/O Rei esta Voltando.mp3': "O Rei está Voltando",
-            'Praise/Para Onde Eu Irei_ - Morada - Live Church (192).mp3': "Para Onde Eu Irei",
-            'Praise/PRIMEIRO AMOR (AO VIVO).mp3': "PRIMEIRO AMOR (AO VIVO)",
-            'Praise/Promessas.mp3': "Promessas",
-            'Praise/Quebrantado.mp3': "Quebrantado",
-            'Praise/Saudade (Ao Vivo).mp3': "Saudade",
-            'Praise/SE HOJE ME TOCA (LIVE SESSION).mp3': "Se Hoje me Tocas",
-            'Praise/Sobre as Ondas do Mar.mp3': "Sobre as Ondas do Mar",
-            'Praise/Sublime (Ao Vivo).mp3': "Sublime",
-            'Praise/Third-Day-Your-Words-ft.-Harvest-_Official-Lyric-Video_.mp3': "Your Words",
-            'Praise/Tua-Palavra-_Your-Words_-_Videoclipe_.mp3': "Tua Palavra",
-            'Praise/Tudo e teu.mp3': "Tudo é teu",
-            'Praise/Vencendo vem Jesus.mp3': "Vencendo vem Jesus",
-            'Praise/Vida aos Sepulcros.mp3': "Vida aos Sepulcros",
-            'Praise/Yeshua (Ao Vivo) (192 kbps).mp3': "Yeshua",
-            'Praise/Isadora Pompeo - Toca em Mim de Novo (Live Session).mp3': "Toca em Mim de Novo",
-            'Praise/ISAIAS SAAD - BONDADE DE DEUS.mp3': "Bondade de Deus",
-            'Praise/Ja Posso Suportar (Ao Vivo) (192).mp3': "Já Posso Suportar",
+  "Fundo": {
+    image: 'https://i1.sndcdn.com/artworks-1yyNzLozVjYYVkdK-UBkviQ-t500x500.jpg',
+    images: ['https://i1.sndcdn.com/artworks-1yyNzLozVjYYVkdK-UBkviQ-t500x500.jpg', 'https://i.pinimg.com/originals/32/2c/d3/322cd367e42b07538a3d49fd476b63e1.gif'],
+    tracks: [
+      {
+    file: "Fundo/432 Hz.mp3",
+    title: "432 Hz"
+  },
+  {
+    file: "Fundo/852 Hz.mp3",
+    title: "852 Hz"
+  },
+  {
+    file: "Fundo/Agape.mp3",
+    title: "Agape"
+  },
+  {
+    file: "Fundo/bob sponge edit.wav",
+    title: "Bob Sponge Edit"
+  },
+  {
+    file: "Fundo/Dev Song.mp3",
+    title: "Dev Song"
+  },
+  {
+    file: "Fundo/Dragonfly (Slowed).mp3",
+    title: "Dragonfly (Slowed)"
+  },
+  {
+    file: "Fundo/Gamers-React-Background-Music.wav",
+    title: "Gamers React Background Music"
+  },
+  {
+    file: "Fundo/lovely - Billie Eilish Khalid (Cover Violin).mp3",
+    title: "Lovely - Billie Eilish & Khalid (Cover Violin)"
+  },
+  {
+    file: "Fundo/Happy birthday.mp3",
+    title: "Happy Birthday"
+  },
+  {
+    file: "Fundo/Lofi.mp3",
+    title: "Lofi"
+  },
+  {
+    file: "Fundo/Musica do Chis.mp3",
+    title: "Música do Chis"
+  },
+  {
+    file: "Fundo/Musica do Onibus.mp3",
+    title: "Música do Ônibus"
+  },
+  {
+    file: "Fundo/Natal.mp3",
+    title: "Natal"
+  }
+    ]
+  },
 
-            'Hip Praise/A Presenca.mp3': "A Presença",
-            'Hip Praise/Atos-2.mp3': "Atos 2",
-            'Hip Praise/Bereianos.mp3': "Bereianos",
-            'Hip Praise/Big Asher - vivendo Cristo.mp3': "Vivendo Cristo",
-            'Hip Praise/Decisao.mp3': "Decisão",
-            'Hip Praise/Deus-Nao-Usa-Rolex.mp3': "Deus Não Usa Rolex",
-            'Hip Praise/Efesios-6.mp3': "Efésios 6",
-            'Hip Praise/Eu Sal.mp3': "Eu Sal",
-            'Hip Praise/Fogo De Palha.mp3': "Fogo De Palha",
-            'Hip Praise/Hulvey_-Forrest-Frank-Altar-_Video-Letra-Oficial_.mp3': "Altar",
-            'Hip Praise/Joquebede Hip.mp3': "Joquebede Hip",
-            'Hip Praise/Joquebede.mp3': "Joquebede",
-            'Hip Praise/LIFT MY HANDS.mp3': "LIFT MY HANDS",
-            'Hip Praise/Limitado.mp3': "Limitado",
-            'Hip Praise/Limitado-_Speed__1.mp3': "Limitado - Speed",
-            'Hip Praise/Mais-Existe-um-Lugar-_Remix_.mp3': "Mais Existe um Lugar",
-            'Hip Praise/Mateus-6_6.mp3': "Mateus 6.6",
-            'Hip Praise/Mortis-_feat.-Yago-Martins_.mp3': "Mortis",
-            'Hip Praise/Nesk-Only-Multiplicacao.mp3': "Multiplicação",
-            'Hip Praise/No Longer Bound (Im Free).mp3': "No Longer Bound",
-            'Hip Praise/Pecado-E-um-Clickbait-_Remix_.mp3': "Pecado É um Clickbait",
-            'Hip Praise/Pedro.mp3': "Pedro",
-            'Hip Praise/Rei-Davi.mp3': "Rei Davi",
-            'Hip Praise/Santo-Slowed.mp3': "Santo-Slowed",
-            'Hip Praise/Santo-Speed.mp3': "Santo-Speed",
-            'Hip Praise/UP!.mp3': "UP!",
-            'Hip Praise/Vem com Josue.mp3': "Vem com Josué",
-            'Hip Praise/WC12 - La em Cima.mp3': "Lá em Cima",
-            'Hip Praise/WC12_-Gemao-e-ZEZIIN-Olho-pro-Ceu-_Prod.-Thiaguin_.mp3': "Olho pro Céu",
+  "Vibes": {
+    image: 'https://i.scdn.co/image/ab67616d0000b273afeb818f0641df8a027bb91b',
+    images: ['https://i.scdn.co/image/ab67616d0000b273afeb818f0641df8a027bb91b', 'https://i.pinimg.com/originals/48/03/98/480398182051724ebf47a64376d169ba.gif', 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2h4M3p1Y2s0aDZ3dnl6N20wZWRzbnZxemkwNzJmdm9yMHdlZDRkeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ORjfgiG9ZtxcQQwZzv/giphy.gif'],                
+    tracks: [
+      {
+    file: "Vibe/A COLORS ENCORE.mp3",
+    title: "A Colors Encore"
+  },
+  {
+    file: "Vibe/After Party (Official Audio).mp3",
+    title: "After Party (Official Audio)"
+  },
+  {
+    file: "Vibe/after party (sped up lyrics).mp3",
+    title: "After Party (Sped Up Lyrics)"
+  },
+  {
+    file: "Vibe/Ainsi Bas la vida (Edit Slowed + Reverb).mp3",
+    title: "Ainsi Bas la Vida (Edit Slowed + Reverb)"
+  },
+  {
+    file: "Vibe/Ainsi Bas la vida.mp3",
+    title: "Ainsi Bas la Vida"
+  },
+  {
+    file: "Vibe/Alex on the spot.mp3",
+    title: "Alex on the Spot"
+  },
+  {
+    file: "Vibe/Animals.mp3",
+    title: "Animals"
+  },
+  {
+    file: "Vibe/Arrocha.mp3",
+    title: "Arrocha"
+  },
+  {
+    file: "Vibe/Automotivo Bibi Fogosa.mp3",
+    title: "Automotivo Bibi Fogosa"
+  },
+  {
+    file: "Vibe/ballin - roddy ricch (edit audio).mp3",
+    title: "Ballin - Roddy Ricch (Edit Audio)"
+  },
+  {
+    file: "Vibe/Ballin (Cartoon Edit).mp3",
+    title: "Ballin (Cartoon Edit)"
+  },
+  {
+    file: "Vibe/BEAT CUTE - Musica Fofa do TikTok.mp3",
+    title: "Beat Cute - Música Fofa do TikTok"
+  },
+  {
+    file: "Vibe/BEAT DA RECUPERACAO II.mp3",
+    title: "Beat da Recuperação II"
+  },
+  {
+    file: "Vibe/BEAT DA RECUPERACAO III.mp3",
+    title: "Beat da Recuperação III"
+  },
+  {
+    file: "Vibe/BEAT FOFINHO - Kimi No Toriko.mp3",
+    title: "Beat Fofinho - Kimi No Toriko"
+  },
+  {
+    file: "Vibe/Baby Relaxes Fits The Vibe Uaaiti.mp3",
+    title: "Baby Relaxes Fits the Vibe Uaaiti"
+  },
+  {
+    file: "Vibe/Beat Gta San Andreas.mp3",
+    title: "Beat GTA San Andreas"
+  },
+  {
+    file: "Vibe/BEAT RAVE NOSTALGICA.mp3",
+    title: "Beat Rave Nostálgica"
+  },
+  {
+    file: "Vibe/becane - yame [edit audio].mp3",
+    title: "Becane - Yame (Edit Audio)"
+  },
+  {
+    file: "Vibe/becane - yame [edit live].mp3",
+    title: "Becane - Yame (Edit Live)"
+  },
+  {
+    file: "Vibe/Becane (Remix).mp3",
+    title: "Becane (Remix)"
+  },
+  {
+    file: "Vibe/Benio edit.mp3",
+    title: "Benio Edit"
+  },
+  {
+    file: "Vibe/Boom Boom Pow.mp3",
+    title: "Boom Boom Pow"
+  },
+  {
+    file: "Vibe/Nave-Espacial.mp3",
+    title: "Nave Espacial"
+  },
+  {
+    file: "Vibe/Can_i_kick_it.mp3",
+    title: "Can I Kick It"
+  },
+  {
+    file: "Vibe/Cant Hold Us.mp3",
+    title: "Can't Hold Us"
+  },
+  {
+    file: "Vibe/Charlie Puth - Betty Boop Remix.mp3",
+    title: "Charlie Puth - Betty Boop Remix"
+  },
+  {
+    file: "Vibe/CHEIRO DE PNEU (EXTENDED).mp3",
+    title: "Cheiro de Pneu (Extended)"
+  },
+  {
+    file: "Vibe/Chuck Berry.mp3",
+    title: "Chuck Berry"
+  },
+  {
+    file: "Vibe/Confess your love.mp3",
+    title: "Confess Your Love"
+  },
+  {
+    file: "Vibe/CONFESS YOUR LOVE FUNK.mp3",
+    title: "Confess Your Love Funk"
+  },
+  {
+    file: "Vibe/Calma vida ta de boa.mp3",
+    title: "Calma Vida Tá de Boa"
+  },
+  {
+    file: "Vibe/CJ SO COOL - Tired.mp3",
+    title: "CJ So Cool - Tired"
+  },
+  {
+    file: "Vibe/Cupid (twin version) - pmv.mp3",
+    title: "Cupid (Twin Version) - PMV"
+  },
+  {
+    file: "Vibe/Cupid Kiko.mp3",
+    title: "Cupid Kiko"
+  },
+  {
+    file: "Vibe/Dancin (Slowed Reverb).mp3",
+    title: "Dancin (Slowed Reverb)"
+  },
+  {
+    file: "Vibe/Despicable Me.mp3",
+    title: "Despicable Me"
+  },
+  {
+    file: "Vibe/Dj Pernambuco.mp3",
+    title: "DJ Pernambuco"
+  },
+  {
+    file: "Vibe/Dont Stop Me Now.mp3",
+    title: "Don't Stop Me Now"
+  },
+  {
+    file: "Vibe/Doowit.mp3",
+    title: "Doowit"
+  },
+  {
+    file: "Vibe/Double Life.mp3",
+    title: "Double Life"
+  },
+  {
+    file: "Vibe/Dum ta ta x Wine Pon You.mp3",
+    title: "Dum Ta Ta x Wine Pon You"
+  },
+  {
+    file: "Vibe/E QUE HOJE VAI TER FESTINHA Edit.mp3",
+    title: "E Que Hoje Vai Ter Festinha (Edit)"
+  },
+  {
+    file: "Vibe/Empire State Of Mind (Lyrics).mp3",
+    title: "Empire State of Mind (Lyrics)"
+  },
+  {
+    file: "Vibe/envy.mp3",
+    title: "Envy"
+  },
+  {
+    file: "Vibe/eu já sofri por amor mas não sofro mais.mp3",
+    title: "Eu Já Sofri por Amor Mas Não Sofro Mais"
+  },
+  {
+    file: "Vibe/É-espetacular-o-sorriso-dessa-Princesa.mp3",
+    title: "É Espetacular o Sorriso Dessa Princesa"
+  },
+  {
+    file: "Vibe/Falling in love feels like.mp3",
+    title: "Falling in Love Feels Like"
+  },
+  {
+    file: "Vibe/Forever.mp3",
+    title: "Forever"
+  },
+  {
+    file: "Vibe/Four (Best Part Sped Up And Looped).mp3",
+    title: "Four (Best Part Sped Up and Looped)"
+  },
+  {
+    file: "Vibe/Freedom.mp3",
+    title: "Freedom"
+  },
+  {
+    file: "Vibe/Hadal ahbek edit.mp3",
+    title: "Hadal Ahbek (Edit)"
+  },
+  {
+    file: "Vibe/Hadal ahbek.mp3",
+    title: "Hadal Ahbek"
+  },
+  {
+    file: "Vibe/I Said girl why you keep callin.mp3",
+    title: "I Said Girl Why You Keep Callin"
+  },
+  {
+    file: "Vibe/Im Ready.mp3",
+    title: "I'm Ready"
+  },
+  {
+    file: "Vibe/Im Way Up - Ready.mp3",
+    title: "I'm Way Up - Ready"
+  },
+  {
+    file: "Vibe/idfc - (edit audio).mp3",
+    title: "IDFC (Edit Audio)"
+  },
+  {
+    file: "Vibe/Ir alem.mp3",
+    title: "Ir Além"
+  },
+  {
+    file: "Vibe/Its Going Down Now.mp3",
+    title: "It's Going Down Now"
+  },
+  {
+    file: "Vibe/Its Tricky.mp3",
+    title: "It's Tricky"
+  },
+  {
+    file: "Vibe/James Brown -  Poison (Jersey Club Remix).mp3",
+    title: "James Brown - Poison (Jersey Club Remix)"
+  },
+  {
+    file: "Vibe/Just Dance.mp3",
+    title: "Just Dance"
+  },
+  {
+    file: "Vibe/Kali Uchis- Moonlight (sped up)_-gYfH6FTmek.mp3",
+    title: "Kali Uchis - Moonlight (Sped Up)"
+  },
+  {
+    file: "Vibe/KayArchon - new jeans.mp3",
+    title: "KayArchon - New Jeans"
+  },
+  {
+    file: "Vibe/Lilbubblegum Af1 (slowed reverb).mp3",
+    title: "Lilbubblegum AF1 (Slowed Reverb)"
+  },
+  {
+    file: "Vibe/Lilbubblegum Af1.mp3",
+    title: "Lilbubblegum AF1"
+  },
+  {
+    file: "Vibe/LMK (edit audio).mp3",
+    title: "LMK (Edit Audio)"
+  },
+  {
+    file: "Vibe/LUNA BALA (Slowed).mp3",
+    title: "Luna Bala (Slowed)"
+  },
+  {
+    file: "Vibe/Masego and FKJ (edit audio).mp3",
+    title: "Masego and FKJ (Edit Audio)"
+  },
+  {
+    file: "Vibe/masquerade - siouxxie (edit audio).mp3",
+    title: "Masquerade - Siouxxie (Edit Audio)"
+  },
+  {
+    file: "Vibe/MUEVELOU (SLOWED + REVERB) Pocoyo Edit.mp3",
+    title: "Muevelou (Slowed + Reverb) Pocoyo Edit"
+  },
+  {
+    file: "Vibe/Mustard - Ballin ft Roddy Rich (sped up version).mp3",
+    title: "Mustard - Ballin ft Roddy Rich (Sped Up Version)"
+  },
+  {
+    file: "Vibe/MEHOY.mp3",
+    title: "MEHOY"
+  },
+  {
+    file: "Vibe/MONTAGEM XONADA.mp3",
+    title: "Montagem Xonada"
+  },
+  {
+    file: "Vibe/Marca pra nos se ver.mp3",
+    title: "Marca Pra Nós Se Ver"
+  },
+  {
+    file: "Vibe/Mo Bamba.mp3",
+    title: "Mo Bamba"
+  },
+  {
+    file: "Vibe/Montagem Miau (Super Slowed).mp3",
+    title: "Montagem Miau (Super Slowed)"
+  },
+  {
+    file: "Vibe/Me diga entao.mp3",
+    title: "Me Diga Então"
+  },
+  {
+    file: "Vibe/Neverita Cooking.mp3",
+    title: "Neverita Cooking"
+  },
+  {
+    file: "Vibe/NA HORA QUE ME ESCUTAR X BEAT OH OH.mp3",
+    title: "Na Hora Que Me Escutar x Beat Oh Oh"
+  },
+  {
+    file: "Vibe/New Jeans Jersey Remix SLOWED.mp3",
+    title: "New Jeans Jersey Remix (Slowed)"
+  },
+  {
+    file: "Vibe/NewJeans 2 Remix.mp3",
+    title: "NewJeans 2 Remix"
+  },
+  {
+    file: "Vibe/Nice try ditty.mp3",
+    title: "Nice Try Ditty"
+  },
+  {
+    file: "Vibe/Noite toda uma zoada - 1.mp3",
+    title: "Noite Toda Uma Zoada - 1"
+  },
+  {
+    file: "Vibe/Noite toda uma zoada - 2.mp3",
+    title: "Noite Toda Uma Zoada - 2"
+  },
+  {
+    file: "Vibe/no - meghan trainor (edit audio).mp3",
+    title: "No - Meghan Trainor (Edit Audio)"
+  },
+  {
+    file: "Vibe/no signal.mp3",
+    title: "No Signal"
+  },
+  {
+    file: "Vibe/Not my problem.mp3",
+    title: "Not My Problem"
+  },
+  {
+    file: "Vibe/Patlamaya Devam.mp3",
+    title: "Patlamaya Devam"
+  },
+  {
+    file: "Vibe/Pedro Pedro Pedro - Racoon Meme Full Version.mp3",
+    title: "Pedro Pedro Pedro - Racoon Meme Full Version"
+  },
+  {
+    file: "Vibe/PROD. EF x UGOVHB - Chove Chuva Phonk (Slowed and Reverb).mp3",
+    title: "PROD. EF x UGOVHB - Chove Chuva Phonk (Slowed and Reverb)"
+  },
+  {
+    file: "Vibe/Phao - 2 Phut Hon (KAIZ Remix).mp3",
+    title: "Phao - 2 Phut Hon (KAIZ Remix)"
+  },
+  {
+    file: "Vibe/Pou Teto.mp3",
+    title: "Pou Teto"
+  },
+  {
+    file: "Vibe/Quando Chega A Noite (Slowed).mp3",
+    title: "Quando Chega a Noite (Slowed)"
+  },
+  {
+    file: "Vibe/Reese Young edit-audio.mp3",
+    title: "Reese Young (Edit Audio)"
+  },
+  {
+    file: "Vibe/Ridin (Dj Vm Remix).mp3",
+    title: "Ridin (DJ VM Remix)"
+  },
+  {
+    file: "Vibe/Ritmada Poderosa  edit.mp3",
+    title: "Ritmada Poderosa (Edit)"
+  },
+  {
+    file: "Vibe/Rizz Song (4k Edit).mp3",
+    title: "Rizz Song (4k Edit)"
+  },
+  {
+    file: "Vibe/Roblox Runaway.mp3",
+    title: "Roblox Runaway"
+  },
+  {
+    file: "Vibe/Roddy Ricch - Down Below (TikTok Remix) [Lyrics].mp3",
+    title: "Roddy Ricch - Down Below (TikTok Remix) [Lyrics]"
+  },
+  {
+    file: "Vibe/Roddy Ricch - Down Below.mp3",
+    title: "Roddy Ricch - Down Below"
+  },
+  {
+    file: "Vibe/Run anemona.mp3",
+    title: "Run Anemona"
+  },
+  {
+    file: "Vibe/SAD FUNK (SLOWED).mp3",
+    title: "Sad Funk (Slowed)"
+  },
+  {
+    file: "Vibe/SATORU GOJO - ODETARI - KEEP UP.mp3",
+    title: "Satoru Gojo - Odetari - Keep Up"
+  },
+  {
+    file: "Vibe/Scared of the Dark (Remix).mp3",
+    title: "Scared of the Dark (Remix)"
+  },
+  {
+    file: "Vibe/See Tinh [Cukak-Remix].mp3",
+    title: "See Tinh [Cukak Remix]"
+  },
+  {
+    file: "Vibe/Ser um Hero - Raphyx.mp3",
+    title: "Ser um Hero - Raphyx"
+  },
+  {
+    file: "Vibe/Shake It Bololo (BOLOLO HAHA) [Lyrics Edit].mp3",
+    title: "Shake It Bololo (Bololo Haha) [Lyrics Edit]"
+  },
+  {
+    file: "Vibe/sigrid - everybody knows (slowed reverb).mp3",
+    title: "Sigrid - Everybody Knows (Slowed Reverb)"
+  },
+  {
+    file: "Vibe/stay - edit audio.mp3",
+    title: "Stay (Edit Audio)"
+  },
+  {
+    file: "Vibe/Stereo Hearts.mp3",
+    title: "Stereo Hearts"
+  },
+  {
+    file: "Vibe/Silento - Watch Me.mp3",
+    title: "Silento - Watch Me"
+  },
+  {
+    file: "Vibe/Smells Like Teen Spirit.mp3",
+    title: "Smells Like Teen Spirit"
+  },
+  {
+    file: "Vibe/Sound Of Da Police.mp3",
+    title: "Sound of Da Police"
+  },
+  {
+    file: "Vibe/Take A Slice - Edit Audio.mp3",
+    title: "Take a Slice (Edit Audio)"
+  },
+  {
+    file: "Vibe/Take a Slice (Slowed Reverb looped).mp3",
+    title: "Take a Slice (Slowed Reverb Looped)"
+  },
+  {
+    file: "Vibe/Te Amo, Te Odeio - Shadow.mp3",
+    title: "Te Amo, Te Odeio - Shadow"
+  },
+  {
+    file: "Vibe/Ten Toes - Instrumental.mp3",
+    title: "Ten Toes - Instrumental"
+  },
+  {
+    file: "Vibe/Thing - A Cappella Piano (TIKTOK).mp3",
+    title: "Thing - A Cappella Piano (TikTok)"
+  },
+  {
+    file: "Vibe/Trap Queen (Royalty remix edit).mp3",
+    title: "Trap Queen (Royalty Remix Edit)"
+  },
+  {
+    file: "Vibe/Tipo Narutin.mp3",
+    title: "Tipo Narutin"
+  },
+  {
+    file: "Vibe/Vai Vai!!(ULTRA-SLOWED).mp3",
+    title: "Vai Vai!! (Ultra-Slowed)"
+  },
+  {
+    file: "Vibe/Vibe Yondaime.mp3",
+    title: "Vibe Yondaime"
+  },
+  {
+    file: "Vibe/White Tee - (Rizz song slowed).mp3",
+    title: "White Tee (Rizz Song Slowed)"
+  },
+  {
+    file: "Vibe/White Tee (slowed + bass boost).mp3",
+    title: "White Tee (Slowed + Bass Boost)"
+  },
+  {
+    file: "Vibe/White Tee (Treat Me Like White Tees) - Edit Audio.mp3",
+    title: "White Tee (Treat Me Like White Tees) - Edit Audio"
+  },
+  {
+    file: "Vibe/Whats Up Danger.mp3",
+    title: "What's Up Danger"
+  },
+  {
+    file: "Vibe/Work - Rihanna ft Dj Natttan.mp3",
+    title: "Work - Rihanna ft DJ Natttan"
+  },
+  {
+    file: "Vibe/Yellow Light.mp3",
+    title: "Yellow Light"
+  }
+    ]
+  },
 
-            'Christ Gym/Coral Resgate - TUDO COOPERA PARA O BEM.mp3': "Tudo Coopera Para o Bem",
-            'Christ Gym/E Tudo Sobre Voce (Ao Vivo) (192).mp3': "É Tudo Sobre Você",
-            'Christ Gym/Para Onde Eu Irei_ - Morada - Live Church (192).mp3': "Para Onde Eu Irei",
-            'Christ Gym/Repent (192).mp3': "Repent",
+  "Gym": {
+    image: 'https://play-lh.googleusercontent.com/ixn6Eatx2XtOZiIf1EGxDOcRNQ9-wiZNAZHZBHb1YhRKYTlm5DWWYlBGew97D1i1rOs',
+    images: ['https://play-lh.googleusercontent.com/ixn6Eatx2XtOZiIf1EGxDOcRNQ9-wiZNAZHZBHb1YhRKYTlm5DWWYlBGew97D1i1rOs', 'https://i.redd.it/xgbtq3ehqb4f1.png', 'https://media1.tenor.com/m/JrmnrTcgt1QAAAAd/invincible-invincible-war.gif', 'https://64.media.tumblr.com/0a598ca2635acf9e510efa82c106a982/7307e41ae7e569e2-00/s540x810/1378d68f041b3c821fafaf2565b3d55b2dc45600.gifv', 'https://cdn.polyspeak.ai/speakmaster/b786ec3cafd4105216a00042de45ec24.webp', 'https://i.ytimg.com/vi/q20NzJ1Ft1A/oardefault.jpg?sqp=-oaymwEiCNAFENAFSFqQAgHyq4qpAxEIARUAAAAAJQAAyEI9AICiQw==&rs=AOn4CLAVZzo2v6_iijtjuYwPdiaOS5opZw', 'https://i.pinimg.com/originals/7c/d3/e9/7cd3e99ec3e14cb3c9efbb8f87a5d9ca.gif', 'https://media1.tenor.com/m/_YauivWNmfgAAAAd/gamma-jack-edit.gif', 'https://i1.sndcdn.com/avatars-RNVAVn2djfdWZTy5-DWnv8A-t1080x1080.jpg'],
+    tracks: [
+  {
+    file: "Gym/2K FREESTYLE.mp3",
+    title: "2K Freestyle"
+  },
+  {
+    file: "Gym/4TAO - Super Slowed.mp3",
+    title: "4TAO - Super Slowed"
+  },
+  {
+    file: "Gym/21 Century Fox phonk.mp3",
+    title: "21 Century Fox Phonk"
+  },
+  {
+    file: "Gym/2099 SPED UP (Crisis x Spiderman).mp3",
+    title: "2099 Sped Up (Crisis x Spiderman)"
+  },
+  {
+    file: "Gym/2099.mp3",
+    title: "2099"
+  },
+  {
+    file: "Gym/AGUA DE BEBER (spedup).mp3",
+    title: "Agua de Beber (Sped Up)"
+  },
+  {
+    file: "Gym/AMV Middle of the night.mp3",
+    title: "AMV - Middle of the Night"
+  },
+  {
+    file: "Gym/An audio for your final stand.mp3",
+    title: "An Audio for Your Final Stand"
+  },
+  {
+    file: "Gym/Analog Horror Funk 2 (TikTok Version).mp3",
+    title: "Analog Horror Funk 2 (TikTok Version)"
+  },
+  {
+    file: "Gym/𝐀𝐧𝐚𝐥𝐨𝐠 𝐇𝐨𝐫𝐫𝐨𝐫 𝐅𝐮𝐧𝐤 𝟐.mp3",
+    title: "Analog Horror Funk 2"
+  },
+  {
+    file: "Gym/Aquecimento Backyardigans (SPEED UP TIKTOK PHONK).mp3",
+    title: "Aquecimento Backyardigans (Speed Up TikTok Phonk)"
+  },
+  {
+    file: "Gym/AUTOMOTIVO MANGOS.mp3",
+    title: "Automotivo Mangos"
+  },
+  {
+    file: "Gym/AUTOMOTIVO MODERN TETRIS (slowed).mp3",
+    title: "Automotivo Modern Tetris (Slowed)"
+  },
+  {
+    file: "Gym/AUTOMOTIVO PA PA PAPAI (Slowed).mp3",
+    title: "Automotivo Pa Pa Papai (Slowed)"
+  },
+  {
+    file: "Gym/Aura Cosmica edit-audio.mp3",
+    title: "Aura Cósmica (Edit Audio)"
+  },
+  {
+    file: "Gym/Aurea Cosmica (Instrumental Version Slowed).mp3",
+    title: "Auræa Cósmica (Instrumental Version Slowed)"
+  },
+  {
+    file: "Gym/Avatar Edit.mp3",
+    title: "Avatar (Edit)"
+  },
+  {
+    file: "Gym/Backyardigans phonk X Perfume Exalando (Slowed to perfection).mp3",
+    title: "Backyardigans Phonk x Perfume Exalando (Slowed to Perfection)"
+  },
+  {
+    file: "Gym/BAD HABIT HORROR FUNK (Slowed Reverb).mp3",
+    title: "Bad Habit Horror Funk (Slowed Reverb)"
+  },
+  {
+    file: "Gym/BAD HAPPENING FUNK x DARK RED FUNK.mp3",
+    title: "Bad Happening Funk x Dark Red Funk"
+  },
+  {
+    file: "Gym/BAD PARENTING FUNK V2 (Slowed).mp3",
+    title: "Bad Parenting Funk V2 (Slowed)"
+  },
+  {
+    file: "Gym/Beeper Funk (Ultra slowed).mp3",
+    title: "Beeper Funk (Ultra Slowed)"
+  },
+  {
+    file: "Gym/Beeper funk x montagem vozes profundas (slowed).mp3",
+    title: "Beeper Funk x Montagem Vozes Profundas (Slowed)"
+  },
+  {
+    file: "Gym/Blue Horizon Funk (ULTRA SLOWED REVERB).mp3",
+    title: "Blue Horizon Funk (Ultra Slowed Reverb)"
+  },
+  {
+    file: "Gym/BOSS SAPFIR (TIKTOK REMIX GYM EDIT).mp3",
+    title: "Boss Sapfir (TikTok Remix Gym Edit)"
+  },
+  {
+    file: "Gym/BROLY RAGE x GOKU RAGE x BRAZILIAN DANCA PHONK (Ultra Slowed + Reverbed).mp3",
+    title: "Broly Rage x Goku Rage x Brazilian Dança Phonk (Ultra Slowed + Reverbed)"
+  },
+  {
+    file: "Gym/can you feel my heart - bring me the horizon [edit audio].mp3",
+    title: "Can You Feel My Heart - Bring Me the Horizon (Edit Audio)"
+  },
+  {
+    file: "Gym/Can You Feel My Heart.mp3",
+    title: "Can You Feel My Heart"
+  },
+  {
+    file: "Gym/CANT HOLD x INDUSTRY BABY.mp3",
+    title: "Cant Hold x Industry Baby"
+  },
+  {
+    file: "Gym/Centuries.mp3",
+    title: "Centuries"
+  },
+  {
+    file: "Gym/Cocomelon X hott headzz hmmm.mp3",
+    title: "Cocomelon x Hott Headzz Hmmm"
+  },
+  {
+    file: "Gym/Comecar-_intro_.mp3",
+    title: "Comecar (Intro)"
+  },
+  {
+    file: "Gym/Cool Beats.mp3",
+    title: "Cool Beats"
+  },
+  {
+    file: "Gym/Cowbell cult - COP KILLAZ (SUPER SLOWED).mp3",
+    title: "Cowbell Cult - Cop Killaz (Super Slowed)"
+  },
+  {
+    file: "Gym/Creed-2-OST-Desert-Training-Song.mp3",
+    title: "Creed 2 OST - Desert Training Song"
+  },
+  {
+    file: "Gym/Creed-Motivation-Training-2015-_HD_.mp3",
+    title: "Creed - Motivation Training 2015 (HD)"
+  },
+  {
+    file: "Gym/Creeds-Push-Up-_Slowed-Techno-Remix_.mp3",
+    title: "Creed's Push-Up (Slowed Techno Remix)"
+  },
+  {
+    file: "Gym/crisis x spider man 2099 theme - jasiah [[[slowed + reverbed]]].mp3",
+    title: "Crisis x Spider-Man 2099 Theme - Jasiah (Slowed + Reverbed)"
+  },
+  {
+    file: "Gym/DANCING FUNK.mp3",
+    title: "Dancing Funk"
+  },
+  {
+    file: "Gym/DARK AGE FUNK (SLOWED).mp3",
+    title: "Dark Age Funk (Slowed)"
+  },
+  {
+    file: "Gym/DOORS LIGHT FUNK - GAMMA JACK.mp3",
+    title: "Doors Light Funk - Gamma Jack"
+  },
+  {
+    file: "Gym/DOORS LIGHT FUNK - ( SLOWED ).mp3",
+    title: "Doors Light Funk (Slowed)"
+  },
+  {
+    file: "Gym/Desiigner - Panda (Lyrics Tiktok Song).mp3",
+    title: "Desiigner - Panda (Lyrics TikTok Song)"
+  },
+  {
+    file: "Gym/EA OFFICIAL VERSION.mp3",
+    title: "EA OFFICIAL VERSION"
+  },
+  {
+    file: "Gym/EGGSTREME-DUCK-PHONK-_Slowed_.mp3",
+    title: "Eggstreme-Duck-Phonk (Slowed)"
+  },
+  {
+    file: "Gym/Eminem - Without Me (Lyrics).mp3",
+    title: "Eminem - Without Me (Lyrics)"
+  },
+  {
+    file: "Gym/ENOUGH! (Long Version).mp3",
+    title: "Enough! (Long Version)"
+  },
+  {
+    file: "Gym/EXE FUNK (Ultra Slowed).mp3",
+    title: "EXE Funk (Ultra Slowed)"
+  },
+  {
+    file: "Gym/Ela Vira Mortal - (ultra).mp3",
+    title: "Ela Vira Mortal (Ultra)"
+  },
+  {
+    file: "Gym/Epic Christian Edit.mp3",
+    title: "Epic Christian (Edit)"
+  },
+  {
+    file: "Gym/Eternxlkz - BRODYAGA FUNK.mp3",
+    title: "Eternxlkz - Brodyaga Funk"
+  },
+  {
+    file: "Gym/Eternxlkz - SLAY!.mp3",
+    title: "Eternxlkz - Slay!"
+  },
+  {
+    file: "Gym/𝐄𝐗𝐂𝐋𝐄𝐓𝐈𝐂𝐀 𝐍𝐀𝐍𝐎𝐋𝐈𝐂𝐈𝐓𝐀 𝟐 (𝗦𝗹𝗼𝘄𝗲𝗱 𝗮𝗻𝗱 𝗥𝗲𝘃𝗲𝗿𝗯).mp3",
+    title: "Excletica Nanolicita 2 (Slowed and Reverb)"
+  },
+  {
+    file: "Gym/Face Off.mp3",
+    title: "Face Off"
+  },
+  {
+    file: "Gym/Funk Destravado (Slowed).mp3",
+    title: "Funk Destravado (Slowed)"
+  },
+  {
+    file: "Gym/FEEL NOTHING.mp3",
+    title: "Feel Nothing"
+  },
+  {
+    file: "Gym/FREDDIE DRED-LIMBO (SUPER SLOWED+REVERB)(GHOST).mp3",
+    title: "Freddie Dred - Limbo (Super Slowed + Reverb) (Ghost)"
+  },
+  {
+    file: "Gym/FUNK DO DIE (Super Slowed).mp3",
+    title: "Funk do Die (Super Slowed)"
+  },
+  {
+    file: "Gym/FUNK DO SURPRISE ULTRA SLOWED.mp3",
+    title: "Funk do Surprise (Ultra Slowed)"
+  },
+  {
+    file: "Gym/FUNK LIMINAL (SUPER SLOWED REVERB).mp3",
+    title: "Funk Liminal (Super Slowed Reverb)"
+  },
+  {
+    file: "Gym/GOTHAM.mp3",
+    title: "Gotham"
+  },
+  {
+    file: "Gym/Get Get Down.mp3",
+    title: "Get Get Down"
+  },
+  {
+    file: "Gym/HERO FUNK (Slowed).mp3",
+    title: "Hero Funk (Slowed)"
+  },
+  {
+    file: "Gym/heartburn Ultra slowed.mp3",
+    title: "Heartburn (Ultra Slowed)"
+  },
+  {
+    file: "Gym/Horizonte de Diamante (Slowed Reverb).mp3",
+    title: "Horizonte de Diamante (Slowed Reverb)"
+  },
+  {
+    file: "Gym/I feel like god (slowed reverb).mp3",
+    title: "I Feel Like God (Slowed Reverb)"
+  },
+  {
+    file: "Gym/Industry Baby vs. E.T._.mp3",
+    title: "Industry Baby vs. E.T."
+  },
+  {
+    file: "Gym/Industry Baby x Beat It.mp3",
+    title: "Industry Baby x Beat It"
+  },
+  {
+    file: "Gym/Invincible and Eve - edit music.mp3",
+    title: "Invincible and Eve (Edit Music)"
+  },
+  {
+    file: "Gym/JOGO MORTO (Slowed).mp3",
+    title: "Jogo Morto (Slowed)"
+  },
+  {
+    file: "Gym/Jack-Hanma.mp3",
+    title: "Jack-Hanma"
+  },
+  {
+    file: "Gym/Jet Set.mp3",
+    title: "Jet Set"
+  },
+  {
+    file: "Gym/Kanye West - Runaway [Official Edit] (192).mp3",
+    title: "Kanye West - Runaway (Official Edit)"
+  },
+  {
+    file: "Gym/KING BALDWIN IV x YEA (SLOWED + REVERB).mp3",
+    title: "King Baldwin IV x YEA (Slowed + Reverb)"
+  },
+  {
+    file: "Gym/Komodo (slowed).mp3",
+    title: "Komodo (Slowed)"
+  },
+  {
+    file: "Gym/Los Pinguinos de Madagascar.mp3",
+    title: "Los Pinguinos de Madagascar"
+  },
+  {
+    file: "Gym/Love Game (Slowed).mp3",
+    title: "Love Game (Slowed)"
+  },
+  {
+    file: "Gym/Luci4 - BodyPartz (Edit Extended, Clean).mp3",
+    title: "Luci4 - BodyPartz (Edit Extended, Clean)"
+  },
+  {
+    file: "Gym/MTG Distocida Japonesa (edit Slowed).mp3",
+    title: "MTG Distocida Japonesa (Edit Slowed)"
+  },
+  {
+    file: "Gym/𝙈𝙐𝙉𝘾𝙃𝘼𝙐𝙎𝙀𝙉 𝙁𝙐𝙉𝙆 (𝙎𝙪𝙥𝙚𝙧 𝙎𝙡𝙤𝙬𝙚𝙙).mp3",
+    title: "Munchausen Funk (Super Slowed)"
+  },
+  {
+    file: "Gym/MY HIGH FUNK.mp3",
+    title: "My High Funk"
+  },
+  {
+    file: "Gym/Mangos (Tiktok Version).mp3",
+    title: "Mangos (TikTok Version)"
+  },
+  {
+    file: "Gym/MARIA VAI X BEAT ABSURDO (Ultra Slowed).mp3",
+    title: "Maria Vai x Beat Absurdo (Ultra Slowed)"
+  },
+  {
+    file: "Gym/𝙈𝙀𝙇𝙊𝘿𝙄𝘼 𝘿𝘼 𝙋𝙍𝘼 𝙉𝙊𝙄𝙎 (𝙪𝙡𝙩𝙧𝙖 𝙨𝙡𝙤𝙬𝙚𝙙).mp3",
+    title: "Melodia da Pra Nois (Ultra Slowed)"
+  },
+  {
+    file: "Gym/MENTE MA (Super Slowed).mp3",
+    title: "Mente Ma (Super Slowed)"
+  },
+  {
+    file: "Gym/𝗠𝗘𝗡𝗧𝗜𝗥A𝗢 - (𝗦𝘂𝗽𝗲𝗿 𝗦𝗹𝗼𝘄𝗲𝗱).mp3",
+    title: "Mentirao (Super Slowed)"
+  },
+  {
+    file: "Gym/Masha ultrafunk.mp3",
+    title: "Masha UltraFunk"
+  },
+  {
+    file: "Gym/Meet the Frownies x Lovely Bastards - TikTok Remix - (Slowed).mp3",
+    title: "Meet the Frownies x Lovely Bastards (TikTok Remix, Slowed)"
+  },
+  {
+    file: "Gym/Mi Mami Funk Vol 2.mp3",
+    title: "Mi Mami Funk Vol 2"
+  },
+  {
+    file: "Gym/Money so big - yeat [ edit audio ].mp3",
+    title: "Money So Big - Yeat (Edit Audio)"
+  },
+  {
+    file: "Gym/Montagem Bandido.mp3",
+    title: "Montagem Bandido"
+  },
+  {
+    file: "Gym/MONTAGEM BIONICA ESPECTRAL 2 - SLOWED.mp3",
+    title: "Montagem Bionica Espectral 2 (Slowed)"
+  },
+  {
+    file: "Gym/MONTAGEM BIONICA ESPECTRAL 2.mp3",
+    title: "Montagem Bionica Espectral 2"
+  },
+  {
+    file: "Gym/MONTAGEM BRAVO ( Slowed ).mp3",
+    title: "Montagem Bravo (Slowed)"
+  },
+  {
+    file: "Gym/MONTAGEM CRISTALIZED CONTENT (Extreme Slowed).mp3",
+    title: "Montagem Cristalized Content (Extreme Slowed)"
+  },
+  {
+    file: "Gym/MONTAGEM DIRECAO - (super slowed).mp3",
+    title: "Montagem Direcao (Super Slowed)"
+  },
+  {
+    file: "Gym/MONTAGEM RABETA (ULTRA SLOWED).mp3",
+    title: "Montagem Rabeta (Ultra Slowed)"
+  },
+  {
+    file: "Gym/𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙀𝙍𝙑𝘼 · 𝘿𝙅 𝙍𝘼𝙐𝙇𝙄𝙋𝙐𝙀𝙎 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿).mp3",
+    title: "Montagem Erva · DJ Raulipues (Super Slowed)"
+  },
+  {
+    file: "Gym/Montagem Invasao.mp3",
+    title: "Montagem Invasao"
+  },
+  {
+    file: "Gym/Montagem Lunar Esmeralda (ultra slowed reverb).mp3",
+    title: "Montagem Lunar Esmeralda (Ultra Slowed Reverb)"
+  },
+  {
+    file: "Gym/𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙍𝙀𝘽𝙊𝙇𝘼 (𝙎𝙪𝙥𝙚𝙧 𝙎𝙡𝙤𝙬𝙚𝙙).mp3",
+    title: "Montagem Rebola (Super Slowed)"
+  },
+  {
+    file: "Gym/MONTAGEM REBOLA (SLOWED REVERB).mp3",
+    title: "Montagem Rebola (Slowed Reverb)"
+  },
+  {
+    file: "Gym/MONTAGEM SANTA FE 2.mp3",
+    title: "Montagem Santa Fe 2"
+  },
+  {
+    file: "Gym/MONTAGEM VOZES TALENTINHO (Super Slowed Reverb).mp3",
+    title: "Montagem Vozes Talentinho (Super Slowed Reverb)"
+  },
+  {
+    file: "Gym/MONTAGEM TEM QUE TIRAR O CHAPEU - (SUPER SLOWED).mp3",
+    title: "Montagem Tem Que Tirar o Chapeu (Super Slowed)"
+  },
+  {
+    file: "Gym/MONTAGEM TOMADA SLOWED.mp3",
+    title: "Montagem Tomada (Slowed)"
+  },
+  {
+    file: "Gym/MONTAGEM VOZES PROFUNDAS.mp3",
+    title: "Montagem Vozes Profundas"
+  },
+  {
+    file: "Gym/𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙎𝙐𝙋𝙀𝙍𝙎𝙊𝙉𝙄𝘾.mp3",
+    title: "Montagem Supersonic"
+  },
+  {
+    file: "Gym/morder.mp3",
+    title: "Morder"
+  }, 
+  {
+    file: "Gym/My Ordinary Life (wally west solo).mp3",
+    title: "My Ordinary Life (Wally West Solo)"
+  },
+  {
+    file: "Gym/NO ERA AMOR (Super Slowed).mp3",
+    title: "No Era Amor (Super Slowed)"
+  },
+  {
+    file: "Gym/NUNCA MUDA - SLOWED (Edit Audio).mp3",
+    title: "Nunca Muda (Slowed, Edit Audio)"
+  },
+  {
+    file: "Gym/OGAME.mp3",
+    title: "Ogame"
+  },
+  {
+    file: "Gym/OLD GENESIS.mp3",
+    title: "Old Genesis"
+  },
+  {
+    file: "Gym/OLHA MENSAGEM (SLOWED REVERB).mp3",
+    title: "Olha Mensagem (Slowed Reverb)"
+  },
+  {
+    file: "Gym/Open It Up TikTok remix.mp3",
+    title: "Open It Up (TikTok Remix)"
+  },
+  {
+    file: "Gym/PHONK DO MALAME AMARELO (Ultra Slowed).mp3",
+    title: "Phonk do Malame Amarelo (Ultra Slowed)"
+  },
+  {
+    file: "Gym/PHONKGASKAR.mp3",
+    title: "Phonkgaskar"
+  },
+  {
+    file: "Gym/Pinguins Dancando Melodia Envolvente.mp3",
+    title: "Pinguins Dancando Melodia Envolvente"
+  },
+  {
+    file: "Gym/PLAYA - Swaggin in the Partment - (Slowed+Reverb).mp3",
+    title: "Playa - Swaggin in the Partment (Slowed + Reverb)"
+  },
+  {
+    file: "Gym/PREMONICAO DO VAIA VAIA 1.0 - ( Slowed ).mp3",
+    title: "Premonicao do Vaia Vaia 1.0 (Slowed)"
+  },
+  {
+    file: "Gym/Pose X Star Wars (Tik Tok Audio).mp3",
+    title: "Pose x Star Wars (TikTok Audio)"
+  },
+  {
+    file: "Gym/𝐏𝐎𝐖𝐄𝐑 𝐒𝐋𝐈𝐃𝐄 (𝐒𝐥𝐨𝐰𝐞𝐝).mp3",
+    title: "Power Slide (Slowed)"
+  },
+  {
+    file: "Gym/funk de beleza (edit audio).mp3",
+    title: "Funk de Beleza (Edit Audio)"
+  },
+  {
+    file: "Gym/Push Up (Short Version).mp3",
+    title: "Push Up (Short Version)"
+  },
+  {
+    file: "Gym/RAHHHH (slowed reverb).mp3",
+    title: "Rahhhh (Slowed Reverb)"
+  },
+  {
+    file: "Gym/RISADA CHUCK (Super Slowed).mp3",
+    title: "Risada Chuck (Super Slowed)"
+  },
+  {
+    file: "Gym/Rocking A Cardigan In Atlanta (Remix).mp3",
+    title: "Rocking a Cardigan in Atlanta (Remix)"
+  },
+  {
+    file: "Gym/Rocking a cardigan in Atlanta X werkkk sped up.mp3",
+    title: "Rocking a Cardigan in Atlanta x Werkkk (Sped Up)"
+  },
+  {
+    file: "Gym/rocking a cardigan in Atlanta(edit audio).mp3",
+    title: "Rocking a Cardigan in Atlanta (Edit Audio)"
+  },
+  {
+    file: "Gym/ROYALTY AMV.mp3",
+    title: "Royalty AMV"
+  },
+  {
+    file: "Gym/Rj Pasin - Life Force (SLOWED REVERB).mp3",
+    title: "Rj Pasin - Life Force (Slowed Reverb)"
+  },
+  {
+    file: "Gym/Runnin.mp3",
+    title: "Runnin"
+  },
+  {
+    file: "Gym/shell-shocked-juicy-j_-wiz-khalifa_-ty-dolla-_ign-ft.-kill-the-noise-_-madsonik-_slowed_.mp3",
+    title: "Shell Shocked - Juicy J, Wiz Khalifa, Ty Dolla $ign ft. Kill The Noise & Madsonik (Slowed)"
+  },
+  {
+    file: "Gym/Slide da Treme Melodica v2 - Ultra Slowed.mp3",
+    title: "Slide da Treme Melodica v2 (Ultra Slowed)"
+  },
+  {
+    file: "Gym/Slide da Treme Melodica v2 (+Ultra Slowed).mp3",
+    title: "Slide da Treme Melodica v2 (+Ultra Slowed)"
+  },
+  {
+    file: "Gym/SICKO MODE (TikTok Sped Up Extended).mp3",
+    title: "Sicko Mode (TikTok Sped Up Extended)"
+  },
+  {
+    file: "Gym/Slave (Guitar Remix - Slowed Reverb).mp3",
+    title: "Slave (Guitar Remix - Slowed Reverb)"
+  },
+  {
+    file: "Gym/Sleeping City Funk (Slowed).mp3",
+    title: "Sleeping City Funk (Slowed)"
+  },
+  {
+    file: "Gym/SONGS TO DESTROY YOUR PR.mp3",
+    title: "Songs to Destroy Your PR"
+  },
+  {
+    file: "Gym/SPOOKY.mp3",
+    title: "Spooky"
+  },
+  {
+    file: "Gym/STOP POSTING ABOUT BALLER.mp3",
+    title: "Stop Posting About Baller"
+  },
+  {
+    file: "Gym/STEPHANIE FUNK (Slowed).mp3",
+    title: "Stephanie Funk (Slowed)"
+  },
+  {
+    file: "Gym/Se Paciente (Super Slowed).mp3",
+    title: "Se Paciente (Super Slowed)"
+  },
+  {
+    file: "Gym/Se Paciente - RD12.mp3",
+    title: "Se Paciente - RD12"
+  },
+  {
+    file: "Gym/Sicko Mode (edit audio).mp3",
+    title: "Sicko Mode (Edit Audio)"
+  },
+  {
+    file: "Gym/TELESCOPE  (reverb + slowed + bass ).mp3",
+    title: "Telescope (Reverb + Slowed + Bass)"
+  },
+  {
+    file: "Gym/Talk.mp3",
+    title: "Talk"
+  },
+  {
+    file: "Gym/Tell Em X killing on demand-Hit me (Slowed + Reverb) Edit.mp3",
+    title: "Tell Em x Killing on Demand - Hit Me (Slowed + Reverb Edit)"
+  },
+  {
+    file: "Gym/TORE UP.mp3",
+    title: "Tore Up"
+  },
+  {
+    file: "Gym/Tore Up (TikTok Guitar Remix).mp3",
+    title: "Tore Up (TikTok Guitar Remix)"
+  },
+  {
+    file: "Gym/TOXIC.mp3",
+    title: "Toxic"
+  },
+  {
+    file: "Gym/TRALALERO TRALALA PHONK (Slowed).mp3",
+    title: "Tralalero Tralala Phonk (Slowed)"
+  },
+  {
+    file: "Gym/TUNG SAHUR FUNK (Ultra Slowed).mp3",
+    title: "Tung Sahur Funk (Ultra Slowed)"
+  },
+  {
+    file: "Gym/UGOVHB - WTF 2 (perfect slowed).mp3",
+    title: "UGOVHB - WTF 2 (Perfect Slowed)"
+  },
+  {
+    file: "Gym/Uma palavra adeus.mp3",
+    title: "Uma Palavra Adeus"
+  },
+  {
+    file: "Gym/UNIVERSO (Slowed).mp3",
+    title: "Universo (Slowed)"
+  },
+  {
+    file: "Gym/vampire heart (slowed reverb).mp3",
+    title: "Vampire Heart (Slowed Reverb)"
+  },
+  {
+    file: "Gym/Venom - Eminem (Lyrics).mp3",
+    title: "Venom - Eminem (Lyrics)"
+  },
+  {
+    file: "Gym/Where my head at.mp3",
+    title: "Where My Head At"
+  },
+  {
+    file: "Gym/Whethan - LOCK IT UP (feat. Yeat, midwxst & Matt Ox) [Animated Video] (192).mp3",
+    title: "Whethan - Lock It Up (feat. Yeat, midwxst & Matt Ox) [Animated Video]"
+  },
+  {
+    file: "Gym/X-SLIDE (Ultra Slowed).mp3",
+    title: "X-Slide (Ultra Slowed)"
+  },
+  {
+    file: "Gym/X-SLIDE.mp3",
+    title: "X-Slide"
+  },
+  {
+    file: "Gym/X-TALI (SLOWED).mp3",
+    title: "X-Tali (Slowed)"
+  },
+  {
+    file: "Gym/Yeah-Buddy_.mp3",
+    title: "Yeah-Buddy"
+  },
+  {
+    file: "Gym/YEAT - Died Once (TikTok Version).mp3",
+    title: "Yeat - Died Once (TikTok Version)"
+  },
+  {
+    file: "Gym/YEAT - FLAWLESS 2 (ft. LIL UZI VERT) [PROD. SKY x MYWAYBEATZ] (192).mp3",
+    title: "Yeat - Flawless 2 (ft. Lil Uzi Vert) [Prod. SKY x MYWAYBEATZ]"
+  },
+  {
+    file: "Gym/Yeat - If We Being Real (Slowed & Reverb).mp3",
+    title: "Yeat - If We Being Real (Slowed & Reverb)"
+  },
+  {
+    file: "Gym/yeat - swerved it (slowed+reverb).mp3",
+    title: "Yeat - Swerved It (Slowed + Reverb)"
+  },
+  {
+    file: "Gym/Yeat money so big edit audio (Extended Looped).mp3",
+    title: "Yeat - Money So Big (Edit Audio, Extended Looped)"
+  },
+  {
+    file: "Gym/Your final stand - KENTENSHI paranoia.mp3",
+    title: "Your Final Stand - Kentenshi Paranoia"
+  },
+  {
+    file: "Gym/𝙔𝙊𝙐𝙉𝙂 𝙂𝙄𝙍𝙇 𝙁𝙐𝙉𝙆 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿).mp3",
+    title: "Young Girl Funk (Super Slowed)"
+  }
+]
+  },
 
-            'Gym/2K FREESTYLE.mp3': "2K FREESTYLE",
-            'Gym/4TAO - Super Slowed.mp3': "4TÃO - Super Slowed",
-            'Gym/21 Century Fox phonk.mp3': "21 Century Fox phonk",
-            'Gym/2099.mp3': "2099.",
-            'Gym/2099 SPED UP (Crisis x Spiderman).mp3': "2099 SPED UP (Crisis x Spiderman)",
-            'Gym/AGUA DE BEBER (spedup).mp3': "ÁGUA DE BEBER (spedup)",
-            'Gym/AMV Middle of the night.mp3': "AMV Middle of the night",
-            'Gym/An audio for your final stand.mp3': "An audio for your final stand",
-            'Gym/Analog Horror Funk 2 (TikTok Version).mp3': "Analog Horror Funk 2 (TikTok Version)",
-            'Gym/𝐀𝐧𝐚𝐥𝐨𝐠 𝐇𝐨𝐫𝐫𝐨𝐫 𝐅𝐮𝐧𝐤 𝟐.mp3': "𝐀𝐧𝐚𝐥𝐨𝐠 𝐇𝐨𝐫𝐫𝐨𝐫 𝐅𝐮𝐧𝐤 𝟐",
-            'Gym/Aquecimento Backyardigans (SPEED UP TIKTOK PHONK).mp3': "Aquecimento Backyardigans (SPEEDUP TIKTOK)",
-            'Gym/AUTOMOTIVO MANGOS.mp3': "AUTOMOTIVO MANGOS",
-            'Gym/AUTOMOTIVO MODERN TETRIS (slowed).mp3': "AUTOMOTIVO MODERN TETRIS (Slowed)",
-            'Gym/AUTOMOTIVO PA PA PAPAI (Slowed).mp3': "AUTOMOTIVO PA PA PAPAI (Slowed)",
-            'Gym/Aura Cosmica edit-audio.mp3': "𝘼𝙪𝙧𝙚𝙖 𝘾ó𝙨𝙢𝙞𝙘𝙖 (edit-audio)",
-            'Gym/Aurea Cosmica (Instrumental Version Slowed).mp3': "Áurea Cósmica (Instrumental Version Slowed)",
-            'Gym/Avatar Edit.mp3': "Avatar Edit",
-            'Gym/Backyardigans phonk X Perfume Exalando (Slowed to perfection).mp3': "Backyardigans X Perfume (Slowed to perfection)",
-            'Gym/BAD HABIT HORROR FUNK (Slowed Reverb).mp3': "BAD HABIT HORROR FUNK (Slowed Reverb)",
-            'Gym/BAD HAPPENING FUNK x DARK RED FUNK.mp3': "BAD HAPPENING FUNK x DARK RED FUNK",
-            'Gym/BAD PARENTING FUNK V2 (Slowed).mp3': "BAD PARENTING FUNK V2 (Slowed)",
-            'Gym/Beeper Funk (Ultra slowed).mp3': "Beeper Funk (Ultra slowed)",
-            'Gym/Beeper funk x montagem vozes profundas (slowed).mp3': "Beeper funk x Montagem vozes profundas (slowed)",
-            'Gym/Blue Horizon Funk (ULTRA SLOWED REVERB).mp3': "Blue Horizon Funk (ULTRA SLOWED REVERB)",
-            'Gym/BOSS SAPFIR (TIKTOK REMIX GYM EDIT).mp3': "BOSS SAPFIR (TIKTOK REMIX GYM EDIT)",
-            'Gym/BROLY RAGE x GOKU RAGE x BRAZILIAN DANCA PHONK (Ultra Slowed + Reverbed).mp3': "BROLY AND GOKU x BRAZILIAN DANÇA PHONK",
-            'Gym/can you feel my heart - bring me the horizon [edit audio].mp3': "can you feel my heart [edit audio]",
-            'Gym/Can You Feel My Heart.mp3': "Can You Feel My Heart",
-            'Gym/CANT HOLD x INDUSTRY BABY.mp3': "CANT HOLD x INDUSTRY BABY",
-            'Gym/Centuries.mp3': "Centuries",
-            'Gym/Cocomelon X hott headzz hmmm.mp3': "Cocomelon X hott headzz hmmm",
-            'Gym/Comecar-_intro_.mp3': "Comecar intro",
-            'Gym/Cool Beats.mp3': "Cool Beats",
-            'Gym/Cowbell cult - COP KILLAZ (SUPER SLOWED).mp3': "COP KILLAZ",
-            'Gym/Creed-2-OST-Desert-Training-Song.mp3': "Creed 2 OST Desert Training Song",
-            'Gym/Creed-Motivation-Training-2015-_HD_.mp3': "Creed Motivation Training 2015",
-            'Gym/Creeds-Push-Up-_Slowed-Techno-Remix_.mp3': "Creeds Push Up - Slowed",
-            'Gym/crisis x spider man 2099 theme - jasiah [[[slowed + reverbed]]].mp3': "Crisis x spider man 2099",
-            'Gym/DANCING FUNK.mp3': "DANCING FUNK",
-            'Gym/DARK AGE FUNK (SLOWED).mp3': "DARK AGE FUNK (SLOWED)",
-            'Gym/DOORS LIGHT FUNK - GAMMA JACK.mp3': "DOORS LIGHT FUNK - GAMMA JACK",
-            'Gym/DOORS LIGHT FUNK - ( SLOWED ).mp3': "DOORS LIGHT FUNK - (SLOWED)",
-            'Gym/Desiigner - Panda (Lyrics Tiktok Song).mp3': "Panda (Lyrics Tiktok Song)",
-            'Gym/EA x Off the leash (slowed).mp3': "EA x Off the leash (slowed)",
-            'Gym/EGGSTREME-DUCK-PHONK-_Slowed_.mp3': "EGGSTREME DUCK PHONK - Slowed",
-            'Gym/Eminem - Without Me (Lyrics).mp3': "Without Me (Lyrics)",
-            'Gym/Epic Christian Edit.mp3': "Epic Christian Edit",
-            'Gym/ENOUGH! (Long Version).mp3': "ENOUGH! (Long Version)",
-            'Gym/EXE FUNK (Ultra Slowed).mp3': "EXE FUNK (Ultra Slowed)",
-            'Gym/Ela Vira Mortal - (ultra).mp3': "Ela Vira Mortal - (ultra)",
-            'Gym/Eternxlkz - BRODYAGA FUNK.mp3': "BRODYAGA FUNK",
-            'Gym/Eternxlkz - SLAY!.mp3': "SLAY!",
-            'Gym/𝐄𝐗𝐂𝐋𝐄𝐓𝐈𝐂𝐀 𝐍𝐀𝐍𝐎𝐋𝐈𝐂𝐈𝐓𝐀 𝟐 (𝗦𝗹𝗼𝘄𝗲𝗱 𝗮𝗻𝗱 𝗥𝗲𝘃𝗲𝗿𝗯).mp3': "𝐄𝐗𝐂𝐋𝐄𝐓𝐈𝐂𝐀 𝐍𝐀𝐍𝐎𝐋𝐈𝐂𝐈𝐓𝐀 𝟐 (𝗦𝗹𝗼𝘄𝗲𝗱 𝗮𝗻𝗱 𝗥𝗲𝘃𝗲𝗿𝗯)",
-            'Gym/Face Off.mp3': "Face Off",
-            'Gym/Funk Destravado (Slowed).mp3': "Funk Destravado (Slowed)",
-            'Gym/FEEL NOTHING.mp3': "FEEL NOTHING",
-            'Gym/FREDDIE DRED-LIMBO (SUPER SLOWED+REVERB)(GHOST).mp3': "FREDDIE DRED LIMBO (SUPER SLOWED REVERB)",
-            'Gym/FUNK DO DIE (Super Slowed).mp3': "FUNK DO DIE (Super Slowed)",
-            'Gym/FUNK DO SURPRISE ULTRA SLOWED.mp3': "FUNK DO SURPRISE ULTRA SLOWED",
-            'Gym/FUNK LIMINAL (SUPER SLOWED REVERB).mp3': "FUNK LIMINAL (SUPER SLOWED REVERB)",
-            'Gym/GOTHAM.mp3': "GOTHAM",
-            'Gym/Get Get Down.mp3': "Get Get Down",
-            'Gym/HERO FUNK (Slowed).mp3': "HERO FUNK (Slowed)",
-            'Gym/heartburn Ultra slowed.mp3': "heartburn Ultra slowed",
-            'Gym/Horizonte de Diamante (Slowed Reverb).mp3': "Horizonte de Diamante (Slowed Reverb)",
-            'Gym/I feel like god (slowed reverb).mp3': "I feel like god (slowed reverb)",
-            'Gym/Industry Baby vs. E.T._.mp3': "Industry Baby vs. E.T.",
-            'Gym/Industry Baby x Beat It.mp3': "Industry Baby x Beat It",
-            'Gym/Invincible and Eve - edit music.mp3': "Invincible and Eve - edit music",
-            'Gym/JOGO MORTO (Slowed).mp3': "JOGO MORTO (Slowed)",
-            'Gym/Jack-Hanma.mp3': "Jack-Hanma",
-            'Gym/Jet Set.mp3': "Jet Set",
-            'Gym/Kanye West - Runaway [Official Edit] (192).mp3': "Runaway",
-            'Gym/KING BALDWIN IV x YEA (SLOWED + REVERB).mp3': "KING BALDWIN IV x YEA (SLOWED + REVERB)",
-            'Gym/Komodo (slowed).mp3': "Komodo (slowed)",
-            'Gym/Los Pinguinos de Madagascar.mp3': "Los Pinguinos de Madagascar",
-            'Gym/Love Game (Slowed).mp3': "Love Game (Slowed)",
-            'Gym/Luci4 - BodyPartz (Edit Extended, Clean).mp3': "BodyPartz (Edit Clean Extended)",
-            'Gym/MTG Distocida Japonesa (edit Slowed).mp3': "MTG Distocida Japonesa (edit Slowed)",
-            'Gym/𝙈𝙐𝙉𝘾𝙃𝘼𝙐𝙎𝙀𝙉 𝙁𝙐𝙉𝙆 (𝙎𝙪𝙥𝙚𝙧 𝙎𝙡𝙤𝙬𝙚𝙙).mp3': "𝙈𝙐𝙉𝘾𝙃𝘼𝙐𝙎𝙀𝙉 𝙁𝙐𝙉𝙆 (𝙎𝙪𝙥𝙚𝙧 𝙎𝙡𝙤𝙬𝙚𝙙)",
-            'Gym/MY HIGH FUNK.mp3': "MY HIGH FUNK",
-            'Gym/Mangos (Tiktok Version).mp3': "Mangos (Tiktok Version)",
-            'Gym/MARIA VAI X BEAT ABSURDO (Ultra Slowed).mp3': "MARIA VAI X BEAT ABSURDO (Ultra Slowed)",
-            'Gym/𝙈𝙀𝙇𝙊𝘿𝙄𝘼 𝘿𝘼 𝙋𝙍𝘼 𝙉𝙊𝙄𝙎 (𝙪𝙡𝙩𝙧𝙖 𝙨𝙡𝙤𝙬𝙚𝙙).mp3': "𝙈𝙀𝙇𝙊𝘿𝙄𝘼 𝘿𝘼 𝙋𝙍𝘼 𝙉𝙊𝙄𝙎 (𝙪𝙡𝙩𝙧𝙖 𝙨𝙡𝙤𝙬𝙚𝙙)",
-            'Gym/MENTE MA (Super Slowed).mp3': "MENTE MÁ (Super Slowed)",
-            'Gym/𝗠𝗘𝗡𝗧𝗜𝗥A𝗢 - (𝗦𝘂𝗽𝗲𝗿 𝗦𝗹𝗼𝘄𝗲𝗱).mp3': "𝗠𝗘𝗡𝗧𝗜𝗥Ã𝗢 - (𝗦𝘂𝗽𝗲𝗿 𝗦𝗹𝗼𝘄𝗲𝗱)",
-            'Gym/Masha ultrafunk.mp3': "Masha Ultrafunk",
-            'Gym/Meet the Frownies x Lovely Bastards - TikTok Remix - (Slowed).mp3': "Meet the Frownies x Lovely Bastards - Slowed",
-            'Gym/Mi Mami Funk Vol 2.mp3': "𝙈𝙄 𝙈𝘼𝙈𝙄 𝙁𝙐𝙉𝙆 𝙑𝙤𝙡.2",
-            'Gym/Money so big - yeat [ edit audio ].mp3': "Money so big - edit audio",
-            'Gym/Montagem Bandido.mp3': "Montagem Bandido",
-            'Gym/MONTAGEM BIONICA ESPECTRAL 2 - SLOWED.mp3': "MONTAGEM BIONICA ESPECTRAL 2 - SLOWED",
-            'Gym/MONTAGEM BIONICA ESPECTRAL 2.mp3': "MONTAGEM BIONICA ESPECTRAL 2",
-            'Gym/MONTAGEM BRAVO ( Slowed ).mp3': "MONTAGEM BRAVO ( Slowed )",
-            'Gym/MONTAGEM CRISTALIZED CONTENT (Extreme Slowed).mp3': "MONTAGEM CRISTALIZED CONTENT (Extreme Slowed)",
-            'Gym/MONTAGEM DIRECAO - (super slowed).mp3': "MONTAGEM DIREÇÃO - (super slowed)",
-            'Gym/MONTAGEM RABETA (ULTRA SLOWED).mp3': "MONTAGEM RABETA (ULTRA SLOWED)",
-            'Gym/𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙀𝙍𝙑𝘼 · 𝘿𝙅 𝙍𝘼𝙐𝙇𝙄𝙋𝙐𝙀𝙎 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿).mp3': "𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙀𝙍𝙑𝘼 · 𝘿𝙅 𝙍𝘼𝙐𝙇𝙄𝙋𝙐𝙀𝙎 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿)",
-            'Gym/𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙍𝙀𝘽𝙊𝙇𝘼 (𝙎𝙪𝙥𝙚𝙧 𝙎𝙡𝙤𝙬𝙚𝙙).mp3': "𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙍𝙀𝘽𝙊𝙇𝘼 (𝙎𝙪𝙥𝙚𝙧 𝙎𝙡𝙤𝙬𝙚𝙙)",
-            'Gym/MONTAGEM REBOLA (SLOWED REVERB).mp3': "MONTAGEM REBOLA (SLOWED REVERB)",
-            'Gym/MONTAGEM SANTA FE 2.mp3': "MONTAGEM SANTA FE 2",
-            'Gym/Montagem Lunar Esmeralda (ultra slowed reverb).mp3': "Montagem Lunar Esmeralda (ultra slowed reverb)",
-            'Gym/Montagem Invasao.mp3': "Montagem Invasão",
-            'Gym/MONTAGEM VOZES TALENTINHO (Super Slowed Reverb).mp3': "MONTAGEM VOZES TALENTINHO (Super Slowed Reverb)",
-            'Gym/MONTAGEM TEM QUE TIRAR O CHAPEU - (SUPER SLOWED).mp3': "MONTAGEM TEM QUE TIRAR O CHAPEU - (SUPER SLOWED)",
-            'Gym/MONTAGEM TOMADA SLOWED.mp3': "MONTAGEM TOMADA SLOWED",
-            'Gym/MONTAGEM VOZES PROFUNDAS.mp3': "MONTAGEM VOZES PROFUNDAS",
-            'Gym/𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙎𝙐𝙋𝙀𝙍𝙎𝙊𝙉𝙄𝘾.mp3': "𝙈𝙊𝙉𝙏𝘼𝙂𝙀𝙈 𝙎𝙐𝙋𝙀𝙍𝙎𝙊𝙉𝙄𝘾",
-            'Gym/morder.mp3': "Morder",
-            'Gym/My Ordinary Life (wally west solo).mp3': "My Ordinary Life (wally west solo)",
-            'Gym/NO ERA AMOR (Super Slowed).mp3': "NO ERA AMOR (Super Slowed)",
-            'Gym/NUNCA MUDA - SLOWED (Edit Audio).mp3': "NUNCA MUDA - SLOWED (Edit Audio)",
-            'Gym/OGAME.mp3': "OGAME",
-            'Gym/OLD GENESIS.mp3': "OLD GENESIS",
-            'Gym/OLHA MENSAGEM (SLOWED REVERB).mp3': "OLHA MENSAGEM (SLOWED REVERB)",
-            'Gym/Open It Up TikTok remix.mp3': "Open It Up TikTok remix",
-            'Gym/PHONK DO MALAME AMARELO (Ultra Slowed).mp3': "PHONK DO MALAME AMARELO (Ultra Slowed)",
-            'Gym/PHONKGASKAR.mp3': "PHONKGASKAR",
-            'Gym/Pinguins Dancando Melodia Envolvente.mp3': "Pinguins Dancando Melodia Envolvente",
-            'Gym/PLAYA - Swaggin in the Partment - (Slowed+Reverb).mp3': "Swaggin in the Partment (Slowed+Reverb)",
-            'Gym/PREMONICAO DO VAIA VAIA 1.0 - ( Slowed ).mp3': "PREMONICAO DO VAIA VAIA 1.0 - ( Slowed )",
-            'Gym/Pose X Star Wars (Tik Tok Audio).mp3': "Pose X Star Wars (Tik Tok Audio)",
-            'Gym/𝐏𝐎𝐖𝐄𝐑 𝐒𝐋𝐈𝐃𝐄 (𝐒𝐥𝐨𝐰𝐞𝐝).mp3': "𝐏𝐎𝐖𝐄𝐑 𝐒𝐋𝐈𝐃𝐄 (𝐒𝐥𝐨𝐰𝐞𝐝)",
-            'Gym/funk de beleza (edit audio).mp3': "Phonk de beleza (edit audio)",
-            'Gym/Push Up (Short Version).mp3': "Push Up (Short Version)",
-            'Gym/RAHHHH (slowed reverb).mp3': "RAHHHH (slowed reverb)",
-            'Gym/RISADA CHUCK (Super Slowed).mp3': "RISADA CHUCK (Super Slowed)",
-            'Gym/Rocking A Cardigan In Atlanta (Remix).mp3': "Rocking A Cardigan In Atlanta (Remix)",
-            'Gym/Rocking a cardigan in Atlanta X werkkk sped up.mp3': "Rocking a cardigan in Atlanta sped up",
-            'Gym/rocking a cardigan in Atlanta(edit audio).mp3': "rocking a cardigan in Atlanta (edit audio)",
-            'Gym/ROYALTY AMV.mp3': "ROYALTY AMV",
-            'Gym/Rj Pasin - Life Force (SLOWED REVERB).mp3': "Rj Pasin - Life Force (SLOWED REVERB)",
-            'Gym/Runnin.mp3': "Runnin",
-            'Gym/shell-shocked-juicy-j_-wiz-khalifa_-ty-dolla-_ign-ft.-kill-the-noise-_-madsonik-_slowed_.mp3': "Shell Shocked - Slowed",
-            'Gym/SICKO MODE (TikTok Sped Up Extended).mp3': "SICKO MODE (TikTok Sped Up Extended)",
-            'Gym/Slave (Guitar Remix - Slowed Reverb).mp3': "Slave (Guitar Remix - Slowed Reverb)",
-            'Gym/Slide da Treme Melodica v2 - Ultra Slowed.mp3': "Slide da Treme Melódica v2 - Ultra Slowed",
-            'Gym/Slide da Treme Melodica v2 (+Ultra Slowed).mp3': "Slide da Treme Melódica v2 (+Ultra Slowed)",
-            'Gym/Sleeping City Funk (Slowed).mp3': "Sleeping City Funk (Slowed)",
-            'Gym/SONGS TO DESTROY YOUR PR.mp3': "SONGS TO DESTROY YOUR PR",
-            'Gym/SPOOKY.mp3': "𝗦𝗣𝗢𝗢𝗞𝗬",
-            'Gym/STOP POSTING ABOUT BALLER.mp3': "STOP POSTING ABOUT BALLER",
-            'Gym/STEPHANIE FUNK (Slowed).mp3': "STEPHANIE FUNK (Slowed)",
-            'Gym/Se Paciente (Super Slowed).mp3': "Se Paciente (Super Slowed)",
-            'Gym/Se Paciente - RD12.mp3': "Se Paciente - RD12",
-            'Gym/Sicko Mode (edit audio).mp3': "Sicko Mode (edit audio)",
-            'Gym/TELESCOPE  (reverb + slowed + bass ).mp3': "TELESCOPE (reverb + slowed + bass)",
-            'Gym/Talk.mp3': "Talk",
-            'Gym/Tell Em X killing on demand-Hit me (Slowed + Reverb) Edit.mp3': "Tell Em X killing (Slowed + Reverb)",
-            'Gym/TORE UP.mp3': "TORE UP",
-            'Gym/Tore Up (TikTok Guitar Remix).mp3': "Tore Up (TikTok Guitar Remix)",
-            'Gym/TOXIC.mp3': "TÓXIC",
-            'Gym/TRALALERO TRALALA PHONK (Slowed).mp3': "TRALALERO TRALALA PHONK (Slowed)",
-            'Gym/TUNG SAHUR FUNK (Ultra Slowed).mp3': "TUNG SAHUR PHONK (Ultra Slowed)",
-            'Gym/UGOVHB - WTF 2 (perfect slowed).mp3': "UGOVHB - WTF 2 (perfect slowed)",
-            'Gym/Uma palavra adeus.mp3': "Uma Palavra Adeus",
-            'Gym/UNIVERSO (Slowed).mp3': "UNIVERSO (Slowed)",
-            'Gym/vampire heart (slowed reverb).mp3': "vampire heart (slowed reverb)",
-            'Gym/Venom - Eminem (Lyrics).mp3': "Venom - Eminem (Lyrics)",
-            'Gym/Where my head at.mp3': "Where my head at",
-            'Gym/Whethan - LOCK IT UP (feat. Yeat, midwxst & Matt Ox) [Animated Video] (192).mp3': "LOCK IT UP",
-            'Gym/X-SLIDE (Ultra Slowed).mp3': "X-SLIDE (Ultra Slowed)",
-            'Gym/X-SLIDE.mp3': "X-SLIDE",
-            'Gym/X-TALI (SLOWED).mp3': "X-TALI (SLOWED)",
-            'Gym/Yeah-Buddy_.mp3': "Yeah Buddy",
-            'Gym/YEAT - Died Once (TikTok Version).mp3': "YEAT - Died Once (TikTok Version)",
-            'Gym/YEAT - FLAWLESS 2 (ft. LIL UZI VERT) [PROD. SKY x MYWAYBEATZ] (192).mp3': "FLAWLESS 2",
-            'Gym/Yeat - If We Being Real (Slowed & Reverb).mp3': "If We Being Real (Slowed & Reverb)",
-            'Gym/yeat - swerved it (slowed+reverb).mp3': "yeat - swerved it (slowed+reverb)",
-            'Gym/Yeat money so big edit audio (Extended Looped).mp3': "Yeat money so big - edit audio",
-            'Gym/Your final stand - KENTENSHI paranoia.mp3': "Your final stand - KENTENSHI paranoia",
-            'Gym/𝙔𝙊𝙐𝙉𝙂 𝙂𝙄𝙍𝙇 𝙁𝙐𝙉𝙆 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿).mp3': "𝙔𝙊𝙐𝙉𝙂 𝙂𝙄𝙍𝙇 𝙁𝙐𝙉𝙆 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿)",
-        };
+  "FNF": {
+    image: 'https://ih1.redbubble.net/image.2173796957.6322/st,small,507x507-pad,600x600,f8f8f8.jpg',
+    images: ['https://ih1.redbubble.net/image.2173796957.6322/st,small,507x507-pad,600x600,f8f8f8.jpg'],
+    tracks: [
+  {
+    file: "FNF/Blammed.mp3",
+    title: "Blammed"
+  },
+  {
+    file: "FNF/Bopeebo.mp3",
+    title: "Bopeebo"
+  },
+  {
+    file: "FNF/Cocoa.mp3",
+    title: "Cocoa"
+  },
+  {
+    file: "FNF/Dad Battle.mp3",
+    title: "Dad Battle"
+  },
+  {
+    file: "FNF/Fresh.mp3",
+    title: "Fresh"
+  },
+  {
+    file: "FNF/Guns.mp3",
+    title: "Guns"
+  },
+  {
+    file: "FNF/High.mp3",
+    title: "High"
+  },
+  {
+    file: "FNF/M.I.L.F.mp3",
+    title: "M.I.L.F"
+  },
+  {
+    file: "FNF/Philly Nice.mp3",
+    title: "Philly Nice"
+  },
+  {
+    file: "FNF/Pico.mp3",
+    title: "Pico"
+  },
+  {
+    file: "FNF/Satin Panties.mp3",
+    title: "Satin Panties"
+  },
+  {
+    file: "FNF/South.mp3",
+    title: "South"
+  },
+  {
+    file: "FNF/Spookeez.mp3",
+    title: "Spookeez"
+  },
+  {
+    file: "FNF/Stress.mp3",
+    title: "Stress"
+  },
+  {
+    file: "FNF/Ugh.mp3",
+    title: "Ugh"
+  }
+]
+  },
+};

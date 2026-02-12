@@ -38,80 +38,8 @@
     <button class="carousel-btn next" onclick="moverCarrossel('next')">❯</button>
 </div>
     
-    <div class="container">
-        <a href="#" class="video christ-gym" onclick="showPlaylist('Christ Gym');"
-        onmousedown="startLock(this, 'Christ Gym')" 
-        onmouseup="stopLock(this)" 
-        onmouseleave="stopLock(this)">
-            <h2>Christ Gym</h2>
-        </a>
-        <a href="#" class="video hip-praise" onclick="showPlaylist('Hip Praise');"
-        onmousedown="startLock(this, 'Hip Praise')" 
-        onmouseup="stopLock(this)" 
-        onmouseleave="stopLock(this)">
-            <h2>Hip Praise</h2>
-        </a>
-    </div>
-    <div class="container">
-        <a href="#" class="video praise" onclick="showPlaylist('Praise');"
-        onmousedown="startLock(this, 'Praise')" 
-        onmouseup="stopLock(this)" 
-        onmouseleave="stopLock(this)">
-            <h2>Praise</h2>
-        </a>
-        <a href="#" class="video fundo" onclick="showPlaylist('Fundo');"
-        onmousedown="startLock(this, 'Fundo')" 
-        onmouseup="stopLock(this)" 
-        onmouseleave="stopLock(this)">
-            <h2>Fundo</h2>
-        </a>
-    </div>
-    <div class="container">
-        <a href="#" class="video vibes" onclick="showPlaylist('Vibes');"
-        onmousedown="startLock(this, 'Vibes')" 
-        onmouseup="stopLock(this)" 
-        onmouseleave="stopLock(this)">
-            <h2>Vibes</h2>
-        </a>
-        <a href="#" class="video gym" onclick="showPlaylist('Gym');"
-        onmousedown="startLock(this, 'Gym')" 
-        onmouseup="stopLock(this)" 
-        onmouseleave="stopLock(this)">
-            <h2>Gym</h2>
-        </a>
-    </div>
-    <div class="container">
-        <a href="#" class="video fnf" onclick="showPlaylist('FNF');"
-        onmousedown="startLock(this, 'FNF')" 
-        onmouseup="stopLock(this)" 
-        onmouseleave="stopLock(this)">
-         <h2>FNF</h2>
-     </a>
-        <a href="#" class="video upload" onclick="uploadMusic();">
-            <h2>+ Upload</h2>
-        </a>
-    </div>
+    <div class="container" id="playlistContainer"></div>
             
-    <div id="uploadModal">
-        <div class="modal-content">
-            <h2 style="text-align: center;">Upload de Música</h2>
-            <div class="upload-form">
-                <form id="uploadForm">
-                    <label for="musicTitle">Título da Música:</label>
-                    <input type="text" id="musicTitle" name="musicTitle" required>
-
-                    <label for="musicFile">Escolha um arquivo de música:</label>
-                    <input type="file" id="musicFile" name="musicFile" accept=".mp3,.ogg,.wav" required>
-
-                    <input type="submit" value="Enviar Música">
-                </form>
-            </div>
-            <div class="close">
-                <button onclick="closeModal();">Fechar</button>
-            </div>
-        </div>
-    </div>
-
     <div class="music-player" id="musicPlayer">
         <div class="music-player-content">
             <div id="musicHeader" style="display: flex; align-items: center; margin-bottom: 20px;">
@@ -130,18 +58,18 @@
             </button>
             </div>
             <img src="" id="playlistImage" alt="Playlist Image" style="cursor: pointer;">
-            <h2 id="musicTitle"></h2>
-            <h3 id="songName" style="margin: 30px;"></h3>
-            <div class="progress-container" style="margin: auto;">
+            <h2 id="musicTitle" style="color: #0d0d0d; font-size: xx-small;"></h2>
+            <h3 id="songName" style="font-size: 20px; margin-top: -5px;"></h3>
+            <div class="progress-container" style="margin: auto; width: 40%;">
                 <div class="progress-bar" id="progress-bar"></div>
                 <div class="progress-dot" id="progress-dot"></div>
             </div>
-            <div class="time" style="display: flex; justify-content: space-between; padding: 10px; width: 80%; margin: auto;">
+            <div class="time" style="display: flex; justify-content: space-between; padding: 10px; width: 40%; margin: auto;">
                 <span id="current-time">00:00</span>
                 <span id="duration">00:00</span>
             </div>            
             <br>
-            <div class="controls" style="display: flex; width: 400px; align-items: center; justify-content: center;">
+            <div class="controls" style="display: flex; align-items: center; justify-content: center;">
                 <!-- Botão de Loop -->
                 <button class="outros-button" onclick="toggleLoop()" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px;">
                     <i class="fas fa-redo"></i> <!-- Loop Icon -->
@@ -170,6 +98,7 @@
     <div id="musicSelection">
         <div id="musicTitleContainer" style="display: flex; align-items: center;">
             <i class="fas fa-arrow-left back-button" onclick="hideMusicSelection()"></i>
+            <button id="randomButton" class="controls" onclick="playRandomMusic()" style="margin-left: auto; cursor: pointer;">🎲</button>
             <h2 id="playlistTitle"></h2> <!-- Título da seleção de músicas -->
         </div>
         <ul id="musicList"></ul>
@@ -177,6 +106,46 @@
 
     <script src="script.js"></script>
     <script>
+        function playRandomMusic() {
+    if (!currentPlaylist || currentPlaylist.length === 0) return; // Nada a tocar
+    const randomIndex = Math.floor(Math.random() * currentPlaylist.length);
+    playMusic(randomIndex);
+    const currentPlaylistName = document.getElementById('playlistTitle').textContent;
+    changeImage(currentPlaylistName);
+}
+
+    const container = document.getElementById("playlistContainer");
+
+// Criar containers com 2 playlists por linha
+for (let i = 0; i < playlistButtons.length; i += 2) {
+
+  const row = document.createElement("div");
+  row.className = "container";
+
+  for (let j = i; j < i + 2 && j < playlistButtons.length; j++) {
+
+    const pl = playlistButtons[j];
+
+    const a = document.createElement("a");
+    a.href = "#";
+    a.className = `video ${pl.className}`;
+    a.innerHTML = `<h2>${pl.name}</h2>`;
+
+    if (pl.isUpload) {
+      a.onclick = () => uploadMusic();
+    } else {
+      a.onclick = () => showPlaylist(pl.name);
+      a.onmousedown = () => startLock(a, pl.name);
+      a.onmouseup = () => stopLock(a);
+      a.onmouseleave = () => stopLock(a);
+    }
+
+    row.appendChild(a);
+  }
+
+  container.appendChild(row);
+}
+
         // Variáveis globais
         var currentPlaylist = null;
         var currentTrackIndex = 0;
@@ -250,44 +219,47 @@ function hideMusicSelection() {
 }
 
 function loadPlaylistTracks(playlistName) {
-    // Atualiza o título da playlist
+
+    var playlist = playlists[playlistName];
+    currentPlaylist = playlist.tracks;
+
+    // Atualiza o título
     var playlistTitle = document.getElementById('playlistTitle');
     playlistTitle.textContent = playlistName;
     playlistTitle.style.flexGrow = '1';
     playlistTitle.style.textAlign = 'center';
 
-    // Obtém a lista de músicas
+    // Lista
     var musicList = document.getElementById('musicList');
-    musicList.innerHTML = ''; // Limpa a lista antes de adicionar novas músicas
+    musicList.innerHTML = '';
     musicList.style.textAlign = '-webkit-center';
 
-    // Itera sobre a lista de faixas e cria elementos para cada uma
     currentPlaylist.forEach(function (track, index) {
+
         var listItem = document.createElement('li');
 
-        // Cria o elemento para a linha vertical
+        // Linha colorida (se quiser usar depois)
         var colorLine = document.createElement('div');
-        colorLine.style.width = '5px'; // Largura da linha
-        colorLine.style.height = '30px'; // Altura da linha
-        colorLine.style.background = 'linear-gradient(45deg, #ff4500, yellow)'; // Gradiente RGB
-        colorLine.style.marginRight = '10px'; // Espaçamento entre a linha e o título
-        colorLine.style.display = 'inline-block'; // Faz com que a linha fique ao lado do texto
+        colorLine.style.width = '5px';
+        colorLine.style.height = '30px';
+        colorLine.style.background = 'linear-gradient(45deg, #ff4500, yellow)';
+        colorLine.style.marginRight = '10px';
+        colorLine.style.display = 'inline-block';
 
-        // Cria o elemento para o título da música
+        // Nome da música
         var musicTitle = document.createElement('span');
         musicTitle.classList.add('music-title');
-        musicTitle.textContent = songNames[track]; // Certifique-se de que 'track' é o índice correto em 'songNames'
+        musicTitle.textContent = track.title;
 
-        // Cria o elemento para os ícones de controle
+        // Ícones
         var icons = document.createElement('span');
         icons.classList.add('icons');
         icons.innerHTML = `
-            <i class="fas fa-play" onclick="playMusic(${index})" style="cursor: pointer;"></i>
-            <i class="fas fa-heart" style="cursor: pointer;"></i>
+            <i class="fas fa-play" onclick="playMusic(${index})" style="cursor:pointer;"></i>
+            <i class="fas fa-heart" style="cursor:pointer;"></i>
         `;
 
-        // Adiciona os elementos ao item da lista
-        // listItem.appendChild(colorLine);
+        // listItem.appendChild(colorLine); // descomente se quiser a linha
         listItem.appendChild(musicTitle);
         listItem.appendChild(icons);
         musicList.appendChild(listItem);
@@ -335,58 +307,6 @@ function updateProgress(event) {
     audio.currentTime = percentage * audio.duration;
 }
 
-window.onload = () => {
-    const playlistImage = document.getElementById('playlistImage');
-
-    // Verifique se a variável 'playlist' está definida e contém a chave 'Gym'
-    if (playlist && playlist['Gym'] && playlist['Gym'].images && playlist['Gym'].images.length > 0) {
-        // Atribui a primeira imagem da lista de imagens da playlist
-        playlistImage.src = playlist['Gym'].images[0];  
-    } else {
-        // Se não houver imagens, exibe uma imagem padrão
-        playlistImage.src = '6.png';  
-    }
-};
-
-window.onload = () => {
-    const playlistImage = document.getElementById('playlistImage');
-
-    // Verifique se a variável 'playlist' está definida e contém a chave 'Fundo'
-    if (playlist && playlist['Fundo'] && playlist['Fundo'].images && playlist['Fundo'].images.length > 0) {
-        // Atribui a primeira imagem da lista de imagens da playlist
-        playlistImage.src = playlist['Fundo'].images[0];  
-    } else {
-        // Se não houver imagens, exibe uma imagem padrão
-        playlistImage.src = '4.jpg';  
-    }
-};
-
-window.onload = () => {
-    const playlistImage = document.getElementById('playlistImage');
-
-    // Verifique se a variável 'playlist' está definida e contém a chave 'Praise'
-    if (playlist && playlist['Praise'] && playlist['Praise'].images && playlist['Praise'].images.length > 0) {
-        // Atribui a primeira imagem da lista de imagens da playlist
-        playlistImage.src = playlist['Praise'].images[0];  
-    } else {
-        // Se não houver imagens, exibe uma imagem padrão
-        playlistImage.src = '3.png';  
-    }
-};
-
-window.onload = () => {
-    const playlistImage = document.getElementById('playlistImage');
-
-    // Verifique se a variável 'playlist' está definida e contém a chave 'Vibes'
-    if (playlist && playlist['Vibes'] && playlist['Vibes'].images && playlist['Vibes'].images.length > 0) {
-        // Atribui a primeira imagem da lista de imagens da playlist
-        playlistImage.src = playlist['Vibes'].images[0];  
-    } else {
-        // Se não houver imagens, exibe uma imagem padrão
-        playlistImage.src = '5.jpg';  
-    }
-};
-
 function updateProgressBar() {
     const audio = document.getElementById('audioPlayer');
     const progressBar = document.getElementById('progress-bar');
@@ -413,7 +333,6 @@ function updateProgressBar() {
         duration.textContent = formatTime(audio.duration);
     }
 }
-
 
 // Adiciona o evento de clique
 progressContainer.addEventListener('click', updateProgress);
@@ -446,11 +365,11 @@ document.addEventListener('mousemove', (event) => {
         // Função para mostrar a lista de músicas de uma playlist
         function showPlaylist(playlistName) {
             currentPlaylistName = playlistName
-    currentPlaylist = playlist[playlistName].tracks;
+    currentPlaylist = playlists[playlistName].tracks;
     currentTrackIndex = 0;
     
     // Definir a imagem da playlist
-    document.getElementById('playlistImage').src = playlist[playlistName].image; 
+    document.getElementById('playlistImage').src = playlists[playlistName].image; 
     document.getElementById('currentPlaylistTitle').textContent = playlistName; // Atualiza o título no player
     document.getElementById('playlistTitle').textContent = playlistName; // Atualiza o título na seleção
     
@@ -468,14 +387,14 @@ document.addEventListener('mousemove', (event) => {
 let currentImageIndex = 0;
 
 function changeImage(playlistName) {
-    if (playlist[playlistName] && playlist[playlistName].images) {
+    if (playlists[playlistName] && playlists[playlistName].images) {
         currentImageIndex++;
-        if (currentImageIndex >= playlist[playlistName].images.length) {
+        if (currentImageIndex >= playlists[playlistName].images.length) {
             currentImageIndex = 0; // Se alcançar a última imagem, volta para a primeira
         }
 
         const playlistImage = document.getElementById('playlistImage');
-        playlistImage.src = playlist[playlistName].images[currentImageIndex];
+        playlistImage.src = playlists[playlistName].images[currentImageIndex];
     }
 }
 
@@ -487,47 +406,51 @@ changeImageButton.addEventListener('click', () => {
 
         // Função para exibir a seleção de músicas
 function displayMusicSelection(playlistName) {
-    // Atualiza o título da playlist
+
+    // Pega a playlist correta
+    var playlist = playlists[playlistName];
+    currentPlaylist = playlist.tracks;
+
+    // Atualiza o título
     var playlistTitle = document.getElementById('playlistTitle');
     playlistTitle.textContent = playlistName;
 
-    // Obtém a lista de músicas
+    // Lista
     var musicList = document.getElementById('musicList');
-    musicList.innerHTML = ''; // Limpa a lista antes de adicionar novas músicas
+    musicList.innerHTML = '';
 
-    // Itera sobre a lista de faixas e cria elementos para cada uma
     currentPlaylist.forEach(function (track, index) {
+
         var listItem = document.createElement('li');
 
-        // Cria o elemento para a linha vertical
+        // Linha colorida (opcional)
         var colorLine = document.createElement('div');
-        colorLine.style.width = '5px'; // Largura da linha
-        colorLine.style.height = '30px'; // Altura da linha
-        colorLine.style.background = 'linear-gradient(45deg, #ff4500, yellow)'; // Gradiente RGB
-        colorLine.style.marginRight = '10px'; // Espaçamento entre a linha e o título
-        colorLine.style.display = 'inline-block'; // Faz com que a linha fique ao lado do texto
+        colorLine.style.width = '5px';
+        colorLine.style.height = '30px';
+        colorLine.style.background = 'linear-gradient(45deg, #ff4500, yellow)';
+        colorLine.style.marginRight = '10px';
+        colorLine.style.display = 'inline-block';
 
-        // Cria o elemento para o título da música
+        // Nome da música
         var musicTitle = document.createElement('span');
         musicTitle.classList.add('music-title');
-        musicTitle.textContent = songNames[track]; // Certifique-se de que 'track' é o índice correto em 'songNames'
+        musicTitle.textContent = track.title;
 
-        // Cria o elemento para os ícones de controle
+        // Ícones
         var icons = document.createElement('span');
         icons.classList.add('icons');
         icons.innerHTML = `
-            <i class="fas fa-play" onclick="playMusic(${index})" style="cursor: pointer;"></i>
-            <i class="fas fa-heart" style="cursor: pointer;"></i>
+            <i class="fas fa-play" onclick="playMusic(${index})" style="cursor:pointer;"></i>
+            <i class="fas fa-heart" style="cursor:pointer;"></i>
         `;
 
-        // Adiciona os elementos ao item da lista
-        // listItem.appendChild(colorLine);
+        // listItem.appendChild(colorLine); // ative se quiser a barra
         listItem.appendChild(musicTitle);
         listItem.appendChild(icons);
         musicList.appendChild(listItem);
     });
 
-    // Exibe a seleção de músicas
+    // Mostra a tela
     document.getElementById('musicSelection').style.display = 'flex';
 }
 
@@ -551,23 +474,26 @@ function displayMusicSelection(playlistName) {
         });
 
         function playMusic(index) {
+
     var track = currentPlaylist[index];
+
     var musicPlayer = document.getElementById('musicPlayer');
     var musicTitle = document.getElementById('musicTitle');
     var songName = document.getElementById('songName');
     var musicSource = document.getElementById('audioPlayer');
 
-    musicTitle.textContent = songNames[track];
-    songName.textContent = songNames[track]; // Mostra o nome da música
-    musicSource.src = track;
+    musicTitle.textContent = track.title;
+    songName.textContent = track.title;
+
+    musicSource.src = track.file;
     musicSource.load();
     musicSource.play();
+
     musicPlayer.classList.add('show');
 
-    currentSongTitle = songNames[track]; // salva o nome da música
-    document.title = currentSongTitle; // atualiza o título da aba
+    currentSongTitle = track.title;
+    document.title = currentSongTitle;
 
-    // Atualiza o índice atual
     currentTrackIndex = index;
 
     hideMusicSelection();
@@ -594,7 +520,7 @@ function displayMusicSelection(playlistName) {
         
         // Quando a música for pausada, definimos a imagem fixa da playlist
         const playlistImage = document.getElementById('playlistImage');
-        playlistImage.src = playlist[currentPlaylistName].image;  // Define a imagem fixa da playlist
+        playlistImage.src = playlists[currentPlaylistName].image;  // Define a imagem fixa da playlist
     } else {
         audio.play();
         button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16"><path d="M5.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h1zM11 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h1z"/></svg>';
@@ -626,7 +552,7 @@ function previousTrack() {
 
 function changePlaylistImageRandom() {
     const img = document.getElementById("playlistImage");
-    const currentPlaylist = playlist[currentPlaylistName];
+    const currentPlaylist = playlists[currentPlaylistName];
 
     if (!currentPlaylist || !currentPlaylist.images) return;
 
@@ -665,19 +591,6 @@ function changePlaylistImageRandom() {
             var uploadModal = document.getElementById('uploadModal');
             uploadModal.style.display = 'none';
         }
-
-        // Evento para detectar o envio de música
-        var uploadForm = document.getElementById('uploadForm');
-        uploadForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            var formData = new FormData(this);
-            var musicTitle = formData.get('musicTitle');
-            var musicFile = formData.get('musicFile');
-            // Aqui você pode adicionar lógica para enviar o arquivo para o servidor
-            console.log('Título da música:', musicTitle);
-            console.log('Arquivo de música:', musicFile);
-            closeModal();
-        });
 
         // Função para lidar com eventos de controle de mídia
         function handleMediaKeyEvent(event) {
@@ -777,7 +690,7 @@ function tocarMusica(caminho) {
     document.getElementById('songName').textContent = songName;
 
     // Atualizar a imagem da playlist (aqui você pode adicionar uma lógica para mudar a imagem da playlist, se necessário)
-    document.getElementById('playlistImage').src = "1.png";  // Substitua com a URL da imagem correta (opcional)
+    document.getElementById('playlistImage').src = "https://i.scdn.co/image/ab67616d0000b273afeb818f0641df8a027bb91b";  // Substitua com a URL da imagem correta (opcional)
     document.getElementById('currentPlaylistTitle').textContent = "Escolhas rápidas";  // Substitua com o nome da playlist (opcional)
 }
 
