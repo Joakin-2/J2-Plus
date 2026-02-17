@@ -43,8 +43,11 @@
         }
 
         .image-container img {
-            max-width: 100%; /* Garante que a imagem não ultrapasse o container */
+            margin-top: 50px;
+            max-width: 620px; /* Garante que a imagem não ultrapasse o container */
             height: auto; /* Altura automática para manter proporção */
+            border: 1px solid #ccc;
+            border-radius: 8px;
         }
 
         .image-container2 {
@@ -129,23 +132,13 @@
 <body>
     <div class="container">
         <div class="column">
-            <!-- Row for images -->
             <div class="row">
                 <div class="image-container">
                     <img id="image" src="Tabela.jpg" alt="Tabela de Estudos">
                 </div>
             </div>
             <div class="notes-container">
-                <div class="button-group"> 
-                    <button class="btn" onclick="redirecionar('Devocional')" style="margin-right: 60px; display: flex;">
-                        <i class="fas fa-book" style="margin-right: 5px;"></i>Devocional
-                    </button>
-                    <button class="btn" onclick="redirecionar('Princípios')" style="margin-right: 10px; display: flex;">
-                        <i class="fas fa-book" style="margin-right: 5px;"></i>Princípios
-                    </button>
-                    <button class="btn" onclick="redirecionar('Bíblia')" style="margin-right: 280px; margin-left: 40px; display: flex;">
-                        <i class="fas fa-book" style="margin-right: 5px;"></i> Bíblia
-                    </button>
+                <div class="button-group" style="display: none;"> 
                     <button class="btn-export" onclick="exportNotes()" style="display: none;">
                         <i class="fas fa-file-export"></i>
                     </button>
@@ -155,24 +148,15 @@
                 </div>
                 <textarea id="notas" class="notes" placeholder="Anote aqui..." oninput="saveNotas()"></textarea>
             </div>
-            
-            <div class="buttons">
-                <button class="botao" onclick="redirecionar('Canais')"><i class="fas fa-globe"></i> Canais</button>
-                <button class="botao" onclick="redirecionar('Estudar')"><i class="fas fa-brain"></i> Estudar</button>
-                <button class="botao" onclick="redirecionar('Memórias')"><i class="fas fa-camera"></i> Memórias</button>
-            </div>
 
+            <div class="buttons">
+                <button class="botao" onclick="redirecionar('Devocional')"><i class="fas fa-book" style="margin-right: 5px;"></i>Devocional</button>
+                <button class="botao" onclick="redirecionar('Princípios')"><i class="fas fa-book" style="margin-right: 5px;"></i>Princípios</button>
+                <button class="botao" onclick="redirecionar('Bíblia')"><i class="fas fa-book" style="margin-right: 5px;"></i> Bíblia</button>
+                <button class="botao" onclick="redirecionar('Estudar')"><i class="fas fa-brain"></i> Estudar</button>
+            </div>
             <!-- Dicas -->
             <div id="dicas" class="mensagem"></div>
-        </div>
-
-        <div class="column">
-            <div class="row">
-                <div class="image-container2">
-                    <img id="image2" src="Cultos.png" alt="Cultos na Igreja">
-                </div>
-                <button class="botao" id="changeImageButton" onclick="changeImage()">Trocar Imagem</button>
-            </div>
         </div>
     </div>
 
@@ -233,14 +217,6 @@ document.getElementById('notas').addEventListener('input', saveNotas);
                     window.open('https://drive.google.com/drive/folders/1Of9cNspUSobIUiQbsixEG3FlJYWAr3Ay');
                     window.open('https://drive.google.com/drive/folders/1h1QOxEjQRQfiobTXzsNvErYjPIsTV6t0');
                     break;
-                case 'Canais':
-                    window.close('crist.html');
-                    window.open('https://www.youtube.com/@IsraelSubira/videos');
-                    window.open('https://www.youtube.com/@VidadeFe/videos');
-                    window.open('https://www.youtube.com/@RodrigoSilvaArqueologia/videos');
-                    window.open('https://www.youtube.com/@prantoniojunior/videos');
-                    window.open('https://www.youtube.com/@PrOsielGomes/videos');
-                    break;
                 case 'Estudar':
                     window.close('crist.html');
                     window.open('brain.html');
@@ -253,10 +229,6 @@ document.getElementById('notas').addEventListener('input', saveNotas);
                 case 'Princípios':
                     window.close('crist.html');
                     window.open('principio.html');
-                    break;
-                case 'Memórias':
-                    window.close('crist.html');
-                    window.open('https://photos.onedrive.com/?ft=homeEnable');
                     break;
                 default:
                     break;
