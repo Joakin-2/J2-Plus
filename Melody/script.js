@@ -216,7 +216,7 @@ function redirecionar(destino) {
             window.open('Partituras/play.html');
             break;
         case 'Timer':
-            window.open('Timers/timer.html');
+            window.open('Partituras/timer.html');
             break;
         case 'Lições':
                 window.open('https://www.youtube.com/watch?v=Sz6rLemlvxc');
@@ -241,8 +241,6 @@ function redirecionar(destino) {
         case 'Teclado':
             window.open('https://www.pianoeletronico.com.br/');
             break;
-        case 'Compasso':
-            window.open('Timers/compasso.html');
             break;
         case 'Partituras':
             window.open('https://j2plus.netlify.app/melody/partituras/');

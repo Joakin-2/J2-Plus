@@ -4,7 +4,7 @@
     <link rel="icon" href="icon.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compasso</title>
+    <title>Timer</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -17,7 +17,6 @@
             align-items: center;
             justify-content: center;
             background-color: #000000;
-            color: #ffffff;
         }
 
         #metronome {
@@ -25,6 +24,16 @@
             background-color: #000000;
             padding: 20px;
             color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        #timer {
+            font-size: 2em;
+            background-color: #000000;
+            color: white;
+            padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
         }
@@ -41,6 +50,9 @@
     </style>
 </head>
 <body>
+
+    <div id="timer">00:00:00</div>
+    <button id="startButton" onclick="toggleTimer()">Iniciar</button>
 
     <div id="metronome">Compasso: 00</div>
     <button id="startButton" onclick="toggleMetronome()">Iniciar</button>
@@ -88,6 +100,39 @@
                 metronomeValue = 1; // Defina o valor inicial do compasso para 1
                 metronomeId = setInterval(updateMetronome, 1000);
                 isMetronomeRunning = true;
+                document.getElementById("startButton").textContent = "Pausar";
+            }
+        }
+        
+        let timeInSeconds = 0;
+        let timerId;  // Variável para armazenar o ID do temporizador
+        let isTimerRunning = false;  // Flag para verificar se o temporizador está em execução
+
+        function updateTimer() {
+            if (isTimerRunning) {
+                const hours = Math.floor(timeInSeconds / 3600);
+                const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                const seconds = timeInSeconds % 60;
+
+                const formattedHours = hours.toString().padStart(2, '0');
+                const formattedMinutes = minutes.toString().padStart(2, '0');
+                const formattedSeconds = seconds.toString().padStart(2, '0');
+
+                document.getElementById("timer").textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+                timeInSeconds++;
+            }
+        }
+
+        function toggleTimer() {
+            if (isTimerRunning) {
+                // Pausar o temporizador
+                clearInterval(timerId);
+                isTimerRunning = false;
+                document.getElementById("startButton").textContent = "Iniciar";
+            } else {
+                // Iniciar o temporizador apenas se não estiver ativo
+                timerId = setInterval(updateTimer, 1000);
+                isTimerRunning = true;
                 document.getElementById("startButton").textContent = "Pausar";
             }
         }

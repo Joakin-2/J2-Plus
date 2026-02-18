@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <link rel="icon" href="J2+.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Renovação</title>
@@ -43,7 +43,6 @@
         }
 
         .image-container img {
-            margin-top: 50px;
             max-width: 620px; /* Garante que a imagem não ultrapasse o container */
             height: auto; /* Altura automática para manter proporção */
             border: 1px solid #ccc;
@@ -114,10 +113,6 @@
     padding: 10px;
 }
 
-.button-group {
-    display: flex;
-}
-
 .btn, .btn-export, .btn-import {
     background-color: rgb(43, 42, 42);
     color: white;
@@ -127,6 +122,76 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+#timer {
+            font-size: 2em;
+            background-color: #000000;
+            color: white;
+            border-radius: 10px;
+        }
+
+        #startButton, #doneButton {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f8fa9a;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 10px 12px; /* Ajustado o tamanho do botão */
+            font-size: 24px;
+            margin: 5px; /* Espaçamento entre os botões */
+            cursor: pointer; 
+            border-radius: 8px;
+            transition: background-color 0.3s ease; /* Transição suave */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+        }
+        .progress-container {
+            margin-top: 20px;
+            width: 80%;
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 30px;
+            background-color: #4caf50;
+            width: 0;
+            text-align: center;
+            color: white;
+            line-height: 30px;
+            font-size: 1em;
+        }
+
+        .status {
+            color: white;
+            margin-top: 10px;
+        }
+
+        .xp-gain {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #b382ed;
+            font-size: 2em;
+            font-weight: bold;
+            animation: fade-out 1.5s forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(1.2);
+            }
+        }
     </style>
 </head>
 <body>
@@ -137,6 +202,19 @@
                     <img id="image" src="Tabela.jpg" alt="Tabela de Estudos">
                 </div>
             </div>
+
+            <div id="timer">00:00:00</div>
+        
+        <div class="button-group" style="margin-bottom: 20px;"> 
+            <button id="startButton">
+                <i class="fas fa-play"></i> Iniciar
+            </button>
+            <button id="doneButton">
+                <i class="fas fa-check-circle"></i> Feito
+            </button>
+        </div>
+    
+        <div id="xp-gain" class="xp-gain" style="display: none;">+10 XP</div>
             <div class="notes-container">
                 <div class="button-group" style="display: none;"> 
                     <button class="btn-export" onclick="exportNotes()" style="display: none;">
@@ -148,25 +226,67 @@
                 </div>
                 <textarea id="notas" class="notes" placeholder="Anote aqui..." oninput="saveNotas()"></textarea>
             </div>
-
+            <!-- Dicas -->
+            <div id="dicas" class="mensagem"></div>
             <div class="buttons">
                 <button class="botao" onclick="redirecionar('Devocional')"><i class="fas fa-book" style="margin-right: 5px;"></i>Devocional</button>
                 <button class="botao" onclick="redirecionar('Princípios')"><i class="fas fa-book" style="margin-right: 5px;"></i>Princípios</button>
                 <button class="botao" onclick="redirecionar('Bíblia')"><i class="fas fa-book" style="margin-right: 5px;"></i> Bíblia</button>
                 <button class="botao" onclick="redirecionar('Estudar')"><i class="fas fa-brain"></i> Estudar</button>
             </div>
-            <!-- Dicas -->
-            <div id="dicas" class="mensagem"></div>
         </div>
     </div>
 
+    <!-- Inclui o script externo primeiro -->
+    <script src="/Script/perfil-data.js"></script>
+    <script src="/Script/nivel.js"></script>
     <script>
-        function changeImage() {
-        const image = document.getElementById("image2");
-        image.src = "Cultos2.jpg"; // Troca para a nova imagem
-        image.alt = "Cultos.png";
-    }
-        // Função para salvar notas no armazenamento local
+        let timeInSeconds = 0;
+            let timerId;
+            let isTimerRunning = false;
+    
+            function updateTimer() {
+                const hours = Math.floor(timeInSeconds / 3600);
+                const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                const seconds = timeInSeconds % 60;
+    
+                document.getElementById("timer").textContent = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                timeInSeconds++;
+            }
+    
+            function toggleTimer() {
+                if (isTimerRunning) {
+                    clearInterval(timerId);
+                    isTimerRunning = false;
+                    document.getElementById("startButton").innerHTML = '<i class="fas fa-play"></i> Iniciar';
+                } else {
+                    timerId = setInterval(updateTimer, 1000);
+                    isTimerRunning = true;
+                    document.getElementById("startButton").innerHTML = '<i class="fas fa-pause"></i> Pausar';
+                }
+            }
+    
+            function timerDone() {
+                clearInterval(timerId);
+                isTimerRunning = false;
+                timeInSeconds = 0;
+                document.getElementById("timer").textContent = "00:00:00";
+                document.getElementById("startButton").innerHTML = '<i class="fas fa-play"></i> Iniciar';
+    
+                ganharXp(10);
+                mostrarXpGanho(10);
+            }
+    
+            function mostrarXpGanho(xp) {
+                let xpElement = document.getElementById("xp-gain");
+                xpElement.textContent = `+${xp} XP`;
+                xpElement.style.display = "block";
+                setTimeout(() => {
+                    xpElement.style.display = "none";
+                }, 1500);
+            }
+
         // Função para salvar notas no perfil atual
 function saveNotas() {
     const perfilAtivo = localStorage.getItem('perfilAtivo') || 'Main'; // Obtém o perfil ativo (ou 'Main' como padrão)
@@ -188,8 +308,17 @@ function loadNotas() {
 
 // Chama a função loadNotas quando a página é carregada
 window.onload = function() {
+    // Timer
+    document.getElementById("startButton").onclick = toggleTimer;
+    document.getElementById("doneButton").onclick = timerDone;
+
+    // Notas
     loadNotas();
-    setInterval(changeTip, 300000); // Mudar a cada 5 minutos (300000 ms)
+    document.getElementById('notas').addEventListener('input', saveNotas);
+
+    // Dicas
+    changeTip();
+    setInterval(changeTip, 300000);
 };
 
 // Certifique-se de chamar `saveNotas` quando o usuário alterar o campo de notas
@@ -212,10 +341,7 @@ document.getElementById('notas').addEventListener('input', saveNotas);
             switch (destino) {
                 case 'Bíblia':
                     window.close('crist.html');
-                    window.open('https://www.youtube.com/watch?v=nR-QdUPKVao');
                     window.open('https://www.bibliaonline.com.br/acf');
-                    window.open('https://drive.google.com/drive/folders/1Of9cNspUSobIUiQbsixEG3FlJYWAr3Ay');
-                    window.open('https://drive.google.com/drive/folders/1h1QOxEjQRQfiobTXzsNvErYjPIsTV6t0');
                     break;
                 case 'Estudar':
                     window.close('crist.html');
@@ -223,8 +349,10 @@ document.getElementById('notas').addEventListener('input', saveNotas);
                     break;
                 case 'Devocional':
                     window.close('crist.html');
+                    window.open('https://www.youtube.com/watch?v=nR-QdUPKVao');
                     window.open('https://www.bibliaonline.com.br/acf');
-                    window.open('time.html');
+                    window.open('https://drive.google.com/drive/folders/1Of9cNspUSobIUiQbsixEG3FlJYWAr3Ay');
+                    window.open('https://drive.google.com/drive/folders/1h1QOxEjQRQfiobTXzsNvErYjPIsTV6t0');
                     break;
                 case 'Princípios':
                     window.close('crist.html');
