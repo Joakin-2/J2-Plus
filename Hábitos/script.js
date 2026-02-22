@@ -218,7 +218,7 @@ function carregarHabitosDoDia() {
         Joaquim: {
         domingo: {
             manha: ['Orar','Gelo','Vácuo','Alongar','Abdômen','Escola Dominical'],
-            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar', 'Ensaio dos Jovens'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Culto da Família']
         },
         segunda: {
@@ -248,7 +248,7 @@ function carregarHabitosDoDia() {
         },
         sábado: {
             manha: ['Orar','Gelo','Vácuo','Alongar', 'Abdômen', 'Se Depile', 'Devocional', 'Fazer Faxina', 'Limpar Fogão', 'Alise seu Pé','Correr (1 hora)', 'Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Águas','Línguas','Desenhar','Conselho', 'Atualizações', 'Lavar as Roupas', 'Lavar o Banheiro', 'Limpar Ouvido', 'Ensaio (UADEMIS)', 'Lavar Carro e Moto'],
+            tarde: ['Ler','Pele','Águas','Línguas','Desenhar','Conselho', 'Atualizações', 'Lavar as Roupas', 'Lavar o Banheiro', 'Limpar Ouvido', 'Lavar Carro e Moto'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Limpar Escritório']
         },
     },
@@ -667,7 +667,7 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
         Joaquim: {
         domingo: {
             manha: ['Orar','Gelo','Vácuo','Alongar','Abdômen','Escola Dominical'],
-            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar', 'Ensaio dos Jovens'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Culto da Família']
         },
         segunda: {
@@ -697,7 +697,7 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
         },
         sábado: {
             manha: ['Orar','Gelo','Vácuo','Alongar', 'Abdômen', 'Se Depile', 'Devocional', 'Fazer Faxina', 'Limpar Fogão', 'Alise seu Pé','Correr (1 hora)', 'Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Águas','Línguas','Desenhar','Conselho', 'Atualizações', 'Lavar as Roupas', 'Lavar o Banheiro', 'Limpar Ouvido', 'Ensaio (UADEMIS)', 'Lavar Carro e Moto'],
+            tarde: ['Ler','Pele','Águas','Línguas','Desenhar','Conselho', 'Atualizações', 'Lavar as Roupas', 'Lavar o Banheiro', 'Limpar Ouvido', 'Lavar Carro e Moto'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Limpar Escritório']
         },
     },
