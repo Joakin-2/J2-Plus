@@ -229,7 +229,7 @@ function carregarHabitosDoDia() {
         terça: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
             tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
-            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão']
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão', 'Ensaio da Banda']
         },
         quarta: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional','Fazer Faxina', 'Aparar Barba', 'Limpar Fogão', 'Limpar Ouvido'],
@@ -678,7 +678,7 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
         terça: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
             tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Trabalho (Trade)'],
-            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão']
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Ensaio da Banda']
         },
         quarta: {
             manha: ['Orar','Gelo','Vácuo','Treinar','Alongar','Abdômen','Devocional','Fazer Faxina', 'Aparar Barba', 'Limpar Fogão', 'Limpar Ouvido'],
