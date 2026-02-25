@@ -43,7 +43,7 @@
     <div class="music-player" id="musicPlayer">
         <div class="music-player-content">
             <div id="musicHeader" style="display: flex; align-items: center; margin-bottom: 20px;">
-                <button class="back-button" onclick="hideMusicPlayer()" style="position: static; cursor: pointer; margin-right: 10px; background: #0d0d0d; border: none; color: white; padding: 10px; border-radius: 5px;">
+                <button class="back-button" onclick="hideMusicPlayer()" style="position: static; cursor: pointer; background: #0d0d0d; border: none; color: white; padding: 10px; border-radius: 5px;">
                     <i class="fas fa-arrow-left"></i> <!-- Ícone de voltar -->
                 </button>
                 <!-- Dentro de #musicHeader, ao lado do botão de voltar -->
@@ -53,7 +53,7 @@
                 <h2 id="currentPlaylistTitle" style="text-align: center;">Nome da Playlist</h2>
                 <button id="shareButton" style="background: rgb(13, 13, 13); border: none; width: 40px; cursor: pointer; padding: 10px; display: inline-block;">🔗</button>
                 <!-- Botão para mudar a imagem da playlist - inicialmente escondido -->
-            <button id="changeImageButton" class="outros-button" onclick="changeImage()" style="background: rgb(13, 13, 13); border: none; width: 40px; cursor: pointer; padding: 10px; display: none;">
+            <button id="changeImageButton" class="outros-button" onclick="changeImage()" style="background: rgb(13, 13, 13); margin-left: 45px; border: none; width: 40px; cursor: pointer; padding: 10px; display: none;">
                 <i class="fas fa-image"></i> <!-- Ícone de imagem -->
             </button>
             </div>
@@ -98,7 +98,7 @@
     <div id="musicSelection">
         <div id="musicTitleContainer" style="display: flex; align-items: center;">
             <i class="fas fa-arrow-left back-button" onclick="hideMusicSelection()"></i>
-            <button id="randomButton" class="controls" onclick="playRandomMusic()" style="margin-left: auto; cursor: pointer;">🎲</button>
+            <button id="randomButton" class="controls" onclick="playRandomMusic()" style="left: 80%; cursor: pointer; position: absolute;">🎲</button>
             <h2 id="playlistTitle"></h2> <!-- Título da seleção de músicas -->
         </div>
         <ul id="musicList"></ul>
