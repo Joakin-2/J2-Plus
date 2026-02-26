@@ -1478,6 +1478,10 @@ var playlists = {
     title: "Songs to Destroy Your PR"
   },
   {
+    file: "Gym/SPIDERMAN SAD x NO REASON FUNK.mp3",
+    title: "SPIDERMAN SAD x NO REASON FUNK"
+  },
+  {
     file: "Gym/SPOOKY.mp3",
     title: "Spooky"
   },
@@ -1496,6 +1500,10 @@ var playlists = {
   {
     file: "Gym/Se Paciente - RD12.mp3",
     title: "Se Paciente - RD12"
+  },
+  {
+    file: "Gym/SEM NADA (SLOWED REVERB).mp3",
+    title: "SEM NADA (SLOWED REVERB)"
   },
   {
     file: "Gym/Sicko Mode (edit audio).mp3",
