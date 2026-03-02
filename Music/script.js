@@ -1258,6 +1258,14 @@ var playlists = {
     title: "Mente Ma (Super Slowed)"
   },
   {
+    file: "Gym/MIRRORS DEMO FUNK (SLOWED REVERB).mp3",
+    title: "MIRRORS DEMO FUNK (SLOWED REVERB)"
+  },
+  {
+    file: "Gym/mirrors demo (funk ultra slowed).mp3",
+    title: "mirrors demo (funk ultra slowed)"
+  },
+  {
     file: "Gym/𝗠𝗘𝗡𝗧𝗜𝗥A𝗢 - (𝗦𝘂𝗽𝗲𝗿 𝗦𝗹𝗼𝘄𝗲𝗱).mp3",
     title: "Mentirao (Super Slowed)"
   },
@@ -1362,6 +1370,14 @@ var playlists = {
     title: "No Era Amor (Super Slowed)"
   },
   {
+    file: "Gym/NOTION FUNK (Slowed Reverb).mp3",
+    title: "NOTION FUNK (Slowed Reverb)"
+  },
+  {
+    file: "Gym/NOTION FUNK.mp3",
+    title: "NOTION FUNK"
+  },
+  {
     file: "Gym/NUNCA MUDA - SLOWED (Edit Audio).mp3",
     title: "Nunca Muda (Slowed, Edit Audio)"
   },
@@ -1464,6 +1480,14 @@ var playlists = {
   {
     file: "Gym/SICKO MODE (TikTok Sped Up Extended).mp3",
     title: "Sicko Mode (TikTok Sped Up Extended)"
+  },
+  {
+    file: "Gym/SMOKE IT OFF (Super Slowed).mp3",
+    title: "SMOKE IT OFF (Super Slowed)"
+  },
+  {
+    file: "Gym/𝙎𝙢𝙤𝙠𝙚 𝙞𝙩 𝙤𝙛𝙛 (𝙨𝙡𝙤𝙬𝙚𝙙).mp3",
+    title: "𝙎𝙢𝙤𝙠𝙚 𝙞𝙩 𝙤𝙛𝙛 (𝙨𝙡𝙤𝙬𝙚𝙙)"
   },
   {
     file: "Gym/Slave (Guitar Remix - Slowed Reverb).mp3",
