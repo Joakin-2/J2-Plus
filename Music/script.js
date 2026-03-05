@@ -1162,6 +1162,10 @@ var playlists = {
     title: "Gotham"
   },
   {
+    file: "Gym/GROW A GARDEN FUNK (Super Slowed).mp3",
+    title: "GROW A GARDEN FUNK (Super Slowed)"
+  },
+  {
     file: "Gym/Get Get Down.mp3",
     title: "Get Get Down"
   },
@@ -1500,6 +1504,10 @@ var playlists = {
   {
     file: "Gym/SONGS TO DESTROY YOUR PR.mp3",
     title: "Songs to Destroy Your PR"
+  },
+  {
+    file: "Gym/SONIC EXE x Backyardigans.mp3",
+    title: "SONIC EXE x Backyardigans"
   },
   {
     file: "Gym/SPIDERMAN SAD x NO REASON FUNK.mp3",
