@@ -1499,7 +1499,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Paula", month: 10, day: 24 },
 
     { name: "J2+", month: 9, day: 2 },   // 2 Setembro 2024
-    { name: "J2", month: 5, day: 12 },    // 12 Maio 2023
+    { name: "J2: Nova", month: 5, day: 12 },   // 12 Maio 2023
     { name: "Rhafael", month: 5, day: 31 },  // 31 Maio 2025
     { name: "Miguel", month: 3, day: 10 },// 10 Março 2025
     { name: "Kalton", month: 6, day: 27 } // 27 Junho 2025
@@ -1532,6 +1532,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Vésperas
     { name: "Véspera de Natal", month: 12, day: 24 },
     { name: "Véspera de Ano Novo", month: 12, day: 31 },
+
+      // Datas comemorativas
+      { name: "Dia Internacional da Mulher", month: 3, day: 8 },
+      { name: "Dia das Crianças", month: 10, day: 12 },
+      { name: "Dia do Homem", month: 7, day: 15 },
+
+      // Datas móveis
+      { name: "Dia das Mães", type: "movel", rule: "2º domingo de maio" },
+      { name: "Dia dos Pais", type: "movel", rule: "2º domingo de agosto" },
 ];
 
   let currentYear = new Date().getFullYear();
