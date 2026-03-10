@@ -1217,25 +1217,10 @@ const importarBtn = document.getElementById("importar-btn");
 const exportarBtn = document.getElementById("exportar-btn");
 const nomePerfil = document.getElementById("nome-perfil");
 const bioPerfil = document.getElementById("bio-perfil");
+const foto = document.getElementById("foto-perfil");
 const perfilSelector = document.getElementById("perfil-selector"); // O dropdown para seleção de perfil
-
-// Atualiza a tela de perfil com os dados do perfil ativo
-function atualizarPerfil() {
-  const perfil = perfis[perfilAtivo];
-
-  // Recupera a bio salva no localStorage (se houver)
-  const bioSalva = localStorage.getItem("bio" + perfilAtivo);
-  if (bioSalva) {
-    perfil.bio = bioSalva;
-  }
-
-  nomePerfil.textContent = perfil.nome;
-  bioPerfil.value = perfil.bio;
-
-  if (perfilAtivo === "Main") {
-    bioPerfil.disabled = false;
-  }
-}
+const alturaPerfil = document.getElementById("altura-perfil");
+const pesoPerfil = document.getElementById("peso-perfil");
 
 // Exibir e ocultar a tela de perfil
 perfilBtn.addEventListener("click", () => {
@@ -1401,22 +1386,66 @@ perfilSelector.addEventListener("change", (event) => {
   loadComplaints(complaints);
 });
 
+function calcularIdade(anoNascimento) {
+  const anoAtual = new Date().getFullYear();
+  return anoAtual - anoNascimento;
+}
+
+function calcularIMC(peso, altura) {
+    return peso / (altura * altura);
+}
+
 function atualizarPerfil() {
   const perfil = perfis[perfilAtivo];
 
-  // Exibe ou esconde o botão "Squad" dependendo do perfil
+  // FOTO DO PERFIL
+  foto.src = perfil.foto;
+
+  // BOTÃO SQUAD
   const squadBtn = document.getElementById('squad-btn');
-  if (perfilAtivo === "Joaquim") {
-    squadBtn.style.display = "block"; // Mostra o botão para o perfil "Joaquim"
-  } else {
-    squadBtn.style.display = "none"; // Esconde o botão para os outros perfis
+  squadBtn.style.display = perfilAtivo === "Joaquim" ? "inline" : "none";
+
+  nomePerfil.textContent = perfil.nome;
+  bioPerfil.textContent = perfil.bio;
+
+  bioPerfil.disabled = perfilAtivo !== "Main";
+
+  // Gênero
+  document.getElementById("sexo-perfil").value = perfil.genero;
+
+  // Calcular e exibir idade
+  const idade = calcularIdade(perfil.anoNascimento);
+  document.getElementById("idade-perfil").textContent = `${idade} anos`;
+
+  // Altura e peso
+  alturaPerfil.value = perfil.altura;
+  pesoPerfil.value = perfil.peso;
+
+  // Recupera a bio salva no localStorage (se houver)
+  const bioSalva = localStorage.getItem("bio" + perfilAtivo);
+  if (bioSalva) {
+    perfil.bio = bioSalva;
   }
+
+  nomePerfil.textContent = perfil.nome;
+  bioPerfil.value = perfil.bio;
+
+  if (perfilAtivo === "Main") {
+    bioPerfil.disabled = false;
+  }
+
+  // Mensagem sobre o perfil
+  const imc = calcularIMC(perfil.peso, perfil.altura).toFixed(1);
+  let mensagem = `Olá, ${perfil.nome}! Você tem ${idade} anos, mede ${perfil.altura} m e pesa ${perfil.peso} kg. Seu IMC é ${imc}, `;
+  if (imc < 18.5) mensagem += "está abaixo do peso ideal.";
+  else if (imc < 25) mensagem += "está com peso normal.";
+  else if (imc < 30) mensagem += "está acima do peso (sobrepeso).";
+  else mensagem += "está na faixa de obesidade.";
+
+  document.getElementById("mensagem-perfil").textContent = mensagem;
 
   perfil.nivel = parseInt(localStorage.getItem("nivel" + perfilAtivo)) || 1;
   perfil.xp = parseInt(localStorage.getItem("xp" + perfilAtivo)) || 0;
-
-  const bioSalva = localStorage.getItem("bio" + perfilAtivo);
-  if (bioSalva) perfil.bio = bioSalva;
 
   const notesBox = document.getElementById("notesBox");
 if (notesBox) {

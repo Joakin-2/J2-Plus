@@ -135,38 +135,6 @@ document.getElementById("notesgym").addEventListener("input", function () {
     saveNotes();
 });
 
-// Adiciona eventos para salvar automaticamente peso e altura
-document.getElementById('weight').addEventListener('input', function() {
-    salvarPeso(this.value);
-});
-
-document.getElementById('height').addEventListener('input', function() {
-    salvarAltura(this.value);
-});
-
-// Funções para salvar peso e altura
-function salvarPeso(peso) {
-    localStorage.setItem('peso', peso); // Salva o peso no localStorage
-}
-
-function salvarAltura(altura) {
-    localStorage.setItem('altura', altura); // Salva a altura no localStorage
-}
-
-// Carregar valores salvos do localStorage, se existirem
-document.addEventListener('DOMContentLoaded', function() {
-    var pesoSalvo = localStorage.getItem('peso');
-    var alturaSalva = localStorage.getItem('altura');
-
-    if (pesoSalvo !== null) {
-        document.getElementById('weight').value = pesoSalvo;
-    }
-
-    if (alturaSalva !== null) {
-        document.getElementById('height').value = alturaSalva;
-    }
-});
-
 function createCalendar() {
     const calendarContainer = document.getElementById("calendar");
     calendarContainer.innerHTML = ""; // Limpa o calendário

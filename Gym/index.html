@@ -128,17 +128,8 @@ button i {
             </button>            
 
             <div id="weight-height">
-                <div class="input-group">
-                    <label for="weight">Peso (Kg):</label>
-                    <input type="text" id="weight" name="weight" placeholder="Digite seu peso...">
-                </div>
-                <div class="input-group">
-                    <label for="height">Altura (m):</label>
-                    <input type="text" id="height" name="height" placeholder="Digite sua altura...">
-                </div>
-                <div id="result" style="margin-top: 20px;"></div>
-            </div>
-            
+                <div id="result"></div>
+            </div>    
         </section>
     </main>
     
@@ -173,58 +164,81 @@ button i {
                     break;
             }
         }
-        function calculateIMC() {
-    const weight = parseFloat(document.getElementById('weight').value);
-    const height = parseFloat(document.getElementById('height').value);
-    const resultDiv = document.getElementById('result');
 
-    if (isNaN(weight) || isNaN(height) || height <= 0) {
-        resultDiv.textContent = ""; // Limpa o resultado se os valores não forem válidos
-        return;
-    }
-
-    const imc = weight / (height * height);
-    let classification = "";
-
-    if (imc < 18.5) {
-        classification = "abaixo do peso.";
-    } else if (imc < 25) {
-        classification = "com peso normal.";
-    } else if (imc < 30) {
-        classification = "com sobrepeso.";
-    } else {
-        classification = "obeso.";
-    }
-
-    resultDiv.textContent = `Seu IMC é ${imc.toFixed(2)} e você está ${classification}`;
+        function calcularIdade(anoNascimento) {
+    return new Date().getFullYear() - anoNascimento;
 }
 
-// Adiciona eventos de input nos campos
-document.getElementById('weight').addEventListener('input', calculateIMC);
-document.getElementById('height').addEventListener('input', calculateIMC);
+function calcularIMC(peso, altura) {
+    return peso / (altura * altura);
+}
 
-const notesTextarea = document.getElementById("notesgym");
+function classificarIMC(imc) {
+    if (imc < 18.5) return "Abaixo do peso";
+    if (imc < 25) return "Peso normal";
+    if (imc < 30) return "Sobrepeso";
+    return "Obesidade";
+}
 
-// Função para carregar as anotações ao carregar a página
-window.onload = () => {
-    // Obtém o perfil ativo
+        // Gera o relatório completo e carrega as notas
+function gerarRelatorioCompleto() {
     const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
+    const perfil = perfis[perfilAtivo];
 
-    // Carrega as anotações do perfil ativo
+    const idade = calcularIdade(perfil.anoNascimento);
+    const imc = calcularIMC(perfil.peso, perfil.altura);
+    const classificacao = classificarIMC(imc);
+
+    const mensagemSexo = (perfil.genero === "masculino") 
+        ? "Homens geralmente possuem maior massa muscular e metabolismo mais acelerado."
+        : "Mulheres possuem metabolismo levemente diferente devido a fatores hormonais.";
+
+    const html = `
+    <div style="display: flex; justify-content: center; gap: 50px;">
+        <div>
+            <p><strong>Gênero:</strong> ${perfil.genero}</p>
+            <p><strong>Idade:</strong> ${idade} anos</p>
+            <p><strong>Altura:</strong> ${perfil.altura.toFixed(2)} m</p>
+        </div>
+        <div>
+            <p><strong>Peso:</strong> ${perfil.peso} kg</p>
+            <p><strong>IMC:</strong> ${imc.toFixed(1)}</p>
+            <p><strong>Classificação:</strong> ${classificacao}</p>
+        </div>
+    </div>
+    <p style="color: #ff6600; text-align: center; font-weight: bold; font-size: 13px; margin-top: 2px;">${mensagemSexo}</p>
+`;
+
+/* =========================================================
+   🔥 Futuro: Gasto calórico por nível de atividade
+   🔹 sedentário: TMB × 1.2
+   🔹 leve: TMB × 1.375
+   🔹 moderado: TMB × 1.55
+   🔹 ativo: TMB × 1.725
+   🔹 extremo: TMB × 1.9
+========================================================= */
+
+/* =========================================================
+   📊 Futuro: Gráfico de IMC com Chart.js
+========================================================= */
+
+    //  <p><em>Obs: Este relatório é apenas informativo e não substitui avaliação médica.</em></p>
+
+    document.getElementById("result").innerHTML = html;
+
+    // Carrega notas do perfil ativo
+    const notesTextarea = document.getElementById("notesgym");
     const savedNotes = localStorage.getItem(`gymNotes-${perfilAtivo}`);
-    if (savedNotes) {
-        notesTextarea.value = savedNotes; // Preenche o textarea com o conteúdo salvo
-    }
-};
+    if (savedNotes) notesTextarea.value = savedNotes;
 
-// Função para salvar as anotações ao digitar
-notesTextarea.addEventListener("input", () => {
-    // Obtém o perfil ativo
-    const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
+    // Salva automaticamente quando digitar
+    notesTextarea.addEventListener("input", () => {
+        localStorage.setItem(`gymNotes-${perfilAtivo}`, notesTextarea.value);
+    });
+}
 
-    // Salva as anotações no localStorage com a chave dinâmica do perfil ativo
-    localStorage.setItem(`gymNotes-${perfilAtivo}`, notesTextarea.value);
-});
+// Chama a função quando a página carrega
+window.onload = gerarRelatorioCompleto;
 
     // Função para exportar o conteúdo como arquivo .txt
     function exportNotes() {
