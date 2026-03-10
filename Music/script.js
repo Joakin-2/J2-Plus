@@ -1398,7 +1398,7 @@ var playlists = {
     title: "Olha Mensagem (Slowed Reverb)"
   },
   {
-    file: "On Your Lawn Funk.mp3",
+    file: "Gym/On Your Lawn Funk.mp3",
     title: "On Your Lawn Funk"
   },
   {
@@ -1506,7 +1506,7 @@ var playlists = {
     title: "Sleeping City Funk (Slowed)"
   },
   {
-    file: "SLICK BACK FUNK.mp3",
+    file: "Gym/SLICK BACK FUNK.mp3",
     title: "SLICK BACK FUNK"
   },
   {
