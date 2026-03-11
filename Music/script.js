@@ -1134,6 +1134,10 @@ var playlists = {
     title: "Face Off"
   },
   {
+    file: "Gym/From The Start (Ultra Slowed).mp3",
+    title: "From The Start (Ultra Slowed)"
+  },
+  {
     file: "Gym/Funk Destravado (Slowed).mp3",
     title: "Funk Destravado (Slowed)"
   },
@@ -1268,6 +1272,10 @@ var playlists = {
   {
     file: "Gym/mirrors demo (funk ultra slowed).mp3",
     title: "mirrors demo (funk ultra slowed)"
+  },
+  {
+    file: "Gym/MONTAGEM AMOSTRA.mp3",
+    title: "MONTAGEM AMOSTRA"
   },
   {
     file: "Gym/𝗠𝗘𝗡𝗧𝗜𝗥A𝗢 - (𝗦𝘂𝗽𝗲𝗿 𝗦𝗹𝗼𝘄𝗲𝗱).mp3",
