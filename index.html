@@ -111,7 +111,7 @@
   </div>  
 
   <!-- Tela de perfil -->
-  <div class="perfil-container" id="perfil-container">
+  <div class="perfil-container" id="perfil-container" style="display: none;">
     <div class="perfil-content">
 
         <div class="perfil-topo">
@@ -198,7 +198,7 @@
         </button>
         <button id="switch-btn"><i class="fas fa-exchange-alt"></i></button>
         <button id="miguel-btn" class="active"><img src="/Miguel/icon.png" alt="Ícone de perfil"></button>
-        <button id="rafa-btn" class="hidden"><img src="/Proto/icon.png" alt="Ícone de perfil"></button>
+        <button id="rafa-btn" class="hidden"><img src="Script/img/rafa.png" alt="Ícone de perfil"></button>
         <button id="perfil-btn">Perfil</button>
         <button onclick="window.location.href='https://j2plus.netlify.app/conselho/new.html'" style="display:none; position: absolute; margin-top: 385px; margin-left: -28px;" id="botao31Dezembro">Refexão desse Ano!</button>
         <span class="clock">
@@ -961,13 +961,9 @@ window.onclick = function(event) {
 }
 
     function exibirSaudacao() {
-    // Captura a hora atual
     const horaAtual = new Date().getHours();
+    let saudacaoBase = "";
 
-    // Variáveis para armazenar a saudação e o nome do perfil
-    let saudacaoBase = "";  // Saudação que vai depender da hora
-
-    // Define a saudação com base no horário
     if (horaAtual >= 6 && horaAtual < 12) {
         saudacaoBase = "Bom dia! ";
     } else if (horaAtual >= 12 && horaAtual < 18) {
@@ -976,19 +972,18 @@ window.onclick = function(event) {
         saudacaoBase = "Boa noite! ";
     }
 
-    // Saudação completa com o nome do perfil
     const saudacaoCompleta = saudacaoBase + perfilAtivo;
 
-    // Obtém o elemento da saudação
-    const saudacaoElement = document.getElementById('saudacao');
+    const saudacaoElement = document.getElementById("saudacao");
 
-    // Exibe a animação de digitação para a saudação completa (com nome)
+    // mostra a saudação
+    saudacaoElement.style.display = "block";
     saudacaoElement.innerHTML = `<span class="typing-animation">${saudacaoCompleta}</span>`;
 
-    // Após 5 segundos, remove o nome e deixa apenas a saudação
+    // após 5 segundos esconde
     setTimeout(() => {
-        saudacaoElement.innerHTML = `<span class='typing-animation'>${saudacaoBase}</span>`;
-    }, 5000);  // 5 segundos
+        saudacaoElement.style.display = "none";
+    }, 5000);
 }
 
 const modaljogo = document.getElementById('gamesModal');
