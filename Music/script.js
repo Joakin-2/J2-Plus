@@ -651,6 +651,10 @@ var playlists = {
     title: "KayArchon - New Jeans"
   },
   {
+    file: "Vibe/KINDA HOMELESS FUNK.mp3",
+    title: "KINDA HOMELESS FUNK"
+  },
+  {
     file: "Vibe/Lilbubblegum Af1 (slowed reverb).mp3",
     title: "Lilbubblegum AF1 (Slowed Reverb)"
   },
@@ -685,6 +689,10 @@ var playlists = {
   {
     file: "Vibe/MEHOY.mp3",
     title: "MEHOY"
+  },
+  {
+    file: "Vibe/MONTAGEM ECLIPSE - DJ FKU (Super Slowed) x Yuji.mp3",
+    title: "MONTAGEM ECLIPSE - DJ FKU (Super Slowed) x Yuji"
   },
   {
     file: "Vibe/MONTAGEM XONADA.mp3",
