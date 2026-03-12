@@ -1,0 +1,22 @@
+import time
+
+tentativas_login = {}
+
+def verificar_login(usuario, senha):
+    # Simulação de falha em login (exemplo simples)
+    if senha != "senha_segura":
+        if usuario not in tentativas_login:
+            tentativas_login[usuario] = 0
+        tentativas_login[usuario] += 1
+        
+        if tentativas_login[usuario] > 3:
+            print(f"Aviso: Tentativas excessivas de login para o usuário {usuario}. Ataque potencial!")
+            # Ação: bloquear IP, notificar administrador, etc.
+        return False
+    return True
+
+# Testando o módulo
+verificar_login("usuario1", "senha_errada")
+verificar_login("usuario1", "senha_errada")
+verificar_login("usuario1", "senha_errada")
+verificar_login("usuario1", "senha_errada")  # Aqui acionaria o alerta

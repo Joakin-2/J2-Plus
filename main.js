@@ -1254,11 +1254,6 @@ exportarBtn.addEventListener("click", () => {
     perfil.gymNotes = gymNotesBox.value; // Captura o conteúdo da área de notas do gym
   }
 
-  const notasBox = document.getElementById('notas');
-  if (notasBox) {
-    perfil.notas = notasBox.value;
-  }
-
   const programadosTextarea = document.getElementById('programados');
   if (programadosTextarea) {
     perfil.programados = programadosTextarea.value;
@@ -1327,9 +1322,6 @@ importarBtn.addEventListener("click", () => {
 
           if (dadosImportados.gymNotes)
             localStorage.setItem("gymNotes-" + perfilAtivo, dadosImportados.gymNotes); // Salva as anotações de gym
-
-          if (dadosImportados.notas)
-            localStorage.setItem("notas-" + perfilAtivo, dadosImportados.notas);
 
           if (dadosImportados.programados)
             localStorage.setItem("programados-" + perfilAtivo, dadosImportados.programados);
@@ -1466,11 +1458,6 @@ const musicPlaceNotesBox = document.getElementById("musicPlaceNotes1"); // Aqui 
   if (gymNotesBox) {
     // Carrega as anotações do gym
     gymNotesBox.value = perfil.gymNotes || "";
-  }
-
-  const notasBox = document.getElementById("notas");
-  if (notasBox) {
-    notasBox.value = perfil.notas || "";
   }
 
   const programadosBox = document.getElementById("programados");

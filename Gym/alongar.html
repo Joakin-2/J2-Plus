@@ -7,7 +7,6 @@
     <title>Sessão de Alongamentos</title>
     <!-- Vincule a biblioteca Font Awesome (substitua com seu próprio link, se necessário) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -54,7 +53,6 @@
         h1 {
             color: white;
             text-align: center;
-            margin-bottom: 50px;
         }
 
         p {
@@ -93,43 +91,61 @@
 <body>
 
     <div class="wrapper">
-
         <div class="image-container">
-            <img src="alongar.jpg" alt="Imagem de Alongamento">
+            <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/17582369-conjunto-de-homem-de-treino-homem-fazendo-exercicios-de-fitness-alongamento-de-corpo-inteiro-aquecimento-e-alongamento-ilustracaoial-plana-isolada-no-fundo-branco-vetor.jpg" alt="Imagem de Alongamento" style="border-radius: 8px;">
         </div>
 
-        <div class="content-container">
-
-        <div style="display: flex; margin-left: 160px;">
-            <h1>Alongamentos</h1>
-
-            <!-- Botão para copiar -->
-           <button onclick="copiarTexto()" class="flex gap-1 items-center select-none py-1" aria-label="Copy" style="width: 10px; background: #2b2b2b; border: #333; color: white; margin-top: -25px; margin-left: 10px;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M7 5C7 3.34315 8.34315 2 10 2H19C20.6569 2 22 3.34315 22 5V14C22 15.6569 20.6569 17 19 17H17V19C17 20.6569 15.6569 22 14 22H5C3.34315 22 2 20.6569 2 19V10C2 8.34315 3.34315 7 5 7H7V5ZM9 7H14C15.6569 7 17 8.34315 17 10V15H19C19.5523 15 20 14.5523 20 14V5C20 4.44772 19.5523 4 19 4H10C9.44772 4 9 4.44772 9 5V7ZM5 9C4.44772 9 4 9.44772 4 10V19C4 19.5523 4.44772 20 5 20H14C14.5523 20 15 19.5523 15 19V10C15 9.44772 14.5523 9 14 9H5Z" fill="currentColor"></path>
-            </svg>Copy</button>
+        <div class="video-container" style="margin-left: 20px;">
+            <iframe id="youtubePlayer" width="560" height="315" src="https://www.youtube.com/embed/CS0UOeyLKNA?si=rGlhvmgzzVYxHJQc" title="YouTube video player" frameborder="0" allowfullscreen="" style="border-radius: 8px;"></iframe>
         </div>
 
-           <p id="alongamento1">Alongamento de quadríceps</p>
-           <p id="alongamento2">Alongamento de pescoço</p>
-           <p id="alongamento3">Alongamento das pernas</p>
-           <p id="alongamento4">Alongamento de costas</p>
-           <p id="alongamento5">Alongamento Ponte</p>
+        <div class="content-container" style="position: fixed; margin-left: 750px; margin-top: 300px;">
+            <div style="display: flex;">
+                <h1><i id="iconePeriodo" class="fas fa-sun" style="margin-right: 10px;"></i>Alongamentos</h1>
 
-           <br>
-
-            <div>
-                <button class="botao" onclick="redirecionar('Alongamento Matinal')"><i class="fas fa-sun"></i> Alongamento Matinal</button>
+                <!-- Botão para copiar -->
+                <button onclick="copiarTexto()" class="flex gap-1 items-center select-none py-1" aria-label="Copy" style="height: 10px; background: #2b2b2b; border: #333; color: white; margin-top: 25px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 5C7 3.34315 8.34315 2 10 2H19C20.6569 2 22 3.34315 22 5V14C22 15.6569 20.6569 17 19 17H17V19C17 20.6569 15.6569 22 14 22H5C3.34315 22 2 20.6569 2 19V10C2 8.34315 3.34315 7 5 7H7V5ZM9 7H14C15.6569 7 17 8.34315 17 10V15H19C19.5523 15 20 14.5523 20 14V5C20 4.44772 19.5523 4 19 4H10C9.44772 4 9 4.44772 9 5V7ZM5 9C4.44772 9 4 9.44772 4 10V19C4 19.5523 4.44772 20 5 20H14C14.5523 20 15 19.5523 15 19V10C15 9.44772 14.5523 9 14 9H5Z" fill="currentColor"></path>
+                </svg></button>
             </div>
 
-            <div>
-                <button class="botao" onclick="redirecionar('Alongamento De Noite')"><i class="fas fa-moon"></i> Alongamento Noturno</button>
-            </div>
+            <p id="alongamento1" style="margin: 10px;">Alongamento de quadríceps</p>
+            <p id="alongamento2" style="margin: 10px;">Alongamento de pescoço</p>
+            <p id="alongamento3" style="margin: 10px;">Alongamento das pernas</p>
+            <p id="alongamento4" style="margin: 10px;">Alongamento de costas</p>
+            <p id="alongamento5" style="margin: 10px;">Alongamento Ponte</p>
         </div>
-
     </div>
 
     <script>
+        function definirPeriodo(){
+
+    let hora = new Date().getHours();
+    let icone = document.getElementById("iconePeriodo");
+    let player = document.getElementById("youtubePlayer");
+
+    // Dia (5h até 17h)
+    if(hora >= 5 && hora < 17){
+
+        icone.className = "fas fa-sun";
+        player.src = "https://www.youtube.com/embed/CS0UOeyLKNA?si=rGlhvmgzzVYxHJQc";
+
+    }
+
+    // Noite (17h até 5h)
+    else{
+
+        icone.className = "fas fa-moon";
+        player.src = "https://www.youtube.com/embed/_Wq2EB_ZsRc?si=BIhGuR2MNzJoE_tA";
+
+    }
+
+}
+
+// roda automaticamente quando a página abre
+definirPeriodo();
+
         function copiarTexto() {
         // Seleciona o texto dos parágrafos
         let texto = '';
@@ -154,19 +170,6 @@
         // Alerta ou notificação que o texto foi copiado
         alert("Lista de alongamentos copiada!");
     }
-
-        function redirecionar(destino) {
-            switch (destino) {
-                case 'Alongamento Matinal':
-                    window.open('Alongar Matinal.mp4');
-                    break;
-                case 'Alongamento De Noite':
-                    window.open('Alongar Dormir.mp4');
-                    break;
-                default:
-                    break;
-            }
-        }
     </script>
 
 </body>

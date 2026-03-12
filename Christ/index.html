@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="icon" href="J2+.png" type="image/x-icon">
+    <link rel="icon" href="Script/img/2+.png" type="image/x-icon">    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Renovação</title>
@@ -29,6 +29,7 @@
             flex: 1; /* Cada coluna ocupa igual espaço */
             padding: 20px; /* Espaçamento interno */
             box-sizing: border-box; /* Inclui padding e border no tamanho total */
+            margin-top: 140px;
         }
 
         .row {
@@ -124,7 +125,7 @@
 }
 
 #timer {
-            font-size: 2em;
+            font-size: 60px;
             background-color: #000000;
             color: white;
             border-radius: 10px;
@@ -172,7 +173,7 @@
 
         .xp-gain {
             position: absolute;
-            top: 50%;
+            top: 10%;
             left: 50%;
             transform: translate(-50%, -50%);
             color: #b382ed;
@@ -197,37 +198,28 @@
 <body>
     <div class="container">
         <div class="column">
-            <div class="row">
-                <div class="image-container">
-                    <img id="image" src="Tabela.jpg" alt="Tabela de Estudos">
-                </div>
-            </div>
+            <div id="xp-gain" class="xp-gain" style="display: none;">+10 XP</div>
 
             <div id="timer">00:00:00</div>
         
-        <div class="button-group" style="margin-bottom: 20px;"> 
-            <button id="startButton">
-                <i class="fas fa-play"></i> Iniciar
-            </button>
-            <button id="doneButton">
-                <i class="fas fa-check-circle"></i> Feito
-            </button>
-        </div>
-    
-        <div id="xp-gain" class="xp-gain" style="display: none;">+10 XP</div>
-            <div class="notes-container">
-                <div class="button-group" style="display: none;"> 
-                    <button class="btn-export" onclick="exportNotes()" style="display: none;">
-                        <i class="fas fa-file-export"></i>
-                    </button>
-                    <button class="btn-import" onclick="importNotes()" style="display: none;">
-                        <i class="fas fa-file-import"></i>
-                    </button>
-                </div>
-                <textarea id="notas" class="notes" placeholder="Anote aqui..." oninput="saveNotas()"></textarea>
+            <div class="button-group" style="margin-bottom: 20px;"> 
+                <button id="startButton">
+                    <i class="fas fa-play"></i> Iniciar
+                </button>
+                <button id="doneButton">
+                    <i class="fas fa-check-circle"></i> Feito
+                </button>
             </div>
+
+            <div class="row">
+                <div class="image-container">
+                    <img id="image" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglhxr-DaTK5BWsEDSA84Uhekb_47kUPaxTfAjxeBM23ww-Re2u30wDjZs2Os1kohvZ1_-nxIwKzc7afPaluHTUCVWVsCE3qMRgdf491ghv8FnJz707PS2ms6r5BOGYA4FTWrDZsRf0wto/s1600/Tabela+sem+marca.jpg" alt="Tabela de Estudos">
+                </div>
+            </div>
+    
             <!-- Dicas -->
             <div id="dicas" class="mensagem"></div>
+            <!-- Novo Nascimento (22/02/2025) -->
             <div class="buttons">
                 <button class="botao" onclick="redirecionar('Devocional')"><i class="fas fa-book" style="margin-right: 5px;"></i>Devocional</button>
                 <button class="botao" onclick="redirecionar('Princípios')"><i class="fas fa-book" style="margin-right: 5px;"></i>Princípios</button>
@@ -287,25 +279,6 @@
                 }, 1500);
             }
 
-        // Função para salvar notas no perfil atual
-function saveNotas() {
-    const perfilAtivo = localStorage.getItem('perfilAtivo') || 'Main'; // Obtém o perfil ativo (ou 'Main' como padrão)
-    var notas = document.getElementById('notas').value;
-
-    // Salva as notas no localStorage, com a chave específica para o perfil ativo
-    localStorage.setItem(`notas-${perfilAtivo}`, notas);
-}
-
-// Função para carregar notas do perfil ativo
-function loadNotas() {
-    const perfilAtivo = localStorage.getItem('perfilAtivo') || 'Main'; // Obtém o perfil ativo (ou 'Main' como padrão)
-    var savedNotas = localStorage.getItem(`notas-${perfilAtivo}`); // Obtém as notas para o perfil ativo
-
-    if (savedNotas) {
-        document.getElementById('notas').value = savedNotas; // Carrega as notas no campo de texto
-    }
-}
-
 // Chama a função loadNotas quando a página é carregada
 window.onload = function() {
     // Timer
@@ -320,9 +293,6 @@ window.onload = function() {
     changeTip();
     setInterval(changeTip, 300000);
 };
-
-// Certifique-se de chamar `saveNotas` quando o usuário alterar o campo de notas
-document.getElementById('notas').addEventListener('input', saveNotas);
 
         // Array de dicas
         var dicas = [
@@ -346,13 +316,14 @@ document.getElementById('notas').addEventListener('input', saveNotas);
                 case 'Estudar':
                     window.close('crist.html');
                     window.open('brain.html');
-                    break;
-                case 'Devocional':
-                    window.close('crist.html');
-                    window.open('https://www.youtube.com/watch?v=nR-QdUPKVao');
-                    window.open('https://www.bibliaonline.com.br/acf');
                     window.open('https://drive.google.com/drive/folders/1Of9cNspUSobIUiQbsixEG3FlJYWAr3Ay');
                     window.open('https://drive.google.com/drive/folders/1h1QOxEjQRQfiobTXzsNvErYjPIsTV6t0');
+                    break;
+                case 'Devocional':
+                    // 55 min de aula
+                    window.close('crist.html');
+                    window.open('https://www.scribd.com/document/964388530/Revista-Juvenis-5-Professor-1#page=76');
+                    window.open('https://www.bibliaonline.com.br/acf');
                     break;
                 case 'Princípios':
                     window.close('crist.html');
@@ -362,33 +333,6 @@ document.getElementById('notas').addEventListener('input', saveNotas);
                     break;
             }
         }
-
-        function exportNotes() {
-  const notes = document.getElementById('notas').value;
-  const blob = new Blob([notes], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.setAttribute('href', url);
-  a.setAttribute('download', 'crist.txt');
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
-
-function importNotes() {
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = '.txt';
-  input.onchange = () => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      document.getElementById('notas').value = reader.result;
-      localStorage.setItem('notas', reader.result);
-    };
-    reader.readAsText(input.files[0]);
-  };
-  input.click();
-}
     </script>
 </body>
 </html>

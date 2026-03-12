@@ -1,0 +1,16 @@
+import random
+import time
+
+def verificar_ameaca_biologica():
+    # Simula a detecção de uma ameaça biológica
+    contaminacao = random.choice([True, False])  # Contaminação ou não
+
+    if contaminacao:
+        print("Atenção: Contaminação biológica detectada! Ação imediata necessária.")
+    else:
+        print("Ambiente limpo e sem contaminação biológica.")
+
+# Testando o módulo
+while True:
+    verificar_ameaca_biologica()
+    time.sleep(5)  # Verifica a cada 5 segundos

@@ -1,0 +1,18 @@
+import time
+import random
+
+def detectar_intrusao():
+    # Simula a detecção de intrusão com um sensor aleatório
+    return random.choice([True, False])
+
+def resposta_intrusao():
+    if detectar_intrusao():
+        print("Intrusão detectada! Ativando alarme de segurança...")
+        # Ação: ativar alarme, enviar notificação, etc.
+    else:
+        print("Sem intrusão detectada.")
+
+# Testando o módulo
+while True:
+    resposta_intrusao()
+    time.sleep(5)  # Verifica a cada 5 segundos

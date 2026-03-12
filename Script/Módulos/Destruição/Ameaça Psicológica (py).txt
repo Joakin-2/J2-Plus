@@ -1,0 +1,11 @@
+def detectar_ameaca_psicologica(mensagem):
+    # Palavras-chave que indicam manipulação psicológica
+    palavras_chave = ["você precisa", "obrigado por me ajudar", "não sou capaz"]
+    for palavra in palavras_chave:
+        if palavra in mensagem.lower():
+            return "Atenção: Manipulação psicológica detectada."
+    return "Nenhuma ameaça psicológica detectada."
+
+# Testando o módulo
+mensagem = input("Digite uma mensagem para análise psicológica: ")
+print(detectar_ameaca_psicologica(mensagem))

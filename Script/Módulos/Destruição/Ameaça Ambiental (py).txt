@@ -1,0 +1,19 @@
+import random
+import time
+
+def verificar_ameaca_ambiental():
+    # Simula detecção de mudanças ambientais (temperatura, umidade, etc.)
+    temperatura = random.uniform(18.0, 40.0)  # Temperatura entre 18°C e 40°C
+    umidade = random.uniform(30.0, 90.0)  # Umidade entre 30% e 90%
+
+    if temperatura > 35.0:
+        print("Atenção: Temperatura elevada! Potencial risco de incêndio.")
+    if umidade < 40.0:
+        print("Atenção: Umidade baixa! Potencial risco de incêndio ou desidratação.")
+    else:
+        print(f"Temperatura: {temperatura:.2f}°C, Umidade: {umidade:.2f}% - Condições normais.")
+
+# Testando o módulo
+while True:
+    verificar_ameaca_ambiental()
+    time.sleep(5)  # Verifica a cada 5 segundos

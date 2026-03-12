@@ -72,14 +72,14 @@ button i {
         </div>
     </div>
     
-    <header>
-        <h1 style="bottom: 0px;">Bem-vindo ao JokGym</h1>
+    <header style="padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); margin-bottom: 20px;">
+        <h1>Bem-vindo ao JokGym</h1>
     </header>
     
     <main>
         <section id="report-section">
             <div id="notes-section">
-                <div class="button-group" style="margin-top: 22px;"> 
+                <div class="button-group" style="display: flex;justify-content: center;align-items: center;margin-top: 22px;"> 
                     <h2>Relatório</h2>
                     <button class="btn-export" onclick="exportNotes()" style="margin-left: 15px; display: none;"><i class="fas fa-file-export"></i></button>
                     <button class="btn-import" onclick="importNotes()" style="display: none;"><i class="fas fa-file-import"></i></button>
@@ -88,10 +88,10 @@ button i {
             </div>
             <div id="mensagem-xp"></div>
             <div id="calendar-section">
-                <div id="calendar"></div>
+                <div id="calendar" style="margin-bottom: 4px;"></div>
             </div>
             <section id="about-section">
-                <h2>Sobre</h2>
+                <h2 style="text-align: center;">Sobre</h2>
                 <p>Bem-vindo ao JokGym! Um espaço dedicado a prática de exercícios para manter seu corpo ativo.</p>
             </section>
         </section>
@@ -101,27 +101,27 @@ button i {
         
             <div class="row">
                 <button id="vacuum-button" class="exercise-button" onclick="redirecionar('Vácuo')">
-                    <img src="1.png" alt="Vácuo"> Vácuo
+                    <i class="fa-solid fa-wind" style="margin-right: 20px;font-size: 30px;"></i> Vácuo
                 </button>
-        
+
                 <button id="weightlifting-button" class="exercise-button" onclick="redirecionar('Exercícios')">
-                    <img src="3.png" alt="Exercícios"> Exercícios
+                    <i class="fa-solid fa-dumbbell" style="margin-right: 20px;font-size: 30px;"></i> Exercícios
                 </button>
             </div>
-        
+
             <div class="row">
                 <button id="running-button" class="exercise-button" onclick="redirecionar('Corrida')">
-                    <img src="2.png" alt="Corrida"> Corrida
+                    <i class="fa-solid fa-person-running" style="margin-right: 20px;font-size: 30px;"></i> Corrida
                 </button>
-        
+
                 <button id="stretching-button" class="exercise-button" onclick="redirecionar('Alongamento')">
-                    <img src="4.png" alt="Alongamento"> Alongamento
+                    <i class="fa-solid fa-person" style="margin-right: 20px;font-size: 30px;"></i> Alongamento
                 </button>
             </div>
 
             <button style="height: 100px; width: 520px;" onclick="redirecionar('Gym Play')">
                 <!-- Ícone de Play usando SVG -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; color: #ffd755;">
                     <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
                 Gym Play

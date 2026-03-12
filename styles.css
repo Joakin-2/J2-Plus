@@ -149,12 +149,12 @@ input, textarea {
     height: 100%;
     overflow: auto;
     z-index: 1000;
-    background-color: #121212;
+    background-color: #202020;
   }
   
   /* O conteúdo do modal */
   .modal-content {
-    background-color: #121212;
+    background-color: #202020;
     margin: 12% auto;
     padding: 10px;
     width: 80%; /* Tamanho do modal */

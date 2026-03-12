@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Ameaças - Todos os Módulos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .modulo {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #333;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Controle de Ameaças - Todos os Módulos</h1>
+
+    <!-- Módulo de Ameaça Física -->
+    <div class="modulo">
+        <h2>Módulo de Ameaça Física</h2>
+        <button onclick="verificarAmeacaFisica()">Verificar Intrusão</button>
+        <p id="resultadoFisica"></p>
+    </div>
+
+    <!-- Módulo de Ameaça Cibernética -->
+    <div class="modulo">
+        <h2>Módulo de Ameaça Cibernética</h2>
+        <form id="formLoginCibernetico">
+            <input type="text" id="usuario" placeholder="Usuário" required>
+            <input type="password" id="senha" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p id="resultadoCibernetico"></p>
+    </div>
+
+    <!-- Módulo de Ameaça Ambiental -->
+    <div class="modulo">
+        <h2>Módulo de Ameaça Ambiental</h2>
+        <button onclick="verificarAmeacaAmbiental()">Verificar Condições Ambientais</button>
+        <p id="resultadoAmbiental"></p>
+    </div>
+
+    <!-- Módulo de Ameaça Biológica -->
+    <div class="modulo">
+        <h2>Módulo de Ameaça Biológica</h2>
+        <button onclick="verificarAmeacaBiologica()">Verificar Contaminação</button>
+        <p id="resultadoBiologica"></p>
+    </div>
+
+    <!-- Módulo de Ameaça Eletrônica -->
+    <div class="modulo">
+        <h2>Módulo de Ameaça Eletrônica</h2>
+        <button onclick="verificarAmeacaEletronica()">Verificar Interferência Eletrônica</button>
+        <p id="resultadoEletronica"></p>
+    </div>
+
+    <!-- Módulo de Ameaça Psicológica -->
+    <div class="modulo">
+        <h2>Módulo de Ameaça Psicológica</h2>
+        <input type="text" id="mensagem" placeholder="Digite uma mensagem">
+        <button onclick="verificarAmeacaPsicologica()">Analisar</button>
+        <p id="resultadoPsicologica"></p>
+    </div>
+
+    <!-- Módulo de Ameaça Social -->
+    <div class="modulo">
+        <h2>Módulo de Ameaça Social</h2>
+        <textarea id="discursos" rows="4" cols="50" placeholder="Digite discursos ou mensagens sociais..."></textarea>
+        <button onclick="verificarAmeacaSocial()">Analisar Discursos</button>
+        <p id="resultadoSocial"></p>
+    </div>
+
+    <script>
+        // Módulo de Ameaça Física
+        function verificarAmeacaFisica() {
+            const resultado = Math.random() > 0.5 ? "Intrusão detectada!" : "Nenhuma intrusão detectada.";
+            document.getElementById("resultadoFisica").innerText = resultado;
+        }
+
+        // Módulo de Ameaça Cibernética
+        document.getElementById("formLoginCibernetico").onsubmit = function(event) {
+            event.preventDefault();
+            const usuario = document.getElementById("usuario").value;
+            const senha = document.getElementById("senha").value;
+
+            if (senha !== "senha_segura") {
+                document.getElementById("resultadoCibernetico").innerText = "Tentativas excessivas de login! Possível ataque.";
+            } else {
+                document.getElementById("resultadoCibernetico").innerText = "Login bem-sucedido!";
+            }
+        };
+
+        // Módulo de Ameaça Ambiental
+        function verificarAmeacaAmbiental() {
+            const temperatura = (Math.random() * (40 - 18) + 18).toFixed(2); // Temperatura entre 18°C e 40°C
+            const umidade = (Math.random() * (90 - 30) + 30).toFixed(2); // Umidade entre 30% e 90%
+
+            let resultado = `Temperatura: ${temperatura}°C, Umidade: ${umidade}% - Condições normais.`;
+            if (temperatura > 35) {
+                resultado = "Atenção: Temperatura elevada! Potencial risco de incêndio.";
+            } else if (umidade < 40) {
+                resultado = "Atenção: Umidade baixa! Potencial risco de incêndio ou desidratação.";
+            }
+
+            document.getElementById("resultadoAmbiental").innerText = resultado;
+        }
+
+        // Módulo de Ameaça Biológica
+        function verificarAmeacaBiologica() {
+            const contaminacao = Math.random() > 0.5;
+            const resultado = contaminacao ? "Atenção: Contaminação biológica detectada!" : "Ambiente limpo e sem contaminação.";
+            document.getElementById("resultadoBiologica").innerText = resultado;
+        }
+
+        // Módulo de Ameaça Eletrônica
+        function verificarAmeacaEletronica() {
+            const interferencia = Math.random() > 0.5;
+            const resultado = interferencia ? "Atenção: Interferência eletrônica detectada!" : "Sistema eletrônico funcionando corretamente.";
+            document.getElementById("resultadoEletronica").innerText = resultado;
+        }
+
+        // Módulo de Ameaça Psicológica
+        function verificarAmeacaPsicologica() {
+            const mensagem = document.getElementById("mensagem").value.toLowerCase();
+            const palavrasChave = ["você precisa", "obrigado por me ajudar", "não sou capaz"];
+            const resultado = palavrasChave.some(palavra => mensagem.includes(palavra)) 
+                ? "Atenção: Manipulação psicológica detectada." 
+                : "Nenhuma ameaça psicológica detectada.";
+
+            document.getElementById("resultadoPsicologica").innerText = resultado;
+        }
+
+        // Módulo de Ameaça Social
+        function verificarAmeacaSocial() {
+            const discursos = document.getElementById("discursos").value.toLowerCase().split("\n");
+            const palavrasChave = ["protesto", "revolução", "injustiça", "destruição"];
+            const resultado = discursos.some(discurso => palavrasChave.some(palavra => discurso.includes(palavra))) 
+                ? "Atenção: Possível instabilidade social detectada." 
+                : "Nenhuma ameaça social detectada.";
+
+            document.getElementById("resultadoSocial").innerText = resultado;
+        }
+    </script>
+</body>
+</html>

@@ -830,6 +830,7 @@ function abrirSitesManha() {
         window.open('https://j2plus.netlify.app/gym/', '_blank');
         window.open('https://j2plus.netlify.app/melody/', '_blank');
         window.open('https://j2plus.netlify.app/christ/index.html', '_blank');
+        window.open('https://pinterest.com/', '_blank');
         window.open('https://seller.shopee.com.br/', '_blank');
         window.open('https://www.facebook.com/marketplace/you/selling', '_blank');
         window.open('https://www.mercadolivre.com.br/anuncios/lista?filters=OMNI_ACTIVE|OMNI_INACTIVE|CHANNEL_NO_PROXIMITY_AND_NO_MP_MERCHANTS&page=1&sort=DEFAULT', '_blank');
@@ -840,6 +841,7 @@ function abrirSitesManha() {
         window.open('https://pt.duolingo.com/learn', '_blank');
         window.open('https://j2plus.netlify.app/melody/', '_blank');
         window.open('https://j2plus.netlify.app/christ/index.html', '_blank');
+        window.open('https://pinterest.com/', '_blank');
     } else {
         // Dias úteis (Segunda a Sexta)
         //window.open('https://www.twitch.tv/joakinbr', '_blank');
@@ -853,6 +855,7 @@ function abrirSitesManha() {
         window.open('https://j2plus.netlify.app/melody/', '_blank');
         window.open('https://j2plus.netlify.app/christ/index.html', '_blank');
         window.open('https://j2plus.netlify.app/works/', '_blank');
+        window.open('https://pinterest.com/', '_blank');
     }
 }
 
