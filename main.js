@@ -1563,6 +1563,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentMonth = new Date().getMonth(); // Mês atual (0 = Janeiro, 1 = Fevereiro, ...)
 
   function renderDaysInMonth(monthIndex, year, monthName) {
+    const messageBox = document.getElementById("Message");
+    const messageText = document.getElementById("Text");
     calendarGrid.innerHTML = ''; // Limpa o grid atual
     const daysInMonth = new Date(year, monthIndex + 1, 0).getDate(); // Obtém a quantidade de dias no mês
     const title = document.createElement('div');
@@ -1590,11 +1592,14 @@ document.addEventListener("DOMContentLoaded", () => {
         dayDiv.style.backgroundColor = '#825dff'; // Cor de fundo especial para o dia atual
         dayDiv.style.fontWeight = 'bold'; // Pode aplicar negrito no texto também
       }
+
+      const date = new Date(year, monthIndex, day);
+      const isFriday13 = date.getDay() === 5 && day === 13;
   
       // Verifica se é um aniversário ou evento especial
       const birthday = birthdays.find(b => b.month === monthIndex + 1 && b.day === day);
-      const event = specialEvents.find(e => e.month === monthIndex + 1 && e.day === day);
-  
+      let event = specialEvents.find(e => e.month === monthIndex + 1 && e.day === day);
+
       if (birthday) {
         dayDiv.style.backgroundColor = '#6e9bff'; // Destaca o dia com cor
         dayDiv.textContent += ` 🎉 ${birthday.name}`;
@@ -1603,6 +1608,19 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event) {
         dayDiv.style.backgroundColor = '#9877f1'; // Destaca o dia com cor diferente
         dayDiv.textContent += ` ✨ ${event.name}`;
+      }
+
+      if (isFriday13) {
+        dayDiv.style.backgroundColor = '#000';
+        dayDiv.style.color = '#fff';
+        dayDiv.textContent += " 👻 Sexta-feira 13";
+
+        event = { name: "Sexta-feira 13 👻" };
+
+        let message = `👻 Hoje é Sexta-feira 13! (${day} de ${monthName}, ${year})`;
+
+        messageText.textContent = message;
+        messageBox.style.display = "block";
       }
   
       dayDiv.addEventListener('click', () => {
