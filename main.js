@@ -1617,10 +1617,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         event = { name: "Sexta-feira 13 👻" };
 
-        let message = `👻 Hoje é Sexta-feira 13! (${day} de ${monthName}, ${year})`;
-
-        messageText.textContent = message;
-        messageBox.style.display = "block";
+        if (monthIndex === currentMonth && day === currentDay) {
+          let message = `👻 Hoje é Sexta-feira 13! (${day} de ${monthName}, ${year})`;
+          messageText.textContent = message;
+          messageBox.style.display = "block";
+        }
       }
   
       dayDiv.addEventListener('click', () => {
