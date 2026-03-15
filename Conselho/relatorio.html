@@ -39,6 +39,16 @@
             padding: 20px 0;
         }
 
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background-color: #333;
+            color: #fff;
+            margin-top: 5px;
+        }
+
         section {
             display: grid;
             gap: 10px;
@@ -119,31 +129,59 @@
         <div id="mensagem-xp"></div>
         <p id="xp-gain" style="display: none; color: #825dff; font-size: 18px; font-weight: bold;"></p>
         <section id="formulario">
-            <label>Quantas vezes escovou os dentes hoje?
-                <input type="text" id="escovouDentes">
-            </label>
-            <label>Tempo de ensaio (minutos)?
-                <input type="text" id="tempoEnsaio">
-            </label>
-            <label>
-                <span id="labelTreino">Treinou hoje? (sim/não)</span>
-                <input type="text" id="treino">
-            </label>
-            <label>Você orou? (sim/não)
-                <input type="text" id="oracao">
-            </label>
-            <label>Teve momento de leitura? (sim/não)
-                <input type="text" id="leitura">
-            </label>
-            <label>Leu a Bíblia? (sim/não)
-                <input type="text" id="biblia">
-            </label>
-            <label>Se alongou? (sim/não)
-                <input type="text" id="alongamento">
-            </label>
-            <label>Tomou os 4L de água? (sim/não)
-                <input type="text" id="agua">
-            </label>
+            
+            <label>Quantas vezes escovou os dentes hoje?</label>
+            <select id="escovouDentes">
+                <option value="3">3 vez</option>
+                <option value="4">4 vezes</option>
+                <option value="5">5 vezes</option>
+            </select>
+
+            <label>Quanto tempo de ensaio?</label>
+            <select id="tempoEnsaio">
+                <option value="5">5 minutos</option>
+                <option value="10">10 minutos</option>
+                <option value="20">20 minutos</option>
+                <option value="30">30 minutos</option>
+                <option value="60">1 hora</option>
+            </select>
+
+            <label id="labelTreino">Treinou hoje?</label>
+            <select id="treino">
+                <option value="nao">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+
+            <label>Você orou?</label>
+            <select id="oracao">
+                <option value="nao">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+
+            <label>Teve momento de leitura?</label>
+            <select id="leitura">
+                <option value="nao">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+
+            <label>Leu a Bíblia?</label>
+            <select id="biblia">
+                <option value="nao">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+
+            <label>Se alongou?</label>
+            <select id="alongamento">
+                <option value="nao">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+
+            <label>Tomou os 4L de água?</label>
+            <select id="agua">
+                <option value="nao">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+
             <button onclick="gerarRelatorio()">Gerar Relatório</button>
         </section>
         <div id="resultado" class="resultado" style="display: none;">
@@ -160,8 +198,8 @@
             <p><strong>Classificação do Dia:</strong> <span id="classificacao"></span></p>
         </div>
     </div>
-    <script src="/script/perfil-data.js"></script>
-    <script src="/script/nivel.js"></script>
+    <script src="/Script/perfil-data.js"></script>
+    <script src="/Script/nivel.js"></script>
     <script>
         // Função para atualizar o relógio
         function atualizarRelogio() {
@@ -178,29 +216,31 @@
         atualizarRelogio();
         
     function ganharXp(xp) {
-        let nivelAtual = parseInt(localStorage.getItem("nivelAtual")) || 1;
-        let xpAtual = parseInt(localStorage.getItem("xpAtual")) || 0;
-        let xpNecessario = 100 * (nivelAtual * nivelAtual);
-    
-        xpAtual += xp;
-    
-        while (xpAtual >= xpNecessario) {
-            xpAtual -= xpNecessario;
-            nivelAtual++;
-            xpNecessario = 100 * (nivelAtual * nivelAtual);
-        }
-    
-        localStorage.setItem("nivelAtual", nivelAtual);
-        localStorage.setItem("xpAtual", xpAtual);
-    
-        const xpGainElement = document.getElementById("xp-gain");
+    const perfil = perfis[perfilAtivo];
+
+    perfil.xp += xp;
+
+    const xpNecessario = 100 * perfil.nivel * perfil.nivel;
+
+    if (perfil.xp >= xpNecessario) {
+        perfil.xp -= xpNecessario;
+        perfil.nivel++;
+        mostrarComemoracao(`Parabéns, ${perfil.nome} subiu para o nível ${perfil.nivel}!`);
+    }
+
+    localStorage.setItem("xp" + perfilAtivo, perfil.xp);
+    localStorage.setItem("nivel" + perfilAtivo, perfil.nivel);
+
+    const xpGainElement = document.getElementById("xp-gain");
         xpGainElement.textContent = `+${xp} XP`;
         xpGainElement.style.display = "block";
     
         setTimeout(() => {
             xpGainElement.style.display = "none";
         }, 1500);
-    }
+
+    atualizarInterface();
+}
 
     function verificarDomingo() {
         const hoje = new Date();
@@ -209,7 +249,7 @@
         const labelTreino = document.getElementById("labelTreino");
 
         if (diaSemana === 0) {
-            labelTreino.textContent = "Foi à Escola Dominical? (sim/não)";
+            labelTreino.textContent = "Foi à Escola Dominical?";
         }
     }
 
@@ -218,36 +258,44 @@
     function gerarRelatorio() {
         const escovouDentes = parseInt(document.getElementById("escovouDentes").value) || 0;
         const tempoEnsaio = parseInt(document.getElementById("tempoEnsaio").value) || 0;
-        const treino = document.getElementById("treino").value.toLowerCase();
-        const oracao = document.getElementById("oracao").value.toLowerCase();
-        const leitura = document.getElementById("leitura").value.toLowerCase();
-        const biblia = document.getElementById("biblia").value.toLowerCase();
-        const alongamento = document.getElementById("alongamento").value.toLowerCase();
-        const agua = document.getElementById("agua").value.toLowerCase();
+        const treino = document.getElementById("treino").value === "sim";
+        const oracao = document.getElementById("oracao").value === "sim";
+        const leitura = document.getElementById("leitura").value === "sim";
+        const biblia = document.getElementById("biblia").value === "sim";
+        const alongamento = document.getElementById("alongamento").value === "sim";
+        const agua = document.getElementById("agua").value === "sim";
     
         let respostasCorretas = 0;
         let xp = 0;
     
-        if (escovouDentes >= 7) { respostasCorretas++; xp += 10; }
-        if (tempoEnsaio >= 30) { respostasCorretas++; xp += 20; }
-        if (treino === "sim") { respostasCorretas++; xp += 10; }
-        if (oracao === "sim") { respostasCorretas++; xp += 10; }
-        if (leitura === "sim") { respostasCorretas++; xp += 10; }
-        if (biblia === "sim") { respostasCorretas++; xp += 20; }
-        if (alongamento === "sim") { respostasCorretas++; xp += 10; }
-        if (agua === "sim") { respostasCorretas++; xp += 10; }
+        if (escovouDentes >= 4) { 
+    respostasCorretas++; 
+    xp += 10; 
+}
+
+if (tempoEnsaio >= 10) { 
+    respostasCorretas++; 
+    xp += 20; 
+}
+
+        if (treino) { respostasCorretas++; xp += 10; }
+        if (oracao) { respostasCorretas++; xp += 10; }
+        if (leitura) { respostasCorretas++; xp += 10; }
+        if (biblia) { respostasCorretas++; xp += 20; }
+        if (alongamento) { respostasCorretas++; xp += 10; }
+        if (agua) { respostasCorretas++; xp += 10; }
     
         const classificacoes = ["Vergonha", "Dia Ruim", "Dia Bom", "Dia Prime"];
         const classificacao = classificacoes[Math.min(respostasCorretas, 3)];
     
         document.getElementById("resEscovouDentes").textContent = escovouDentes;
         document.getElementById("resTempoEnsaio").textContent = tempoEnsaio;
-        document.getElementById("resTreino").textContent = treino;
-        document.getElementById("resOracao").textContent = oracao;
-        document.getElementById("resLeitura").textContent = leitura;
-        document.getElementById("resBiblia").textContent = biblia;
-        document.getElementById("resAlongamento").textContent = alongamento;
-        document.getElementById("resAgua").textContent = agua;
+        document.getElementById("resTreino").textContent = treino ? "Sim" : "Não";
+        document.getElementById("resOracao").textContent = oracao ? "Sim" : "Não";
+        document.getElementById("resLeitura").textContent = leitura ? "Sim" : "Não";
+        document.getElementById("resBiblia").textContent = biblia ? "Sim" : "Não";
+        document.getElementById("resAlongamento").textContent = alongamento ? "Sim" : "Não";
+        document.getElementById("resAgua").textContent = agua ? "Sim" : "Não";
         document.getElementById("classificacao").textContent = classificacao;
         document.getElementById("xpTotal").textContent = xp;
         document.getElementById("resultado").style.display = "block";

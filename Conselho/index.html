@@ -30,6 +30,16 @@
             text-align: center;
         }
 
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background-color: #333;
+            color: #fff;
+            margin-top: 5px;
+        }
+
         h1 {
             margin: 0;
             color: #f5f5f5;
@@ -181,11 +191,19 @@ function respostaCerta() {
 
 // Função para adicionar XP
 function ganharXp(xp) {
-    let xpAtual = parseInt(localStorage.getItem('xp')) || 0; // Obtem o XP atual do armazenamento local
-    xpAtual += xp; // Adiciona o XP
-    localStorage.setItem('xp', xpAtual); // Armazena o novo valor de XP
-    mostrarComemoracao(xp); // Exibe uma mensagem comemorativa
-    atualizarInterface();
+  const perfil = perfis[perfilAtivo];
+  perfil.xp += xp;
+
+  const xpNecessario = 100 * perfil.nivel * perfil.nivel;
+  if (perfil.xp >= xpNecessario) {
+    perfil.xp -= xpNecessario;
+    perfil.nivel++;
+    mostrarComemoracao(`Parabéns, ${perfil.nome} subiu para o nível ${perfil.nivel}!`);
+  }
+
+  localStorage.setItem("xp" + perfilAtivo, perfil.xp);
+  localStorage.setItem("nivel" + perfilAtivo, perfil.nivel);
+  atualizarInterface();
 }
 
 // Função para mostrar uma mensagem comemorativa
@@ -223,7 +241,7 @@ function mostrarComemoracao(xp) {
         }
 
         function exibirQuestionario() {
-            const hojeEhSabado = new Date().getDay() === 6; // 6 é sábado
+            const hojeEhSabado = new Date().getDay() === 0; // 6 é sábado
 
             if (hojeEhSabado) {
                 let questionarioElement = document.getElementById('conteudo-pdf');
@@ -236,67 +254,131 @@ function mostrarComemoracao(xp) {
 
                 questionarioElement.innerHTML = `
                     <section>
-                        <h2>Questionário</h2>
-                        <label for="escovouDentes">Você escovou seus dentes quantas vezes por dia?
-                            <input type="text" id="escovouDentes" name="escovouDentes">
-                        </label>
-                        <label for="tempoEnsaio">Você ensaiou quanto tempo?
-                            <input type="text" id="tempoEnsaio" name="tempoEnsaio">
-                        </label>
-                        <label for="treinoDias">Você treinou quantos dias?
-                            <input type="text" id="treinoDias" name="treinoDias">
-                        </label>
-                        <label for="cultosSemana">Você foi em todos os Cultos da Semana?
-                            <input type="text" id="cultosSemana" name="cultosSemana">
-                        </label>
-                        <label for="devocionaisDiarios">Você fez os devocionais todos os dias?
-                            <input type="text" id="devocionaisDiarios" name="devocionaisDiarios">
-                        </label>
-                        <label for="deuOMelhor">Você deu o seu melhor todos os dias?
-                            <input type="text" id="deuOMelhor" name="deuOMelhor">
-                        </label>
-                        <label for="fezVacuo">Você fez o vácuo todos os dias?
-                            <input type="text" id="fezVacuo" name="fezVacuo">
-                        </label>
-                        <label for="alongou">Você se alongou todos os dias?
-                            <input type="text" id="alongou" name="alongou">
-                        </label>
-                        <label for="correuHoje">Você correu ou vai correr hoje?
-                            <input type="text" id="correuHoje" name="correuHoje">
-                        </label>
-                        <label for="bebeuAgua">Você bebeu 4 litros de água todos os dias?
-                            <input type="text" id="bebeuAgua" name="bebeuAgua">
-                        </label>
-                        <label for="refeicoes">Você fez refeições nutritivas todos os dias?
-                            <input type="text" id="refeicoes" name="refeicoes">
-                        </label>
-                        <label for="cuidouDaPele">Você cuidou da sua pele?
-                            <input type="text" id="cuidouDaPele" name="cuidouDaPele">
-                        </label>
-                        <label for="banhosRapidos">Você tomou banhos rápidos?
-                            <input type="text" id="banhosRapidos" name="banhosRapidos">
-                        </label>
-                        <label for="ajudaCasa">Você ajudou em casa?
-                            <input type="text" id="ajudaCasa" name="ajudaCasa">
-                        </label>
-                        <label for="foiProdutivo">Você foi produtivo?
-                            <input type="text" id="foiProdutivo" name="foiProdutivo">
-                        </label>
-                        <label for="ler">Você teve momentos de leitura?
-                            <input type="text" id="ler" name="ler">
-                        </label>
-                        <label for="conteudosRelevantes">Você viu conteúdos relevantes?
-                            <input type="text" id="conteudosRelevantes" name="conteudosRelevantes">
-                        </label>
-                        <label for="bonsEntretenimentos">Você se entreteve com coisas boas?
-                            <input type="text" id="bonsEntretenimentos" name="bonsEntretenimentos">
-                        </label>
-                        <label for="leuBiblia">Você leu a Bíblia?
-                            <input type="text" id="leuBiblia" name="leuBiblia">
-                        </label>
-                        <label for="xingou">Você xingou?
-                            <input type="text" id="xingou" name="xingou">
-                        </label>
+                        <label>Você escovou seus dentes quantas vezes por dia?</label>
+                        <select id="escovouDentes">
+                            <option value="3">3 vez</option>
+                            <option value="4">4 vezes</option>
+                            <option value="5">5 vezes</option>
+                        </select>
+
+                        <label>Quanto tempo de ensaio?</label>
+                        <select id="tempoEnsaio">
+                            <option value="5">5 minutos</option>
+                            <option value="10">10 minutos</option>
+                            <option value="20">20 minutos</option>
+                            <option value="30">30 minutos</option>
+                            <option value="60">1 hora</option>
+                        </select>
+
+                        <label>Você treinou quantos dias?</label>
+                        <select id="treinoDias">
+                            <option value="3">3 dias</option>
+                            <option value="4">4 dias</option>
+                            <option value="5">5 dias</option>
+                        </select>
+
+                        <label for="cultosSemana">Você foi em todos os Cultos da Semana?</label>
+                        <select id="cultosSemana">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você fez os devocionais todos os dias?</label>
+                        <select id="devocionaisDiarios">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você deu o seu melhor todos os dias?</label>
+                        <select id="deuOMelhor">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você fez o vácuo todos os dias?</label>
+                        <select id="fezVacuo">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+                        
+                        <label>Você se alongou todos os dias?</label>
+                        <select id="alongou">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você correu ou vai correr hoje?</label>
+                        <select id="correuHoje">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você bebeu 4 litros de água todos os dias?</label>
+                        <select id="bebeuAgua">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você fez refeições nutritivas todos os dias?</label>
+                        <select id="refeicoes">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você cuidou da sua pele?</label>
+                        <select id="cuidouDaPele">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você tomou banhos rápidos?</label>
+                        <select id="banhosRapidos">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você ajudou em casa?</label>
+                        <select id="ajudaCasa">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você foi produtivo?</label>
+                        <select id="foiProdutivo">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você teve momentos de leitura?</label>
+                        <select id="ler">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você viu conteúdos relevantes?</label>
+                        <select id="conteudosRelevantes">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você se entreteve com coisas boas?</label>
+                        <select id="bonsEntretenimentos">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você leu a Bíblia?</label>
+                        <select id="leuBiblia">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
+                        <label>Você xingou?</label>
+                        <select id="xingou">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+
                         <button onclick="gerarPDF()">Gerar PDF</button>
                     </section>
                 `;
@@ -327,9 +409,19 @@ function mostrarComemoracao(xp) {
 
     // Adicionar perguntas e respostas
     const perguntas = [
-        { pergunta: "Você escovou seus dentes quantas vezes por dia?", respostaCorreta: "7", respostaUsuario: document.getElementById('escovouDentes').value },
-        { pergunta: "Você ensaiou quanto tempo?", respostaCorreta: "1 hora", respostaUsuario: document.getElementById('tempoEnsaio').value },
-        { pergunta: "Você treinou quantos dias?", respostaCorreta: "7", respostaUsuario: document.getElementById('treinoDias').value },
+        {
+            pergunta: "Você escovou seus dentes quantas vezes por dia?",
+            respostaUsuario: document.getElementById('escovouDentes').value,
+            // condição: 4 ou mais é certo
+            acertou: function() { return parseInt(this.respostaUsuario) >= 4; }
+        },
+        {
+            pergunta: "Você ensaiou quanto tempo?",
+            respostaUsuario: document.getElementById('tempoEnsaio').value,
+            // condição: 10 minutos ou mais é certo
+            acertou: function() { return parseInt(this.respostaUsuario) >= 10; }
+        },
+        { pergunta: "Você treinou quantos dias?", respostaCorreta: "5", respostaUsuario: document.getElementById('treinoDias').value },
         { pergunta: "Você foi em todos os Cultos da Semana?", respostaCorreta: "sim", respostaUsuario: document.getElementById('cultosSemana').value },
         { pergunta: "Você fez os devocionais todos os dias?", respostaCorreta: "sim", respostaUsuario: document.getElementById('devocionaisDiarios').value },
         { pergunta: "Você deu o seu melhor todos os dias?", respostaCorreta: "sim", respostaUsuario: document.getElementById('deuOMelhor').value },
@@ -346,7 +438,7 @@ function mostrarComemoracao(xp) {
         { pergunta: "Você viu conteúdos relevantes?", respostaCorreta: "sim", respostaUsuario: document.getElementById('conteudosRelevantes').value },
         { pergunta: "Você se entreteve com coisas boas?", respostaCorreta: "sim", respostaUsuario: document.getElementById('bonsEntretenimentos').value },
         { pergunta: "Você leu a Bíblia?", respostaCorreta: "sim", respostaUsuario: document.getElementById('leuBiblia').value },
-        { pergunta: "Você xingou?", respostaCorreta: "não", respostaUsuario: document.getElementById('xingou').value }
+        { pergunta: "Você xingou?", respostaCorreta: "nao", respostaUsuario: document.getElementById('xingou').value }
     ];
 
     let y = 60; // Posição vertical inicial
@@ -354,30 +446,30 @@ function mostrarComemoracao(xp) {
     const totalPerguntas = perguntas.length;
 
     perguntas.forEach((item, index) => {
-        doc.setFontSize(12);
-        doc.setTextColor(...corTexto);
-        doc.text(`Pergunta ${index + 1}: ${item.pergunta}`, 40, y);
-        y += 20;
+    doc.setFontSize(12);
+    doc.setTextColor(...corTexto);
+    doc.text(`Pergunta ${index + 1}: ${item.pergunta}`, 40, y);
+    y += 18; // subir um pouco no Y para a resposta
 
-        const corResposta = item.respostaUsuario.trim().toLowerCase() === item.respostaCorreta.toLowerCase() ? corRespostaCorreta : corRespostaIncorreta;
-        doc.setTextColor(...corResposta); // Verde ou vermelho
-        doc.text(`Sua Resposta: ${item.respostaUsuario}`, 40, y);
-        doc.setTextColor(...corTexto); // Texto claro
-        y += 30;
+    const certo = item.acertou ? item.acertou() : (item.respostaUsuario.trim().toLowerCase() === item.respostaCorreta.toLowerCase());
+    const corResposta = certo ? corRespostaCorreta : corRespostaIncorreta;
+    doc.setTextColor(...corResposta);
+    doc.text(`Sua Resposta: ${item.respostaUsuario}`, 40, y);
+    y += 25; // mais espaço para a próxima pergunta
+    doc.setTextColor(...corTexto);
 
-        // Calcular a pontuação
-        if (item.respostaUsuario.trim().toLowerCase() === item.respostaCorreta.toLowerCase()) {
-            pontuacao++;
-        }
+    if (certo) {
+    pontuacao++;
+    ganharXp(10); // ou xpTotal += 10, dependendo da sua lógica
+}
 
-        // Verificar se precisa de quebra de página
-        if (y > 750) { // Aproximadamente o limite da página
-            doc.addPage();
-            doc.setFillColor(...corFundo);
-            doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F');
-            y = 30; // Reiniciar a posição vertical
-        }
-    });
+    if (y > 750) { // quebra de página
+        doc.addPage();
+        doc.setFillColor(...corFundo);
+        doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F');
+        y = 30;
+    }
+});
 
     // Classificação da semana
     const resultadoSemana = classificarSemana(pontuacao, totalPerguntas - pontuacao);

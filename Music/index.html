@@ -86,8 +86,8 @@
                     <i class="fas fa-forward"></i> <!-- Ícone de avançar -->
                 </button>
                 <!-- Botão de Coração (Favoritar) -->
-                <button class="outros-button" onclick="toggleFavorite()" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px;">
-                    <i class="fas fa-heart"></i> <!-- Ícone de coração -->
+                <button id="playerFavoriteButton" class="outros-button" style="background: #1a1a1a; border: none; width: 40px; cursor: pointer; padding: 10px;">
+                    <i class="fas fa-heart"></i>
                 </button>
             </div>
         </div>
@@ -98,7 +98,8 @@
     <div id="musicSelection">
         <div id="musicTitleContainer" style="display: flex; align-items: center;">
             <i class="fas fa-arrow-left back-button" onclick="hideMusicSelection()"></i>
-            <button id="randomButton" class="controls" onclick="playRandomMusic()" style="left: 80%; cursor: pointer; position: absolute;">🎲</button>
+            <button id="randomButton" class="controls" onclick="playRandomMusic()" style="left: 85%; cursor: pointer; position: absolute; padding: 8px 10px;">🎲</button>
+            <button id="showFavoritesBtn" style="position: absolute; left: 73%; cursor: pointer; background: #1d1d1d; color: white; font-weight: bold; border: none; border-radius: 8px; padding: 8px 10px; cursor: pointer; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); transition: all 0.2s ease-in-out; font-size: 1em;"><i class="fas fa-heart"></i></button>
             <h2 id="playlistTitle"></h2> <!-- Título da seleção de músicas -->
         </div>
         <ul id="musicList"></ul>
@@ -106,6 +107,24 @@
 
     <script src="script.js"></script>
     <script>
+        let currentPlaylistName = ''; // Nome da playlist atual
+
+        document.getElementById('showFavoritesBtn').addEventListener('click', () => {
+    const showingFavorites = document.getElementById('showFavoritesBtn').dataset.showing === 'true';
+    const playlistName = document.getElementById('playlistTitle').textContent;
+
+    // Alterna entre mostrar todos ou só favoritos
+    if (!showingFavorites) {
+        loadPlaylistTracks(playlistName, true); // só favoritos
+        showFavoritesBtn.innerHTML = '<i class="fas fa-music"></i>';
+        showFavoritesBtn.dataset.showing = 'true';
+    } else {
+        loadPlaylistTracks(playlistName, false); // tudo
+        showFavoritesBtn.innerHTML = '<i class="fas fa-heart"></i>';
+        showFavoritesBtn.dataset.showing = 'false';
+    }
+});
+
         function playRandomMusic() {
     if (!currentPlaylist || currentPlaylist.length === 0) return; // Nada a tocar
     const randomIndex = Math.floor(Math.random() * currentPlaylist.length);
@@ -218,8 +237,35 @@ function hideMusicSelection() {
     document.getElementById("musicSelection").style.display = "none";
 }
 
-function loadPlaylistTracks(playlistName) {
+function mostrarFavoritos() {
+    const favoritesList = document.getElementById('favoritesList');
+    favoritesList.innerHTML = '';
 
+    for (const playlistName in favoritos) {
+        const trackIndices = favoritos[playlistName];
+
+        if (trackIndices.length === 0) continue;
+
+        const playlistHeader = document.createElement('h3');
+        playlistHeader.textContent = playlistName;
+        favoritesList.appendChild(playlistHeader);
+
+        const ul = document.createElement('ul');
+
+        trackIndices.forEach(i => {
+            const track = playlists[playlistName].tracks[i];
+            const li = document.createElement('li');
+            li.textContent = track.title;
+
+            // Você pode adicionar um botão play aqui também, se quiser
+            ul.appendChild(li);
+        });
+
+        favoritesList.appendChild(ul);
+    }
+}
+
+function loadPlaylistTracks(playlistName, onlyFavorites = false) {
     var playlist = playlists[playlistName];
     currentPlaylist = playlist.tracks;
 
@@ -235,16 +281,10 @@ function loadPlaylistTracks(playlistName) {
     musicList.style.textAlign = '-webkit-center';
 
     currentPlaylist.forEach(function (track, index) {
+        // Se só quiser favoritos, ignore os que não estão
+        if (onlyFavorites && (!favoritos[playlistName] || !favoritos[playlistName].includes(index))) return;
 
         var listItem = document.createElement('li');
-
-        // Linha colorida (se quiser usar depois)
-        var colorLine = document.createElement('div');
-        colorLine.style.width = '5px';
-        colorLine.style.height = '30px';
-        colorLine.style.background = 'linear-gradient(45deg, #ff4500, yellow)';
-        colorLine.style.marginRight = '10px';
-        colorLine.style.display = 'inline-block';
 
         // Nome da música
         var musicTitle = document.createElement('span');
@@ -254,12 +294,25 @@ function loadPlaylistTracks(playlistName) {
         // Ícones
         var icons = document.createElement('span');
         icons.classList.add('icons');
-        icons.innerHTML = `
-            <i class="fas fa-play" onclick="playMusic(${index})" style="cursor:pointer;"></i>
-            <i class="fas fa-heart" style="cursor:pointer;"></i>
-        `;
 
-        // listItem.appendChild(colorLine); // descomente se quiser a linha
+        // Play
+        var playIcon = document.createElement('i');
+        playIcon.classList.add('fas', 'fa-play');
+        playIcon.style.cursor = 'pointer';
+        playIcon.addEventListener('click', () => playMusic(index));
+
+        // Coração favorito
+        var heartIcon = document.createElement('i');
+        heartIcon.classList.add('fas', 'fa-heart');
+        heartIcon.style.cursor = 'pointer';
+        if (favoritos[playlistName] && favoritos[playlistName].includes(index)) {
+            heartIcon.style.color = "purple";
+        }
+        heartIcon.addEventListener('click', () => toggleFavorite(playlistName, index, heartIcon));
+
+        icons.appendChild(playIcon);
+        icons.appendChild(heartIcon);
+
         listItem.appendChild(musicTitle);
         listItem.appendChild(icons);
         musicList.appendChild(listItem);
@@ -438,11 +491,30 @@ function displayMusicSelection(playlistName) {
 
         // Ícones
         var icons = document.createElement('span');
-        icons.classList.add('icons');
-        icons.innerHTML = `
-            <i class="fas fa-play" onclick="playMusic(${index})" style="cursor:pointer;"></i>
-            <i class="fas fa-heart" style="cursor:pointer;"></i>
-        `;
+icons.classList.add('icons');
+
+// Botão play
+var playIcon = document.createElement('i');
+playIcon.classList.add('fas', 'fa-play');
+playIcon.style.cursor = 'pointer';
+playIcon.addEventListener('click', () => playMusic(index));
+
+// Botão coração
+var heartIcon = document.createElement('i');
+heartIcon.classList.add('fas', 'fa-heart');
+heartIcon.style.cursor = 'pointer';
+
+// Marca se já for favorito
+if (favoritos[playlistName] && favoritos[playlistName].includes(index)) {
+    heartIcon.style.color = "purple";
+}
+
+// Evento para alternar favorito
+heartIcon.addEventListener('click', () => toggleFavorite(playlistName, index, heartIcon));
+
+// Adiciona ícones ao span
+icons.appendChild(playIcon);
+icons.appendChild(heartIcon);
 
         // listItem.appendChild(colorLine); // ative se quiser a barra
         listItem.appendChild(musicTitle);
@@ -472,6 +544,54 @@ function displayMusicSelection(playlistName) {
         audio.addEventListener('play', function() {
             document.title = currentSongTitle; // volta a mostrar o nome da música
         });
+
+        // Função para alternar o favorito
+let favoritos = JSON.parse(localStorage.getItem('favoritos')) || {};
+
+// Função toggle com playlist e índice da música como parâmetro
+function toggleFavorite(playlistName, trackIndex, heartIcon) {
+    if (!favoritos[playlistName]) {
+        favoritos[playlistName] = [];
+    }
+
+    const pos = favoritos[playlistName].indexOf(trackIndex);
+    if (pos === -1) {
+        favoritos[playlistName].push(trackIndex);
+        heartIcon.style.color = "purple"; // favorito ativado
+        console.log("Adicionado aos favoritos");
+    } else {
+        favoritos[playlistName].splice(pos, 1);
+        heartIcon.style.color = ""; // favorito removido
+        console.log("Removido dos favoritos");
+    }
+
+    localStorage.setItem('favoritos', JSON.stringify(favoritos));
+}
+
+        var heartButton = document.getElementById('playerFavoriteButton');
+var heartIcon = heartButton.querySelector('i');
+
+function updatePlayerFavoriteButton() {
+    if (favoritos[currentPlaylistName] && favoritos[currentPlaylistName].includes(currentTrackIndex)) {
+        heartIcon.style.color = "purple";
+    } else {
+        heartIcon.style.color = "";
+    }
+}
+
+// Atualiza a cor do coração ao abrir o player
+updatePlayerFavoriteButton();
+
+// Remove listeners antigos
+heartButton.replaceWith(heartButton.cloneNode(true));
+heartButton = document.getElementById('playerFavoriteButton');
+heartIcon = heartButton.querySelector('i');
+
+// Evento para alternar favorito da música atual
+heartButton.addEventListener('click', () => {
+    toggleFavorite(currentPlaylistName, currentTrackIndex, heartIcon);
+    updatePlayerFavoriteButton(); // atualiza cor após favoritar/desfavoritar
+});
 
         function playMusic(index) {
 
@@ -634,21 +754,6 @@ function changePlaylistImageRandom() {
     loopButton.style.color = isLooping ? "purple" : ""; // Highlight button when loop is active
     console.log(isLooping ? "Loop activated" : "Loop deactivated");
 }
-
-        // Função para alternar o favorito
-        function toggleFavorite() {
-            isFavorite = !isFavorite;
-            const heartButton = document.querySelector(".outros-button i.fa-heart");
-
-            // Altere o ícone ou o estilo conforme necessário
-            if (isFavorite) {
-                heartButton.style.color = "purple";  // Exemplo: cor vermelha quando favorito
-            } else {
-                heartButton.style.color = "";  // Cor padrão
-            }
-
-            console.log(isFavorite ? "Adicionado aos favoritos" : "Removido dos favoritos");
-        }
 
         let currentIndex0 = 0;  // Índice atual do carrossel
 const itensPorCarrossel = document.querySelectorAll(".musica-item").length;
