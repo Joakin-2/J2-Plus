@@ -215,9 +215,6 @@ function redirecionar(destino) {
         case 'Play':
             window.open('Partituras/play.html');
             break;
-        case 'Timer':
-            window.open('Partituras/timer.html');
-            break;
         case 'Lições':
                 window.open('https://www.youtube.com/watch?v=Sz6rLemlvxc');
                 window.open('https://youtu.be/arSPEDXQG-I?si=AbqnBjoEPqj4D3o9');

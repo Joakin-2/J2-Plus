@@ -43,12 +43,13 @@ main {
     background-color: #ffd755;
     color: #303030;
     padding: 20px;
-    font-size: 1em;
+    font-size: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin: 10px;
     transition: background-color 0.3s ease;
+    width: 200px;
 }
 .modal button:hover {
     background-color: #ffca20;

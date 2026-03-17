@@ -946,6 +946,10 @@ var playlists = {
     title: "2099"
   },
   {
+    file: "Gym/A BIT LATE FUNK (SLOWED REVERB).mp3",
+    title: "A BIT LATE FUNK (SLOWED REVERB)"
+  },
+  {
     file: "Gym/AGUA DE BEBER (spedup).mp3",
     title: "Agua de Beber (Sped Up)"
   },
@@ -996,6 +1000,10 @@ var playlists = {
   {
     file: "Gym/Backyardigans phonk X Perfume Exalando (Slowed to perfection).mp3",
     title: "Backyardigans Phonk x Perfume Exalando (Slowed to Perfection)"
+  },
+  {
+    file: "Gym/𝐁𝐀𝐃 𝐄𝐍𝐃𝐈𝐍𝐆 𝐅𝐔𝐍𝐊 (𝐒𝐔𝐏𝐄𝐑 𝐒𝐋𝐎𝐖𝐄𝐃).mp3",
+    title: "𝐁𝐀𝐃 𝐄𝐍𝐃𝐈𝐍𝐆 𝐅𝐔𝐍𝐊 (𝐒𝐔𝐏𝐄𝐑 𝐒𝐋𝐎𝐖𝐄𝐃)"
   },
   {
     file: "Gym/BAD HABIT HORROR FUNK (Slowed Reverb).mp3",
@@ -1084,6 +1092,10 @@ var playlists = {
   {
     file: "Gym/DARK AGE FUNK (SLOWED).mp3",
     title: "Dark Age Funk (Slowed)"
+  },
+  {
+    file: "Gym/DEAD WRONG FUNK (Ultra Slowed).mp3",
+    title: "DEAD WRONG FUNK (Ultra Slowed)"
   },
   {
     file: "Gym/DOORS LIGHT FUNK - GAMMA JACK.mp3",
@@ -1192,6 +1204,10 @@ var playlists = {
   {
     file: "Gym/Horizonte de Diamante (Slowed Reverb).mp3",
     title: "Horizonte de Diamante (Slowed Reverb)"
+  },
+  {
+    file: "Gym/Horizonte de Diamante (Sped up).mp3",
+    title: "Horizonte de Diamante (Sped up)"
   },
   {
     file: "Gym/I feel like god (slowed reverb).mp3",
@@ -1596,6 +1612,10 @@ var playlists = {
   {
     file: "Gym/TUNG SAHUR FUNK (Ultra Slowed).mp3",
     title: "Tung Sahur Funk (Ultra Slowed)"
+  },
+  {
+    file: "Gym/𝕋𝕎𝔼ℝ𝕂ℕ𝔸𝕋𝕀𝕆ℕ𝟚𝟠 - ℕ𝕌𝕄𝔹𝔼ℝ (𝔹𝕖𝕤𝕥 ℙ𝕒𝕣𝕥).mp3",
+    title: "T𝕋𝕎𝔼ℝ𝕂ℕ𝔸𝕋𝕀𝕆ℕ𝟚𝟠 - ℕ𝕌𝕄𝔹𝔼ℝ (𝔹𝕖𝕤𝕥 ℙ𝕒𝕣𝕥)"
   },
   {
     file: "Gym/UGOVHB - WTF 2 (perfect slowed).mp3",
