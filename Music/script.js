@@ -519,6 +519,10 @@ var playlists = {
     title: "Confess Your Love Funk"
   },
   {
+    file: "Vibe/CRY FOR ME FUNK (WA WA WA).mp3",
+    title: "CRY FOR ME FUNK (WA WA WA)"
+  },
+  {
     file: "Vibe/Calma vida ta de boa.mp3",
     title: "Calma Vida Tá de Boa"
   },
@@ -587,6 +591,10 @@ var playlists = {
     title: "Falling in Love Feels Like"
   },
   {
+    file: "Vibe/Faz De Chicote.mp3",
+    title: "Faz De Chicote"
+  },
+  {
     file: "Vibe/Forever.mp3",
     title: "Forever"
   },
@@ -597,6 +605,10 @@ var playlists = {
   {
     file: "Vibe/Freedom.mp3",
     title: "Freedom"
+  },
+  {
+    file: "Vibe/HOMAGE FUNK.mp3",
+    title: "HOMAGE FUNK"
   },
   {
     file: "Vibe/Hadal ahbek edit.mp3",
@@ -1287,7 +1299,7 @@ var playlists = {
   },
   {
     file: "Gym/MENTE MA (Super Slowed).mp3",
-    title: "Mente Ma (Super Slowed)"
+    title: "Mente Má (Super Slowed)"
   },
   {
     file: "Gym/MIRRORS DEMO FUNK (SLOWED REVERB).mp3",
@@ -1303,7 +1315,7 @@ var playlists = {
   },
   {
     file: "Gym/𝗠𝗘𝗡𝗧𝗜𝗥A𝗢 - (𝗦𝘂𝗽𝗲𝗿 𝗦𝗹𝗼𝘄𝗲𝗱).mp3",
-    title: "Mentirao (Super Slowed)"
+    title: "Mentirão (Super Slowed)"
   },
   {
     file: "Gym/Masha ultrafunk.mp3",
@@ -1343,7 +1355,7 @@ var playlists = {
   },
   {
     file: "Gym/MONTAGEM DIRECAO - (super slowed).mp3",
-    title: "Montagem Direcao (Super Slowed)"
+    title: "Montagem Direção (Super Slowed)"
   },
   {
     file: "Gym/MONTAGEM RABETA (ULTRA SLOWED).mp3",
@@ -1355,7 +1367,7 @@ var playlists = {
   },
   {
     file: "Gym/Montagem Invasao.mp3",
-    title: "Montagem Invasao"
+    title: "Montagem Invasão"
   },
   {
     file: "Gym/Montagem Lunar Esmeralda (ultra slowed reverb).mp3",
