@@ -547,6 +547,10 @@ var playlists = {
     title: "Despicable Me"
   },
   {
+    file: "Vibe/Dizeres.mp3",
+    title: "Dizeres"
+  },
+  {
     file: "Vibe/Dj Pernambuco.mp3",
     title: "DJ Pernambuco"
   },
@@ -723,6 +727,10 @@ var playlists = {
     title: "Montagem Miau (Super Slowed)"
   },
   {
+    file: "Vibe/Meu ak meu ak faz pá pá.mp3",
+    title: "Meu ak meu ak faz pá pá"
+  },
+  {
     file: "Vibe/Me diga entao.mp3",
     title: "Me Diga Então"
   },
@@ -817,6 +825,10 @@ var playlists = {
   {
     file: "Vibe/Roddy Ricch - Down Below.mp3",
     title: "Roddy Ricch - Down Below"
+  },
+  {
+    file: "Vibe/Run It Up (Official Audio).mp3",
+    title: "Run It Up (Official Audio)"
   },
   {
     file: "Vibe/Run anemona.mp3",
