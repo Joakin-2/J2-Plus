@@ -241,7 +241,7 @@ function mostrarComemoracao(xp) {
         }
 
         function exibirQuestionario() {
-            const hojeEhSabado = new Date().getDay() === 0; // 6 é sábado
+            const hojeEhSabado = new Date().getDay() === 6; // 6 é sábado
 
             if (hojeEhSabado) {
                 let questionarioElement = document.getElementById('conteudo-pdf');
