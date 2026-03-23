@@ -1274,6 +1274,14 @@ var playlists = {
     title: "Komodo (Slowed)"
   },
   {
+    file: "Gym/LAST CHANCE FUNK (Alt Version Slowed).mp3",
+    title: "LAST CHANCE FUNK (Alt Version Slowed)"
+  },
+  {
+    file: "Gym/LAST CHANCE FUNK (Alt Version).mp3",
+    title: "LAST CHANCE FUNK (Alt Version)"
+  },
+  {
     file: "Gym/Los Pinguinos de Madagascar.mp3",
     title: "Los Pinguinos de Madagascar"
   },
