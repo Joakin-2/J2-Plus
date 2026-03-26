@@ -1670,6 +1670,10 @@ var playlists = {
     title: "Venom - Eminem (Lyrics)"
   },
   {
+    file: "Gym/WA WA WA FUNK.mp3",
+    title: "WA WA WA FUNK"
+  },
+  {
     file: "Gym/Where my head at.mp3",
     title: "Where My Head At"
   },

@@ -192,7 +192,9 @@ const saudacoesIniciais = [
 const saudacaoInicial =
     saudacoesIniciais[Math.floor(Math.random() * saudacoesIniciais.length)];
 
-falar(saudacaoInicial);
+if (!location.hash) {
+  falar(saudacaoInicial);
+}
 
 // Recomendação inicial
 const recomendacoes = [

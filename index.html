@@ -999,6 +999,21 @@ const modals = {
   }
 };
 
+const titulos = {
+  rafa: "Rafa",
+  pc: "PCs",
+  itens: "Itens",
+  christ: "Christ"
+};
+
+function atualizarTitulo(hash) {
+  if (titulos[hash]) {
+    document.title = titulos[hash];
+  } else {
+    document.title = "J2+"; // título padrão
+  }
+}
+
 // Função para fechar todas modals
 function fecharTodasModals() {
   Object.values(modals).forEach(m => m.modal.style.display = "none");
@@ -1061,6 +1076,9 @@ document.querySelectorAll(".close-submodal").forEach(btn => {
 // Lidar com hash na URL
 window.addEventListener("load", () => {
   const hash = location.hash.replace("#", "");
+  
+  atualizarTitulo(hash); // 👈 adiciona isso
+
   if (hash.startsWith("study-")) {
     document.getElementById(hash).style.display = "block";
   } else if(hash) {
@@ -1070,6 +1088,9 @@ window.addEventListener("load", () => {
 
 window.addEventListener("hashchange", () => {
   const hash = location.hash.replace("#", "");
+
+  atualizarTitulo(hash); // 👈 adiciona isso
+
   if (hash.startsWith("study-")) {
     document.querySelectorAll(".submodal").forEach(sm => sm.style.display = "none");
     document.getElementById(hash).style.display = "block";
