@@ -548,7 +548,7 @@ var playlists = {
   },
   {
     file: "Vibe/Dizeres.mp3",
-    title: "Dizeres"
+    title: "Dizeres Edit"
   },
   {
     file: "Vibe/Dj Pernambuco.mp3",
@@ -727,10 +727,6 @@ var playlists = {
     title: "Montagem Miau (Super Slowed)"
   },
   {
-    file: "Vibe/Meu ak meu ak faz pá pá.mp3",
-    title: "Meu ak meu ak faz pá pá"
-  },
-  {
     file: "Vibe/Me diga entao.mp3",
     title: "Me Diga Então"
   },
@@ -755,12 +751,8 @@ var playlists = {
     title: "Nice Try Ditty"
   },
   {
-    file: "Vibe/Noite toda uma zoada - 1.mp3",
-    title: "Noite Toda Uma Zoada - 1"
-  },
-  {
-    file: "Vibe/Noite toda uma zoada - 2.mp3",
-    title: "Noite Toda Uma Zoada - 2"
+    file: "Vibe/Noite toda uma zoada.mp3",
+    title: "Noite Toda Uma Zoada"
   },
   {
     file: "Vibe/no - meghan trainor (edit audio).mp3",
