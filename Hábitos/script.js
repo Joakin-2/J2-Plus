@@ -829,7 +829,7 @@ function abrirSitesManha() {
         window.open('https://pt.duolingo.com/learn', '_blank');
         window.open('https://j2plus.netlify.app/gym/', '_blank');
         window.open('https://j2plus.netlify.app/melody/', '_blank');
-        window.open('https://j2plus.netlify.app/christ/index.html', '_blank');
+        window.open('https://j2plus.netlify.app/#christ', '_blank');
         window.open('https://pinterest.com/', '_blank');
         window.open('https://seller.shopee.com.br/', '_blank');
         //window.open('https://www.facebook.com/marketplace/you/selling', '_blank');
@@ -840,7 +840,7 @@ function abrirSitesManha() {
         window.open('https://app.libraslab.com.br/', '_blank');
         window.open('https://pt.duolingo.com/learn', '_blank');
         window.open('https://j2plus.netlify.app/melody/', '_blank');
-        window.open('https://j2plus.netlify.app/christ/index.html', '_blank');
+        window.open('https://j2plus.netlify.app/#christ', '_blank');
         window.open('https://pinterest.com/', '_blank');
     } else {
         // Dias úteis (Segunda a Sexta)
@@ -853,7 +853,7 @@ function abrirSitesManha() {
         window.open('https://pt.duolingo.com/learn', '_blank');
         window.open('https://j2plus.netlify.app/gym/', '_blank');
         window.open('https://j2plus.netlify.app/melody/', '_blank');
-        window.open('https://j2plus.netlify.app/christ/index.html', '_blank');
+        window.open('https://j2plus.netlify.app/#christ', '_blank');
         window.open('https://j2plus.netlify.app/works/', '_blank');
         window.open('https://pinterest.com/', '_blank');
     }

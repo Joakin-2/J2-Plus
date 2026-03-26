@@ -18,6 +18,23 @@ body {
     position: fixed;
 }
 
+.btn-day {
+            font-size: 16px;
+            width: 220px;
+            height: 80px;
+            padding: 20px;
+            background-color: #2b4dbd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-day:hover {
+            background-color: #223881;
+        }
+
 .positivo {
         color: green;
     }
@@ -200,6 +217,103 @@ input, textarea {
     cursor: pointer;
     margin-right: 10px; /* Espaço entre o botão e o relógio */
 }
+
+.image-container {
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 620px; /* Garante que a imagem não ultrapasse o container */
+            height: auto; /* Altura automática para manter proporção */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        #timer {
+            font-size: 60px;
+            color: white;
+            border-radius: 10px;
+        }
+
+        #startButton, #doneButton {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 10px 12px; /* Ajustado o tamanho do botão */
+            font-size: 24px;
+            margin: 5px; /* Espaçamento entre os botões */
+            cursor: pointer; 
+            border-radius: 8px;
+            transition: background-color 0.3s ease; /* Transição suave */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+        }
+
+        .column {
+            flex: 1; /* Cada coluna ocupa igual espaço */
+            padding: 20px; /* Espaçamento interno */
+            box-sizing: border-box; /* Inclui padding e border no tamanho total */
+            margin-top: 60px;
+        }
+
+        .xp-gain {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #b382ed;
+            font-size: 2em;
+            font-weight: bold;
+            animation: fade-out 1.5s forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(1.2);
+            }
+        }
+
+.xp-popup {
+  position: absolute;
+  color: #b690f9;
+  font-weight: bold;
+  font-size: 18px;
+  animation: subir-fade 1s forwards;
+  pointer-events: none; /* não interfere em clicks */
+}
+
+@keyframes subir-fade {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-30px); }
+}
+
+.btn {
+            background-color: #1f1f1f; /* Cor de fundo dos botões */
+            color: #ffffff; /* Cor do texto dos botões */
+            border: none;
+            border-radius: 8px; /* Aumenta o raio para bordas mais arredondadas */
+            padding: 30px;
+            width: 200px;
+            text-align: center;
+            font-size: 25px;
+            text-decoration: none; /* Remove o sublinhado dos links */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adiciona sombra para destaque */
+        }
+
+        .btn:hover {
+            transform: scale(1.1); /* Aumenta o botão ao passar o mouse */
+        }
 
 .calenbutton {
     position: absolute;

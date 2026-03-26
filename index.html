@@ -27,13 +27,13 @@
                 <li><a href="https://j2plus.netlify.app/H%C3%A1bitos/saude.html">Saúde</a></li>
                 <li><a href="https://j2plus.netlify.app/works/ler.html">Leitura</a></li>
                 <li><a href="https://j2plus.netlify.app/h%C3%A1bitos/">Hábitos</a></li>
-                <li><a href="https://j2plus.netlify.app/christ/index.html">Renovar</a></li>
+                <li><a id="christ-btn">Renovar</a></li>
                 <li><a onclick="Trabalho()">Trabalho</a></li>
             </ul>
             <ul>
-                <li><a href="Control/itens.html">Itens</a></li>
+                <li><a id="itens-btn">Itens</a></li>
                 <li><a href="https://j2plus.netlify.app/finan%C3%A7as/">Finanças</a></li>
-                <li><a href="https://j2plus.netlify.app/control/pcs.html">Controles</a></li>
+                <li><a id="pc-btn">Controles</a></li>
                 <li><a href="https://j2plus.netlify.app/streamings/">Streamings</a></li>
                 <li><a onclick="GameState()">Games Web</a></li>
             </ul>
@@ -46,6 +46,307 @@
             </ul>
         </div>
     </aside>
+
+    <!-- Modal de PC -->
+    <div id="modal-pc" class="modal">
+  <span id="fechar-pc" class="close-btn" style="position: fixed; color: white; margin-left: 430px; margin-top: 25px; font-size: 30px;">&times;</span>
+        <div class="button-container"  style="margin-left: 600px;display: inline-grid;gap: 20px;padding: 30px;border-radius: 10px;margin-top: 300px;">
+            <a href="http://192.168.1.73:5555/" target="_blank" class="btn" id="viBtn">Vi</a>
+            <a href="http://192.168.1.66:5550/" target="_blank" class="btn" id="pcBtn">PC</a>
+            <a href="http://192.168.1.74:5000/" target="_blank" class="btn" id="noteBtn">Note</a>
+        </div>
+</div>
+
+<!-- Modal de Itens -->
+<div id="modal-itens" class="modal">
+  <span id="fechar-itens" class="close-btn" style="position: fixed; color: white; margin-left: 430px; margin-top: 25px; font-size: 30px;">&times;</span>
+  <div class="container" id="ripple-container" style="height: 90px; margin-top: 300px;">
+        <div class="button-container">
+            <a class="btn" onclick="buttonClick('https://pt.aliexpress.com/item/1005007384138708.html?src=google&pdp_npi=4%40dis%21BRL%21118.70%21106.50%21%21%21%21%21%40%2112000040523041635%21ppc%21%21%21&src=google&albch=shopping&acnt=768-202-3196&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=UneMJZVf&gclsrc=aw.ds&&albagn=888888&&ds_e_adid=&ds_e_matchtype=&ds_e_device=c&ds_e_network=x&ds_e_product_group_id=&ds_e_product_id=pt1005007384138708&ds_e_product_merchant_id=106876987&ds_e_product_country=BR&ds_e_product_language=pt&ds_e_product_channel=online&ds_e_product_store_id=&ds_url_v=2&albcp=21106536414&albag=&isSmbAutoCall=false&needSmbHouyi=false&gad_source=1&gclid=EAIaIQobChMIoc-0ra_NiQMVmCFECB3KQhreEAYYAiABEgKb5PD_BwE', 'https://www.google.com.br/search?q=raspberry+pi+ov5648+5mp+usb+camera+module&sca_esv=43a9cf8e007740e6&authuser=4&sxsrf=ADLYWIL3AQ2DDBcQk50uA8UeQmQCWfq0MA%3A1731033259712&source=hp&ei=q3gtZ67gKMWB5OUP6O7E8QY&iflsig=AL9hbdgAAAAAZy2Gu9iapKTCf7WMxItS90sOamUOGpBZ&oq=&gs_lp=Egdnd3Mtd2l6IgAqAggAMgcQIxgnGOoCMhAQABgDGOUCGOoCGIwDGI8BMhAQABgDGOUCGOoCGIwDGI8BMhAQABgDGOUCGOoCGIwDGI8BMhAQABgDGOUCGOoCGIwDGI8BMhMQABgDGOUCGMcDGOoCGIwDGI8BMhAQABgDGOUCGOoCGIwDGI8BMhAQABgDGOUCGOoCGIwDGI8BMhAQABgDGOUCGOoCGIwDGI8BMhAQLhgDGOUCGOoCGIwDGI8BSL4OUABYAHABeACQAQCYAQCgAQCqAQC4AQHIAQCYAgGgAiCoAgqYAyCSBwExoAcA&sclient=gws-wiz', 'https://produto.mercadolivre.com.br/MLB-3416846460-monitor-touch-7-polegadas-para-raspberry-pi3-e-pi4-1024x600-_JM#polycard_client=bookmarks', 'https://www.mercadolivre.com.br/raspberry-model-b-pi4-placa-de-microcontrolador/p/MLB32586369#polycard_client=bookmarks&wid=MLB3716906655&sid=bookmarks', 'https://www.youtube.com/results?search_query=how+to+make+android+tablet+at+your+home', 'https://www.youtube.com/results?search_query=Create+A+Virtual+Mouse+Using+35+Lines+of+python+__+Python+Project+__+AI+Powered+', 'https://console.firebase.google.com/u/4/?fb_gclid=EAIaIQobChMIiJiQmN2kkQMVP1lIAB0aYBDaEAAYASAAEgJLRPD_BwE')">Painel</a>
+            <a class="btn" onclick="buttonClick('https://produto.mercadolivre.com.br/MLB-3725251432-kit-bike-farol-sinalizador-recarregavel-velocimetro-563a-_JM?matt_tool=16125068&matt_word=&matt_source=google&matt_campaign_id=14302215009&matt_ad_group_id=124787846286&matt_match_type=&matt_network=g&matt_device=c&matt_creative=539425484857&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=656425577&matt_product_id=MLB3725251432&matt_product_partition_id=1799456139329&matt_target_id=pla-1799456139329&cq_src=google_ads&cq_cmp=14302215009&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gclid=EAIaIQobChMI9OOyxubbiQMVo15IAB1bmgEOEAQYBiABEgI6UvD_BwE', 'https://www.mercadolivre.com.br/suporte-celular-com-carregador-para-moto-guido-aluminio-articulado-preto/p/MLB32108068', 'https://www.mercadolivre.com.br/descanso-lateral-para-bicicleta-aro-26-e-29-aluminio/p/MLB27053225#polycard_client=search-nordic&wid=MLB4445915102&sid=search&searchVariation=MLB27053225&position=7&search_layout=grid&type=product&tracking_id=33736198-a92f-41be-a3c7-956b23df1d6a', 'https://www.mercadolivre.com.br/suporte-caramanhola-garrafa-adaptavel-bicicleta-gira-360-cor-preto/p/MLB29162144?pdp_filters=item_id:MLB3557822453#wid=MLB3557822453&sid=search&is_advertising=true&searchVariation=MLB29162144&position=4&search_layout=grid&type=pad&tracking_id=4e4726d1-75a3-4195-8a8d-0d47743f0799&is_advertising=true&ad_domain=VQCATCORE_LST&ad_position=4&ad_click_id=ZWVjYjA2MDUtMzZmYS00NTQ4LWFmNDgtNDBkZDYzMGU5NWJh', 'https://pt.aliexpress.com/item/1005007566332450.html?spm=a2g0o.detail.pcDetailTopMoreOtherSeller.2.776epYhBpYhBIF&gps-id=pcDetailTopMoreOtherSeller&scm=1007.14452.396806.0&scm_id=1007.14452.396806.0&scm-url=1007.14452.396806.0&pvid=6cbb4a99-b4fe-4b28-ba73-fe1c30c25ad8&_t=gps-id:pcDetailTopMoreOtherSeller,scm-url:1007.14452.396806.0,pvid:6cbb4a99-b4fe-4b28-ba73-fe1c30c25ad8,tpp_buckets:668%232846%238115%232000&pdp_npi=4%40dis%21BRL%21109.15%2177.94%21%21%21129.56%2192.52%21%402103244b17316090644096918e94c3%2112000041323329390%21rec%21BR%21%21ABXZ&utparam-url=scene%3ApcDetailTopMoreOtherSeller%7Cquery_from%3A&search_p4p_id=202411141031044434644443252530717717_1')">Bike</a>
+        </div>
+        <div class="button-container" style="margin-top: 80px">
+            <a class="btn" onclick="buttonClick('https://www.mercadolivre.com.br/gz/cart/v2', 'https://myaccount.mercadolivre.com.br/bookmarks/list')" style="padding: 38px;">Mercado Livre</a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Christ -->
+<div id="modal-christ" class="modal">
+  <span id="fechar-christ" style="margin-left: 80px; color: white; font-size: 30px;">&times;</span>
+  <div class="container" style="display: flex; justify-content: center; text-align: center;">
+        <div class="column">
+            <div id="xp-gain" class="xp-gain" style="display: none;">+10 XP</div>
+
+            <div id="timer">00:00:00</div>
+        
+            <div class="button-group" style="margin-bottom: 20px;"> 
+                <button id="startButton">
+                    <i class="fas fa-play"></i> Iniciar
+                </button>
+                <button id="doneButton">
+                    <i class="fas fa-check-circle"></i> Feito
+                </button>
+            </div>
+
+            <div class="row">
+                <div class="image-container">
+                    <img id="image" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglhxr-DaTK5BWsEDSA84Uhekb_47kUPaxTfAjxeBM23ww-Re2u30wDjZs2Os1kohvZ1_-nxIwKzc7afPaluHTUCVWVsCE3qMRgdf491ghv8FnJz707PS2ms6r5BOGYA4FTWrDZsRf0wto/s1600/Tabela+sem+marca.jpg" alt="Tabela de Estudos">
+                </div>
+            </div>
+    
+            <!-- Dicas -->
+            <div id="dicas" class="mensagem"></div>
+            <!-- Novo Nascimento (22/02/2025) -->
+            <div class="buttons" style="margin-top: 10px;">
+                <button style="color: black; font-size: 24px;" class="botao" onclick="redirecionar('Devocional')"><i class="fas fa-book-bible" style="margin-right: 5px;"></i>Devocional</button>
+                <button style="color: black; font-size: 24px;" class="botao" onclick="redirecionar('Bíblia')"><i class="fas fa-book-open" style="margin-right: 5px;"></i> Bíblia</button>
+                <button style="color: black; font-size: 24px;" class="botao" id="btn-study-christ"><i class="fas fa-brain"></i> Estudar</button>
+                <button style="color: black; font-size: 24px;" class="botao" onclick="redirecionar('Extras')"><i class="fas fa-star" style="margin-right: 5px;"></i>Extras</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="study-christ" class="modal submodal">
+      <span class="close-submodal" data-submodal="study-christ" style="margin-left: 80px; color: white; font-size: 30px;">&times;</span>
+        <div class="modal-content" style="margin: auto;">
+            <header>
+        <h1>Ramificações do Evangelho e Denominações Cristãs</h1>
+        <div class="button-group" style="display: flex; justify-content: end;"> 
+            <button class="btn" onclick="redirecionar('Nacional')" style="margin-right: 10px;display: flex;width: auto;padding: 15px;">
+                <i class="fas fa-book" style="margin-right: 5px;"></i>Hino Nacional
+            </button>
+            <button class="btn" onclick="redirecionar('Music')" style="margin-right: 45%;display: flex;width: auto;padding: 15px;">
+                <i class="fas fa-book" style="margin-right: 5px;"></i> Music
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section>
+        <h2>Introdução</h2>
+        <p>O cristianismo é baseado no amor e ensinamentos de Jesus Cristo. Aqui, apresentamos alguns dos principais princípios cristãos que devem guiar a vida dos seguidores de Cristo.</p>
+    </section>
+
+    <section>
+        <h2>Princípios Cristãos</h2>
+        <ul>
+            <li><strong>Amor ao próximo e a Deus:</strong> "Amarás o Senhor, teu Deus, de todo o teu coração..." (Mateus 22:37-39)</li>
+            <li><strong>Fé em Jesus Cristo:</strong> "Eu sou o caminho, a verdade e a vida" (João 14:6)</li>
+            <li><strong>Perdão:</strong> "Se perdoarmos os outros, Deus nos perdoará." (Mateus 6:14-15)</li>
+            <li><strong>Humildade:</strong> "Nada façais por contenda ou por vanglória, mas por humildade." (Filipenses 2:3-4)</li>
+            <li><strong>Justiça e Retidão:</strong> "Bem-aventurados os que têm fome e sede de justiça..." (Mateus 5:6)</li>
+            <li><strong>Solidariedade e Caridade:</strong> "É mais bem-aventurado dar do que receber." (Atos 20:35)</li>
+            <li><strong>Oração e Comunhão com Deus:</strong> "Orai sem cessar." (1 Tessalonicenses 5:17)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Versículos Inspiradores</h2>
+        <p>"Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito..." (João 3:16)</p>
+        <p>"Eu sou o caminho, e a verdade, e a vida." (João 14:6)</p>
+    </section>
+
+        <section>
+            <h2>1. Introdução ao Evangelho</h2>
+            <ul>
+                <li><a href="#definicao">Definição e Significado</a></li>
+                <li><a href="#temas">Principais Temas</a></li>
+            </ul>
+            <div id="definicao" class="content">
+                <h3>Definição e Significado</h3>
+                <p>O Evangelho é a boa notícia sobre a vida, morte e ressurreição de Jesus Cristo. Estude passagens-chave como os Evangelhos (Mateus, Marcos, Lucas e João) e as cartas de Paulo.</p>
+            </div>
+            <div id="temas" class="content">
+                <h3>Principais Temas</h3>
+                <ul>
+                    <li>Soteriologia: A doutrina da salvação.</li>
+                    <li>Cristologia: Quem é Jesus? O que significa sua divindade e humanidade?</li>
+                    <li>Escatologia: O que o Evangelho diz sobre o fim dos tempos?</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. Catolicismo Romano</h2>
+            <ul>
+                <li><a href="#teologia-catolica">Teologia Católica</a></li>
+                <li><a href="#praticas-catolicas">Práticas Católicas</a></li>
+                <li><a href="#historia-catolica">História da Igreja Católica</a></li>
+            </ul>
+            <div id="teologia-catolica" class="content">
+                <h3>Teologia Católica</h3>
+                <p>Autoridade da Igreja e Tradição: A importância da Tradição e Escritura na interpretação do Evangelho.</p>
+                <p>Sacramentos: Como os sacramentos (como a Eucaristia, Batismo, Confissão) são vistos como meios de graça.</p>
+                <p>Intercessão dos Santos e Maria: O papel de Maria e dos santos na vida cristã.</p>
+                <p>Justificação: A doutrina da justificação no catolicismo, que envolve fé e obras.</p>
+            </div>
+            <div id="praticas-catolicas" class="content">
+                <h3>Práticas Católicas</h3>
+                <p>Culto litúrgico, a importância da missa, a devoção mariana e a veneração dos santos.</p>
+            </div>
+            <div id="historia-catolica" class="content">
+                <h3>História da Igreja Católica</h3>
+                <p>O impacto histórico da Igreja Católica no cristianismo, desde o Império Romano até os concílios ecumênicos (como o Concílio de Trento).</p>
+            </div>
+        </section>
+
+        <!-- Repita o mesmo formato para as outras seções -->
+        <section>
+            <h2>3. Protestantismo</h2>
+            <ul>
+                <li><a href="#teologia-protestante">Teologia Protestante</a></li>
+                <li><a href="#divisoes-protestantes">Divisões Dentro do Protestantismo</a></li>
+                <li><a href="#historia-protestante">História do Protestantismo</a></li>
+            </ul>
+            <div id="teologia-protestante" class="content">
+                <h3>Teologia Protestante</h3>
+                <p>Sola Scriptura: A centralidade das Escrituras como autoridade final.</p>
+                <p>Sola Fide: A justificação pela fé somente, sem a necessidade de obras.</p>
+            </div>
+            <div id="divisoes-protestantes" class="content">
+                <h3>Divisões Dentro do Protestantismo</h3>
+                <ul>
+                    <li>Luteranismo: A teologia de Martinho Lutero e a doutrina da justificação pela fé.</li>
+                    <li>Calvinismo: A ênfase na soberania de Deus, predestinação e os cinco pontos do calvinismo (TULIP).</li>
+                    <li>Anabatismo: A doutrina do batismo de crentes e o conceito de uma Igreja separada do Estado.</li>
+                    <li>Evangelicalismo: O foco na evangelização e a vivência prática do Evangelho.</li>
+                </ul>
+            </div>
+            <div id="historia-protestante" class="content">
+                <h3>História do Protestantismo</h3>
+                <p>A Reforma Protestante, as suas consequências na Europa e no mundo, a formação das principais denominações protestantes.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>4. Igrejas Ortodoxas</h2>
+            <ul>
+                <li><a href="#teologia-ortodoxa">Teologia Ortodoxa</a></li>
+                <li><a href="#praticas-ortodoxas">Práticas Ortodoxas</a></li>
+                <li><a href="#historia-ortodoxa">História da Igreja Ortodoxa</a></li>
+            </ul>
+        
+            <div id="teologia-ortodoxa" class="content">
+                <h3>Teologia Ortodoxa</h3>
+                <p>A doutrina ortodoxa sobre os sacramentos, chamados "mistérios". Destaca-se o Batismo, Crisma, Eucaristia, Confissão.</p>
+                <p>Natureza de Cristo e Trindade: A crença na unidade da Trindade e a natureza de Cristo em duas essências, humana e divina.</p>
+                <p>Filioque: A diferença na formulação do Credo Niceno, especialmente sobre o Espírito Santo.</p>
+            </div>
+        
+            <div id="praticas-ortodoxas" class="content">
+                <h3>Práticas Ortodoxas</h3>
+                <p>A liturgia ortodoxa, o uso de ícones, a ênfase na oração contínua (como no "Jesus Prayer") e a vida monástica.</p>
+            </div>
+        
+            <div id="historia-ortodoxa" class="content">
+                <h3>História da Igreja Ortodoxa</h3>
+                <p>A separação entre o Oriente e o Ocidente (Cisma de 1054), a influência do Império Bizantino, e o papel das Igrejas Ortodoxas na cultura e política do Leste Europeu.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>5. Católicos Românicos vs. Ortodoxos</h2>
+            <ul>
+                <li><a href="#diferencas-historicas">Diferenças Históricas</a></li>
+                <li><a href="#teologias-comparadas">Teologias Comparadas</a></li>
+            </ul>
+        
+            <div id="diferencas-historicas" class="content">
+                <h3>Diferenças Históricas</h3>
+                <p>O Cisma de 1054, onde as Igrejas de Roma e Constantinopla se separaram devido a disputas sobre autoridade papal e doutrinas teológicas (como o "Filioque").</p>
+                <p>Questões litúrgicas e culturais que ainda dividem as duas tradições.</p>
+            </div>
+        
+            <div id="teologias-comparadas" class="content">
+                <h3>Teologias Comparadas</h3>
+                <p>A visão sobre a autoridade do Papa: Católica Romana vê o Papa como líder supremo, enquanto a Ortodoxa vê o Patriarca de Constantinopla como "primeiro entre iguais".</p>
+                <p>Visões sobre a Eucaristia: Ambas acreditam na presença real de Cristo na Eucaristia, mas a Ortodoxa tem uma visão mais misteriosa e profunda sobre o sacramento.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>6. Outras Denominações Cristãs</h2>
+            <ul>
+                <li><a href="#igrejas-evangelicas">Igrejas Evangélicas</a></li>
+                <li><a href="#igrejas-anglicanas">Igrejas Anglicanas</a></li>
+                <li><a href="#movimentos-minoritarios">Movimentos Minoritários</a></li>
+            </ul>
+        
+            <div id="igrejas-evangelicas" class="content">
+                <h3>Igrejas Evangélicas</h3>
+                <p>Estudo das denominações como Pentecostais, Batista, Presbiteriana e suas diferenças teológicas e práticas.</p>
+            </div>
+        
+            <div id="igrejas-anglicanas" class="content">
+                <h3>Igrejas Anglicanas</h3>
+                <p>Uma mistura entre tradições católicas e protestantes, com foco na liturgia e na autoridade das Escrituras.</p>
+            </div>
+        
+            <div id="movimentos-minoritarios" class="content">
+                <h3>Movimentos Minoritários</h3>
+                <p>Estudo das crenças divergentes e como eles entendem o Evangelho de maneira única, com foco em temas como a interpretação da Bíblia, a figura de Cristo e a visão da salvação.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>7. Práticas e Liturgias no Contexto do Evangelho</h2>
+            <ul>
+                <li><a href="#liturgia-catolica-ortodoxa">Liturgia no Catolicismo e Ortodoxia</a></li>
+                <li><a href="#culto-evangelico">Culto Evangélico e Protestante</a></li>
+            </ul>
+        
+            <div id="liturgia-catolica-ortodoxa" class="content">
+                <h3>Liturgia no Catolicismo e Ortodoxia</h3>
+                <p>O papel central da liturgia nas missas (católicas) e divinas liturgias (ortodoxas). A Eucaristia como a forma central de adoração, a relação com o sacrifício de Cristo.</p>
+            </div>
+        
+            <div id="culto-evangelico" class="content">
+                <h3>Culto Evangélico e Protestante</h3>
+                <p>O foco na pregação e no estudo da Bíblia, oração e música como expressões de adoração.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>8. O Evangelho e a Missão Global</h2>
+            <ul>
+                <li><a href="#grande-comissao">A Grande Comissão</a></li>
+                <li><a href="#evangelismo-missoes">Evangelismo e Missões</a></li>
+            </ul>
+        
+            <div id="grande-comissao" class="content">
+                <h3>A Grande Comissão</h3>
+                <p>Mateus 28:18-20 e como cada denominação a interpreta e a pratica.</p>
+            </div>
+        
+            <div id="evangelismo-missoes" class="content">
+                <h3>Evangelismo e Missões</h3>
+                <p>O papel das igrejas no envio de missionários, tanto no sentido local quanto global.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>9. Desafios Contemporâneos e o Evangelho</h2>
+            <ul>
+                <li><a href="#modernidade-secularismo">Modernidade e Secularismo</a></li>
+                <li><a href="#dialogo-inter-religioso">Diálogo Inter-religioso</a></li>
+            </ul>
+        
+            <div id="modernidade-secularismo" class="content">
+                <h3>Modernidade e Secularismo</h3>
+                <p>Como as diferentes denominações respondem aos desafios da sociedade secular e aos questionamentos modernos sobre a fé.</p>
+            </div>
+        
+            <div id="dialogo-inter-religioso" class="content">
+                <h3>Diálogo Inter-religioso</h3>
+                <p>A relação com outras religiões e a perspectiva do Evangelho sobre o pluralismo religioso.</p>
+            </div>
+        </section>
+        
+    </main>
+        </div>
+    </div>
+</div>
 
 <!-- Modal de Línguas -->
 <div id="languageModal" class="modal">
@@ -166,6 +467,29 @@
         <h1 style="color: #825dff; margin-top: -45px; text-align: center; margin-bottom: 80px;">Jok Squad</h1>
         <textarea id="squadFiles" placeholder="Escreva algo aqui..." rows="10" style="color: white; width: 378px;"></textarea>
     </div>
+</div>
+
+<!-- Rafa -->
+<div id="modal-rafa" class="modal">
+  <div class="modal-content" style="justify-items: anchor-center; margin-top: 30px;">
+    <span id="fechar-rafa" style="color: white; font-size: 30px;">&times;</span>
+    <div style="display: flex;">
+    <!-- Lista de botões para os dias da semana -->
+    <ul style="list-style-type: none; padding: 0; display: flex; flex-direction: column; align-items: center; margin-top: 80px;">
+        <li><button id="sunday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Domingo: 20 hábitos</button></li>
+        <li><button id="monday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Segunda: 19 hábitos</button></li>
+        <li><button id="tuesday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Terça: 18 hábitos</button></li>
+        <li><button id="wednesday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Quarta: 25 hábitos</button></li>
+    </ul>
+
+    <ul style="list-style-type: none; padding: 0; display: flex; flex-direction: column; align-items: center; margin-top: 80px;">
+        <li><button id="thursday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Quinta: 21 hábitos</button></li>
+        <li><button id="friday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Sexta: 20 hábitos</button></li>
+        <li><button id="saturday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Sábado: 23 hábitos</button></li>
+        <li><button onclick="window.location.href='https://j2plus.netlify.app/conselho/relatorio.html'" class="btn-day"><i class="fas fa-calendar-day"></i> Relatório</button></li>
+    </ul>
+    </div>
+  </div>
 </div>
 
 <!-- Calendário que ficará escondido inicialmente -->
@@ -500,9 +824,261 @@ updateDate2();
       document.getElementById("miguel-btn").addEventListener("click", function() {
       window.location.href = "/Miguel/index.html"; // Substitua pelo URL desejado
     });
-    document.getElementById("rafa-btn").addEventListener("click", function() {
-      window.location.href = "/Script/rafa.html"; // Substitua pelo URL desejado
+
+    function buttonClick(...urls) {
+    urls.forEach(url => {
+        if (url) window.open(url, "_blank");
     });
+}
+
+            let timeInSeconds = 0;
+            let timerId;
+            let isTimerRunning = false;
+    
+            function updateTimer() {
+                const hours = Math.floor(timeInSeconds / 3600);
+                const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                const seconds = timeInSeconds % 60;
+    
+                document.getElementById("timer").textContent = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                timeInSeconds++;
+            }
+    
+            function toggleTimer() {
+                if (isTimerRunning) {
+                    clearInterval(timerId);
+                    isTimerRunning = false;
+                    document.getElementById("startButton").innerHTML = '<i class="fas fa-play"></i> Iniciar';
+                } else {
+                    timerId = setInterval(updateTimer, 1000);
+                    isTimerRunning = true;
+                    document.getElementById("startButton").innerHTML = '<i class="fas fa-pause"></i> Pausar';
+                }
+            }
+    
+            function timerDone() {
+                clearInterval(timerId);
+                isTimerRunning = false;
+                timeInSeconds = 0;
+                document.getElementById("timer").textContent = "00:00:00";
+                document.getElementById("startButton").innerHTML = '<i class="fas fa-play"></i> Iniciar';
+    
+                ganharXp(10);
+                mostrarXpGanho(10);
+            }
+    
+            function mostrarXpGanho(xp) {
+                let xpElement = document.getElementById("xp-gain");
+                xpElement.textContent = `+${xp} XP`;
+                xpElement.style.display = "block";
+                setTimeout(() => {
+                    xpElement.style.display = "none";
+                }, 1500);
+            }
+
+            setInterval(changeTip, 300000);
+
+            document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("startButton").onclick = toggleTimer;
+    document.getElementById("doneButton").onclick = timerDone;
+});
+
+document.getElementById("btn-study-christ").onclick = () => {
+    document.getElementById("study-christ").style.display = "block";
+};
+
+        // Array de dicas
+        var dicas = [
+            "Já fez um estudo bíblico hoje?",
+            "Já leu a bíblia hoje?",
+            "Já orou hoje?"
+        ];
+
+        // Função para mudar a dica exibida
+        function changeTip() {
+            var dicaAtual = Math.floor(Math.random() * dicas.length); // Seleciona uma dica aleatória
+            document.getElementById('dicas').textContent = dicas[dicaAtual];
+        }
+
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Bíblia':
+                    window.close('crist.html');
+                    window.open('https://www.bibliaonline.com.br/acf');
+                    break;
+                case 'Devocional':
+                    // 55 min de aula
+                    window.close('crist.html');
+                    window.open('https://www.scribd.com/document/964388530/Revista-Juvenis-5-Professor-1#page=90');
+                    // window.open('https://www.scribd.com/document/1012862870/Sample-Jovens-Prof-2-Tri-2026-1#page=5');
+                    window.open('https://www.bibliaonline.com.br/acf');
+                    break;
+                case 'Extras':
+                    window.close('crist.html');
+                    window.open('https://drive.google.com/drive/folders/1Of9cNspUSobIUiQbsixEG3FlJYWAr3Ay');
+                    window.open('https://drive.google.com/drive/folders/1h1QOxEjQRQfiobTXzsNvErYjPIsTV6t0');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+const habitXP = {
+            "sunday": 200,
+            "monday": 190,
+            "tuesday": 180,
+            "wednesday": 250,
+            "thursday": 210,
+            "friday": 200,
+            "saturday": 230
+        };
+
+        function mostrarXP(day) {
+    const xp = habitXP[day];
+
+    // Cria o elemento flutuante
+    const popup = document.createElement("div");
+    popup.className = "xp-popup";
+    popup.textContent = `+${xp} XP`;
+
+    // Coloca dentro do modal
+    const modalContent = document.querySelector("#modal-rafa .modal-content");
+    modalContent.appendChild(popup);
+
+    // Posiciona no centro do modal ou perto do botão clicado
+    const btn = document.getElementById(day + "-btn");
+    const rect = btn.getBoundingClientRect();
+    const modalRect = modalContent.getBoundingClientRect();
+    
+    popup.style.left = `${rect.left - modalRect.left + rect.width/2}px`;
+    popup.style.top = `${rect.top - modalRect.top - 20}px`;
+
+    // Remove após animação
+    setTimeout(() => {
+        popup.remove();
+    }, 1000);
+}
+
+        function addXP(day) {
+            const xp = habitXP[day];
+            ganharXp(xp); // Chama a função ganharXp do nivel.js para adicionar XP
+            mostrarXP(day);
+            atualizarInterface();
+        }
+
+        document.getElementById("sunday-btn").addEventListener("click", function() { addXP("sunday"); });
+        document.getElementById("monday-btn").addEventListener("click", function() { addXP("monday"); });
+        document.getElementById("tuesday-btn").addEventListener("click", function() { addXP("tuesday"); });
+        document.getElementById("wednesday-btn").addEventListener("click", function() { addXP("wednesday"); });
+        document.getElementById("thursday-btn").addEventListener("click", function() { addXP("thursday"); });
+        document.getElementById("friday-btn").addEventListener("click", function() { addXP("friday"); });
+        document.getElementById("saturday-btn").addEventListener("click", function() { addXP("saturday"); });
+
+// Mapeamento de botões e modals
+const modals = {
+  rafa: {
+    btn: document.getElementById("rafa-btn"),
+    modal: document.getElementById("modal-rafa"),
+    fechar: document.getElementById("fechar-rafa")
+  },
+  pc: {
+    btn: document.getElementById("pc-btn"),
+    modal: document.getElementById("modal-pc"),
+    fechar: document.getElementById("fechar-pc")
+  },
+  itens: {
+    btn: document.getElementById("itens-btn"),
+    modal: document.getElementById("modal-itens"),
+    fechar: document.getElementById("fechar-itens")
+  },
+  christ: {
+    btn: document.getElementById("christ-btn"),
+    modal: document.getElementById("modal-christ"),
+    fechar: document.getElementById("fechar-christ")
+  }
+};
+
+// Função para fechar todas modals
+function fecharTodasModals() {
+  Object.values(modals).forEach(m => m.modal.style.display = "none");
+}
+
+Object.values(modals).forEach(m => {
+    if (m.btn && m.modal) {
+        m.btn.onclick = () => {
+            fecharTodasModals(); // opcional: fecha todas antes de abrir
+            m.modal.style.display = "block";
+            location.hash = m.modal.id.replace("modal-", "");
+        };
+    }
+});
+
+// Função para abrir modal principal
+function abrirModal(nome) {
+  document.querySelectorAll(".modal").forEach(m => m.style.display = "none"); // fecha todas
+  const modal = document.getElementById("modal-" + nome);
+  if (modal) modal.style.display = "block";
+  location.hash = nome;
+}
+
+// Fechar modal
+document.querySelectorAll(".close-modal").forEach(btn => {
+  btn.onclick = () => {
+    const nome = btn.dataset.modal;
+    document.getElementById("modal-" + nome).style.display = "none";
+    location.hash = "";
+  };
+});
+
+document.querySelectorAll("[id^='fechar-']").forEach(fecharBtn => {
+    fecharBtn.onclick = () => {
+        const modalId = fecharBtn.id.replace("fechar-", "modal-");
+        const modal = document.getElementById(modalId);
+        if(modal) modal.style.display = "none";
+        location.hash = "";
+    };
+});
+
+// Abrir submodals
+document.querySelectorAll(".open-submodal").forEach(btn => {
+  btn.onclick = () => {
+    const nome = btn.dataset.submodal;
+    const submodal = document.getElementById(nome);
+    if(submodal) submodal.style.display = "block";
+  };
+});
+
+// Fechar submodals
+document.querySelectorAll(".close-submodal").forEach(btn => {
+  btn.onclick = () => {
+    const nome = btn.dataset.submodal;
+    const submodal = document.getElementById(nome);
+    if(submodal) submodal.style.display = "none";
+  };
+});
+
+// Lidar com hash na URL
+window.addEventListener("load", () => {
+  const hash = location.hash.replace("#", "");
+  if (hash.startsWith("study-")) {
+    document.getElementById(hash).style.display = "block";
+  } else if(hash) {
+    abrirModal(hash);
+  }
+});
+
+window.addEventListener("hashchange", () => {
+  const hash = location.hash.replace("#", "");
+  if (hash.startsWith("study-")) {
+    document.querySelectorAll(".submodal").forEach(sm => sm.style.display = "none");
+    document.getElementById(hash).style.display = "block";
+  } else {
+    document.querySelectorAll(".modal").forEach(m => m.style.display = "none");
+    if(hash) abrirModal(hash);
+  }
+});
+
         document.addEventListener('DOMContentLoaded', function() {
     const backgroundMusic = document.getElementById('backgroundMusic');
     const toggleMusicBtn = document.getElementById('toggleMusicBtn');
