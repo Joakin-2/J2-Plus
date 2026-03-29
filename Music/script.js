@@ -727,6 +727,10 @@ var playlists = {
     title: "Montagem Miau (Super Slowed)"
   },
   {
+    file: "Vibe/Mr Gxld - Um Rei.mp3",
+    title: "Mr. Gxld - Um Rei"
+  },
+  {
     file: "Vibe/Me diga entao.mp3",
     title: "Me Diga Então"
   },
