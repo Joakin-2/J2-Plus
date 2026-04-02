@@ -399,6 +399,10 @@ var playlists = {
     title: "A Colors Encore"
   },
   {
+    file: "Vibe/AURAAAAAAAAAAA.mp3",
+    title: "AURAAAAAAAAAAA"
+  },
+  {
     file: "Vibe/After Party (Official Audio).mp3",
     title: "After Party (Official Audio)"
   },
@@ -769,6 +773,10 @@ var playlists = {
   {
     file: "Vibe/Not my problem.mp3",
     title: "Not My Problem"
+  },
+  {
+    file: "Vibe/PERSONA FUNK.mp3",
+    title: "PERSONA FUNK"
   },
   {
     file: "Vibe/Patlamaya Devam.mp3",
