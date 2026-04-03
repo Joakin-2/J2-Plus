@@ -1555,6 +1555,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { name: "Dia Internacional da Mulher", month: 3, day: 8 },
       { name: "Dia das Crianças", month: 10, day: 12 },
       { name: "Dia do Homem", month: 7, day: 15 },
+      { name: "Dia da Mentira", month: 4, day: 1 },
 
       // Datas móveis
       { name: "Dia das Mães", type: "movel", rule: "2º domingo de maio" },
