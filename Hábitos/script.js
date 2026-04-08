@@ -845,7 +845,7 @@ function abrirSitesManha() {
     } else {
         // Dias úteis (Segunda a Sexta)
         //window.open('https://www.twitch.tv/joakinbr', '_blank');
-        window.open('https://business.facebook.com/latest/content_calendar?business_id=2349354548756195&asset_id=617136918158059', '_blank');
+        window.open('https://business.facebook.com/latest/home?nav_ref=bm_home_redirect&asset_id=617136918158059', '_blank');
         //window.open('https://www.mercadolivre.com.br/anuncios/lista?filters=OMNI_ACTIVE|OMNI_INACTIVE|CHANNEL_NO_PROXIMITY_AND_NO_MP_MERCHANTS&page=1&sort=DEFAULT', '_blank');
         window.open('https://seller.shopee.com.br/', '_blank');
         //window.open('https://www.facebook.com/marketplace/you/selling', '_blank');
