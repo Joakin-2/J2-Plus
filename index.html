@@ -567,9 +567,16 @@
 
         <div class="avatar-container">
             <div class="left-side">
-                <div class="temperature">
-                    <h3>Temperatura Atual</h3>
-                    <p id="temperature">-- °C</p>
+                <div class="weather" style="margin-top: 20px;">
+                    <a href="https://www.msn.com/pt-br/clima/forecast/in-Jacupiranga,S%C3%A3o-Paulo?ocid=msedgntphdr&cvid=bb73bd20fe56462399e7e714692deb87&loc=eyJsIjoiSmFjdXBpcmFuZ2EiLCJyIjoiU8OjbyBQYXVsbyIsImMiOiJCcmFzaWwiLCJpIjoiQlIiLCJ0IjoxMDIsImciOiJwdC1iciIsIngiOiItNDguMDA2MDk5NzAwOTI3NzM0IiwieSI6Ii0yNC43MDM4MDAyMDE0MTYwMTYifQ%3D%3D&weadegreetype=C" target="_blank">
+                        <button class="texto">Previsão do Tempo</button>
+                      </a> 
+                      <div style="display: flex;">
+                        <p id="temperature" style="margin-right: 15px;">-- °C</p>
+                        <p id="weatherForecast">Carregando...</p>
+                        <span id="weatherIcon" style="margin-top: -5px;"></span>    
+                      </div>                     
+                                        
                 </div>
                 <!-- Seção de Mercado Financeiro -->
                 <div class="stocks" id="stocks">
@@ -612,22 +619,25 @@
                 </div>
             </a>            
             <div class="right-side">
-                <button class="texto" id="openModalBtnjogo" style="margin-bottom: -20px;margin-left: 24px;"><i class="fas fa-futbol"></i> Ver Jogos</button>
-                <div class="weather">
-                    <a href="https://www.msn.com/pt-br/clima/forecast/in-Jacupiranga,S%C3%A3o-Paulo?ocid=msedgntphdr&cvid=bb73bd20fe56462399e7e714692deb87&loc=eyJsIjoiSmFjdXBpcmFuZ2EiLCJyIjoiU8OjbyBQYXVsbyIsImMiOiJCcmFzaWwiLCJpIjoiQlIiLCJ0IjoxMDIsImciOiJwdC1iciIsIngiOiItNDguMDA2MDk5NzAwOTI3NzM0IiwieSI6Ii0yNC43MDM4MDAyMDE0MTYwMTYifQ%3D%3D&weadegreetype=C" target="_blank">
-                        <button class="texto">Previsão do Tempo</button>
-                      </a>                      
-                      <p id="weatherForecast">Carregando...</p>
-                      <span id="weatherIcon"></span>                      
-                </div>
+                <div class="games">
+                    <h3>Jogos Ao Vivo</h3>
+                    <div style="display: flex; align-items: center;">
+                        <button class="control-btn" id="prev" style="margin-right: -5px;">&#10094;</button> <!-- Ícone de seta esquerda -->
+    <div class="card-container" id="card" style="width: 200px;">
+        <div class="titulo">Carregando jogos...</div>
+    </div>
+    <button class="control-btn" id="next" style="margin-left: -5px;">&#10095;</button> <!-- Ícone de seta direita -->
+</div>
+                </div>                
                 <div class="news">
                     <button class="texto" onclick="abrirSites()" style=" margin-top: 10px;">Últimas Notícias</button> 
-                    <ul>
-                        <li>Sem Notícias...</li>
-                    </ul>
-                    <!-- <ul id="newsList">
-                        <li>Carregando notícias...</li>
-                    </ul> -->
+                    <div style="display: flex; align-items: center;">
+                        <button class="control-btn" id="prev0" style="margin-right: -5px;">&#10094;</button>
+    <div class="card-container" id="card0" style="width: 200px;">
+        <div class="titulo">Carregando notícias...</div>
+    </div>
+    <button class="control-btn" id="next0" style="margin-left: -5px;">&#10095;</button>
+</div>
                 </div>
             </div>
         </div>
@@ -1581,85 +1591,6 @@ window.onclick = function(event) {
     setTimeout(() => {
         saudacaoElement.style.display = "none";
     }, 5000);
-}
-
-const modaljogo = document.getElementById('gamesModal');
-const openModalBtnjogo = document.getElementById('openModalBtnjogo');  // Atualizado para o novo id
-const gamesList = document.getElementById('gamesList');  // Definindo a variável gamesList
-
-// Variáveis da API de Futebol
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-const footballApiUrl = 'https://api.football-data.org/v4/matches';  // URL da API de futebol
-const footballApiKey = '3c9a27c625a643de99b9f10eda20b4dc'; // Sua chave da API de futebol
-
-// Função para exibir os jogos no modal
-function displayGames(games) {
-    const gamesList = document.getElementById('gamesList');
-    gamesList.innerHTML = '';  // Limpa a lista antes de adicionar novos jogos
-
-    // Verificar se a variável games não está vazia ou indefinida
-    if (games && games.length > 0) {
-        games.forEach(game => {
-            const gameDiv = document.createElement('div');
-            gameDiv.classList.add('game');
-            
-            const homeTeam = game.homeTeam.name;
-            const awayTeam = game.awayTeam.name;
-            const scoreHome = game.score.fullTime.homeTeam;
-            const scoreAway = game.score.fullTime.awayTeam;
-
-            gameDiv.innerHTML = `
-                <span>${homeTeam} vs ${awayTeam}</span>
-                <span class="score">${scoreHome} - ${scoreAway}</span>
-            `;
-            
-            gamesList.appendChild(gameDiv);
-        });
-    } else {
-        gamesList.innerHTML = '<p>Não foi possível carregar os jogos no momento.</p>';
-    }
-}
-
-// Função para buscar os jogos
-async function fetchGames() {
-    const url = `${proxyUrl}${footballApiUrl}`; // Concatenando o proxy com a URL da API
-
-    try {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'X-Auth-Token': footballApiKey // Enviando a chave de autenticação da API
-            }
-        });
-
-        // Verifica se a resposta foi bem-sucedida
-        if (response.ok) {
-            const data = await response.json();
-            return data.matches;  // Retorna os jogos
-        } else {
-            console.error('Erro ao buscar jogos:', response.status);
-            return []; // Retorna uma lista vazia se houver erro
-        }
-    } catch (error) {
-        console.error('Erro ao buscar jogos:', error);
-        return []; // Retorna uma lista vazia em caso de erro de rede
-    }
-}
-
-// Abrir o modal quando o botão for clicado
-openModalBtnjogo.onclick = async function() {
-    const games = await fetchGames();  // Puxa os jogos
-    displayGames(games);  // Exibe os jogos no modal
-    const modaljogo = document.getElementById('gamesModal');
-    modaljogo.style.display = 'block';
-}
-
-// Fechar o modal se o usuário clicar fora do conteúdo
-window.onclick = function(event) {
-    const modaljogo = document.getElementById('gamesModal');
-    if (event.target === modaljogo) {
-        modaljogo.style.display = 'none';
-    }
 }
 
 // Chama a função quando a página for carregada

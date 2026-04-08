@@ -55,6 +55,130 @@ function detectCommand(event) {
 // Adiciona um evento de 'input' ao campo de texto
 document.getElementById('inputText').addEventListener('input', detectCommand);
 
+let jogos = [];
+let indice = 0;
+let intervalo;
+
+const card = document.getElementById("card");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+
+// Função pra mostrar o card atual
+function mostrarJogo(i) {
+    const jogo = jogos[i];
+    if (!jogo) return;
+    card.innerHTML = `
+        <div class="titulo">${jogo.title}</div>
+        <a class="botao" href="${jogo.matchviewUrl}" target="_blank">Ver jogo</a>
+    `;
+}
+
+// Função pra avançar
+function proximo() {
+    indice = (indice + 1) % jogos.length;
+    mostrarJogo(indice);
+}
+
+// Função pra voltar
+function anterior() {
+    indice = (indice - 1 + jogos.length) % jogos.length;
+    mostrarJogo(indice);
+}
+
+// Botões
+nextBtn.addEventListener("click", () => {
+    proximo();
+    resetIntervalo();
+});
+prevBtn.addEventListener("click", () => {
+    anterior();
+    resetIntervalo();
+});
+
+// Resetar o intervalo quando usuário clica
+function resetIntervalo() {
+    clearInterval(intervalo);
+    intervalo = setInterval(proximo, 5000);
+}
+
+// Puxar jogos da API
+fetch("https://www.scorebat.com/video-api/v3/")
+.then(res => res.json())
+.then(data => {
+    jogos = data.response.slice(0, 10);
+    mostrarJogo(indice);
+    intervalo = setInterval(proximo, 5000);
+})
+.catch(err => {
+    console.error(err);
+    card.innerHTML = "<div class='titulo'>Erro ao carregar jogos</div>";
+});
+
+
+
+
+let noticias = [];
+const card0 = document.getElementById("card0");
+const prevBtn0 = document.getElementById("prev0");
+const nextBtn0 = document.getElementById("next0");
+
+// Mostrar notícia atual
+function mostrarNoticia(i) {
+    const noticia = noticias[i];
+    if (!noticia) return;
+    card0.innerHTML = `
+    <div class="titulo">${noticia.title}</div>
+    <a class="botao" href="${noticia.link}" target="_blank">Ler mais</a>
+`;
+}
+
+// Mostrar notícia atual
+//function mostrarNoticia(i) {
+//    const noticia = noticias[i];
+//    if (!noticia) return;
+//    card0.innerHTML = `
+//    <div class="titulo">${noticia.title}</div>
+//    <div class="descricao">${noticia.description || ""}</div>
+//    <a class="botao" href="${noticia.link}" target="_blank">Ler mais</a>
+//`;
+//}
+
+// Avançar
+function proximo0() {
+    indice = (indice + 1) % noticias.length;
+    mostrarNoticia(indice);
+}
+
+// Voltar
+function anterior0() {
+    indice = (indice - 1 + noticias.length) % noticias.length;
+    mostrarNoticia(indice);
+}
+
+// Botões
+nextBtn0.addEventListener("click", () => { proximo0(); resetIntervalo(); });
+prevBtn0.addEventListener("click", () => { anterior0(); resetIntervalo(); });
+
+// Resetar intervalo automático
+function resetIntervalo() {
+    clearInterval(intervalo);
+    intervalo = setInterval(proximo0, 5000);
+}
+
+// Puxar notícias do G1 via RSS2JSON
+fetch("https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/")
+    .then(res => res.json())
+    .then(data => {
+        noticias = data.items.slice(0, 10); // pegar apenas as 10 primeiras
+        mostrarNoticia(indice);
+        intervalo = setInterval(proximo0, 5000);
+    })
+    .catch(err => {
+        console.error(err);
+        card0.innerHTML = "<div class='titulo'>Erro ao carregar notícias</div>";
+    });
+
+
 // Função para alternar o menu
 function toggleMenu() {
     const menu = document.getElementById('overlayMenu');
@@ -409,7 +533,11 @@ async function fetchTemperature() {
             throw new Error('Erro ao buscar temperatura: ' + response.status);
         }
         const data = await response.json();
-        document.getElementById('temperature').textContent = `${data.main.temp} °C`;
+
+        // Arredondar para inteiro
+        const tempRounded = Math.round(data.main.temp);
+
+        document.getElementById('temperature').textContent = `${tempRounded} °C`;
     } catch (error) {
         console.error(error);
         document.getElementById('temperature').textContent = 'Erro ao carregar temperatura.';
@@ -523,7 +651,8 @@ async function fetchWeatherForecast() {
       const weatherIconElement = document.getElementById('weatherIcon');
       
       // Atualizando a descrição do clima
-      weatherElement.innerHTML = `Clima: ${translatedDescription}`;
+      //weatherElement.innerHTML = `Clima: ${translatedDescription}`;
+      weatherElement.innerHTML = `${translatedDescription}`;
 
       // Definindo o ícone correspondente
       const iconClass = weatherIcons[weatherDescription] || 'fas fa-cloud';
