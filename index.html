@@ -9,7 +9,11 @@
     <script src="Script/Facial/face-api.min.js"></script>
     <link rel="stylesheet" href="styles.css"> <!-- CSS externo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+<script>
+if (location.hash) {
+    document.write("<style>#loader-container{display:none !important;}</style>");
+}
+</script>
 </head>
 <body>
     <div id="loader-container">
@@ -1108,6 +1112,30 @@ window.addEventListener("hashchange", () => {
     document.querySelectorAll(".modal").forEach(m => m.style.display = "none");
     if(hash) abrirModal(hash);
   }
+});
+
+window.addEventListener("load", () => {
+    const hash = location.hash.replace("#", "");
+
+    const loader = document.getElementById("loader-container");
+
+    // 👉 Se tiver hash (vai abrir modal), NÃO mostra loader
+    if (hash) {
+        if (loader) loader.style.display = "none";
+    } else {
+        // comportamento normal do loader (se você tiver animação, delay, etc.)
+        setTimeout(() => {
+            if (loader) loader.style.display = "none";
+        }, 2000); // exemplo
+    }
+
+    atualizarTitulo(hash);
+
+    if (hash.startsWith("study-")) {
+        document.getElementById(hash).style.display = "block";
+    } else if (hash) {
+        abrirModal(hash);
+    }
 });
 
         document.addEventListener('DOMContentLoaded', function() {
