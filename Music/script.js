@@ -831,6 +831,10 @@ var playlists = {
     title: "Roddy Ricch - Down Below"
   },
   {
+    file: "Vibe/Run It Back.mp3",
+    title: "Run It Back"
+  },
+  {
     file: "Vibe/Run It Up (Official Audio).mp3",
     title: "Run It Up (Official Audio)"
   },
@@ -861,6 +865,10 @@ var playlists = {
   {
     file: "Vibe/Shake It Bololo (BOLOLO HAHA) [Lyrics Edit].mp3",
     title: "Shake It Bololo (Bololo Haha) [Lyrics Edit]"
+  },
+  {
+    file: "Vibe/she goes by remix.mp3",
+    title: "she goes by remix"
   },
   {
     file: "Vibe/sigrid - everybody knows (slowed reverb).mp3",
@@ -937,6 +945,10 @@ var playlists = {
   {
     file: "Vibe/Whats Up Danger.mp3",
     title: "What's Up Danger"
+  },
+  {
+    file: "Vibe/Work (remix) Rihanna.mp3",
+    title: "Work (remix) Rihanna"
   },
   {
     file: "Vibe/Work - Rihanna ft Dj Natttan.mp3",
