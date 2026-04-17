@@ -584,7 +584,7 @@ if (location.hash) {
                 </div>
                 <!-- Seção de Mercado Financeiro -->
                 <div class="stocks" id="stocks">
-        <button class="texto" onclick="toggleDropdown()">Mercado Financeiro</button>
+        <button class="texto" onclick="toggleDropdown()" style="margin-bottom: -6px; margin-top: 5px;">Mercado Financeiro</button>
         <div class="dropdown-content" id="dropdownNoticias">
             <a href="https://www.msn.com/pt-br/channel/topic/Not%C3%ADcias/tp-Y_fdac555d-4ec2-428a-88e4-cb891ca7d5e9?ocid=msedgntp&cvid=3f0353edefc5487287d80c53e966368a&ei=29" target="_blank">MSN Notícias</a>
             <a href="https://br.investing.com/" target="_blank">Investing</a>
@@ -592,8 +592,9 @@ if (location.hash) {
             <a href="https://www.toroinvestimentos.com.br/" target="_blank">Toro</a>
         </div>
         <ul id="stocksList">
-            <li id="ibovespaItem">Ibovespa - carregando...</li>
-            <li id="dolarItem">Dólar - carregando...</li>
+          <li id="usd" style="font-size: 16px; font-weight: bold">Carregando...</li>
+          <li id="wdo" style="font-size: 16px; font-weight: bold">Carregando...</li>
+          <li id="win" style="font-size: 16px; font-weight: bold">Carregando...</li>
         </ul>
                 </div>
                 </div>

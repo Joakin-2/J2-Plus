@@ -520,8 +520,6 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', async () => {
     await fetchTemperature();
     await fetchWeatherForecast();
-    // await fetchNews();
-    await exibirCotacoes();
 });
 
 async function fetchTemperature() {
@@ -765,50 +763,73 @@ setInterval(updateClock, 1000);
 // Chama imediatamente
 updateClock();
 
-async function fetchCotacaoDolar() {
-    const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL');
-    const data = await response.json();
-    const cotacaoAtual = parseFloat(data.USDBRL.bid);
-    return {
-        atual: cotacaoAtual,
-        anterior: cotacaoAtual // não tem variação, só mostra 0%
-    };
+let lastUSD = null;
+let lastWDO = null;
+let lastWIN = null;
+
+function formatNumberBR(value) {
+  return Number(value).toLocaleString("pt-BR");
 }
 
-    async function fetchIbovespa() {
-        const response = await fetch('https://brapi.dev/api/quote/^BVSP?token=oHx6DYAv1hWwoZMYxKqmgs');
-        const data = await response.json();
-        const ibov = data.results?.[0]?.regularMarketPrice;
-        return ibov || null;
+async function atualizar() {
+  try {
+    // USD/BRL
+    const res = await fetch("https://api.exchangerate-api.com/v4/latest/USD");
+    const data = await res.json();
+    const usd = data.rates.BRL;
+
+    let statusUSD = "";
+    let classUSD = "";
+
+    if (lastUSD !== null) {
+      if (usd > lastUSD) {
+        statusUSD = " 🔺";
+        classUSD = "up";
+      } else if (usd < lastUSD) {
+        statusUSD = " 🔻";
+        classUSD = "down";
+      }
     }
 
-    async function exibirCotacoes() {
-        const ibovespaItem = document.getElementById('ibovespaItem');
-        const dolarItem = document.getElementById('dolarItem');
+    document.getElementById("usd").innerHTML =
+      `💱 Dólar (USD/BRL): <span class="${classUSD}">R$ ${usd.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })}${statusUSD}</span>`;
 
-        try {
-            const [dolarData, ibovespa] = await Promise.all([
-                fetchCotacaoDolar(),
-                fetchIbovespa()
-            ]);
+    lastUSD = usd;
 
-            const { atual, anterior } = dolarData;
-            const variacao = atual - anterior;
-            const variacaoPorcento = (variacao / anterior) * 100;
-            const classe = variacao >= 0 ? 'positivo' : 'negativo';
+    // MOCK WDO/WIN
+    const wdo = Math.floor(5000 + Math.random() * 200);
+    const win = Math.floor(128000 + Math.random() * 1000);
 
-            const ibovFormatado = ibovespa ? ibovespa.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) : 'indisponível';
+    let statusWDO = "";
+    let statusWIN = "";
 
-            ibovespaItem.textContent = `Ibovespa: ${ibovFormatado}`;
-            dolarItem.innerHTML = `Dólar - R$ ${atual.toFixed(2)} <span class="${classe}">(${Math.abs(variacaoPorcento).toFixed(2)}%)</span>`;
-        } catch (error) {
-            console.error('Erro ao carregar cotações:', error);
-            ibovespaItem.textContent = 'Ibovespa - erro ao carregar';
-            dolarItem.textContent = 'Dólar - erro ao carregar';
-        }
+    if (lastWDO !== null) {
+      statusWDO = wdo > lastWDO ? " 🔺" : wdo < lastWDO ? " 🔻" : "";
     }
 
-    document.addEventListener('DOMContentLoaded', exibirCotacoes);
+    if (lastWIN !== null) {
+      statusWIN = win > lastWIN ? " 🔺" : win < lastWIN ? " 🔻" : "";
+    }
+
+    document.getElementById("wdo").innerHTML =
+      `📊 Mini Dólar (WDO): <span class="${wdo >= lastWDO ? "up" : "down"}">${formatNumberBR(wdo)}${statusWDO}</span>`;
+
+    document.getElementById("win").innerHTML =
+      `📈 Mini Índice (WIN): <span class="${win >= lastWIN ? "up" : "down"}">${formatNumberBR(win)}${statusWIN}</span>`;
+
+    lastWDO = wdo;
+    lastWIN = win;
+
+  } catch (e) {
+    console.log("Erro:", e);
+  }
+}
+
+setInterval(atualizar, 5000);
+atualizar();
 
 // Camera
 document.addEventListener('DOMContentLoaded', () => {
