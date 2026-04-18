@@ -9,17 +9,12 @@
     <script src="Script/Facial/face-api.min.js"></script>
     <link rel="stylesheet" href="styles.css"> <!-- CSS externo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<script>
-if (location.hash) {
-    document.write("<style>#loader-container{display:none !important;}</style>");
-}
-</script>
 </head>
 <body>
     <div id="loader-container">
         <div id="loader-background">
             <video autoplay loop muted>
-                <source src="Script/load.mp4" type="video/mp4">
+                <source id="loader-video-source" type="video/mp4">
                 Seu navegador não suporta o elemento de vídeo.
             </video>
         </div>
@@ -1116,27 +1111,33 @@ window.addEventListener("hashchange", () => {
 });
 
 window.addEventListener("load", () => {
+    const loader = document.getElementById("loader-container");
+    const videoSource = document.getElementById("loader-video-source");
+    const video = videoSource.parentElement;
     const hash = location.hash.replace("#", "");
 
-    const loader = document.getElementById("loader-container");
-
-    // 👉 Se tiver hash (vai abrir modal), NÃO mostra loader
-    if (hash) {
-        if (loader) loader.style.display = "none";
-    } else {
-        // comportamento normal do loader (se você tiver animação, delay, etc.)
-        setTimeout(() => {
-            if (loader) loader.style.display = "none";
-        }, 2000); // exemplo
-    }
+    videoSource.src = hash ? "Script/load2.mp4" : "Script/load.mp4";
+    video.load();
 
     atualizarTitulo(hash);
 
-    if (hash.startsWith("study-")) {
-        document.getElementById(hash).style.display = "block";
-    } else if (hash) {
-        abrirModal(hash);
+    function finalizar() {
+        if (loader) loader.style.display = "none";
+
+        if (hash.startsWith("study-")) {
+            document.getElementById(hash).style.display = "block";
+        } else if (hash) {
+            abrirModal(hash);
+        }
     }
+
+    // ✅ espera o vídeo terminar
+    video.onended = finalizar;
+
+    // ✅ fallback caso demore muito
+    video.oncanplaythrough = () => {
+        setTimeout(finalizar, 3500);
+    };
 });
 
         document.addEventListener('DOMContentLoaded', function() {

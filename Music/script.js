@@ -471,6 +471,10 @@ var playlists = {
     title: "Beat Rave Nostálgica"
   },
   {
+    file: "Vibe/Beauty and A Beat - Justin Beiber.mp3",
+    title: "Beauty and A Beat - Justin Beiber"
+  },
+  {
     file: "Vibe/becane - yame [edit audio].mp3",
     title: "Becane - Yame (Edit Audio)"
   },
@@ -661,6 +665,10 @@ var playlists = {
   {
     file: "Vibe/Just Dance.mp3",
     title: "Just Dance"
+  },
+  {
+    file: "Vibe/Justin Bieber - Beauty And A Beat (Slowed Reverb).mp3",
+    title: "Justin Bieber - Beauty And A Beat (Slowed Reverb)"
   },
   {
     file: "Vibe/Kali Uchis- Moonlight (sped up)_-gYfH6FTmek.mp3",
