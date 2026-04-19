@@ -783,6 +783,10 @@ var playlists = {
     title: "Not My Problem"
   },
   {
+    file: "Vibe/OMNIMAN.mp3",
+    title: "OMNIMAN"
+  },
+  {
     file: "Vibe/PERSONA FUNK.mp3",
     title: "PERSONA FUNK"
   },
