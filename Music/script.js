@@ -1034,6 +1034,14 @@ var playlists = {
     title: "Automotivo Pa Pa Papai (Slowed)"
   },
   {
+    file: "Gym/Act a Fool.mp3",
+    title: "Act a Fool"
+  },
+  {
+    file: "Gym/Act a fool x Thragg.mp3",
+    title: "Act a fool x Thragg"
+  },
+  {
     file: "Gym/Aura Cosmica edit-audio.mp3",
     title: "Aura Cósmica (Edit Audio)"
   },
@@ -1608,6 +1616,10 @@ var playlists = {
   {
     file: "Gym/SPIDERMAN SAD x NO REASON FUNK.mp3",
     title: "SPIDERMAN SAD x NO REASON FUNK"
+  },
+  {
+    file: "Gym/SPIT IN MY FACE! X GHOSTRIDER.mp3",
+    title: "SPIT IN MY FACE! X GHOSTRIDER"
   },
   {
     file: "Gym/SPOOKY.mp3",
