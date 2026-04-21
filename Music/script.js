@@ -1226,6 +1226,10 @@ var playlists = {
     title: "Feel Nothing"
   },
   {
+    file: "Gym/FOREVERMORE FUNK - Slowed Reverb.mp3",
+    title: "FOREVERMORE FUNK - Slowed Reverb"
+  },
+  {
     file: "Gym/FREDDIE DRED-LIMBO (SUPER SLOWED+REVERB)(GHOST).mp3",
     title: "Freddie Dred - Limbo (Super Slowed + Reverb) (Ghost)"
   },
