@@ -495,6 +495,10 @@ var playlists = {
     title: "Boom Boom Pow"
   },
   {
+    file: "Vibe/Boss Up Pt2 (jerseyclub).mp3",
+    title: "Boss Up Pt2 (jerseyclub)"
+  },
+  {
     file: "Vibe/Nave-Espacial.mp3",
     title: "Nave Espacial"
   },
