@@ -559,6 +559,10 @@ var playlists = {
     title: "Despicable Me"
   },
   {
+    file: "Vibe/Die Young (Super Slowed).mp3",
+    title: "Die Young (Super Slowed)"
+  },
+  {
     file: "Vibe/Dizeres.mp3",
     title: "Dizeres Edit"
   },
