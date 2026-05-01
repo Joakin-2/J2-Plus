@@ -1266,6 +1266,10 @@ var playlists = {
     title: "Hero Funk (Slowed)"
   },
   {
+    file: "Gym/HYPNOSAES ESPECTRAL 2 X AMARELLA (SLOWED).mp3",
+    title: "HYPNOSAES ESPECTRAL 2 X AMARELLA (SLOWED)"
+  },
+  {
     file: "Gym/heartburn Ultra slowed.mp3",
     title: "Heartburn (Ultra Slowed)"
   },
@@ -1420,6 +1424,10 @@ var playlists = {
   {
     file: "Gym/MONTAGEM DIRECAO - (super slowed).mp3",
     title: "Montagem Direção (Super Slowed)"
+  },
+  {
+    file: "Gym/MONTAGEM LIMITADO (Super Slowed).mp3",
+    title: "MONTAGEM LIMITADO (Super Slowed)"
   },
   {
     file: "Gym/MONTAGEM RABETA (ULTRA SLOWED).mp3",
