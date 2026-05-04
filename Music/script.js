@@ -1270,6 +1270,10 @@ var playlists = {
     title: "Hero Funk (Slowed)"
   },
   {
+    file: "Gym/HIYSTERICUM ELIPTICS (Ultra Slowed).mp3",
+    title: "HIYSTERICUM ELIPTICS (Ultra Slowed)"
+  },
+  {
     file: "Gym/HYPNOSAES ESPECTRAL 2 X AMARELLA (SLOWED).mp3",
     title: "HYPNOSAES ESPECTRAL 2 X AMARELLA (SLOWED)"
   },
@@ -1502,6 +1506,10 @@ var playlists = {
     title: "NOTION FUNK"
   },
   {
+    file: "Gym/Not My Problem Funk.mp3",
+    title: "Not My Problem Funk"
+  },
+   {
     file: "Gym/NUNCA MUDA - SLOWED (Edit Audio).mp3",
     title: "Nunca Muda (Slowed, Edit Audio)"
   },
@@ -1564,6 +1572,10 @@ var playlists = {
   {
     file: "Gym/RAHHHH (slowed reverb).mp3",
     title: "Rahhhh (Slowed Reverb)"
+  },
+  {
+    file: "Gym/REAL MOONSHINE FUNK 2.mp3",
+    title: "REAL MOONSHINE FUNK 2"
   },
   {
     file: "Gym/RISADA CHUCK (Super Slowed).mp3",
