@@ -986,6 +986,10 @@ var playlists = {
     images: ['https://play-lh.googleusercontent.com/ixn6Eatx2XtOZiIf1EGxDOcRNQ9-wiZNAZHZBHb1YhRKYTlm5DWWYlBGew97D1i1rOs', 'https://i.redd.it/xgbtq3ehqb4f1.png', 'https://media1.tenor.com/m/JrmnrTcgt1QAAAAd/invincible-invincible-war.gif', 'https://64.media.tumblr.com/0a598ca2635acf9e510efa82c106a982/7307e41ae7e569e2-00/s540x810/1378d68f041b3c821fafaf2565b3d55b2dc45600.gifv', 'https://cdn.polyspeak.ai/speakmaster/b786ec3cafd4105216a00042de45ec24.webp', 'https://i.ytimg.com/vi/q20NzJ1Ft1A/oardefault.jpg?sqp=-oaymwEiCNAFENAFSFqQAgHyq4qpAxEIARUAAAAAJQAAyEI9AICiQw==&rs=AOn4CLAVZzo2v6_iijtjuYwPdiaOS5opZw', 'https://i.pinimg.com/originals/7c/d3/e9/7cd3e99ec3e14cb3c9efbb8f87a5d9ca.gif', 'https://media1.tenor.com/m/_YauivWNmfgAAAAd/gamma-jack-edit.gif', 'https://i1.sndcdn.com/avatars-RNVAVn2djfdWZTy5-DWnv8A-t1080x1080.jpg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWWZM1zJjH-WHemltSLysqMec_ImLEkWlVQA&s', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUgLIAs4ID32BdIKZy6KrW33BkS1jV9TycojPKjb0I-kV7_2RgBJK8MDY&s', 'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmd4MjY3eTF1enBkOXMybWgzM2s5dWk3bzJpejFrdmx0d2N4dzY3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yaMnrDTHh5xBqWnahU/giphy.gif', 'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExajF2dHJrZnc3bTJhdW44OWhqZXZ4dml2bzExNTdoeW40cnN4d2R1diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Xyqv8MoZdyAUfFSb6f/giphy.gif', 'https://media.tenor.com/z-IHWkCZZEwAAAAM/spider-man-composite-spiderman.gif', 'https://i.makeagif.com/media/5-27-2022/4KaULP.gif', 'https://media1.tenor.com/m/x3pu_P0UzEoAAAAd/rise-of-the-teenage-mutant-ninja-turtles-the-movie-leonardo.gif'],
     tracks: [
   {
+    file: "Gym/-Prey - RISADA CHUCK 01.mp3",
+    title: "-Prey - RISADA CHUCK 01"
+  },
+  {
     file: "Gym/2K FREESTYLE.mp3",
     title: "2K Freestyle"
   },
