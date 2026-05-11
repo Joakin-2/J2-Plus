@@ -935,6 +935,10 @@ var playlists = {
     title: "Sound of Da Police"
   },
   {
+    file: "Vibe/Taca taca em mim.mp3",
+    title: "Taca taca em mim"
+  },
+  {
     file: "Vibe/Take A Slice - Edit Audio.mp3",
     title: "Take a Slice (Edit Audio)"
   },
@@ -965,6 +969,14 @@ var playlists = {
   {
     file: "Vibe/Vai Vai!!(ULTRA-SLOWED).mp3",
     title: "Vai Vai!! (Ultra-Slowed)"
+  },
+  {
+    file: "Vibe/WE ON GO.mp3",
+    title: "WE ON GO"
+  },
+  {
+    file: "Vibe/we on go (slowed reverb).mp3",
+    title: "we on go (slowed reverb)"
   },
   {
     file: "Vibe/Vibe Yondaime.mp3",
