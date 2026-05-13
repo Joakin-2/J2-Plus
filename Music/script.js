@@ -1526,6 +1526,10 @@ var playlists = {
     title: "Morder"
   }, 
   {
+    file: "Gym/𝐦𝐮𝐭𝐢𝐥𝐚𝐭𝐨𝐫 (𝐬𝐥𝐨𝐰𝐞𝐝).mp3",
+    title: "𝐦𝐮𝐭𝐢𝐥𝐚𝐭𝐨𝐫 (𝐬𝐥𝐨𝐰𝐞𝐝)"
+  }, 
+  {
     file: "Gym/My Ordinary Life (wally west solo).mp3",
     title: "My Ordinary Life (Wally West Solo)"
   },
@@ -1768,6 +1772,10 @@ var playlists = {
   {
     file: "Gym/UNIVERSO (Slowed).mp3",
     title: "Universo (Slowed)"
+  },
+  {
+    file: "Gym/𝙐𝙉𝙎𝙇𝙀𝙋𝙏 𝙁𝙐𝙉𝙆(𝙎𝙇𝙊𝙒𝙀𝘿 𝙍𝙀𝙑𝙀𝙍𝘽).mp3",
+    title: "𝙐𝙉𝙎𝙇𝙀𝙋𝙏 𝙁𝙐𝙉𝙆(𝙎𝙇𝙊𝙒𝙀𝘿 𝙍𝙀𝙑𝙀𝙍𝘽)"
   },
   {
     file: "Gym/vampire heart (slowed reverb).mp3",
