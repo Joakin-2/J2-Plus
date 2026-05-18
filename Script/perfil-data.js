@@ -11,7 +11,7 @@ const perfis = {
     genero: localStorage.getItem("generoJoaquim") || "masculino",
     anoNascimento: parseInt(localStorage.getItem("anoNascimentoJoaquim")) || 2008,
     altura: parseFloat(localStorage.getItem("alturaJoaquim")) || 1.75, // metros
-    peso: parseFloat(localStorage.getItem("pesoJoaquim")) || 65,       // kg
+    peso: parseFloat(localStorage.getItem("pesoJoaquim")) || 69,       // kg
     nivel: parseInt(localStorage.getItem("nivelJoaquim")) || 1,
     xp: parseInt(localStorage.getItem("xpJoaquim")) || 0,
     notesLer: localStorage.getItem("notes-ler-Joaquim") || "",
