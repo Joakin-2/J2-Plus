@@ -1710,6 +1710,10 @@ var playlists = {
     title: "Stephanie Funk (Slowed)"
   },
   {
+    file: "Gym/STEPHANIE FUNK (Super Ultra Slowed).mp3",
+    title: "STEPHANIE FUNK (Super Ultra Slowed)"
+  },
+  {
     file: "Gym/Se Paciente (Super Slowed).mp3",
     title: "Se Paciente (Super Slowed)"
   },
