@@ -403,6 +403,10 @@ var playlists = {
     title: "A Colors Encore"
   },
   {
+    file: "Vibe/AARON SMITH - DANCIN VS TAMBOR CONGA.mp3",
+    title: "AARON SMITH - DANCIN VS TAMBOR CONGA"
+  },
+  {
     file: "Vibe/AURAAAAAAAAAAA.mp3",
     title: "AURAAAAAAAAAAA"
   },
@@ -595,6 +599,10 @@ var playlists = {
     title: "Double Life"
   },
   {
+    file: "Vibe/domingou.mp3",
+    title: "Domingou"
+  },
+  {
     file: "Vibe/Dum ta ta x Wine Pon You.mp3",
     title: "Dum Ta Ta x Wine Pon You"
   },
@@ -637,6 +645,10 @@ var playlists = {
   {
     file: "Vibe/Freedom.mp3",
     title: "Freedom"
+  },
+  {
+    file: "Vibe/HALSEY WITHOUT ME TAMBOR.mp3",
+    title: "HALSEY WITHOUT ME TAMBOR"
   },
   {
     file: "Vibe/HOMAGE FUNK.mp3",
@@ -1009,6 +1021,10 @@ var playlists = {
   {
     file: "Vibe/Yellow Light.mp3",
     title: "Yellow Light"
+  },
+  {
+    file: "Vibe/yeat - whatever i want (slowed reverb).mp3",
+    title: "yeat - whatever i want (slowed reverb)"
   }
     ]
   },
