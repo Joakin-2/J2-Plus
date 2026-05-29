@@ -699,6 +699,10 @@ var playlists = {
     title: "Just Dance"
   },
   {
+    file: "Vibe/just dance - pluggnb remix.mp3",
+    title: "just dance - pluggnb remix"
+  },
+  {
     file: "Vibe/Justin Bieber - Beauty And A Beat (Slowed Reverb).mp3",
     title: "Justin Bieber - Beauty And A Beat (Slowed Reverb)"
   },
@@ -819,6 +823,10 @@ var playlists = {
     title: "OMNIMAN"
   },
   {
+    file: "Vibe/Party Tunes – Brainrot Rap.mp3",
+    title: "Party Tunes – Brainrot Rap"
+  },
+  {
     file: "Vibe/P I L A N T R A G E M.mp3",
     title: "P I L A N T R A G E M"
   },
@@ -845,6 +853,14 @@ var playlists = {
   {
     file: "Vibe/Pou Teto.mp3",
     title: "Pou Teto"
+  },
+  {
+    file: "Vibe/QUANDO VC SENTA O MUNDO, 100 NEUROSE vs BEAT KOF (DJ ERRIDE).mp3",
+    title: "QUANDO VC SENTA O MUNDO, 100 NEUROSE vs BEAT KOF (DJ ERRIDE)"
+  },
+  {
+    file: "Vibe/Quando você Senta o Mundo para - Versão rj.mp3",
+    title: "Quando você Senta o Mundo para - Versão rj"
   },
   {
     file: "Vibe/Quando Chega A Noite (Slowed).mp3",
@@ -949,6 +965,10 @@ var playlists = {
   {
     file: "Vibe/Taca taca em mim.mp3",
     title: "Taca taca em mim"
+  },
+  {
+    file: "Vibe/TUNG TUNG TUNG SAHUUUUUUUUR.mp3",
+    title: "TUNG TUNG TUNG SAHUUUUUUUUR"
   },
   {
     file: "Vibe/Take A Slice - Edit Audio.mp3",
