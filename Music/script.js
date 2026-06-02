@@ -871,6 +871,14 @@ var playlists = {
     title: "Reese Young (Edit Audio)"
   },
   {
+    file: "Vibe/Reinado (Slowed).mp3",
+    title: "Reinado (Slowed)"
+  },
+  {
+    file: "Vibe/Resenha do Arrocha.mp3",
+    title: "Resenha do Arrocha"
+  },
+  {
     file: "Vibe/Ridin (Dj Vm Remix).mp3",
     title: "Ridin (DJ VM Remix)"
   },
@@ -969,6 +977,10 @@ var playlists = {
   {
     file: "Vibe/TUNG TUNG TUNG SAHUUUUUUUUR.mp3",
     title: "TUNG TUNG TUNG SAHUUUUUUUUR"
+  },
+  {
+    file: "Vibe/TWERKNATION28 - NUMBER.mp3",
+    title: "TWERKNATION28 - NUMBER"
   },
   {
     file: "Vibe/Take A Slice - Edit Audio.mp3",
