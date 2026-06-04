@@ -519,6 +519,10 @@ var playlists = {
     title: "Nave Espacial"
   },
   {
+    file: "Vibe/CHANGES - xxxtentacion.mp3",
+    title: "CHANGES - xxxtentacion"
+  },
+  {
     file: "Vibe/Can_i_kick_it.mp3",
     title: "Can I Kick It"
   },
