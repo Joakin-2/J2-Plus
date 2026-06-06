@@ -1,4 +1,4 @@
-Versão 1.9.4
+Versão 1.9.6
 
 Atualizações e melhorias:
 

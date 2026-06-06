@@ -247,8 +247,8 @@ function carregarHabitosDoDia() {
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Culto as 19h30','Preparar Limão']
         },
         sábado: {
-            manha: ['Orar','Gelo','Vácuo','Alongar','Abdômen','Se Depile','Devocional','Alise seu Pé','Fazer Faxina','Limpar Fogão','Correr (1 hora)','Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Águas','Línguas','Desenhar','Conselho','Atualizações','Limpar Ouvido','Lavar as Roupas','Lavar o Banheiro','Lavar Carro e Moto'],
+            manha: ['Orar','Gelo','Vácuo','Alongar','Se Depile','Abdômen','Devocional','Alise seu Pé','Fazer Faxina','Correr (1 hora)','Limpar Fogão','Ensaiar (2 hora)'],
+            tarde: ['Ler','Pele','Águas','Línguas','Conselho','Desenhar','Atualizações','Limpar Ouvido','Lavar as Roupas','Lavar o Banheiro','Lavar Carro e Moto'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Preparar Limão','Limpar Escritório']
         },
     },

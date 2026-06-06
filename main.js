@@ -1850,6 +1850,46 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   renderCalendar();
+
+  function enviarLembrete(nome, data) {
+
+    emailjs.send(
+        "service_h7dkvii",
+        "template_jbmujjv",
+        {
+            para_email: "jqm5049@gmail.com",
+            aniversario_nome: nome,
+            aniversario_data: data,
+            mensagem_extra: "Mensagem gerada automaticamente pela J2 System 🧠"
+        }
+    )
+    .then(() => {
+        console.log("Lembrete enviado!");
+    })
+    .catch(err => {
+        console.error("Erro ao enviar:", err);
+    });
+}
+
+function verificarAniversariosHoje() {
+
+    const hoje = new Date();
+    const dia = hoje.getDate();
+    const mes = hoje.getMonth() + 1;
+
+    birthdays.forEach(pessoa => {
+
+        if (pessoa.day === dia && pessoa.month === mes) {
+
+            enviarLembrete(
+                pessoa.name,
+                `${dia}/${mes}`
+            );
+        }
+    });
+}
+
+  verificarAniversariosHoje();
 });
 
 const olhoEsquerdo = document.getElementById("olhoEsquerdo");
