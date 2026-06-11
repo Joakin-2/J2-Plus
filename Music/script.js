@@ -655,6 +655,10 @@ var playlists = {
     title: "Freedom"
   },
   {
+    file: "Vibe/GUT GENUG.mp3",
+    title: "GUT GENUG"
+  },
+  {
     file: "Vibe/HALSEY WITHOUT ME TAMBOR.mp3",
     title: "HALSEY WITHOUT ME TAMBOR"
   },
