@@ -8,6 +8,11 @@ body {
     color: #e0e0e0; /* Cor de texto clara */
 }
 
+.horario{
+    margin-top: -5px;
+    font-weight: bold;
+}
+
 .address-bar {
     display: flex;
     width: 60%;

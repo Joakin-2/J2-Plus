@@ -55,6 +55,7 @@ function detectCommand(event) {
 // Adiciona um evento de 'input' ao campo de texto
 document.getElementById('inputText').addEventListener('input', detectCommand);
 
+
 let jogos = [];
 let indice = 0;
 let intervalo;
@@ -63,57 +64,127 @@ const card = document.getElementById("card");
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 
-// Função pra mostrar o card atual
+const traduzirPais = (nome) => {
+
+    const mapa = {
+        "Sweden": "Suécia",
+        "Tunisia": "Tunísia",
+        "Brazil": "Brasil",
+        "Argentina": "Argentina",
+        "France": "França",
+        "Germany": "Alemanha",
+        "Portugal": "Portugal",
+        "Spain": "Espanha",
+        "Mexico": "México",
+        "USA": "Estados Unidos",
+        "England": "Inglaterra"
+    };
+
+    return mapa[nome] || nome;
+};
+
+// mostrar jogo
 function mostrarJogo(i) {
     const jogo = jogos[i];
     if (!jogo) return;
+
     card.innerHTML = `
         <div class="titulo">${jogo.title}</div>
-        <a class="botao" href="${jogo.matchviewUrl}" target="_blank">Ver jogo</a>
+
+        ${jogo.horario ? `<div class="horario">🕒 ${jogo.horario}</div>` : ""}
+
+        ${
+            jogo.matchviewUrl && jogo.matchviewUrl !== "#"
+            ? `<a class="botao" href="${jogo.matchviewUrl}" target="_blank">Ver jogo</a>`
+            : `<span class="botao">🏆 Copa do Mundo</span>`
+        }
     `;
 }
 
-// Função pra avançar
+// próximo
 function proximo() {
     indice = (indice + 1) % jogos.length;
     mostrarJogo(indice);
 }
 
-// Função pra voltar
+// anterior
 function anterior() {
     indice = (indice - 1 + jogos.length) % jogos.length;
     mostrarJogo(indice);
 }
 
-// Botões
-nextBtn.addEventListener("click", () => {
-    proximo();
-    resetIntervalo();
-});
-prevBtn.addEventListener("click", () => {
-    anterior();
-    resetIntervalo();
-});
-
-// Resetar o intervalo quando usuário clica
+// reset intervalo
 function resetIntervalo() {
     clearInterval(intervalo);
     intervalo = setInterval(proximo, 5000);
 }
 
-// Puxar jogos da API
-fetch("https://www.scorebat.com/video-api/v3/")
-.then(res => res.json())
-.then(data => {
-    jogos = data.response.slice(0, 10);
+// botões
+nextBtn.addEventListener("click", () => {
+    proximo();
+    resetIntervalo();
+});
+
+prevBtn.addEventListener("click", () => {
+    anterior();
+    resetIntervalo();
+});
+
+// API
+Promise.all([
+    fetch("https://www.scorebat.com/video-api/v3/").then(r => r.json()),
+    fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard").then(r => r.json())
+])
+.then(([scorebat, espn]) => {
+
+    const normais = scorebat.response.slice(0, 10);
+
+    const copa = (espn.events || []).map(evento => {
+
+    const comp = evento.competitions?.[0];
+    if (!comp) return null;
+
+    const casaEN = comp.competitors?.[0]?.team?.displayName || "Time A";
+    const foraEN = comp.competitors?.[1]?.team?.displayName || "Time B";
+
+    const casa = traduzirPais(casaEN);
+    const fora = traduzirPais(foraEN);
+
+    const horario = new Date(evento.date).toLocaleString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+    return {
+        title: `🏆 ${casa} x ${fora}`,
+        matchviewUrl: "#",
+        horario
+    };
+}).filter(Boolean);
+
+    // junta intercalado
+    jogos = [];
+
+    const max = Math.max(normais.length, copa.length);
+
+    for (let i = 0; i < max; i++) {
+        if (normais[i]) jogos.push(normais[i]);
+        if (copa[i]) jogos.push(copa[i]);
+    }
+
+    indice = 0;
     mostrarJogo(indice);
+
+    clearInterval(intervalo);
     intervalo = setInterval(proximo, 5000);
+
 })
 .catch(err => {
     console.error(err);
     card.innerHTML = "<div class='titulo'>Erro ao carregar jogos</div>";
 });
-
 
 
 

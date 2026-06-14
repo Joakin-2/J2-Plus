@@ -715,6 +715,10 @@ var playlists = {
     title: "James Brown - Poison (Jersey Club Remix)"
   },
   {
+    file: "Vibe/Jeremih - oui edit.mp3",
+    title: "Jeremih - oui edit"
+  },
+  {
     file: "Vibe/Just Dance.mp3",
     title: "Just Dance"
   },
@@ -979,6 +983,10 @@ var playlists = {
     title: "she goes by remix"
   },
   {
+    file: "Vibe/𝙎𝙃𝙊𝘾𝙆 𝙏𝙃𝙀 𝙒𝙊𝙍𝙇𝘿 𝙁𝙐𝙉𝙆 (𝙎𝙇𝙊𝙒𝙀𝘿).mp3",
+    title: "𝙎𝙃𝙊𝘾𝙆 𝙏𝙃𝙀 𝙒𝙊𝙍𝙇𝘿 𝙁𝙐𝙉𝙆 (𝙎𝙇𝙊𝙒𝙀𝘿)"
+  },
+  {
     file: "Vibe/sigrid - everybody knows (slowed reverb).mp3",
     title: "Sigrid - Everybody Knows (Slowed Reverb)"
   },
@@ -1049,6 +1057,10 @@ var playlists = {
   {
     file: "Vibe/Tipo Narutin.mp3",
     title: "Tipo Narutin"
+  },
+  {
+    file: "Vibe/Took Her To The O (Slowed).mp3",
+    title: "Took Her To The O (Slowed)"
   },
   {
     file: "Vibe/Vai Vai!!(ULTRA-SLOWED).mp3",
