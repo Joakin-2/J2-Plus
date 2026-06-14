@@ -559,6 +559,10 @@ var playlists = {
     title: "CRY FOR ME FUNK (WA WA WA)"
   },
   {
+    file: "Vibe/Calma vida.mp3",
+    title: "Calma Vida"
+  },
+  {
     file: "Vibe/Calma vida ta de boa.mp3",
     title: "Calma Vida Tá de Boa"
   },
@@ -609,6 +613,10 @@ var playlists = {
   {
     file: "Vibe/domingou.mp3",
     title: "Domingou"
+  },
+  {
+    file: "Vibe/Doudou.mp3",
+    title: "Doudou"
   },
   {
     file: "Vibe/Dum ta ta x Wine Pon You.mp3",
@@ -711,6 +719,10 @@ var playlists = {
     title: "Just Dance"
   },
   {
+    file: "Vibe/Just dancee.mp3",
+    title: "Just Dancee"
+  },
+  {
     file: "Vibe/just dance - pluggnb remix.mp3",
     title: "just dance - pluggnb remix"
   },
@@ -741,6 +753,10 @@ var playlists = {
   {
     file: "Vibe/LMK (edit audio).mp3",
     title: "LMK (Edit Audio)"
+  },
+  {
+    file: "Vibe/LUD SESSION.mp3",
+    title: "LUD SESSION"
   },
   {
     file: "Vibe/LUNA BALA (Slowed).mp3",
@@ -835,6 +851,10 @@ var playlists = {
     title: "OMNIMAN"
   },
   {
+    file: "Vibe/Panini Indian Version.mp3",
+    title: "Panini (Indian Version)"
+  },
+  {
     file: "Vibe/Party Tunes – Brainrot Rap.mp3",
     title: "Party Tunes – Brainrot Rap"
   },
@@ -877,6 +897,10 @@ var playlists = {
   {
     file: "Vibe/Quando Chega A Noite (Slowed).mp3",
     title: "Quando Chega a Noite (Slowed)"
+  },
+  {
+    file: "Vibe/Ransom (Indian Version).mp3",
+    title: "Ransom (Indian Version)"
   },
   {
     file: "Vibe/Reese Young edit-audio.mp3",
@@ -1010,6 +1034,10 @@ var playlists = {
     file: "Vibe/Ten Toes - Instrumental.mp3",
     title: "Ten Toes - Instrumental"
   },
+  {
+    file: "Vibe/The Box (INDIAN VERSION).mp3",
+    title: "The Box (Indian Version)"
+  }, 
   {
     file: "Vibe/Thing - A Cappella Piano (TIKTOK).mp3",
     title: "Thing - A Cappella Piano (TikTok)"
