@@ -1,237 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="icon" href="ícone.ico" type="image/x-icon">
+    <link rel="icon" href="/Script/img/2.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Background</title>
     <link rel="stylesheet" href="style.css">
 </head>
+    <body>
 
-<body>
-    <div id="background-video-container">
-        <video autoplay loop muted>
-            <source src="Space.mp4" type="video/mp4">
-            Seu navegador não suporta o elemento de vídeo.
-        </video>
-    </div>
-    
-    <div id="content-container">
-        <div id="clock"></div>
+<div id="controls">
+    <button id="btn-noite">😴</button>
+    <button id="btn-fundo">🖼️</button>
+</div>
+
+<div id="loading-screen" style="display:none;">
+    <h2>Deixe as luzes amarelas</h2>
+</div>
+
+<!-- Fundo Youtube -->
+<div id="youtube-container">
+    <iframe
+        id="background-video"
+        src=""
+        frameborder="0"
+        allow="autoplay"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<!-- Vídeo local -->
+<video id="video-local" autoplay loop muted style="display:none;">
+    <source src="https://www.pexels.com/download/video/35730936/" type="video/mp4">
+</video>
+
+
+<div id="content-container">
+    <div id="clock"></div>
+    <div>
         <div id="date"></div>
+
         <div id="temperature-container">
             <div id="temperature"></div>
-            <div id="weather-icon"></div> <!-- Ícone do clima ao lado da temperatura -->
+            <div id="weather-icon"></div>
         </div>
     </div>
+</div>
 
-    <script>
-        // Função para iniciar a música
-        function iniciarMusica() {
-            var audio = new Audio('louvores.webm');
-            audio.play();
-        }
-
-        // Função para verificar a hora e iniciar a música às 22h
-        function verificarHora() {
-            var agora = new Date();
-            var horas = agora.getHours();
-            var minutos = agora.getMinutes();
-
-            if (horas === 22 && !musicaIniciada) {
-                iniciarMusica();
-                musicaIniciada = true;
-            } else if (horas !== 22) {
-                musicaIniciada = false;
-            }
-
-            if (horas === 23 && minutos === 0) {
-                window.open('https://j2plus.netlify.app/back/sleep.html');
-            } else if (horas === 23 && minutos === 30) {
-                tocarAlarme();
-            }
-        }
-
-        function tocarAlarme() {
-            var alarmeAudio = new Audio('Dormir.wav');
-            alarmeAudio.play();
-        }
-
-        var musicaIniciada = false;
-        setInterval(verificarHora, 60000);
-
-        // Reconhecimento de Voz
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'pt-BR';
-        recognition.interimResults = false;
-
-        let reconhecimentoAtivo = false;
-
-        // Função para iniciar ou parar o reconhecimento de voz
-        function toggleReconhecimento() {
-            if (reconhecimentoAtivo) {
-                recognition.stop();
-                reconhecimentoAtivo = false;
-                console.log('Reconhecimento de voz parado.');
-            } else {
-                reconhecimentoAtivo = true;
-                recognition.start();  // Inicia diretamente o reconhecimento
-                console.log('Reconhecimento de voz iniciado.');
-            }
-        }
-
-        // Configurações de eventos do reconhecimento
-        recognition.onresult = (event) => {
-            const comando = event.results[0][0].transcript.toLowerCase();
-            console.log('Comando reconhecido:', comando);
-
-            if (comando.includes('ler')) {
-                abrirSite('https://j2plus.netlify.app/works/ler.html');
-            } else if (comando.includes('trade')) {
-                abrirAlgunsSites('https://br.investing.com/', 'https://br.tradingview.com/chart/wJjwLtXA/?symbol=BMFBOVESPA%3AIBOV', 'https://www.youtube.com/results?search_query=coringa+trade', 'https://www.youtube.com/results?search_query=laatus+reuni%C3%A3o+matinal');
-            } else if (comando.includes('assistir')) {
-                abrirSite('https://j2plus.netlify.app/streamings/yt/joca/index.html');
-            } else if (comando.includes('previsão do tempo')) {
-                obterPrevisaoDoTempo();
-            } else {
-                console.log('Comando não reconhecido.');
-            }
-        };
-
-        recognition.onend = () => {
-            if (reconhecimentoAtivo) {
-                recognition.start();  // Reinicia automaticamente o reconhecimento após o término
-            }
-        };
-
-        recognition.onerror = (event) => {
-            console.error('Erro no reconhecimento de voz:', event.error);
-        };
-
-        // Funções para abrir sites
-
-        function abrirAlgunsSites(url1, url2, url3, url4) {
-            window.open(url1, '_blank');
-            window.open(url2, '_blank');
-            window.open(url3, '_blank');
-            window.open(url4, '_blank');
-            console.log(`Abrindo os sites: ${url1}, ${url2}, ${url3} e ${url4}`);
-        }
-
-        // Função para obter a previsão do tempo e falar
-        function obterPrevisaoDoTempo() {
-            const chaveAPI = 'bd2aa057407fb66d24136dab032d5bb8'; // Substitua com sua chave de API
-            const cidade = 'São Paulo'; // Defina a cidade que você deseja
-            const url = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${chaveAPI}&lang=pt&units=metric`;
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    const temperatura = data.main.temp;
-                    const descricao = data.weather[0].description;
-                    const fala = `A previsão do tempo em ${cidade} é de ${descricao} com temperatura de ${temperatura} graus Celsius.`;
-                    console.log(fala);
-                    falar(fala);
-                })
-                .catch(error => {
-                    console.error('Erro ao obter previsão do tempo:', error);
-                });
-        }
-
-        // Função para fazer o navegador falar
-        function falar(texto) {
-            const synth = window.speechSynthesis;
-            const utterance = new SpeechSynthesisUtterance(texto);
-            utterance.lang = 'pt-BR';
-            synth.speak(utterance);
-        }
-
-        // Adiciona o evento de clique para ativar/desativar o reconhecimento
-        document.getElementById('content-container').addEventListener('click', toggleReconhecimento);
-
-        document.addEventListener("DOMContentLoaded", function () {
-    setInterval(updateClock, 1000);  // Atualiza o relógio a cada segundo
-    updateClock();  // Atualiza o relógio imediatamente
-    updateDate();   // Atualiza a data imediatamente
-    getTemperature();  // Obtém a temperatura inicialmente
-});
-
-function updateClock() {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
-    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
-}
-
-function updateDate() {
-    const now = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    let formattedDate = now.toLocaleDateString('pt-br', options);
-
-    // Remove "-feira" dos dias da semana
-    formattedDate = formattedDate.replace(/segunda-feira|terça-feira|quarta-feira|quinta-feira|sexta-feira/gi, function (match) {
-        return match.replace('-feira', '');
-    });
-
-    document.getElementById('date').textContent = formattedDate;
-}
-
-const apiKey = 'bd2aa057407fb66d24136dab032d5bb8'; // Substitua com a sua chave de API do OpenWeatherMap
-const city = 'Jacupiranga'; // Substitua com o nome da cidade desejada
-
-const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-
-async function getTemperature() {
-    try {
-        const response = await fetch(apiUrl);
-
-        if (!response.ok) {
-            throw new Error(`Erro ao obter a temperatura: ${response.status}`);
-        }
-
-        const data = await response.json();
-        const temperaturaKelvin = data.main.temp;
-        const temperaturaCelsius = (temperaturaKelvin - 273.15).toFixed(2); // Convertendo para Celsius e fixando duas casas decimais
-
-        // Definir o texto da temperatura
-        document.getElementById('temperature').textContent = `Temperatura: ${temperaturaCelsius}°C`;
-
-        // Obter a condição do tempo
-        const weatherCondition = data.weather[0].main;
-
-        // Definir o ícone de clima com base na condição
-        let weatherIcon = '';
-        switch (weatherCondition) {
-            case 'Clear':
-                weatherIcon = '☀️'; // Ícone de sol
-                break;
-            case 'Clouds':
-                weatherIcon = '☁️'; // Ícone de nuvem
-                break;
-            case 'Snow':
-                weatherIcon = '❄️'; // Ícone de neve
-                break;
-            case 'Rain':
-                weatherIcon = '🌧️'; // Ícone de chuva
-                break;
-            default:
-                weatherIcon = '🌥️'; // Ícone de tempo parcialmente nublado
-                break;
-        }
-
-        // Exibir o ícone de clima
-        document.getElementById('weather-icon').textContent = weatherIcon;
-
-    } catch (error) {
-        console.error(`Erro ao obter a temperatura: ${error.message}`);
-    }
-}
-
-// Define intervalos para atualizar a data e o relógio a cada minuto
-setInterval(updateDate, 1000);
-setInterval(getTemperature, 1000);
-
-    </script>
 </body>
-</html>
+<script src="script.js"></script>

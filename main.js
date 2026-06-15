@@ -2202,3 +2202,857 @@ function showLanguage(language) {
     // Exibe a seção do idioma escolhido
     document.getElementById(language).style.display = 'block';
 }
+
+
+const input = document.getElementById("urlInput");
+  const button = document.getElementById("goButton");
+
+  function pesquisar() {
+    const query = input.value.trim();
+    if (query !== "") {
+      window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(query);
+    }
+  }
+
+  // Clique no botão
+  button.addEventListener("click", pesquisar);
+
+  // Pressionar Enter
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      pesquisar();
+    }
+  });
+
+        function updateDate2() {
+    const now = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let formattedDate = now.toLocaleDateString('pt-br', options);
+
+    // Remove "-feira" dos dias da semana
+    formattedDate = formattedDate.replace(/segunda-feira|terça-feira|quarta-feira|quinta-feira|sexta-feira/gi, function (match) {
+        return match.replace('-feira', '');
+    });
+
+    document.getElementById('date').textContent = formattedDate;
+}
+
+// Chama as funções ao carregar a página e a cada segundo
+updateDate2();
+
+        function GameState() {
+            window.open('https://www.microsoft.com/en-us/edge/features/surf-game?form=MA13FJ', '_blank');
+            window.open('https://krunker.io', '_blank');
+            window.open('https://hordes.io', '_blank');
+        }
+        
+        function Trabalho() {
+            window.open('https://j2plus.netlify.app/works/', '_blank');
+            window.open('https://j2plus.netlify.app/works/foco', '_blank');
+        }
+
+      document.getElementById("miguel-btn").addEventListener("click", function() {
+      window.location.href = "/Miguel/index.html"; // Substitua pelo URL desejado
+    });
+
+    function buttonClick(...urls) {
+    urls.forEach(url => {
+        if (url) window.open(url, "_blank");
+    });
+}
+
+            let timeInSeconds = 0;
+            let timerId;
+            let isTimerRunning = false;
+    
+            function updateTimer() {
+                const hours = Math.floor(timeInSeconds / 3600);
+                const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                const seconds = timeInSeconds % 60;
+    
+                document.getElementById("timer").textContent = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                timeInSeconds++;
+            }
+    
+            function toggleTimer() {
+                if (isTimerRunning) {
+                    clearInterval(timerId);
+                    isTimerRunning = false;
+                    document.getElementById("startButton").innerHTML = '<i class="fas fa-play"></i> Iniciar';
+                } else {
+                    timerId = setInterval(updateTimer, 1000);
+                    isTimerRunning = true;
+                    document.getElementById("startButton").innerHTML = '<i class="fas fa-pause"></i> Pausar';
+                }
+            }
+    
+            function timerDone() {
+                clearInterval(timerId);
+                isTimerRunning = false;
+                timeInSeconds = 0;
+                document.getElementById("timer").textContent = "00:00:00";
+                document.getElementById("startButton").innerHTML = '<i class="fas fa-play"></i> Iniciar';
+    
+                ganharXp(10);
+                mostrarXpGanho(10);
+            }
+    
+            function mostrarXpGanho(xp) {
+                let xpElement = document.getElementById("xp-gain");
+                xpElement.textContent = `+${xp} XP`;
+                xpElement.style.display = "block";
+                setTimeout(() => {
+                    xpElement.style.display = "none";
+                }, 1500);
+            }
+
+            setInterval(changeTip, 300000);
+
+            document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("startButton").onclick = toggleTimer;
+    document.getElementById("doneButton").onclick = timerDone;
+});
+
+document.getElementById("btn-study-christ").onclick = () => {
+    document.getElementById("study-christ").style.display = "block";
+};
+
+        // Array de dicas
+        var dicas = [
+            "Já fez um estudo bíblico hoje?",
+            "Já leu a bíblia hoje?",
+            "Já orou hoje?"
+        ];
+
+        // Função para mudar a dica exibida
+        function changeTip() {
+            var dicaAtual = Math.floor(Math.random() * dicas.length); // Seleciona uma dica aleatória
+            document.getElementById('dicas').textContent = dicas[dicaAtual];
+        }
+
+        function redirecionar(destino) {
+            switch (destino) {
+                case 'Bíblia':
+                    window.close('crist.html');
+                    window.open('https://www.bibliaonline.com.br/acf');
+                    break;
+                case 'Devocional':
+                    // 55 min de aula
+                    window.close('crist.html');
+                    window.open('https://www.estudantesdabiblia.com.br/cpad-sumario-jovens-2026-2t.htm');
+                    window.open('https://www.bibliaonline.com.br/acf');
+                    break;
+                case 'Extras':
+                    window.close('crist.html');
+                    window.open('https://drive.google.com/drive/folders/1Of9cNspUSobIUiQbsixEG3FlJYWAr3Ay');
+                    window.open('https://drive.google.com/drive/folders/1h1QOxEjQRQfiobTXzsNvErYjPIsTV6t0');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+const habitXP = {
+            "sunday": 200,
+            "monday": 190,
+            "tuesday": 180,
+            "wednesday": 250,
+            "thursday": 210,
+            "friday": 200,
+            "saturday": 230
+        };
+
+        function mostrarXP(day) {
+    const xp = habitXP[day];
+
+    // Cria o elemento flutuante
+    const popup = document.createElement("div");
+    popup.className = "xp-popup";
+    popup.textContent = `+${xp} XP`;
+
+    // Coloca dentro do modal
+    const modalContent = document.querySelector("#modal-rafa .modal-content");
+    modalContent.appendChild(popup);
+
+    // Posiciona no centro do modal ou perto do botão clicado
+    const btn = document.getElementById(day + "-btn");
+    const rect = btn.getBoundingClientRect();
+    const modalRect = modalContent.getBoundingClientRect();
+    
+    popup.style.left = `${rect.left - modalRect.left + rect.width/2}px`;
+    popup.style.top = `${rect.top - modalRect.top - 20}px`;
+
+    // Remove após animação
+    setTimeout(() => {
+        popup.remove();
+    }, 1000);
+}
+
+        function addXP(day) {
+            const xp = habitXP[day];
+            ganharXp(xp); // Chama a função ganharXp do nivel.js para adicionar XP
+            mostrarXP(day);
+            atualizarInterface();
+        }
+
+        document.getElementById("sunday-btn").addEventListener("click", function() { addXP("sunday"); });
+        document.getElementById("monday-btn").addEventListener("click", function() { addXP("monday"); });
+        document.getElementById("tuesday-btn").addEventListener("click", function() { addXP("tuesday"); });
+        document.getElementById("wednesday-btn").addEventListener("click", function() { addXP("wednesday"); });
+        document.getElementById("thursday-btn").addEventListener("click", function() { addXP("thursday"); });
+        document.getElementById("friday-btn").addEventListener("click", function() { addXP("friday"); });
+        document.getElementById("saturday-btn").addEventListener("click", function() { addXP("saturday"); });
+
+// Mapeamento de botões e modals
+const modals = {
+  rafa: {
+    btn: document.getElementById("rafa-btn"),
+    modal: document.getElementById("modal-rafa"),
+    fechar: document.getElementById("fechar-rafa")
+  },
+  pc: {
+    btn: document.getElementById("pc-btn"),
+    modal: document.getElementById("modal-pc"),
+    fechar: document.getElementById("fechar-pc")
+  },
+  itens: {
+    btn: document.getElementById("itens-btn"),
+    modal: document.getElementById("modal-itens"),
+    fechar: document.getElementById("fechar-itens")
+  },
+  christ: {
+    btn: document.getElementById("christ-btn"),
+    modal: document.getElementById("modal-christ"),
+    fechar: document.getElementById("fechar-christ")
+  }
+};
+
+const titulos = {
+  rafa: "Rafa",
+  pc: "PCs",
+  itens: "Itens",
+  christ: "Christ"
+};
+
+function atualizarTitulo(hash) {
+  if (titulos[hash]) {
+    document.title = titulos[hash];
+  } else {
+    document.title = "J2+"; // título padrão
+  }
+}
+
+// Função para fechar todas modals
+function fecharTodasModals() {
+  Object.values(modals).forEach(m => {
+    if (m.modal) {
+      m.modal.style.display = "none";
+    }
+  });
+}
+
+Object.values(modals).forEach(m => {
+    if (m.btn && m.modal) {
+        m.btn.onclick = () => {
+            fecharTodasModals(); // opcional: fecha todas antes de abrir
+            m.modal.style.display = "block";
+            location.hash = m.modal.id.replace("modal-", "");
+        };
+    }
+});
+
+// Função para abrir modal principal
+function abrirModal(nome) {
+  document.querySelectorAll(".modal").forEach(m => m.style.display = "none"); // fecha todas
+  const modal = document.getElementById("modal-" + nome);
+  if (modal) modal.style.display = "block";
+  location.hash = nome;
+}
+
+// Fechar modal
+document.querySelectorAll(".close-modal").forEach(btn => {
+  btn.onclick = () => {
+    const nome = btn.dataset.modal;
+    document.getElementById("modal-" + nome).style.display = "none";
+    location.hash = "";
+  };
+});
+
+document.querySelectorAll("[id^='fechar-']").forEach(fecharBtn => {
+    fecharBtn.onclick = () => {
+        const modalId = fecharBtn.id.replace("fechar-", "modal-");
+        const modal = document.getElementById(modalId);
+        if(modal) modal.style.display = "none";
+        location.hash = "";
+    };
+});
+
+// Abrir submodals
+document.querySelectorAll(".open-submodal").forEach(btn => {
+  btn.onclick = () => {
+    const nome = btn.dataset.submodal;
+    const submodal = document.getElementById(nome);
+    if(submodal) submodal.style.display = "block";
+  };
+});
+
+// Fechar submodals
+document.querySelectorAll(".close-submodal").forEach(btn => {
+  btn.onclick = () => {
+    const nome = btn.dataset.submodal;
+    const submodal = document.getElementById(nome);
+    if(submodal) submodal.style.display = "none";
+  };
+});
+
+// Lidar com hash na URL
+window.addEventListener("load", () => {
+  const hash = location.hash.replace("#", "");
+  
+  atualizarTitulo(hash); // 👈 adiciona isso
+
+  if (hash.startsWith("study-")) {
+    document.getElementById(hash).style.display = "block";
+  } else if(hash) {
+    abrirModal(hash);
+  }
+});
+
+window.addEventListener("hashchange", () => {
+  const hash = location.hash.replace("#", "");
+
+  atualizarTitulo(hash); // 👈 adiciona isso
+
+  if (hash.startsWith("study-")) {
+    document.querySelectorAll(".submodal").forEach(sm => sm.style.display = "none");
+    document.getElementById(hash).style.display = "block";
+  } else {
+    document.querySelectorAll(".modal").forEach(m => m.style.display = "none");
+    if(hash) abrirModal(hash);
+  }
+});
+
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader-container");
+    const videoSource = document.getElementById("loader-video-source");
+    const video = videoSource.parentElement;
+    const hash = location.hash.replace("#", "");
+
+    videoSource.src = hash ? "Script/load2.mp4" : "Script/load.mp4";
+    video.load();
+
+    atualizarTitulo(hash);
+
+    function finalizar() {
+        if (loader) loader.style.display = "none";
+
+        if (hash.startsWith("study-")) {
+            document.getElementById(hash).style.display = "block";
+        } else if (hash) {
+            abrirModal(hash);
+        }
+    }
+
+    // ✅ espera o vídeo terminar
+    video.onended = finalizar;
+
+    // ✅ fallback caso demore muito
+    video.oncanplaythrough = () => {
+        setTimeout(finalizar, 3500);
+    };
+});
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const toggleMusicBtn = document.getElementById('toggleMusicBtn');
+    const headphoneDiv = document.getElementById('headphone');
+    const musicNotesContainer = document.getElementById('music-notes-container');
+    let isPlaying = false;
+    const defaultMusicSrc = "Music/Fundo/Dev Song.mp3";
+    const christmasMusicSrc = "Music/Fundo/Natal.mp3";
+    const birthdayMusicSrc = "Music/Fundo/Happy birthday.mp3"; // Caminho para a música de aniversário
+
+    const birthdays = [
+        { name: "Pipoca", month: 1, day: 24 },
+        { name: "Joaquim", month: 2, day: 5 },
+        { name: "Joaquim Batismo", month: 2, day: 22 },
+        { name: "Vitória", month: 6, day: 4 },
+        { name: "Adeir", month: 9, day: 7 },
+        { name: "Paula", month: 10, day: 24 },
+
+        { name: "J2+", month: 9, day: 2 }, // 2 Setembro 2024
+        { name: "J2", month: 5, day: 12 }, // 12 Maio 2023
+        { name: "Rhafael", month: 5, day: 31 }, // 31 Maio 2025
+        { name: "Miguel", month: 3, day: 10 }, // 10 Março 2025
+        { name: "Kalton", month: 6, day: 27 } // 27 Junho 2025
+    ];
+
+    function isChristmasTime() {
+        const now = new Date();
+        const month = now.getMonth();
+        const day = now.getDate();
+        return (day === 25 && month === 11); // Mês de dezembro é 11
+    }
+
+    function isBirthday() {
+        const now = new Date();
+        const currentMonth = now.getMonth() + 1; // Janeiro é 1
+        const currentDay = now.getDate();
+
+        for (const birthday of birthdays) {
+            if (birthday.month === currentMonth && birthday.day === currentDay) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function loadMusic(src) {
+        backgroundMusic.src = src;
+        backgroundMusic.load();
+    }
+
+    function playOrPauseMusic() {
+        if (isPlaying) {
+            backgroundMusic.pause();
+        } else {
+            backgroundMusic.play();
+        }
+        isPlaying = !isPlaying;
+        updateButtonIcon();
+    }
+
+    function updateButtonIcon() {
+        if (isPlaying) {
+            toggleMusicBtn.classList.remove('fa-volume-mute');
+            toggleMusicBtn.classList.add('fa-volume-up');
+        } else {
+            toggleMusicBtn.classList.remove('fa-volume-up');
+            toggleMusicBtn.classList.add('fa-volume-mute');
+        }
+    }
+
+    function showHeadphoneAndNotes() {
+        if (isPlaying) {
+            // Exibe o fone de ouvido
+            headphoneDiv.style.display = 'block';
+
+            // Exibe 3 notas (ícones de música) e substitui a cada 2 segundos
+            let noteIndex = 0; // Para saber qual nota exibir
+            const notes = [];
+            for (let i = 0; i < 3; i++) {
+                const musicNote = document.createElement('i');
+                musicNote.classList.add('fas', 'fa-music', 'music-note');
+                musicNotesContainer.appendChild(musicNote);
+                notes.push(musicNote);
+            }
+
+            // Função para atualizar as notas
+            const noteInterval = setInterval(() => {
+                // Faz a nota anterior desaparecer
+                notes[noteIndex].style.opacity = 0;
+
+                // Atualiza o índice da nota
+                noteIndex = (noteIndex + 1) % 3;
+
+                // Faz a nova nota aparecer
+                notes[noteIndex].style.opacity = 1;
+
+            }, 2000); // Substitui a cada 2 segundos
+
+            // Exibe o container das notas
+            musicNotesContainer.style.display = 'flex';
+        } else {
+            headphoneDiv.style.display = 'none';
+            musicNotesContainer.style.display = 'none'; // Esconde as notas quando a música parar
+        }
+    }
+
+    // Carrega a música apropriada, mas não a inicia
+    if (isBirthday()) {
+        loadMusic(birthdayMusicSrc);
+    } else if (isChristmasTime()) {
+        loadMusic(christmasMusicSrc);
+    } else {
+        loadMusic(defaultMusicSrc);
+    }
+
+    // Ação do botão para alternar o som
+    toggleMusicBtn.addEventListener('click', function() {
+        if (!isPlaying) {
+            backgroundMusic.play().catch(error => {
+                console.error("Erro ao iniciar a reprodução:", error);
+            });
+            isPlaying = true;
+            updateButtonIcon();
+        } else {
+            playOrPauseMusic();
+        }
+
+        // Mostrar fone e notas enquanto a música estiver tocando
+        showHeadphoneAndNotes();
+    });
+
+    // Inicialmente, define o ícone para mudo, pois a música não está tocando
+    updateButtonIcon();
+});
+
+// Obtendo os elementos
+const modal = document.getElementById('modal-squad');
+const btn = document.getElementById('squad-btn');
+const closeBtn = document.querySelector('.close-btn');
+const profiles = document.querySelectorAll('.profile');
+const chatContainer = document.getElementById('chat-container');
+const noteBox = document.getElementById('note-box');
+const noteTextarea = document.getElementById('note-textarea');
+const exportBtn = document.getElementById('export-btn');
+const importBtn = document.getElementById('import-btn');
+const importFileInput = document.getElementById('import-file');
+
+// Função para abrir o modal
+btn.addEventListener('click', function() {
+  modal.style.display = 'block';
+});
+
+// Função para fechar o modal
+closeBtn.addEventListener('click', function() {
+  modal.style.display = 'none';
+});
+
+        // Função para alternar o som da página
+    document.getElementById('muteButton').addEventListener('click', function () {
+        const mediaElements = document.querySelectorAll('audio, video'); // Seleciona todos os elementos de mídia
+        const muteIcon = this;
+
+        mediaElements.forEach(element => {
+            element.muted = !element.muted; // Alterna o estado de mudo
+        });
+
+        // Alterna o ícone entre "volume-up" e "volume-mute"
+        if (mediaElements.length > 0 && mediaElements[0].muted) {
+            muteIcon.classList.remove('fa-volume-up');
+            muteIcon.classList.add('fa-volume-mute');
+        } else {
+            muteIcon.classList.remove('fa-volume-mute');
+            muteIcon.classList.add('fa-volume-up');
+        }
+    });
+
+    document.querySelector('.avatar').addEventListener('click', function(event) {
+    event.preventDefault();  // Impede o redirecionamento da página
+    const chat = document.querySelector('.chat');
+    
+    // Alterna a classe "expanded" no chat
+    chat.classList.toggle('expanded');
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Remover a tela de loading após 5 segundos (5000 milissegundos)
+    setTimeout(function () {
+        document.getElementById("loader-container").style.display = "none";
+    }, 1000);
+});
+
+    // Função para abrir o modal
+function openModal(modalId) {
+  document.getElementById(modalId).style.display = "block";
+}
+
+// Função para fechar o modal
+function closeModal(modalId) {
+  document.getElementById(modalId).style.display = "none";
+}
+
+// Fecha o modal se o usuário clicar fora dele
+window.onclick = function(event) {
+  var modals = document.getElementsByClassName("modal");
+  for (var i = 0; i < modals.length; i++) {
+    if (event.target == modals[i]) {
+      modals[i].style.display = "none";
+    }
+  }
+}
+    
+    document.getElementById("openClock").addEventListener("click", function() {
+    window.open("Back/index.html", "_blank");
+  });
+
+  document.getElementById("openWifi").addEventListener("click", function() {
+    window.open("https://fast.com/", "_blank");
+  });
+
+        const autocompleteInput = document.getElementById('inputText');
+    
+        const suggestions = [
+            "Olá, pode me ajudar?", "Gostaria de mais informações sobre esse tópico.", "Posso fazer uma pergunta?", "Preciso de assistência.", "Você pode me enviar mais detalhes?"
+        ];
+    
+        autocompleteInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Tab') {
+                event.preventDefault(); // Evita o comportamento padrão da tecla "Tab"
+                const currentText = autocompleteInput.value.toLowerCase();
+                const suggestion = suggestions.find(s => s.toLowerCase().startsWith(currentText));
+    
+                if (suggestion) {
+                    autocompleteInput.value = suggestion; // Autocompleta a sugestão
+                }
+            }
+        });
+        function abrirSites() {
+            window.open('https://www.msn.com/pt-br/channel/topic/Not%C3%ADcias/tp-Y_fdac555d-4ec2-428a-88e4-cb891ca7d5e9?ocid=msedgntp&cvid=3f0353edefc5487287d80c53e966368a&ei=29', '_blank');
+            window.open('https://www.bing.com/maps/traffic?setlang=pt-br&FORM=ntptra&cvid=8e0de91695834c0c99ca877c7c74130f&ocid=msedgntp&cp=-24.695375%7E-47.974205&lvl=12.0&detectedloc=-24.7069149017334%7E-48.01025390625&detectedlocacc=3122.047119140625&trafficcontent=insights&trffeatures=clpaipredux3&trafficcontent=insights&trffeatures=clpaipredux3&ei=18', '_blank'); // Coloque o segundo site aqui
+        }
+        function toggleDropdown() {
+    var dropdown = document.getElementById("dropdownNoticias");
+    // Alterna entre mostrar e esconder o dropdown
+    if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+    } else {
+        dropdown.style.display = "block";
+    }
+}
+
+// Fechar o dropdown se clicar fora dele
+window.onclick = function(event) {
+    if (!event.target.matches('.texto')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+            }
+        }
+    }
+}
+        // Função para verificar os aniversários
+        function checkBirthday() {
+    // Defina os aniversários com nome, mês e dia
+    const birthdays = [
+        { name: "Pipoca", month: 1, day: 24 },     // 24 de janeiro
+        { name: "Joaquim", month: 2, day: 5 },     // 5 de fevereiro
+        { name: "Joaquim, pelo Aniversário de Batismo", month: 2, day: 22 },     // 22 de fevereiro
+        { name: "Vitória", month: 6, day: 4 },     // 4 de julho
+        { name: "Adeir", month: 9, day: 7 },       // 7 de setembro
+        { name: "Paula", month: 10, day: 24 },     // 24 de outubro
+    ];
+
+    // Obtém a data atual
+    const today = new Date();
+    const todayMonth = today.getMonth() + 1; // Mês atual (1-12)
+    const todayDay = today.getDate();        // Dia atual (1-31)
+
+    let message = '';
+
+    // Verifica se a data de hoje é o aniversário de alguém
+    birthdays.forEach(birthday => {
+        if (todayMonth === birthday.month && todayDay === birthday.day) {
+            message = `🎉 Parabéns, ${birthday.name}! 🎂`; // Cria uma mensagem personalizada
+            falar(`Parabéns, ${birthday.name}! Espero que seu dia seja incrível!`); // Faz o navegador falar
+
+            // Adiciona a notificação de aniversário
+            notifications.push(`Hoje é o aniversário de ${birthday.name}! 🎉`);
+
+            // Exibe a notificação no ícone de notificação
+            document.getElementById("notificationCount").innerText = notifications.length;
+        }
+    });
+
+    // Se algum aniversário for hoje, exibe a mensagem
+    if (message) {
+        document.getElementById('Text').innerText = message; // Atualiza o texto da mensagem
+        document.getElementById('Message').style.display = 'block'; // Exibe o div
+        document.getElementById('Hat').style.display = 'inline'; // Exibe o chapéu
+
+        // Criar confetes
+        createConfetti();
+    }
+}
+
+            function checkBirthday2() {
+    // Defina os novos aniversários com nome, mês e dia
+    const birthdays = [
+        { name: "J2+", month: 9, day: 2 },   // 2 Setembro 2024
+        { name: "J2", month: 5, day: 12 },    // 12 Maio 2023
+        { name: "Rhafael", month: 5, day: 31 },  // 31 Maio 2025
+        { name: "Miguel", month: 3, day: 10 },// 10 Março 2025
+        { name: "Kalton", month: 6, day: 27 } // 27 Junho 2025
+    ];
+
+    // Obtém a data atual
+    const today = new Date();
+    const todayMonth = today.getMonth() + 1; // Mês atual (1-12)
+    const todayDay = today.getDate();        // Dia atual (1-31)
+
+    let message = '';
+
+    // Verifica se a data de hoje é o aniversário de alguém
+    birthdays.forEach(birthday => {
+        if (todayMonth === birthday.month && todayDay === birthday.day) {
+            if (birthday.name === "j2+") {
+                message = `🎉 Hoje é meu aniversário! 🎂`; // Mensagem especial para j2+
+                falar("Hoje é meu aniversário! Que dia incrível!"); // Faz o navegador falar
+            } else {
+                message = `🎉 Parabéns, ${birthday.name}! 🎂`; // Mensagem normal
+                falar(`Parabéns, ${birthday.name}! Espero que seu dia seja incrível!`); // Faz o navegador falar
+            }
+
+            // Adiciona a notificação de aniversário
+            notifications.push(`Hoje é o aniversário de ${birthday.name}! 🎉`);
+
+            // Exibe a notificação no ícone de notificação
+            document.getElementById("notificationCount").innerText = notifications.length;
+        }
+    });
+
+    // Se algum aniversário for hoje, exibe a mensagem
+    if (message) {
+        document.getElementById('Text').innerText = message; // Atualiza o texto da mensagem
+        document.getElementById('Message').style.display = 'block'; // Exibe o div
+        document.getElementById('Hat').style.display = 'inline'; // Exibe o chapéu
+
+        // Criar confetes
+        createConfetti();
+    }
+}
+
+
+        // Função para criar confetes
+        function createConfetti() {
+            const numConfetti = 100; // Número de confetes
+
+            for (let i = 0; i < numConfetti; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+
+                // Definindo posição aleatória e duração da animação para o confete
+                confetti.style.left = Math.random() * 100 + 'vw'; // Aleatório de 0 a 100% da largura da tela
+                confetti.style.animationDuration = Math.random() * 2 + 3 + 's'; // Entre 3s e 5s
+                confetti.style.animationDelay = Math.random() * 2 + 's'; // Delay entre 0s e 2s
+
+                // Adiciona o confete ao corpo da página
+                document.body.appendChild(confetti);
+            }
+        }
+
+        // Função para criar flocos de neve
+        function createSnowflakes() {
+            const numSnowflakes = 60; // Número de flocos de neve
+
+            for (let i = 0; i < numSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.textContent = '❄'; // Símbolo de floco de neve
+
+                // Definindo uma posição aleatória para cada floco
+                snowflake.style.left = Math.random() * 100 + 'vw'; // Aleatório de 0 a 100% da largura da tela
+                snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; // Animação entre 5s e 10s
+                snowflake.style.animationDelay = Math.random() * 5 + 's'; // Delay entre 0s e 5s
+
+                // Adiciona o floco de neve ao corpo da página
+                document.body.appendChild(snowflake);
+            }
+        }
+
+        function startChristmasEffect() {
+    const music = document.getElementById('backgroundMusic');
+    music.play().then();
+}
+
+        // Função para verificar o Natal e ativar o efeito
+        function checkChristmas() {
+        const today = new Date();
+
+        // Verifica se é 25 de dezembro
+        if (today.getDate() === 25 && today.getMonth() === 11) { // Dezembro é mês 11 (base 0)
+            // Exibe a mensagem de Natal
+            const christmasMessage = "🎄 Feliz Natal! 🎅";
+            document.getElementById('Text').innerText = christmasMessage;
+            document.getElementById('Message').style.display = 'block';
+            document.getElementById('Gorro').style.display = 'block'; // Mostrar o gorro
+
+            // Mensagem falada
+            falar("Feliz Natal! Que sua noite seja mágica e cheia de alegria!");
+
+            // Toca música de fundo em loop
+            // startChristmasEffect()
+
+            // Cria os flocos de neve
+            createSnowflakes();
+        }
+    }
+
+    function checkNewYear() {
+  const today = new Date();
+
+  // Verifica se é 31 de dezembro
+  if (today.getDate() === 31 && today.getMonth() === 11) { // Dezembro é mês 11 (base 0)
+    const message = "Prepare-se para a virada do ano! 🎉";
+    document.getElementById('Text').innerText = message;
+    document.getElementById('Message').style.display = 'block';
+
+    // Mudar a cor do rosto para dourado (sinal de celebração)
+    document.querySelector('.face').style.backgroundColor = '#a083ff';
+    document.querySelector('.avatar').style.backgroundColor = '#a083ff';
+
+    // Função que exibe o botão apenas no dia 31 de dezembro
+    document.getElementById('botao31Dezembro').style.display = 'block'; // Exibe o botão
+    
+    // Mensagem falada
+    falar("Prepare-se para a virada do ano! Que venha um novo ciclo cheio de oportunidades!");
+  }
+
+  // Verifica se é 1º de janeiro
+  else if (today.getDate() === 1 && today.getMonth() === 0) { // Janeiro é mês 0 (base 0)
+    const newYearMessage = "🎆 Feliz Ano Novo! 🎆";
+    document.getElementById('Text').innerText = newYearMessage;
+    document.getElementById('Message').style.display = 'block';
+
+    // Mudar a cor do rosto
+    document.querySelector('.face').style.backgroundColor = '#a083ff';
+    document.querySelector('.avatar').style.backgroundColor = '#a083ff';
+
+    // Criar confetes
+    createConfetti();
+
+    // Mensagem falada
+    falar("Feliz Ano Novo! Que este novo ano seja repleto de alegrias e realizações!");
+  }
+}
+
+    function exibirSaudacao() {
+    const horaAtual = new Date().getHours();
+    let saudacaoBase = "";
+
+    if (horaAtual >= 6 && horaAtual < 12) {
+        saudacaoBase = "Bom dia! ";
+    } else if (horaAtual >= 12 && horaAtual < 18) {
+        saudacaoBase = "Boa tarde! ";
+    } else {
+        saudacaoBase = "Boa noite! ";
+    }
+
+    const saudacaoCompleta = saudacaoBase + perfilAtivo;
+
+    const saudacaoElement = document.getElementById("saudacao");
+
+    // mostra a saudação
+    saudacaoElement.style.display = "block";
+    saudacaoElement.innerHTML = `<span class="typing-animation">${saudacaoCompleta}</span>`;
+
+    // após 5 segundos esconde
+    setTimeout(() => {
+        saudacaoElement.style.display = "none";
+    }, 5000);
+}
+
+// Chama a função quando a página for carregada
+        window.onload = function() {
+  checkBirthday();
+  checkBirthday2();
+  checkChristmas();
+  checkNewYear();
+  checkSeason();
+  checkSeason2();
+  exibirSaudacao();
+};
