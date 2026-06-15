@@ -128,13 +128,23 @@ function atualizarFundoAutomatico() {
 
     if (hora >= 23 || hora < 6) {
 
-        iframe.src =
-            "https://www.youtube.com/embed/14hR9VSCCMs?autoplay=1&loop=1&playlist=14hR9VSCCMs";
+        iframe.style.display = "none";
+
+        videoLocal.src = "https://www.pexels.com/download/video/855205/";
+        videoLocal.style.display = "block";
+
+        videoLocal.load();
+        videoLocal.play();
 
     } else {
 
-        iframe.src =
-            "https://www.youtube.com/embed/aU5oT-xyXZA?autoplay=1&loop=1&playlist=aU5oT-xyXZA";
+        iframe.style.display = "none";
+
+        videoLocal.src = "https://www.pexels.com/download/video/7762080/";
+        videoLocal.style.display = "block";
+
+        videoLocal.load();
+        videoLocal.play();
     }
 }
 
