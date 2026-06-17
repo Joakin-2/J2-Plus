@@ -627,6 +627,10 @@ var playlists = {
     title: "E Que Hoje Vai Ter Festinha (Edit)"
   },
   {
+    file: "Vibe/E ela terminou comigo prod. Djay L Beats.mp3",
+    title: "E ela terminou comigo prod. Djay L Beats"
+  },
+  {
     file: "Vibe/Empire State Of Mind (Lyrics).mp3",
     title: "Empire State of Mind (Lyrics)"
   },
@@ -965,6 +969,10 @@ var playlists = {
   {
     file: "Vibe/Scared of the Dark (Remix).mp3",
     title: "Scared of the Dark (Remix)"
+  },
+  {
+    file: "Vibe/Scooby Doo! Creepy Run.mp3",
+    title: "Scooby Doo! Creepy Run"
   },
   {
     file: "Vibe/See Tinh [Cukak-Remix].mp3",
