@@ -791,6 +791,10 @@ var playlists = {
     title: "MEHOY"
   },
   {
+    file: "Vibe/MONTAGEM CORE TITANUM.mp3",
+    title: "MONTAGEM CORE TITANUM"
+  },
+  {
     file: "Vibe/MONTAGEM ECLIPSE - DJ FKU (Super Slowed) x Yuji.mp3",
     title: "MONTAGEM ECLIPSE - DJ FKU (Super Slowed) x Yuji"
   },
