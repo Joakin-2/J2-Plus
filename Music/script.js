@@ -392,7 +392,7 @@ var playlists = {
 
   "Vibes": {
     image: 'https://i.scdn.co/image/ab67616d0000b273afeb818f0641df8a027bb91b',
-    images: ['https://i.scdn.co/image/ab67616d0000b273afeb818f0641df8a027bb91b', 'https://i.pinimg.com/originals/48/03/98/480398182051724ebf47a64376d169ba.gif', 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2h4M3p1Y2s0aDZ3dnl6N20wZWRzbnZxemkwNzJmdm9yMHdlZDRkeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ORjfgiG9ZtxcQQwZzv/giphy.gif', 'https://media1.tenor.com/m/vp6h_D7U-OUAAAAd/whatsapp-instagram.gif'],                
+    images: ['https://i.scdn.co/image/ab67616d0000b273afeb818f0641df8a027bb91b', 'https://i.pinimg.com/originals/48/03/98/480398182051724ebf47a64376d169ba.gif', 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2h4M3p1Y2s0aDZ3dnl6N20wZWRzbnZxemkwNzJmdm9yMHdlZDRkeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ORjfgiG9ZtxcQQwZzv/giphy.gif', 'https://media1.tenor.com/m/vp6h_D7U-OUAAAAd/whatsapp-instagram.gif', 'https://media1.tenor.com/m/16eiLyMPZ0cAAAAC/excuse-me-e.gif', 'https://media1.tenor.com/m/_YjnKMGfvQUAAAAd/excuse-me-sir-excuse-me-sir-the-boys.gif'],                
     tracks: [
       {
     file: "Vibe/20 Min.mp3",
