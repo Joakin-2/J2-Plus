@@ -539,6 +539,14 @@ var playlists = {
     title: "Charlie Puth - Betty Boop Remix"
   },
   {
+    file: "Vibe/Charlie's Inferno.mp3",
+    title: "Charlie's Inferno"
+  },
+  {
+    file: "Vibe/Charlies no Inferno.mp3",
+    title: "Charlies no Inferno"
+  },
+  {
     file: "Vibe/CHEIRO DE PNEU (EXTENDED).mp3",
     title: "Cheiro de Pneu (Extended)"
   },
@@ -807,6 +815,10 @@ var playlists = {
     title: "Marca Pra Nós Se Ver"
   },
   {
+    file: "Vibe/Mirrors Demo (Happy Version).mp3",
+    title: "Mirrors Demo (Happy Version)"
+  },
+  {
     file: "Vibe/Mo Bamba.mp3",
     title: "Mo Bamba"
   },
@@ -861,6 +873,14 @@ var playlists = {
   {
     file: "Vibe/OMNIMAN.mp3",
     title: "OMNIMAN"
+  },
+  {
+    file: "Vibe/Oh Neymar, Oh Neymar.mp3",
+    title: "Oh Neymar, Oh Neymar"
+  },
+  {
+    file: "Vibe/Oliver Tree - Miss You.mp3",
+    title: "Oliver Tree - Miss You"
   },
   {
     file: "Vibe/Panini Indian Version.mp3",
@@ -973,6 +993,10 @@ var playlists = {
   {
     file: "Vibe/Scared of the Dark (Remix).mp3",
     title: "Scared of the Dark (Remix)"
+  },
+  {
+    file: "Vibe/Sahur's inferno.mp3",
+    title: "Sahur's inferno"
   },
   {
     file: "Vibe/Scooby Doo! Creepy Run.mp3",
