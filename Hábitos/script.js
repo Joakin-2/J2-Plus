@@ -233,7 +233,7 @@ function carregarHabitosDoDia() {
         },
         quarta: {
             manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional','Fazer Faxina','Aparar Barba','Limpar Fogão','Limpar Ouvido'],
-            tarde: ['Ler','Pele','Curso','Águas','Ensaiar','Línguas','Desenhar','Alise seu Pé','Ovo e Amendoim','Lavar as Roupas','Lavar o Banheiro'],
+            tarde: ['Ler','Pele','Curso','Águas','Ensaiar','Línguas','Desenhar','Alise seu Pé','Lavar as Roupas','Lavar o Banheiro','Ovo e Amendoim'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Frutas e Limão','Stories e Tiktok']
         },
         quinta: {
@@ -248,7 +248,7 @@ function carregarHabitosDoDia() {
         },
         sábado: {
             manha: ['Orar','Gelo','Cama','Vácuo','Alongar','Se Depile','Abdômen','Devocional','Alise seu Pé','Fazer Faxina','Correr (1 hora)','Limpar Fogão','Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Águas','Línguas','Conselho','Desenhar','Atualizações','Limpar Ouvido','Ovo e Amendoim','Lavar as Roupas','Lavar o Banheiro','Lavar Carro e Moto'],
+            tarde: ['Ler','Pele','Águas','Línguas','Conselho','Desenhar','Atualizações','Limpar Ouvido','Lavar as Roupas','Lavar o Banheiro','Ovo e Amendoim','Lavar Carro e Moto'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Limpar Escritório']
         },
     },
@@ -682,7 +682,7 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
         },
         quarta: {
             manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional','Fazer Faxina','Aparar Barba','Limpar Fogão','Limpar Ouvido'],
-            tarde: ['Ler','Pele','Curso','Águas','Ensaiar','Línguas','Desenhar','Alise seu Pé','Ovo e Amendoim','Lavar as Roupas','Lavar o Banheiro'],
+            tarde: ['Ler','Pele','Curso','Águas','Ensaiar','Línguas','Desenhar','Alise seu Pé','Lavar as Roupas','Lavar o Banheiro','Ovo e Amendoim'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Frutas e Limão','Stories e Tiktok']
         },
         quinta: {
@@ -697,7 +697,7 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
         },
         sábado: {
             manha: ['Orar','Gelo','Cama','Vácuo','Alongar','Se Depile','Abdômen','Devocional','Alise seu Pé','Fazer Faxina','Correr (1 hora)','Limpar Fogão','Ensaiar (2 hora)'],
-            tarde: ['Ler','Pele','Águas','Línguas','Conselho','Desenhar','Atualizações','Limpar Ouvido','Ovo e Amendoim','Lavar as Roupas','Lavar o Banheiro','Lavar Carro e Moto'],
+            tarde: ['Ler','Pele','Águas','Línguas','Conselho','Desenhar','Atualizações','Limpar Ouvido','Lavar as Roupas','Lavar o Banheiro','Ovo e Amendoim','Lavar Carro e Moto'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Limpar Escritório']
         },
     },
