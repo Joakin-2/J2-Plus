@@ -242,18 +242,20 @@
     atualizarInterface();
 }
 
-    function verificarDomingo() {
-        const hoje = new Date();
-        const diaSemana = hoje.getDay(); // 0 = Domingo
+    function verificarTreino() {
+    const hoje = new Date();
+    const diaSemana = hoje.getDay(); // 0 = Domingo, 6 = Sábado
 
-        const labelTreino = document.getElementById("labelTreino");
+    const labelTreino = document.getElementById("labelTreino");
 
-        if (diaSemana === 0) {
-            labelTreino.textContent = "Foi à Escola Dominical?";
-        }
+    if (diaSemana === 0) {
+        labelTreino.textContent = "Foi à Escola Dominical?";
+    } else if (diaSemana === 6) {
+        labelTreino.textContent = "Já correu hoje?";
     }
+}
 
-    verificarDomingo();
+verificarTreino();
     
     function gerarRelatorio() {
         const escovouDentes = parseInt(document.getElementById("escovouDentes").value) || 0;
