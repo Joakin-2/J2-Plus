@@ -1741,7 +1741,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "J2: Nova", month: 5, day: 12 },   // 12 Maio 2023
     { name: "Rhafael", month: 5, day: 31 },  // 31 Maio 2025
     { name: "Miguel", month: 3, day: 10 },// 10 Março 2025
-    { name: "Kalton", month: 6, day: 27 } // 27 Junho 2025
+    { name: "Klaton", month: 6, day: 27 } // 27 Junho 2025
   ];
 
   const specialEvents = [
@@ -2340,7 +2340,7 @@ document.getElementById("btn-study-christ").onclick = () => {
                 case 'Devocional':
                     // 55 min de aula
                     window.close('crist.html');
-                    window.open('https://www.estudantesdabiblia.com.br/cpad-sumario-jovens-2026-2t.htm');
+                    window.open('https://www.estudantesdabiblia.com.br/cpad-sumario-jovens-2026-3t.htm');
                     window.open('https://www.bibliaonline.com.br/acf');
                     break;
                 case 'Extras':
@@ -2585,7 +2585,7 @@ window.addEventListener("load", () => {
         { name: "J2", month: 5, day: 12 }, // 12 Maio 2023
         { name: "Rhafael", month: 5, day: 31 }, // 31 Maio 2025
         { name: "Miguel", month: 3, day: 10 }, // 10 Março 2025
-        { name: "Kalton", month: 6, day: 27 } // 27 Junho 2025
+        { name: "Klaton", month: 6, day: 27 } // 27 Junho 2025
     ];
 
     function isChristmasTime() {
@@ -2876,7 +2876,7 @@ window.onclick = function(event) {
         { name: "J2", month: 5, day: 12 },    // 12 Maio 2023
         { name: "Rhafael", month: 5, day: 31 },  // 31 Maio 2025
         { name: "Miguel", month: 3, day: 10 },// 10 Março 2025
-        { name: "Kalton", month: 6, day: 27 } // 27 Junho 2025
+        { name: "Klaton", month: 6, day: 27 } // 27 Junho 2025
     ];
 
     // Obtém a data atual
