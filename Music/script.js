@@ -475,6 +475,10 @@ var playlists = {
     title: "Beat Fofinho - Kimi No Toriko"
   },
   {
+    file: "Vibe/BRASIL X TU JOGA PRA TRAS.mp3",
+    title: "BRASIL X TU JOGA PRA TRAS"
+  },
+  {
     file: "Vibe/Baby Relaxes Fits The Vibe Uaaiti.mp3",
     title: "Baby Relaxes Fits the Vibe Uaaiti"
   },
@@ -747,6 +751,10 @@ var playlists = {
     title: "Justin Bieber - Beauty And A Beat (Slowed Reverb)"
   },
   {
+    file: "Vibe/Já que hoje é o seu dia.mp3",
+    title: "Já que hoje é o seu dia"
+  },
+  {
     file: "Vibe/Kali Uchis- Moonlight (sped up)_-gYfH6FTmek.mp3",
     title: "Kali Uchis - Moonlight (Sped Up)"
   },
@@ -793,6 +801,14 @@ var playlists = {
   {
     file: "Vibe/Mustard - Ballin ft Roddy Rich (sped up version).mp3",
     title: "Mustard - Ballin ft Roddy Rich (Sped Up Version)"
+  },
+  {
+    file: "Vibe/ME DIZ OQUE VOCÊ TEM TIKTOK x BEAT NEYMAR.mp3",
+    title: "ME DIZ OQUE VOCÊ TEM TIKTOK x BEAT NEYMAR"
+  },
+  {
+    file: "Vibe/Me diz oq vc tem.mp3",
+    title: "Me diz oq vc tem"
   },
   {
     file: "Vibe/MEHOY.mp3",
@@ -877,6 +893,10 @@ var playlists = {
   {
     file: "Vibe/Oh Neymar, Oh Neymar.mp3",
     title: "Oh Neymar, Oh Neymar"
+  },
+  {
+    file: "Vibe/Oh neymar.mp3",
+    title: "Oh Neymar"
   },
   {
     file: "Vibe/Oliver Tree - Miss You.mp3",
