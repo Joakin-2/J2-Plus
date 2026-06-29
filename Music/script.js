@@ -1111,6 +1111,14 @@ var playlists = {
     title: "Trap Queen (Royalty Remix Edit)"
   },
   {
+    file: "Vibe/Tuf Tuf Pof Pof Vapo Vapo (Slowed Reverb).mp3",
+    title: "Tuf Tuf Pof Pof Vapo Vapo (Slowed Reverb)"
+  },
+  {
+    file: "Vibe/Tuf Tuf Pof Pof Vapo Vapo.mp3",
+    title: "Tuf Tuf Pof Pof Vapo Vapo"
+  },
+  {
     file: "Vibe/Tipo Narutin.mp3",
     title: "Tipo Narutin"
   },
