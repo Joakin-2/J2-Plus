@@ -1143,6 +1143,14 @@ var playlists = {
     title: "Vibe Yondaime"
   },
   {
+    file: "Vibe/Vini JR ui ui ui.mp3",
+    title: "Vini JR ui ui ui"
+  },
+  {
+    file: "Vibe/Vini jr ui ui ui ui ui🇧🇷😈.mp3",
+    title: "Vini jr ui ui ui ui ui🇧🇷😈"
+  },
+  {
     file: "Vibe/White Tee - (Rizz song slowed).mp3",
     title: "White Tee (Rizz Song Slowed)"
   },
