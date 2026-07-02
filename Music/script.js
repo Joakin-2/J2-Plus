@@ -571,6 +571,10 @@ var playlists = {
     title: "CRY FOR ME FUNK (WA WA WA)"
   },
   {
+    file: "Vibe/Calling My Phone.mp3",
+    title: "Calling My Phone"
+  },
+  {
     file: "Vibe/Calma vida.mp3",
     title: "Calma Vida"
   },
