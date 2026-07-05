@@ -218,7 +218,7 @@ function carregarHabitosDoDia() {
         Joaquim: {
         domingo: {
             manha: ['Orar','Gelo','Cama','Vácuo','Alongar','Abdômen','Escola Dominical'],
-            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Ensaio dos Jovens','Ovo e Amendoim'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Ovo e Amendoim','Ensaio dos Jovens'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Culto da Família']
         },
         segunda: {
@@ -667,7 +667,7 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
         Joaquim: {
         domingo: {
             manha: ['Orar','Gelo','Cama','Vácuo','Alongar','Abdômen','Escola Dominical'],
-            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Ensaio dos Jovens','Ovo e Amendoim'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Ovo e Amendoim','Ensaio dos Jovens'],
             noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Culto da Família']
         },
         segunda: {

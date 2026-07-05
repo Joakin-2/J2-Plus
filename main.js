@@ -2416,23 +2416,23 @@ const modals = {
     modal: document.getElementById("modal-pc"),
     fechar: document.getElementById("fechar-pc")
   },
-  itens: {
-    btn: document.getElementById("itens-btn"),
-    modal: document.getElementById("modal-itens"),
-    fechar: document.getElementById("fechar-itens")
-  },
   christ: {
     btn: document.getElementById("christ-btn"),
     modal: document.getElementById("modal-christ"),
     fechar: document.getElementById("fechar-christ")
+  }, 
+  streaming: {
+    btn: document.getElementById("streaming-btn"),
+    modal: document.getElementById("modal-streaming"),
+    fechar: document.getElementById("fechar-streaming")
   }
 };
 
 const titulos = {
   rafa: "Rafa",
   pc: "PCs",
-  itens: "Itens",
-  christ: "Christ"
+  christ: "Christ",
+  streaming: "Streaming"
 };
 
 function atualizarTitulo(hash) {

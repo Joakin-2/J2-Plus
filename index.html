@@ -37,7 +37,7 @@
                 <li><a id="js-btn" onclick="buttonClick('https://voolt3d.com.br/produtos/filamento-pla-laranja-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-marrom-velvet-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-marrom-cappuccino-velvet-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-rosa-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-azul-cyan-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-preto-velvet-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-azul-velvet-premium/', 'https://voolt3d.com.br/produtos/kit-filamento-pla-velvet-branco-preto-verde/', 'https://voolt3d.com.br/produtos/filamento-pla-verde-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-branco-velvet-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-vermelho-velvet-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-amarelo-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-roxo-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-grafite-velvet-premium/')">Js 3D Studio</a></li>
                 <li><a href="https://j2plus.netlify.app/finan%C3%A7as/">Finanças</a></li>
                 <li><a id="pc-btn">Controles</a></li>
-                <li><a href="https://j2plus.netlify.app/streamings/">Streamings</a></li>
+                <li><a id="streaming-btn">Streamings</a></li>
                 <li><a onclick="GameState()">Games Web</a></li>
             </ul>
             <ul>
@@ -49,6 +49,36 @@
             </ul>
         </div>
     </aside>
+
+    <!-- Modal Streaming -->
+<div id="modal-streaming" class="modal">
+    <span id="fechar-streaming"
+        class="close-btn"
+        style="position: fixed; color: white; margin-left: 430px; margin-top: 25px; font-size: 30px;">
+        &times;
+    </span>
+
+    <div class="button-container"
+        style="margin-left: 600px; display: inline-grid; gap: 20px; padding: 30px; border-radius: 10px; margin-top: 220px;">
+
+        <a href="https://www.netflix.com/browse" target="_blank" class="btn netflix">
+            🎬 Netflix
+        </a>
+
+        <a href="https://www.disneyplus.com/home" target="_blank" class="btn disney">
+            🏰 Disney+
+        </a>
+
+        <a href="https://play.hbomax.com/" target="_blank" class="btn hbo">
+            🎥 HBO Max
+        </a>
+
+        <a href="https://tv.apple.com/br" target="_blank" class="btn apple">
+            🍎 Apple TV+
+        </a>
+
+    </div>
+</div>
 
     <!-- Modal de PC -->
     <div id="modal-pc" class="modal">
