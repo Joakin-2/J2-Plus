@@ -827,6 +827,10 @@ var playlists = {
     title: "MONTAGEM ECLIPSE - DJ FKU (Super Slowed) x Yuji"
   },
   {
+    file: "Vibe/MONTAGEM ONE MORE GAME.mp3",
+    title: "MONTAGEM ONE MORE GAME"
+  },
+  {
     file: "Vibe/MONTAGEM XONADA.mp3",
     title: "Montagem Xonada"
   },
