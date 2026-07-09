@@ -2416,6 +2416,11 @@ const modals = {
     modal: document.getElementById("modal-pc"),
     fechar: document.getElementById("fechar-pc")
   },
+  manual: {
+    btn: document.getElementById("manual-btn"),
+    modal: document.getElementById("modal-manual"),
+    fechar: document.getElementById("fechar-manual")
+},
   christ: {
     btn: document.getElementById("christ-btn"),
     modal: document.getElementById("modal-christ"),
@@ -2431,6 +2436,7 @@ const modals = {
 const titulos = {
   rafa: "Rafa",
   pc: "PCs",
+  manual: "Manual J2",
   christ: "Christ",
   streaming: "Streaming"
 };

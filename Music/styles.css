@@ -119,10 +119,6 @@ html {
                 border-radius: 12px 0 0 12px;
             }
 
-            .video.christ-gym::before {
-                background: #ff4500; /* Amarelo */
-            }
-
             .video.hip-praise::before {
                 background: #FF6347; /* Verde */
             }
@@ -141,10 +137,6 @@ html {
 
             .video.gym::before {
                 background: #aa72fe; /* Orquídea Média */
-            }
-
-            .video.fnf::before {
-                background: #e22bd3; /* Azul Violeta */
             }
 
             .video.upload::before {

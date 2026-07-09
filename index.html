@@ -420,6 +420,109 @@
     </div>
 </div>
 
+<!-- Modal do Manual -->
+<div id="modal-manual" class="modal">
+    <div class="modal-content">
+        
+        <section class="hero">
+            <h1>J2 SYSTEM</h1>
+            <h2>Manual do Usuário • Nova</h2>
+            <div class="badge">2V Edition</div>
+        </section>
+
+        <div class="container">
+
+            <div class="card">
+                <h3>Bem-vindo</h3>
+                <p>
+                    A <strong>Nova</strong> é a assistente inteligente da JS Company.
+                    Ela reúne produtividade, organização e integração com todo o ecossistema J2
+                    em uma experiência moderna.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Recursos Principais</h3>
+
+                <div class="grid">
+                    <div class="feature">
+                        <h4>🔔 Notificações</h4>
+                        <p>Lembretes inteligentes para tarefas, eventos e compromissos.</p>
+                    </div>
+
+                    <div class="feature">
+                        <h4>🧠 Dicas</h4>
+                        <p>Sugestões para estudos, produtividade e bem-estar.</p>
+                    </div>
+
+                    <div class="feature">
+                        <h4>🎯 Modo Foco</h4>
+                        <p>Interface limpa para manter sua concentração.</p>
+                    </div>
+
+                    <div class="feature">
+                        <h4>📈 Hábitos</h4>
+                        <p>Acompanhe metas e evolução diária.</p>
+                    </div>
+
+                    <div class="feature">
+                        <h4>🏋 JokGym</h4>
+                        <p>Treinos, exercícios e evolução física.</p>
+                    </div>
+
+                    <div class="feature">
+                        <h4>🎵 Music Place</h4>
+                        <p>Aprenda e pratique música.</p>
+                    </div>
+
+                    <div class="feature">
+                        <h4>💼 Works</h4>
+                        <p>Acesso rápido aos seus projetos.</p>
+                    </div>
+
+                    <div class="feature">
+                        <h4>⌚ Klayton Watch</h4>
+                        <p>Integração com o smartwatch da J2.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Ecossistema J2</h3>
+                <ul>
+                    <li>💻 Nova — Desktop</li>
+                    <li>📱 Rafael — Mobile</li>
+                    <li>🧠 J2+ — Plataforma Web</li>
+                    <li>⌚ Klayton Watch — Smartwatch</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Segurança</h3>
+                <p>
+                    O J2 System foi projetado priorizando privacidade,
+                    estabilidade e proteção dos dados do usuário.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Suporte</h3>
+                <p>
+                    Encontrou um problema? Utilize a
+                    <strong>Janela de Erros</strong> para enviar um relatório
+                    à equipe da JS Company.
+                </p>
+            </div>
+
+        </div>
+
+        <footer>
+            J2 System • JS Company • Manual Premium v1.0
+        </footer>
+
+    </div>
+</div>
+
     <!-- Modal Camera -->
 <div id="cameraModal" class="modal" style="display: none;">
     <div class="modal-content" style="width: 450px; height: 350px; margin: 0; padding: 0;">
@@ -797,6 +900,7 @@
     <footer style="margin-top: -10px;">
         <button class="detalhes" onclick="openModal('modalPrivacidade')">Privacidade</button>
         <button class="detalhes" onclick="openModal('modalTermo')">Termo</button>
+        <button class="detalhes" id="manual-btn" onclick="openModal('modal-manual')">Manual</button>
     </footer>
     
     <!-- Inclui o script externo -->

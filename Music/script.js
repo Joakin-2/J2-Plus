@@ -1,38 +1,13 @@
 const playlistButtons = [
-    { name: "Christ Gym", className: "christ-gym" },
     { name: "Hip Praise", className: "hip-praise" },
     { name: "Praise", className: "praise" },
     { name: "Fundo", className: "fundo" },
     { name: "Vibes", className: "vibes" },
     { name: "Gym", className: "gym" },
-    { name: "FNF", className: "fnf" },
     { name: "+ Upload", className: "upload", isUpload: true }
   ];
 
 var playlists = {
-  "Christ Gym": {
-    image: "https://ih1.redbubble.net/image.3584855706.4055/raf,360x360,075,t,fafafa:ca443f4786.jpg",
-    images: ['https://ih1.redbubble.net/image.3584855706.4055/raf,360x360,075,t,fafafa:ca443f4786.jpg'],
-    tracks: [
-      {
-        file: "Christ Gym/Coral Resgate - TUDO COOPERA PARA O BEM.mp3",
-        title: "Tudo Coopera Para o Bem"
-      },
-      {
-        file: "Christ Gym/E Tudo Sobre Voce (Ao Vivo) (192).mp3",
-        title: "É Tudo Sobre Você (Ao Vivo)"
-      },
-      {
-        file: "Christ Gym/Para Onde Eu Irei_ - Morada - Live Church (192).mp3",
-        title: "Para Onde Eu Irei"
-      },
-      {
-        file: "Christ Gym/Repent (192).mp3",
-        title: "Repent"
-      }
-    ]
-  },
-
   "Hip Praise": {
     image: "https://i.pinimg.com/originals/63/f0/62/63f062b6ab8b503e4bb6fccffb65b0a0.jpg",
     images: ['https://i.pinimg.com/originals/63/f0/62/63f062b6ab8b503e4bb6fccffb65b0a0.jpg'],
@@ -2028,73 +2003,6 @@ var playlists = {
   {
     file: "Gym/𝙔𝙊𝙐𝙉𝙂 𝙂𝙄𝙍𝙇 𝙁𝙐𝙉𝙆 (𝙎𝙐𝙋𝙀𝙍 𝙎𝙇𝙊𝙒𝙀𝘿).mp3",
     title: "Young Girl Funk (Super Slowed)"
-  }
-]
-  },
-
-  "FNF": {
-    image: 'https://ih1.redbubble.net/image.2173796957.6322/st,small,507x507-pad,600x600,f8f8f8.jpg',
-    images: ['https://ih1.redbubble.net/image.2173796957.6322/st,small,507x507-pad,600x600,f8f8f8.jpg'],
-    tracks: [
-  {
-    file: "FNF/Blammed.mp3",
-    title: "Blammed"
-  },
-  {
-    file: "FNF/Bopeebo.mp3",
-    title: "Bopeebo"
-  },
-  {
-    file: "FNF/Cocoa.mp3",
-    title: "Cocoa"
-  },
-  {
-    file: "FNF/Dad Battle.mp3",
-    title: "Dad Battle"
-  },
-  {
-    file: "FNF/Fresh.mp3",
-    title: "Fresh"
-  },
-  {
-    file: "FNF/Guns.mp3",
-    title: "Guns"
-  },
-  {
-    file: "FNF/High.mp3",
-    title: "High"
-  },
-  {
-    file: "FNF/M.I.L.F.mp3",
-    title: "M.I.L.F"
-  },
-  {
-    file: "FNF/Philly Nice.mp3",
-    title: "Philly Nice"
-  },
-  {
-    file: "FNF/Pico.mp3",
-    title: "Pico"
-  },
-  {
-    file: "FNF/Satin Panties.mp3",
-    title: "Satin Panties"
-  },
-  {
-    file: "FNF/South.mp3",
-    title: "South"
-  },
-  {
-    file: "FNF/Spookeez.mp3",
-    title: "Spookeez"
-  },
-  {
-    file: "FNF/Stress.mp3",
-    title: "Stress"
-  },
-  {
-    file: "FNF/Ugh.mp3",
-    title: "Ugh"
   }
 ]
   },

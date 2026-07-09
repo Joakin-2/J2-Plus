@@ -39,14 +39,11 @@ function abrirNoite() {
 
     iframe.style.display = "none";
 
+    videoLocal.src = "https://www.pexels.com/download/video/10216808/";
     videoLocal.style.display = "block";
-
-    source.src = "/Script/Sleep.mp4";
 
     videoLocal.load();
     videoLocal.play();
-
-    loadingScreen.style.display = "flex";
 
     setTimeout(() => {
 
@@ -60,7 +57,7 @@ function verificarBotaoNoite() {
 
     const hora = new Date().getHours();
 
-    if (hora >= 22 || hora < 7) {
+    if (hora >= 17 || hora < 7) {
         btnNoite.style.display = "block";
     } else {
         btnNoite.style.display = "none";
