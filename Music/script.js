@@ -531,6 +531,10 @@ var playlists = {
     title: "Chicago (Michael Jackson)"
   },
   {
+    file: "Vibe/Chicago son.mp3",
+    title: "Chicago son"
+  },
+  {
     file: "Vibe/Can_i_kick_it.mp3",
     title: "Can I Kick It"
   },
