@@ -517,8 +517,8 @@ html {
 .musica-item {
     background-color: #1d1d1d;
     border-radius: 10px;
-    padding: 15px;
-    width: 200px;
+    padding: 10px 5px;
+    width: 60%;
     text-align: center;
     transition: transform 0.2s ease;
     box-shadow: 0 0 8px rgba(0,0,0,0.3);
@@ -529,9 +529,8 @@ html {
 }
 
 .musica-item img {
-    width: 100%;
+    width: 80%;
     border-radius: 8px;
-    margin-bottom: 10px;
 }
 
 .musica-item h3 {
@@ -541,11 +540,12 @@ html {
     overflow: hidden;           /* Oculta o excesso de texto */
     text-overflow: ellipsis;    /* Adiciona os três pontinhos */
     width: 100%;                /* Certifique-se de que o item tenha largura suficiente */
+    margin: 5px;
     display: block;
 }
 
 .musica-item p {
-    margin: 0 0 10px 0;
+    margin: 5px;
     font-size: 0.9rem;
     color: #aaa;
 }
@@ -563,48 +563,18 @@ html {
 
 .carousel {
     display: flex;
-    transition: transform 0.5s ease-in-out; /* Transição suave ao mover */
-    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 15px;
+
+    /* Esconde a barra de rolagem */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer e Edge antigo */
 }
 
-.musica-item {
-    background-color: #1d1d1d;
-    border-radius: 10px;
-    padding: 15px;
-    width: 20%;          /* Ajuste para a largura do item */
-    text-align: center;
-    margin: 0 10px;
-    transition: transform 0.3s ease;
-    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+.carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari e Edge */
 }
-
-.carousel-btn {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 1.5rem;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 20%;
-    transition: background-color 0.3s;
-}
-
-.carousel-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
-
 
 ::-webkit-scrollbar {
             width: 12px;

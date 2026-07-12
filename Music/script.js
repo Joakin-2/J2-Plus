@@ -2007,3 +2007,104 @@ var playlists = {
 ]
   },
 };
+
+const sugestaoPlaylist = {
+    name: "Aleatório",
+    image: "https://i.pinimg.com/1200x/d8/8d/79/d88d79736c1db397a6a8c573ebcd06f2.jpg"
+};
+
+function moverCarrossel(direcao) {
+    const carousel = document.getElementById("carouselSugestoes");
+
+    const item = carousel.querySelector(".musica-item");
+
+    if (!item) return;
+
+    const largura = item.offsetWidth + 15; // largura + gap
+
+    if (direcao === "next") {
+        carousel.scrollLeft += largura;
+    } else if (direcao === "prev") {
+        carousel.scrollLeft -= largura;
+    }
+}
+
+function criarSugestoes(qtd = 3) {
+
+    const carousel = document.getElementById("carouselSugestoes");
+
+    if (!carousel) return;
+
+    carousel.innerHTML = "";
+
+    let musicas = [];
+
+    Object.entries(playlists).forEach(([nomePlaylist, playlist]) => {
+
+        playlist.tracks.forEach((track, index) => {
+
+            musicas.push({
+                playlistOrigem: nomePlaylist,
+                index: index,
+                titulo: track.title,
+                imagem: playlist.image,
+                nome: playlist.name
+            });
+
+        });
+
+    });
+
+
+    musicas.sort(() => Math.random() - 0.5);
+
+
+    musicas.slice(0, qtd).forEach(musica => {
+
+        const item = document.createElement("div");
+        item.className = "musica-item";
+
+
+        item.innerHTML = `
+            <img src="${musica.imagem}" alt="${musica.nome}">
+            <h3>▶ ${musica.titulo}</h3>
+            <p>${musica.playlistOrigem}</p>
+        `;
+
+
+        item.onclick = () => {
+
+    loadPlaylistTracks(musica.playlistOrigem);
+
+    // Nome da playlist como Aleatório
+    document.getElementById("currentPlaylistTitle").textContent = "Aleatório";
+
+    // Imagem fixa do Aleatório
+    const playlistImage = document.getElementById("playlistImage");
+
+    if (playlistImage) {
+        playlistImage.src = "https://i.pinimg.com/1200x/d8/8d/79/d88d79736c1db397a6a8c573ebcd06f2.jpg";
+    }
+
+    setTimeout(() => {
+        playMusic(musica.index);
+
+        const currentMusicTitle = document.getElementById("currentMusicTitle");
+        if (currentMusicTitle) {
+            currentMusicTitle.textContent = musica.titulo;
+        }
+
+    }, 200);
+
+};
+
+
+        carousel.appendChild(item);
+
+    });
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    criarSugestoes(3);
+});

@@ -28,20 +28,9 @@
     </header>
 
     <div class="container" id="sugestoes">
-    <button class="carousel-btn prev" onclick="moverCarrossel('prev')">❮</button>
-       <div class="carousel">
-    <div class="musica-item">
-        <h3 data-caminho="Hip Praise/Mais-Existe-um-Lugar-_Remix_.mp3">▶️ Mais Existe um Lugar Remix</h3>
+    <div class="carousel" id="carouselSugestoes">
+        <!-- As sugestões serão adicionadas aqui -->
     </div>
-    <div class="musica-item">
-        <h3 data-caminho="Hip Praise/Santo-Slowed.mp3">▶️ Santo Slowed</h3>
-    </div>
-    <div class="musica-item">
-        <h3 data-caminho="Vibe/James Brown -  Poison (Jersey Club Remix).mp3">▶️ James Brown - Poison</h3>
-    </div>
-               <!-- Mais itens de música -->
-        </div>
-    <button class="carousel-btn next" onclick="moverCarrossel('next')">❯</button>
 </div>
     
     <div class="container" id="playlistContainer"></div>
@@ -132,7 +121,7 @@
 });
 
         const playlistButtons2 = [
-    { name: "Christ Gym", className: "christ-gym" },
+    { name: "Hip Praise", className: "hip-praise" },
     { name: "Vibes", className: "vibes" },
     { name: "Gym", className: "gym" },
     ];
