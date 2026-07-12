@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanças</title>
+    <link rel="icon" type="image/png" href="/Script/img/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    margin-top: 30px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.hidden {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    color: #e0e0e0;
+    border: 2px solid #444;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.form-group input {
+    width: calc(79% - 7px);
+    padding: 8px 10px;
+    font-size: 16px;
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    width: calc(100% - 20px);
+    padding: 8px 10px;
+    font-size: 16px;
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: 4px;
+    height: 100px;
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #825dff;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #642dfc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #444;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    color: #e0e0e0;
+}
+
+h3#total {
+    text-align: center;
+    margin-top: 20px;
+    color: #e0e0e0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    gap: 10px; /* Espaçamento entre os botões */
+    margin-top: 20px; /* Espaçamento superior, se necessário */
+}
+
+/* Estilo para o seletor de tipo de gasto */
+#expense-type {
+    padding: 8px;
+    border: 2px solid #444;
+    width: calc(100% - 25px);
+    border-radius: 5px;
+    background-color: #333;
+    font-size: 16px;
+    color: #e0e0e0;
+    cursor: pointer;
+}
+
+/* Estilo para as opções do seletor de tipo de gasto */
+#expense-type option {
+    padding: 5px;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+/* Estilo para as opções do seletor de tipo de gasto quando passa o mouse */
+#expense-type option:hover {
+    background-color: #444;
+}
+
+/* Estilo do modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Conteúdo do modal (calculadora) */
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
+
+.modal-header {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+    cursor: move;
+}
+
+.modal-header .close {
+    color: white;
+    font-size: 1.5em;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+/* Estilos da calculadora */
+.calculator {
+    margin-top: 20px;
+}
+
+#display {
+    width: 100%;
+    height: 50px;
+    text-align: right;
+    font-size: 2em;
+    padding: 10px;
+    border: none;
+    background-color: #f1f1f1;
+    box-sizing: border-box;
+}
+
+.buttoncal button {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    padding: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.sugestao-btn {
+    width: 50px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #222; /* Cor de fundo da trilha */
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #825dff;; /* Cor da barra de rolagem */
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #642dfc;; /* Cor da barra de rolagem ao passar o mouse */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: inline-flex; align-items: center; margin-bottom: 20px; margin-left: 50px;">
+            <h1 style="display: inline-block; margin-right: 10px;">Controle Financeiro Mensal</h1>
+            <button type="button" class="sugestao-btn" onclick="openCalModal()">+/-</button>
+        </div>
+
+        <br>
+        
+        <!-- Formulário para adicionar despesas -->
+        <form id="expense-form">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="expense-name" style="width: 90px; margin-right: 0px; text-align: center;">Nome</label>
+                <input type="text" id="expense-name" required style="flex: 1;">
+            </div>
+            <br>
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="expense-type" style="width: 110px; margin-right: 0px; text-align: center;">Tipo</label>
+                <select id="expense-type" required>
+                    <option value="entrada-variavel">Entrada Variável</option>
+                    <option value="entrada-fixa">Entrada Fixa</option>
+                    <option value="saida">Saída</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="expense-amount" style="width: 90px; margin-right: 0px; text-align: center;">Valor (R$)</label>
+                <input type="number" id="expense-amount" step="0.01" required>
+            </div>
+            <button type="submit" style="margin-top: 10px">Adicionar</button>
+        </form>
+
+        <!-- Tabela para exibir despesas -->
+        <br>
+        <table id="expense-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Valor (R$)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aqui serão adicionadas as linhas de despesa dinamicamente -->
+            </tbody>
+        </table>
+
+        <!-- Total das despesas -->
+        <div class="controls" style="display: flex; align-items: center; justify-content: center;">
+            <h3 id="total">Total: R$ 0.00</h3>
+        <button id="recalculate-total" class="fas fa-redo" style="width: auto; margin-left: 20px; padding: 6px;"></button>
+        </div>
+
+        <!-- Modal da Calculadora -->
+    <div id="calcModal" class="modal" style="z-index: 1000; height: 410px; width: 380px; background: rgb(0 0 0 / 0%);">
+        <div class="modal-content" onmousedown="dragMouseDown(event)" style="background: #252424; height: 310px; width: 240px; border: 2px solid #ddd; border-radius: 4px;">
+            <div class="calculator">
+                <span class="close" onclick="closeCalModal()">&times;</span>
+                <input type="text" id="display" disabled style="width: 96%; padding: 8px 10px; font-size: 16px; background-color: #333; color: #e0e0e0; border: 1px solid #444; border-radius: 4px;">
+                <div class="buttoncal" style="display: grid; grid-template-columns: repeat(4, 0fr); grid-gap: 10px; margin-top: 10px;">
+                    <button onclick="appendToDisplay('7')">7</button>
+                    <button onclick="appendToDisplay('8')">8</button>
+                    <button onclick="appendToDisplay('9')">9</button>
+                    <button onclick="appendToDisplay('/')">/</button>
+                    
+                    <button onclick="appendToDisplay('4')">4</button>
+                    <button onclick="appendToDisplay('5')">5</button>
+                    <button onclick="appendToDisplay('6')">6</button>
+                    <button onclick="appendToDisplay('*')">*</button>
+                    
+                    <button onclick="appendToDisplay('1')">1</button>
+                    <button onclick="appendToDisplay('2')">2</button>
+                    <button onclick="appendToDisplay('3')">3</button>
+                    <button onclick="appendToDisplay('-')">-</button>
+                    
+                    <button onclick="appendToDisplay('0')">0</button>
+                    <button onclick="clearDisplay()">C</button>
+                    <button onclick="calculate()">=</button>
+                    <button onclick="appendToDisplay('+')">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Botões para salvar e baixar PDF -->
+        <button id="save-expenses" class="hidden">Salvar</button>
+        <div class="button-container">
+            <button id="save-json-file" style="width: 200px;">Salvar Dados</button>
+            <button id="import-json-file" style="width: 200px;">Importar Dados</button>
+            <button id="download-pdf" style="width: 200px;">Baixar PDF</button>
+        </div>        
+
+        <!-- Área de Anotações -->
+        <br>
+        <h2>Anotações</h2>
+        <div class="form-group">
+            <textarea id="notes" rows="4" cols="50" placeholder="Digite aqui..."></textarea>
+        </div>
+    </div>
+    <script>
+        let display = document.getElementById('display');
+
+// Função para abrir o modal
+function openCalModal() {
+    document.getElementById('calcModal').style.display = 'block';
+}
+
+// Função para fechar o modal
+function closeCalModal() {
+    document.getElementById('calcModal').style.display = 'none';
+}
+
+// Função para adicionar valores ao visor
+function appendToDisplay(value) {
+    display.value += value;
+}
+
+// Função para limpar o visor
+function clearDisplay() {
+    display.value = '';
+}
+
+// Função para calcular o resultado
+function calculate() {
+    try {
+        display.value = eval(display.value);
+    } catch (e) {
+        display.value = 'Erro';
+    }
+}
+
+// Função para permitir que o modal seja arrastado
+let modal = document.getElementById('calcModal');
+let modalHeader = document.getElementsByClassName('modal-header')[0];
+
+let isDragging = false;
+let offsetX, offsetY;
+
+function dragMouseDown(e) {
+    e.preventDefault();
+    isDragging = true;
+    offsetX = e.clientX - modal.offsetLeft;
+    offsetY = e.clientY - modal.offsetTop;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = dragMouseMove;
+}
+
+function dragMouseMove(e) {
+    if (isDragging) {
+        modal.style.top = e.clientY - offsetY + 'px';
+        modal.style.left = e.clientX - offsetX + 'px';
+    }
+}
+
+function closeDragElement() {
+    isDragging = false;
+    document.onmouseup = null;
+    document.onmousemove = null;
+}
+
+        // Função para salvar as despesas em um arquivo JSON
+        function saveExpensesAsJson() {
+            var table = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
+            var expenses = [];
+    
+            // Adiciona as despesas na tabela ao conteúdo do arquivo JSON
+            for (var i = 0; i < table.rows.length; i++) {
+                var cells = table.rows[i].cells;
+                var name = cells[0].textContent;
+                var type = cells[1].textContent;
+                var amount = cells[2].textContent;
+    
+                // Remove o símbolo "R$" e substitui a vírgula por ponto
+                amount = amount.replace("R$", "").trim();
+                amount = amount.replace(".", "").replace(",", ".");
+    
+                // Converte para número e formata com 2 casas decimais
+                amount = parseFloat(amount).toFixed(2);
+    
+                expenses.push({ name, type, amount });
+            }
+    
+            // Adiciona as anotações ao conteúdo do arquivo JSON
+            var notesText = document.getElementById("notes").value;
+            if (notesText.trim() !== "") {
+                expenses.push({ notes: notesText });
+            }
+    
+            // Cria um Blob com o conteúdo em formato JSON
+            var blob = new Blob([JSON.stringify(expenses, null, 2)], { type: "application/json" });
+    
+            // Cria um link temporário para o download do arquivo
+            var link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "gastos.json";
+    
+            // Simula o clique no link para baixar o arquivo
+            link.click();
+        }
+    
+        document.getElementById("save-json-file").addEventListener("click", saveExpensesAsJson);
+    
+        // Função para salvar no localStorage
+        function saveToLocalStorage(data) {
+            if (!data || data.length === 0) {
+                console.warn("Nenhum dado para salvar no localStorage.");
+                return;
+            }
+            try {
+                localStorage.setItem("expensesData", JSON.stringify(data));
+                console.log("Dados salvos no localStorage com sucesso.");
+            } catch (error) {
+                console.error("Erro ao salvar os dados no localStorage:", error);
+                alert(`Erro ao salvar os dados: ${error.message}`);
+            }
+        }
+    
+        // Função para carregar dados do localStorage
+        function loadFromLocalStorage() {
+            const savedData = localStorage.getItem("expensesData");
+            if (!savedData) {
+                console.warn("Nenhum dado encontrado no localStorage.");
+                return;
+            }
+    
+            try {
+                const parsedData = JSON.parse(savedData);
+                populateTable(parsedData);
+            } catch (error) {
+                console.error("Erro ao carregar os dados do localStorage:", error);
+            }
+        }
+    
+        // Preenche a tabela e as anotações
+        function populateTable(data) {
+            const tableBody = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
+            tableBody.innerHTML = "";
+    
+            data.forEach(item => {
+                if (item.name && item.type && item.amount) {
+                    var row = tableBody.insertRow();
+                    row.innerHTML = `
+                        <td>${item.name}</td>
+                        <td>${item.type}</td>
+                        <td>R$ ${parseFloat(item.amount).toFixed(2).replace(".", ",")}</td>
+                        <td><button onclick="deleteRow(this)">Excluir</button></td>
+                    `;
+                }
+            });
+    
+            const notes = data.find(item => item.notes)?.notes;
+            if (notes) {
+                document.getElementById("notes").value = notes;
+            }
+        }
+    
+        // Função para importar JSON
+        function importJsonFile(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                alert("Nenhum arquivo selecionado.");
+                return;
+            }
+    
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const expenses = JSON.parse(e.target.result);
+                    populateTable(expenses);
+                    saveToLocalStorage(expenses);
+                } catch (error) {
+                    alert("Erro ao importar o arquivo. Certifique-se de que o arquivo seja um JSON válido.");
+                    console.error("Erro ao importar JSON:", error);
+                }
+            };
+            reader.readAsText(file);
+            updateTotal()
+        }
+    
+        document.getElementById("import-json-file").addEventListener("click", function () {
+            const inputFile = document.createElement("input");
+            inputFile.type = "file";
+            inputFile.accept = ".json";
+            inputFile.style.display = "none";
+    
+            inputFile.addEventListener("change", importJsonFile);
+            inputFile.click();
+        });
+    
+        // Função para excluir uma linha
+        function deleteRow(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            updateTotal();
+        }
+
+        function updateTotal() {
+    var table = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
+    var total = 0;
+
+    for (var i = 0; i < table.rows.length; i++) {
+        var cells = table.rows[i].cells;
+        var amount = cells[2].textContent;
+
+        // Remove "R$", formata o valor e converte para número
+        amount = amount.replace("R$", "").trim();
+        amount = amount.replace(".", "").replace(",", ".");
+        amount = parseFloat(amount);
+
+        if (!isNaN(amount)) {
+            total += amount; // Soma ao total
+        }
+    }
+
+    // Atualiza o total na interface
+    document.getElementById("total").textContent = `Total: R$ ${total.toFixed(2).replace(".", ",")}`;
+}
+
+    document.getElementById("recalculate-total").addEventListener("click", function() {
+    updateTotal();
+    console.warn("Total recalculado!");
+});
+
+        // Carrega os dados ao iniciar
+        window.onload = loadFromLocalStorage;
+    
+
+            // Definição da função updateTotal
+    function updateTotal() {
+        var total = 0;
+        var table = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
+        for (var i = 0; i < table.rows.length; i++) {
+            var amountText = table.rows[i].cells[2].textContent;
+            console.log("Valor bruto:", amountText); // Verifica o texto bruto da célula
+            var amount = parseFloat(amountText.replace("R$ ", "").replace(".", "").replace(",", "."));
+            console.log("Valor convertido:", amount); // Verifica o valor convertido
+            if (!isNaN(amount)) {
+                total += amount;
+            } else {
+                console.warn("Valor inválido na linha:", i + 1);
+            }
+        }
+        document.getElementById("total-amount").textContent = "Total: R$ " + total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        console.log("Total atualizado:", total);
+    }
+    
+
+    // Definição da função addExpense
+    function addExpense(name, type, amount) {
+        var table = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
+        var newRow = table.insertRow();
+
+        var cell1 = newRow.insertCell(0);
+        var cell2 = newRow.insertCell(1);
+        var cell3 = newRow.insertCell(2);
+        var cell4 = newRow.insertCell(3);
+
+        cell1.textContent = name;
+        cell2.textContent = type;
+        cell3.textContent = "R$ " + amount.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2}); // Formata o valor como moeda brasileira
+
+        var deleteButton = document.createElement("button");
+        deleteButton.textContent = "Excluir";
+        deleteButton.addEventListener("click", function() {
+            table.deleteRow(newRow.rowIndex - 1);
+            updateTotal();
+        });
+
+        cell4.appendChild(deleteButton);
+
+        updateTotal(); // Chama a função updateTotal após adicionar a despesa
+    }
+
+    // Função para salvar despesas no localStorage
+    function saveExpenses() {
+        var table = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
+        var expenses = [];
+
+        for (var i = 0; i < table.rows.length; i++) {
+            var cells = table.rows[i].cells;
+            var expense = {
+                name: cells[0].textContent,
+                type: cells[1].textContent,
+                amount: parseFloat(cells[2].textContent.replace("R$ ", "").replace(".", "").replace(",", "."))
+            };
+            expenses.push(expense);
+        }
+
+        localStorage.setItem("expenses", JSON.stringify(expenses));
+        console.log("Despesas salvas:", expenses);
+    }
+
+    // Função para carregar despesas do localStorage
+    function loadExpenses() {
+        var savedExpenses = localStorage.getItem("expenses");
+        if (savedExpenses) {
+            var expenses = JSON.parse(savedExpenses);
+            var table = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
+
+            expenses.forEach(function(expense) {
+                var newRow = table.insertRow();
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+                var cell4 = newRow.insertCell(3);
+
+                cell1.textContent = expense.name;
+                cell2.textContent = expense.type;
+                cell3.textContent = "R$ " + expense.amount.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+                var deleteButton = document.createElement("button");
+                deleteButton.textContent = "Excluir";
+                deleteButton.addEventListener("click", function() {
+                    table.deleteRow(newRow.rowIndex - 1);
+                    updateTotal();
+                    saveExpenses(); // Salvar após excluir
+                });
+
+                cell4.appendChild(deleteButton);
+            });
+
+            updateTotal(); // Atualiza o total após carregar as despesas
+        } else {
+            console.log("Nenhuma despesa encontrada no localStorage.");
+        }
+    }
+
+    // Função para salvar anotações no localStorage
+    function saveNotes() {
+        var notes = document.getElementById("notes").value;
+        localStorage.setItem("notes", notes);
+        console.log("Anotações salvas:", notes);
+    }
+
+    // Função para carregar anotações do localStorage
+    function loadNotes() {
+        var savedNotes = localStorage.getItem("notes");
+        if (savedNotes) {
+            document.getElementById("notes").value = savedNotes;
+            console.log("Anotações carregadas:", savedNotes);
+        } else {
+            console.log("Nenhuma anotação encontrada no localStorage.");
+        }
+    }
+
+    // Evento para salvar despesas ao clicar no botão "Salvar"
+    document.getElementById("save-expenses").addEventListener("click", function() {
+        saveExpenses();
+    });
+    document.getElementById("notes").addEventListener("input", function() {
+        saveNotes(); // Salva as anotações sempre que o texto é alterado
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        loadExpenses();
+        loadNotes();
+    });
+
+    document.getElementById("expense-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Evita que a página seja recarregada
+
+        var name = document.getElementById("expense-name").value;
+        var type = document.getElementById("expense-type").value;
+        var amount = parseFloat(document.getElementById("expense-amount").value);
+
+        if (type === "saida") {
+            amount *= -1; // Transforma o valor em negativo para saídas
+        }
+
+        addExpense(name, type, amount); // Chamada à função addExpense
+        saveExpenses(); // Salva as despesas após adicionar uma despesa
+        saveNotes(); // Salva as anotações após adicionar uma despesa
+    });
+
+    document.getElementById("download-pdf").addEventListener("click", function() {
+        var { jsPDF } = window.jspdf;
+        var doc = new jsPDF();
+
+        doc.text("Controle Financeiro", 10, 10);
+        var today = new Date();
+        var formattedDate = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
+        doc.text(`Data: ${formattedDate}`, 150, 10);
+
+        var table = document.getElementById("expense-table").getElementsByTagName("tbody")[0];
+        var rows = table.getElementsByTagName("tr");
+
+        var startX = 10;
+        var startY = 30;
+
+        // Criação de uma tabela para as entradas variáveis
+        var entradaVariavelRows = [];
+        var entradaVariavelTotal = 0;
+
+        // Criação de uma tabela para as entradas fixas
+        var entradaFixaRows = [];
+        var entradaFixaTotal = 0;
+
+        // Criação de uma tabela para as saídas
+        var saidaRows = [];
+        var saidaTotal = 0;
+
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName("td");
+            var name = cells[0].textContent;
+            var type = cells[1].textContent;
+            var amount = parseFloat(cells[2].textContent.replace("R$ ", "").replace(".", "").replace(",", ".")); // Convertendo o formato brasileiro para número
+
+            // Adiciona a linha à categoria apropriada
+            if (type === "entrada-variavel") {
+                entradaVariavelRows.push([name, amount.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})]);
+                entradaVariavelTotal += amount;
+            } else if (type === "entrada-fixa") {
+                entradaFixaRows.push([name, amount.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})]);
+                entradaFixaTotal += amount;
+            } else if (type === "saida") {
+                saidaRows.push([name, amount.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})]);
+                saidaTotal += amount;
+            }
+        }
+
+        // Adiciona as tabelas ao PDF
+    doc.autoTable({
+        startY: startY, 
+        head: [["Entrada Variável", "Valor (R$)"]],
+        body: entradaVariavelRows,
+        theme: 'grid', // Define o tema da tabela
+        styles: { 
+            halign: 'center',
+            textColor: 'black'   // Cor do texto
+        },
+        headStyles: { 
+            fillColor: '#6a43be', // Cor de fundo dos cabeçalhos
+            textColor: '#ffffff'   // Cor do texto dos cabeçalhos
+        }
+    });
+    var entradaVariavelTotalY = doc.lastAutoTable.finalY + 10;
+    doc.text(`Total: R$ ${entradaVariavelTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, startX, entradaVariavelTotalY);
+
+    doc.autoTable({
+        startY: entradaVariavelTotalY + 20,
+        head: [["Entrada Fixa", "Valor (R$)"]],
+        body: entradaFixaRows,
+        theme: 'grid',
+        styles: { 
+            halign: 'center',
+            textColor: 'black'   // Cor do texto
+        },
+        headStyles: { 
+            fillColor: '#6a43be', // Cor de fundo dos cabeçalhos
+            textColor: '#ffffff'   // Cor do texto dos cabeçalhos
+        }
+    });
+    var entradaFixaTotalY = doc.lastAutoTable.finalY + 10;
+    doc.text(`Total: R$ ${entradaFixaTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, startX, entradaFixaTotalY);
+
+    doc.autoTable({
+        startY: entradaFixaTotalY + 20,
+        head: [["Saída", "Valor (R$)"]],
+        body: saidaRows,
+        theme: 'grid',
+        styles: { 
+            halign: 'center',
+            textColor: 'black'   // Cor do texto
+        },
+        headStyles: { 
+            fillColor: '#6a43be', // Cor de fundo dos cabeçalhos
+            textColor: '#ffffff'   // Cor do texto dos cabeçalhos
+        }
+    });
+        var saidaTotalY = doc.lastAutoTable.finalY + 10;
+        doc.text(`Total: R$ ${saidaTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, startX, saidaTotalY);
+
+        var totalFinal = entradaVariavelTotal + entradaFixaTotal + saidaTotal;
+        doc.text(`Total Final: R$ ${totalFinal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, startX, saidaTotalY + 20);
+
+        // Adiciona as anotações ao PDF
+        var notesText = document.getElementById("notes").value;
+        if (notesText.trim() !== "") {
+            doc.text("Anotações:", startX, saidaTotalY + 40);
+            doc.text(notesText, startX, saidaTotalY + 50);
+        }
+
+        doc.save("Controle de Finanças.pdf");
+    });
+
+    </script>
+</body>
+</html>

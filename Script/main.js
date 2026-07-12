@@ -40,16 +40,43 @@ inputText.addEventListener('input', () => {
     }
 });
 
-// Função para detectar o comando e abrir um site
-function detectCommand(event) {
-  const inputText = document.getElementById('inputText');
-  const message = inputText.value.trim();
+const modos = [
+    "back",
+    "conselho",
+    "finan",
+    "foco",
+    "ler",
+    "miguel",
+    "reflexoes",
+    "relatorio",
+    "work",
+    "yt"
+];
 
-  if (message === '/modulos') {
-      // Abre o site desejado
-      window.open('Módulos/index.html', '_blank'); // Substitua pelo URL do site que deseja abrir
-      inputText.value = ''; // Limpa o campo de entrada após a execução do comando
-  }
+function detectCommand(event) {
+    const inputText = document.getElementById('inputText');
+    const message = inputText.value.trim().toLowerCase();
+
+    // Lista os modos
+    if (message === "/modos") {
+        alert("Modos disponíveis:\n\n" + modos.join("\n"));
+        inputText.value = "";
+        return;
+    }
+
+    // Abre um modo
+    if (message.startsWith("/modo ")) {
+        const nome = message.replace("/modo ", "").trim();
+
+        if (modos.includes(nome)) {
+            window.open(`Modo/${nome}.html`, "_blank");
+        } else {
+            alert("Modo não encontrado.");
+        }
+
+        inputText.value = "";
+        return;
+    }
 }
 
 // Adiciona um evento de 'input' ao campo de texto
@@ -202,17 +229,6 @@ function mostrarNoticia(i) {
     <a class="botao" href="${noticia.link}" target="_blank">Ler mais</a>
 `;
 }
-
-// Mostrar notícia atual
-//function mostrarNoticia(i) {
-//    const noticia = noticias[i];
-//    if (!noticia) return;
-//    card0.innerHTML = `
-//    <div class="titulo">${noticia.title}</div>
-//    <div class="descricao">${noticia.description || ""}</div>
-//    <a class="botao" href="${noticia.link}" target="_blank">Ler mais</a>
-//`;
-//}
 
 // Avançar
 function proximo0() {
@@ -2247,12 +2263,12 @@ updateDate2();
         }
         
         function Trabalho() {
-            window.open('https://j2plus.netlify.app/works/', '_blank');
-            window.open('https://j2plus.netlify.app/works/foco', '_blank');
+            window.open('Modo/work.html', '_blank');
+            window.open('Modo/foco.html', '_blank');
         }
 
       document.getElementById("miguel-btn").addEventListener("click", function() {
-      window.location.href = "/Miguel/index.html"; // Substitua pelo URL desejado
+      window.location.href = "Modo/miguel.html"; // Substitua pelo URL desejado
     });
 
     function buttonClick(...urls) {
@@ -2334,17 +2350,14 @@ document.getElementById("btn-study-christ").onclick = () => {
         function redirecionar(destino) {
             switch (destino) {
                 case 'Bíblia':
-                    window.close('crist.html');
                     window.open('https://www.bibliaonline.com.br/acf');
                     break;
                 case 'Devocional':
                     // 55 min de aula
-                    window.close('crist.html');
                     window.open('https://www.estudantesdabiblia.com.br/cpad-sumario-jovens-2026-3t.htm');
                     window.open('https://www.bibliaonline.com.br/acf');
                     break;
                 case 'Extras':
-                    window.close('crist.html');
                     window.open('https://drive.google.com/drive/folders/1Of9cNspUSobIUiQbsixEG3FlJYWAr3Ay');
                     window.open('https://drive.google.com/drive/folders/1h1QOxEjQRQfiobTXzsNvErYjPIsTV6t0');
                     break;
@@ -2545,7 +2558,7 @@ window.addEventListener("load", () => {
     const video = videoSource.parentElement;
     const hash = location.hash.replace("#", "");
 
-    videoSource.src = hash ? "Script/load2.mp4" : "Script/load.mp4";
+    videoSource.src = hash ? "/Script/media/load2.mp4" : "/Script/media/load.mp4";
     video.load();
 
     atualizarTitulo(hash);
@@ -2781,7 +2794,7 @@ window.onclick = function(event) {
 }
     
     document.getElementById("openClock").addEventListener("click", function() {
-    window.open("Back/index.html", "_blank");
+    window.open("Modo/back.html", "_blank");
   });
 
   document.getElementById("openWifi").addEventListener("click", function() {

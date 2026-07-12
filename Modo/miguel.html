@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="icon" href="/Script/img/mig.png" type="image/x-icon">
+    <title>Miguel</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #000000, #0c0c0c);
+        }
+
+        h1 {
+            background-color: white;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .avatar {
+    width: 400px;
+    height: 400px;
+    border-radius: 20%;
+    background-color: #121212; /* Cor de fundo do avatar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.face {
+    position: relative;
+    width: 40px;
+    height: 120px;
+    background-color: #121212; /* Cor do rosto */
+    border-radius: 50%;
+}
+
+.risadinha {
+    position: fixed;
+    font-size: 14px;
+    color: #121212;
+    animation: subirEDesaparecer 2s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes subirEDesaparecer {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+.eye {
+    position: absolute;
+    width: 90px;
+    height: 140px;
+    background-color: #ff811e;
+    border-radius: 20%;
+    transition: height 0.3s ease-in-out;
+}
+
+.eye.left {
+    left: 41px;
+}
+
+.eye.right {
+    right: 40px;
+}
+
+.eye.left2 {
+    left: 41px;
+    height: 30px;
+    background-color: #121212;
+    margin-top: 40px;
+}
+
+.eye.right2 {
+    right: 40px;
+    height: 30px;
+    background-color: #121212;
+    margin-top: 40px;
+}
+
+.eye.left2,
+.eye.right2 {
+    animation-duration: 0.2s;
+    transition: opacity 0.5s ease;
+    position: absolute; /* ajuste conforme necessário */
+    /* outros estilos que definem a aparência e posição */
+}
+
+        #status {
+            display: none;
+        }
+
+        #history {
+            overflow-y: auto;
+            height: 300px;
+            width: 100%;
+            display: none; /* Começa oculto */
+        }
+
+        .box-my-message, .box-response-message {
+            margin: 10px;
+        }
+
+        .my-message {
+            color: #00f;
+        }
+
+        .response-message {
+            color: #0f0;
+        }
+
+        .box-my-message, .box-response-message {
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .input-container {
+            margin-top: 20px;
+            display: none; /* Começa oculto */
+        }
+
+        #inputText {
+            width: 300px;
+            padding: 10px;
+        }
+
+        #sendButton {
+            margin-left: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .show-chat #history, .show-chat .input-container {
+            display: 
+            block;
+        }
+
+        /* Estilo para a mensagem de parabéns */
+        #parabensMensagem {
+            display: none;
+            text-align: center;
+            font-size: 25px;
+            color: #ff0;
+            font-family: 'Pacifico', cursive; /* Aplica a fonte bonita */
+        }
+
+        #natalMensagem {
+            display: none;
+            text-align: center;
+            font-size: 25px;
+            color: #ff0;
+            font-family: 'Pacifico', cursive; /* Aplica a fonte bonita */
+        }
+
+        @keyframes neve {
+    0% {
+        transform: translateY(-100px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+@keyframes confete {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5) translateY(100vh);
+        opacity: 0;
+    }
+}
+
+.neve {
+    position: absolute;
+    top: -10px;
+    animation: neve 10s infinite linear;
+}
+
+.confete {
+    position: absolute;
+    top: -10px;
+    animation: confete 3s infinite ease-in-out;
+}
+
+    </style>
+</head>
+<body>
+    <!--  Pagar(R$30) - https://platform.openai.com/api-keys -->
+    <!--  Datas Especiais -->
+    <div class="container" id="container">
+        <div id="container" class="avatar">
+                    <div id="Hat" class="birthday-hat" style="display:none;"></div>
+                    <div id="Gorro" class="gorro" style="display: none;">
+                        <div class="faixa"></div>
+                        <div class="pompom"></div>
+                    </div>
+                    <div id="mensagem-xp"></div>
+                    <div id="container2" class="face">
+                        <!-- Área onde as notas serão exibidas -->
+                        <div id="music-notes-container" style="display: none;">
+                            <!-- As notas serão inseridas aqui com JavaScript -->
+                        </div>
+                        <!-- Fone de ouvido feito com CSS -->
+                        <div id="headphone" class="headphone" style="display: none;">
+                            <div class="earpiece-left"></div>
+                            <div class="earpiece-right"></div>
+                        </div>
+                        <div class="eye left" id="olhoEsquerdo"></div>
+                        <div class="eye left2" id="olhoEsquerdo2" style="display: none;"></div>
+                        <div class="eye right" id="olhoDireito"></div>
+                        <div class="eye right2" id="olhoDireito2" style="display: none;"></div>
+                    </div>
+                </div>
+
+        <!-- Contêiner para os flocos de neve -->
+        <div id="neve" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+
+        <!-- Contêiner para os confetes -->
+        <div id="confetes" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+
+        <!-- Mensagens de Natal e Aniversário -->
+        <div id="parabensMensagem">
+            Parabéns, Joaquim! 🎉
+        </div>
+
+        <div id="natalMensagem">
+            Feliz Natal, Joaquim! 🎄
+        </div>
+        
+        <!-- Adiciona um elemento de áudio para o som -->
+        <button id="ativarBtn" style="display: none;">🔊 Ativar Miguel</button>
+        <audio id="beep" src="/Script/media/UI.mp3" preload="auto"></audio>
+
+        
+        <!-- Botão visual opcional -->
+        <button id="voiceStatus" style="display: none; background: #000000; color: #ff811e; margin: 20px; font-size: large;">Ouvindo...</button>
+        
+        <!-- Adiciona um contêiner para mostrar o histórico -->
+        <div id="history"></div>
+    </div>
+    <script>
+        const synth = window.speechSynthesis;
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.lang = 'pt-BR';
+recognition.continuous = true;
+recognition.interimResults = false;
+
+const voiceStatus = document.getElementById("voiceStatus");
+const beep = document.getElementById("beep");
+let ativado = false;
+
+let vozMasculina = null;
+
+// Aguarda as vozes carregarem e seleciona voz masculina
+function selecionarVozMasculina() {
+    const vozes = synth.getVoices();
+    vozMasculina = vozes.find(voz => 
+        voz.lang.startsWith('pt') && (
+            voz.name.toLowerCase().includes('male') ||
+            voz.name.toLowerCase().includes('homem') ||
+            voz.name.toLowerCase().includes('bruno')
+        )
+    );
+
+    if (!vozMasculina) {
+        vozMasculina = vozes.find(voz => voz.lang.startsWith('pt'));
+    }
+}
+
+if (synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = selecionarVozMasculina;
+} else {
+    selecionarVozMasculina();
+}
+
+// Função falar usando voz masculina (ou a padrão)
+function falar(texto) {
+    const utter = new SpeechSynthesisUtterance(texto);
+    utter.lang = 'pt-BR';
+    if (vozMasculina) {
+        utter.voice = vozMasculina;
+    }
+    synth.speak(utter);
+}
+
+// Botão de ativação
+document.getElementById("ativarBtn").addEventListener("click", () => {
+    recognition.start();
+    document.getElementById("ativarBtn").style.display = "none"; // esconde botão
+});
+
+// Envia para a OpenAI
+async function consultarOpenAI(pergunta) {
+   const response = await axios.post(
+    'https://api.openai.com/v1/chat/completions',
+    {
+        model: "gpt-3.5-turbo",
+        messages: [
+            { role: "system", content: "Você é um assistente simpático e divertido chamado Miguel." },
+            { role: "user", content: pergunta } // mensagem vem do front-end
+        ]
+    },
+    {
+        headers: {
+            'Authorization': `Bearer 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`,
+            'Content-Type': 'application/json'
+        }
+    }
+);
+
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Erro na API OpenAI: ${response.status} - ${errorText}`);
+        throw new Error(`Erro OpenAI: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+        throw new Error("Resposta da OpenAI no formato inesperado");
+    }
+
+    return data.choices[0].message.content.trim();
+}
+
+// Quando o reconhecimento escuta algo
+let esperandoResposta = false;
+
+recognition.onresult = async (event) => {
+    const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+    console.log("Você disse:", transcript);
+
+    if (!ativado && transcript.includes("miguel")) {
+        ativado = true;
+        voiceStatus.style.display = "block";
+        voiceStatus.textContent = "🎙️ Estou ouvindo você...";
+        beep.play();
+        falar("Olá! Pode falar comigo.");
+    } else if (ativado && !esperandoResposta) {
+        esperandoResposta = true;
+        beep.play();
+        voiceStatus.textContent = `🎧 Pensando...`;
+
+        try {
+            const resposta = await consultarOpenAI(transcript);
+            console.log("IA:", resposta);
+            voiceStatus.textContent = "🎙️ Estou ouvindo...";
+            falar(resposta);
+        } catch (error) {
+            console.error(error);
+            voiceStatus.textContent = "❌ Erro ao obter resposta. Tente novamente mais tarde.";
+            falar("Desculpe, estou com dificuldades para responder agora. Por favor, tente novamente mais tarde.");
+        } finally {
+            esperandoResposta = false;
+        }
+    }
+};
+
+recognition.start();
+
+document.getElementById("container").addEventListener("click", () => {
+    try {
+        recognition.start();
+        console.log("Reconhecimento de voz iniciado por clique.");
+        voiceStatus.style.display = "block";
+        voiceStatus.textContent = "🎙️ Estou ouvindo você...";
+    } catch (e) {
+        console.error("Erro ao tentar iniciar o reconhecimento:", e);
+    }
+});
+
+    window.onload = function() {
+        var hoje = new Date();
+        
+        // Verifica se hoje é o seu aniversário (5 de fevereiro)
+        var aniversario = new Date(hoje.getFullYear(), 1, 5); // 1 é fevereiro
+        if (hoje.getDate() === aniversario.getDate() && hoje.getMonth() === aniversario.getMonth()) {
+            // Exibe a mensagem de parabéns
+            document.getElementById("parabensMensagem").style.display = "block";
+            
+            // Fala a mensagem de parabéns
+            falar("Parabéns, Joaquim! Que seu dia seja incrível!");
+    
+            // Chama a função para exibir os confetes
+            gerarConfetes();
+        }
+        
+        // Verifica se hoje é Natal (25 de dezembro)
+        var natal = new Date(hoje.getFullYear(), 11, 25); // 11 é dezembro
+        if (hoje.getDate() === natal.getDate() && hoje.getMonth() === natal.getMonth()) {
+            // Exibe a mensagem de Natal
+            document.getElementById("natalMensagem").style.display = "block";
+            
+            // Fala a mensagem de Natal
+            falar("Feliz Natal, Joaquim! Que seu coração se encha de alegria e paz nesta data especial!");
+    
+            // Chama a função para exibir os flocos de neve
+            gerarNeve();
+        }
+    };
+    
+    // Função para gerar flocos de neve
+function gerarNeve() {
+    const neveContainer = document.getElementById('neve');
+    for (let i = 0; i < 100; i++) {
+        const floco = document.createElement('div');
+        floco.classList.add('neve');
+        floco.style.left = `${Math.random() * 100}vw`;
+        floco.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        floco.style.animationDelay = `${Math.random() * 5}s`;
+        neveContainer.appendChild(floko);
+    }
+}
+
+// Função para gerar confetes
+function gerarConfetes() {
+    const confetesContainer = document.getElementById('confetes');
+    const cores = ['#ff4b4b', '#f4e04d', '#00ff00', '#ff00ff', '#00b0f0'];
+    
+    for (let i = 0; i < 100; i++) {
+        const confete = document.createElement('div');
+        confete.classList.add('confete');
+        confete.style.left = `${Math.random() * 100}vw`;
+        confete.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
+        confete.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        confete.style.animationDelay = `${Math.random() * 3}s`;
+        confetesContainer.appendChild(confete);
+    }
+}
+    </script>
+</body>
+</html>

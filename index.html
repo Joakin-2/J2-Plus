@@ -7,7 +7,7 @@
     <title>J2+</title>
     <script src="Script/Facial/face-api.js"></script>
     <script src="Script/Facial/face-api.min.js"></script>
-    <link rel="stylesheet" href="styles.css"> <!-- CSS externo -->
+    <link rel="stylesheet" href="Script/styles.css"> <!-- CSS externo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
@@ -27,25 +27,25 @@
         <div class="menu-content">
             <button class="menu-button" aria-label="Fechar menu" onclick="toggleMenu()">Voltar</button>
             <ul>
-                <li><a href="https://j2plus.netlify.app/H%C3%A1bitos/saude.html">Saúde</a></li>
-                <li><a href="https://j2plus.netlify.app/works/ler.html">Leitura</a></li>
-                <li><a href="https://j2plus.netlify.app/h%C3%A1bitos/">Hábitos</a></li>
+                <li><a href="Hábitos/saude.html">Saúde</a></li>
+                <li><a href="Modo/ler.html">Leitura</a></li>
+                <li><a href="Hábitos/index.html">Hábitos</a></li>
                 <li><a id="christ-btn">Renovar</a></li>
                 <li><a onclick="Trabalho()">Trabalho</a></li>
             </ul>
             <ul>
                 <li><a id="js-btn" onclick="buttonClick('https://voolt3d.com.br/produtos/filamento-pla-laranja-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-marrom-velvet-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-marrom-cappuccino-velvet-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-rosa-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-azul-cyan-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-preto-velvet-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-azul-velvet-premium/', 'https://voolt3d.com.br/produtos/kit-filamento-pla-velvet-branco-preto-verde/', 'https://voolt3d.com.br/produtos/filamento-pla-verde-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-branco-velvet-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-vermelho-velvet-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-amarelo-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-roxo-premium/', 'https://voolt3d.com.br/produtos/filamento-pla-grafite-velvet-premium/')">Js 3D Studio</a></li>
-                <li><a href="https://j2plus.netlify.app/finan%C3%A7as/">Finanças</a></li>
+                <li><a href="Modo/finan.html">Finanças</a></li>
                 <li><a id="pc-btn">Controles</a></li>
                 <li><a id="streaming-btn">Streamings</a></li>
                 <li><a onclick="GameState()">Games Web</a></li>
             </ul>
             <ul>
-                <li><a href="https://j2plus.netlify.app/music">Music</a></li>
-                <li><a href="https://j2plus.netlify.app/gym">JokGym</a></li>
+                <li><a href="Music/index.html">Music</a></li>
+                <li><a href="Gym/index.html">JokGym</a></li>
                 <li><a href="#" onclick="openModal('modalReclamar'); return false;">Reclamar</a></li>
                 <li><a href="#" onclick="openModal('languageModal'); return false;">Dicionários</a></li>
-                <li><a href="https://j2plus.netlify.app/melody">Music Place</a></li>
+                <li><a href="Melody/index.html">Music Place</a></li>
             </ul>
         </div>
     </aside>
@@ -608,7 +608,7 @@
         <li><button id="thursday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Quinta: 21 hábitos</button></li>
         <li><button id="friday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Sexta: 20 hábitos</button></li>
         <li><button id="saturday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Sábado: 23 hábitos</button></li>
-        <li><button onclick="window.location.href='https://j2plus.netlify.app/conselho/relatorio.html'" class="btn-day"><i class="fas fa-calendar-day"></i> Relatório</button></li>
+        <li><button onclick="window.location.href='Modo/relatorio.html'" class="btn-day"><i class="fas fa-calendar-day"></i> Relatório</button></li>
     </ul>
     </div>
   </div>
@@ -643,10 +643,10 @@
             <i class="fas fa-calendar-alt"></i> <!-- Ícone de calendário -->
         </button>
         <button id="switch-btn"><i class="fas fa-exchange-alt"></i></button>
-        <button id="miguel-btn" class="active"><img src="/Miguel/icon.png" alt="Ícone de perfil"></button>
+        <button id="miguel-btn" class="active"><img src="Script/img/mig.png" alt="Ícone de perfil"></button>
         <button id="rafa-btn" class="hidden"><img src="Script/img/rafa.png" alt="Ícone de perfil"></button>
         <button id="perfil-btn">Perfil</button>
-        <button onclick="window.location.href='https://j2plus.netlify.app/conselho/new.html'" style="display:none; position: absolute; margin-top: 385px; margin-left: -28px;" id="botao31Dezembro">Refexão desse Ano!</button>
+        <button onclick="window.location.href='Modo/reflexoes.html'" style="display:none; position: absolute; margin-top: 385px; margin-left: -28px;" id="botao31Dezembro">Refexão desse Ano!</button>
         <span class="clock">
             <div class="address-bar">
                 <i class="fas fa-search" style="margin-right: 10px;"></i>
@@ -906,6 +906,6 @@
     <!-- Inclui o script externo -->
     <script src="Script/perfil-data.js"></script>
     <script src="Script/nivel.js"></script>
-    <script src="main.js"></script> <!-- JavaScript externo --> 
+    <script src="Script/main.js"></script> <!-- JavaScript externo --> 
 </body>
 </html>

@@ -1,4 +1,4 @@
-Versão 1.9.8
+Versão 2.0
 
 Atualizações e melhorias:
 
