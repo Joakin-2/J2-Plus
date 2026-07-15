@@ -216,13 +216,13 @@ button i {
                     <i class="fa-solid fa-wind" style="margin-right: 20px;font-size: 30px;"></i> Vácuo
                 </button>
 
-                <button id="weightlifting-button" class="exercise-button" onclick="redirecionar('Exercícios')">
+                <button id="weightlifting-button" class="exercise-button" onclick="abrirModal('modalTreinos')">
                     <i class="fa-solid fa-dumbbell" style="margin-right: 20px;font-size: 30px;"></i> Exercícios
                 </button>
             </div>
 
             <div class="row">
-                <button id="running-button" class="exercise-button" onclick="redirecionar('Corrida')">
+                <button id="running-button" class="exercise-button" onclick="abrirModal('corridaModal')">
                     <i class="fa-solid fa-person-running" style="margin-right: 20px;font-size: 30px;"></i> Corrida
                 </button>
 
@@ -245,6 +245,30 @@ button i {
         </section>
     </main>
 
+    <!-- Modal Corrida -->
+
+    <div id="corridaModal" class="modal">
+      <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <span class="close" onclick="fecharModal('corridaModal')">&times;</span>
+
+        <div id="timer">00:00:00</div>
+    <button id="startButton" onclick="toggleTimer()">Iniciar</button>
+    <div id="calories">Calorias queimadas: 0</div>
+      </div>
+    </div>
+
+    <!-- Modal Alongar -->
+
+    <div id="alongarModal" class="modal">
+      <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <span class="close" onclick="fecharModal('alongarModal')">&times;</span>
+
+        <div id="timer">00:00:00</div>
+    <button id="startButton" onclick="toggleTimer()">Iniciar</button>
+    <div id="calories">Calorias queimadas: 0</div>
+      </div>
+    </div>
+
     <!-- Modal Vácuo -->
     <div id="vacuoModal" class="modal">
       <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
@@ -254,9 +278,56 @@ button i {
         <img src="https://barbend.com/wp-content/uploads/2024/03/stomach-vacuum-barbend-movement-gif-masters.gif" alt="Exercício Stomach Vacuum">
     </div>
     <div id="timer">00:00:00</div>
-    <button id="startButton" onclick="toggleTimer()">Iniciar</button>
+    <button id="startButton" onclick="toggleTimer0()">Iniciar</button>
       </div>
     </div>
+
+    <!-- Modal Gym Pesos -->
+<div id="modalTreinos" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModal()">&times;</span>
+
+        <main>
+            <section id="weekly-schedule" style="padding: 40px 70px;">
+                <h2 style="color: #fff">Programação Semanal</h2>
+
+                <button class="exercise-button" onclick="redirecionar('Seg')">Seg: Peito e Tríceps</button>
+                <button class="exercise-button" onclick="redirecionar('Ter')">Ter: Costas e Bíceps</button>
+                <button class="exercise-button" onclick="redirecionar('Qua')">Qua: Pernas e Abdômen</button>
+                <button class="exercise-button" onclick="redirecionar('Qui')">Qui: Ombros e Trapézio</button>
+                <button class="exercise-button" onclick="redirecionar('Sex')">Sex: Alongamentos</button>
+                <button class="exercise-button" onclick="redirecionar('Sab')">Sáb: Corrida</button>
+                <button class="exercise-button" onclick="redirecionar('Dom')">Dom: Alongamentos</button>
+            </section>
+
+            <section id="exercise-buttons" style="padding: 40px 70px;">
+                <h2 style="color: #fff">O que vamos treinar hoje?</h2>
+
+                <div class="row2">
+                    <button class="exercise-button2" onclick="redirecionar('Braços')">Braços</button>
+                    <button class="exercise-button2" onclick="redirecionar('Ombros')">Ombros</button>
+                </div>
+
+                <div class="row2">
+                    <button class="exercise-button2" onclick="redirecionar('Abdômen')">Abdômen</button>
+                    <button class="exercise-button2" onclick="redirecionar('Peito')">Peito</button>
+                </div>
+
+                <div class="row2">
+                    <button class="exercise-button2" onclick="redirecionar('Costas')">Costas</button>
+                    <button class="exercise-button2" onclick="redirecionar('Perna')">Perna</button>
+                </div>
+
+                <div class="row2">
+                    <button class="exercise-button2" onclick="redirecionar('Meta')" style="width:420px;">
+                        Meta
+                    </button>
+                </div>
+            </section>
+        </main>
+
+    </div>
+</div>
 
     <!-- Modal Gym Play -->
     <div id="playModal" class="modal">
@@ -330,8 +401,111 @@ button i {
     <script src="script.js"></script>
     <script src="/Script/nivel.js"></script>
     <script>
+         document.getElementById("timer").addEventListener("click", function() {
+    window.location.href = "/Music/index3.html";
+  });
+        
+        let timeInSeconds0 = 0;
+        let caloriesBurned0 = 0;
+        let timerId0;  // Variável para armazenar o ID do temporizador
+        let isTimerRunning0 = false;  // Flag para verificar se o temporizador está em execução
+
+        // Calorias queimadas por minuto (valor arbitrário, você pode ajustar conforme necessário)
+        const caloriesPerMinute = 8; 
+
+        function updateTimer() {
+            if (isTimerRunning0) {
+                // Atualiza o cronômetro
+                const hours = Math.floor(timeInSeconds0 / 3600);
+                const minutes = Math.floor((timeInSeconds0 % 3600) / 60);
+                const seconds = timeInSeconds0 % 60;
+
+                const formattedHours = hours.toString().padStart(2, '0');
+                const formattedMinutes = minutes.toString().padStart(2, '0');
+                const formattedSeconds = seconds.toString().padStart(2, '0');
+
+                document.getElementById("timer").textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+
+                // Calcula as calorias queimadas (baseado no tempo em minutos)
+                caloriesBurned0 = Math.floor((timeInSeconds0 / 60) * caloriesPerMinute);
+
+                // Atualiza o contador de calorias
+                document.getElementById("calories").textContent = `Calorias queimadas: ${caloriesBurned0}`;
+
+                // Incrementa o tempo em segundos
+                timeInSeconds++;
+            }
+        }
+
+        function toggleTimer0() {
+            if (isTimerRunning) {
+                // Pausar o temporizador
+                clearInterval(timerId);
+                isTimerRunning = false;
+                document.getElementById("startButton").textContent = "Iniciar";
+            } else {
+                // Iniciar o temporizador apenas se não estiver ativo
+                timerId = setInterval(updateTimer, 1000);
+                isTimerRunning = true;
+                document.getElementById("startButton").textContent = "Pausar";
+            }
+        }
+
+        function abrirPesos() {
+    document.getElementById("modalTreinos").style.display = "block";
+}
+
+function fecharPesos() {
+    document.getElementById("modalTreinos").style.display = "none";
+}
+
         function redirecionar(destino) {
             switch (destino) {
+                case 'Seg':
+                    window.open('seg/seg.html');
+                    break;
+                case 'Ter':
+                    window.open('ter/ter.html');
+                    break;
+                case 'Qua':
+                    window.open('qua/qua.html');
+                    break;
+                case 'Qui':
+                    window.open('qui/qui.html');
+                    break;
+                case 'Sex':
+                    window.open('alongar.html');
+                    break;
+                case 'Sab':
+                    window.open('correr.html');
+                    break;
+                case 'Dom':
+                    window.open('alongar.html');
+                    break;
+
+                case 'Meta':
+                    window.open('meta/body/mural.html');
+                    window.open('meta/meta.html');
+                    break;
+                case 'Braços':
+                    window.open('seg/braco.html');
+                    break;
+                case 'Abdômen':
+                    window.open('qua/abs.html');
+                    break;
+                case 'Peito':
+                    window.open('seg/peito.html');
+                    break;
+                case 'Costas':
+                    window.open('ter/costa.html');
+                    break;
+                case 'Ombros':
+                    window.open('qui/ombro.html');
+                    break;
+                case 'Perna':
+                    window.open('qua/perna.html');
+                    break;
+
                 case 'Corrida':
                     window.close('index.html');
                     window.open('correr.html');
