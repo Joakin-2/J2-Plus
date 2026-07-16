@@ -847,13 +847,13 @@ function abrirSitesManha() {
         window.open('https://j2plus.netlify.app/gym/', '_blank');
         window.open('https://j2plus.netlify.app/melody/', '_blank');
         window.open('https://j2plus.netlify.app/#christ', '_blank');
-        window.open('https://j2plus.netlify.app/works/', '_blank');
+        window.open('https://j2plus.netlify.app/modo/work.html', '_blank');
         window.open('https://pinterest.com/', '_blank');
     }
 }
 
 function abrirSitesTarde() {
-    window.open('https://j2plus.netlify.app/conselho/relatorio.html', '_blank');
+    window.open('https://j2plus.netlify.app/modo/relatorio.html', '_blank');
 }
 
 function abrirSitesNoite() {
