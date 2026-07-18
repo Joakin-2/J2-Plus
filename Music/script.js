@@ -418,6 +418,10 @@ var playlists = {
     title: "Automotivo Bibi Fogosa"
   },
   {
+    file: "Vibe/𝘼𝙊𝙏 𝙓 𝙔𝙀𝘼𝙏.mp3",
+    title: "𝘼𝙊𝙏 𝙓 𝙔𝙀𝘼𝙏"
+  },
+  {
     file: "Vibe/BANG BANG BANG (Slowed & Reverb).mp3",
     title: "BANG BANG BANG (Slowed & Reverb)"
   },
