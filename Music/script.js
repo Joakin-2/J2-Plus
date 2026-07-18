@@ -842,6 +842,10 @@ var playlists = {
     title: "Me Diga Então"
   },
   {
+    file: "Vibe/Meant To Be.mp3",
+    title: "Meant To Be"
+  },
+  {
     file: "Vibe/Neverita Cooking.mp3",
     title: "Neverita Cooking"
   },
@@ -1168,6 +1172,10 @@ var playlists = {
   {
     file: "Vibe/Yellow Light.mp3",
     title: "Yellow Light"
+  },
+  {
+    file: "Vibe/XvallariX - BALLINTEKK.mp3",
+    title: "XvallariX - BALLINTEKK"
   },
   {
     file: "Vibe/yeat - whatever i want (slowed reverb).mp3",
