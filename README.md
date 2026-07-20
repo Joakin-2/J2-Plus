@@ -1,10 +1,17 @@
-Versão 2.0
+# Versão 2.0 — Atualização Aperfeiçoada
 
-Atualizações e melhorias:
+## Atualizações e melhorias
 
-• Unificação da API em todo o sistema, garantindo que todos os recursos utilizem a mesma interface de comunicação.
-• Melhoria na consistência entre módulos da IA.
-• Ajustes internos para maior estabilidade e organização do código.
-• Pequenas otimizações de desempenho.
+• **Unificação completa da API em todo o sistema**, garantindo que todos os modos utilizem uma interface de comunicação padronizada, eficiente e consistente, melhorando a comunicação entre módulos, a organização das funções e a compatibilidade entre componentes.
 
-Observação: Esta atualização tem como foco principal a padronização da estrutura da API para facilitar manutenção, integração e futuras melhorias do sistema.
+• **Reestruturação interna do código**, com melhorias na arquitetura, organização dos processos e facilidade de manutenção e expansão futura.
+
+• **Otimizações de desempenho**, reduzindo processos desnecessários e aumentando a eficiência geral do sistema.
+
+• **Maior estabilidade operacional**, com ajustes para melhorar a confiabilidade, prevenir conflitos internos e proporcionar uma experiência mais fluida.
+
+• **Preparação para futuras evoluções**, criando uma base mais flexível para novas funcionalidades, integrações e melhorias contínuas.
+
+## Observação
+
+A versão 2.0 tem como principal objetivo modernizar a estrutura interna do sistema, padronizando sua comunicação, fortalecendo a arquitetura da plataforma e criando uma base mais robusta para futuras atualizações.
