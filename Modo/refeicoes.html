@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="icon" href="/Script/img/habitos.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refeições</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #141414;
+    text-align: center;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-top: 20px;
+}
+
+#menuBtn {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    border: 1px solid #ddd; /* Borda com cor cinza */
+    padding: 10px 20px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor ao passar o mouse */
+    margin-top: 10px; /* Margem superior de 10px */
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 2%;
+    left: 220px;
+    font-size: 20px;
+}
+
+#relogio {
+    position: absolute;
+    top: 2%; /* Ajuste conforme necessário */
+    right: 220px; /* Posiciona 20px a partir da borda direita */
+    font-size: 24px;
+    color: white;
+}
+
+.xp-gain {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #b382ed;
+    font-size: 2em;
+    font-weight: bold;
+    animation: fade-out 1.5s forwards;
+    pointer-events: none;
+}
+
+input[type="text" i] {
+    padding: 1px 2px;
+    background-color: #2b2b2b;
+    color: white;
+}
+
+h1 {
+    margin: 15px 0;
+    color: rgb(255, 255, 255);
+}
+
+h2 {
+    margin: 20px 0;
+    color: rgb(255, 255, 255);
+}
+
+h3 {
+    margin: 10px;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+}
+
+.caixa-anotacao {
+    width: 840px;
+    border-radius: 8px;
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    margin-bottom: 20px; /* Espaço abaixo do container de botões */
+}
+
+.button-container button {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    margin: 0 5px; /* Espaço entre os botões */
+    width: 288px; /* Largura dos botões */
+    height: 70px; /* Altura dos botões */
+    font-size: 20px; /* Tamanho da fonte dos botões */
+}
+
+textarea {
+    height: 200px;
+    border: none;
+    background-color: #333;
+    color: white;
+    resize: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    border: 1px solid #ddd; /* Borda com cor cinza */
+    padding: 10px 20px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor ao passar o mouse */
+    margin-top: 10px; /* Margem superior de 10px */
+    width: 300px;
+    height: 70px;
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #0c0c0c;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.modal-conteudo {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center; /* Centraliza os elementos dentro da modal */
+}
+
+.modal-conteudo h2 {
+    margin-bottom: 10px;
+}
+.modal-conteudo button {
+    margin-top: 10px; /* Espaçamento entre os elementos */
+    width: 210px;
+    height: 50px;
+    font-size: 16px;
+    padding: 5px;
+    border: none;
+}
+
+.modal-conteudo button {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    background-color: #333; /* Cor de fundo ao passar o mouse */
+}
+
+.button-container button:active {
+    background-color: #555; /* Cor de fundo ao clicar */
+}
+
+.modal-conteudo input {
+    margin-top: 10px; /* Espaçamento entre os elementos */
+    height: 40px;
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.modal-conteudo input[type="text"] {
+    width: 200px;
+}
+
+.modal-conteudo select {
+    width: 212px;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    background-color: #2b2b2b;
+    color: white;
+    border-radius: 4px;
+    margin-bottom: 10px; /* Espaço abaixo do dropdown */
+}
+
+.modal-conteudo select:focus {
+    outline: none;
+    border-color: #673ab7; /* cor da borda ao focar */
+    box-shadow: 0 0 8px #7e50cfad; /* sombra ao focar */
+}
+
+.modal-conteudo option {
+    background-color: #333; /* cor de fundo das opções */
+    color: white; /* cor do texto das opções */
+}
+
+.button-group {
+    display: flex;
+}
+
+.btn-export, .btn-import {
+    background-color: #2b2b2b;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilização para checkboxes */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #2196F3;
+}
+
+input[type="checkbox"]:checked::before {
+    content: "\2714";
+    font-size: 16px;
+    position: absolute;
+    top: -2px;
+    left: 3px;
+    color: white;
+}
+
+.caixa h2 {
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.section-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.caixa {
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid #555;
+    padding: 20px;
+    width: 254px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.caixa:hover {
+    transform: translateY(-5px);
+}
+
+.caixa .titulo {
+    color: #fff;
+    font-size: 24px;
+    margin-top: 10px;
+    border-bottom: 2px solid #555;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.caixa ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.caixa ul li {
+    font-size: 18px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.caixa ul li:hover {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.caixa ul li.concluido {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(16 16 16);
+    z-index: 1000;
+}
+
+.menu-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.menu-content button {
+    display: block;
+    width: 500px;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.comemoracao {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #b690f9;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+    animation: aparecer 0.5s ease, desaparecer 0.5s ease 2.5s;
+  }
+  
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
+  @keyframes desaparecer {
+    from {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+  }  
+
+/* Estilizando a barra de rolagem */
+::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem */
+}
+
+/* Estilizando o trilho da barra de rolagem */
+::-webkit-scrollbar-track {
+    background: #1e1e1e; /* Cor de fundo do trilho */
+    border-radius: 10px; /* Arredondamento dos cantos */
+}
+
+/* Estilizando o polegar (a parte que se move) */
+::-webkit-scrollbar-thumb {
+    background-color: #555; /* Cor do polegar */
+    border-radius: 10px; /* Arredondamento dos cantos do polegar */
+    border: 3px solid #1e1e1e; /* Adicionando um espaçamento ao redor do polegar */
+}
+
+/* Efeito de hover sobre o polegar */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #888; /* Cor do polegar ao passar o mouse */
+}
+
+/* Estilizando a barra de rolagem quando ativa (clicada) */
+::-webkit-scrollbar-thumb:active {
+    background-color: #333; /* Cor do polegar enquanto está ativo */
+}
+
+        /* Estilos para as seções */
+        #anotarRefeicoes,
+        #contagemDeLiquidos {
+            width: 45%;
+            padding: 18px;
+            margin: 10px;
+        }
+        
+        #contadorDeLitros {
+    color: white;
+}
+
+legend,
+label {
+    color: white;
+}
+
+.digestao {
+  color: #888;
+  font-style: italic;
+  margin-left: 8px;
+}
+
+        @media (max-width: 768px) {
+            /* Ajuste para telas menores, como tablets e smartphones */
+            body {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #anotarRefeicoes,
+            #contagemDeLiquidos {
+                width: 90%;
+                margin: 10px 0;
+            }
+        }
+
+        /* Estilo para os fieldsets */
+fieldset {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+/* Estilo para as legends */
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Estilo para os labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Estilo para os inputs de texto */
+input[type="text"] {
+    /*width: calc(90% - 12px); /* Leva em consideração a largura dos borders */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+/* Estilo para os botões dentro dos fieldsets */
+fieldset button {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    border: 1px solid #ddd; /* Borda com cor cinza */
+    padding: 10px 20px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor ao passar o mouse */
+    margin-top: 10px; /* Margem superior de 10px */
+    width: 300px;
+    height: 70px;
+    font-size: 20px;
+}
+
+/* Estilo para os botões dentro dos fieldsets ao passar o mouse */
+fieldset button:hover {
+    background-color: #0c0c0c;
+}
+
+#botoesControle {
+    display: flex;
+    justify-content: space-between;
+}
+
+#botoesControle button {
+    width: 48%; /* Ajuste a largura conforme necessário */
+}
+#calculatorModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2b2b2b;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    z-index: 1000;
+    width: 500px;
+    height: 540px;
+        }
+
+        #calculatorModal input {
+            width: calc(60% - 20px); /* Leva em consideração a largura dos borders */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+}
+
+        #calculatorModal button {
+            display: block;
+            margin: 0 auto;
+        }
+
+        #modalOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        p {
+            color: white;
+        }
+
+        .sugestao-btn {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    border: 1px solid #ddd; /* Borda com cor cinza */
+    padding: 8px 0px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor ao passar o mouse */
+    width: 40px;
+    height: 38px;
+    font-size: 20px;
+    border-radius: 4px;
+}
+
+.sugestao-btn:hover {
+    background-color: #0c0c0c;
+}
+
+#resetModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2b2b2b;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    z-index: 1000;
+    width: 400px;
+    height: auto;
+}
+
+#resetModal button {
+    display: block;
+    margin: 10px auto;
+}
+        /* Estilos para o modal */
+.modal {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    z-index: 1; /* Fica sobre o conteúdo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /*overflow: auto; /* Permite rolar a tela, se necessário */
+    background-color: rgb(0, 0, 0); /* Fundo semi-transparente */
+    background-color: rgba(0, 0, 0, 0.4); /* Cor de fundo com opacidade */
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #1c1c1c;
+    margin: 8% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 380px;
+    max-width: 400px;
+    color: white;
+}
+
+/* Botão de fechar */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para a lista */
+.paginacao {
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+ul li {
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+}
+
+.kcal {
+        margin-left: 40px;
+}
+
+.gramas {
+        margin-left: 40px;
+}
+
+.buttoncal button {
+    width: 60px;
+    height: 50px;
+}
+
+    </style>
+</head>
+<body>
+    <header class="header-container">
+        <button id="menuBtn">Menu</button>
+        <p id="relogio"></p>
+    </header>
+
+    <div id="menuOverlay" class="menu-overlay">
+        <div class="menu-content">
+            <button id="habitosBtn">Hábitos</button>
+            <button id="refeicoesBtn">Refeições</button>
+            <button id="voltarBtn">Voltar</button>
+        </div>
+    </div>    
+
+    <h1>Monitor de Hábitos</h1>
+
+    <div style="margin-bottom: 30px;"></div>
+
+    <div style="display: flex; justify-content: space-between; width: 90%; margin: auto;">
+        <section id="anotarRefeicoes">
+            <div>
+                <h2 style="display: inline-block; margin-right: 10px;">Anotações de Refeições</h2>
+                <button type="button" class="sugestao-btn" onclick="mostrarModal()" style="margin-left: 0px; margin-bottom: 10px; margin-top: 0px;">?</button>
+            </div>
+
+            <div id="modalAlimentos" class="modal">
+                <div class="modal-content" style="height: 710px">
+                    <img src="/Script/img/nutri.jpg" alt="Imagem Topo" style="width: 60%; height: auto;">
+                  <span class="close" onclick="fecharModal()">&times;</span>
+                  <h3>Lista de Alimentos</h3>
+              
+                  <div class="pagina" id="pagina1">
+                    <ul>
+                      <li><span class="alimento">Pão</span> <span class="gramas">50g</span> <span class="kcal">80 kcal</span> <span class="digestao">~2h</span></li>
+                      <li><span class="alimento">Ovo</span> <span class="gramas">50g</span> <span class="kcal">70 kcal</span> <span class="digestao">~3h</span></li>
+                      <li><span class="alimento">Café</span> <span class="gramas">200ml</span> <span class="kcal">5 kcal</span> <span class="digestao">~30min</span></li>
+                      <li><span class="alimento">Fruta</span> <span class="gramas">100g</span> <span class="kcal">50 kcal</span> <span class="digestao">~1h</span></li>
+                      <li><span class="alimento">Arroz</span> <span class="gramas">125g</span> <span class="kcal">130 kcal</span> <span class="digestao">~2h30min</span></li>
+                    </ul>
+                  </div>
+
+                  <div class="pagina" id="pagina2" style="display:none;">
+                    <ul>
+                      <li><span class="alimento">Feijão</span> <span class="gramas">100g</span> <span class="kcal">95 kcal</span> <span class="digestao">~3h</span></li>
+                      <li><span class="alimento">Queijo</span> <span class="gramas">30g</span> <span class="kcal">120 kcal</span> <span class="digestao">~4h</span></li>
+                      <li><span class="alimento">Leite</span> <span class="gramas">200ml</span> <span class="kcal">60 kcal</span> <span class="digestao">~2h</span></li>
+                      <li><span class="alimento">Tapioca</span> <span class="gramas">50g</span> <span class="kcal">100 kcal</span> <span class="digestao">~2h</span></li>
+                      <li><span class="alimento">Linguiça</span> <span class="gramas">100g</span> <span class="kcal">200 kcal</span> <span class="digestao">~4h</span></li>
+                    </ul>
+                  </div>
+
+                  <div class="pagina" id="pagina3" style="display:none;">
+                    <ul>
+                      <li><span class="alimento">Salsicha</span> <span class="gramas">50g</span> <span class="kcal">140 kcal</span> <span class="digestao">~3h30min</span></li>
+                      <li><span class="alimento">Mortadela</span> <span class="gramas">50g</span> <span class="kcal">150 kcal</span> <span class="digestao">~4h</span></li>
+                      <li><span class="alimento">Amendoim</span> <span class="gramas">30g</span> <span class="kcal">180 kcal</span> <span class="digestao">~6h</span></li>
+                      <li><span class="alimento">Sanduíche</span> <span class="gramas">150g</span> <span class="kcal">300 kcal</span> <span class="digestao">~3h30min</span></li>
+                      <li><span class="alimento">Hambúrguer</span> <span class="gramas">130g</span> <span class="kcal">250 kcal</span> <span class="digestao">~4h</span></li>
+                    </ul>
+                  </div>
+              
+                  <div>
+                    <button style="width: 150px;" onclick="copiarLista()"><i class="fas fa-list"></i></button>
+                    <button style="width: 150px;" onclick="abrirSitesProteinas()"><i class="fas fa-capsules"></i></button>
+                  </div>
+
+                  <div class="paginacao">
+                    <button style="width: 50px;" onclick="mudarPagina(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button style="width: 200px;" id="menuRefeicoesBtn">Cardápio</button>
+                    <button style="width: 50px;" onclick="mudarPagina(1)"><i class="fas fa-chevron-right"></i></button>
+                  </div>
+              
+                </div>
+              </div>
+              
+            <form id="refeicoesForm">
+                <fieldset style="display: flex; flex-direction: column; padding: 20px; margin-top: 52px;">
+                    <legend>Manhã</legend>
+                    
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <label for="cafemanha" style="margin-right: 10px;">Café da Manhã (6h):</label>
+                        <input type="text" id="cafemanha" name="cafemanha" placeholder="Registre seu café da manhã" style="flex: 1; margin-right: 0px; margin-left: 20px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('cafemanha')" style="margin-left: 0px; margin-bottom: 10px; margin-top: 0px;">?</button>
+                    </div>
+                
+                    <div style="display: flex; align-items: center;">
+                        <label for="lanchemanha" style="margin-right: 10px;">Lanche da Manhã (9h):</label>
+                        <input type="text" id="lanchemanha" name="lanchemanha" placeholder="Registre seu Lanche da Manhã" style="flex: 1; margin-right: 0px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('lanchemanha')" style="margin-left: 0px;margin-bottom: 10px;margin-top: 0px;">?</button>
+                    </div>
+                </fieldset>
+                        
+                
+                <fieldset style="display: flex; flex-direction: column; padding: 20px; margin-top: 30px;">
+                    <legend>Tarde</legend>
+                    
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <label for="almoco" style="margin-right: 10px;">Almoço (12h):</label>
+                        <input type="text" id="almoco" name="almoco" placeholder="Registre seu almoço" style="flex: 1;margin-right: 0px;margin-left: 70px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('almoco')" style="margin-left: 0px;margin-bottom: 10px;margin-top: 0px;">?</button>
+                    </div>
+                
+                    <div style="display: flex; align-items: center;">
+                        <label for="lanchetarde" style="margin-right: 10px;">Lanche da Tarde (15h):</label>
+                        <input type="text" id="lanchetarde" name="lanchetarde" placeholder="Registre seu lanche da tarde" style="flex: 1; margin-right: 0px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('lanchetarde')" style="margin-left: 0px;margin-bottom: 10px;margin-top: 0px;">?</button>
+                    </div>
+                </fieldset>
+                
+
+                <fieldset style="display: flex; flex-direction: column; padding: 20px; margin-top: 30px;">
+                    <legend>Noite</legend>
+                    
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <label for="janta" style="margin-right: 10px;">Janta (18h):</label>
+                        <input type="text" id="janta" name="janta" placeholder="Registre seu jantar" style="flex: 1;margin-right: 0px;margin-left: 85px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('janta')" style="margin-left: 0px;margin-bottom: 10px;margin-top: 0px;">?</button>
+                    </div>
+                
+                    <div style="display: flex; align-items: center;">
+                        <label for="lanchenoite" style="margin-right: 10px;">Ceia (21h):</label>
+                        <input type="text" id="lanchenoite" name="lanchenoite" placeholder="Registre seu lanche da noite" style="flex: 1; margin-left: 95px; margin-right: 0px;">
+                        <button type="button" class="sugestao-btn" onclick="sugerirRefeicao('lanchenoite')" style="margin-left: 0px;margin-bottom: 10px;margin-top: 0px;">?</button>
+                    </div>
+                </fieldset>
+                
+            </form>
+        </section>
+
+        <section id="contagemDeLiquidos">
+            <h2>Contagem de Água</h2>
+            <img src="/Script/img/agua.png" alt="Água" style="width: 200px; height: 200px; margin-top: 20px;">
+            <p id="contadorDeLitros">0/4 Litros</p>
+            <h3>(Observação: 2 Litros Recomendado | 3 Litros Ótimo | 4 Litros Perfeito)</h3>
+            <div style="margin-bottom: 20px;"></div>
+            <div id="botoesControle">
+                <button id="adicionarLitroBtn">+ 1 Litro</button>
+                <button id="resetarLitroBtn">Resetar</button>
+            </div>   
+            <div style="margin-bottom: 55px;"></div>         
+            <fieldset>
+                <legend>Dicas</legend>
+                <div style="margin-bottom: 10px;"></div>
+                <label for="dicas">Recomendado comer a cada 3 horas</label>
+                <div style="margin-bottom: 30px;"></div>
+                <div id="botoesControle">
+                    <button onclick="window.open('receitas.html', '_blank')">Receitas</button>
+                    <button id="openCalculatorButton">Calculadora</button>
+                </div>  
+            </fieldset>
+        </section>        
+    </div>
+
+    <div id="menuRefeicoesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharMenuRefeicoes()">&times;</span>
+            <h3 id="menuTitle">Menu de Refeições</h3>
+            <ul id="listaRefeicoes">
+                <li>6h: Ovo - 70 kcal (Digestão: ~3h)</li>
+                <li>9h: Pão com Queijo - 200 kcal (Digestão: ~4h)</li>
+                <li>12h: Frango com Arroz - 450 kcal (Digestão: ~4-6h)</li>
+                <li>15h: Salada de Frutas - 150 kcal (Digestão: ~1h)</li>
+                <li>18h: Sopa de Legumes - 300 kcal (Digestão: ~2-3h)</li>
+                <li>21h: Iogurte Natural - 100 kcal (Digestão: ~1-2h)</li>
+            </ul>
+            <div>
+                <button id="modoJejumBtn">Modo Jejum</button>
+                <button type="button" class="sugestao-btn" onclick="mostrarInfoJejum()" style="width: 50px; height: 70px; margin-left: 0px; margin-bottom: 10px; margin-top: 0px;">?</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalOverlay"></div>
+<div id="calculatorModal">
+    <div style="display: inline-flex; align-items: center; margin-bottom: 20px;">
+        <h2 style="display: inline-block; margin-right: 10px; margin-bottom: 10px;">Anotações</h2>
+        <button type="button" class="sugestao-btn" onclick="openCalModal()">+/-</button>
+    </div>
+
+    <label for="gramsInput">Quantos gramas de comida você comeu?</label>
+    <input type="number" id="gramsInput" style="margin-bottom: -0px;" placeholder="Digite os gramas" />
+
+    <p id="result"></p>
+    
+    <!-- Campos para calorias -->
+    <div>
+        <input type="number" id="caloriasComidas" style="width: calc(60% - 20px); padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; margin-top: 5px; margin-bottom: 5px; background-color: #000000; color: white;" placeholder="Calorias consumidas" oninput="calcularTotal()">
+    </div>
+    <div>
+        <input type="number" id="caloriasQueimadas" style="width: calc(60% - 20px); padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; margin-top: 5px; margin-bottom: 5px; background-color: #000000; color: white;" placeholder="Calorias queimadas" oninput="calcularTotal()">
+    </div>
+    <div>
+        <p><strong>Total:</strong> <span id="totalCalorias">0</span> kcal</p>
+    </div>
+
+    <p>Sua taxa metabólica basal (TMB) é 1.750 kcal por dia.</p>
+    <p>A quantidade de calorias varia conforme o tipo de alimento. Para um cálculo mais preciso, consulte uma tabela nutricional.</p>
+
+    <button onclick="closeNotesModal()">Fechar</button>
+</div>
+
+    <!-- Modal da Calculadora -->
+    <div id="calcModal" class="modal" style="z-index: 1000; height: 410px; width: 380px; background: rgb(0 0 0 / 0%);">
+        <div class="modal-content" onmousedown="dragMouseDown(event)" style="background: #252424; height: 330px; width: 280px; border: 2px solid #ddd; border-radius: 4px;">
+            <div class="calculator">
+                <span class="close" style="position: static;margin-top: 10px;" onclick="closeCalModal()">&times;</span>
+                <input type="text" id="display" disabled>
+                <div class="buttoncal" style="display: grid; grid-template-columns: repeat(4, 0fr); grid-gap: 10px; padding: 10px;">
+                    <button onclick="appendToDisplay('7')">7</button>
+                    <button onclick="appendToDisplay('8')">8</button>
+                    <button onclick="appendToDisplay('9')">9</button>
+                    <button onclick="appendToDisplay('/')">/</button>
+                    
+                    <button onclick="appendToDisplay('4')">4</button>
+                    <button onclick="appendToDisplay('5')">5</button>
+                    <button onclick="appendToDisplay('6')">6</button>
+                    <button onclick="appendToDisplay('*')">*</button>
+                    
+                    <button onclick="appendToDisplay('1')">1</button>
+                    <button onclick="appendToDisplay('2')">2</button>
+                    <button onclick="appendToDisplay('3')">3</button>
+                    <button onclick="appendToDisplay('-')">-</button>
+                    
+                    <button onclick="appendToDisplay('0')">0</button>
+                    <button onclick="clearDisplay()">C</button>
+                    <button onclick="calculate()">=</button>
+                    <button onclick="appendToDisplay('+')">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="resetModal">
+        <h2>Escolha o que resetar</h2>
+        <button id="resetarAguaBtn">Resetar Água</button>
+        <button id="resetarRefeicoesBtn">Resetar Refeições</button>
+        <button id="resetarTudoBtn">Resetar Tudo</button>
+        <button id="closeResetButton">Fechar</button>
+    </div>    
+    
+    <script>
+        function calcularTotal() {
+    // Obtém os valores de calorias consumidas e queimadas
+    let caloriasComidas = parseFloat(document.getElementById("caloriasComidas").value) || 0;
+    let caloriasQueimadas = parseFloat(document.getElementById("caloriasQueimadas").value) || 0;
+    
+    // Calcula o total (calorias consumidas - calorias queimadas)
+    let total = caloriasComidas - caloriasQueimadas;
+    
+    // Atualiza o campo de total
+    document.getElementById("totalCalorias").textContent = total.toFixed(2); // 2 casas decimais
+}
+
+        function abrirSitesProteinas() {
+    // Abre dois sites em abas diferentes
+    window.open('https://www.gsuplementos.com.br/kit-whey-protein-concentrado-1kg-e-creatina-monohidratada-250g-growth-supplements', '_blank');
+  }
+
+                function copiarLista() {
+            const listaDeCompras = `Laranja, Maçã, Banana, Limão, Ovo, Frios, Leite, Café, Aveia Farelo, Chá Verde, Pão, Tapioca, Enxágue Bucal, Talco, Gillette, Shampoo, Sabonete, Sabonete Líquido, Caixa de Papelão, Ração, Cotonetes, Lixa de Pé, Pasta de Dente, Escovas`;
+
+            const listaDeCompras0 = `
+1. Laranja
+2. Maçã
+3. Banana
+4. Limão
+5. Ovo
+6. Frios
+7. Leite
+8. Café
+9. Aveia Farelo
+10. Chá Verde
+11. Pão
+12. Tapioca
+13. Enxágue Bucal
+14. Talco
+15. Gillette
+16. Shampoo
+17. Sabonete
+18. Sabonete Líquido
+19. Caixa de Papelão
+20. Ração
+21. Cotonetes
+22. Lixa de Pé
+23. Pasta de Dente
+24. Escovas
+    `;
+    
+    // Criando um campo de texto temporário para copiar
+    const textarea = document.createElement('textarea');
+    textarea.value = listaDeCompras;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+
+    alert('Lista de compras copiada para a área de transferência!');
+  }
+
+        const resetarLitroBtn = document.getElementById('resetarLitroBtn');
+        const resetModal = document.getElementById('resetModal');
+        const closeResetButton = document.getElementById('closeResetButton');
+        const resetarAguaBtn = document.getElementById('resetarAguaBtn');
+        const limite = 4; // Defina o limite de litros
+        const contadorLitros = document.getElementById('contadorDeLitros');
+        const resetarRefeicoesBtn = document.getElementById('resetarRefeicoesBtn');
+        const resetarTudoBtn = document.getElementById('resetarTudoBtn');
+
+        function mostrarInfoJejum() {
+    alert("O jejum é uma prática natural que ajuda a equilibrar o corpo e a mente. Ao ficar algumas horas sem comer, você permite que seu corpo queime gordura, melhore a digestão e até renove o paladar. Comece devagar, ouvindo seu corpo e aproveitando os benefícios com leveza.");
+}
+
+        let paginaAtual = 1;
+const totalPaginas = 3;
+
+function mudarPagina(direcao) {
+  document.getElementById(`pagina${paginaAtual}`).style.display = "none";
+  paginaAtual += direcao;
+  if (paginaAtual < 1) paginaAtual = 1;
+  if (paginaAtual > totalPaginas) paginaAtual = totalPaginas;
+  document.getElementById(`pagina${paginaAtual}`).style.display = "block";
+}
+    
+        // Evento de clique para abrir o modal de reset
+        resetarLitroBtn.addEventListener('click', function() {
+            resetModal.style.display = 'block';
+        });
+    
+        // Fecha o modal de reset
+        closeResetButton.addEventListener('click', () => {
+            resetModal.style.display = 'none';
+        });
+    
+        // Resetar apenas a água
+        resetarAguaBtn.addEventListener('click', function() {
+            contadorLitros.textContent = `0/${limite} Litros`;
+            // Remover apenas o item 'litros' do localStorage
+            localStorage.removeItem('litros');
+            salvarContador(); // Salvar o novo valor no localStorage
+            resetModal.style.display = 'none';
+        });
+    
+        // Resetar apenas as refeições
+        resetarRefeicoesBtn.addEventListener('click', function() {
+            refeicoesForm.reset(); // Reseta os campos do formulário de refeições
+            localStorage.removeItem('refeicoes'); // Remove apenas as refeições do localStorage
+            resetModal.style.display = 'none';
+        });
+    
+        // Resetar tudo (água e refeições)
+        resetarTudoBtn.addEventListener('click', function() {
+            // Remover apenas as chaves relacionadas às refeições e aos litros
+            refeicoesForm.reset(); // Reseta os campos do formulário de refeições
+            localStorage.removeItem('refeicoes'); // Remove apenas as refeições do localStorage
+            contadorLitros.textContent = `0/${limite} Litros`;
+            // Remover apenas o item 'litros' do localStorage
+            localStorage.removeItem('litros');
+            salvarContador(); // Salvar o novo valor no localStorage
+            resetModal.style.display = 'none';
+        });
+
+        // Função para salvar automaticamente no localStorage
+        function saveNotes() {
+            const notes = document.getElementById("notesTextAreaComer").value;
+            localStorage.setItem("userNotes", notes);
+        }
+
+        // Carregar as anotações salvas ao abrir a página
+        window.onload = function () {
+            const savedNotes = localStorage.getItem("userNotes");
+            if (savedNotes) {
+                document.getElementById("notesTextAreaComer").value = savedNotes;
+            }
+        };
+
+        let display = document.getElementById('display');
+
+// Função para abrir o modal
+function openCalModal() {
+    document.getElementById('calcModal').style.display = 'block';
+}
+
+// Função para fechar o modal
+function closeCalModal() {
+    document.getElementById('calcModal').style.display = 'none';
+}
+
+// Função para adicionar valores ao visor
+function appendToDisplay(value) {
+    display.value += value;
+}
+
+// Função para limpar o visor
+function clearDisplay() {
+    display.value = '';
+}
+
+// Função para calcular o resultado
+function calculate() {
+    try {
+        display.value = eval(display.value);
+    } catch (e) {
+        display.value = 'Erro';
+    }
+}
+
+// Função para permitir que o modal seja arrastado
+let modal = document.getElementById('calcModal');
+let modalHeader = document.getElementsByClassName('modal-header')[0];
+
+let isDragging = false;
+let offsetX, offsetY;
+
+function dragMouseDown(e) {
+    e.preventDefault();
+    isDragging = true;
+    offsetX = e.clientX - modal.offsetLeft;
+    offsetY = e.clientY - modal.offsetTop;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = dragMouseMove;
+}
+
+function dragMouseMove(e) {
+    if (isDragging) {
+        modal.style.top = e.clientY - offsetY + 'px';
+        modal.style.left = e.clientX - offsetX + 'px';
+    }
+}
+
+function closeDragElement() {
+    isDragging = false;
+    document.onmouseup = null;
+    document.onmousemove = null;
+}
+
+        function salvarContador() {
+            // Salvar o valor atualizado do contador no localStorage
+            localStorage.setItem('contadorLitros', contadorLitros.textContent);
+        }
+
+        const calculatorModal = document.getElementById("calculatorModal");
+const modalOverlay = document.getElementById("modalOverlay");
+const gramsInput = document.getElementById("gramsInput");
+const result = document.getElementById("result");
+const caloriasComidasInput = document.getElementById("caloriasComidas");
+const caloriasQueimadasInput = document.getElementById("caloriasQueimadas");
+const totalCalorias = document.getElementById("totalCalorias");
+
+// Função para calcular as calorias consumidas e queimadas
+function calcularTotal() {
+    const caloriasComidas = parseFloat(caloriasComidasInput.value) || 0;
+    const caloriasQueimadas = parseFloat(caloriasQueimadasInput.value) || 0;
+
+    // Calcula o total de calorias (consumidas - queimadas)
+    const total = caloriasComidas - caloriasQueimadas;
+    totalCalorias.textContent = total.toFixed(2); // Exibe o resultado com 2 casas decimais
+}
+
+// Evento de cálculo estimativo
+gramsInput.addEventListener("input", () => {
+    const grams = parseFloat(gramsInput.value);
+
+    if (isNaN(grams) || grams <= 0) {
+        result.textContent = "Por favor, insira uma quantidade válida de gramas.";
+        return;
+    }
+
+    // Aqui você pode adicionar a lógica para calcular as calorias com base nos gramas
+    // Exemplo simples: 1,3 calorias por grama de arroz (exemplo genérico)
+    const caloriasPorGrama = 1.3; // Defina a caloria por grama do alimento
+    const caloriasConsumidas = grams * caloriasPorGrama;
+
+    result.textContent = `Você consumiu aproximadamente ${caloriasConsumidas.toFixed(2)} kcal.`;
+
+    // Atualiza o campo de calorias consumidas
+    caloriasComidasInput.value = caloriasConsumidas.toFixed(2);
+});
+
+// Função para fechar o modal
+function closeNotesModal() {
+    calculatorModal.style.display = "none";
+    modalOverlay.style.display = "none";
+    result.textContent = "";
+    gramsInput.value = "";
+    caloriasComidasInput.value = "";
+    caloriasQueimadasInput.value = "";
+}
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const habitosBtn = document.getElementById('habitosBtn');
+    const refeicoesBtn = document.getElementById('refeicoesBtn');
+    const voltarBtn = document.getElementById('voltarBtn');
+    const refeicoesForm = document.getElementById('refeicoesForm');
+    const contadorLitros = document.getElementById('contadorDeLitros');
+    const adicionarLitroBtn = document.getElementById('adicionarLitroBtn');
+    const limite = 4; // Defina o limite de litros
+
+    // Função para salvar o contador no localStorage
+    function salvarContador() {
+        localStorage.setItem('contadorLitros', contadorLitros.textContent);
+    }
+
+    // Função para carregar o contador do localStorage
+    function carregarContador() {
+        const valorSalvo = localStorage.getItem('contadorLitros');
+        if (valorSalvo) {
+            contadorLitros.textContent = valorSalvo;
+        }
+    }
+
+    // Carregar contador ao carregar a página
+    carregarContador();
+
+    menuBtn.addEventListener('click', function() {
+        menuOverlay.style.display = 'block';
+    });
+
+    habitosBtn.addEventListener('click', function() {
+        window.location.href = 'index.html';
+    });
+
+    refeicoesBtn.addEventListener('click', function() {
+        window.location.href = 'refeicoes.html';
+    });
+
+    voltarBtn.addEventListener('click', function() {
+        fecharMenu();
+    });
+
+    function fecharMenu() {
+        menuOverlay.style.display = 'none';
+    }
+
+    // Função para salvar anotações no armazenamento local
+    function salvarAnotacoes() {
+        const formData = new FormData(refeicoesForm);
+        formData.forEach((value, key) => {
+            localStorage.setItem(key, value);
+        });
+    }
+
+    // Carregar anotações do armazenamento local ao carregar a página
+    function carregarAnotacoes() {
+        for (let i = 0; i < refeicoesForm.elements.length; i++) {
+            const element = refeicoesForm.elements[i];
+            const valor = localStorage.getItem(element.id);
+            if (valor) {
+                element.value = valor;
+            }
+        }
+    }
+
+    // Chamar a função de carregar anotações ao carregar a página
+    carregarAnotacoes();
+
+    // Adicionar ouvintes de eventos de entrada aos elementos <input>
+    refeicoesForm.addEventListener('input', salvarAnotacoes);
+
+    // Evento de clique para adicionar litro
+    adicionarLitroBtn.addEventListener('click', function() {
+        const valorAtual = parseInt(contadorLitros.textContent.split('/')[0]);
+        
+        if (valorAtual < limite) {
+            const novoValor = valorAtual + 1;
+            contadorLitros.textContent = `${novoValor}/${limite} Litros`;
+            // Salvar no localStorage
+            salvarContador();
+        }
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    function atualizarRelogio() {
+        const relogioElement = document.getElementById('relogio');
+        if (relogioElement) {
+            const agora = new Date();
+            const horas = agora.getHours().toString().padStart(2, '0');
+            const minutos = agora.getMinutes().toString().padStart(2, '0');
+            const segundos = agora.getSeconds().toString().padStart(2, '0');
+            const horario = `${horas}:${minutos}:${segundos}`;
+            relogioElement.textContent = horario;
+        }
+    }
+
+    atualizarRelogio();
+    setInterval(atualizarRelogio, 1000);
+});
+
+function sugerirRefeicao(id) {
+    const sugestoes = {
+        cafemanha: 'Whey, Aveia, Banana, Maçã, Amendoim e Chá',
+        lanchemanha: 'Sanduíche com Ovo e Café com Leite',
+        almoco: 'Arroz, Feijão, Salada e Frango',
+        lanchetarde: 'Iogurte Natural',
+        janta: 'Arroz, Feijão, Salada e Frango',
+        lanchenoite: 'Cereal com Leite'
+    };
+
+    const input = document.getElementById(id);
+    input.value = sugestoes[id] || 'Sugestão não disponível';
+}
+
+const openCalculatorButton = document.getElementById("openCalculatorButton");
+
+openCalculatorButton.addEventListener("click", () => {
+    calculatorModal.style.display = "block";
+    modalOverlay.style.display = "block";
+});
+
+        // Função para mostrar o modal
+function mostrarModal() {
+    document.getElementById('modalAlimentos').style.display = 'block';
+}
+
+// Função para fechar o modal
+function fecharModal() {
+    document.getElementById('modalAlimentos').style.display = 'none';
+}
+
+// Fechar o modal se clicar fora da área do modal
+window.onclick = function(event) {
+    if (event.target === document.getElementById('modalAlimentos')) {
+        fecharModal();
+    }
+}
+
+document.getElementById('menuRefeicoesBtn').addEventListener('click', () => {
+    document.getElementById('menuRefeicoesModal').style.display = 'block';
+});
+
+document.getElementById('modoJejumBtn').addEventListener('click', () => {
+    const listaRefeicoes = document.getElementById('listaRefeicoes');
+    const titulo = document.getElementById('menuTitle');
+
+    // Alterar para o "Modo Jejum"
+    listaRefeicoes.innerHTML = `
+        <li>6h: Chá verde - 0 kcal <span class="digestao">~18min</span></li>
+        <li>9h: Frutas vermelhas - 50 kcal <span class="digestao">~1h</span></li>
+        <li>12h: Salada com folhas verdes e limão - 80 kcal <span class="digestao">~1h30min</span></li>
+        <li>15h: Água com limão - 0 kcal <span class="digestao">~18min</span></li>
+        <li>18h: Sopa de legumes sem óleo - 100 kcal <span class="digestao">~1h30min</span></li>
+        <li>21h: Chá de camomila - 0 kcal <span class="digestao">~18min</span></li>
+    `;
+    titulo.textContent = 'Menu de Refeições - Modo Jejum';
+});
+
+function fecharMenuRefeicoes() {
+    document.getElementById('menuRefeicoesModal').style.display = 'none';
+}
+
+// Fechar modal ao clicar fora do conteúdo
+window.onclick = function (event) {
+    const modal = document.getElementById('menuRefeicoesModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+};
+
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="icon" href="/Script/img/habitos.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hábitos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #141414;
+    text-align: center;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-top: 20px;
+}
+
+#menuBtn {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    border: 1px solid #ddd; /* Borda com cor cinza */
+    padding: 10px 20px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor ao passar o mouse */
+    margin-top: 10px; /* Margem superior de 10px */
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 2%;
+    left: 220px;
+    font-size: 20px;
+}
+
+#relogio {
+    position: absolute;
+    top: 2%; /* Ajuste conforme necessário */
+    right: 220px; /* Posiciona 20px a partir da borda direita */
+    font-size: 24px;
+    color: white;
+}
+
+.xp-gain {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #b382ed;
+    font-size: 2em;
+    font-weight: bold;
+    animation: fade-out 1.5s forwards;
+    pointer-events: none;
+}
+
+input[type="text" i] {
+    padding: 1px 2px;
+    background-color: #2b2b2b;
+    color: white;
+}
+
+h1 {
+    margin: 15px 0;
+    color: rgb(255, 255, 255);
+}
+
+h2 {
+    margin: 20px 0;
+    color: rgb(255, 255, 255);
+}
+
+h3 {
+    margin: 10px;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+}
+
+.caixa-anotacao {
+    width: 840px;
+    border-radius: 8px;
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    margin-bottom: 20px; /* Espaço abaixo do container de botões */
+}
+
+.button-container button {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    margin: 0 5px; /* Espaço entre os botões */
+    width: 288px; /* Largura dos botões */
+    height: 70px; /* Altura dos botões */
+    font-size: 20px; /* Tamanho da fonte dos botões */
+}
+
+textarea {
+    height: 200px;
+    border: none;
+    background-color: #333;
+    color: white;
+    resize: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    border: 1px solid #ddd; /* Borda com cor cinza */
+    padding: 10px 20px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor ao passar o mouse */
+    margin-top: 10px; /* Margem superior de 10px */
+    width: 300px;
+    height: 70px;
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #0c0c0c;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.modal-conteudo {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center; /* Centraliza os elementos dentro da modal */
+}
+
+.modal-conteudo h2 {
+    margin-bottom: 10px;
+}
+.modal-conteudo button {
+    margin-top: 10px; /* Espaçamento entre os elementos */
+    width: 210px;
+    height: 50px;
+    font-size: 16px;
+    padding: 5px;
+    border: none;
+}
+
+.modal-conteudo button {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    background-color: #333; /* Cor de fundo ao passar o mouse */
+}
+
+.button-container button:active {
+    background-color: #555; /* Cor de fundo ao clicar */
+}
+
+.modal-conteudo input {
+    margin-top: 10px; /* Espaçamento entre os elementos */
+    height: 40px;
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.modal-conteudo input[type="text"] {
+    width: 200px;
+}
+
+.modal-conteudo select {
+    width: 212px;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    background-color: #2b2b2b;
+    color: white;
+    border-radius: 4px;
+    margin-bottom: 10px; /* Espaço abaixo do dropdown */
+}
+
+.modal-conteudo select:focus {
+    outline: none;
+    border-color: #673ab7; /* cor da borda ao focar */
+    box-shadow: 0 0 8px #7e50cfad; /* sombra ao focar */
+}
+
+.modal-conteudo option {
+    background-color: #333; /* cor de fundo das opções */
+    color: white; /* cor do texto das opções */
+}
+
+.button-group {
+    display: flex;
+}
+
+.btn-export, .btn-import {
+    background-color: #2b2b2b;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilização para checkboxes */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #2196F3;
+}
+
+input[type="checkbox"]:checked::before {
+    content: "\2714";
+    font-size: 16px;
+    position: absolute;
+    top: -2px;
+    left: 3px;
+    color: white;
+}
+
+.caixa h2 {
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.section-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.caixa {
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid #555;
+    padding: 20px;
+    width: 254px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.caixa:hover {
+    transform: translateY(-5px);
+}
+
+.caixa .titulo {
+    color: #fff;
+    font-size: 24px;
+    margin-top: 10px;
+    border-bottom: 2px solid #555;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.caixa ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.caixa ul li {
+    font-size: 18px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.caixa ul li:hover {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.caixa ul li.concluido {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(16 16 16);
+    z-index: 1000;
+}
+
+.menu-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.menu-content button {
+    display: block;
+    width: 500px;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.comemoracao {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #b690f9;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+    animation: aparecer 0.5s ease, desaparecer 0.5s ease 2.5s;
+  }
+  
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
+  @keyframes desaparecer {
+    from {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+  }  
+
+/* Estilizando a barra de rolagem */
+::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem */
+}
+
+/* Estilizando o trilho da barra de rolagem */
+::-webkit-scrollbar-track {
+    background: #1e1e1e; /* Cor de fundo do trilho */
+    border-radius: 10px; /* Arredondamento dos cantos */
+}
+
+/* Estilizando o polegar (a parte que se move) */
+::-webkit-scrollbar-thumb {
+    background-color: #555; /* Cor do polegar */
+    border-radius: 10px; /* Arredondamento dos cantos do polegar */
+    border: 3px solid #1e1e1e; /* Adicionando um espaçamento ao redor do polegar */
+}
+
+/* Efeito de hover sobre o polegar */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #888; /* Cor do polegar ao passar o mouse */
+}
+
+/* Estilizando a barra de rolagem quando ativa (clicada) */
+::-webkit-scrollbar-thumb:active {
+    background-color: #333; /* Cor do polegar enquanto está ativo */
+}
+
+    </style>
+</head>
+<body>
+    <header class="header-container">
+        <button id="menuBtn">Menu</button>
+        <p id="relogio"></p>
+    </header>
+
+    <div id="menuOverlay" class="menu-overlay">
+        <div class="menu-content">
+            <button id="habitosBtn">Hábitos</button>
+            <button id="refeicoesBtn">Refeições</button>
+            <button id="voltarBtn">Voltar</button>
+        </div>
+    </div>    
+
+    <h1>Monitor de Hábitos</h1>
+
+    <section class="caixa-anotacao" style="margin-bottom: 10px; margin-top: 2%;">
+        <h3>Anotações</h3>
+        <textarea id="anotacoes" rows="5" cols="50"></textarea>
+        <textarea id="programados" rows="5" cols="50"></textarea>
+    </section>
+
+    <div style="display: flex;">
+        <button id="mostrarHorarioBtn" style="width: 10px; height: 40px; background-color: #141414; border: 1px solid #141414; margin-left: -5px;"><i class="fas fa-question-circle" style="margin-left: -10px;"></i></button>
+        <h2 id="tituloHabitos" style="margin-left: 10px; margin-right: 15px; margin-top: 15px;">Hábitos</h2>
+        <button onclick="recarregar()" style="width: 40px; height: 40px; background-color: #141414; border: 1px solid #141414;"><i class="fas fa-sync-alt" style="margin-left: -10px;"></i></button>
+    </div>
+
+    <!-- Áudio para ser tocado -->
+    <audio id="som-recarregar" src="/Script/media/som.mp3" preload="auto"></audio>    </div>
+    
+    <div id="horarioExplicacao" style="display: none; margin-bottom: 20px; color: #fff;">
+        <p><strong>Manhã:</strong> 06:00 - 12:00</p>
+        <p><strong>Tarde:</strong> 12:00 - 18:00</p>
+        <p><strong>Noite:</strong> 18:00 - 00:00</p>
+    </div>    
+
+    <div id="habitosContainer" class="section-container">
+        <div id="mensagem-xp"></div>
+        <div id="xp-gain" class="xp-gain" style="display: none;">+10 XP</div>
+        <div id="manha" class="caixa">
+            <div class="titulo" onclick="abrirSitesManha()">Manhã</div>
+            <ul id="manhaHabitos">
+            </ul>
+        </div>
+        <div id="tarde" class="caixa">
+            <div class="titulo" onclick="abrirSitesTarde()">Tarde</div>
+            <ul id="tardeHabitos">
+            </ul>
+        </div>
+        <div id="noite" class="caixa">
+            <div class="titulo" onclick="abrirSitesNoite()">Noite</div>
+            <ul id="noiteHabitos">
+            </ul>
+        </div>
+    </div> 
+
+    <div class="button-container">
+        <button id="criarTelaModalBtn">Adicionar Hábito</button>
+        <button id="desmarcarHabitosBtn">Desmarcar Hábitos</button>
+        <button id="excluirHabitosBtn">Excluir Hábitos</button>
+    </div>    
+
+    <div class="modal" id="myModal">
+        <div class="modal-conteudo">
+            <h2>Adicionar Novo Hábito</h2>
+            <input type="text" id="novoHabito" placeholder="Digite o hábito">
+            <select id="periodoHabito">
+                <option value="manha">Manhã</option>
+                <option value="tarde">Tarde</option>
+                <option value="noite">Noite</option>
+            </select>
+            <br>
+            <button id="salvarHabito">Salvar</button>
+            <button id="fecharModal">Fechar</button>
+        </div>
+    </div>    
+
+    <script src="/Script/perfil-data.js"></script>
+    <script src="/Script/nivel.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const voltarBtn = document.getElementById('voltarBtn');
+    const criarTelaModalBtn = document.getElementById('criarTelaModalBtn');
+    const excluirHabitosBtn = document.getElementById('excluirHabitosBtn');
+    const salvarHabitoBtn = document.getElementById('salvarHabito');
+    const desmarcarHabitosBtn = document.getElementById('desmarcarHabitosBtn');
+    const relogioElement = document.getElementById('relogio');
+    const modal = document.getElementById('myModal');
+    const programadosTextarea = document.getElementById('programados');
+
+    // Exibir menu ao clicar no botão
+    menuBtn.addEventListener('click', function() {
+        menuOverlay.style.display = 'block';
+    });
+
+    // Fechar menu ao clicar no botão 'Voltar'
+    voltarBtn.addEventListener('click', function() {
+        menuOverlay.style.display = 'none';
+    });
+
+    // Abrir modal ao clicar em 'Adicionar Hábito'
+    criarTelaModalBtn.addEventListener('click', function() {
+        modal.style.display = 'block';
+    });
+
+    // Fechar modal ao clicar em 'Fechar'
+    document.getElementById('fecharModal').addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    // Redirecionar para outras páginas ao clicar nos botões correspondentes
+    document.getElementById('habitosBtn').addEventListener('click', function() {
+        window.location.href = 'habitos.html';
+    });
+
+    document.getElementById('refeicoesBtn').addEventListener('click', function() {
+        window.location.href = 'refeicoes.html';
+    });
+    
+// Função para criar um hábito
+function criarHabito(textoHabito, periodo) {
+    const novoHabito = document.createElement('li');
+    novoHabito.textContent = textoHabito;
+
+    let container;
+    switch (periodo) {
+        case 'manha':
+            container = document.getElementById('manhaHabitos');
+            break;
+        case 'tarde':
+            container = document.getElementById('tardeHabitos');
+            break;
+        case 'noite':
+            container = document.getElementById('noiteHabitos');
+            break;
+        default:
+            console.error(`Período inválido: ${periodo}`);
+            return;
+    }
+
+    // Verifica se o hábito já existe
+    if ([...container.children].some(child => child.textContent === textoHabito)) {
+        return; // Se o hábito já existe, não o adiciona novamente
+    }
+
+    novoHabito.classList.add('habito');
+
+    if (container) {
+        container.appendChild(novoHabito);
+    } else {
+        console.error(`Container de hábitos para ${periodo} não encontrado.`);
+        return;
+    }
+
+    novoHabito.addEventListener('click', function () {
+        novoHabito.classList.toggle('concluido');
+        salvarNoLocalStorage('habitos', {
+            habito: textoHabito,
+            periodo: periodo,
+            concluido: novoHabito.classList.contains('concluido')
+        });
+    });
+
+    const habitosSalvos = JSON.parse(localStorage.getItem('habitos')) || [];
+    const habitoSalvo = habitosSalvos.find(habito => habito.habito === textoHabito && habito.periodo === periodo);
+    if (habitoSalvo && habitoSalvo.concluido) {
+        novoHabito.classList.add('concluido');
+    }
+}
+
+    // Evento para salvar hábito ao clicar no botão 'Salvar' do modal
+    salvarHabitoBtn.addEventListener('click', function() {
+        const novoHabitoTexto = document.getElementById('novoHabito').value;
+        const periodoSelecionado = document.getElementById('periodoHabito').value;
+
+        // Validar se o campo do hábito não está vazio
+        if (novoHabitoTexto.trim() === '') {
+            alert('Por favor, digite um hábito.');
+            return;
+        }
+
+        // Chamar a função para criar o hábito no lugar correto
+        criarHabito(novoHabitoTexto, periodoSelecionado);
+
+        // Salvar no localStorage
+        salvarNoLocalStorage('habitos', { habito: novoHabitoTexto, periodo: periodoSelecionado });
+
+        // Fechar o modal após salvar
+        modal.style.display = 'none';
+
+        // Limpar o campo de texto do novo hábito
+        document.getElementById('novoHabito').value = '';
+    });
+
+    // Evento para excluir todos os hábitos
+    excluirHabitosBtn.addEventListener('click', function() {
+        ['manha', 'tarde', 'noite'].forEach(periodo => {
+            const habitosContainer = document.getElementById(`${periodo}Habitos`);
+            if (habitosContainer) {
+                habitosContainer.innerHTML = ''; // Limpa todos os elementos dentro do container
+            } else {
+                console.error(`Container de hábitos para ${periodo} não encontrado.`);
+            }
+        });
+
+        // Limpar o localStorage
+        localStorage.removeItem('habitos');
+    });
+
+    desmarcarHabitosBtn.addEventListener('click', function() {
+        document.querySelectorAll('.caixa ul li.concluido').forEach(habito => {
+            habito.classList.remove('concluido');
+            // Atualizar no localStorage
+            ganharXp(10);
+            atualizarConcluidoLocalStorage(habito.textContent.trim(), false);
+        });
+    });
+    
+    // Função para atualizar o estado de concluído no localStorage
+    function atualizarConcluidoLocalStorage(habitoTexto, concluido) {
+        const habitosSalvos = JSON.parse(localStorage.getItem('habitos')) || [];
+        const habitoIndex = habitosSalvos.findIndex(habito => habito.habito === habitoTexto);
+        if (habitoIndex !== -1) {
+            habitosSalvos[habitoIndex].concluido = concluido;
+            localStorage.setItem('habitos', JSON.stringify(habitosSalvos));
+        }
+    }    
+
+    // Atualizar o relógio a cada segundo
+    function atualizarRelogio() {
+        const agora = new Date();
+        const horas = agora.getHours().toString().padStart(2, '0');
+        const minutos = agora.getMinutes().toString().padStart(2, '0');
+        const segundos = agora.getSeconds().toString().padStart(2, '0');
+        const horario = `${horas}:${minutos}:${segundos}`;
+        relogioElement.textContent = horario;
+    }
+
+    // Iniciar o relógio
+    function iniciarRelogio() {
+        atualizarRelogio();
+        setInterval(atualizarRelogio, 1000);
+    }
+
+    iniciarRelogio();
+
+    // Salvar e carregar o campo 'Programados'
+programadosTextarea.addEventListener('input', function() {
+    localStorage.setItem('programados-' + perfilAtivo, this.value);
+});
+
+const programadosSalvos = localStorage.getItem('programados-' + perfilAtivo);
+if (programadosSalvos) {
+    programadosTextarea.value = programadosSalvos;
+}
+
+// Campo 'Anotações'
+const anotacoesTextarea = document.getElementById('anotacoes');
+anotacoesTextarea.addEventListener('input', function() {
+    localStorage.setItem('anotacoes-' + perfilAtivo, this.value);
+});
+
+const anotacoesSalvas = localStorage.getItem('anotacoes-' + perfilAtivo);
+if (anotacoesSalvas) {
+    anotacoesTextarea.value = anotacoesSalvas;
+}
+
+    // Carregar hábitos salvos do localStorage ao carregar a página
+    const habitosSalvos = JSON.parse(localStorage.getItem('habitos')) || [];
+    habitosSalvos.forEach(habito => {
+        criarHabito(habito.habito, habito.periodo);
+    });
+
+    // Função para salvar hábito no localStorage
+    function salvarNoLocalStorage(chave, valor) {
+        const habitosSalvos = JSON.parse(localStorage.getItem(chave)) || [];
+        // Verificar se já existe um hábito com o mesmo texto e período
+        const index = habitosSalvos.findIndex(habito => habito.habito === valor.habito && habito.periodo === valor.periodo);
+        if (index !== -1) {
+            // Atualizar o estado de concluído
+            habitosSalvos[index].concluido = valor.concluido;
+        } else {
+            // Adicionar novo hábito ao localStorage
+            habitosSalvos.push(valor);
+        }
+        localStorage.setItem(chave, JSON.stringify(habitosSalvos));
+    }    
+
+
+let data = {}; // Define globally
+
+function carregarHabitosDoDia() {
+    const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
+
+    const habitosPorPerfil = {
+        Joaquim: {
+        domingo: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Alongar','Abdômen','Escola Dominical'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Ovo e Amendoim','Ensaio dos Jovens'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Culto da Família']
+        },
+        segunda: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Trabalho','Desenhar','Ovo e Amendoim'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok']
+        },
+        terça: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Trabalho','Desenhar','Ovo e Amendoim'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Ensaio da Banda']
+        },
+        quarta: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional','Fazer Faxina','Aparar Barba','Limpar Fogão','Limpar Ouvido'],
+            tarde: ['Ler','Pele','Curso','Águas','Ensaiar','Línguas','Desenhar','Alise seu Pé','Lavar as Roupas','Lavar o Banheiro','Ovo e Amendoim'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Frutas e Limão','Stories e Tiktok']
+        },
+        quinta: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional','Começar Jejum'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Trabalho','Desenhar','Continuar Jejum','Ovo e Amendoim'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Finalizar Jejum','Frutas e Limão','Stories e Tiktok']
+        },
+        sexta: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Mídia','Águas','Ensaiar','Línguas','Trabalho','Desenhar','Ovo e Amendoim'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Culto as 19h30', 'Frutas e Limão','Stories e Tiktok']
+        },
+        sábado: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Alongar','Se Depile','Abdômen','Devocional','Alise seu Pé','Fazer Faxina','Correr (1 hora)','Limpar Fogão','Ensaiar (2 hora)'],
+            tarde: ['Ler','Pele','Águas','Línguas','Conselho','Desenhar','Atualizações','Limpar Ouvido','Lavar as Roupas','Lavar o Banheiro','Ovo e Amendoim','Lavar Carro e Moto'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Limpar Escritório']
+        },
+    },
+        Main: {
+            domingo: {
+            manha: ['Orar','Alongar','Devocional', 'Escola Dominical'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar','Culto da Família']
+        },
+        segunda: {
+            manha: ['Orar','Alongar','Devocional'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar']
+        },
+        terça: {
+            manha: ['Orar','Alongar','Devocional'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar']
+        },
+        quarta: {
+            manha: ['Orar','Alongar','Devocional'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar','Culto as 19h30']
+        },
+        quinta: {
+            manha: ['Orar','Alongar','Devocional'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar']
+        },
+        sexta: {
+            manha: ['Orar','Alongar','Devocional'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar','Culto as 19h30']
+        },
+        sábado: {
+            manha: ['Orar','Alongar','Devocional','Ensaiar (2 hora)'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar']
+        },
+        }
+    };
+
+    const diasSemana = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+    const hoje = new Date();
+    const diaAtual = diasSemana[hoje.getDay()];
+    const habitosPorDia = habitosPorPerfil[perfilAtivo]; // <-- Defina antes de usar
+    if (!habitosPorDia) return;
+
+// Verificar se é sábado
+if (hoje.getDay() === 6) {
+    const diaDoMes = hoje.getDate();
+
+    // Segundo sábado
+    if (diaDoMes >= 8 && diaDoMes <= 14) {
+        if (!habitosPorDia.sábado) habitosPorDia.sábado = {};
+        if (!habitosPorDia.sábado.noite) habitosPorDia.sábado.noite = [];
+        habitosPorDia.sábado.noite.push("Culto de Santa Ceia");
+    }
+
+    // Terceiro sábado
+    if (diaDoMes >= 15 && diaDoMes <= 21) {
+        if (!habitosPorDia.sábado) habitosPorDia.sábado = {};
+        if (!habitosPorDia.sábado.manha) habitosPorDia.sábado.manha = [];
+        habitosPorDia.sábado.manha.push("Banho no Gato");
+    }
+}
+
+// Verificar se é o último domingo do mês
+if (hoje.getDay() === 0) {
+    const ano = hoje.getFullYear();
+    const mes = hoje.getMonth();
+    const dia = hoje.getDate();
+    const ultimoDiaDoMes = new Date(ano, mes + 1, 0).getDate();
+
+    let temOutroDomingoDepois = false;
+    for (let d = dia + 1; d <= ultimoDiaDoMes; d++) {
+        const data = new Date(ano, mes, d);
+        if (data.getDay() === 0) {
+            temOutroDomingoDepois = true;
+            break;
+        }
+    }
+
+    if (!temOutroDomingoDepois) {
+        if (!habitosPorDia.domingo) habitosPorDia.domingo = {};
+        if (!habitosPorDia.domingo.noite) habitosPorDia.domingo.noite = [];
+        habitosPorDia.domingo.noite.push("Entregar Dízimo");
+    }
+}
+
+// Verificar se é a última quarta-feira do mês
+if (hoje.getDay() === 3) {
+    const ano = hoje.getFullYear();
+    const mes = hoje.getMonth();
+    const diaDoMes = hoje.getDate();
+    const ultimoDiaDoMes = new Date(ano, mes + 1, 0).getDate();
+
+    let temOutraQuartaDepois = false;
+    for (let d = diaDoMes + 1; d <= ultimoDiaDoMes; d++) {
+        const data = new Date(ano, mes, d);
+        if (data.getDay() === 3) {
+            temOutraQuartaDepois = true;
+            break;
+        }
+    }
+
+    // Última quarta-feira do mês
+    if (!temOutraQuartaDepois) {
+        if (!habitosPorDia.quarta) habitosPorDia.quarta = {};
+        if (!habitosPorDia.quarta.tarde) habitosPorDia.quarta.tarde = [];
+        habitosPorDia.quarta.tarde.push("Cortar Unhas do Pé");
+    }
+}
+
+    // Verificar se é a terceira segunda-feira do mês
+if (hoje.getDay() === 1) {
+    const diaDoMes = hoje.getDate();
+    // Terceira segunda-feira (8-14)
+    if (diaDoMes >= 8 && diaDoMes <= 14) {
+        if (!habitosPorDia.segunda) habitosPorDia.segunda = {};
+        if (!habitosPorDia.segunda.tarde) habitosPorDia.segunda.tarde = [];
+        habitosPorDia.segunda.tarde.push("Cortar a Grama");
+    }
+}
+
+const habitosDeHoje = habitosPorDia[diaAtual];
+
+if (habitosDeHoje) {
+    ['manha', 'tarde', 'noite'].forEach(periodo => {
+        const lista = document.getElementById(`${periodo}Habitos`);
+        if (lista) {
+            // Limpa os hábitos anteriores
+            while (lista.firstChild) {
+                lista.removeChild(lista.firstChild);
+            }
+
+            const habitos = habitosDeHoje[periodo] || [];
+            habitos.forEach(habito => {
+                const li = document.createElement('li');
+                li.textContent = habito;
+
+                // Evento para marcar como concluído
+                li.addEventListener('click', () => {
+                    li.classList.toggle('concluido');
+                    saveHabitsState(); // Função para salvar estado
+                });
+
+                lista.appendChild(li);
+            });
+        }
+    });
+}
+}
+
+function loadSavedData() {
+    const savedData = localStorage.getItem('habitosData');
+    if (savedData) {
+        data = JSON.parse(savedData);
+
+        // Log dos dados carregados
+        console.log('Dados carregados:', data);
+
+        // Preenche os campos com os dados carregados
+        document.getElementById('programados').value = data.programados || '';
+        document.getElementById('anotacoes').value = data.naoFazer || '';
+
+        // Limpa os hábitos anteriores antes de adicionar os novos
+        ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
+            const periodo = document.getElementById(periodoId);
+            while (periodo.firstChild) {
+                periodo.removeChild(periodo.firstChild);
+            }
+        });
+
+        // Preenche os hábitos salvos
+        if (data.habitos) {
+            data.habitos.forEach(habito => {
+                const li = document.createElement('li');
+                li.textContent = habito.nome;
+
+                // Adiciona a classe 'concluido' se o hábito estiver marcado
+                if (habito.concluido) {
+                    li.classList.add('concluido');
+                }
+
+                // Adiciona o evento de clique para marcar/desmarcar
+                li.addEventListener('click', () => {
+                    li.classList.toggle('concluido');
+                    saveHabitsState(); // Salva o estado atualizado
+                });
+
+                // Adiciona o hábito ao período correto
+                if (habito.periodo === 'manha') {
+                    document.getElementById('manhaHabitos').appendChild(li);
+                } else if (habito.periodo === 'tarde') {
+                    document.getElementById('tardeHabitos').appendChild(li);
+                } else if (habito.periodo === 'noite') {
+                    document.getElementById('noiteHabitos').appendChild(li);
+                }
+            });
+        } else {
+            console.log('Nenhum hábito encontrado.');
+        }
+    }
+    carregarHabitosDoDia();
+
+}
+
+document.getElementById('desmarcarHabitosBtn').addEventListener('click', () => {
+    // Seleciona todos os hábitos (manhã, tarde, noite)
+    ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
+        const periodo = document.getElementById(periodoId);
+        Array.from(periodo.children).forEach(li => {
+            // Remove a classe 'concluido'
+            li.classList.remove('concluido');
+        });
+    });
+
+    // Desmarcar os hábitos do fim de dia
+    const habitosFinais = document.querySelectorAll('#habitosFinaisList li');
+    habitosFinais.forEach(habito => {
+        // Remove o risco e a cor cinza
+        const textoHabito = habito.querySelector('span');
+        textoHabito.style.textDecoration = 'none';
+        textoHabito.style.color = '';  // Reseta a cor para o valor padrão
+    });
+
+    // Atualiza o estado no localStorage
+    saveHabitsState();
+    saveHabitsState2();
+
+    console.log('Todos os hábitos foram desmarcados e salvos.');
+});
+
+function saveHabitsState() {
+    // Atualiza os dados dos hábitos com o estado de "concluído"
+    const habitos = [];
+
+    ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
+        const periodo = document.getElementById(periodoId);
+        Array.from(periodo.children).forEach(li => {
+            habitos.push({
+                nome: li.textContent,
+                periodo: periodoId.replace('Habitos', '').toLowerCase(),
+                concluido: li.classList.contains('concluido') // Verifica se está marcado
+            });
+        });
+    });
+
+    // Atualiza o objeto `data` e salva no localStorage
+    data.habitos = habitos;
+    localStorage.setItem('habitosData', JSON.stringify(data));
+}
+
+function saveHabitsState2() {
+    data.habitos = [];
+    ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
+        const periodo = document.getElementById(periodoId);
+        const habitos = [...periodo.children].map(li => ({
+            nome: li.textContent,
+            concluido: li.classList.contains('concluido'),
+            periodo: periodoId.replace('Habitos', '') // Remove 'Habitos' para obter o período
+        }));
+        data.habitos.push(...habitos);
+    });
+    localStorage.setItem('habitosData', JSON.stringify(data));
+}
+
+
+// Adicione estilos para itens marcados
+const style = document.createElement('style');
+style.textContent = `
+    .concluido {
+        text-decoration: line-through;
+        color: gray;
+    }
+`;
+loadSavedData();
+});
+
+function exportNotes() {
+    // Gather data from textareas
+    const programados = document.getElementById('programados').value;
+    const naoFazer = document.getElementById('anotacoes').value;
+
+    // Coleta os dados dos hábitos
+    const manhaHabitos = document.getElementById('manhaHabitos').textContent.trim().split('\n');
+    const tardeHabitos = document.getElementById('tardeHabitos').textContent.trim().split('\n');
+    const noiteHabitos = document.getElementById('noiteHabitos').textContent.trim().split('\n');
+
+    // Cria um array de objetos para representar os hábitos
+    const habitos = [
+        ...manhaHabitos.map(habito => ({ nome: habito, periodo: 'manha' })),
+        ...tardeHabitos.map(habito => ({ nome: habito, periodo: 'tarde' })),
+        ...noiteHabitos.map(habito => ({ nome: habito, periodo: 'noite' }))
+    ];
+
+    // Prepare data object
+    const data = {
+        anotacoes,
+        programados,
+        habitos
+    };
+
+    // Convert data to JSON string
+    const jsonData = JSON.stringify(data);
+
+    // Create a blob for the JSON data
+    const blob = new Blob([jsonData], { type: 'application/json' });
+
+    // Simulate a file download using FileSaver.js (if included)
+    if (typeof window.saveAs === 'function') {
+        window.saveAs(blob, 'habitos.json');
+    } else {
+        // Provide alternative download method if FileSaver.js is not available
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'habitos.json';
+        link.click();
+    }
+
+    // Save to localStorage
+    localStorage.setItem('habitosData', jsonData);
+}
+
+function importNotes() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+
+    input.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+            try {
+                data = JSON.parse(event.target.result);
+
+                // Log imported data
+                console.log('Imported data:', data);
+
+                // Update textareas with imported data
+                document.getElementById('programados').value = data.programados || '';
+                document.getElementById('anotacoes').value = data.naoFazer || '';
+
+                // Save the imported data to localStorage
+                localStorage.setItem('habitosData', JSON.stringify(data));
+            } catch (error) {
+                console.error('Erro ao importar dados:', error);
+            }
+        };
+
+        reader.readAsText(file);
+    });
+
+    input.click();
+}
+
+document.getElementById('mostrarHorarioBtn').addEventListener('click', function () {
+    const explicacao = document.getElementById('horarioExplicacao');
+    
+    // Verifica se o texto explicativo está visível ou não
+    if (explicacao.style.display === 'none' || explicacao.style.display === '') {
+        explicacao.style.display = 'block';  // Exibe a explicação
+    } else {
+        explicacao.style.display = 'none';  // Esconde a explicação
+    }
+});
+
+function recarregar() {
+    const audio = document.getElementById('som-recarregar');
+    
+    if (audio) {
+        // Tocar o som
+        audio.play().then(() => {
+            // Recarregar os dados quando o áudio terminar
+            audio.addEventListener('ended', () => {
+                atualizarDados();
+            });
+        }).catch(err => {
+            console.error('Erro ao tocar o som:', err);
+            // Caso dê erro, ainda assim tenta atualizar os dados
+            atualizarDados();
+        });
+    } else {
+        console.error('Áudio não encontrado!');
+        atualizarDados(); // Se o áudio não for encontrado, tenta atualizar os dados
+    }
+    setTimeout(() => {
+            location.reload(); // Recarrega a página após o áudio e dados serem atualizados
+        }, 5500);
+}
+
+// Função para atualizar os dados da página
+function atualizarDados() {
+    // Limpa as seções de hábitos
+    ['manha', 'tarde', 'noite'].forEach(secao => {
+        const container = document.getElementById(`habitos-${secao}`);
+        if (container) container.innerHTML = '';
+    });
+
+    // Remove os dados armazenados no localStorage
+    localStorage.removeItem('habitosData');
+
+    // Chama a função para carregar os hábitos do dia
+    carregarHabitosDoDia();
+}
+
+document.getElementById('tituloHabitos').addEventListener('click', function() {
+    // Obter o perfil ativo
+    const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
+    
+    // Obter os hábitos do perfil ativo (como no seu código original)
+    const habitosPorPerfil = {
+        Joaquim: {
+        domingo: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Alongar','Abdômen','Escola Dominical'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Desenhar','Ovo e Amendoim','Ensaio dos Jovens'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Culto da Família']
+        },
+        segunda: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Trabalho','Desenhar','Ovo e Amendoim'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok']
+        },
+        terça: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Trabalho','Desenhar','Ovo e Amendoim'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Ensaio da Banda']
+        },
+        quarta: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional','Fazer Faxina','Aparar Barba','Limpar Fogão','Limpar Ouvido'],
+            tarde: ['Ler','Pele','Curso','Águas','Ensaiar','Línguas','Desenhar','Alise seu Pé','Lavar as Roupas','Lavar o Banheiro','Ovo e Amendoim'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Frutas e Limão','Stories e Tiktok']
+        },
+        quinta: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional','Começar Jejum'],
+            tarde: ['Ler','Pele','Águas','Ensaiar','Línguas','Trabalho','Desenhar','Continuar Jejum','Ovo e Amendoim'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Finalizar Jejum','Frutas e Limão','Stories e Tiktok']
+        },
+        sexta: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Abdômen','Devocional'],
+            tarde: ['Ler','Pele','Mídia','Águas','Ensaiar','Línguas','Trabalho','Desenhar','Ovo e Amendoim'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café','Culto as 19h30', 'Frutas e Limão','Stories e Tiktok']
+        },
+        sábado: {
+            manha: ['Orar','Gelo','Cama','Vácuo','Alongar','Se Depile','Abdômen','Devocional','Alise seu Pé','Fazer Faxina','Correr (1 hora)','Limpar Fogão','Ensaiar (2 hora)'],
+            tarde: ['Ler','Pele','Águas','Línguas','Conselho','Desenhar','Atualizações','Limpar Ouvido','Lavar as Roupas','Lavar o Banheiro','Ovo e Amendoim','Lavar Carro e Moto'],
+            noite: ['Orar','Alongar','Chá Verde','Olhos e Fita','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Limpar Escritório']
+        },
+    },
+        Main: {
+            domingo: {
+            manha: ['Orar','Alongar','Devocional', 'Escola Dominical'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar','Culto da Família']
+        },
+        segunda: {
+            manha: ['Orar','Alongar','Devocional'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar']
+        },
+        terça: {
+            manha: ['Orar','Alongar','Devocional'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar']
+        },
+        quarta: {
+            manha: ['Orar','Alongar','Devocional'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar','Culto as 19h30']
+        },
+        quinta: {
+            manha: ['Orar','Alongar','Devocional'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar']
+        },
+        sexta: {
+            manha: ['Orar','Alongar','Devocional'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar','Culto as 19h30']
+        },
+        sábado: {
+            manha: ['Orar','Alongar','Devocional','Ensaiar (2 hora)'],
+            tarde: ['Ler','Ensaiar','Desenhar'],
+            noite: ['Orar','Alongar']
+        },
+        }
+    };
+
+    const diasSemana = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+    const hoje = new Date();
+    const diaAtual = diasSemana[hoje.getDay()];
+
+    const habitosPorDia = habitosPorPerfil[perfilAtivo];
+    const habitosDoDia = habitosPorDia && habitosPorDia[diaAtual];
+
+    if (!habitosDoDia) {
+        alert('Não há hábitos disponíveis para hoje!');
+        return;
+    }
+
+    // Segundo sábado
+    if (hoje.getDay() === 6 && hoje.getDate() >= 8 && hoje.getDate() <= 14) {
+        habitosPorDia.sábado.noite.push("Culto de Santa Ceia");
+    }
+
+    // Terceiro sábado
+    if (hoje.getDay() === 6 && hoje.getDate() >= 15 && hoje.getDate() <= 21) {
+        habitosPorDia.sábado.manha.push("Banho no Gato");
+    }
+
+    // Último domingo
+    if (hoje.getDay() === 0) {
+        const ultimoDia = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate();
+        let temOutroDomingo = false;
+
+        for (let d = hoje.getDate() + 1; d <= ultimoDia; d++) {
+            if (new Date(hoje.getFullYear(), hoje.getMonth(), d).getDay() === 0) {
+                temOutroDomingo = true;
+                break;
+            }
+        }
+
+        if (!temOutroDomingo) {
+            habitosPorDia.domingo.noite.push("Entregar Dízimo");
+        }
+    }
+
+    // Última quarta
+    if (hoje.getDay() === 3) {
+        const ultimoDia = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate();
+        let temOutraQuarta = false;
+
+        for (let d = hoje.getDate() + 1; d <= ultimoDia; d++) {
+            if (new Date(hoje.getFullYear(), hoje.getMonth(), d).getDay() === 3) {
+                temOutraQuarta = true;
+                break;
+            }
+        }
+
+        if (!temOutraQuarta) {
+            habitosPorDia.quarta.tarde.push("Cortar Unhas do Pé");
+        }
+    }
+
+    // Terceira segunda
+    if (hoje.getDay() === 1 && hoje.getDate() >= 8 && hoje.getDate() <= 14) {
+        habitosPorDia.segunda.tarde.push("Cortar a Grama");
+    }
+
+    // Formatar os hábitos para exibição
+    let habitosText = `Hábitos do dia ${diaAtual} para o perfil ${perfilAtivo}:\n\n`;
+
+    // Formatar os hábitos por período (manhã, tarde, noite)
+    ['manha', 'tarde', 'noite'].forEach(periodo => {
+        const lista = habitosDoDia[periodo] || [];
+        if (lista.length) {
+            habitosText += `${periodo.toUpperCase()}:\n`;
+            lista.forEach(h => habitosText += `- ${h}\n`);
+            habitosText += '\n';
+        }
+    });
+
+    navigator.clipboard.writeText(habitosText);
+    alert('Hábitos copiados com sucesso!');
+});
+
+function abrirSitesManha() {
+    const hoje = new Date();
+    const diaSemana = hoje.getDay(); // 0 = Domingo, 6 = Sábado
+
+    if (diaSemana === 6) {
+        // Sábado
+        window.open('https://app.libraslab.com.br/', '_blank');
+        window.open('https://pt.duolingo.com/learn', '_blank');
+        window.open('https://j2plus.netlify.app/modo/gym.html', '_blank');
+        window.open('https://j2plus.netlify.app/modo/melody.html', '_blank');
+        window.open('https://j2plus.netlify.app/#christ', '_blank');
+        window.open('https://pinterest.com/', '_blank');
+        window.open('https://seller.shopee.com.br/', '_blank');
+    } else if (diaSemana === 0) {
+        // Domingo
+        window.open('https://app.libraslab.com.br/', '_blank');
+        window.open('https://pt.duolingo.com/learn', '_blank');
+        window.open('https://j2plus.netlify.app/modo/melody.html', '_blank');
+        window.open('https://j2plus.netlify.app/#christ', '_blank');
+        window.open('https://pinterest.com/', '_blank');
+    } else {
+        // Dias úteis (Segunda a Sexta)
+        window.open('https://business.facebook.com/latest/home?nav_ref=bm_home_redirect&asset_id=617136918158059', '_blank');
+        window.open('https://seller.shopee.com.br/', '_blank');
+        window.open('https://app.libraslab.com.br/', '_blank');
+        window.open('https://pt.duolingo.com/learn', '_blank');
+        window.open('https://j2plus.netlify.app/modo/gym.html', '_blank');
+        window.open('https://j2plus.netlify.app/modo/melody.html', '_blank');
+        window.open('https://j2plus.netlify.app/#christ', '_blank');
+        window.open('https://j2plus.netlify.app/modo/work.html', '_blank');
+        window.open('https://pinterest.com/', '_blank');
+    }
+}
+
+function abrirSitesTarde() {
+    window.open('https://j2plus.netlify.app/modo/relatorio.html', '_blank');
+}
+
+function abrirSitesNoite() {
+    window.open('https://j2plus.netlify.app/modo/gym.html/#alongar', '_blank');
+    window.open('https://web.whatsapp.com/', '_blank');
+}
+
+    </script>
+</body>
+</html>

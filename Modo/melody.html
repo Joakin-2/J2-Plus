@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="/Script/img/melody.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Place</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+header {
+    background-color: #282828;
+    color: #ffd755;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+main {
+    margin: 20px 60px;
+}
+
+/* Estilos dos modais */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #222;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #e0e0e0;
+    overflow-y: auto;
+}
+.modal button {
+    background-color: #ffd755;
+    color: #303030;
+    padding: 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+    width: 200px;
+}
+.modal button:hover {
+    background-color: #ffca20;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#top-sections {
+    display: flex;
+    justify-content: space-between;
+}
+
+#report-section, #instrument-buttons {
+    flex: 1;
+    margin: 10px;
+}
+
+section {
+    background-color: #2c2c2c;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+h2 {
+    color: #ffd755;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    padding: 30px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ffd755;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.botao:hover {
+    background-color: #666;
+    transform: scale(1.05);
+}
+
+#instrument-buttons2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    width: 95%;
+    height: 80%;
+}
+
+.instrument-button2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ffd755;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#instrument-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instrument-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 255px;
+    padding: 10px;
+    height: 100px;
+    margin: 10px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ffd755;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+@media (min-width: 1800px) {
+    .instrument-button {
+        width: 360px;
+    }
+}
+
+.instrument-button img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.instrument-button:hover {
+    background-color: #666;
+    transform: scale(1.05);
+}
+
+#cleaning-button {
+    width: 90%;
+    padding: 5px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+#about-section {
+    margin: 10px;
+    width: 80%;
+    padding: 5px;
+    margin: 32px auto;
+    border: none;
+    border-radius: 5px;
+}
+
+#clean-instruments {
+    height: 100px;
+    display: block;
+    width: 90%;
+    margin-bottom: 20px;
+    padding: 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ffd755;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+}
+
+#clean-instruments:hover {
+    background-color: #666;
+    transform: scale(1.05);
+}
+
+.button-group {
+    display: flex;
+}
+
+.btn-export, .btn-import {
+    background-color: #2c2c2c;
+    color: white;
+    border: none;
+    width: 40px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    z-index: 9999;
+}
+
+#loader-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loader-background video {
+    width: 100%;
+    height: auto;
+}
+
+#notes-section, #calendar-section {
+    margin-top: 20px;
+}
+
+textarea {
+    width: 98%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ffd755;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day {
+    height: 30px;
+    color: #ffd755;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.day-name {
+    background-color: rgb(27, 27, 27);
+    color: #ffd755;
+}
+
+.day-number {
+    background-color: #303030;
+    color: #ffffff;
+}
+
+.day.selected {
+    background-color: #3f3f3f;
+    color: #ffe893;
+}
+
+.day:hover {
+    background-color: #3f3f3f;
+}
+
+#about-section {
+    text-align: center;
+}
+
+.comemoracao {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #b690f9;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+    animation: aparecer 0.5s ease, desaparecer 0.5s ease 2.5s;
+  }
+  
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
+  @keyframes desaparecer {
+    from {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+  }
+  
+
+        .gallery-header{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+#metronome {
+            font-size: 2em;
+            background-color: #000000;
+            padding: 20px;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        #timer {
+            font-size: 2em;
+            background-color: #000000;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #startButton {
+            font-size: 1.5em;
+            background-color: #ffe893;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .tools-container{
+            justify-content: center;
+    display: flex;
+    gap: 20px;
+}
+
+.tool-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+        /* Estilos para a galeria */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+
+        /* Estilos das imagens e ícones */
+        .gallery img, .gallery .pdf-icon {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery img:hover, .gallery .pdf-icon:hover {
+            transform: scale(1.15); /* Zoom ao passar o mouse */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9); /* Sombramento ao passar o mouse */
+        }
+
+        .pdf-icon {
+            background-color: #e60023;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilo do botão do Pinterest */
+        .pinterest-button {
+            background-color: #e60023;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-button {
+            background-color: #171717;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Scroll personalizado */
+#modalPartitura .modal-content::-webkit-scrollbar {
+    width: 12px;
+}
+
+#modalPartitura .modal-content::-webkit-scrollbar-track {
+    background: #111;
+    border-radius: 10px;
+}
+
+#modalPartitura .modal-content::-webkit-scrollbar-thumb {
+    background: #ffd755;
+    border-radius: 10px;
+    border: 3px solid #111;
+}
+
+#modalPartitura .modal-content::-webkit-scrollbar-thumb:hover {
+    background: #ffd755;
+}
+
+        /* Estilos do modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 80%;
+            transition: transform 0.25s ease;
+            cursor: zoom-in; /* Indica que a imagem pode ser ampliada */
+        }
+
+        .modal img.zoomed {
+            transform: scale(1.5); /* Aplica o zoom */
+            cursor: zoom-out; /* Indica que a imagem pode ser reduzida */
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            color: #ffffff;
+            font-size: 40px;
+            padding: 10px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        select {
+            padding: 6px;
+            font-size: 16px;
+            border: 2px solid #555;
+            border-radius: 8px;
+            background-color: #121212;
+            cursor: pointer;
+            color: white;
+        }
+
+        .instrumentos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .instrumento-card {
+            width: 200px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .instrumento-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilização dos botões de zoom */
+    .zoom-controls {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 1100;
+    }
+
+    .zoom-controls button {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .zoom-controls button:hover {
+        background-color: #555;
+    }
+
+    .play-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        font-size: 24px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.2s;
+        z-index: 1100;
+    }
+
+    .play-button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    </style>
+</head>
+<body>
+
+    <div id="loader-container">
+        <div id="loader-background">
+            <video autoplay loop muted>
+                <source src="/Script/media/melody.mp4" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
+    </div>
+
+    <header>
+        <h1>Bem-vindo ao Music Place</h1>
+    </header>
+
+    <main>
+        <div id="top-sections">
+            <section id="report-section">
+                <h2>Relatório</h2>
+                <div id="notes-section">
+                    <div class="button-group"> 
+                        <button class="btn-export" onclick="exportNotes()" style="margin-left: 15px; display: none;"><i class="fas fa-file-export"></i></button>
+                        <button class="btn-import" onclick="importNotes()" style="display: none;"><i class="fas fa-file-import"></i></button>
+                    </div>
+                    <textarea id="notes1" placeholder="Faça suas anotações aqui..."></textarea>
+                </div>
+                <div id="mensagem-xp"></div>
+                <div id="calendar-section">
+                    <h2 style="margin-top: -5px;">Calendário</h2>
+                    <div id="calendar"></div>
+                </div>
+                <section id="about-section" style="width: 98%;">
+                    <h2>Sobre</h2>
+                    <p>Bem-vindo ao Music Place! Uma área feita especialmente para aprender e ensaiar com o Instrumento da sua escolha.</p>
+                </section>
+            </section>
+
+            <section id="instrument-buttons">
+                <h2>O que vamos Tocar hoje?</h2>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+    <button id="piano-button" class="instrument-button" onclick="openModal0('piano')">
+        <i class="fa-solid fa-keyboard" style="margin-right: 10px; font-size: 20px;"></i> Teclado
+    </button>
+
+    <button id="saxophone-button" class="instrument-button" onclick="openModal0('saxophone')">
+        <i class="fa-solid fa-music" style="margin-right: 10px;"></i> Saxofone
+    </button>
+
+    <button id="violao-button" class="instrument-button" onclick="openModal0('violao')">
+        <i class="fa-solid fa-guitar" style="margin-right: 10px;"></i> Violão
+    </button>
+
+    <button id="clarinet-button" class="instrument-button" onclick="openModal0('clarinet')">
+        <i class="fa-solid fa-music" style="margin-right: 10px;"></i> Clarinete
+    </button>
+
+    <button id="bass-button" class="instrument-button" onclick="openModal0('bass')">
+        <i class="fa-solid fa-guitar" style="margin-right: 10px;"></i> Baixo
+    </button>
+
+    <button id="voz-button" class="instrument-button" onclick="openModal0('voz')">
+        <i class="fa-solid fa-microphone" style="margin-right: 10px;"></i> Voz
+    </button>
+</div>
+            <h2>Limpeza de Instrumentos</h2>
+            <button id="clean-instruments" class="clean-instruments" onclick="openModal0('cleaning')">Como Limpar</button>
+            </section>
+        </div>
+
+        <!-- Modal Teclado -->
+    <div id="pianoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('piano')">&times;</span>
+            <h2>Área do Teclado</h2>
+            <div class="container">
+                <button class="botao" onclick="redirecionar('Teclado')">
+                    <i class="fas fa-keyboard" style="margin-right: 5px;"></i> Teclado
+                </button>
+                <button class="botao" onclick="location.hash='partituras'">
+                    <i class="fas fa-music" style="margin-right: 5px;"></i> Partituras
+                </button>
+            </div>            
+        </div>
+    </div>
+
+        <!-- Modal Saxofone -->
+    <div id="saxophoneModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('saxophone')">&times;</span>
+            <h2>Área do Saxofone</h2>
+            <div class="container">
+                <button class="botao" onclick="redirecionar('Lições-Sax')"><i class="fas fa-file" style="margin-right: 5px;"></i> Lições</button>
+                <button class="botao" onclick="location.hash='partituras'"><i class="fas fa-music" style="margin-right: 5px;"></i> Partituras</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Clarinete -->
+    <div id="clarinetModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('clarinet')">&times;</span>
+            <h2>Área do Clarinete</h2>
+            <div class="container">
+                <button class="botao" onclick="redirecionar('Lições-Cla')"><i class="fas fa-file" style="margin-right: 5px;"></i> Lições</button>
+                <button class="botao" onclick="location.hash='partituras'"><i class="fas fa-music" style="margin-right: 5px;"></i> Partituras</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Violão -->
+    <div id="violaoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('violao')">&times;</span>
+            <h2>Área do Violão</h2>
+            <div class="container">
+                <button class="botao" onclick="redirecionar('Lições-Vio')"><i class="fas fa-file" style="margin-right: 5px;"></i> Lições</button>
+                <button class="botao" onclick="location.hash='partituras'"><i class="fas fa-music" style="margin-right: 5px;"></i> Partituras</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Baixo -->
+    <div id="bassModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('bass')">&times;</span>
+            <h2>Área do Baixo</h2>
+            <div class="container">
+                <button class="botao" onclick="redirecionar('Lições')"><i class="fas fa-file" style="margin-right: 5px;"></i> Lições</button>
+                <button class="botao" onclick="location.hash='partituras'"><i class="fas fa-music" style="margin-right: 5px;"></i> Partituras</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Voz -->
+    <div id="vozModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('voz')">&times;</span>
+            <h2>Área de Voz</h2>
+            <div id="button-container">
+                <!-- Botões com links -->
+                 <button onclick="window.location.href='play.html'">Voice Play</button>
+                <button onclick="window.location.href='https://www.youtube.com/watch?v=jCk_ZLejOxY&list=WL&index=11&t=315s&ab_channel=CantarBem'">Cantar Bem</button>
+                <button onclick="window.location.href='https://youtu.be/yXw7PrBb8ok?si=VMy0Trc8n7yRqXf6'">3 Exercícios</button>
+                <button onclick="window.location.href='https://youtu.be/gsMq3eBaFi4?si=S2bxOEOS45crlctp'">Voz bonita</button>
+                <button onclick="window.location.href='https://youtu.be/CHjsg8ZJ9C0?si=oK_lNZEBmh_okbE0'">Treino Vocal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Limpeza de Instrumentos -->
+    <div id="cleaningModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cleaning')">&times;</span>
+            <h2>Área de Limpeza</h2>
+            <section id="instrument-buttons2">
+            
+                <button id="piano-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/HNrAskBRvG8?si=4mE8W0nguouubmpH'">Teclado</button>
+                
+                <button id="saxophone-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/INPBH8sbtRo?si=aSaVknzlFf_7jT0u'">Saxofone</button>
+                
+                <button id="clarinet-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/Ap3b3czkYXU?si=IHZFTChJy67Vo5hB'">Clarinete</button>
+                
+                <button id="bass-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/eVCCizvslmo?si=oHfzGeLLrGsdP18n'">Baixo</button>
+                                  
+            </section>     
+        </div>
+    </div>
+    </main>
+
+    <div id="modalPartitura" class="modal">
+    <div class="modal-content" style="height: 100%;">
+        <span class="close" onclick="fecharPartituras()">&times;</span>
+
+        <header class="gallery-header">
+
+        <div class="filter-buttons">
+
+        <div class="filter-container">
+            <label for="instrument-filter">Filtrar Instrumento:</label>
+            <select id="instrument-filter" onchange="filtrarInstrumentos(this.value)">
+                <option value="todos">Todos</option>
+                <option value="sax-alto">🎷 Sax Alto</option>
+                <option value="sax-tenor">🎷 Sax Tenor</option>
+                <option value="clarinete">🎼 Clarinete</option>
+                <option value="teclado">🎹 Teclado</option>
+                <option value="violao">🎸 Violão</option>
+                <option value="baixo">🎸 Baixo</option>
+            </select>
+        </div>
+
+        <button class="filter-button" onclick="showAll()">All</button>
+        <button class="filter-button" onclick="showPDFs()">PDFs</button>
+        <button class="filter-button" onclick="showImages()">Imagens</button>
+
+    </div>
+
+    <div class="header-title">
+        <h1><i class="fas fa-music"></i> Galeria de Imagens</h1>
+    </div>
+
+    <div>
+        <a href="https://pt.pinterest.com/joca_14/partituras-sax/" class="pinterest-button" target="_blank"><i class="fab fa-pinterest"></i> Pinterest</a>
+        <a class="pinterest-button" target="_blank" onclick="toggleTools()"><i class="fas fa-stopwatch"></i> Timer</a>
+    </div>
+    
+</header>
+    <div class="tools-container" id="toolsContainer" style="display:none;">
+    
+    <div class="tool-box" style="margin-top: auto;">
+        <div id="timer">00:00:00</div>
+        <button id="startButton" onclick="toggleTimer()">Iniciar</button>
+    </div>
+
+    <div class="tool-box">
+        <div id="metronome">Compasso: 00</div>
+        <button id="startButton" onclick="toggleMetronome()">Iniciar</button>
+    </div>
+
+</div>
+
+    <div class="gallery">
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/Ninguem explica Deus.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Ninguém explica Deus</span>
+        </div>
+        <div class="pdf-icon" onclick="openPDFModal('/Script/img/Partituras/Cristo o fiel amigo.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Cristo o fiel amigo</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/Além do Rio Azul.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Além do Rio Azul</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/Com Muito Louvor.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Com Muito Louvor</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/Uma Vez Outra Vez.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Uma Vez Outra Vez</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/O GRANDE EU SOU.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">O GRANDE EU SOU</span>
+        </div>
+        <div class="pdf-icon" onclick="openPDFModal('/Script/img/Partituras/Sou um soldado.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Sou um Soldado</span>
+        </div>
+        <div class="pdf-icon" onclick="openPDFModal('/Script/img/Partituras/Hino Nacional.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Hino Nacional</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/ESTOU CONTIGO.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">ESTOU CONTIGO</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/Casa do Pai.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Casa do Pai</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/Shout Lord.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Shout Lord</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/O Exilado.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">O Exilado</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/How Great.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">How Great</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/Presença.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Presença</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/Mil Graus.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Mil Graus</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/Draw 06.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Draw 06</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/481 Eb.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Eb Hino 481</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/hino 481.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">2 Hino 481</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/481.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Hino 481</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/349.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Hino 349</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/311.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Hino 311</span>
+        </div>
+        <div class="pdf-icon" onclick="openPDFModal('/Script/img/Partituras/291.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Hino 291</span>
+        </div>
+        <div class="pdf-icon clarinete" onclick="openPDFModal('/Script/img/Partituras/131 - Clarinete Sib 2.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Hino 131</span>
+        </div>
+        <div class="pdf-icon clarinete" onclick="openPDFModal('/Script/img/Partituras/074 - Clarinete B.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Cristo Virá</span>
+        </div>
+        <div class="pdf-icon sax-tenor" onclick="openPDFModal('/Script/img/Partituras/074 - Sax tenor.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Cristo Virá</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/074 - Sax alto B.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Cristo Virá</span>
+        </div>
+        <div class="pdf-icon sax-alto" onclick="openPDFModal('/Script/img/Partituras/Hino 48 - Sax Alto.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Hino 48</span>
+        </div>
+        <div class="pdf-icon" onclick="openPDFModal('/Script/img/Partituras/25.pdf')">
+            <i class="fas fa-file-pdf"></i>
+            <span style="margin-left: 8px;">Hino 25</span>
+        </div>
+        <img class="image sax-alto" src="/Script/img/Partituras/Noite Feliz.jpg" alt="Imagem Noite Feliz" onclick="openModal(0)">
+        <img class="image sax-tenor" src="/Script/img/Partituras/125.jpg" alt="Imagem 125" onclick="openModal(1)">
+        <img class="image sax-tenor" src="/Script/img/Partituras/093.jpg" alt="Imagem 093" onclick="openModal(2)">
+        <img class="image sax-tenor" src="/Script/img/Partituras/107.jpg" alt="Imagem 107" onclick="openModal(3)">
+        <img class="image" src="/Script/img/Partituras/109.jpg" alt="Imagem 109" onclick="openModal(4)">
+        <img class="image sax-tenor" src="/Script/img/Partituras/370.jpg" alt="Imagem 370" onclick="openModal(5)">
+        <img class="image" src="/Script/img/Partituras/459.jpg" alt="Imagem 459" onclick="openModal(6)">
+        <img class="image" src="/Script/img/Partituras/63.jpg" alt="Imagem 63" onclick="openModal(7)">
+        <img class="image" src="/Script/img/Partituras/89.jpg" alt="Imagem 89" onclick="openModal(8)">
+        <img class="image" src="/Script/img/Partituras/481.jpeg" alt="Imagem 481" onclick="openModal(9)">
+        <img class="image sax-alto" src="/Script/img/Partituras/577.jpg" alt="Imagem 577" onclick="openModal(10)">
+        <img class="image teclado" src="/Script/img/Partituras/Altar.png" alt="Altar" onclick="openModal(11)">
+        <img class="image" src="/Script/img/Partituras/grato-a-ti.jpg" alt="Grato a ti" onclick="openModal(12)">
+        <img class="image sax-alto" src="/Script/img/Partituras/96.jpeg" alt="Imagem 096" onclick="openModal(13)">
+        <img class="image sax-alto" src="/Script/img/Partituras/559.jpeg" alt="Imagem 093" onclick="openModal(14)">
+        <img class="image" src="/Script/img/Partituras/535.jpeg" alt="Imagem 535" onclick="openModal(15)">
+        <img class="image clarinete" src="/Script/img/Partituras/525.jpg" alt="Imagem 525" onclick="openModal(16)">
+        <img class="image sax-alto" src="/Script/img/Partituras/14.jpeg" alt="Imagem 14" onclick="openModal(17)">
+        <img class="image sax-alto" src="/Script/img/Partituras/cristo-voltara.jpg" alt="Cristo Voltara" onclick="openModal(18)">
+        <img class="image sax-alto" src="/Script/img/Partituras/491.jpeg" alt="Imagem 491" onclick="openModal(19)">
+        <img class="image sax-alto" src="/Script/img/Partituras/3.jpeg" alt="Imagem 3" onclick="openModal(20)">
+        <img class="image sax-tenor" src="/Script/img/Partituras/9.jpg" alt="Imagem 9" onclick="openModal(21)">
+        <img class="image sax-tenor" src="/Script/img/Partituras/Eterna Gratidão.jpg" alt="Eterna Gratidão" onclick="openModal(22)">
+        <img class="image sax-alto" src="/Script/img/Partituras/Subline e Grande Amor.jpeg" alt="Subline e Grande Amor" onclick="openModal(23)">
+        <img class="image sax-alto" src="/Script/img/Partituras/Ao meu redor.jpeg" alt="Ao meu Redor" onclick="openModal(24)">
+        <img class="image sax-alto" src="/Script/img/Partituras/Poderoso Deus.jpeg" alt="Poderoso Deus" onclick="openModal(25)">
+        <img class="image sax-tenor" src="/Script/img/Partituras/Te agradeço.jpg" alt="Te agradeço" onclick="openModal(26)">
+        <img class="image baixo" src="/Script/img/Partituras/cifras.jpg" alt="cifras" onclick="openModal(27)">
+        <img class="image baixo" src="/Script/img/Partituras/Baixo.png" alt="Yoshi's Island" onclick="openModal(28)">
+        <img class="image" src="/Script/img/Partituras/247.jpeg" alt="Imagem 247" onclick="openModal(29)">
+        <img class="image sax-alto" src="/Script/img/Partituras/Yoshi_s Island.png" alt="Yoshi's Island" onclick="openModal(30)">
+        <img class="image sax-alto" src="/Script/img/Partituras/Ninguem Explica Deus.png" alt="Ninguém Explica Deus" onclick="openModal(31)">
+    </div>
+
+    <!-- Modal for PDF -->
+<div class="modal" id="pdfModal">
+    <span class="close" onclick="closePDFModal()">&times;</span>
+    <span class="prev" onclick="changePDF(-1)">&#10094;</span>
+    <embed id="modalPDF" src="" type="application/pdf" width="90%" height="90%">
+    <span class="next" onclick="changePDF(1)">&#10095;</span>
+    
+    <!-- Botão de Play -->
+    <button id="pdfPlayButton" class="play-button" onclick="togglePDFAudio()">
+        <i class="fa-solid fa-play"></i>
+    </button>
+    
+    <!-- Elemento de áudio para o PDF -->
+    <audio id="pdfAudioPlayer">
+        <source id="pdfAudioSource" src="" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+</div>
+
+    <!-- Modal for Imagem -->
+    <div class="modal" id="imageModal" style="display: none;">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+        <span class="next" onclick="changeImage(1)">&#10095;</span>
+    
+        <div class="zoom-controls">
+            <button onclick="zoomIn()">+</button>
+            <button onclick="zoomOut()">-</button>
+        </div>
+    
+        <!-- Botão de Play/Pause -->
+        <button id="playButton" class="play-button" onclick="toggleAudio()">
+            <i class="fa-solid fa-play"></i>
+        </button>        
+    
+        <img id="modalImage" src="" alt="Partitura">
+    
+        <!-- Elemento de áudio -->
+        <audio id="audioPlayer">
+            <source id="audioSource" src="" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
+    </div>
+
+    </div>
+</div>
+    
+    <script src="/Script/perfil-data.js"></script>
+    <script src="/Script/nivel.js"></script>
+    <script>
+        function verificarHash() {
+
+    const hash = window.location.hash;
+
+    if (hash === "#partituras") {
+        abrirPartituras();
+    } else {
+        document.getElementById("modalPartitura").style.display = "none";
+    }
+
+}
+
+window.addEventListener("load", verificarHash);
+window.addEventListener("hashchange", verificarHash);
+
+        document.addEventListener("DOMContentLoaded", function () {
+    createCalendar();
+    setTimeout(() => document.getElementById("loader-container").style.display = "none", 1000);
+    restoreMarkedDays();
+});
+
+function createCalendar() {
+    const calendarContainer = document.getElementById("calendar");
+    calendarContainer.innerHTML = ""; // Limpa o calendário antes de recriar
+
+    const now = new Date();
+    const ano = now.getFullYear();
+    const mes = now.getMonth();
+
+    const daysOfWeek = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+    const daysInMonth = new Date(ano, mes + 1, 0).getDate();
+    const firstDayOfMonth = new Date(ano, mes, 1).getDay(); // Descobre em qual dia da semana começa o mês
+
+    // Adicionar cabeçalhos dos dias da semana
+    daysOfWeek.forEach(day => {
+        const dayOfWeek = document.createElement("div");
+        dayOfWeek.classList.add("day", "day-name");
+        dayOfWeek.textContent = day;
+        calendarContainer.appendChild(dayOfWeek);
+    });
+
+    // Adicionar espaços vazios antes do primeiro dia
+    for (let i = 0; i < firstDayOfMonth; i++) {
+        const emptyDay = document.createElement("div");
+        emptyDay.classList.add("day", "empty-day");
+        calendarContainer.appendChild(emptyDay);
+    }
+
+    // Adicionar os dias corretos do mês
+    for (let i = 1; i <= daysInMonth; i++) {
+        const day = document.createElement("div");
+        day.classList.add("day", "day-number");
+        day.textContent = i;
+        day.dataset.day = i;
+        day.addEventListener("click", toggleDay);
+        calendarContainer.appendChild(day);
+    }
+
+    restoreMarkedDays();
+}
+
+function toggleDay(event) {
+    const selectedDay = event.target;
+    selectedDay.classList.toggle("selected");
+
+    const dayNumber = selectedDay.dataset.day;
+    saveMarkedDay(dayNumber);
+    ganharXp(10);
+}
+
+function saveMarkedDay(dayNumber) {
+    const now = new Date();
+    const mesAno = `${now.getMonth()}-${now.getFullYear()}`; // Identificador único do mês
+    let markedDays = JSON.parse(localStorage.getItem(`markedDays-${mesAno}`)) || [];
+
+    const index = markedDays.indexOf(dayNumber);
+    if (index === -1) markedDays.push(dayNumber);
+    else markedDays.splice(index, 1);
+
+    localStorage.setItem(`markedDays-${mesAno}`, JSON.stringify(markedDays));
+}
+
+function restoreMarkedDays() {
+    const now = new Date();
+    const mesAno = `${now.getMonth()}-${now.getFullYear()}`;
+    const markedDays = JSON.parse(localStorage.getItem(`markedDays-${mesAno}`)) || [];
+
+    markedDays.forEach(dayNumber => {
+        const day = document.querySelector(`[data-day="${dayNumber}"]`);
+        if (day) day.classList.add("selected");
+    });
+}
+
+// Função para ganhar XP
+function ganharXp(xp) {
+    xpAtual += xp;
+    if (xpAtual >= xpNecessario) {
+        xpAtual -= xpNecessario;
+        nivelAtual++;
+        xpNecessario = 100 * (nivelAtual * nivelAtual);
+        alert(`Parabéns! Você alcançou o nível ${nivelAtual}!`);
+    }
+    salvarProgresso();
+    atualizarInterface();
+}
+
+// Função para salvar o progresso no localStorage
+function salvarProgresso() {
+    localStorage.setItem("nivelAtual", nivelAtual);
+    localStorage.setItem("xpAtual", xpAtual);
+}
+
+// Função para atualizar a interface e exibir a mensagem "+10 XP"
+function atualizarInterface() {
+    const progressBar = document.getElementById("progress-bar");
+    const nivelSpan = document.getElementById("nivel");
+    const xpAtualSpan = document.getElementById("xp-atual");
+    const xpNecessarioSpan = document.getElementById("xp-necessario");
+    const mensagemXp = document.getElementById("mensagem-xp");
+
+    if (nivelSpan && xpAtualSpan && xpNecessarioSpan && progressBar && mensagemXp) {
+        nivelSpan.textContent = nivelAtual;
+        xpAtualSpan.textContent = xpAtual;
+        xpNecessarioSpan.textContent = xpNecessario;
+
+        const progresso = (xpAtual / xpNecessario) * 100;
+        progressBar.style.width = `${progresso}%`;
+        progressBar.textContent = `${Math.round(progresso)}%`;
+
+        // Exibe a mensagem "+10 XP"
+        mensagemXp.textContent = "+10 XP";
+        setTimeout(() => {
+            mensagemXp.textContent = "";
+        }, 2000);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", atualizarInterface);
+
+function showLessons(instrument) {
+    // Lógica para exibir lições do instrumento
+    alert(`Mostrando lições de ${instrument}`);
+}
+
+function showSheetMusic(instrument) {
+    // Lógica para exibir partituras do instrumento
+    alert(`Mostrando partituras de ${instrument}`);
+}
+
+function goHome() {
+    // Redirecione para a página inicial ou execute a lógica desejada
+    alert("Voltando para a Home");
+    location.reload(); // Recarregue a página para simular o retorno à home
+}
+
+// Função para abrir o modal
+function openModal0(modalType) {
+    const modal = document.getElementById(modalType + 'Modal');
+    modal.style.display = 'flex';
+}
+
+function abrirPartituras() {
+    document.getElementById("modalPartitura").style.display = "flex";
+}
+
+function fecharPartituras() {
+
+    document.getElementById("modalPartitura").style.display = "none";
+
+    // remove o #partituras da URL sem recarregar
+    history.pushState(
+        null,
+        null,
+        window.location.pathname + window.location.search
+    );
+}
+
+// Função para fechar o modal
+function closeModal(modalType) {
+    const modal = document.getElementById(modalType + 'Modal');
+    modal.style.display = 'none';
+
+    document.getElementById("modalPartitura").style.display = "none";
+
+    history.pushState(
+        "",
+        document.title,
+        window.location.pathname
+    );
+}
+
+// Fechar o modal se clicar fora do conteúdo
+window.onclick = function(event) {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(function(modal) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
+}
+
+const notesTextarea2 = document.getElementById("notes1");
+    const storageKey = "savedNotes2"; // Chave única para armazenar o conteúdo
+
+    // Carrega o texto salvo no localStorage ao abrir a página
+    window.onload = () => {
+        const savedNotes2 = localStorage.getItem(storageKey);
+        if (savedNotes2) {
+            notesTextarea2.value = savedNotes2; // Preenche o textarea com o conteúdo salvo
+        }
+    };
+
+    // Salva o conteúdo do textarea no localStorage automaticamente
+    notesTextarea2.addEventListener("input", () => {
+        localStorage.setItem(storageKey, notesTextarea2.value);
+    });
+
+    // Função para exportar o conteúdo como arquivo .txt
+    function exportNotes() {
+        const blob = new Blob([notesTextarea2.value], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "sax.txt";
+        link.click();
+    }
+
+    // Função para importar um arquivo
+    function importNotes() {
+        const fileInput = document.createElement("input"); // Cria o elemento de input dinamicamente
+        fileInput.type = "file";
+        fileInput.accept = ".txt";
+        fileInput.style.display = "none"; // Oculta o input
+        document.body.appendChild(fileInput); // Adiciona temporariamente ao body
+
+        // Quando um arquivo for selecionado
+        fileInput.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    notesTextarea2.value = e.target.result; // Define o texto no textarea
+                    localStorage.setItem(storageKey, e.target.result); // Salva no localStorage
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        fileInput.click(); // Abre o seletor de arquivos
+        document.body.removeChild(fileInput); // Remove o input após o uso
+    }
+
+function redirecionar(destino) {
+    switch (destino) {
+        case 'Lições':
+                window.open('https://www.youtube.com/watch?v=Sz6rLemlvxc');
+                window.open('https://youtu.be/arSPEDXQG-I?si=AbqnBjoEPqj4D3o9');
+                window.open('https://promus.musica.ufrj.br/wp-content/uploads/2022/07/Omar-Pacheco-prod.-pedagogico-cadernobrasileiroparacontrabaixo.pdf');
+                window.open('https://www.google.com.br/search?q=can+i+kick+it+bass&sca_esv=70821a11ccbed8f3&authuser=4&sxsrf=ACQVn0_s3qvTQTq84WxFpqq9Os4Y6LsD4A%3A1711309701419&source=hp&ei=hYMAZsveFs225OUPyJmIgAs&iflsig=ANes7DEAAAAAZgCRlYoDFsLXkKPhTQcZlyA_SbvZXw6Q&udm=&ved=0ahUKEwiLtee21Y2FAxVNG7kGHcgMArAQ4dUDCBU&uact=5&oq=can+i+kick+it+bass&gs_lp=Egdnd3Mtd2l6IhJjYW4gaSBraWNrIGl0IGJhc3MyBxAAGIAEGBMyBxAAGIAEGBMyCBAAGBYYHhgTMggQABgWGB4YEzIIEAAYFhgeGBMyCBAAGBYYHhgTMgoQABgWGB4YDxgTMggQABgWGB4YE0izwQFQAFifwAFwBngAkAEAmAGLAqABiBmqAQYwLjEyLje4AQPIAQD4AQGYAhmgApIbwgIIEC4YgAQYsQPCAgsQABiABBixAxiDAcICFBAuGIAEGIoFGLEDGIMBGMcBGNEDwgIFEAAYgATCAg4QLhiABBixAxjHARjRA8ICCxAuGIAEGLEDGIMBwgIIEAAYgAQYsQPCAhEQLhiABBixAxiDARjHARjRA8ICDhAuGMcBGLEDGNEDGIAEwgILEC4YgwEYsQMYgATCAg4QLhiABBiKBRixAxiDAcICBRAuGIAEwgIIEC4YgAQY1ALCAg4QABiABBiKBRixAxiDAcICDhAuGIAEGLEDGIMBGNQCwgIHEAAYgAQYCsICBhAAGBYYHsICBxAuGBMYgATCAgcQLhiABBgTmAMAkgcGNi4xMi43oAfSvgE&sclient=gws-wiz');
+                break;
+        case 'Lições-Vio':
+                window.open('https://www.youtube.com/watch?v=RpIAIHUEGBM');
+                window.open('https://www.youtube.com/watch?v=2TD3u30oQtM');
+                window.open('https://www.viamusical.com.br/cursos/motivacional/como-aprender-a-tocar-violao:-10-dicas-para-acelerar-seu-aprendizado');
+                break;
+        case 'Lições-Cla':
+                window.open('/Script/img/Partituras/clarinete.pdf');
+                break;
+        case 'Lições-Sax':
+                window.open('/Script/img/Partituras/sax-alto.pdf');
+                window.open('/Script/img/Partituras/sax-tenor.pdf');
+                window.open('https://www.youtube.com/watch?v=8pvaCHGdBgk&list=WL&index=6&ab_channel=LanderSax');
+                window.open('https://www.youtube.com/watch?v=mCm2xcsoVFE&list=WL&index=7&ab_channel=LanderSax');
+                break;
+        case 'Teclado':
+            window.open('https://www.pianoeletronico.com.br/');
+            break;
+            break;
+        case 'Partituras':
+            abrirGaleria();
+            break;
+        default:
+            break;
+    }
+}
+
+function abrirGaleria() {
+    document.getElementById("modalPartitura").style.display = "block";
+}
+
+function closeGaleria() {
+    document.getElementById("modalPartitura").style.display = "none";
+}
+
+// Recupera o perfil ativo do localStorage
+perfilAtivo = localStorage.getItem('perfilAtivo') || 'Main';
+
+// Salvar as anotações do musicPlace para o perfil ativo
+function saveNotes() {
+    const notes = document.getElementById('notes1').value;
+    localStorage.setItem(`musicPlaceNotes1-${perfilAtivo}`, notes);
+}
+
+// Carregar as anotações salvas do localStorage para o perfil ativo
+function loadNotes() {
+    const savedNotes = localStorage.getItem(`musicPlaceNotes1-${perfilAtivo}`);
+
+    if (savedNotes) {
+        document.getElementById('notes1').value = savedNotes;
+    }
+}
+
+// Adicionar evento para salvar automaticamente ao digitar
+document.getElementById('notes1').addEventListener('input', function () {
+    saveNotes();
+});
+
+// Carregar as anotações ao iniciar a página
+document.addEventListener('DOMContentLoaded', function () {
+    loadNotes();
+});
+
+
+        function toggleTools(){
+    const tools = document.getElementById("toolsContainer");
+
+    if(tools.style.display === "none"){
+        tools.style.display = "flex";
+    }else{
+        tools.style.display = "none";
+    }
+}
+
+        let metronomeValue = 1;
+        let metronomeId;
+        let isMetronomeRunning = false;
+
+        // Adiciona o beep
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let oscillator;
+
+        function createOscillator() {
+            oscillator = audioContext.createOscillator();
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(1000, audioContext.currentTime);
+            oscillator.connect(audioContext.destination);
+        }
+
+        function playBeep() {
+            createOscillator();
+            oscillator.start();
+            if (metronomeValue % 4 === 0) {
+                oscillator.stop(audioContext.currentTime + 0.3); // Beep mais longo para múltiplos de 4
+            } else {
+                oscillator.stop(audioContext.currentTime + 0.1); // Beep normal
+            }
+        }
+
+        function updateMetronome() {
+            if (isMetronomeRunning) {
+                document.getElementById("metronome").textContent = `Compasso: ${metronomeValue.toString().padStart(2, '0')}`;
+                playBeep();
+                metronomeValue = (metronomeValue % 4) + 1; // Incrementa de 1 a 4 em loop
+            }
+        }
+
+        function toggleMetronome() {
+            if (isMetronomeRunning) {
+                clearInterval(metronomeId);
+                isMetronomeRunning = false;
+                document.getElementById("startButton").textContent = "Iniciar";
+            } else {
+                metronomeValue = 1; // Defina o valor inicial do compasso para 1
+                metronomeId = setInterval(updateMetronome, 1000);
+                isMetronomeRunning = true;
+                document.getElementById("startButton").textContent = "Pausar";
+            }
+        }
+        
+        let timeInSeconds = 0;
+        let timerId;  // Variável para armazenar o ID do temporizador
+        let isTimerRunning = false;  // Flag para verificar se o temporizador está em execução
+
+        function updateTimer() {
+            if (isTimerRunning) {
+                const hours = Math.floor(timeInSeconds / 3600);
+                const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                const seconds = timeInSeconds % 60;
+
+                const formattedHours = hours.toString().padStart(2, '0');
+                const formattedMinutes = minutes.toString().padStart(2, '0');
+                const formattedSeconds = seconds.toString().padStart(2, '0');
+
+                document.getElementById("timer").textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+                timeInSeconds++;
+            }
+        }
+
+        function toggleTimer() {
+            if (isTimerRunning) {
+                // Pausar o temporizador
+                clearInterval(timerId);
+                isTimerRunning = false;
+                document.getElementById("startButton").textContent = "Iniciar";
+            } else {
+                // Iniciar o temporizador apenas se não estiver ativo
+                timerId = setInterval(updateTimer, 1000);
+                isTimerRunning = true;
+                document.getElementById("startButton").textContent = "Pausar";
+            }
+        }
+
+        const pdfs = [
+        '/Script/img/Partituras/Ninguem explica Deus.pdf',
+        '/Script/img/Partituras/Cristo o fiel amigo.pdf',
+        '/Script/img/Partituras/Além do Rio Azul.pdf',
+        '/Script/img/Partituras/Com Muito Louvor.pdf',
+        '/Script/img/Partituras/Uma Vez Outra Vez.pdf',
+        '/Script/img/Partituras/O GRANDE EU SOU.pdf',
+        '/Script/img/Partituras/Sou um soldado.pdf',
+        '/Script/img/Partituras/Hino Nacional.pdf',
+        '/Script/img/Partituras/ESTOU CONTIGO.pdf',
+        '/Script/img/Partituras/Casa do Pai.pdf',
+        '/Script/img/Partituras/Shout Lord.pdf',
+        '/Script/img/Partituras/O Exilado.pdf',
+        '/Script/img/Partituras/How Great.pdf',
+        '/Script/img/Partituras/Presença.pdf',
+        '/Script/img/Partituras/Mil Graus.pdf',
+        '/Script/img/Partituras/Draw 06.pdf',
+        '/Script/img/Partituras/481 Eb.pdf',
+        '/Script/img/Partituras/hino 481.pdf',
+        '/Script/img/Partituras/481.pdf',
+        '/Script/img/Partituras/349.pdf',
+        '/Script/img/Partituras/311.pdf',
+        '/Script/img/Partituras/291.pdf',
+        '/Script/img/Partituras/131.pdf',
+        '/Script/img/Partituras/074 - Clarinete B.pdf',
+        '/Script/img/Partituras/074 - Sax tenor.pdf',
+        '/Script/img/Partituras/074 - Sax alto B.pdf',
+        '/Script/img/Partituras/Hino 48 - Sax Alto.pdf',
+        '/Script/img/Partituras/25.pdf'
+    ];
+const pastaImg = "/Script/img/Partituras/";
+
+const images = [
+    pastaImg + "Noite Feliz.jpg",
+    pastaImg + "125.jpg",
+    pastaImg + "093.jpg",
+    pastaImg + "107.jpg",
+    pastaImg + "109.jpg",
+    pastaImg + "370.jpg",
+    pastaImg + "459.jpg",
+    pastaImg + "63.jpg",
+    pastaImg + "89.jpg",
+    pastaImg + "481.jpeg",
+    pastaImg + "577.jpg",
+    pastaImg + "Altar.png",
+    pastaImg + "grato-a-ti.jpg",
+    pastaImg + "96.jpeg",
+    pastaImg + "559.jpeg",
+    pastaImg + "535.jpeg",
+    pastaImg + "525.jpg",
+    pastaImg + "14.jpeg",
+    pastaImg + "cristo-voltara.jpg",
+    pastaImg + "491.jpeg",
+    pastaImg + "3.jpeg",
+    pastaImg + "9.jpg",
+    pastaImg + "Eterna Gratidão.jpg",
+    pastaImg + "Subline e Grande Amor.jpeg",
+    pastaImg + "Ao meu redor.jpeg",
+    pastaImg + "Poderoso Deus.jpeg",
+    pastaImg + "Te agradeço.jpg",
+    pastaImg + "cifras.jpg",
+    pastaImg + "Baixo.png",
+    pastaImg + "247.jpeg",
+    pastaImg + "Yoshi_s Island.png",
+    pastaImg + "Ninguem Explica Deus.png"
+];        let currentImageIndex = 0;
+
+        function filtrarInstrumentos(tipo) {
+            const elementos = document.querySelectorAll('.pdf-icon, .image');
+
+            if (tipo === 'todos') {
+                elementos.forEach(el => {
+                    el.style.display = 'block';
+                });
+            } else {
+                elementos.forEach(el => {
+                    if (el.classList.contains(tipo)) {
+                        el.style.display = 'block';
+                    } else {
+                        el.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        function showPDFs() {
+            document.querySelectorAll('.pdf-icon').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.image').forEach(el => el.style.display = 'none');
+        }
+
+        function showImages() {
+            document.querySelectorAll('.pdf-icon').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.image').forEach(el => el.style.display = 'block');
+        }
+
+        function showAll() {
+            document.querySelectorAll('.pdf-icon').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.image').forEach(el => el.style.display = 'block');
+        }
+
+    let zoomLevel = 1.0;
+    let currentAudio = null;
+    const audioFiles = ["audio.mp3", "audio2.mp3", "audio3.mp3", "audio4.mp3", "audio5.mp3", "audio6.mp3", "audio7.mp3", "audio8.mp3", "audio9.mp3", "/Script/img/Partituras/481.mp3", "audio10.mp3", "audio11.mp3", "audio12.mp3", "audio13.mp3", "audio14.mp3", "/Script/img/Partituras/535.mp3", "audio16.mp3", "audio17.mp3", "audio18.mp3", "audio19.mp3", "audio20.mp3", "audio21.mp3", "audio22.mp3", "/Script/img/Partituras/23.mp3", "/Script/img/Partituras/247.mp3", "audio24.mp3"];
+    const modalImage = document.getElementById("modalImage");
+    const audioPlayer = document.getElementById("audioPlayer");
+    const audioSource = document.getElementById("audioSource");
+    const playButton = document.getElementById("playButton");
+
+    function openModal(index) {
+    currentImageIndex = index;
+    document.getElementById("imageModal").style.display = "flex";
+    
+    // Definir a imagem no modal
+    const modalImage = document.getElementById("modalImage");
+    modalImage.src = images[index];
+
+    // Resetar o zoom ao abrir nova imagem
+    zoomLevel = 1.0;
+    modalImage.style.transform = `scale(${zoomLevel})`;
+
+    // Definir o áudio correspondente
+    if (audioFiles[index]) {
+        const audioPlayer = document.getElementById("audioPlayer");
+        const audioSource = document.getElementById("audioSource");
+        audioSource.src = audioFiles[index];
+        audioPlayer.load(); // Carregar o áudio
+    }
+
+    // Resetar o botão de play
+    document.getElementById("playButton").innerHTML = '<i class="fa-solid fa-play"></i>';
+}
+
+function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+
+    // Pausar o áudio ao fechar
+    const audioPlayer = document.getElementById("audioPlayer");
+    audioPlayer.pause();
+    document.getElementById("playButton").innerHTML = '<i class="fa-solid fa-play"></i>';
+}
+
+function toggleAudio() {
+    const audioPlayer = document.getElementById("audioPlayer");
+    const playButton = document.getElementById("playButton");
+
+    if (audioPlayer.paused) {
+        audioPlayer.play().catch(e => console.error("Erro ao tentar reproduzir o áudio:", e));
+        playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    } else {
+        audioPlayer.pause();
+        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+    }
+}
+
+    function changeImage(direction) {
+            currentImageIndex += direction;
+
+            // Limitar o índice para garantir que ele não ultrapasse os limites da galeria
+            if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+            if (currentImageIndex >= images.length) currentImageIndex = 0;
+
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = images[currentImageIndex];
+        }
+
+    // Lista de arquivos de áudio correspondentes aos PDFs
+const audioFiles2 = {
+    "/Script/img/Partituras/25.pdf": "/Script/img/Partituras/25.mp3",
+    "/Script/img/Partituras/349.pdf": "/Script/img/Partituras/349.mp3",
+    "/Script/img/Partituras/291.pdf": "/Script/img/Partituras/291.mp3",
+    "/Script/img/Partituras/481.pdf": "/Script/img/Partituras/481.mp3",
+    //"Além do Rio Azul.pdf": "Além_do_Rio_Azul.mp3",
+    //"Com Muito Louvor.pdf": "Com_Muito_Louvor.mp3",
+    //"Uma Vez Outra Vez.pdf": "Uma_Vez_Outra_Vez.mp3",
+    //"O GRANDE EU SOU.pdf": "O_GRANDE_EU_SOU.mp3",
+    //"Hino Nacional.pdf": "Hino_Nacional.mp3",
+    //"ESTOU CONTIGO.pdf": "ESTOU_CONTIGO.mp3",
+    // Adicione mais arquivos de áudio conforme necessário
+};
+
+let currentPDFIndex = 0;
+
+    // Função para abrir o modal do PDF
+    function openPDFModal(pdfFileName) {
+        const pdfModal = document.getElementById('pdfModal');
+        const modalPDF = document.getElementById('modalPDF');
+        modalPDF.src = pdfFileName;
+        pdfModal.style.display = 'flex';
+
+        // Atualizar o áudio do PDF atual
+        if (audioFiles2[pdfFileName]) {
+            const pdfAudioSource = document.getElementById("pdfAudioSource");
+            pdfAudioSource.src = audioFiles2[pdfFileName];
+            const pdfAudioPlayer = document.getElementById("pdfAudioPlayer");
+            pdfAudioPlayer.load(); // Carregar o áudio
+        }
+
+        // Alterar o botão para "Play"
+        const playButton = document.getElementById("pdfPlayButton");
+        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+    }
+
+    function changePDF(direction) {
+        currentPDFIndex += direction;
+
+        // Limitar o índice para garantir que ele não ultrapasse os limites da galeria de PDFs
+        if (currentPDFIndex < 0) currentPDFIndex = pdfs.length - 1;
+        if (currentPDFIndex >= pdfs.length) currentPDFIndex = 0;
+
+        const modalPDF = document.getElementById('modalPDF');
+        modalPDF.src = pdfs[currentPDFIndex]; // Atualiza a visualização do PDF
+    }
+
+    // Função para fechar o modal do PDF
+    function closePDFModal() {
+        document.getElementById("pdfModal").style.display = "none";
+        const pdfAudioPlayer = document.getElementById("pdfAudioPlayer");
+        pdfAudioPlayer.pause(); // Parar a música ao fechar o modal
+    }
+
+    // Função para alternar o áudio (Play/Pause)
+    function togglePDFAudio() {
+        const pdfAudioPlayer = document.getElementById("pdfAudioPlayer");
+        const playButton = document.getElementById("pdfPlayButton");
+
+        if (pdfAudioPlayer.paused) {
+            pdfAudioPlayer.play().catch(e => console.error("Erro ao tentar reproduzir o áudio:", e));
+            playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';  // Mudar para o botão de Pause
+        } else {
+            pdfAudioPlayer.pause();
+            playButton.innerHTML = '<i class="fa-solid fa-play"></i>';  // Voltar para o botão de Play
+        }
+    }
+
+    function zoomIn() {
+        zoomLevel += 0.2;
+        modalImage.style.transform = `scale(${zoomLevel})`;
+    }
+
+    function zoomOut() {
+        if (zoomLevel > 0.5) {
+            zoomLevel -= 0.2;
+            modalImage.style.transform = `scale(${zoomLevel})`;
+        }
+    }
+
+    function toggleAudio() {
+        let icon = playButton.querySelector("i");
+        if (audioPlayer.paused) {
+            audioPlayer.play().catch(e => console.error("Erro ao tentar reproduzir o áudio:", e));
+            icon.classList.replace("fa-play", "fa-pause");
+        } else {
+            audioPlayer.pause();
+            icon.classList.replace("fa-pause", "fa-play");
+        }
+    }
+    </script>
+</body>
+</html>
