@@ -866,6 +866,10 @@ var playlists = {
     title: "Nice Try Ditty"
   },
   {
+    file: "/Script/media/Music/Vibe/NIGHT DANCER Edit Best Part.mp3",
+    title: "NIGHT DANCER Edit Best Part"
+  },
+  {
     file: "/Script/media/Music/Vibe/Noite toda uma zoada.mp3",
     title: "Noite Toda Uma Zoada"
   },
@@ -912,6 +916,10 @@ var playlists = {
   {
     file: "/Script/media/Music/Vibe/PERSONA FUNK.mp3",
     title: "PERSONA FUNK"
+  },
+  {
+    file: "/Script/media/Music/Vibe/PILATRAGEM MC LIVINHO.mp3",
+    title: "PILATRAGEM MC LIVINHO"
   },
   {
     file: "/Script/media/Music/Vibe/Patlamaya Devam.mp3",
@@ -970,6 +978,10 @@ var playlists = {
     title: "Ritmada Poderosa (Edit)"
   },
   {
+    file: "/Script/media/Music/Vibe/Ritmamada Interestelar La Ele.mp3",
+    title: "Ritmamada Interestelar Lá Ele"
+  },
+  {
     file: "/Script/media/Music/Vibe/Rizz Song (4k Edit).mp3",
     title: "Rizz Song (4k Edit)"
   },
@@ -996,6 +1008,10 @@ var playlists = {
   {
     file: "/Script/media/Music/Vibe/Run anemona.mp3",
     title: "Run Anemona"
+  },
+  {
+    file: "/Script/media/Music/Vibe/sabe a cara de sem graca slowed  reverb.mp3",
+    title: "sabe a cara de sem graça slowed  reverb"
   },
   {
     file: "/Script/media/Music/Vibe/SAD FUNK (SLOWED).mp3",
