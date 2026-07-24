@@ -506,6 +506,10 @@ var playlists = {
     title: "CHANGES - xxxtentacion"
   },
   {
+    file: "/Script/media/Music/Vibe/CHARLIE CHARLIE KIRKY FUNK.mp3",
+    title: "CHARLIE CHARLIE KIRKY FUNK"
+  },
+  {
     file: "/Script/media/Music/Vibe/Chicago (Michael Jackson).mp3",
     title: "Chicago (Michael Jackson)"
   },
