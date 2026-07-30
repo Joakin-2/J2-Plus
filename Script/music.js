@@ -370,6 +370,10 @@ var playlists = {
     images: ['https://i.scdn.co/image/ab67616d0000b273afeb818f0641df8a027bb91b', 'https://i.pinimg.com/originals/48/03/98/480398182051724ebf47a64376d169ba.gif', 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2h4M3p1Y2s0aDZ3dnl6N20wZWRzbnZxemkwNzJmdm9yMHdlZDRkeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ORjfgiG9ZtxcQQwZzv/giphy.gif', 'https://media1.tenor.com/m/vp6h_D7U-OUAAAAd/whatsapp-instagram.gif', 'https://media1.tenor.com/m/16eiLyMPZ0cAAAAC/excuse-me-e.gif', 'https://media1.tenor.com/m/_YjnKMGfvQUAAAAd/excuse-me-sir-excuse-me-sir-the-boys.gif'],                
     tracks: [
       {
+    file: "/Script/media/Music/Vibe/180db (Sped Up).mp3",
+    title: "180db (Sped Up)"
+  },
+  {
     file: "/Script/media/Music/Vibe/20 Min.mp3",
     title: "20 Min"
   },
@@ -1188,6 +1192,10 @@ var playlists = {
   {
     file: "/Script/media/Music/Vibe/Work - Rihanna ft Dj Natttan.mp3",
     title: "Work - Rihanna ft DJ Natttan"
+  },
+  {
+    file: "/Script/media/Music/Vibe/Yara yara yara.mp3",
+    title: "Yara yara yara"
   },
   {
     file: "/Script/media/Music/Vibe/Yellow Light.mp3",
