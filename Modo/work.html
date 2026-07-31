@@ -153,7 +153,7 @@
             margin: 4px 2px;
             cursor: pointer;
             border-radius: 8px;
-            width: 300px;
+            width: 370px;
             height: 150px;
             display: flex;
             justify-content: center;
@@ -298,15 +298,8 @@
     <div class="container">
         <button class="botao" onclick="redirecionar('edit')"><i class="fas fa-edit"></i> Edição</button>
         <button class="botao" onclick="redirecionar('Day Trade')"><i class="fas fa-chart-line"></i> Day Trade</button>
-        <button class="botao" onclick="redirecionar('Social Mídia')"><i class="fab fa-instagram"></i> Social Mídia</button>
-    </div>
-
-    <div class="container" style="margin-top: 20px">
-        <button class="botao" onclick="redirecionar('Afiliações')"><i class="fas fa-money-bill"></i> Afiliações</button>
         <button class="botao" onclick="redirecionar('Pulike')"><i class="fas fa-print"></i> Pulike</button>
-        <button class="botao" onclick="redirecionar('curso')"><i class="fas fa-graduation-cap"></i> Curso</button>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         document.querySelectorAll('.copy-box pre').forEach(pre => {
@@ -595,21 +588,11 @@ function importarDados() {
                         // Outros dias: abrir todos os sites
                         window.open('https://br.investing.com/');
                         window.open('https://br.tradingview.com/chart/wJjwLtXA/?symbol=BMFBOVESPA%3AIBOV');
-                        // window.open('https://www.youtube.com/@cmcapitalaovivo');
                         window.open('https://www.youtube.com/results?search_query=laatus+reuni%C3%A3o+matinal');
-                        //window.open('https://salaprime.com.br/youtube-sem-delay/');
                     }
                     break;
                     break;
-case 'focus':
-                    window.location.href = 'https://j2plus.netlify.app/works/foco';
-                    break;
-                case 'curso':
-                    window.open('curso.html');
-                    window.open('https://drive.google.com/drive/u/0/folders/1TeJczUMaAtSy6UFOXvtrgpBqsCCIIESt');
-                    break;
                 case 'edit':
-                    window.open('https://app.paperanimator.com/text-match-cut');
                     window.open('https://www.fotor.com/pt/video-enhancer/');
                     window.open('https://www.lovart.ai/');
                     window.open('https://viggle.ai/app/home');
@@ -617,16 +600,10 @@ case 'focus':
                     window.open('https://picsart.com/');
                     window.open('https://www.photopea.com/');
                     break;
-                case 'Social Mídia':
-                    window.open('https://www.youtube.com/@joakin_luiz');
-                    //window.open('https://www.tiktok.com/business-suite/homepage');
-                    //window.open('https://www.linkedin.com/in/joaquim-luiz-b32810323/');
-                    window.open('https://business.facebook.com/latest/home?nav_ref=bm_home_redirect&asset_id=617136918158059');
-                    break;
                 case 'Pulike':
                     //window.open('https://learn.microsoft.com/pt-br/');window.open('https://unhideschool.com/cursos?orderby=RECENT&search=impress%C3%A3o%203d');
-                  //  window.open('https://trello.com/b/72e7GwSj/gestao-jin-sei-arts');
-                  //  window.open('https://trello.com/c/hBewPaS8/11-social-m%C3%ADdia-redes-sociais');
+                  //window.open('https://trello.com/b/72e7GwSj/gestao-jin-sei-arts');
+                  //window.open('https://trello.com/c/hBewPaS8/11-social-m%C3%ADdia-redes-sociais');
                     //window.open('https://learn.microsoft.com/pt-br/');window.open('https://learn.microsoft.com/pt-br/credentials/applied-skills/build-natural-language-solution-azure-ai/?wt.mc_id=fsi_msle_landingpage_wwl_ailanguage');
                     window.open('https://discord.com/channels/@me/1066833055723028603');
                     window.open('https://business.facebook.com/latest/?asset_id=603116216208940&business_id=2349354548756195&nav_ref=mfb_get_started_header_cta');
@@ -636,17 +613,6 @@ case 'focus':
                     window.open('https://www.printables.com/');
                     window.open('https://cults3d.com/en?srsltid=AfmBOoru6IJ-IZUXsffDSXnuGviFD9E0l4F7bNU_-UWUbyTgf92XxCDp');
                     window.open('https://www.chitubox.com/en/page/chitubox-price?skuId=17952006&spuId=17952&promoCode=7j414bfj&paytype=year&utm_source=google_paid_search&utm_medium=cpc&utm_campaign=Pmax_month&gad_source=1&gad_campaignid=20102043729&gbraid=0AAAAAo4VGrdqXjoEr3TlOCiR76tHfk5vp&gclid=EAIaIQobChMIuIa8p7WJkgMV2VdIAB3fcxNFEAAYASAAEgIgU_D_BwE');
-                    break;
-                case 'Contas':
-                    window.open('https://contadigital.inter.co/home');
-                    window.open('https://www.nuinvest.com.br/home');
-                    window.open('https://www.binance.com/pt-BR/my/dashboard');
-                    Window.open('https://js3dstudio.netlify.app/finan.html')
-                    break;
-                case 'Afiliações':
-                    window.open('https://shopee.com.br/m/afiliados?gad_source=1&gclid=EAIaIQobChMIrP2ijO3ciwMVCVNIAB1nLw-nEAAYASAAEgKumvD_BwE');
-                    window.open('https://associados.amazon.com.br/home');
-                    window.open('https://portals.aliexpress.com/affiportals/web/portals.htm#/home');
                     break;
                 default:
                     break;
