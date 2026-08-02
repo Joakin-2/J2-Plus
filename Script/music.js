@@ -638,6 +638,10 @@ var playlists = {
     title: "E ela terminou comigo prod. Djay L Beats"
   },
   {
+    file: "/Script/media/Music/Vibe/EU ME REMEXO MUITO.mp3",
+    title: "EU ME REMEXO MUITO"
+  },
+  {
     file: "/Script/media/Music/Vibe/Empire State Of Mind (Lyrics).mp3",
     title: "Empire State of Mind (Lyrics)"
   },
@@ -948,6 +952,14 @@ var playlists = {
   {
     file: "/Script/media/Music/Vibe/Pou Teto.mp3",
     title: "Pou Teto"
+  },
+  {
+    file: "/Script/media/Music/Vibe/Prince Of Egypt.mp3",
+    title: "Prince Of Egypt"
+  },
+  {
+    file: "/Script/media/Music/Vibe/prince of egypt (slowed reverb).mp3",
+    title: "prince of egypt (slowed reverb)"
   },
   {
     file: "/Script/media/Music/Vibe/QUANDO VC SENTA O MUNDO, 100 NEUROSE vs BEAT KOF (DJ ERRIDE).mp3",
