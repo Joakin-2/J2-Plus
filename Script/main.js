@@ -2206,19 +2206,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Função para mostrar a seção do idioma selecionado
-function showLanguage(language) {
-    var languages = ['english', 'spanish', 'libras'];
-
-    // Esconde todas as seções
-    languages.forEach(function(lang) {
-        document.getElementById(lang).style.display = 'none';
-    });
-
-    // Exibe a seção do idioma escolhido
-    document.getElementById(language).style.display = 'block';
-}
-
 
 const input = document.getElementById("urlInput");
   const button = document.getElementById("goButton");
@@ -2424,11 +2411,6 @@ const modals = {
     modal: document.getElementById("modal-rafa"),
     fechar: document.getElementById("fechar-rafa")
   },
-  pc: {
-    btn: document.getElementById("pc-btn"),
-    modal: document.getElementById("modal-pc"),
-    fechar: document.getElementById("fechar-pc")
-  },
   manual: {
     btn: document.getElementById("manual-btn"),
     modal: document.getElementById("modal-manual"),
@@ -2448,7 +2430,6 @@ const modals = {
 
 const titulos = {
   rafa: "Rafa",
-  pc: "PCs",
   manual: "Manual J2",
   christ: "Christ",
   streaming: "Streaming"

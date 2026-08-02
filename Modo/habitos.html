@@ -431,63 +431,44 @@ ul li {
 </head>
 <body>
     <header class="header-container">
-        <button id="menuBtn">Menu</button>
+        <button id="refeicoesBtn" style="
+    width: auto;
+">🍽️</button>
         <p id="relogio"></p>
     </header>
 
-    <div id="menuOverlay" class="menu-overlay">
-        <div class="menu-content">
-            <button id="habitosBtn">Hábitos</button>
-            <button id="refeicoesBtn">Refeições</button>
-            <button id="voltarBtn">Voltar</button>
-        </div>
-    </div>    
+    <h1 id="tituloHabitos">Monitor de Hábitos</h1>
 
-    <h1>Monitor de Hábitos</h1>
-
-    <section class="caixa-anotacao" style="margin-bottom: 10px; margin-top: 2%;">
-        <h3>Anotações</h3>
-        <textarea id="anotacoes" rows="5" cols="50"></textarea>
-        <textarea id="programados" rows="5" cols="50"></textarea>
+    <section class="caixa-anotacao" style="margin-bottom: 30px; margin-top: 2%;">
+        <textarea id="anotacoes" rows="5" cols="110"></textarea>
     </section>
-
-    <div style="display: flex;">
-        <button id="mostrarHorarioBtn" style="width: 10px; height: 40px; background-color: #141414; border: 1px solid #141414; margin-left: -5px;"><i class="fas fa-question-circle" style="margin-left: -10px;"></i></button>
-        <h2 id="tituloHabitos" style="margin-left: 10px; margin-right: 15px; margin-top: 15px;">Hábitos</h2>
-        <button onclick="recarregar()" style="width: 40px; height: 40px; background-color: #141414; border: 1px solid #141414;"><i class="fas fa-sync-alt" style="margin-left: -10px;"></i></button>
-    </div>
 
     <!-- Áudio para ser tocado -->
     <audio id="som-recarregar" src="/Script/media/som.mp3" preload="auto"></audio>    </div>
-    
-    <div id="horarioExplicacao" style="display: none; margin-bottom: 20px; color: #fff;">
-        <p><strong>Manhã:</strong> 06:00 - 12:00</p>
-        <p><strong>Tarde:</strong> 12:00 - 18:00</p>
-        <p><strong>Noite:</strong> 18:00 - 00:00</p>
-    </div>    
 
     <div id="habitosContainer" class="section-container">
         <div id="mensagem-xp"></div>
         <div id="xp-gain" class="xp-gain" style="display: none;">+10 XP</div>
         <div id="manha" class="caixa">
-            <div class="titulo" onclick="abrirSitesManha()">Manhã</div>
+            <div class="titulo" onclick="abrirSitesManha()">Manhã: 6h - 12h</div>
             <ul id="manhaHabitos">
             </ul>
         </div>
         <div id="tarde" class="caixa">
-            <div class="titulo" onclick="abrirSitesTarde()">Tarde</div>
+            <div class="titulo" onclick="abrirSitesTarde()">Tarde: 12h - 18h</div>
             <ul id="tardeHabitos">
             </ul>
         </div>
         <div id="noite" class="caixa">
-            <div class="titulo" onclick="abrirSitesNoite()">Noite</div>
+            <div class="titulo" onclick="abrirSitesNoite()">Noite: 18h - 0h</div>
             <ul id="noiteHabitos">
             </ul>
         </div>
     </div> 
 
     <div class="button-container">
-        <button id="criarTelaModalBtn">Adicionar Hábito</button>
+        <button onclick="recarregar()">Recarregar Hábitos</button>
+        <button id="criarTelaModalBtn" style="display: none;">Adicionar Hábito</button>
         <button id="desmarcarHabitosBtn">Desmarcar Hábitos</button>
         <button id="excluirHabitosBtn">Excluir Hábitos</button>
     </div>    
@@ -522,16 +503,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('myModal');
     const programadosTextarea = document.getElementById('programados');
 
-    // Exibir menu ao clicar no botão
-    menuBtn.addEventListener('click', function() {
-        menuOverlay.style.display = 'block';
-    });
-
-    // Fechar menu ao clicar no botão 'Voltar'
-    voltarBtn.addEventListener('click', function() {
-        menuOverlay.style.display = 'none';
-    });
-
     // Abrir modal ao clicar em 'Adicionar Hábito'
     criarTelaModalBtn.addEventListener('click', function() {
         modal.style.display = 'block';
@@ -540,11 +511,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fechar modal ao clicar em 'Fechar'
     document.getElementById('fecharModal').addEventListener('click', function() {
         modal.style.display = 'none';
-    });
-
-    // Redirecionar para outras páginas ao clicar nos botões correspondentes
-    document.getElementById('habitosBtn').addEventListener('click', function() {
-        window.location.href = 'habitos.html';
     });
 
     document.getElementById('refeicoesBtn').addEventListener('click', function() {
@@ -677,16 +643,6 @@ function criarHabito(textoHabito, periodo) {
     }
 
     iniciarRelogio();
-
-    // Salvar e carregar o campo 'Programados'
-programadosTextarea.addEventListener('input', function() {
-    localStorage.setItem('programados-' + perfilAtivo, this.value);
-});
-
-const programadosSalvos = localStorage.getItem('programados-' + perfilAtivo);
-if (programadosSalvos) {
-    programadosTextarea.value = programadosSalvos;
-}
 
 // Campo 'Anotações'
 const anotacoesTextarea = document.getElementById('anotacoes');
@@ -1119,17 +1075,6 @@ function importNotes() {
 
     input.click();
 }
-
-document.getElementById('mostrarHorarioBtn').addEventListener('click', function () {
-    const explicacao = document.getElementById('horarioExplicacao');
-    
-    // Verifica se o texto explicativo está visível ou não
-    if (explicacao.style.display === 'none' || explicacao.style.display === '') {
-        explicacao.style.display = 'block';  // Exibe a explicação
-    } else {
-        explicacao.style.display = 'none';  // Esconde a explicação
-    }
-});
 
 function recarregar() {
     const audio = document.getElementById('som-recarregar');

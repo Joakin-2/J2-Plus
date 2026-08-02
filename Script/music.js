@@ -814,6 +814,10 @@ var playlists = {
     title: "MEHOY"
   },
   {
+    file: "/Script/media/Music/Vibe/MEU AMIGAOZAO FUNK.mp3",
+    title: "MEU AMIGÃOZÃO FUNK"
+  },
+  {
     file: "/Script/media/Music/Vibe/MONTAGEM CORE TITANUM.mp3",
     title: "MONTAGEM CORE TITANUM"
   },

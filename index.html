@@ -27,7 +27,6 @@
         <div class="menu-content">
             <button class="menu-button" aria-label="Fechar menu" onclick="toggleMenu()">Voltar</button>
             <ul>
-                <li><a href="Modo/saude.html">Saúde</a></li>
                 <li><a href="Modo/ler.html">Leitura</a></li>
                 <li><a href="Modo/habitos.html">Hábitos</a></li>
                 <li><a id="christ-btn">Renovar</a></li>
@@ -36,7 +35,6 @@
             <ul>
                 <li><a id="js-btn" onclick="buttonClick('https://js3dstudio.netlify.app/', 'https://js3dstudio.netlify.app/finan.html')">Js 3D Studio</a></li>
                 <li><a href="Modo/finan.html">Finanças</a></li>
-                <li><a id="pc-btn">Controles</a></li>
                 <li><a id="streaming-btn">Streamings</a></li>
                 <li><a onclick="GameState()">Games Web</a></li>
             </ul>
@@ -44,7 +42,6 @@
                 <li><a href="Modo/music.html">Music</a></li>
                 <li><a href="Modo/gym.html">JokGym</a></li>
                 <li><a href="#" onclick="openModal('modalReclamar'); return false;">Reclamar</a></li>
-                <li><a href="#" onclick="openModal('languageModal'); return false;">Dicionários</a></li>
                 <li><a href="Modo/melody.html">Music Place</a></li>
             </ul>
         </div>
@@ -82,16 +79,6 @@
     </a>
 
 </div>
-</div>
-
-    <!-- Modal de PC -->
-    <div id="modal-pc" class="modal">
-  <span id="fechar-pc" class="close-btn" style="position: fixed; color: white; margin-left: 430px; margin-top: 25px; font-size: 30px;">&times;</span>
-        <div class="button-container"  style="margin-left: 600px;display: inline-grid;gap: 20px;padding: 30px;border-radius: 10px;margin-top: 300px;">
-            <a href="http://192.168.1.73:5555/" target="_blank" class="btn" id="viBtn">Vi</a>
-            <a href="http://192.168.1.66:5550/" target="_blank" class="btn" id="pcBtn">PC</a>
-            <a href="http://192.168.1.74:5000/" target="_blank" class="btn" id="noteBtn">Note</a>
-        </div>
 </div>
 
 <!-- Modal de Christ -->
@@ -367,59 +354,6 @@
         </section>
         
     </main>
-        </div>
-    </div>
-</div>
-
-<!-- Modal de Línguas -->
-<div id="languageModal" class="modal">
-    <div class="modal-content">
-        <span class="menu-button" onclick="closeModal('languageModal')">Voltar</span>
-        <h2 style="text-align: center;">Escolha um idioma</h2>
-        
-        <div class="language-select" style="text-align: center;">
-            <button style="width: 150px;height: 70px;font-size: larger;" onclick="showLanguage('english')">Inglês</button>
-            <button style="width: 150px;height: 70px;font-size: larger;" onclick="showLanguage('spanish')">Espanhol</button>
-            <button style="width: 150px;height: 70px;font-size: larger;" onclick="showLanguage('libras')">Libras</button>
-        </div>
-
-        <div id="english" class="language-section" style="margin-top: 50px; text-align: center;"> 
-            <h3>Inglês</h3>
-            <p>Palavra: <strong>Hello</strong></p>
-            <p>Tradução: <strong>Olá</strong></p>
-            <p>Palavra: <strong>Goodbye</strong></p>
-            <p>Tradução: <strong>Até logo</strong></p>
-            <p>Palavra: <strong>Thank you</strong></p>
-            <p>Tradução: <strong>Obrigado</strong></p>
-        </div>
-
-        <div id="spanish" class="language-section" style="margin-top: 50px; text-align: center;">
-            <h3>Espanhol</h3>
-            <p>Palabra: <strong>Hola</strong></p>
-            <p>Traducción: <strong>Olá</strong></p>
-            <p>Palabra: <strong>Adiós</strong></p>
-            <p>Traducción: <strong>Até logo</strong></p>
-            <p>Palabra: <strong>Gracias</strong></p>
-            <p>Traducción: <strong>Obrigado</strong></p>
-        </div>
-
-        <div id="libras" class="language-section" style="margin-top: 50px; text-align: center;">
-            <h3>Libras</h3>
-
-            <img src="Script/img/0.jpg" alt="Gesto de Olá em Libras" style="width: 200px; height: auto; margin-top: 20px;">
-            
-            <p>Gesto para: <strong>Casa</strong></p>
-            <img src="Script/img/1.png" alt="Gesto de Olá em Libras" style="width: 200px; height: auto; margin-top: 20px;">
-
-            <!-- Gesto para "Olá" 
-            <p>Gesto para: <strong>Olá</strong></p>
-            <img src="Script/img/" alt="Gesto de Olá em Libras" style="width: 200px; height: auto; margin-top: 20px;">
-
-            <p>Gesto para: <strong>Até logo</strong></p>
-            <img src="https://example.com/gesto-ate-logo-libras.png" alt="Gesto de Até logo em Libras" style="width: 200px; height: auto; margin-top: 20px;">
-
-            <p>Gesto para: <strong>Obrigado</strong></p>
-            <img src="https://example.com/gesto-obrigado-libras.png" alt="Gesto de Obrigado em Libras" style="width: 200px; height: auto; margin-top: 20px;"> -->
         </div>
     </div>
 </div>
@@ -769,7 +703,7 @@
         </div>
         <br><br>
         <audio id="backgroundMusic" loop>
-            <source src="Music/Fundo/Dev Song.mp3" type="audio/mpeg">
+            <source src="/Script/media/Music/Fundo/Dev Song.mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
         <div id="Message" style="display: none;color: rgb(100, 45, 252);padding: 10px;border: 1px solid rgb(100, 45, 252);border-radius: 5px; margin-top: -55px; margin-bottom: -18px; background: #181818;">

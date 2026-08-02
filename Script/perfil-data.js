@@ -17,7 +17,6 @@ const perfis = {
     notesLer: localStorage.getItem("notes-ler-Joaquim") || "",
     musicPlaceNotes1: localStorage.getItem("musicPlaceNotes1-Joaquim") || "",
     gymNotes: localStorage.getItem("gymNotes-Joaquim") || "",
-    programados: localStorage.getItem("programados-Joaquim") || "",
     anotacoes: localStorage.getItem("anotacoes-Joaquim") || "",
     squadFiles: localStorage.getItem("squadFiles-Joaquim") || "",
     complaints: JSON.parse(localStorage.getItem("complaints-Joaquim")) || [],
@@ -35,7 +34,6 @@ const perfis = {
     notesLer: localStorage.getItem("notes-ler-Main") || "",
     musicPlaceNotes1: localStorage.getItem("musicPlaceNotes1-Main") || "",
     gymNotes: localStorage.getItem("gymNotes-Main") || "",
-    programados: localStorage.getItem("programados-Main") || "",
     anotacoes: localStorage.getItem("anotacoes-Main") || "",
     complaints: JSON.parse(localStorage.getItem("complaints-Main")) || [],
   }
