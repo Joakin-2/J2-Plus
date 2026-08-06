@@ -27,7 +27,7 @@
         <div class="menu-content">
             <button class="menu-button" aria-label="Fechar menu" onclick="toggleMenu()">Voltar</button>
             <ul>
-                <li><a href="Modo/ler.html">Leitura</a></li>
+                <li><a id="ler-btn">Leitura</a></li>
                 <li><a href="Modo/habitos.html">Hábitos</a></li>
                 <li><a id="christ-btn">Renovar</a></li>
                 <li><a onclick="Trabalho()">Trabalho</a></li>
@@ -79,6 +79,76 @@
     </a>
 
 </div>
+</div>
+
+<!-- Modal Ler -->
+<div id="modal-ler" class="modal">
+    <span id="fechar-ler"
+        class="close-btn"
+        style="position: fixed; color: white; margin-left: 430px; margin-top: 25px; font-size: 30px;">
+        &times;
+    </span>
+
+    <div style="margin-left: 35%;margin-top: 12%;">
+        <div class="button-group">
+        <h3 style="margin-left: 200px;">Anotações</h3>
+        <div style="display: none; /* display: flex; */ justify-content: space-between;">
+          <button class="btn2" onclick="exportNotes()" style="margin-left: 10px;">
+            <i class="fas fa-file-export"></i>
+          </button>
+          <button class="btn2" onclick="importNotes()">
+            <i class="fas fa-file-import"></i>
+          </button>
+        </div>
+    </div>
+
+    <textarea id="notesBox" placeholder="Anote aqui..."></textarea>
+
+  <div class="music-player">
+    <div id="timer">00:00</div>
+    <div id="buttonContainer">
+        <i class="fas fa-compact-disc fa-3x" style="margin-right: 10px; margin-top: 5px; color: #8b5cf6;"></i>
+        <select id="musicSelector" onchange="changeMusic()">
+          <option value="Script/media/Music/Fundo/Agape.mp3">Agape</option>
+          <option value="Script/media/Music/Fundo/bob sponge edit.wav">Bob Sponge Edit</option>
+          <option value="Script/media/Music/Fundo/Dev Song.mp3">Dev Song</option>
+          <option value="Script/media/Music/Fundo/Dragonfly (Slowed).mp3">Dragonfly</option>
+          <option value="Script/media/Music/Fundo/Gamers-React-Background-Music.wav">Gamers React</option>
+          <option value="Script/media/Music/Fundo/Lofi.mp3">Lofi</option>
+          <option value="Script/media/Music/Fundo/lovely - Billie Eilish Khalid (Cover Violin).mp3">Lovely (Billie Eilish Cover)</option>
+          <option value="Script/media/Music/Fundo/Musica do Chis.mp3">Musica do Chis</option>
+          <option value="Script/media/Music/Fundo/Musica do Onibus.mp3">Musica do Onibus</option>
+          <option value="Script/media/Music/Fundo/Natal.mp3">Natal</option>
+        </select>
+      <button class="btn" onclick="playPauseTimer()">
+        <svg class="icon" id="playIcon" viewBox="0 0 20 20">
+          <path d="M8 5v10l10-5z" />
+        </svg>
+        <svg class="icon" id="pauseIcon" viewBox="0 0 20 20" style="display: none;">
+          <rect x="4" y="3" width="4" height="14" />
+          <rect x="12" y="3" width="4" height="14" />
+        </svg>
+      </button>
+      <button class="btn" onclick="restartTimer()">
+        <i class="fas fa-redo"></i>
+      </button>
+    </div>
+  </div>
+
+  <audio id="backgroundMusic" src="Script/media/Music/Fundo/Agape.mp3" loop></audio>
+</div>
+</div>
+
+<!-- Modal Foco -->
+<div id="modal-foco" class="modal">
+    <span id="fechar-foco"
+        class="close-btn"
+        style="position: fixed; color: white; margin-left: 430px; margin-top: 25px; font-size: 30px;">
+        &times;
+    </span>
+
+    
+
 </div>
 
 <!-- Modal de Christ -->

@@ -2389,6 +2389,11 @@ const habitXP = {
 
 // Mapeamento de botões e modals
 const modals = {
+  ler: {
+    btn: document.getElementById("ler-btn"),
+    modal: document.getElementById("modal-ler"),
+    fechar: document.getElementById("fechar-ler")
+  },
   rafa: {
     btn: document.getElementById("rafa-btn"),
     modal: document.getElementById("modal-rafa"),
@@ -2412,6 +2417,7 @@ const modals = {
 };
 
 const titulos = {
+  ler: "Leitura",
   rafa: "Rafa",
   manual: "Manual J2",
   christ: "Christ",
@@ -3039,3 +3045,117 @@ window.onclick = function(event) {
   checkSeason2();
   exibirSaudacao();
 };
+
+
+function iniciarModalLer() {
+  let timerInterval;
+let startTime;
+let elapsedTime = 0;
+let running = false;
+
+  function playPauseTimer() {
+    if (running) {
+      stopTimer();
+    } else {
+      startTimer();
+    }
+  }
+
+  function startTimer() {
+    if (!running) {
+        startTime = Date.now() - elapsedTime;
+
+        timerInterval = setInterval(updateTimer, 1000);
+
+        const player = document.getElementById("backgroundMusic");
+
+        player.play()
+            .then(() => {
+                console.log("Áudio iniciado");
+            })
+            .catch(error => {
+                console.error("Erro ao iniciar áudio:", error);
+            });
+
+        document.getElementById("playIcon").style.display = "none";
+        document.getElementById("pauseIcon").style.display = "block";
+
+        running = true;
+    }
+}
+
+
+function stopTimer() {
+    if (running) {
+        elapsedTime = Date.now() - startTime;
+
+        clearInterval(timerInterval);
+
+        const player = document.getElementById("backgroundMusic");
+        player.pause();
+
+        document.getElementById("playIcon").style.display = "block";
+        document.getElementById("pauseIcon").style.display = "none";
+
+        running = false;
+    }
+}
+
+
+function restartTimer() {
+    stopTimer();
+
+    elapsedTime = 0;
+
+    document.getElementById("timer").innerText = "00:00";
+
+    startTimer();
+}
+
+
+function updateTimer() {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+
+    document.getElementById("timer").innerText =
+        `${String(Math.floor(elapsed / 60)).padStart(2, "0")}:${String(elapsed % 60).padStart(2, "0")}`;
+}
+
+  function changeMusic() {
+    const music = document.getElementById("musicSelector").value;
+    const player = document.getElementById("backgroundMusic");
+
+    player.src = music;
+    player.play();
+  }
+
+  function saveNotes() {
+    const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
+    localStorage.setItem(
+      `notes-ler-${perfilAtivo}`,
+      document.getElementById("notesBox").value
+    );
+  }
+
+  function carregarNotesBox() {
+    const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
+    document.getElementById("notesBox").value =
+      localStorage.getItem(`notes-ler-${perfilAtivo}`) || "";
+  }
+
+  carregarNotesBox();
+
+  // Disponibiliza apenas as funções necessárias
+  window.playPauseTimer = playPauseTimer;
+  window.restartTimer = restartTimer;
+  window.changeMusic = changeMusic;
+  window.saveNotes = saveNotes;
+  window.playPauseTimer = playPauseTimer;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    iniciarModalLer();
+});
+
+function abrirModalLer() {
+    document.getElementById("modal-ler").style.display = "block";
+}
