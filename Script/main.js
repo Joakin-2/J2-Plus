@@ -2190,20 +2190,7 @@ document.getElementById('perfil-selector').addEventListener('change', function()
 
 document.addEventListener("DOMContentLoaded", () => {
   // Seleciona os botões
-  const switchBtn = document.getElementById("switch-btn");
-  const miguelBtn = document.getElementById("miguel-btn");
   const rafaBtn = document.getElementById("rafa-btn");
-
-  // Adiciona evento de clique no botão de troca
-  switchBtn.addEventListener("click", () => {
-    // Alterna a classe 'active' entre os botões
-    miguelBtn.classList.toggle("active");
-    rafaBtn.classList.toggle("active");
-
-    // Alterna a classe 'hidden' entre os botões
-    miguelBtn.classList.toggle("hidden");
-    rafaBtn.classList.toggle("hidden");
-  });
 });
 
 
@@ -2253,11 +2240,7 @@ updateDate2();
             window.open('Modo/work.html', '_blank');
             window.open('Modo/foco.html', '_blank');
         }
-
-      document.getElementById("miguel-btn").addEventListener("click", function() {
-      window.location.href = "Modo/miguel.html"; // Substitua pelo URL desejado
-    });
-
+        
     function buttonClick(...urls) {
     urls.forEach(url => {
         if (url) window.open(url, "_blank");
