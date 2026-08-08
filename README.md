@@ -1,17 +1,17 @@
 # Versão 2.0 — Atualização Aperfeiçoada
 
-## Atualizações e melhorias
+## Principais melhorias
 
-• **Unificação completa da API em todo o sistema**, garantindo que todos os modos utilizem uma interface de comunicação padronizada, eficiente e consistente, melhorando a comunicação entre módulos, a organização das funções e a compatibilidade entre componentes.
+• **API unificada**, padronizando a comunicação entre todos os modos e módulos.
 
-• **Reestruturação interna do código**, com melhorias na arquitetura, organização dos processos e facilidade de manutenção e expansão futura.
+• **Código reestruturado**, com arquitetura mais organizada, estável e fácil de manter.
 
-• **Otimizações de desempenho**, reduzindo processos desnecessários e aumentando a eficiência geral do sistema.
+• **Desempenho otimizado**, reduzindo processos desnecessários e melhorando a eficiência.
 
-• **Maior estabilidade operacional**, com ajustes para melhorar a confiabilidade, prevenir conflitos internos e proporcionar uma experiência mais fluida.
+• **Maior estabilidade**, com menos conflitos e uma experiência mais fluida.
 
-• **Preparação para futuras evoluções**, criando uma base mais flexível para novas funcionalidades, integrações e melhorias contínuas.
+• **Base preparada para evolução**, facilitando novas funções, integrações e atualizações.
 
-## Observação
+## Resumo
 
-A versão 2.0 tem como principal objetivo modernizar a estrutura interna do sistema, padronizando sua comunicação, fortalecendo a arquitetura da plataforma e criando uma base mais robusta para futuras atualizações.
+A versão **2.0** moderniza a estrutura do sistema, melhora a comunicação entre seus componentes e estabelece uma base mais **rápida, estável, organizada e preparada para futuras evoluções**.
