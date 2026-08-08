@@ -959,18 +959,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Carregar modelos e descritor Joaquim
   async function loadModelsAndDescriptor() {
     await Promise.all([
-      faceapi.nets.tinyFaceDetector.loadFromUri('Script/Facial/models'),
-      faceapi.nets.faceLandmark68Net.loadFromUri('Script/Facial/models'),
-      faceapi.nets.faceRecognitionNet.loadFromUri('Script/Facial/models'),
-      faceapi.nets.faceExpressionNet.loadFromUri('Script/Facial/models'),
-      faceapi.nets.ssdMobilenetv1.loadFromUri('Script/Facial/models'), // ✅ ESSENCIAL
+      faceapi.nets.tinyFaceDetector.loadFromUri('Script/js/Facial/models'),
+      faceapi.nets.faceLandmark68Net.loadFromUri('Script/js/Facial/models'),
+      faceapi.nets.faceRecognitionNet.loadFromUri('Script/js/Facial/models'),
+      faceapi.nets.faceExpressionNet.loadFromUri('Script/js/Facial/models'),
+      faceapi.nets.ssdMobilenetv1.loadFromUri('Script/js/Facial/models'), // ✅ ESSENCIAL
     ]);
     await loadJoaquimDescriptor();
     modelsLoaded = true;
   }  
 
   async function loadJoaquimDescriptor() {
-    const img = await faceapi.fetchImage('Script/Facial/joaquim.jpg');
+    const img = await faceapi.fetchImage('Script/img/joaquim.jpg');
     const detection = await faceapi
       .detectSingleFace(img)
       .withFaceLandmarks()
@@ -2558,9 +2558,9 @@ window.addEventListener("load", () => {
     const headphoneDiv = document.getElementById('headphone');
     const musicNotesContainer = document.getElementById('music-notes-container');
     let isPlaying = false;
-    const defaultMusicSrc = "Music/Fundo/Dev Song.mp3";
-    const christmasMusicSrc = "Music/Fundo/Natal.mp3";
-    const birthdayMusicSrc = "Music/Fundo/Happy birthday.mp3"; // Caminho para a música de aniversário
+    const defaultMusicSrc = "/Script/media/Music/Fundo/Dev Song.mp3";
+    const christmasMusicSrc = "/Script/media/Music/Fundo/Natal.mp3";
+    const birthdayMusicSrc = "/Script/media/Music/Fundo/Happy birthday.mp3"; // Caminho para a música de aniversário
 
     const birthdays = [
         { name: "Pipoca", month: 1, day: 24 },
