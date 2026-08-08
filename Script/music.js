@@ -2017,6 +2017,10 @@ var playlists = {
     title: "Whethan - Lock It Up (feat. Yeat, midwxst & Matt Ox) [Animated Video]"
   },
   {
+    file: "/Script/media/Music/Gym/X-COOL! (Slowed).mp3",
+    title: "X-COOL! (Slowed)"
+  },
+  {
     file: "/Script/media/Music/Gym/X-SLIDE (Ultra Slowed).mp3",
     title: "X-Slide (Ultra Slowed)"
   },
