@@ -1372,7 +1372,10 @@ header input {
         <p><strong>Total:</strong> <span id="totalCalorias">0</span> kcal</p>
     </div>
 
-    <p>Sua taxa metabólica basal (TMB) é 1.750 kcal por dia.</p>
+    <p>
+    Sua taxa metabólica basal (TMB) é
+    <strong><span id="tmbValor">--</span> kcal por dia.</strong>
+</p>
     <p>A quantidade de calorias varia conforme o tipo de alimento. Para um cálculo mais preciso, consulte uma tabela nutricional.</p>
 
     <button onclick="closeNotesModal()">Fechar</button>
@@ -1786,6 +1789,51 @@ window.onclick = function(event) {
         fecharModalReceitas();
     }
 };
+
+function calcularTMB(perfil) {
+    const anoAtual = new Date().getFullYear();
+    const idade = anoAtual - perfil.anoNascimento;
+
+    const peso = perfil.peso;
+    const alturaCm = perfil.altura * 100;
+
+    if (perfil.genero === "masculino") {
+        return Math.round(
+            (10 * peso) +
+            (6.25 * alturaCm) -
+            (5 * idade) +
+            5
+        );
+    }
+
+    if (perfil.genero === "feminino") {
+        return Math.round(
+            (10 * peso) +
+            (6.25 * alturaCm) -
+            (5 * idade) -
+            161
+        );
+    }
+
+    return null;
+}
+
+function mostrarTMB() {
+    const perfil = perfis[perfilAtivo];
+    const elemento = document.getElementById("tmbValor");
+
+    if (!perfil || !elemento) return;
+
+    const tmb = calcularTMB(perfil);
+
+    if (tmb !== null) {
+        elemento.textContent = tmb.toLocaleString("pt-BR");
+    } else {
+        elemento.textContent = "--";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", mostrarTMB);
 
 
         function calcularTotal() {

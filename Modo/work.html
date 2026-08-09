@@ -15,6 +15,52 @@
             color: #ffffff;
         }
 
+        .foco-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.88);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.foco-modal.ativo {
+    display: flex;
+}
+
+.foco-conteudo {
+    position: relative;
+    width: 100%;
+    height: stretch;
+    background: #1a1a1c;
+    border: 1px solid #833fd1;
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(131, 63, 209, 0.35);
+    padding: 30px;
+    color: white;
+    text-align: center;
+}
+
+.foco-fechar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    color: #aaa;
+    font-size: 28px;
+    padding: 5px 10px;
+    margin: 0;
+}
+
+.foco-fechar:hover {
+    color: white;
+    background: #833fd1;
+}
+
+
+
         .container {
             display: flex;
             justify-content: center;
@@ -223,6 +269,31 @@
     }
   }  
 
+  #initialMessage {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            margin-top: 300px;
+        }
+
+        #temporizador {
+            font-size: 2em;
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            margin-top: 300px;
+        }
+
+        #startButton {
+            font-size: 1.5em;
+            background-color: #833fd1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -300,8 +371,158 @@
         <button class="botao" onclick="redirecionar('Day Trade')"><i class="fas fa-chart-line"></i> Investir</button>
         <button class="botao" onclick="redirecionar('Pulike')"><i class="fas fa-print"></i> Pulike</button>
     </div>
+
+
+    <!-- ===== MODAL FOCO ===== -->
+<div id="focoModal" class="foco-modal">
+
+    <div class="foco-conteudo">
+
+        <button class="foco-fechar" onclick="fecharFoco()">
+            &times;
+        </button>
+
+        <div id="initialMessage">Vamos utilizar o método Pomodoro.</div>
+    <div id="temporizador" style="display: none;">25:00</div>
+
+    <div id="botoes">
+        <button id="startButton" style="display: none; margin-left: 47%;" onclick="iniciarPomodoro()">Iniciar</button>
+    </div>
+
+    </div>
+
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
+
+        const tituloOriginal = document.title;
+
+function abrirFoco() {
+    const modal = document.getElementById('focoModal');
+
+    if (modal) {
+        modal.classList.add('ativo');
+        document.body.style.overflow = 'hidden';
+
+        // Altera o título da página
+        document.title = 'Modo Foco';
+    }
+}
+
+function fecharFoco() {
+    const modal = document.getElementById('focoModal');
+
+    if (modal) {
+        modal.classList.remove('ativo');
+        document.body.style.overflow = '';
+    }
+
+    // Restaura o título original
+    document.title = tituloOriginal;
+
+    // Remove o #foco da URL sem recarregar
+    if (window.location.hash.toLowerCase() === '#foco') {
+        history.replaceState(
+            null,
+            '',
+            window.location.pathname + window.location.search
+        );
+    }
+}
+
+// Verifica o hash ao carregar a página
+function verificarHashFoco() {
+    if (window.location.hash.toLowerCase() === '#foco') {
+        abrirFoco();
+    }
+}
+
+// Executa ao carregar
+document.addEventListener('DOMContentLoaded', verificarHashFoco);
+
+// Permite detectar alterações no hash
+window.addEventListener('hashchange', verificarHashFoco);
+
+// Fecha clicando fora do modal
+document.getElementById('focoModal')?.addEventListener('click', function(event) {
+    if (event.target === this) {
+        fecharFoco();
+    }
+});
+
+// Fecha com ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        fecharFoco();
+    }
+});
+
+
+let tempoInicial = 25 * 60; // 25 minutos em segundos
+        let tempoDescanso = 5 * 60; // 5 minutos em segundos
+        let temporizador;
+        let musica = new Audio('/Script/meida/Music/Fundo/852 Hz.mp3'); // Carregar o áudio da música
+        musica.loop = true; // Definir o áudio para tocar em loop
+
+        function atualizarTemporizador(segundos) {
+            const minutos = Math.floor(segundos / 60);
+            const segundosRestantes = segundos % 60;
+            document.getElementById('temporizador').innerText = `${minutos}:${segundosRestantes < 10 ? '0' : ''}${segundosRestantes}`;
+        }
+
+        function iniciarPomodoro() {
+            clearInterval(temporizador);
+            tempoInicial = 25 * 60;
+            musica.play(); // Iniciar a música quando o Pomodoro começar
+            temporizador = setInterval(function() {
+                if (tempoInicial > 0) {
+                    tempoInicial--;
+                    atualizarTemporizador(tempoInicial);
+                } else {
+                    clearInterval(temporizador);
+                    playAlarm();
+                    iniciarDescanso();
+                }
+            }, 1000);
+        }
+
+        function iniciarDescanso() {
+            clearInterval(temporizador);
+            tempoDescanso = 5 * 60; // 5 minutos em segundos (pode ajustar conforme necessário)
+            musica.pause(); // Pausar a música durante o descanso
+            temporizador = setInterval(function() {
+                if (tempoDescanso > 0) {
+                    tempoDescanso--;
+                    atualizarTemporizador(tempoDescanso);
+                } else {
+                    clearInterval(temporizador);
+                    playAlarm();
+                    musica.play(); // Recomeçar a música quando voltar ao Pomodoro
+                    iniciarPomodoro();
+                }
+            }, 1000);
+        }
+
+        function playAlarm() {
+            var alarmeAudio = new Audio('Alarme.wav');
+            alarmeAudio.play();
+        }
+
+        // Adicionar evento para verificar a tecla Enter
+        document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        // Ocultar mensagem inicial e exibir o temporizador
+        document.getElementById("initialMessage").style.display = "none";
+        document.getElementById("temporizador").style.display = "block";
+        document.getElementById("startButton").style.display = "block";
+
+        // Iniciar automaticamente o foco
+        iniciarPomodoro(); // Chame a função desejada (iniciarPomodoro neste caso)
+    }
+});
+
+
+
         document.querySelectorAll('.copy-box pre').forEach(pre => {
     pre.addEventListener('click', () => {
       // Copia o texto para a área de transferência

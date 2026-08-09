@@ -44,13 +44,12 @@ const modos = [
     "back",
     "conselho",
     "finan",
-    "foco",
-    "ler",
-    "miguel",
+    "gym",
     "reflexoes",
     "relatorio",
     "work",
-    "yt"
+    "music",
+    "melody"
 ];
 
 function detectCommand(event) {
@@ -2238,7 +2237,7 @@ updateDate2();
         
         function Trabalho() {
             window.open('Modo/work.html', '_blank');
-            window.open('Modo/foco.html', '_blank');
+            window.open('Modo/work.html#foco', '_blank');
         }
         
     function buttonClick(...urls) {
@@ -2399,6 +2398,11 @@ const modals = {
     modal: document.getElementById("modal-rafa"),
     fechar: document.getElementById("fechar-rafa")
   },
+  back: {
+    btn: document.getElementById("back-btn"),
+    modal: document.getElementById("modal-back"),
+    fechar: document.getElementById("fechar-back")
+  },
   manual: {
     btn: document.getElementById("manual-btn"),
     modal: document.getElementById("modal-manual"),
@@ -2409,6 +2413,11 @@ const modals = {
     modal: document.getElementById("modal-christ"),
     fechar: document.getElementById("fechar-christ")
   }, 
+  youtube: {
+    btn: document.getElementById("youtube-btn"),
+    modal: document.getElementById("modal-youtube"),
+    fechar: document.getElementById("fechar-youtube")
+  },
   streaming: {
     btn: document.getElementById("streaming-btn"),
     modal: document.getElementById("modal-streaming"),
@@ -2419,8 +2428,10 @@ const modals = {
 const titulos = {
   ler: "Leitura",
   rafa: "Rafa",
+  back: "Background",
   manual: "Manual J2",
   christ: "Christ",
+  youtube: "YouTube",
   streaming: "Streaming"
 };
 
@@ -2764,7 +2775,7 @@ window.onclick = function(event) {
 }
     
     document.getElementById("openClock").addEventListener("click", function() {
-    window.open("Modo/back.html", "_blank");
+    window.open("#back", "_blank");
   });
 
   document.getElementById("openWifi").addEventListener("click", function() {
@@ -3159,3 +3170,318 @@ document.addEventListener("DOMContentLoaded", () => {
 function abrirModalLer() {
     document.getElementById("modal-ler").style.display = "block";
 }
+
+const videos = [
+  {
+    link: "https://www.youtube.com/playlist?list=PLZ35j5F1uvxrKqcfkzeCDFdAKGak6ucpc",
+    thumb: "https://creations.panzoid.com/creation-thumbnails/757757.jpg",
+    titulo: "Poops",
+    descricao: "Melhores Videos",
+    canalLogo: "https://yt3.googleusercontent.com/DEo446QWiw7RB5TRUhq_nnZ3F5rICjSqzDFJZpmWvYQEWDse1SYAKD7Z-S37GuFbiT6j7zOCk_I=s88-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    link: "https://www.youtube.com/playlist?list=PLZ35j5F1uvxouidpaltlu3iGSvzPv7JQo",
+    thumb: "https://cdn.pixabay.com/video/2022/01/10/103984-664525664_tiny.jpg",
+    titulo: "Cortes",
+    descricao: "Cortes de Videos",
+    canalLogo: "https://yt3.googleusercontent.com/DEo446QWiw7RB5TRUhq_nnZ3F5rICjSqzDFJZpmWvYQEWDse1SYAKD7Z-S37GuFbiT6j7zOCk_I=s88-c-k-c0x00ffffff-no-rj"
+  },
+{
+  link: "https://www.youtube.com/@Jazzghost/videos",
+  thumb: "https://i.ytimg.com/vi/kbMxDtJX0nA/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBLV7agwcmvC-Lh9A_-rPlkN9NZlw",
+  titulo: "Jazzghost",
+  descricao: "Jogo uns jogos e passo vergonha.",
+  canalLogo: "https://yt3.googleusercontent.com/sAvs5V1ICTt3pLRi2tfuIV3OyIeR_rCi6TZyBAjxF0KyQV86QD_xaY3MEcBCZurIOwI4ewKeets=s120-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@GamesEduUu/videos",
+  thumb: "https://i.ytimg.com/vi/z9RgNPwAvSw/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA6c9x4QH3Q8Z3_NCZx4O4_6RPABg",
+  titulo: "Games EduUu",
+  descricao: "A zoeira não tem limites, não tem!",
+  canalLogo: "https://yt3.googleusercontent.com/ytc/AIdro_mnYfCHCK6zQ1uEVX2IE3tep9N0tf60LuocEFHShXvajTU=s72-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@AndreGuedesCartoon/videos",
+  thumb: "https://i.ytimg.com/vi/75kbn9SEqwo/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBu2_VsZLj0xnp1PxhCJGfswyf6jw",
+  titulo: "André Guedes",
+  descricao: "O MITO fazendo a PROVA DO ENEM!",
+  canalLogo: "https://yt3.googleusercontent.com/ytc/AIdro_n1BStb6rnU3atlIh7-FPUO6wo7AMgV9u13xGVmczjYXQI=s160-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/@ColoniaContraAtaca/videos",
+  thumb: "https://i.ytimg.com/vi/rolvjmVDTnA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAnkehgu3Zu_dOfTIrcpeYY3-GX7A",
+  titulo: "Colônia Contra Ataca",
+  descricao: "FFG: Os 10 Principais Defeitos dos Controles!",
+  canalLogo: "https://yt3.googleusercontent.com/Aqyl-FDI2kFSyJMI9XHBnzDWTNOHIUN5hBe2Kb1Hy8pe-DLt2lYEXvJQvzXzK20K098B1oosFdY=s160-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/watch?v=GXqUXJKg7K4&list=PLJC6MSkiDOlHpmnU8InCnbW_bMwScK6WW",
+  thumb: "https://i.ytimg.com/vi/GXqUXJKg7K4/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLBwuT9_vLHl6Z2h4RJEtfe-ZzmNhw",
+  titulo: "Mineiro Aranha",
+  descricao: "Com Gruzinho",
+  canalLogo: "https://yt3.ggpht.com/MYEx6ANwCNxncjANiNuNOECuj_dh_yQUoSDs7mI0ux_18VGjy8Pod_bL3OxtTA_jbRnuKZSvPLE=s48-c-k-c0x00ffffff-no-rj"
+},
+{
+  link: "https://www.youtube.com/watch?v=Bm2pYXJS9_o&list=PL86335E6uxZ9Ih05mrtF21_LnuAqanVoW&ab_channel=PaiTroll",
+  thumb: "https://i.ytimg.com/vi/AtoXHcgMfuo/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCHIWqhAzu3Y12oyNiqwRSGGzWzOA",
+  titulo: "Super Mario Maker",
+  descricao: "FUI TORTURADO SEM DÓ!",
+  canalLogo: "https://yt3.ggpht.com/ytc/AIdro_nhyYxNxuN0p1zsdcY9_4N4VIwQfE0F3t7Zc9fsz5cWGrc=s48-c-k-c0x00ffffff-no-rj"
+}
+];
+
+const containeryt = document.getElementById("videoContainer");
+
+videos.forEach(video => {
+    const card = document.createElement("a");
+    card.href = video.link;
+    card.className = "video";
+
+    card.innerHTML = `
+        <img src="${video.thumb}" alt="${video.titulo}">
+        <h2>${video.titulo}</h2>
+        <p>${video.descricao}</p>
+        <div class="channel-logo">
+            <img src="${video.canalLogo}" alt="Canal">
+        </div>
+    `;
+
+    containeryt.appendChild(card);
+});
+
+
+const btnNoite = document.getElementById("btn-noite");
+const btnFundo = document.getElementById("btn-fundo");
+
+const iframe = document.getElementById("background-video");
+const videoLocal = document.getElementById("video-local");
+const source = document.getElementById("background-source");
+
+const loadingScreen = document.getElementById("loading-screen");
+
+/* ---------------- ESTADO ---------------- */
+
+let estado = "home";
+let bloqueadoNoite = false;
+
+/* ---------------- HOME ---------------- */
+
+function abrirHome() {
+    estado = "home";
+
+    iframe.style.display = "none";
+
+    videoLocal.style.display = "block";
+
+    videoLocal.pause();
+
+    videoLocal.src = "https://www.pexels.com/download/video/35730936/";
+
+    videoLocal.load();
+
+    videoLocal.addEventListener("canplay", function iniciarVideo() {
+        videoLocal.removeEventListener("canplay", iniciarVideo);
+
+        videoLocal.play().catch(error => {
+            if (error.name !== "AbortError") {
+                console.error("Erro ao reproduzir vídeo:", error);
+            }
+        });
+    });
+}
+
+/* ---------------- NOITE ---------------- */
+
+function abrirNoite() {
+
+    if (bloqueadoNoite) return;
+
+    estado = "noite";
+    bloqueadoNoite = true;
+
+    iframe.style.display = "none";
+
+    videoLocal.src = "https://www.pexels.com/download/video/10216808/";
+    videoLocal.style.display = "block";
+
+    videoLocal.load();
+    videoLocal.play();
+
+    setTimeout(() => {
+
+        loadingScreen.style.display = "none";
+        bloqueadoNoite = false;
+
+    }, 3000);
+}
+
+function verificarBotaoNoite() {
+
+    const hora = new Date().getHours();
+
+    if (hora >= 17 || hora < 7) {
+        btnNoite.style.display = "block";
+    } else {
+        btnNoite.style.display = "none";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    abrirHome();
+
+    verificarBotaoNoite(); // <- IMPORTANTE
+
+    updateClock0();
+    updateDate0();
+    getTemperature0();
+
+    setInterval(updateClock0, 1000);
+    setInterval(updateDate0, 60000);
+    setInterval(getTemperature0, 600000);
+
+    // atualiza o botão todo minuto
+    setInterval(verificarBotaoNoite, 60000);
+});
+
+/* ---------------- FUNDO ---------------- */
+
+function abrirFundo() {
+
+    estado = "fundo";
+
+    videoLocal.style.display = "none";
+
+    iframe.style.display = "block";
+
+    atualizarFundoAutomatico();
+}
+
+/* ---------------- TOGGLE NOITE ---------------- */
+
+btnNoite.addEventListener("click", () => {
+
+    if (estado === "noite") {
+        abrirHome();
+    } else {
+        abrirNoite();
+    }
+});
+
+/* ---------------- TOGGLE FUNDO ---------------- */
+
+btnFundo.addEventListener("click", () => {
+
+    if (estado === "fundo") {
+        abrirHome();
+    } else {
+        abrirFundo();
+    }
+});
+
+/* ---------------- FUNDO YOUTUBE ---------------- */
+
+function atualizarFundoAutomatico() {
+
+    const hora = new Date().getHours();
+
+    if (hora >= 23 || hora < 6) {
+
+        iframe.style.display = "none";
+
+        videoLocal.src = "https://www.pexels.com/download/video/855205/";
+        videoLocal.style.display = "block";
+
+        videoLocal.load();
+        videoLocal.play();
+
+    } else {
+
+        iframe.style.display = "none";
+
+        videoLocal.src = "https://www.pexels.com/download/video/7762080/";
+        videoLocal.style.display = "block";
+
+        videoLocal.load();
+        videoLocal.play();
+    }
+}
+
+/* ---------------- RELÓGIO ---------------- */
+
+function updateClock0() {
+
+    const now = new Date();
+
+    document.getElementById("clock0").textContent =
+        String(now.getHours()).padStart(2, "0") + ":" +
+        String(now.getMinutes()).padStart(2, "0") + ":" +
+        String(now.getSeconds()).padStart(2, "0");
+}
+
+/* ---------------- DATA ---------------- */
+
+function updateDate0() {
+
+    const now = new Date();
+
+    let data = now.toLocaleDateString("pt-BR", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+
+    document.getElementById("date0").textContent =
+        data.replace("-feira", "");
+}
+
+/* ---------------- CLIMA ---------------- */
+
+const apiKeyback = "bd2aa057407fb66d24136dab032d5bb8";
+const cityback = "Jacupiranga";
+
+async function getTemperature0() {
+
+    try {
+
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${cityback}&appid=${apiKeyback}&units=metric&lang=pt_br`
+        );
+
+        const data = await response.json();
+
+        document.getElementById("temperature0").textContent =
+            Math.round(data.main.temp) + "°C";
+
+        const icons = {
+            Clear: "☀️",
+            Clouds: "☁️",
+            Rain: "🌧️",
+            Snow: "❄️",
+            Thunderstorm: "⛈️",
+            Drizzle: "🌦️"
+        };
+
+        document.getElementById("weather-icon").textContent =
+            icons[data.weather[0].main] || "🌥️";
+
+    } catch (error) {
+        console.error("Erro ao obter clima:", error);
+    }
+}
+
+/* ---------------- INICIALIZAÇÃO ---------------- */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    abrirHome();
+
+    updateClock0();
+    updateDate0();
+    getTemperature0();
+
+    setInterval(updateClock0, 1000);
+    setInterval(updateDate0, 60000);
+    setInterval(getTemperature0, 600000);
+});
