@@ -41,12 +41,9 @@ inputText.addEventListener('input', () => {
 });
 
 const modos = [
-    "back",
     "conselho",
     "finan",
     "gym",
-    "reflexoes",
-    "relatorio",
     "work",
     "music",
     "melody"
@@ -2436,11 +2433,21 @@ const titulos = {
 };
 
 function atualizarTitulo(hash) {
-  if (titulos[hash]) {
-    document.title = titulos[hash];
-  } else {
-    document.title = "J2+"; // título padrão
-  }
+    const favicon = document.getElementById("favicon");
+
+    if (titulos[hash]) {
+        document.title = titulos[hash];
+    } else {
+        document.title = "J2+";
+    }
+
+    if (favicon) {
+        if (hash === "youtube") {
+            favicon.href = "https://www.youtube.com/s/desktop/7330833b/img/favicon_96x96.png";
+        } else {
+            favicon.href = "/Script/img/2+.png";
+        }
+    }
 }
 
 // Função para fechar todas modals

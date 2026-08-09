@@ -162,6 +162,105 @@
       transform: translateX(-50%) translateY(-20px);
     }
   }  
+
+
+section button {
+    grid-column: 1 / -1;
+}
+
+/* No celular, volta para uma coluna */
+@media (max-width: 600px) {
+    section {
+        grid-template-columns: 1fr;
+    }
+
+    section button {
+        grid-column: auto;
+    }
+}
+
+  .modal-especial {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 9999;
+
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+.modal-especial.ativo {
+    display: flex;
+}
+
+.modal-conteudo {
+    background: #2b2b2b;
+    color: #f5f5f5;
+
+    width: 100%;
+
+    overflow-y: auto;
+
+    border-radius: 10px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+    position: relative;
+        height: stretch;
+}
+
+.modal-conteudo h2 {
+    margin-top: 0;
+    color: #b690f9;
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+
+    background: transparent;
+    color: #fff;
+
+    border: none;
+    font-size: 30px;
+
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.fechar-modal:hover {
+    color: #b690f9;
+}
+
+.formulario-duas-colunas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    width: 100%;
+}
+
+.formulario-duas-colunas section {
+    display: grid;
+    gap: 10px;
+    text-align: left;
+}
+
+.formulario-duas-colunas label {
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.formulario-duas-colunas select {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
     </style>
 </head>
 <body>
@@ -178,12 +277,407 @@
 
     </div>
 
+    <!-- MODAL: RELATÓRIO DIÁRIO -->
+<div id="modal-relatorio" class="modal-especial">
+    <div class="modal-conteudo">
+        <button class="fechar-modal" onclick="fecharModalEspecial()" style="display: none;">×</button>
+
+        <div class="container" style="margin-left: 25%;     margin-top: 150px;">
+        <div class="menu-relogio-container">
+            <h1 style="
+    margin-left: 320px;
+">Relatório</h1>
+            <p id="relogio0"></p>
+        </div>
+        <div id="mensagem-xp"></div>
+        <p id="xp-gain" style="display: none; color: #825dff; font-size: 18px; font-weight: bold;"></p>
+
+<div class="formulario-duas-colunas">
+
+    <!-- COLUNA 1 -->
+    <section id="formulario-esquerda">
+
+        <label>Quantas vezes escovou os dentes hoje?</label>
+        <select id="escovouDentes">
+            <option value="3">3 vez</option>
+            <option value="4">4 vezes</option>
+            <option value="5">5 vezes</option>
+        </select>
+
+        <label>Quanto tempo de ensaio hoje?</label>
+        <select id="tempoEnsaio">
+            <option value="5">5 minutos</option>
+            <option value="10">10 minutos</option>
+            <option value="20">20 minutos</option>
+            <option value="30">30 minutos</option>
+            <option value="60">1 hora</option>
+        </select>
+
+        <label id="labelTreino">Você treinou hoje?</label>
+        <select id="treino">
+            <option value="nao">Não</option>
+            <option value="sim">Sim</option>
+        </select>
+
+        <label>Você orou hoje?</label>
+        <select id="oracao">
+            <option value="nao">Não</option>
+            <option value="sim">Sim</option>
+        </select>
+
+    </section>
+
+
+    <!-- COLUNA 2 -->
+    <section id="formulario-direita">
+
+        <label>Teve momento de leitura hoje?</label>
+        <select id="leitura">
+            <option value="nao">Não</option>
+            <option value="sim">Sim</option>
+        </select>
+
+        <label>Você se alongou hoje?</label>
+        <select id="alongamento">
+            <option value="nao">Não</option>
+            <option value="sim">Sim</option>
+        </select>
+
+        <label>Você xingou hoje?</label>
+        <select id="xingar">
+            <option value="nao">Não</option>
+            <option value="sim">Sim</option>
+        </select>
+
+        <label>Quantos litros de água você tomou hoje?</label>
+<select id="agua">
+    <option value="2">2 litros</option>
+    <option value="3">3 litros</option>
+    <option value="4">4 litros</option>
+</select>
+
+    </section>
+
+</div>
+
+        <button onclick="gerarRelatorio()" style="    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;     width: stretch;">Gerar Relatório</button>
+        <div id="resultado" class="resultado" style="display: none; position: absolute;
+    top: 200px;
+    left: 600px;
+    background: #1e1e1e;
+    padding: 50px;
+    border-radius: 8px;">
+            <h2 style="margin-top: 10px;">Relatório Gerado</h2>
+            <p><strong>Escovação:</strong> <span id="resEscovouDentes"></span></p>
+            <p><strong>Tempo de Ensaio:</strong> <span id="resTempoEnsaio"></span></p>
+            <p><strong>Treino:</strong> <span id="resTreino"></span></p>
+            <p><strong>Oração:</strong> <span id="resOracao"></span></p>
+            <p><strong>Leitura:</strong> <span id="resLeitura"></span></p>
+            <p><strong>Xingou:</strong> <span id="resXingar"></span></p>
+            <p><strong>Alongamento:</strong> <span id="resAlongamento"></span></p>
+            <p><strong>Água:</strong> <span id="resAgua"></span></p>
+            <p><strong>XP Ganhado:</strong> <span id="xpTotal"></span> XP</p>
+            <p><strong>Classificação do Dia:</strong> <span id="classificacao"></span></p>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+<!-- MODAL: REFLEXÕES -->
+<div id="modal-reflexoes" class="modal-especial">
+    <div class="modal-conteudo">
+        <button class="fechar-modal" onclick="fecharModalEspecial()">×</button>
+
+        <div class="container" style="    margin-left: 25%;">
+        <div class="menu-relogio-container">
+            <h1>Reflexões de Fim de Ano</h1>
+            <p id="relogio"></p>
+            <div id="mensagem-xp"></div>
+            <p id="xp-gain" style="display: none; color: #825dff; font-size: 18px; font-weight: bold;"></p>
+            <p id="xp" style="display: none; color: #825dff; font-size: 18px; font-weight: bold;"></p>
+        </div>  
+        
+        <br>
+
+        <div id="conteudo-pdf"></div>
+
+    </div>
+    </div>
+</div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/html2pdf.js@0.10.0/dist/html2pdf.bundle.js"></script>
     <script src="/Script/js/perfil-data.js"></script>
     <script src="/Script/js/nivel.js"></script>
 
     <script>
+
+        // Função para atualizar o relógio
+        function atualizarRelogio0() {
+            const relogio0 = document.getElementById("relogio0");
+            const agora0 = new Date();
+            const horas0 = String(agora0.getHours()).padStart(2, '0');
+            const minutos0 = String(agora0.getMinutes()).padStart(2, '0');
+            const segundos0 = String(agora0.getSeconds()).padStart(2, '0');
+            relogio0.textContent = `${horas0}:${minutos0}:${segundos0}`;
+        }
+
+        // Atualiza o relógio a cada segundo
+        setInterval(atualizarRelogio0, 1000);
+        atualizarRelogio0();
+
+        function verificarModalEspecial() {
+
+    const hash = window.location.hash.replace("#", "");
+
+    // Atualiza o título da página
+    if (hash === "relatorio") {
+        document.title = "Relatório Diário";
+    } 
+    else if (hash === "reflexoes") {
+        document.title = "Reflexões";
+    } 
+    else {
+        document.title = "O Conselho";
+    }
+
+    // Abre o modal correspondente
+    if (hash === "relatorio" || hash === "reflexoes") {
+        abrirModalEspecial(hash);
+    } else {
+        document.querySelectorAll(".modal-especial").forEach(modal => {
+            modal.classList.remove("ativo");
+        });
+    }
+}
+
+
+function abrirModalEspecial(hash) {
+
+    // Fecha os dois primeiro
+    document.querySelectorAll(".modal-especial").forEach(modal => {
+        modal.classList.remove("ativo");
+    });
+
+    // Abre o modal correspondente
+    if (hash === "relatorio") {
+        document.getElementById("modal-relatorio").classList.add("ativo");
+    }
+
+    else if (hash === "reflexoes") {
+        document.getElementById("modal-reflexoes").classList.add("ativo");
+    }
+}
+
+
+// Fecha os modais
+function fecharModalEspecial() {
+
+    document.querySelectorAll(".modal-especial").forEach(modal => {
+        modal.classList.remove("ativo");
+    });
+
+    // Remove o hash da URL
+    history.pushState(
+        "",
+        document.title,
+        window.location.pathname + window.location.search
+    );
+
+    // Atualiza o título para o padrão
+    document.title = "O Conselho";
+}
+
+
+// Quando a página carrega
+window.addEventListener("load", () => {
+    verificarModalEspecial();
+});
+
+
+// Quando o # muda
+window.addEventListener("hashchange", () => {
+    verificarModalEspecial();
+});
+
+
+
+
+
+        function exibirQuestionario() {
+            document.getElementById('conteudo-pdf').innerHTML = `
+                <section>
+                    <label for="objetivosAnoNovo">Quais são seus principais objetivos para o próximo ano?</label>
+                    <input type="text" id="objetivosAnoNovo" name="objetivosAnoNovo" oninput="calcularXP()">
+
+                    <label for="aprendizadosAno">Quais foram os principais aprendizados deste ano?</label>
+                    <input type="text" id="aprendizadosAno" name="aprendizadosAno" oninput="calcularXP()">
+
+                    <label for="desafiosSuperados">Quais desafios você superou neste ano?</label>
+                    <input type="text" id="desafiosSuperados" name="desafiosSuperados" oninput="calcularXP()">
+
+                    <label for="momentosFelizes">Quais foram os momentos mais felizes do ano?</label>
+                    <input type="text" id="momentosFelizes" name="momentosFelizes" oninput="calcularXP()">
+
+                    <label for="metasNaoAlcancadas">Existem metas que não foram alcançadas?</label>
+                    <input type="text" id="metasNaoAlcancadas" name="metasNaoAlcancadas" oninput="calcularXP()">
+
+                    <label for="metasNaoAlcancadas2">O que você pode fazer para alcançá-las?</label>
+                    <input type="text" id="metasNaoAlcancadas2" name="metasNaoAlcancadas2" oninput="calcularXP()">
+
+                    <label for="agradecimentos">O que você agradece mais neste ano?</label>
+                    <input type="text" id="agradecimentos" name="agradecimentos" oninput="calcularXP()">
+
+                    <button onclick="gerarPDF()">Gerar PDF</button>
+                </section>
+            `;
+        }
+
+        let xpTotal = 0; // Definir o XP total globalmente
+
+function calcularXP() {
+    xpTotal = 0; // Resetar o XP total antes de recalcular
+    const respostas = [
+        'objetivosAnoNovo',
+        'aprendizadosAno',
+        'desafiosSuperados',
+        'momentosFelizes',
+        'metasNaoAlcancadas',
+        'metasNaoAlcancadas2',
+        'agradecimentos'
+    ];
+
+    respostas.forEach(id => {
+        const resposta = document.getElementById(id).value.trim();
+        if (resposta.length > 5) { 
+            xpTotal += 10; 
+        }
+    });
+
+    document.getElementById('xp').textContent = `XP: ${xpTotal}`;
+    ganharXp(xpTotal); // Atualizar o XP total no sistema de níveis
+}
+
+        function gerarPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(16);
+            doc.text('Questionário de Fim de Ano', 10, 20);
+            doc.text(`XP Final: ${xpTotal}`, 10, 40);
+
+            const respostas = [
+                { pergunta: "Quais são seus principais objetivos para o próximo ano?", resposta: document.getElementById('objetivosAnoNovo').value },
+                { pergunta: "Quais foram os principais aprendizados deste ano?", resposta: document.getElementById('aprendizadosAno').value },
+                { pergunta: "Quais desafios você superou neste ano?", resposta: document.getElementById('desafiosSuperados').value },
+                { pergunta: "Quais foram os momentos mais felizes do ano?", resposta: document.getElementById('momentosFelizes').value },
+                { pergunta: "Existem metas que não foram alcançadas?", resposta: document.getElementById('metasNaoAlcancadas').value },
+                { pergunta: "O que você pode fazer para alcançá-las?", resposta: document.getElementById('metasNaoAlcancadas2').value },
+                { pergunta: "O que você agradece mais neste ano?", resposta: document.getElementById('agradecimentos').value }
+            ];
+
+            let y = 60;
+            respostas.forEach(({ pergunta, resposta }) => {
+                doc.setFontSize(12);
+                doc.text(`${pergunta}`, 10, y);
+                y += 10;
+                doc.text(`Resposta: ${resposta}`, 10, y);
+                y += 20;
+            });
+
+            doc.save(`Reflexão de Fim de Ano (${obterDataAtual()}).pdf`);
+        }
+
+        setInterval(atualizarRelogio, 1000);
+        exibirQuestionario();
+
+
+
+
+        function verificarTreino() {
+    const hoje = new Date();
+    const diaSemana = hoje.getDay(); // 0 = Domingo, 6 = Sábado
+
+    const labelTreino = document.getElementById("labelTreino");
+
+    if (diaSemana === 0) {
+        labelTreino.textContent = "Foi à Escola Dominical?";
+    } else if (diaSemana === 6) {
+        labelTreino.textContent = "Já correu hoje?";
+    }
+}
+
+verificarTreino();
+    
+    function gerarRelatorio() {
+        const escovouDentes = parseInt(document.getElementById("escovouDentes").value) || 0;
+        const tempoEnsaio = parseInt(document.getElementById("tempoEnsaio").value) || 0;
+        const treino = document.getElementById("treino").value === "sim";
+        const oracao = document.getElementById("oracao").value === "sim";
+        const leitura = document.getElementById("leitura").value === "sim";
+        const xingar = document.getElementById("xingar").value === "não";
+        const alongamento = document.getElementById("alongamento").value === "sim";
+const agua = parseInt(document.getElementById("agua").value);
+
+
+if (agua === 3) {
+    respostasCorretas++;
+    xp += 10;
+} else if (agua === 4) {
+    respostasCorretas++;
+    xp += 20;
+}
+        let respostasCorretas = 0;
+        let xp = 0;
+    
+        if (escovouDentes >= 4) { 
+    respostasCorretas++; 
+    xp += 10; 
+}
+
+if (tempoEnsaio >= 10) { 
+    respostasCorretas++; 
+    xp += 20; 
+}
+
+        if (treino) { respostasCorretas++; xp += 10; }
+        if (oracao) { respostasCorretas++; xp += 10; }
+        if (leitura) { respostasCorretas++; xp += 10; }
+        if (xingar) { respostasCorretas++; xp += 20; }
+        if (alongamento) { respostasCorretas++; xp += 10; }
+        if (agua) { respostasCorretas++; xp += 10; }
+    
+        const classificacoes = ["Vergonha", "Dia Ruim", "Dia Bom", "Dia Prime"];
+        const classificacao = classificacoes[Math.min(respostasCorretas, 3)];
+    
+        document.getElementById("resEscovouDentes").textContent = escovouDentes;
+        document.getElementById("resTempoEnsaio").textContent = tempoEnsaio;
+        document.getElementById("resTreino").textContent = treino ? "Sim" : "Não";
+        document.getElementById("resOracao").textContent = oracao ? "Sim" : "Não";
+        document.getElementById("resLeitura").textContent = leitura ? "Sim" : "Não";
+        document.getElementById("resXingar").textContent = xingar ? "Sim" : "Não";
+        document.getElementById("resAlongamento").textContent = alongamento ? "Sim" : "Não";
+        document.getElementById("resAgua").textContent = agua ? "Sim" : "Não";
+        document.getElementById("classificacao").textContent = classificacao;
+        document.getElementById("xpTotal").textContent = xp;
+        document.getElementById("resultado").style.display = "block";
+    
+        ganharXp(xp);
+    }
+
+
+
+
+
         // Função chamada quando o usuário responde corretamente
 function respostaCerta() {
     ganharXp(10); // Adiciona 10 XP para cada resposta correta
