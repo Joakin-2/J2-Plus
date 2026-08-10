@@ -2325,273 +2325,162 @@ p {
     }
 }
 
-    /* Cabeçalho */
-    .map-header {
-        position: absolute;
-        z-index: 10;
-        top: 15px;
-        left: 18px;
-        right: 18px;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .map-title {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        font-size: 17px;
-        font-weight: bold;
-
-        background: rgba(18,18,20,.9);
-        padding: 9px 13px;
-        border-radius: 10px;
-        backdrop-filter: blur(8px);
-    }
-
-    .map-title span {
-        color: #8b5cf6;
-        font-size: 20px;
-    }
-
-    .map-controls {
-        display: flex;
-        gap: 6px;
-    }
-
-    .map-btn {
-        width: 36px;
-        height: 36px;
-        border: 1px solid #45414f;
-        border-radius: 9px;
-        background: rgba(20,20,22,.9);
-        color: white;
-        cursor: pointer;
-        font-size: 18px;
-        transition: .2s;
-    }
-
-    .map-btn:hover {
-        background: #7c4dff;
-        border-color: #8b5cf6;
-        transform: translateY(-1px);
-    }
-
-    /* Mapa */
     .map {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #181d20;
+}
 
-        background:
-            radial-gradient(circle at 30% 40%, #252a2e 0 1px, transparent 2px),
-            radial-gradient(circle at 70% 65%, #292e32 0 1px, transparent 2px),
-            #181d20;
+/* Leaflet ocupa todo o mapa */
+#map {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
 
-        background-size: 80px 80px, 110px 110px;
+/* Seus controles continuam acima do mapa */
+.map-header {
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    position: absolute;
+}
+
+
+/* Deixa o mapa real com aparência mais escura */
+
+.leaflet-layer {
+    filter: brightness(.65) contrast(1.15) saturate(.65);
+}
+
+
+/* Marcador personalizado */
+
+.custom-marker {
+    background: transparent;
+    border: none;
+}
+
+.custom-marker-inner {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50% 50% 50% 0;
+
+    transform: rotate(-45deg);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #7c4dff;
+    border: 3px solid #b89cff;
+
+    box-shadow:
+        0 0 20px rgba(124,77,255,.65);
+}
+
+.custom-marker-inner span {
+    transform: rotate(45deg);
+    font-size: 16px;
+}
+
+
+/* Você */
+
+.user-marker {
+    background: transparent;
+    border: none;
+}
+
+.user-marker-inner {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50% 50% 50% 0;
+
+    transform: rotate(-45deg);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #8b5cf6;
+    border: 3px solid white;
+
+    box-shadow:
+        0 0 20px rgba(139,92,246,.7);
+}
+
+.user-marker-inner span {
+    transform: rotate(45deg);
+    font-size: 17px;
+}
+
+.user-marker-inner::after {
+    content: "";
+
+    position: absolute;
+
+    width: 65px;
+    height: 65px;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(139,92,246,.3);
+
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0% {
+        transform: scale(.7);
+        opacity: 1;
     }
 
-    /* Ruas */
-    .road {
-        position: absolute;
-        height: 4px;
-        background: #353b3f;
-        border-radius: 10px;
-        transform-origin: left center;
-        opacity: .9;
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
     }
 
-    .road.main {
-        height: 8px;
-        background: #41484d;
-    }
+}
 
-    .road.purple {
-        background: #6240c9;
-        box-shadow: 0 0 8px rgba(124,77,255,.35);
-    }
 
-    .r1 { width: 850px; left: -50px; top: 150px; transform: rotate(14deg); }
-    .r2 { width: 700px; left: 130px; top: 230px; transform: rotate(-22deg); }
-    .r3 { width: 550px; left: 320px; top: 40px; transform: rotate(72deg); }
-    .r4 { width: 650px; left: 80px; top: 310px; transform: rotate(-5deg); }
-    .r5 { width: 500px; left: 450px; top: 180px; transform: rotate(45deg); }
+/* Popup */
 
-    .r6 { width: 500px; left: 0; top: 80px; transform: rotate(52deg); }
-    .r7 { width: 500px; left: 400px; top: 90px; transform: rotate(-30deg); }
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: #151519;
+    color: white;
+}
 
-    /* Áreas */
-    .area {
-        position: absolute;
-        border-radius: 30%;
-        background: rgba(44,51,55,.45);
-        transform: rotate(-8deg);
-    }
+.leaflet-popup-content {
+    font-size: 12px;
+}
 
-    .area.a1 {
-        width: 150px;
-        height: 90px;
-        left: 70px;
-        top: 205px;
-    }
+.leaflet-popup-content strong {
+    font-size: 13px;
+}
 
-    .area.a2 {
-        width: 190px;
-        height: 100px;
-        right: 60px;
-        top: 65px;
-    }
+.leaflet-popup-content small {
+    color: #aaa;
+}
 
-    .area.a3 {
-        width: 120px;
-        height: 80px;
-        left: 330px;
-        bottom: 20px;
-    }
 
-    /* Marcadores */
-    .marker {
-        position: absolute;
-        z-index: 5;
-        width: 38px;
-        height: 38px;
-        border-radius: 50% 50% 50% 0;
-        transform: rotate(-45deg);
+/* Remove visual padrão do Leaflet */
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+.leaflet-control-attribution {
+    background: rgba(15,15,18,.7) !important;
+    color: #777 !important;
+}
 
-        background: #7c4dff;
-        border: 3px solid #b89cff;
-        box-shadow: 0 0 20px rgba(124,77,255,.65);
-    }
+.leaflet-control-attribution a {
+    color: #9270ff !important;
+}
 
-    .marker span {
-        transform: rotate(45deg);
-        font-size: 16px;
-    }
-
-    .marker.you {
-        width: 48px;
-        height: 48px;
-        background: #8b5cf6;
-        border-color: white;
-    }
-
-    .marker.you::after {
-        content: "";
-        position: absolute;
-        width: 65px;
-        height: 65px;
-        border-radius: 50%;
-        border: 2px solid rgba(139,92,246,.25);
-        animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(.7); opacity: 1; }
-        100% { transform: scale(1.4); opacity: 0; }
-    }
-
-    .m1 { left: 48%; top: 43%; }
-    .m2 { left: 20%; top: 57%; background: #2e90fa; border-color: #8bc4ff; }
-    .m3 { left: 72%; top: 35%; background: #f59e0b; border-color: #ffd27a; }
-    .m4 { left: 62%; top: 70%; background: #22c55e; border-color: #8affad; }
-
-    /* Tooltip */
-    .tooltip {
-        position: absolute;
-        z-index: 20;
-        padding: 8px 11px;
-        background: #151519;
-        border: 1px solid #3b3548;
-        border-radius: 9px;
-        font-size: 12px;
-        box-shadow: 0 8px 25px rgba(0,0,0,.35);
-        pointer-events: none;
-    }
-
-    .tooltip strong {
-        display: block;
-        font-size: 13px;
-        margin-bottom: 2px;
-    }
-
-    .tooltip small {
-        color: #aaa;
-    }
-
-    .t1 { left: 52%; top: 33%; }
-    .t2 { left: 14%; top: 67%; }
-    .t3 { right: 8%; top: 27%; }
-    .t4 { right: 16%; bottom: 17%; }
-
-    /* Rodapé */
-    .map-bottom {
-        position: absolute;
-        z-index: 15;
-        left: 18px;
-        right: 18px;
-        bottom: 15px;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .info {
-        background: rgba(17,17,19,.92);
-        border: 1px solid #38343f;
-        border-radius: 12px;
-        padding: 10px 13px;
-
-        display: flex;
-        align-items: center;
-        gap: 12px;
-
-        backdrop-filter: blur(10px);
-    }
-
-    .info-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 9px;
-        display: grid;
-        place-items: center;
-        background: rgba(124,77,255,.16);
-        color: #a78bfa;
-    }
-
-    .info-text strong {
-        display: block;
-        font-size: 12px;
-    }
-
-    .info-text span {
-        color: #999;
-        font-size: 11px;
-    }
-
-    .ai-button {
-        border: none;
-        background: linear-gradient(135deg, #7c4dff, #925cff);
-        color: white;
-        padding: 11px 15px;
-        border-radius: 10px;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0 5px 18px rgba(124,77,255,.25);
-        transition: .2s;
-    }
-
-    .ai-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(124,77,255,.4);
-    }
 
 /* Para navegadores baseados em WebKit (como Chrome, Safari e Edge) */
 ::-webkit-scrollbar {

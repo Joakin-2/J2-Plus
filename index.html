@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="Script/styles.css"> <!-- CSS externo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   emailjs.init("RikdzuDK9iDvqmHES");
@@ -351,7 +359,10 @@
             <div id="timer">00:00:00</div>
         
             <div class="button-group" style="margin-bottom: 20px;"> 
-                <button id="startButton">
+                <button id="startButton" style="
+    background-color: rgb(130, 93, 255);
+    color: black;
+">
                     <i class="fas fa-play"></i> Iniciar
                 </button>
                 <button id="doneButton">
@@ -937,172 +948,35 @@
 
   <div class="objetivos-panel">
 
-        <div class="objetivos-header">
-            <div>
-                <span class="objetivos-label">🎯 OBJETIVOS</span>
-                <h3>Missões de hoje</h3>
-            </div>
+    <div class="objetivos-header">
 
-            <span class="objetivos-contador">
-                <span id="objetivos-concluidos">0</span>/4
-            </span>
+        <div>
+            <span class="objetivos-label">🎯 OBJETIVOS</span>
+            <h3>Missões de hoje</h3>
         </div>
 
-
-        <div class="objetivos-lista">
-
-            <div class="objetivo" data-xp="10">
-                <button class="objetivo-check" onclick="concluirObjetivo(this)">
-                    ✓
-                </button>
-
-                <div class="objetivo-info">
-                    <strong>Publicar um projeto</strong>
-                    <span>Compartilhe uma nova criação</span>
-                </div>
-
-                <span class="objetivo-xp">+10 XP</span>
-            </div>
-
-
-            <div class="objetivo" data-xp="15">
-                <button class="objetivo-check" onclick="concluirObjetivo(this)">
-                    ✓
-                </button>
-
-                <div class="objetivo-info">
-                    <strong>Criar uma peça 3D</strong>
-                    <span>Produza algo novo na impressora</span>
-                </div>
-
-                <span class="objetivo-xp">+15 XP</span>
-            </div>
-
-
-            <div class="objetivo" data-xp="20">
-                <button class="objetivo-check" onclick="concluirObjetivo(this)">
-                    ✓
-                </button>
-
-                <div class="objetivo-info">
-                    <strong>Editar um projeto</strong>
-                    <span>Melhore ou finalize um projeto</span>
-                </div>
-
-                <span class="objetivo-xp">+20 XP</span>
-            </div>
-
-
-            <div class="objetivo" data-xp="25">
-                <button class="objetivo-check" onclick="concluirObjetivo(this)">
-                    ✓
-                </button>
-
-                <div class="objetivo-info">
-                    <strong>Explorar novas ideias</strong>
-                    <span>Pesquise referências e inspirações</span>
-                </div>
-
-                <span class="objetivo-xp">+25 XP</span>
-            </div>
-
-        </div>
+        <span class="objetivos-contador">
+            <span id="objetivos-concluidos">0</span>/4
+        </span>
 
     </div>
 
+    <div class="objetivos-lista" id="objetivos-lista"></div>
+
+</div>
+
+
     <div class="map-card">
 
-    <!-- Cabeçalho -->
     <div class="map-header">
-
-        <div class="map-title">
-            <span>✦</span>
-            Explorar
-        </div>
-
         <div class="map-controls">
             <button class="map-btn" onclick="zoomIn()">＋</button>
             <button class="map-btn" onclick="zoomOut()">−</button>
             <button class="map-btn" onclick="localizar()">⌖</button>
         </div>
-
     </div>
 
-    <!-- MAPA -->
-    <div class="map" id="map">
-
-        <!-- Áreas -->
-        <div class="area a1"></div>
-        <div class="area a2"></div>
-        <div class="area a3"></div>
-
-        <!-- Ruas -->
-        <div class="road main r1"></div>
-        <div class="road r2"></div>
-        <div class="road main r3"></div>
-        <div class="road r4"></div>
-        <div class="road purple r5"></div>
-        <div class="road r6"></div>
-        <div class="road r7"></div>
-
-        <!-- Você -->
-        <div class="marker you m1">
-            <span>●</span>
-        </div>
-
-        <!-- Outros lugares -->
-        <div class="marker m2">
-            <span>☕</span>
-        </div>
-
-        <div class="marker m3">
-            <span>⚽</span>
-        </div>
-
-        <div class="marker m4">
-            <span>🌳</span>
-        </div>
-
-        <!-- Informações -->
-        <div class="tooltip t1">
-            <strong>📍 Você</strong>
-            <small>Localização atual</small>
-        </div>
-
-        <div class="tooltip t2">
-            <strong>☕ Café próximo</strong>
-            <small>4 min de distância</small>
-        </div>
-
-        <div class="tooltip t3">
-            <strong>⚽ Evento</strong>
-            <small>Acontecendo hoje</small>
-        </div>
-
-        <div class="tooltip t4">
-            <strong>🌳 Parque</strong>
-            <small>12 min de distância</small>
-        </div>
-
-    </div>
-
-    <!-- Rodapé -->
-    <div class="map-bottom">
-
-        <div class="info">
-            <div class="info-icon">📍</div>
-
-            <div class="info-text">
-                <strong>3 lugares interessantes perto de você</strong>
-                <span>17°C · Nublado · 2,4 km</span>
-            </div>
-        </div>
-
-        <button class="ai-button" onclick="perguntarIA()">
-            ✨ Explorar com IA
-        </button>
-
-    </div>
+    <div class="map" id="map"></div>
 
 </div>
 

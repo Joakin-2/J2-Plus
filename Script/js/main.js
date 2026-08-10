@@ -2328,6 +2328,24 @@ document.getElementById("btn-study-christ").onclick = () => {
                     window.open('https://drive.google.com/drive/folders/1Of9cNspUSobIUiQbsixEG3FlJYWAr3Ay');
                     window.open('https://drive.google.com/drive/folders/1h1QOxEjQRQfiobTXzsNvErYjPIsTV6t0');
                     break;
+                case 'edit':
+            window.open('https://www.fotor.com/pt/video-enhancer/');
+            window.open('https://www.lovart.ai/');
+            window.open('https://viggle.ai/app/home');
+            window.open('https://tunetank.com/');
+            window.open('https://picsart.com/');
+            window.open('https://www.photopea.com/');
+            break;
+
+        case 'Pulike':
+            window.open('https://discord.com/channels/@me/1066833055723028603');
+            window.open('https://business.facebook.com/latest/?asset_id=603116216208940&business_id=2349354548756195&nav_ref=mfb_get_started_header_cta');
+            window.open('https://voolt3d.com.br/pla/velvet/');
+            window.open('https://www.thingiverse.com/');
+            window.open('https://www.printables.com/');
+            window.open('https://cults3d.com/en?srsltid=AfmBOoru6IJ-IZUXsffDSXnuGviFD9E0l4F7bNU_-UWUbyTgf92XxCDp');
+            window.open('https://www.chitubox.com/en/page/chitubox-price?skuId=17952006&spuId=17952&promoCode=7j414bfj&paytype=year&utm_source=google_paid_search&utm_medium=cpc&utm_campaign=Pmax_month&gad_source=1&gad_campaignid=20102043729&gbraid=0AAAAAo4VGrdqXjoEr3TlOCiR76tHfk5vp&gclid=EAIaIQobChMIuIa8p7WJkgMV2VdIAB3fcxNFEAAYASAAEgIgU_D_BwE');
+            break;
                 default:
                     break;
             }
@@ -3569,35 +3587,6 @@ let tempoInicial = 25 * 60; // 25 minutos em segundos
     }
 });
 
-function redirecionar(destino) {
-    const hoje = new Date();
-    const diaSemana = hoje.getDay(); // 0 = domingo, 1 = segunda, ..., 5 = sexta
-
-    switch (destino) {
-        case 'edit':
-            window.open('https://www.fotor.com/pt/video-enhancer/');
-            window.open('https://www.lovart.ai/');
-            window.open('https://viggle.ai/app/home');
-            window.open('https://tunetank.com/');
-            window.open('https://picsart.com/');
-            window.open('https://www.photopea.com/');
-            break;
-
-        case 'Pulike':
-            window.open('https://discord.com/channels/@me/1066833055723028603');
-            window.open('https://business.facebook.com/latest/?asset_id=603116216208940&business_id=2349354548756195&nav_ref=mfb_get_started_header_cta');
-            window.open('https://voolt3d.com.br/pla/velvet/');
-            window.open('https://www.thingiverse.com/');
-            window.open('https://www.printables.com/');
-            window.open('https://cults3d.com/en?srsltid=AfmBOoru6IJ-IZUXsffDSXnuGviFD9E0l4F7bNU_-UWUbyTgf92XxCDp');
-            window.open('https://www.chitubox.com/en/page/chitubox-price?skuId=17952006&spuId=17952&promoCode=7j414bfj&paytype=year&utm_source=google_paid_search&utm_medium=cpc&utm_campaign=Pmax_month&gad_source=1&gad_campaignid=20102043729&gbraid=0AAAAAo4VGrdqXjoEr3TlOCiR76tHfk5vp&gclid=EAIaIQobChMIuIa8p7WJkgMV2VdIAB3fcxNFEAAYASAAEgIgU_D_BwE');
-            break;
-
-        default:
-            break;
-    }
-}
-
 document.querySelectorAll('.copy-box pre').forEach(texto => {
 
     texto.addEventListener('click', async () => {
@@ -3614,75 +3603,625 @@ document.querySelectorAll('.copy-box pre').forEach(texto => {
 
 });
 
+// ==========================================
+// TODAS AS MISSÕES DISPONÍVEIS
+// ==========================================
+
+const todasMissoes = [
+
+    {
+        titulo: "Publicar um projeto",
+        descricao: "Compartilhe uma nova criação",
+        xp: 10
+    },
+
+    {
+        titulo: "Criar uma peça 3D",
+        descricao: "Produza algo novo na impressora",
+        xp: 15
+    },
+
+    {
+        titulo: "Editar um projeto",
+        descricao: "Melhore ou finalize um projeto",
+        xp: 20
+    },
+
+    {
+        titulo: "Explorar novas ideias",
+        descricao: "Pesquise referências e inspirações",
+        xp: 25
+    },
+
+    {
+        titulo: "Criar um novo desenho",
+        descricao: "Comece uma ideia do zero",
+        xp: 15
+    },
+
+    {
+        titulo: "Organizar seus projetos",
+        descricao: "Deixe seus arquivos organizados",
+        xp: 10
+    },
+
+    {
+        titulo: "Aprender algo novo",
+        descricao: "Estude uma técnica diferente",
+        xp: 20
+    },
+
+    {
+        titulo: "Compartilhar uma ideia",
+        descricao: "Mostre uma ideia para a comunidade",
+        xp: 15
+    },
+
+    {
+        titulo: "Finalizar um projeto",
+        descricao: "Conclua algo que estava pendente",
+        xp: 30
+    },
+
+    {
+        titulo: "Explorar a comunidade",
+        descricao: "Veja projetos de outras pessoas",
+        xp: 10
+    },
+
+    {
+        titulo: "Criar uma inspiração",
+        descricao: "Salve algo que chamou sua atenção",
+        xp: 10
+    },
+
+    {
+        titulo: "Melhorar um projeto antigo",
+        descricao: "Atualize uma criação anterior",
+        xp: 25
+    },
+
+    {
+        titulo: "Experimentar uma técnica",
+        descricao: "Teste uma nova forma de criar",
+        xp: 20
+    },
+
+    {
+        titulo: "Criar algo diferente",
+        descricao: "Saia da rotina e experimente",
+        xp: 25
+    },
+
+    {
+        titulo: "Revisar seus projetos",
+        descricao: "Confira suas criações recentes",
+        xp: 10
+    },
+
+    {
+        titulo: "Publicar uma criação",
+        descricao: "Adicione uma criação ao seu perfil",
+        xp: 20
+    }
+
+];
+
+
+// ==========================================
+// MISSÕES ATUAIS
+// ==========================================
+
+let missoesAtuais = [];
+
+let concluidasHoje = 0;
+
+
+// ==========================================
+// EMBARALHAR
+// ==========================================
+
+function embaralhar(array) {
+
+    return array
+        .map(value => ({
+            value,
+            sort: Math.random()
+        }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+
+}
+
+
+// ==========================================
+// ESCOLHER 4 MISSÕES
+// ==========================================
+
+function carregarMissoes() {
+
+    const embaralhadas = embaralhar(todasMissoes);
+
+    missoesAtuais = embaralhadas.slice(0, 4);
+
+    renderizarMissoes();
+
+}
+
+
+// ==========================================
+// MOSTRAR MISSÕES
+// ==========================================
+
+function renderizarMissoes() {
+
+    const lista = document.getElementById(
+        "objetivos-lista"
+    );
+
+    lista.innerHTML = "";
+
+
+    missoesAtuais.forEach((missao, index) => {
+
+        const objetivo = document.createElement("div");
+
+        objetivo.className = "objetivo";
+
+        objetivo.dataset.xp = missao.xp;
+
+        objetivo.innerHTML = `
+
+            <button
+                class="objetivo-check"
+                onclick="concluirObjetivo(this)"
+            >
+                ✓
+            </button>
+
+            <div class="objetivo-info">
+
+                <strong>
+                    ${missao.titulo}
+                </strong>
+
+                <span>
+                    ${missao.descricao}
+                </span>
+
+            </div>
+
+            <span class="objetivo-xp">
+                +${missao.xp} XP
+            </span>
+
+        `;
+
+        lista.appendChild(objetivo);
+
+    });
+
+}
+
+
+// ==========================================
+// CONCLUIR MISSÃO
+// ==========================================
+
 function concluirObjetivo(botao) {
 
-    const objetivo = botao.closest('.objetivo');
+    const objetivo =
+        botao.closest(".objetivo");
 
-    // Impede clicar novamente
-    if (objetivo.classList.contains('concluido')) {
+
+    // Evita clicar duas vezes
+
+    if (
+        objetivo.classList.contains("concluido")
+    ) {
         return;
     }
 
-    // XP da missão
-    const xp = parseInt(objetivo.dataset.xp);
 
-    // Marca como concluído
-    objetivo.classList.add('concluido');
+    // XP
 
-    // Atualiza botão
-    botao.innerHTML = '✓';
+    const xp = parseInt(
+        objetivo.dataset.xp
+    );
 
-    // Atualiza contador
-    const objetivos = document.querySelectorAll('.objetivo');
-    const concluidos = document.querySelectorAll('.objetivo.concluido');
 
-    document.getElementById('objetivos-concluidos').textContent =
-        concluidos.length;
+    // Animação
+
+    objetivo.classList.add(
+        "concluido"
+    );
+
+
+    botao.innerHTML = "✓";
+
 
     // Adiciona XP
-    ganharXp(10);
+
+    ganharXp(xp);
+
+
+    // Atualiza contador
+
+    concluidasHoje++;
+
+    document.getElementById(
+        "objetivos-concluidos"
+    ).textContent = concluidasHoje;
+
+
+    // Espera animação terminar
+
+    setTimeout(() => {
+
+        substituirMissao(objetivo);
+
+    }, 400);
+
 }
 
-let scale = 1;
 
-function zoomIn() {
-    scale += 0.12;
-    if (scale > 1.6) scale = 1.6;
+// ==========================================
+// SUBSTITUIR MISSÃO
+// ==========================================
 
-    document.getElementById("map").style.transform =
-        `scale(${scale})`;
+function substituirMissao(objetivo) {
+
+    const lista =
+        document.getElementById(
+            "objetivos-lista"
+        );
+
+
+    // Remove missão concluída
+
+    objetivo.remove();
+
+
+    // Descobre quais estão atualmente na tela
+
+    const titulosAtuais = [
+        ...document.querySelectorAll(
+            ".objetivo-info strong"
+        )
+    ].map(el => el.textContent.trim());
+
+
+    // Missões que ainda não estão na tela
+
+    const disponiveis =
+        todasMissoes.filter(
+            missao =>
+                !titulosAtuais.includes(
+                    missao.titulo
+                )
+        );
+
+
+    // Se ainda existem missões
+
+    if (disponiveis.length > 0) {
+
+        const novaMissao =
+            disponiveis[
+                Math.floor(
+                    Math.random() *
+                    disponiveis.length
+                )
+            ];
+
+
+        adicionarMissao(
+            novaMissao,
+            lista
+        );
+
+    }
+
+
+    // Garante que o contador visual continue certo
+
+    document.getElementById(
+        "objetivos-concluidos"
+    ).textContent = concluidasHoje;
+
 }
 
-function zoomOut() {
-    scale -= 0.12;
-    if (scale < 1) scale = 1;
 
-    document.getElementById("map").style.transform =
-        `scale(${scale})`;
+// ==========================================
+// ADICIONAR NOVA MISSÃO
+// ==========================================
+
+function adicionarMissao(
+    missao,
+    lista
+) {
+
+    const objetivo =
+        document.createElement("div");
+
+
+    objetivo.className =
+        "objetivo entrando";
+
+
+    objetivo.dataset.xp =
+        missao.xp;
+
+
+    objetivo.innerHTML = `
+
+        <button
+            class="objetivo-check"
+            onclick="concluirObjetivo(this)"
+        >
+            ✓
+        </button>
+
+        <div class="objetivo-info">
+
+            <strong>
+                ${missao.titulo}
+            </strong>
+
+            <span>
+                ${missao.descricao}
+            </span>
+
+        </div>
+
+        <span class="objetivo-xp">
+            +${missao.xp} XP
+        </span>
+
+    `;
+
+
+    lista.appendChild(objetivo);
+
+
+    // Ativa animação
+
+    requestAnimationFrame(() => {
+
+        objetivo.classList.add(
+            "mostrar"
+        );
+
+    });
+
 }
 
-function localizar() {
 
-    const marker = document.querySelector(".you");
+// ==========================================
+// INICIAR
+// ==========================================
 
-    marker.animate([
-        { transform: "rotate(-45deg) scale(1)" },
-        { transform: "rotate(-45deg) scale(1.3)" },
-        { transform: "rotate(-45deg) scale(1)" }
-    ], {
-        duration: 500
+carregarMissoes();
+
+
+// ======================================
+// MAPA REAL
+// ======================================
+
+const map = L.map("map", {
+    zoomControl: false,
+    attributionControl: true
+}).setView([-24.7368, -48.1106], 15);
+
+
+// ======================================
+// OPENSTREETMAP
+// ======================================
+
+L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+        maxZoom: 19,
+        attribution: "&copy; OpenStreetMap"
+    }
+).addTo(map);
+
+
+// ======================================
+// ÍCONE DO USUÁRIO
+// ======================================
+
+const userIcon = L.divIcon({
+
+    className: "user-marker",
+
+    html: `
+        <div class="user-marker-inner">
+            <span>●</span>
+        </div>
+    `,
+
+    iconSize: [48, 48],
+    iconAnchor: [24, 24],
+    popupAnchor: [0, -25]
+});
+
+
+// ======================================
+// ÍCONE DOS LUGARES
+// ======================================
+
+function criarIcone(emoji, cor) {
+
+    return L.divIcon({
+
+        className: "custom-marker",
+
+        html: `
+            <div
+                class="custom-marker-inner"
+                style="
+                    background:${cor};
+                "
+            >
+                <span>${emoji}</span>
+            </div>
+        `,
+
+        iconSize: [38, 38],
+        iconAnchor: [19, 38],
+        popupAnchor: [0, -38]
     });
 }
 
-function perguntarIA() {
 
-    alert(
-        "✨ IA:\n\n" +
-        "O que você gostaria de encontrar por perto?\n\n" +
-        "🍔 Restaurantes\n" +
-        "☕ Cafés\n" +
-        "🎬 Entretenimento\n" +
-        "🌳 Passeios"
-    );
+// ======================================
+// LOCALIZAÇÃO INICIAL
+// ======================================
+
+let userMarker = L.marker(
+    [-24.7368, -48.1106],
+    {
+        icon: userIcon
+    }
+).addTo(map);
+
+userMarker.bindPopup(`
+    <strong>📍 Você</strong><br>
+    <small>Localização atual</small>
+`);
+
+
+// ======================================
+// LUGARES
+// ======================================
+
+const lugares = [
+
+    {
+        lat: -24.7335,
+        lng: -48.1080,
+        emoji: "☕",
+        cor: "#2e90fa",
+        nome: "Café próximo",
+        info: "4 min de distância"
+    },
+
+    {
+        lat: -24.7400,
+        lng: -48.1140,
+        emoji: "⚽",
+        cor: "#f59e0b",
+        nome: "Evento",
+        info: "Acontecendo hoje"
+    },
+
+    {
+        lat: -24.7295,
+        lng: -48.1040,
+        emoji: "🌳",
+        cor: "#22c55e",
+        nome: "Parque",
+        info: "12 min de distância"
+    }
+
+];
+
+
+lugares.forEach(lugar => {
+
+    const marker = L.marker(
+        [lugar.lat, lugar.lng],
+        {
+            icon: criarIcone(
+                lugar.emoji,
+                lugar.cor
+            )
+        }
+    ).addTo(map);
+
+    marker.bindPopup(`
+        <strong>
+            ${lugar.emoji} ${lugar.nome}
+        </strong>
+
+        <br>
+
+        <small>
+            ${lugar.info}
+        </small>
+    `);
+
+});
+
+
+// ======================================
+// ZOOM
+// ======================================
+
+function zoomIn() {
+
+    map.zoomIn();
 
 }
+
+
+function zoomOut() {
+
+    map.zoomOut();
+
+}
+
+
+// ======================================
+// LOCALIZAR
+// ======================================
+
+function localizar() {
+
+    map.locate({
+
+        setView: true,
+
+        maxZoom: 17,
+
+        enableHighAccuracy: true
+
+    });
+
+}
+
+
+// ======================================
+// LOCALIZAÇÃO ENCONTRADA
+// ======================================
+
+map.on("locationfound", function(e) {
+
+    userMarker.setLatLng(e.latlng);
+
+    userMarker
+        .bindPopup(`
+            <strong>📍 Você está aqui</strong>
+            <br>
+            <small>
+                Precisão: ${Math.round(e.accuracy)} metros
+            </small>
+        `)
+        .openPopup();
+
+});
+
+
+// ======================================
+// ERRO
+// ======================================
+
+map.on("locationerror", function() {
+
+    alert(
+        "Não foi possível obter sua localização."
+    );
+
+});
+
