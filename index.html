@@ -31,7 +31,7 @@
                 <li><a id="ler-btn">Leitura</a></li>
                 <li><a href="Modo/habitos.html">Hábitos</a></li>
                 <li><a id="christ-btn">Renovar</a></li>
-                <li><a onclick="Trabalho()">Trabalho</a></li>
+                <li><a onclick="Trabalho()">Work</a></li>
             </ul>
             <ul>
                 <li><a id="js-btn" onclick="buttonClick('https://js3dstudio.netlify.app/', 'https://js3dstudio.netlify.app/finan.html')">Js 3D Studio</a></li>
@@ -252,7 +252,92 @@
         &times;
     </span>
 
-    
+    <div id="initialMessage">Vamos utilizar o método Pomodoro.</div>
+    <div id="temporizador" style="display: none;">25:00</div>
+
+    <div id="botoes">
+        <button id="startButton" style="display: none; margin-left: 47%;" onclick="iniciarPomodoro()">Iniciar</button>
+    </div>
+
+</div>
+
+<!-- Work -->
+<div id="modal-work" class="modal">
+
+    <div class="modal-content" style="    margin-top: 80px;
+        margin-left: 25%;
+    width: auto;">
+
+        <span id="fechar-work">&times;</span>
+
+        <div class="copy-container">
+
+            <div class="copy-box">
+                <pre id="text1">👀 Siga-nos para ver mais projetos incríveis!
+🚀 Transformando ideias em realidade!
+.
+.
+#3dprinter #3dprint #geek #impressao3d #fyp</pre>
+            </div>
+
+            <div class="copy-box">
+                <pre id="text2">🔥 Impressão 3D que dá vida às ideias!
+🧠 Criatividade sem limites.
+.
+.
+#3dprinter #3dprint #geek #impressao3d #fyp</pre>
+            </div>
+
+            <div class="copy-box">
+                <pre id="text3">👀 Isso não existe em loja!
+🖨️ Criamos peças únicas em impressão 3D.
+.
+.
+#3dprinter #3dprint #geek #impressao3d #fyp</pre>
+            </div>
+
+            <div class="copy-box">
+                <pre id="text4">🚀 Do digital para o mundo real!
+🖨️ Mais um projeto ganhando vida em 3D.
+.
+.
+#3dprinter #3dprint #geek #impressao3d #fyp</pre>
+            </div>
+
+            <div class="copy-box">
+                <pre id="text5">🔥 Pequenos detalhes, grandes projetos!
+🧩 Cada peça feita para ser única.
+.
+.
+#3dprinter #3dprint #geek #impressao3d #fyp</pre>
+            </div>
+
+            <div class="copy-box">
+                <pre id="text6">🤯 Você imaginou? Nós imprimimos!
+🖨️ Criatividade + tecnologia = impressão 3D.
+.
+.
+#3dprinter #3dprint #geek #impressao3d #fyp</pre>
+            </div>
+
+            <button class="botao" onclick="redirecionar('edit')" style="
+    height: 60px;
+    margin-top: 10px;
+">
+                <i class="fas fa-edit"></i>
+                Edição
+            </button>
+
+            <button class="botao" onclick="redirecionar('Pulike')" style="
+    height: 60px;
+    margin-top: 10px;
+">
+                <i class="fas fa-print"></i>
+                Pulike
+            </button>
+
+        </div>
+    </div>
 
 </div>
 
@@ -677,6 +762,60 @@
         </div>
 
         <p id="bio-perfil">Adicione uma bio</p>
+
+        <!-- ESTATÍSTICAS -->
+<div class="estatisticas-container" style="
+    margin-top: 30px;
+">
+
+    <h3 class="estatisticas-titulo">
+        <i class="fas fa-chart-line"></i> Estatísticas
+    </h3>
+
+    <div class="estatisticas-grid">
+
+        <!-- GYM -->
+        <div class="estatistica-card gym">
+            <div class="estatistica-icone">
+                <i class="fas fa-dumbbell"></i>
+            </div>
+
+            <div class="estatistica-info">
+                <span class="estatistica-nome">Gym</span>
+                <strong id="gym-stat">0</strong>
+                <small>treinos</small>
+            </div>
+        </div>
+
+        <!-- MELODY -->
+        <div class="estatistica-card melody">
+            <div class="estatistica-icone">
+                <i class="fas fa-music"></i>
+            </div>
+
+            <div class="estatistica-info">
+                <span class="estatistica-nome">Melody</span>
+                <strong id="melody-stat">0</strong>
+                <small>músicas</small>
+            </div>
+        </div>
+
+        <!-- ÁGUA -->
+        <div class="estatistica-card agua">
+            <div class="estatistica-icone">
+                <i class="fas fa-tint"></i>
+            </div>
+
+            <div class="estatistica-info">
+                <span class="estatistica-nome">Água</span>
+                <strong id="agua-stat">0</strong>
+                <small>ml</small>
+            </div>
+        </div>
+
+    </div>
+</div>
+
         
         <div class="perfil-botoes" style="display: flex; justify-content: center; align-items: center;">
             <p id="idade-perfil" style="margin-right: 10px;">Idade: 0 anos</p>
@@ -692,7 +831,6 @@
         </div>
 
     </div>
-</div>
 </div>
 
 <!-- Squad -->
@@ -711,17 +849,17 @@
     <div style="display: flex;">
     <!-- Lista de botões para os dias da semana -->
     <ul style="list-style-type: none; padding: 0; display: flex; flex-direction: column; align-items: center; margin-top: 80px;">
-        <li><button id="sunday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Domingo: 20 hábitos</button></li>
-        <li><button id="monday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Segunda: 19 hábitos</button></li>
-        <li><button id="tuesday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Terça: 18 hábitos</button></li>
-        <li><button id="wednesday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Quarta: 25 hábitos</button></li>
+        <li><button id="sunday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Domingo: 23 hábitos</button></li>
+        <li><button id="monday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Segunda: 23 hábitos</button></li>
+        <li><button id="tuesday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Terça: 24 hábitos</button></li>
+        <li><button id="wednesday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Quarta: 30 hábitos</button></li>
     </ul>
 
     <ul style="list-style-type: none; padding: 0; display: flex; flex-direction: column; align-items: center; margin-top: 80px;">
-        <li><button id="thursday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Quinta: 21 hábitos</button></li>
-        <li><button id="friday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Sexta: 20 hábitos</button></li>
-        <li><button id="saturday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Sábado: 23 hábitos</button></li>
-        <li><button onclick="window.location.href='Modo/relatorio.html'" class="btn-day"><i class="fas fa-calendar-day"></i> Relatório</button></li>
+        <li><button id="thursday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Quinta: 26 hábitos</button></li>
+        <li><button id="friday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Sexta: 25 hábitos</button></li>
+        <li><button id="saturday-btn" class="btn-day"><i class="fas fa-calendar-day"></i> Sábado: 33 hábitos</button></li>
+        <li><button onclick="window.location.href='https://j2plus.netlify.app/modo/conselho.html#relatorio'" class="btn-day"><i class="fas fa-calendar-day"></i> Relatório</button></li>
     </ul>
     </div>
   </div>
@@ -796,6 +934,177 @@
   <div class="progress-container" style="margin-left: 80%; position: absolute; margin-top: 14%;">
     <div id="progress-bar" class="progress-bar">0%</div>
   </div>
+
+  <div class="objetivos-panel">
+
+        <div class="objetivos-header">
+            <div>
+                <span class="objetivos-label">🎯 OBJETIVOS</span>
+                <h3>Missões de hoje</h3>
+            </div>
+
+            <span class="objetivos-contador">
+                <span id="objetivos-concluidos">0</span>/4
+            </span>
+        </div>
+
+
+        <div class="objetivos-lista">
+
+            <div class="objetivo" data-xp="10">
+                <button class="objetivo-check" onclick="concluirObjetivo(this)">
+                    ✓
+                </button>
+
+                <div class="objetivo-info">
+                    <strong>Publicar um projeto</strong>
+                    <span>Compartilhe uma nova criação</span>
+                </div>
+
+                <span class="objetivo-xp">+10 XP</span>
+            </div>
+
+
+            <div class="objetivo" data-xp="15">
+                <button class="objetivo-check" onclick="concluirObjetivo(this)">
+                    ✓
+                </button>
+
+                <div class="objetivo-info">
+                    <strong>Criar uma peça 3D</strong>
+                    <span>Produza algo novo na impressora</span>
+                </div>
+
+                <span class="objetivo-xp">+15 XP</span>
+            </div>
+
+
+            <div class="objetivo" data-xp="20">
+                <button class="objetivo-check" onclick="concluirObjetivo(this)">
+                    ✓
+                </button>
+
+                <div class="objetivo-info">
+                    <strong>Editar um projeto</strong>
+                    <span>Melhore ou finalize um projeto</span>
+                </div>
+
+                <span class="objetivo-xp">+20 XP</span>
+            </div>
+
+
+            <div class="objetivo" data-xp="25">
+                <button class="objetivo-check" onclick="concluirObjetivo(this)">
+                    ✓
+                </button>
+
+                <div class="objetivo-info">
+                    <strong>Explorar novas ideias</strong>
+                    <span>Pesquise referências e inspirações</span>
+                </div>
+
+                <span class="objetivo-xp">+25 XP</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="map-card">
+
+    <!-- Cabeçalho -->
+    <div class="map-header">
+
+        <div class="map-title">
+            <span>✦</span>
+            Explorar
+        </div>
+
+        <div class="map-controls">
+            <button class="map-btn" onclick="zoomIn()">＋</button>
+            <button class="map-btn" onclick="zoomOut()">−</button>
+            <button class="map-btn" onclick="localizar()">⌖</button>
+        </div>
+
+    </div>
+
+    <!-- MAPA -->
+    <div class="map" id="map">
+
+        <!-- Áreas -->
+        <div class="area a1"></div>
+        <div class="area a2"></div>
+        <div class="area a3"></div>
+
+        <!-- Ruas -->
+        <div class="road main r1"></div>
+        <div class="road r2"></div>
+        <div class="road main r3"></div>
+        <div class="road r4"></div>
+        <div class="road purple r5"></div>
+        <div class="road r6"></div>
+        <div class="road r7"></div>
+
+        <!-- Você -->
+        <div class="marker you m1">
+            <span>●</span>
+        </div>
+
+        <!-- Outros lugares -->
+        <div class="marker m2">
+            <span>☕</span>
+        </div>
+
+        <div class="marker m3">
+            <span>⚽</span>
+        </div>
+
+        <div class="marker m4">
+            <span>🌳</span>
+        </div>
+
+        <!-- Informações -->
+        <div class="tooltip t1">
+            <strong>📍 Você</strong>
+            <small>Localização atual</small>
+        </div>
+
+        <div class="tooltip t2">
+            <strong>☕ Café próximo</strong>
+            <small>4 min de distância</small>
+        </div>
+
+        <div class="tooltip t3">
+            <strong>⚽ Evento</strong>
+            <small>Acontecendo hoje</small>
+        </div>
+
+        <div class="tooltip t4">
+            <strong>🌳 Parque</strong>
+            <small>12 min de distância</small>
+        </div>
+
+    </div>
+
+    <!-- Rodapé -->
+    <div class="map-bottom">
+
+        <div class="info">
+            <div class="info-icon">📍</div>
+
+            <div class="info-text">
+                <strong>3 lugares interessantes perto de você</strong>
+                <span>17°C · Nublado · 2,4 km</span>
+            </div>
+        </div>
+
+        <button class="ai-button" onclick="perguntarIA()">
+            ✨ Explorar com IA
+        </button>
+
+    </div>
+
+</div>
 
         <div class="avatar-container">
             <div class="left-side">

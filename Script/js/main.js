@@ -45,6 +45,7 @@ const modos = [
     "finan",
     "gym",
     "work",
+    "foco",
     "music",
     "melody"
 ];
@@ -2231,10 +2232,10 @@ updateDate2();
             window.open('https://krunker.io', '_blank');
             window.open('https://hordes.io', '_blank');
         }
-        
-        function Trabalho() {
-            window.open('Modo/work.html', '_blank');
-            window.open('Modo/work.html#foco', '_blank');
+
+                function Trabalho() {
+            window.open('#work', '_blank');
+            window.open('#foco', '_blank');
         }
         
     function buttonClick(...urls) {
@@ -2333,13 +2334,13 @@ document.getElementById("btn-study-christ").onclick = () => {
         }
 
 const habitXP = {
-            "sunday": 200,
-            "monday": 190,
-            "tuesday": 180,
-            "wednesday": 250,
-            "thursday": 210,
-            "friday": 200,
-            "saturday": 230
+            "sunday": 230,
+            "monday": 230,
+            "tuesday": 240,
+            "wednesday": 300,
+            "thursday": 260,
+            "friday": 250,
+            "saturday": 330
         };
 
         function mostrarXP(day) {
@@ -2395,6 +2396,16 @@ const modals = {
     modal: document.getElementById("modal-rafa"),
     fechar: document.getElementById("fechar-rafa")
   },
+  foco: {
+    btn: document.getElementById("foco-btn"),
+    modal: document.getElementById("modal-foco"),
+    fechar: document.getElementById("fechar-foco")
+  },
+  work: {
+    btn: document.getElementById("work-btn"),
+    modal: document.getElementById("modal-work"),
+    fechar: document.getElementById("fechar-work")
+  },
   back: {
     btn: document.getElementById("back-btn"),
     modal: document.getElementById("modal-back"),
@@ -2425,6 +2436,8 @@ const modals = {
 const titulos = {
   ler: "Leitura",
   rafa: "Rafa",
+  foco: "Modo Foco",
+  work: "Work",
   back: "Background",
   manual: "Manual J2",
   christ: "Christ",
@@ -3492,3 +3505,184 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateDate0, 60000);
     setInterval(getTemperature0, 600000);
 });
+
+let tempoInicial = 25 * 60; // 25 minutos em segundos
+        let tempoDescanso = 5 * 60; // 5 minutos em segundos
+        let temporizador;
+        let musica = new Audio('Script/media/Music/Fundo/852 Hz.mp3'); // Carregar o áudio da música
+        musica.loop = true; // Definir o áudio para tocar em loop
+
+        function atualizarTemporizador(segundos) {
+            const minutos = Math.floor(segundos / 60);
+            const segundosRestantes = segundos % 60;
+            document.getElementById('temporizador').innerText = `${minutos}:${segundosRestantes < 10 ? '0' : ''}${segundosRestantes}`;
+        }
+
+        function iniciarPomodoro() {
+            clearInterval(temporizador);
+            tempoInicial = 25 * 60;
+            musica.play(); // Iniciar a música quando o Pomodoro começar
+            temporizador = setInterval(function() {
+                if (tempoInicial > 0) {
+                    tempoInicial--;
+                    atualizarTemporizador(tempoInicial);
+                } else {
+                    clearInterval(temporizador);
+                    playAlarm();
+                    iniciarDescanso();
+                }
+            }, 1000);
+        }
+
+        function iniciarDescanso() {
+            clearInterval(temporizador);
+            tempoDescanso = 5 * 60; // 5 minutos em segundos (pode ajustar conforme necessário)
+            musica.pause(); // Pausar a música durante o descanso
+            temporizador = setInterval(function() {
+                if (tempoDescanso > 0) {
+                    tempoDescanso--;
+                    atualizarTemporizador(tempoDescanso);
+                } else {
+                    clearInterval(temporizador);
+                    playAlarm();
+                    musica.play(); // Recomeçar a música quando voltar ao Pomodoro
+                    iniciarPomodoro();
+                }
+            }, 1000);
+        }
+
+        function playAlarm() {
+            var alarmeAudio = new Audio('Script/media/Alarme.wav');
+            alarmeAudio.play();
+        }
+
+        // Adicionar evento para verificar a tecla Enter
+        document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        // Ocultar mensagem inicial e exibir o temporizador
+        document.getElementById("initialMessage").style.display = "none";
+        document.getElementById("temporizador").style.display = "block";
+        document.getElementById("startButton").style.display = "block";
+
+        // Iniciar automaticamente o foco
+        iniciarPomodoro(); // Chame a função desejada (iniciarPomodoro neste caso)
+    }
+});
+
+function redirecionar(destino) {
+    const hoje = new Date();
+    const diaSemana = hoje.getDay(); // 0 = domingo, 1 = segunda, ..., 5 = sexta
+
+    switch (destino) {
+        case 'edit':
+            window.open('https://www.fotor.com/pt/video-enhancer/');
+            window.open('https://www.lovart.ai/');
+            window.open('https://viggle.ai/app/home');
+            window.open('https://tunetank.com/');
+            window.open('https://picsart.com/');
+            window.open('https://www.photopea.com/');
+            break;
+
+        case 'Pulike':
+            window.open('https://discord.com/channels/@me/1066833055723028603');
+            window.open('https://business.facebook.com/latest/?asset_id=603116216208940&business_id=2349354548756195&nav_ref=mfb_get_started_header_cta');
+            window.open('https://voolt3d.com.br/pla/velvet/');
+            window.open('https://www.thingiverse.com/');
+            window.open('https://www.printables.com/');
+            window.open('https://cults3d.com/en?srsltid=AfmBOoru6IJ-IZUXsffDSXnuGviFD9E0l4F7bNU_-UWUbyTgf92XxCDp');
+            window.open('https://www.chitubox.com/en/page/chitubox-price?skuId=17952006&spuId=17952&promoCode=7j414bfj&paytype=year&utm_source=google_paid_search&utm_medium=cpc&utm_campaign=Pmax_month&gad_source=1&gad_campaignid=20102043729&gbraid=0AAAAAo4VGrdqXjoEr3TlOCiR76tHfk5vp&gclid=EAIaIQobChMIuIa8p7WJkgMV2VdIAB3fcxNFEAAYASAAEgIgU_D_BwE');
+            break;
+
+        default:
+            break;
+    }
+}
+
+document.querySelectorAll('.copy-box pre').forEach(texto => {
+
+    texto.addEventListener('click', async () => {
+
+        await navigator.clipboard.writeText(texto.innerText);
+
+        texto.style.color = '#8c52ff';
+
+        setTimeout(() => {
+            texto.style.color = '';
+        }, 500);
+
+    });
+
+});
+
+function concluirObjetivo(botao) {
+
+    const objetivo = botao.closest('.objetivo');
+
+    // Impede clicar novamente
+    if (objetivo.classList.contains('concluido')) {
+        return;
+    }
+
+    // XP da missão
+    const xp = parseInt(objetivo.dataset.xp);
+
+    // Marca como concluído
+    objetivo.classList.add('concluido');
+
+    // Atualiza botão
+    botao.innerHTML = '✓';
+
+    // Atualiza contador
+    const objetivos = document.querySelectorAll('.objetivo');
+    const concluidos = document.querySelectorAll('.objetivo.concluido');
+
+    document.getElementById('objetivos-concluidos').textContent =
+        concluidos.length;
+
+    // Adiciona XP
+    ganharXp(10);
+}
+
+let scale = 1;
+
+function zoomIn() {
+    scale += 0.12;
+    if (scale > 1.6) scale = 1.6;
+
+    document.getElementById("map").style.transform =
+        `scale(${scale})`;
+}
+
+function zoomOut() {
+    scale -= 0.12;
+    if (scale < 1) scale = 1;
+
+    document.getElementById("map").style.transform =
+        `scale(${scale})`;
+}
+
+function localizar() {
+
+    const marker = document.querySelector(".you");
+
+    marker.animate([
+        { transform: "rotate(-45deg) scale(1)" },
+        { transform: "rotate(-45deg) scale(1.3)" },
+        { transform: "rotate(-45deg) scale(1)" }
+    ], {
+        duration: 500
+    });
+}
+
+function perguntarIA() {
+
+    alert(
+        "✨ IA:\n\n" +
+        "O que você gostaria de encontrar por perto?\n\n" +
+        "🍔 Restaurantes\n" +
+        "☕ Cafés\n" +
+        "🎬 Entretenimento\n" +
+        "🌳 Passeios"
+    );
+
+}
