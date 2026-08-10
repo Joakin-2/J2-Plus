@@ -2344,7 +2344,7 @@ p {
 .map-header {
     top: 10px;
     left: 10px;
-    z-index: 1000;
+    z-index: 100;
     position: absolute;
 }
 
