@@ -909,17 +909,6 @@ textarea {
     restoreMarkedDays2();
 });
 
-function toggleDay(event) {
-    const selectedDay = event.target;
-    selectedDay.classList.toggle("selected");
-
-    // Adicione a lógica para salvar os dias marcados
-    const dayNumber = selectedDay.dataset.day;
-    saveMarkedDay(dayNumber);
-
-    // Adiciona 10 XP sempre que um dia é marcado ou desmarcado
-    ganharXp(10);
-}
 
 function saveMarkedDay(dayNumber) {
     const currentMonth = new Date().getMonth();
@@ -951,19 +940,6 @@ function restoreMarkedDays2() {
             day.classList.add("selected");
         }
     });
-}
-
-// Função para ganhar XP
-function ganharXp(xp) {
-    xpAtual += xp;
-    if (xpAtual >= xpNecessario) {
-        xpAtual -= xpNecessario;
-        nivelAtual++;
-        xpNecessario = 100 * (nivelAtual * nivelAtual);
-        alert(`Parabéns! Você alcançou o nível ${nivelAtual}!`);
-    }
-    salvarProgresso();
-    atualizarInterface();
 }
 
 // Função para salvar o progresso no localStorage
@@ -1070,6 +1046,20 @@ function createCalendar() {
 
     // Restaurar os dias marcados depois de criar o calendário
     restoreMarkedDays2();
+}
+
+function toggleDay(event) {
+    const selectedDay = event.target;
+
+    selectedDay.classList.toggle("selected");
+
+    const dayNumber = selectedDay.dataset.day;
+
+    saveMarkedDay(dayNumber);
+
+    if (selectedDay.classList.contains("selected")) {
+        ganharXp(10);
+    }
 }
 
 // Verifica quando o mês muda e reinicia o calendário automaticamente

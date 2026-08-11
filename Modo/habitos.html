@@ -2091,7 +2091,6 @@ function closeNotesModal() {
     const voltarBtn = document.getElementById('voltarBtn');
     const refeicoesForm = document.getElementById('refeicoesForm');
     const contadorLitros = document.getElementById('contadorDeLitros');
-    const adicionarLitroBtn = document.getElementById('adicionarLitroBtn');
     const limite = 4; // Defina o limite de litros
 
     // Função para salvar o contador no localStorage
@@ -2138,18 +2137,6 @@ function closeNotesModal() {
 
     // Adicionar ouvintes de eventos de entrada aos elementos <input>
     refeicoesForm.addEventListener('input', salvarAnotacoes);
-
-    // Evento de clique para adicionar litro
-    adicionarLitroBtn.addEventListener('click', function() {
-        const valorAtual = parseInt(contadorLitros.textContent.split('/')[0]);
-        
-        if (valorAtual < limite) {
-            const novoValor = valorAtual + 1;
-            contadorLitros.textContent = `${novoValor}/${limite} Litros`;
-            // Salvar no localStorage
-            salvarContador();
-        }
-    });
 
 });
 

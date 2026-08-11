@@ -1137,19 +1137,6 @@ function restoreMarkedDays() {
     });
 }
 
-// Função para ganhar XP
-function ganharXp(xp) {
-    xpAtual += xp;
-    if (xpAtual >= xpNecessario) {
-        xpAtual -= xpNecessario;
-        nivelAtual++;
-        xpNecessario = 100 * (nivelAtual * nivelAtual);
-        alert(`Parabéns! Você alcançou o nível ${nivelAtual}!`);
-    }
-    salvarProgresso();
-    atualizarInterface();
-}
-
 // Função para salvar o progresso no localStorage
 function salvarProgresso() {
     localStorage.setItem("nivelAtual", nivelAtual);
