@@ -269,11 +269,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function atualizarMelodyStat() {
-    const now = new Date();
-    const mesAno = `${now.getMonth()}-${now.getFullYear()}`;
+    const currentMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
+
+    const key = `markedDays-${currentMonth}-${currentYear}`;
 
     const markedDays = JSON.parse(
-        localStorage.getItem(`markedDays-${mesAno}`)
+        localStorage.getItem(key)
     ) || [];
 
     const melodyStat = document.getElementById("melody-stat");
@@ -282,3 +284,7 @@ function atualizarMelodyStat() {
         melodyStat.textContent = markedDays.length;
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    atualizarMelodyStat();
+});

@@ -1111,8 +1111,11 @@ function toggleDay(event) {
 
     const dayNumber = selectedDay.dataset.day;
     saveMarkedDay(dayNumber);
+
+    atualizarMelodyStat();
     ganharXp(10);
 }
+
 
 function saveMarkedDay(dayNumber) {
     const now = new Date();
