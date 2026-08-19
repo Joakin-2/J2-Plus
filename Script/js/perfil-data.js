@@ -1,5 +1,5 @@
-// Define o perfil padrão como "Main"
-const perfilAtivoInicial = localStorage.getItem("perfilAtivo") || "Main";
+// Define o perfil padrão como "Joaquim"
+const perfilAtivoInicial = localStorage.getItem("perfilAtivo") || "Joaquim";
 localStorage.setItem("perfilAtivo", perfilAtivoInicial);
 
 // Define os perfis com dados armazenados no localStorage
@@ -14,32 +14,11 @@ const perfis = {
     peso: parseFloat(localStorage.getItem("pesoJoaquim")) || 69,       // kg
     nivel: parseInt(localStorage.getItem("nivelJoaquim")) || 1,
     xp: parseInt(localStorage.getItem("xpJoaquim")) || 0,
-    notesLer: localStorage.getItem("notes-ler-Joaquim") || "",
     musicPlaceNotes1: localStorage.getItem("musicPlaceNotes1-Joaquim") || "",
     melodyStat: parseInt(localStorage.getItem("melodyStat-Joaquim")) || 0,
     gymNotes: localStorage.getItem("gymNotes-Joaquim") || "",
     gymStat: parseInt(localStorage.getItem("gymStat-Joaquim")) || 0, 
     anotacoes: localStorage.getItem("anotacoes-Joaquim") || "",
-    squadFiles: localStorage.getItem("squadFiles-Joaquim") || "",
-    complaints: JSON.parse(localStorage.getItem("complaints-Joaquim")) || [],
-  },
-  Main: {
-    nome: "Main",
-    foto: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-    bio: localStorage.getItem("bioMain") || "Perfil principal",
-    genero: localStorage.getItem("generoMain") || "masculino",
-    anoNascimento: parseInt(localStorage.getItem("anoNascimentoMain")) || 1990,
-    altura: parseFloat(localStorage.getItem("alturaMain")) || 1.75, // metros
-    peso: parseFloat(localStorage.getItem("pesoMain")) || 70,       // kg
-    nivel: parseInt(localStorage.getItem("nivelMain")) || 1,
-    xp: parseInt(localStorage.getItem("xpMain")) || 0,
-    notesLer: localStorage.getItem("notes-ler-Main") || "",
-    musicPlaceNotes1: localStorage.getItem("musicPlaceNotes1-Main") || "",
-    melodyStat: parseInt(localStorage.getItem("melodyStat-Main")) || 0,
-    gymNotes: localStorage.getItem("gymNotes-Main") || "",
-    gymStat: parseInt(localStorage.getItem("gymStat-Main")) || 0, 
-    anotacoes: localStorage.getItem("anotacoes-Main") || "",
-    complaints: JSON.parse(localStorage.getItem("complaints-Main")) || [],
   }
 };
 

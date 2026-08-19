@@ -1505,9 +1505,6 @@ exportarBtn.addEventListener("click", () => {
     perfil.squadFiles = squadFilesBox.value;
   }
 
-  // Inclui as reclamações no perfil
-  perfil.complaints = perfis[perfilAtivo].complaints;
-
   // Atualiza localStorage
   localStorage.setItem("bio" + perfilAtivo, perfil.bio);
   if (perfil.notesLer) {
@@ -1569,11 +1566,6 @@ importarBtn.addEventListener("click", () => {
             localStorage.setItem("squadFiles-" + perfilAtivo, dadosImportados.squadFiles);
           }
 
-          // Atualiza as reclamações no localStorage
-          if (dadosImportados.complaints) {
-            localStorage.setItem("complaints-" + perfilAtivo, JSON.stringify(dadosImportados.complaints));
-          }
-
           if (dadosImportados.nivel !== undefined)
             localStorage.setItem("nivel" + perfilAtivo, dadosImportados.nivel);
 
@@ -1609,9 +1601,6 @@ perfilSelector.addEventListener("change", (event) => {
   // Atualiza os dados do perfil e da interface (XP, nível, progresso etc.)
   atualizarPerfil();
   atualizarInterface();
-
-  const complaints = JSON.parse(localStorage.getItem("complaints-" + perfilAtivo)) || [];
-  loadComplaints(complaints);
 });
 
 function calcularIdade(anoNascimento) {
@@ -1629,14 +1618,10 @@ function atualizarPerfil() {
   // FOTO DO PERFIL
   foto.src = perfil.foto;
 
-  // BOTÃO SQUAD
-  const squadBtn = document.getElementById('squad-btn');
-  squadBtn.style.display = perfilAtivo === "Joaquim" ? "inline" : "none";
-
   nomePerfil.textContent = perfil.nome;
   bioPerfil.textContent = perfil.bio;
 
-  bioPerfil.disabled = perfilAtivo !== "Main";
+  bioPerfil.disabled = perfilAtivo !== "Joaquim";
 
   // Gênero
   document.getElementById("sexo-perfil").value = perfil.genero;
@@ -1658,7 +1643,7 @@ function atualizarPerfil() {
   nomePerfil.textContent = perfil.nome;
   bioPerfil.value = perfil.bio;
 
-  if (perfilAtivo === "Main") {
+  if (perfilAtivo === "Joaquim") {
     bioPerfil.disabled = false;
   }
 
@@ -1679,10 +1664,6 @@ function atualizarPerfil() {
 if (notesBox) {
   notesBox.value = perfis[perfilAtivo].notesLer || "";
 }
-
-// Carrega as reclamações
-  const complaints = JSON.parse(localStorage.getItem("complaints-" + perfilAtivo)) || [];
-  loadComplaints(complaints);
   
 const musicPlaceNotesBox = document.getElementById("musicPlaceNotes1"); // Aqui o id pode ser diferente
   if (musicPlaceNotesBox) {
@@ -1713,7 +1694,7 @@ const musicPlaceNotesBox = document.getElementById("musicPlaceNotes1"); // Aqui 
 
   nomePerfil.textContent = perfil.nome;
   bioPerfil.value = perfil.bio;
-  bioPerfil.disabled = perfilAtivo !== "Main";
+  bioPerfil.disabled = perfilAtivo !== "Joaquim";
 }
 
 // Define um intervalo para exibir a notificação a cada 10 minutos (600.000 ms)
@@ -1722,9 +1703,6 @@ setInterval(createPeriodicNotification, 10 * 60 * 1000); // 10 minutos em miliss
 // Inicializa o perfil ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
   perfilSelector.value = perfilAtivo; // Mostra o perfil ativo
-  // Carregar as reclamações ao carregar a página
-  const complaints = JSON.parse(localStorage.getItem("complaints-" + perfilAtivo)) || [];
-  loadComplaints(complaints);
   atualizarPerfil();
   createPeriodicNotification();
 });
@@ -2117,79 +2095,6 @@ function resetarPosicaoOlhos() {
 // Adiciona o evento de clique para alternar entre seguir e parar de seguir o mouse
 container.addEventListener('click', toggleSeguirMouse);
 
-// Lista de reclamações (carregada do localStorage, se houver)
-let complaints = JSON.parse(localStorage.getItem('complaints')) || [];
-
-function closeComplaintForm() {
-  document.getElementById('complaintForm').style.display = 'none';
-  document.getElementById('addComplaintBtn').style.display = 'inline-block';
-  document.getElementById('complaintForm').reset(); // limpa os campos do formulário (opcional)
-}
-
-// Função para mostrar o formulário de reclamação
-function saveToLocalStorage(complaints) {
-  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
-  localStorage.setItem(`complaints-${perfilAtivo}`, JSON.stringify(complaints));
-}
-
-// Função para carregar as reclamações do perfil ativo
-function loadComplaints() {
-  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
-  const complaints = JSON.parse(localStorage.getItem(`complaints-${perfilAtivo}`)) || [];
-
-  const complaintsList = document.getElementById('complaintsList');
-  complaintsList.innerHTML = '';
-
-  complaints.forEach(complaint => {
-    const complaintElement = document.createElement('div');
-    complaintElement.classList.add('complaint-item');
-    complaintElement.innerHTML = `
-      <h3>${complaint.subject}</h3>
-      <p><strong>${complaint.name}</strong></p>
-      <p>${complaint.message}</p>
-    `;
-    complaintsList.appendChild(complaintElement);
-  });
-}
-
-// Função para adicionar uma nova reclamação
-document.getElementById('complaintForm').onsubmit = function(event) {
-  event.preventDefault();
-
-  const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
-  const name = document.getElementById('name').value;
-  const subject = document.getElementById('subject').value;
-  const message = document.getElementById('message').value;
-
-  let complaints = JSON.parse(localStorage.getItem(`complaints-${perfilAtivo}`)) || [];
-
-  complaints.push({
-    id: complaints.length + 1,
-    name,
-    subject,
-    message
-  });
-
-  saveToLocalStorage(complaints);
-  loadComplaints();
-
-  document.getElementById('complaintForm').reset();
-  document.getElementById('complaintForm').style.display = 'none';
-  document.getElementById('addComplaintBtn').style.display = 'inline-block';
-};
-
-// Atualiza as reclamações quando o perfil for alterado
-document.getElementById('perfil-selector').addEventListener('change', function() {
-  const perfilAtivo = this.value;
-  localStorage.setItem("perfilAtivo", perfilAtivo);
-  loadComplaints(); // Isso agora funcionará corretamente
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Seleciona os botões
-  const rafaBtn = document.getElementById("rafa-btn");
-});
-
 
 const input = document.getElementById("urlInput");
   const button = document.getElementById("goButton");
@@ -2227,16 +2132,21 @@ const input = document.getElementById("urlInput");
 // Chama as funções ao carregar a página e a cada segundo
 updateDate2();
 
-        function GameState() {
-            window.open('https://www.microsoft.com/en-us/edge/features/surf-game?form=MA13FJ', '_blank');
-            window.open('https://krunker.io', '_blank');
-            window.open('https://hordes.io', '_blank');
-        }
-
                 function Trabalho() {
             window.open('#work', '_blank');
             window.open('#foco', '_blank');
         }
+
+        function renovar() {
+    // Abre os links da renovação
+    buttonClick(
+        'https://www.estudantesdabiblia.com.br/cpad-sumario-jovens-2026-3t.htm',
+        'https://www.bibliaonline.com.br/acf'
+    );
+
+    // Ganha 10 XP
+    ganharXp(10);
+}
         
     function buttonClick(...urls) {
     urls.forEach(url => {
@@ -2290,44 +2200,8 @@ updateDate2();
                 }, 1500);
             }
 
-            setInterval(changeTip, 300000);
-
-            document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("startButton").onclick = toggleTimer;
-    document.getElementById("doneButton").onclick = timerDone;
-});
-
-document.getElementById("btn-study-christ").onclick = () => {
-    document.getElementById("study-christ").style.display = "block";
-};
-
-        // Array de dicas
-        var dicas = [
-            "Já fez um estudo bíblico hoje?",
-            "Já leu a bíblia hoje?",
-            "Já orou hoje?"
-        ];
-
-        // Função para mudar a dica exibida
-        function changeTip() {
-            var dicaAtual = Math.floor(Math.random() * dicas.length); // Seleciona uma dica aleatória
-            document.getElementById('dicas').textContent = dicas[dicaAtual];
-        }
-
         function redirecionar(destino) {
             switch (destino) {
-                case 'Bíblia':
-                    window.open('https://www.bibliaonline.com.br/acf');
-                    break;
-                case 'Devocional':
-                    // 55 min de aula
-                    window.open('https://www.estudantesdabiblia.com.br/cpad-sumario-jovens-2026-3t.htm');
-                    window.open('https://www.bibliaonline.com.br/acf');
-                    break;
-                case 'Extras':
-                    window.open('https://drive.google.com/drive/folders/1Of9cNspUSobIUiQbsixEG3FlJYWAr3Ay');
-                    window.open('https://drive.google.com/drive/folders/1h1QOxEjQRQfiobTXzsNvErYjPIsTV6t0');
-                    break;
                 case 'edit':
             window.open('https://www.fotor.com/pt/video-enhancer/');
             window.open('https://www.lovart.ai/');
@@ -2404,11 +2278,6 @@ const habitXP = {
 
 // Mapeamento de botões e modals
 const modals = {
-  ler: {
-    btn: document.getElementById("ler-btn"),
-    modal: document.getElementById("modal-ler"),
-    fechar: document.getElementById("fechar-ler")
-  },
   rafa: {
     btn: document.getElementById("rafa-btn"),
     modal: document.getElementById("modal-rafa"),
@@ -2434,11 +2303,6 @@ const modals = {
     modal: document.getElementById("modal-manual"),
     fechar: document.getElementById("fechar-manual")
 },
-  christ: {
-    btn: document.getElementById("christ-btn"),
-    modal: document.getElementById("modal-christ"),
-    fechar: document.getElementById("fechar-christ")
-  }, 
   youtube: {
     btn: document.getElementById("youtube-btn"),
     modal: document.getElementById("modal-youtube"),
@@ -2452,13 +2316,11 @@ const modals = {
 };
 
 const titulos = {
-  ler: "Leitura",
   rafa: "Rafa",
   foco: "Modo Foco",
   work: "Work",
   back: "Background",
   manual: "Manual J2",
-  christ: "Christ",
   youtube: "YouTube",
   streaming: "Streaming"
 };
@@ -2737,8 +2599,6 @@ window.addEventListener("load", () => {
 });
 
 // Obtendo os elementos
-const modal = document.getElementById('modal-squad');
-const btn = document.getElementById('squad-btn');
 const closeBtn = document.querySelector('.close-btn');
 const profiles = document.querySelectorAll('.profile');
 const chatContainer = document.getElementById('chat-container');
@@ -2747,11 +2607,6 @@ const noteTextarea = document.getElementById('note-textarea');
 const exportBtn = document.getElementById('export-btn');
 const importBtn = document.getElementById('import-btn');
 const importFileInput = document.getElementById('import-file');
-
-// Função para abrir o modal
-btn.addEventListener('click', function() {
-  modal.style.display = 'block';
-});
 
 // Função para fechar o modal
 closeBtn.addEventListener('click', function() {
@@ -3094,120 +2949,6 @@ window.onclick = function(event) {
   checkSeason2();
   exibirSaudacao();
 };
-
-
-function iniciarModalLer() {
-  let timerInterval;
-let startTime;
-let elapsedTime = 0;
-let running = false;
-
-  function playPauseTimer() {
-    if (running) {
-      stopTimer();
-    } else {
-      startTimer();
-    }
-  }
-
-  function startTimer() {
-    if (!running) {
-        startTime = Date.now() - elapsedTime;
-
-        timerInterval = setInterval(updateTimer, 1000);
-
-        const player = document.getElementById("backgroundMusic");
-
-        player.play()
-            .then(() => {
-                console.log("Áudio iniciado");
-            })
-            .catch(error => {
-                console.error("Erro ao iniciar áudio:", error);
-            });
-
-        document.getElementById("playIcon").style.display = "none";
-        document.getElementById("pauseIcon").style.display = "block";
-
-        running = true;
-    }
-}
-
-
-function stopTimer() {
-    if (running) {
-        elapsedTime = Date.now() - startTime;
-
-        clearInterval(timerInterval);
-
-        const player = document.getElementById("backgroundMusic");
-        player.pause();
-
-        document.getElementById("playIcon").style.display = "block";
-        document.getElementById("pauseIcon").style.display = "none";
-
-        running = false;
-    }
-}
-
-
-function restartTimer() {
-    stopTimer();
-
-    elapsedTime = 0;
-
-    document.getElementById("timer").innerText = "00:00";
-
-    startTimer();
-}
-
-
-function updateTimer() {
-    const elapsed = Math.floor((Date.now() - startTime) / 1000);
-
-    document.getElementById("timer").innerText =
-        `${String(Math.floor(elapsed / 60)).padStart(2, "0")}:${String(elapsed % 60).padStart(2, "0")}`;
-}
-
-  function changeMusic() {
-    const music = document.getElementById("musicSelector").value;
-    const player = document.getElementById("backgroundMusic");
-
-    player.src = music;
-    player.play();
-  }
-
-  function saveNotes() {
-    const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
-    localStorage.setItem(
-      `notes-ler-${perfilAtivo}`,
-      document.getElementById("notesBox").value
-    );
-  }
-
-  function carregarNotesBox() {
-    const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
-    document.getElementById("notesBox").value =
-      localStorage.getItem(`notes-ler-${perfilAtivo}`) || "";
-  }
-
-  carregarNotesBox();
-
-  // Disponibiliza apenas as funções necessárias
-  window.playPauseTimer = playPauseTimer;
-  window.restartTimer = restartTimer;
-  window.changeMusic = changeMusic;
-  window.saveNotes = saveNotes;
-  window.playPauseTimer = playPauseTimer;
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    iniciarModalLer();
-});
-
-function abrirModalLer() {
-    document.getElementById("modal-ler").style.display = "block";
-}
 
 const videos = [
   {

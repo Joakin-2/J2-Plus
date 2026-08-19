@@ -664,8 +664,6 @@ textarea {
             <div id="notes-section">
                 <div class="button-group" style="display: flex;justify-content: center;align-items: center;margin-top: 22px;"> 
                     <h2>Relatório</h2>
-                    <button class="btn-export" onclick="exportNotes()" style="margin-left: 15px; display: none;"><i class="fas fa-file-export"></i></button>
-                    <button class="btn-import" onclick="importNotes()" style="display: none;"><i class="fas fa-file-import"></i></button>
                 </div>
                 <textarea id="notesgym" placeholder="Registre suas anotações aqui..."></textarea>
             </div>
@@ -702,13 +700,8 @@ textarea {
                 </button>
             </div>
 
-            <button style="height: 100px; width: 520px;" onclick="abrirModal('playModal')">
-                <!-- Ícone de Play usando SVG -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; color: #ffd755;">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                Gym Play
-            </button>            
+            <button style="height: 100px; width: 520px;" onclick="redirecionar('Meta')"><i class="fas fa-bullseye"></i>Meta
+                    </button>          
 
             <section id="about-section">
                 <h2 style="text-align: center;">Sobre</h2>
@@ -784,13 +777,29 @@ textarea {
             <section id="weekly-schedule" style="padding: 40px 70px;">
                 <h2 style="color: #fff">Programação Semanal</h2>
 
-                <button class="exercise-button" onclick="redirecionar('Seg')">Seg: Peito e Tríceps</button>
-                <button class="exercise-button" onclick="redirecionar('Ter')">Ter: Costas e Bíceps</button>
-                <button class="exercise-button" onclick="redirecionar('Qua')">Qua: Pernas e Abdômen</button>
-                <button class="exercise-button" onclick="redirecionar('Qui')">Qui: Ombros e Trapézio</button>
-                <button class="exercise-button" onclick="fecharPesos(); abrirModal('alongarModal')">Sex: Alongamentos</button>
-                <button class="exercise-button" onclick="fecharPesos(); abrirModal('corridaModal')">Sáb: Corrida</button>
-                <button class="exercise-button" onclick="fecharPesos(); abrirModal('alongarModal')">Dom: Alongamentos</button>
+                <div class="row2" style="display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%; margin-bottom: -7px;">
+                <button class="exercise-button" onclick="redirecionar('Seg')" style="    height: 120px;">Seg: Peito e Tríceps</button>
+                <button class="exercise-button" onclick="redirecionar('Ter')" style="    height: 120px;">Ter: Costas e Bíceps</button>
+                </div>
+
+                <div class="row2" style="display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;     margin-bottom: -7px;">
+                <button class="exercise-button" onclick="redirecionar('Qua')" style="    height: 120px;">Qua: Pernas e Abdômen</button>
+                <button class="exercise-button" onclick="redirecionar('Qui')" style="    height: 120px;">Qui: Ombros e Trapézio</button>
+            </div>
+
+                <div class="row2" style="display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;     margin-bottom: -7px;">
+                <button class="exercise-button" onclick="fecharPesos(); abrirModal('alongarModal')" style="    height: 120px;">Sex: Alongamentos</button>
+                <button class="exercise-button" onclick="fecharPesos(); abrirModal('corridaModal')" style="    height: 120px;">Sáb: Corrida</button>
+                 </div>
             </section>
 
             <section id="exercise-buttons" style="padding: 40px 70px;">
@@ -810,86 +819,12 @@ textarea {
                     <button class="exercise-button2" onclick="redirecionar('Costas')">Costas</button>
                     <button class="exercise-button2" onclick="redirecionar('Perna')">Perna</button>
                 </div>
-
-                <div class="row2">
-                    <button class="exercise-button2" onclick="redirecionar('Meta')" style="width:420px;">
-                        Meta
-                    </button>
-                </div>
             </section>
         </main>
 
     </div>
 </div>
 
-    <!-- Modal Gym Play -->
-    <div id="playModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="fecharModal('playModal')">&times;</span>
-    
-        <div class="container" style="margin-left: 1%; width: 95%; background-color: #2B2B2B; color: white; border-radius: 12px; overflow: hidden; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 8px; padding: 20px;">
-    <h1 style="text-align: center; color: white; margin-bottom: 30px;">Gym Play</h1>
-
-    <!-- Grid de vídeos -->
-    <div class="video-grid">
-        <!-- Vídeo 1 -->
-        <div class="video-item">
-            <iframe src="https://www.youtube.com/embed/q4E0OuTiKSA" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h3>TREINO DE TRÍCEPS Em 10 MINUTOS!</h3>
-        </div>
-
-        <!-- Vídeo 2 -->
-        <div class="video-item">
-            <iframe src="https://www.youtube.com/embed/-RqEm6ZbMtw" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h3>Treino De Peito EM 30 MINUTOS!</h3>
-        </div>
-
-        <!-- Vídeo 3 -->
-        <div class="video-item">
-            <iframe src="https://www.youtube.com/embed/Y8ze0gfOQ-8" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h3>Treino de Abdômen 10 MINUTOS</h3>
-        </div>
-
-        <!-- Vídeo 4 -->
-        <div class="video-item">
-            <iframe src="https://www.youtube.com/embed/ORos4dFhB7Q" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h3>Treino Full Body</h3>
-        </div>
-
-        <!-- Vídeo 5 -->
-        <div class="video-item">
-            <iframe src="https://www.youtube.com/embed/GOnbgHpCfyc" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h3>Treino de perna COMPLETO</h3>
-        </div>
-
-        <!-- Vídeo 6 -->
-        <div class="video-item">
-            <iframe src="https://www.youtube.com/embed/Z-ROqyR6aYs" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h3>Defina as ENTRADAS do ABDÔMEN</h3>
-        </div>
-
-        <!-- Vídeo 7 -->
-        <div class="video-item">
-            <iframe src="https://www.youtube.com/embed/toN1P2KXL9Q" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h3>Treino para Abdômen Inferior 9min</h3>
-        </div>
-
-        <!-- Vídeo 8 -->
-        <div class="video-item">
-            <iframe src="https://www.youtube.com/embed/Y1Q1TfofdX0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h3>EXERCÍCIO para a DIÁSTASE abdominal!</h3>
-        </div>
-
-        <!-- Vídeo 9 -->
-        <div class="video-item" onclick="abrirGitHub()">
-            <h3 style="margin-top: 20%;">Adicionar +</h3>
-        </div>
-
-    </div>
-</div>
-      </div>
-    </div>
-    
     <script src="/Script/js/perfil-data.js"></script>
     <script src="/Script/js/nivel.js"></script>
     <script>

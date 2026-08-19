@@ -7,7 +7,7 @@
     <title>J2+</title>
     <script src="Script/js/Facial/face-api.js"></script>
     <script src="Script/js/Facial/face-api.min.js"></script>
-    <link rel="stylesheet" href="Script/styles.css"> <!-- CSS externo -->
+    <link rel="stylesheet" href="Script/js/styles.css"> <!-- CSS externo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link
@@ -36,21 +36,18 @@
         <div class="menu-content">
             <button class="menu-button" aria-label="Fechar menu" onclick="toggleMenu()">Voltar</button>
             <ul>
-                <li><a id="ler-btn">Leitura</a></li>
                 <li><a href="Modo/habitos.html">Hábitos</a></li>
-                <li><a id="christ-btn">Renovar</a></li>
+                <li><a onclick="renovar()">Renovar</a></li>
                 <li><a onclick="Trabalho()">Work</a></li>
             </ul>
             <ul>
                 <li><a id="js-btn" onclick="buttonClick('https://js3dstudio.netlify.app/', 'https://js3dstudio.netlify.app/finan.html')">Js 3D Studio</a></li>
                 <li><a href="Modo/finan.html">Finanças</a></li>
                 <li><a id="streaming-btn">Streamings</a></li>
-                <li><a onclick="GameState()">Games Web</a></li>
             </ul>
             <ul>
                 <li><a href="Modo/music.html">Music</a></li>
                 <li><a href="Modo/gym.html">JokGym</a></li>
-                <li><a href="#" onclick="openModal('modalReclamar'); return false;">Reclamar</a></li>
                 <li><a href="Modo/melody.html">Music Place</a></li>
             </ul>
         </div>
@@ -194,64 +191,6 @@
     </div>
 </div>
 
-<!-- Modal Ler -->
-<div id="modal-ler" class="modal">
-    <span id="fechar-ler"
-        class="close-btn"
-        style="position: fixed; color: white; margin-left: 430px; margin-top: 25px; font-size: 30px;">
-        &times;
-    </span>
-
-    <div style="margin-left: 35%;margin-top: 12%;">
-        <div class="button-group">
-        <h3 style="margin-left: 200px;">Anotações</h3>
-        <div style="display: none; /* display: flex; */ justify-content: space-between;">
-          <button class="btn2" onclick="exportNotes()" style="margin-left: 10px;">
-            <i class="fas fa-file-export"></i>
-          </button>
-          <button class="btn2" onclick="importNotes()">
-            <i class="fas fa-file-import"></i>
-          </button>
-        </div>
-    </div>
-
-    <textarea id="notesBox" placeholder="Anote aqui..."></textarea>
-
-  <div class="music-player">
-    <div id="timer">00:00</div>
-    <div id="buttonContainer">
-        <i class="fas fa-compact-disc fa-3x" style="margin-right: 10px; margin-top: 5px; color: #8b5cf6;"></i>
-        <select id="musicSelector" onchange="changeMusic()">
-          <option value="Script/media/Music/Fundo/Agape.mp3">Agape</option>
-          <option value="Script/media/Music/Fundo/bob sponge edit.wav">Bob Sponge Edit</option>
-          <option value="Script/media/Music/Fundo/Dev Song.mp3">Dev Song</option>
-          <option value="Script/media/Music/Fundo/Dragonfly (Slowed).mp3">Dragonfly</option>
-          <option value="Script/media/Music/Fundo/Gamers-React-Background-Music.wav">Gamers React</option>
-          <option value="Script/media/Music/Fundo/Lofi.mp3">Lofi</option>
-          <option value="Script/media/Music/Fundo/lovely - Billie Eilish Khalid (Cover Violin).mp3">Lovely (Billie Eilish Cover)</option>
-          <option value="Script/media/Music/Fundo/Musica do Chis.mp3">Musica do Chis</option>
-          <option value="Script/media/Music/Fundo/Musica do Onibus.mp3">Musica do Onibus</option>
-          <option value="Script/media/Music/Fundo/Natal.mp3">Natal</option>
-        </select>
-      <button class="btn" onclick="playPauseTimer()">
-        <svg class="icon" id="playIcon" viewBox="0 0 20 20">
-          <path d="M8 5v10l10-5z" />
-        </svg>
-        <svg class="icon" id="pauseIcon" viewBox="0 0 20 20" style="display: none;">
-          <rect x="4" y="3" width="4" height="14" />
-          <rect x="12" y="3" width="4" height="14" />
-        </svg>
-      </button>
-      <button class="btn" onclick="restartTimer()">
-        <i class="fas fa-redo"></i>
-      </button>
-    </div>
-  </div>
-
-  <audio id="backgroundMusic" src="Script/media/Music/Fundo/Agape.mp3" loop></audio>
-</div>
-</div>
-
 <!-- Modal Foco -->
 <div id="modal-foco" class="modal">
     <span id="fechar-foco"
@@ -347,286 +286,6 @@
         </div>
     </div>
 
-</div>
-
-<!-- Modal de Christ -->
-<div id="modal-christ" class="modal">
-  <span id="fechar-christ" style="margin-left: 80px; color: white; font-size: 30px;">&times;</span>
-  <div class="container" style="display: flex; justify-content: center; text-align: center;">
-        <div class="column">
-            <div id="xp-gain" class="xp-gain" style="display: none;">+10 XP</div>
-
-            <div id="timer">00:00:00</div>
-        
-            <div class="button-group" style="margin-bottom: 20px;"> 
-                <button id="startButton" style="
-    background-color: rgb(130, 93, 255);
-    color: black;
-">
-                    <i class="fas fa-play"></i> Iniciar
-                </button>
-                <button id="doneButton">
-                    <i class="fas fa-check-circle"></i> Feito
-                </button>
-            </div>
-
-            <div class="row">
-                <div class="image-container">
-                    <img id="image" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglhxr-DaTK5BWsEDSA84Uhekb_47kUPaxTfAjxeBM23ww-Re2u30wDjZs2Os1kohvZ1_-nxIwKzc7afPaluHTUCVWVsCE3qMRgdf491ghv8FnJz707PS2ms6r5BOGYA4FTWrDZsRf0wto/s1600/Tabela+sem+marca.jpg" alt="Tabela de Estudos">
-                </div>
-            </div>
-    
-            <!-- Dicas -->
-            <div id="dicas" class="mensagem" style="color: white;"></div>
-            <!-- Novo Nascimento (22/02/2025) -->
-            <div class="buttons" style="margin-top: 10px;">
-                <button style="color: black; font-size: 24px;" class="botao" onclick="redirecionar('Devocional')"><i class="fas fa-book-bible" style="margin-right: 5px;"></i>Devocional</button>
-                <button style="color: black; font-size: 24px;" class="botao" onclick="redirecionar('Bíblia')"><i class="fas fa-book-open" style="margin-right: 5px;"></i> Bíblia</button>
-                <button style="color: black; font-size: 24px;" class="botao" id="btn-study-christ"><i class="fas fa-brain"></i> Estudar</button>
-                <button style="color: black; font-size: 24px;" class="botao" onclick="redirecionar('Extras')"><i class="fas fa-star" style="margin-right: 5px;"></i>Extras</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="study-christ" class="modal submodal">
-      <span class="close-submodal" data-submodal="study-christ" style="margin-left: 80px; color: white; font-size: 30px;">&times;</span>
-        <div class="modal-content" style="margin: auto;">
-            <header>
-        <h1>Ramificações do Evangelho e Denominações Cristãs</h1>
-        <div class="button-group" style="display: flex; justify-content: end;"> 
-            <button class="btn" onclick="redirecionar('Nacional')" style="margin-right: 10px;display: flex;width: auto;padding: 15px;">
-                <i class="fas fa-book" style="margin-right: 5px;"></i>Hino Nacional
-            </button>
-            <button class="btn" onclick="redirecionar('Music')" style="margin-right: 45%;display: flex;width: auto;padding: 15px;">
-                <i class="fas fa-book" style="margin-right: 5px;"></i> Music
-            </button>
-        </div>
-    </header>
-
-    <main>
-        <section>
-        <h2>Introdução</h2>
-        <p>O cristianismo é baseado no amor e ensinamentos de Jesus Cristo. Aqui, apresentamos alguns dos principais princípios cristãos que devem guiar a vida dos seguidores de Cristo.</p>
-    </section>
-
-    <section>
-        <h2>Princípios Cristãos</h2>
-        <ul>
-            <li><strong>Amor ao próximo e a Deus:</strong> "Amarás o Senhor, teu Deus, de todo o teu coração..." (Mateus 22:37-39)</li>
-            <li><strong>Fé em Jesus Cristo:</strong> "Eu sou o caminho, a verdade e a vida" (João 14:6)</li>
-            <li><strong>Perdão:</strong> "Se perdoarmos os outros, Deus nos perdoará." (Mateus 6:14-15)</li>
-            <li><strong>Humildade:</strong> "Nada façais por contenda ou por vanglória, mas por humildade." (Filipenses 2:3-4)</li>
-            <li><strong>Justiça e Retidão:</strong> "Bem-aventurados os que têm fome e sede de justiça..." (Mateus 5:6)</li>
-            <li><strong>Solidariedade e Caridade:</strong> "É mais bem-aventurado dar do que receber." (Atos 20:35)</li>
-            <li><strong>Oração e Comunhão com Deus:</strong> "Orai sem cessar." (1 Tessalonicenses 5:17)</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Versículos Inspiradores</h2>
-        <p>"Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito..." (João 3:16)</p>
-        <p>"Eu sou o caminho, e a verdade, e a vida." (João 14:6)</p>
-    </section>
-
-        <section>
-            <h2>1. Introdução ao Evangelho</h2>
-            <ul>
-                <li><a href="#definicao">Definição e Significado</a></li>
-                <li><a href="#temas">Principais Temas</a></li>
-            </ul>
-            <div id="definicao" class="content">
-                <h3>Definição e Significado</h3>
-                <p>O Evangelho é a boa notícia sobre a vida, morte e ressurreição de Jesus Cristo. Estude passagens-chave como os Evangelhos (Mateus, Marcos, Lucas e João) e as cartas de Paulo.</p>
-            </div>
-            <div id="temas" class="content">
-                <h3>Principais Temas</h3>
-                <ul>
-                    <li>Soteriologia: A doutrina da salvação.</li>
-                    <li>Cristologia: Quem é Jesus? O que significa sua divindade e humanidade?</li>
-                    <li>Escatologia: O que o Evangelho diz sobre o fim dos tempos?</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>2. Catolicismo Romano</h2>
-            <ul>
-                <li><a href="#teologia-catolica">Teologia Católica</a></li>
-                <li><a href="#praticas-catolicas">Práticas Católicas</a></li>
-                <li><a href="#historia-catolica">História da Igreja Católica</a></li>
-            </ul>
-            <div id="teologia-catolica" class="content">
-                <h3>Teologia Católica</h3>
-                <p>Autoridade da Igreja e Tradição: A importância da Tradição e Escritura na interpretação do Evangelho.</p>
-                <p>Sacramentos: Como os sacramentos (como a Eucaristia, Batismo, Confissão) são vistos como meios de graça.</p>
-                <p>Intercessão dos Santos e Maria: O papel de Maria e dos santos na vida cristã.</p>
-                <p>Justificação: A doutrina da justificação no catolicismo, que envolve fé e obras.</p>
-            </div>
-            <div id="praticas-catolicas" class="content">
-                <h3>Práticas Católicas</h3>
-                <p>Culto litúrgico, a importância da missa, a devoção mariana e a veneração dos santos.</p>
-            </div>
-            <div id="historia-catolica" class="content">
-                <h3>História da Igreja Católica</h3>
-                <p>O impacto histórico da Igreja Católica no cristianismo, desde o Império Romano até os concílios ecumênicos (como o Concílio de Trento).</p>
-            </div>
-        </section>
-
-        <!-- Repita o mesmo formato para as outras seções -->
-        <section>
-            <h2>3. Protestantismo</h2>
-            <ul>
-                <li><a href="#teologia-protestante">Teologia Protestante</a></li>
-                <li><a href="#divisoes-protestantes">Divisões Dentro do Protestantismo</a></li>
-                <li><a href="#historia-protestante">História do Protestantismo</a></li>
-            </ul>
-            <div id="teologia-protestante" class="content">
-                <h3>Teologia Protestante</h3>
-                <p>Sola Scriptura: A centralidade das Escrituras como autoridade final.</p>
-                <p>Sola Fide: A justificação pela fé somente, sem a necessidade de obras.</p>
-            </div>
-            <div id="divisoes-protestantes" class="content">
-                <h3>Divisões Dentro do Protestantismo</h3>
-                <ul>
-                    <li>Luteranismo: A teologia de Martinho Lutero e a doutrina da justificação pela fé.</li>
-                    <li>Calvinismo: A ênfase na soberania de Deus, predestinação e os cinco pontos do calvinismo (TULIP).</li>
-                    <li>Anabatismo: A doutrina do batismo de crentes e o conceito de uma Igreja separada do Estado.</li>
-                    <li>Evangelicalismo: O foco na evangelização e a vivência prática do Evangelho.</li>
-                </ul>
-            </div>
-            <div id="historia-protestante" class="content">
-                <h3>História do Protestantismo</h3>
-                <p>A Reforma Protestante, as suas consequências na Europa e no mundo, a formação das principais denominações protestantes.</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>4. Igrejas Ortodoxas</h2>
-            <ul>
-                <li><a href="#teologia-ortodoxa">Teologia Ortodoxa</a></li>
-                <li><a href="#praticas-ortodoxas">Práticas Ortodoxas</a></li>
-                <li><a href="#historia-ortodoxa">História da Igreja Ortodoxa</a></li>
-            </ul>
-        
-            <div id="teologia-ortodoxa" class="content">
-                <h3>Teologia Ortodoxa</h3>
-                <p>A doutrina ortodoxa sobre os sacramentos, chamados "mistérios". Destaca-se o Batismo, Crisma, Eucaristia, Confissão.</p>
-                <p>Natureza de Cristo e Trindade: A crença na unidade da Trindade e a natureza de Cristo em duas essências, humana e divina.</p>
-                <p>Filioque: A diferença na formulação do Credo Niceno, especialmente sobre o Espírito Santo.</p>
-            </div>
-        
-            <div id="praticas-ortodoxas" class="content">
-                <h3>Práticas Ortodoxas</h3>
-                <p>A liturgia ortodoxa, o uso de ícones, a ênfase na oração contínua (como no "Jesus Prayer") e a vida monástica.</p>
-            </div>
-        
-            <div id="historia-ortodoxa" class="content">
-                <h3>História da Igreja Ortodoxa</h3>
-                <p>A separação entre o Oriente e o Ocidente (Cisma de 1054), a influência do Império Bizantino, e o papel das Igrejas Ortodoxas na cultura e política do Leste Europeu.</p>
-            </div>
-        </section>
-        
-        <section>
-            <h2>5. Católicos Românicos vs. Ortodoxos</h2>
-            <ul>
-                <li><a href="#diferencas-historicas">Diferenças Históricas</a></li>
-                <li><a href="#teologias-comparadas">Teologias Comparadas</a></li>
-            </ul>
-        
-            <div id="diferencas-historicas" class="content">
-                <h3>Diferenças Históricas</h3>
-                <p>O Cisma de 1054, onde as Igrejas de Roma e Constantinopla se separaram devido a disputas sobre autoridade papal e doutrinas teológicas (como o "Filioque").</p>
-                <p>Questões litúrgicas e culturais que ainda dividem as duas tradições.</p>
-            </div>
-        
-            <div id="teologias-comparadas" class="content">
-                <h3>Teologias Comparadas</h3>
-                <p>A visão sobre a autoridade do Papa: Católica Romana vê o Papa como líder supremo, enquanto a Ortodoxa vê o Patriarca de Constantinopla como "primeiro entre iguais".</p>
-                <p>Visões sobre a Eucaristia: Ambas acreditam na presença real de Cristo na Eucaristia, mas a Ortodoxa tem uma visão mais misteriosa e profunda sobre o sacramento.</p>
-            </div>
-        </section>
-        
-        <section>
-            <h2>6. Outras Denominações Cristãs</h2>
-            <ul>
-                <li><a href="#igrejas-evangelicas">Igrejas Evangélicas</a></li>
-                <li><a href="#igrejas-anglicanas">Igrejas Anglicanas</a></li>
-                <li><a href="#movimentos-minoritarios">Movimentos Minoritários</a></li>
-            </ul>
-        
-            <div id="igrejas-evangelicas" class="content">
-                <h3>Igrejas Evangélicas</h3>
-                <p>Estudo das denominações como Pentecostais, Batista, Presbiteriana e suas diferenças teológicas e práticas.</p>
-            </div>
-        
-            <div id="igrejas-anglicanas" class="content">
-                <h3>Igrejas Anglicanas</h3>
-                <p>Uma mistura entre tradições católicas e protestantes, com foco na liturgia e na autoridade das Escrituras.</p>
-            </div>
-        
-            <div id="movimentos-minoritarios" class="content">
-                <h3>Movimentos Minoritários</h3>
-                <p>Estudo das crenças divergentes e como eles entendem o Evangelho de maneira única, com foco em temas como a interpretação da Bíblia, a figura de Cristo e a visão da salvação.</p>
-            </div>
-        </section>
-        
-        <section>
-            <h2>7. Práticas e Liturgias no Contexto do Evangelho</h2>
-            <ul>
-                <li><a href="#liturgia-catolica-ortodoxa">Liturgia no Catolicismo e Ortodoxia</a></li>
-                <li><a href="#culto-evangelico">Culto Evangélico e Protestante</a></li>
-            </ul>
-        
-            <div id="liturgia-catolica-ortodoxa" class="content">
-                <h3>Liturgia no Catolicismo e Ortodoxia</h3>
-                <p>O papel central da liturgia nas missas (católicas) e divinas liturgias (ortodoxas). A Eucaristia como a forma central de adoração, a relação com o sacrifício de Cristo.</p>
-            </div>
-        
-            <div id="culto-evangelico" class="content">
-                <h3>Culto Evangélico e Protestante</h3>
-                <p>O foco na pregação e no estudo da Bíblia, oração e música como expressões de adoração.</p>
-            </div>
-        </section>
-        
-        <section>
-            <h2>8. O Evangelho e a Missão Global</h2>
-            <ul>
-                <li><a href="#grande-comissao">A Grande Comissão</a></li>
-                <li><a href="#evangelismo-missoes">Evangelismo e Missões</a></li>
-            </ul>
-        
-            <div id="grande-comissao" class="content">
-                <h3>A Grande Comissão</h3>
-                <p>Mateus 28:18-20 e como cada denominação a interpreta e a pratica.</p>
-            </div>
-        
-            <div id="evangelismo-missoes" class="content">
-                <h3>Evangelismo e Missões</h3>
-                <p>O papel das igrejas no envio de missionários, tanto no sentido local quanto global.</p>
-            </div>
-        </section>
-        
-        <section>
-            <h2>9. Desafios Contemporâneos e o Evangelho</h2>
-            <ul>
-                <li><a href="#modernidade-secularismo">Modernidade e Secularismo</a></li>
-                <li><a href="#dialogo-inter-religioso">Diálogo Inter-religioso</a></li>
-            </ul>
-        
-            <div id="modernidade-secularismo" class="content">
-                <h3>Modernidade e Secularismo</h3>
-                <p>Como as diferentes denominações respondem aos desafios da sociedade secular e aos questionamentos modernos sobre a fé.</p>
-            </div>
-        
-            <div id="dialogo-inter-religioso" class="content">
-                <h3>Diálogo Inter-religioso</h3>
-                <p>A relação com outras religiões e a perspectiva do Evangelho sobre o pluralismo religioso.</p>
-            </div>
-        </section>
-        
-    </main>
-        </div>
-    </div>
 </div>
 
 <!-- Modal do Manual -->
@@ -749,14 +408,12 @@
         <div class="perfil-topo">
             <select id="perfil-selector">
                 <option value="Joaquim">Joaquim</option>
-                <option value="Main">Main</option>
             </select>
 
             <button id="fechar-btn" class="fechar-btn">✖</button>
         </div>
 
         <div class="perfil-botoes" style="margin-top: -46px;">
-            <button id="squad-btn"><i class="fas fa-users"></i></button>
             <button id="toggleEffectButton"><i class="fas fa-leaf"></i></button>
             <button id="toggleEffectButton2"><i class="fas fa-star"></i></button>
         </div>
@@ -841,15 +498,6 @@
             <button id="exportar-btn">Salvar</button>
         </div>
 
-    </div>
-</div>
-
-<!-- Squad -->
-<div id="modal-squad" class="modal" style="width: 500px;height: 440px;margin-top: 260px;margin-left: 20px;border-radius: 12px;">
-    <span class="close-btn" style="position: fixed; color: white; margin-left: 430px; margin-top: 25px; font-size: 30px;">&times;</span>
-    <div class="modal-content">
-        <h1 style="color: #825dff; margin-top: -45px; text-align: center; margin-bottom: 80px;">Jok Squad</h1>
-        <textarea id="squadFiles" placeholder="Escreva algo aqui..." rows="10" style="color: white; width: 378px;"></textarea>
     </div>
 </div>
 
@@ -1086,114 +734,7 @@
     </div>
 </div>
 
-  <!-- Modal Privacidade -->
-  <div id="modalPrivacidade" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('modalPrivacidade')">&times;</span>
-      <h1 style="color: #825dff;">Política de Privacidade</h1>
-    <p>A sua privacidade é importante para nós. Esta política explica como coletamos, usamos e protegemos suas informações.</p>
-
-    <h2>Informações que coletamos</h2>
-    <p>Coletamos informações pessoais que você nos fornece.</p>
-
-    <h2>Uso de cookies</h2>
-    <p>Utilizamos cookies para melhorar sua experiência em nosso site. Você pode desativar os cookies nas configurações do seu navegador.</p>
-
-    <h2>Segurança das informações</h2>
-    <p>Tomamos medidas adequadas para proteger suas informações contra acesso não autorizado e uso indevido.</p>
-
-    <h2>Contato</h2>
-    <p>Se você tiver perguntas sobre esta política de privacidade, entre em contato conosco pelo e-mail: <a href="mailto:jqm5049@gmail.com">jqm5049@gmail.com</a>.</p>
-    </div>
-  </div>
-  
-  <!-- Modal Termo -->
-  <div id="modalTermo" class="modal">
-    <div class="modal-content" style="margin: 10% auto;">
-      <span class="close" onclick="closeModal('modalTermo')">&times;</span>
-      <h1 style="color: #825dff;">Termos de Serviço</h1>
-    <p>Bem-vindo ao J2+. Ao acessar e utilizar nosso site, você concorda com os seguintes termos e condições.</p>
-
-    <h2>Uso do site</h2>
-    <p>Você concorda em usar o site apenas para fins legais e de acordo com todas as leis aplicáveis.</p>
-
-    <h2>Propriedade intelectual</h2>
-    <p>Todo o conteúdo deste site, incluindo textos, gráficos e imagens, é protegido por direitos autorais e não pode ser reproduzido sem autorização.</p>
-
-    <h2>Limitação de responsabilidade</h2>
-    <p>Não nos responsabilizamos por danos diretos, indiretos, acidentais ou consequenciais que possam resultar do uso ou da incapacidade de uso do site.</p>
-
-    <h2>Modificações nos termos</h2>
-    <p>Reservamo-nos o direito de modificar estes termos a qualquer momento. Recomendamos que você os revise periodicamente.</p>
-
-    <h2>Contato</h2>
-    <p>Se você tiver perguntas sobre estes Termos de Serviço, entre em contato conosco pelo e-mail: <a href="mailto:jqm5049@gmail.com">jqm5049@gmail.com</a>.</p>
-    </div>
-  </div>
-  
-  <!-- Modal Reclamar -->
-<div id="modalReclamar" class="modal">
-  <div class="modal-content" style="margin: 8% auto;">
-    <span class="close" onclick="closeModal('modalReclamar')">&times;</span>
-    <div style="border-radius: 10px; background: #825dff; color: white; text-align: center; padding: 20px;">
-      <h1>Central de Reclamações</h1>
-      <p>Seu feedback é muito importante para nós! Veja as reclamações e adicione a sua.</p>
-    </div>
-
-    <!-- Formulário de Reclamação -->
-    <form id="complaintForm" style="display: none; margin: 20px auto; background: #202020; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgb(0 0 0 / 10%);">
-      <div>
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" placeholder="Seu nome" required>
-      </div>
-      <div>
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
-      </div>
-      <div>
-        <label for="subject">Assunto:</label>
-        <input type="text" id="subject" name="subject" placeholder="Resumo da reclamação" required>
-      </div>
-      <div>
-        <label for="message">Mensagem:</label>
-        <textarea id="message" name="message" rows="5" placeholder="Descreva sua reclamação" style="color: white;" required></textarea>
-      </div>
-      <div style="text-align: center; margin-top: 20px;">
-        <button type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
-        <button type="button" onclick="closeComplaintForm()">
-          <i class="fas fa-times"></i> Cancelar
-        </button>
-      </div>
-    </form>
-
-    <!-- Lista de Reclamações -->
-    <div id="complaintsList" class="complaints-list" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 20px;">
-      <!-- As reclamações vão aparecer aqui -->
-    </div>
-
-    <!-- Botão para adicionar nova reclamação -->
-  <div style="text-align: center;">
-    <button id="addComplaintBtn" class="add-complaint-btn" onclick="openAddComplaintForm()" style="width: 300px;">
-      <i class="fas fa-plus"></i> Adicionar Reclamação
-    </button>
-  </div>
-
-    <!-- Botões de Importar e Exportar -->
-    <div style="text-align: center; margin-top: 20px; display: none;">
-      <button id="exportDataBtn" class="export-data-btn" onclick="exportData()">
-        <i class="fas fa-download"></i> Exportar Dados
-      </button>
-      <input type="file" id="importDataBtn" class="import-data-btn" onchange="importData(event)" style="display: none;" />
-      <button id="importDataButton" class="import-data-btn" onclick="document.getElementById('importDataBtn').click()">
-        <i class="fas fa-upload"></i> Importar Dados
-      </button>
-    </div>
-  </div>
-</div>
-
     <footer style="margin-top: -10px;">
-        <button class="detalhes" onclick="openModal('modalPrivacidade')">Privacidade</button>
-        <button class="detalhes" onclick="openModal('modalTermo')">Termo</button>
         <button class="detalhes" id="manual-btn" onclick="openModal('modal-manual')">Manual</button>
     </footer>
     
