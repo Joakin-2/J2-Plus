@@ -7,6 +7,25 @@
     <title>JokGym</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        .exercicio-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2c2c2c;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 8px 0;
+}
+.exercicio-nome {
+    font-size: 16px;
+    color: #fff;
+}
+.exercicio-detalhe {
+    font-size: 14px;
+    color: #ffd755;
+    font-weight: bold;
+}
+
         .modal {
     display: none;
     position: fixed;
@@ -700,7 +719,7 @@ textarea {
                 </button>
             </div>
 
-            <button style="height: 100px; width: 520px;" onclick="redirecionar('Meta')"><i class="fas fa-bullseye"></i>Meta
+            <button style="height: 100px; width: 520px;" onclick="abrirTreino('Meta')"><i class="fas fa-bullseye"></i>Meta
                     </button>          
 
             <section id="about-section">
@@ -768,6 +787,16 @@ textarea {
       </div>
     </div>
 
+    <!-- Modal Treino Individual -->
+<div id="treinoModal" class="modal" style="z-index: 10000000;">
+  <div class="modal-content" style="display: flex; flex-direction: column; align-items: center;">
+    <span class="close" onclick="fecharModal('treinoModal')">&times;</span>
+    <h2 id="treinoTitulo" style="color:#ffd755; margin-top: 12%;"></h2>
+    <p id="treinoKcalTotal" style="color:#ff9500; font-size: 14px; margin-top: -8px; margin-bottom: 10px;"></p>
+    <div id="treinoLista" style="width: 100%; max-width: 600px;"></div>
+  </div>
+</div>
+
     <!-- Modal Gym Pesos -->
 <div id="modalTreinos" class="modal">
     <div class="modal-content">
@@ -781,16 +810,16 @@ textarea {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     width: 100%; margin-bottom: -7px;">
-                <button class="exercise-button" onclick="redirecionar('Seg')" style="    height: 120px;">Seg: Peito e Tríceps</button>
-                <button class="exercise-button" onclick="redirecionar('Ter')" style="    height: 120px;">Ter: Costas e Bíceps</button>
+                <button class="exercise-button" onclick="abrirTreino('Seg')" style="    height: 120px;">Seg: Peito e Tríceps</button>
+                <button class="exercise-button" onclick="abrirTreino('Ter')" style="    height: 120px;">Ter: Costas e Bíceps</button>
                 </div>
 
                 <div class="row2" style="display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     width: 100%;     margin-bottom: -7px;">
-                <button class="exercise-button" onclick="redirecionar('Qua')" style="    height: 120px;">Qua: Pernas e Abdômen</button>
-                <button class="exercise-button" onclick="redirecionar('Qui')" style="    height: 120px;">Qui: Ombros e Trapézio</button>
+                <button class="exercise-button" onclick="abrirTreino('Qua')" style="    height: 120px;">Qua: Pernas e Abdômen</button>
+                <button class="exercise-button" onclick="abrirTreino('Qui')" style="    height: 120px;">Qui: Ombros e Trapézio</button>
             </div>
 
                 <div class="row2" style="display: grid;
@@ -806,18 +835,18 @@ textarea {
                 <h2 style="color: #fff">O que vamos treinar hoje?</h2>
 
                 <div class="row2">
-                    <button class="exercise-button2" onclick="redirecionar('Braços')">Braços</button>
-                    <button class="exercise-button2" onclick="redirecionar('Ombros')">Ombros</button>
+                    <button class="exercise-button2" onclick="abrirTreino('Braços')">Braços</button>
+                    <button class="exercise-button2" onclick="abrirTreino('Ombros')">Ombros</button>
                 </div>
 
                 <div class="row2">
-                    <button class="exercise-button2" onclick="redirecionar('Abdômen')">Abdômen</button>
-                    <button class="exercise-button2" onclick="redirecionar('Peito')">Peito</button>
+                    <button class="exercise-button2" onclick="abrirTreino('Abdômen')">Abdômen</button>
+                    <button class="exercise-button2" onclick="abrirTreino('Peito')">Peito</button>
                 </div>
 
                 <div class="row2">
-                    <button class="exercise-button2" onclick="redirecionar('Costas')">Costas</button>
-                    <button class="exercise-button2" onclick="redirecionar('Perna')">Perna</button>
+                    <button class="exercise-button2" onclick="abrirTreino('Costas')">Costas</button>
+                    <button class="exercise-button2" onclick="abrirTreino('Perna')">Perna</button>
                 </div>
             </section>
         </main>
@@ -1109,46 +1138,102 @@ function fecharPesos() {
     document.getElementById("modalTreinos").style.display = "none";
 }
 
-        function redirecionar(destino) {
-            switch (destino) {
-                case 'Seg':
-                    window.open('/Script/img/Gym/seg/seg.html');
-                    break;
-                case 'Ter':
-                    window.open('/Script/img/Gym/ter/ter.html');
-                    break;
-                case 'Qua':
-                    window.open('/Script/img/Gym/qua/qua.html');
-                    break;
-                case 'Qui':
-                    window.open('/Script/img/Gym/qui/qui.html');
-                    break;
+        const treinos = {
+    Seg: { titulo: "Peito e Tríceps", exercicios: [
+            { nome: "Cross", detalhe: "3x12", kcal: 25 },
+        { nome: "Flexão", detalhe: "4x15", kcal: 30 },
+        { nome: "Supino reto", detalhe: "4x10", kcal: 45 },
+        { nome: "Crucifixo", detalhe: "3x12", kcal: 30 },
+        { nome: "Tríceps corda", detalhe: "4x12", kcal: 25 },
+        { nome: "Tríceps francês", detalhe: "3x12", kcal: 20 }
+    ]},
+    Ter: { titulo: "Costas e Bíceps", exercicios: [
+        { nome: "Desenvolvimento Atrás", detalhe: "4x10", kcal: 40 },
+        { nome: "Remada curvada", detalhe: "4x10", kcal: 40 },
+        { nome: "Remada baixa", detalhe: "3x12", kcal: 30 },
+    { nome: "Rosca Direta", detalhe: "3x12", kcal: 20 },
+    { nome: "Rosca Inversa", detalhe: "3x12", kcal: 18 },
+        { nome: "Rosca alternada", detalhe: "3x12", kcal: 18 }
+    ]},
+    Qua: { titulo: "Pernas e Abdômen", exercicios: [
+        { nome: "Agachamento", detalhe: "4x10", kcal: 55 },
+        { nome: "Afundo", detalhe: "3x12 (cada perna)", kcal: 45 },
+        { nome: "Abdominal supra", detalhe: "3x20", kcal: 20 },
+        { nome: "Abdominal infra", detalhe: "3x20", kcal: 20 },
+        { nome: "Prancha", detalhe: "3x40s", kcal: 15 }
+    ]},
+    Qui: { titulo: "Ombros e Trapézio", exercicios: [
+        { nome: "Desenvolvimento", detalhe: "4x10", kcal: 40 },
+        { nome: "Elevação lateral", detalhe: "3x12", kcal: 25 },
+        { nome: "Elevação frontal", detalhe: "3x12", kcal: 25 },
+        { nome: "Encolhimento", detalhe: "4x12", kcal: 20 }
+    ]},
+    "Braços": { titulo: "Braços", exercicios: [
+        { nome: "Tríceps francês", detalhe: "3x12", kcal: 20 },
+        { nome: "Tríceps Polia", detalhe: "4x12", kcal: 25 },
+    { nome: "Bíceps Polia", detalhe: "4x12", kcal: 22 },
+    { nome: "Rosca Direta", detalhe: "3x12", kcal: 20 },
+    { nome: "Rosca Inversa", detalhe: "3x12", kcal: 18 }
+    ]},
+    "Ombros": { titulo: "Ombros", exercicios: [
+        { nome: "Desenvolvimento", detalhe: "4x10", kcal: 40 },
+        { nome: "Elevação lateral", detalhe: "3x12", kcal: 25 }
+    ]},
+    "Abdômen": { titulo: "Abdômen", exercicios: [
+        { nome: "Abdominal supra", detalhe: "3x20", kcal: 20 },
+        { nome: "Abdominal infra", detalhe: "3x20", kcal: 20 },
+        { nome: "Prancha", detalhe: "3x40s", kcal: 15 }
+    ]},
+    "Peito": { titulo: "Peito", exercicios: [
+        { nome: "Cross", detalhe: "3x12", kcal: 25 },
+        { nome: "Flexão", detalhe: "4x15", kcal: 30 },
+        { nome: "Supino reto", detalhe: "4x10", kcal: 45 },
+        { nome: "Crucifixo", detalhe: "3x12", kcal: 30 }
+    ]},
+    "Costas": { titulo: "Costas", exercicios: [
+        { nome: "Lombar", detalhe: "3x15", kcal: 25 },
+        { nome: "Remada baixa", detalhe: "3x12", kcal: 30 },
+        { nome: "Remada curvada", detalhe: "4x10", kcal: 40 },
+        { nome: "Desenvolvimento Atrás", detalhe: "4x10", kcal: 40 }
+    
+    ]},
+    "Perna": { titulo: "Perna", exercicios: [
+        { nome: "Agachamento", detalhe: "4x10", kcal: 55 },
+        { nome: "Afundo", detalhe: "3x12 (cada perna)", kcal: 45 }
+    ]},
+    "Meta": { titulo: "Core", exercicios: [
+        { nome: "Prancha", detalhe: "3x40s", kcal: 15 },
+        { nome: "Abdominal supra", detalhe: "3x20", kcal: 20 },
+        { nome: "Abdominal infra", detalhe: "3x20", kcal: 20 },
+        { nome: "Prancha lateral", detalhe: "3x30s (cada lado)", kcal: 15 },
+        { nome: "Elevação de pernas", detalhe: "3x15", kcal: 18 }
+    ]}
+};
 
-                case 'Meta':
-                    window.open('/Script/img/Gym/meta/meta.html');
-                    break;
-                case 'Braços':
-                    window.open('/Script/img/Gym/seg/braco.html');
-                    break;
-                case 'Abdômen':
-                    window.open('/Script/img/Gym/qua/abs.html');
-                    break;
-                case 'Peito':
-                    window.open('/Script/img/Gym/seg/peito.html');
-                    break;
-                case 'Costas':
-                    window.open('/Script/img/Gym/ter/costa.html');
-                    break;
-                case 'Ombros':
-                    window.open('/Script/img/Gym/qui/ombro.html');
-                    break;
-                case 'Perna':
-                    window.open('/Script/img/Gym/qua/perna.html');
-                    break;
-                default:
-                    break;
-            }
-        }
+function abrirTreino(destino) {
+    const treino = treinos[destino];
+    if (!treino) return;
+
+    document.getElementById("treinoTitulo").textContent = treino.titulo;
+
+    const totalKcal = treino.exercicios.reduce((soma, ex) => soma + ex.kcal, 0);
+    document.getElementById("treinoKcalTotal").textContent = `≈ ${totalKcal} kcal estimadas`;
+
+    const lista = document.getElementById("treinoLista");
+    lista.innerHTML = "";
+
+    treino.exercicios.forEach(ex => {
+        const item = document.createElement("div");
+        item.className = "exercicio-item";
+        item.innerHTML = `
+            <span class="exercicio-nome">${ex.nome}</span>
+            <span class="exercicio-detalhe">${ex.detalhe} · ${ex.kcal} kcal</span>
+        `;
+        lista.appendChild(item);
+    });
+
+    abrirModal("treinoModal");
+}
 
         function calcularIdade(anoNascimento) {
     return new Date().getFullYear() - anoNascimento;
