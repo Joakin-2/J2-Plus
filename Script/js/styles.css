@@ -8,6 +8,40 @@ body {
     color: #e0e0e0; /* Cor de texto clara */
 }
 
+.maximize-button {
+    display: none;
+    position: absolute;
+    border: none;
+    border-radius: 30px;
+    background: #121212;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+/* Só aparece quando o chat estiver expandido */
+.chat.expanded .maximize-button {
+    display: block;
+}
+
+.chat.fullscreen {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 99999;
+
+    margin: 0;
+    border-radius: 0;
+
+    max-width: none;
+    max-height: none;
+}
+
+
+
 .horario{
     margin-top: -5px;
     font-weight: bold;
@@ -20,7 +54,7 @@ body {
     box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
     border-radius: 8px;
     left: 130px;
-    position: fixed;
+    position: absolute;
 }
 
 .up { color: #22c55e; }

@@ -2633,12 +2633,61 @@ closeBtn.addEventListener('click', function() {
     });
 
     document.querySelector('.avatar').addEventListener('click', function(event) {
-    event.preventDefault();  // Impede o redirecionamento da página
+    event.preventDefault();
+
     const chat = document.querySelector('.chat');
-    
-    // Alterna a classe "expanded" no chat
+    const objetivos = document.querySelector('.objetivos-panel');
+    const mapa = document.querySelector('.map-card');
+
     chat.classList.toggle('expanded');
+
+    if (chat.classList.contains('expanded')) {
+        objetivos.style.display = 'none';
+        mapa.style.display = 'none';
+    } else {
+        objetivos.style.display = '';
+        mapa.style.display = '';
+        
+        // Se fechar o chat, também sai do modo tela cheia
+        chat.classList.remove('fullscreen');
+    }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const chat = document.querySelector('.chat');
+    const maximizeButton = document.querySelector('#maximizeButton');
+
+    if (window.location.hash === '#chat') {
+        chat.classList.add('expanded');
+        chat.classList.add('fullscreen');
+
+        maximizeButton.textContent = '✕';
+
+        document.querySelector('.objetivos-panel').style.display = 'none';
+        document.querySelector('.map-card').style.display = 'none';
+    }
+});
+
+
+
+document.querySelector('#maximizeButton').addEventListener('click', function() {
+    const chat = document.querySelector('.chat');
+
+    chat.classList.toggle('fullscreen');
+
+    if (chat.classList.contains('fullscreen')) {
+        this.textContent = '✕';
+
+        // Adiciona #chat na URL
+        window.location.hash = 'chat';
+    } else {
+        this.textContent = '⛶';
+
+        // Remove #chat da URL
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+    }
+});
+
 
 document.addEventListener("DOMContentLoaded", function () {
     // Remover a tela de loading após 5 segundos (5000 milissegundos)
