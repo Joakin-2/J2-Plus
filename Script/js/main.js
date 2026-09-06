@@ -2637,7 +2637,7 @@ closeBtn.addEventListener('click', function() {
 
     const chat = document.querySelector('.chat');
     const objetivos = document.querySelector('.objetivos-panel');
-    const mapa = document.querySelector('.map-card');
+    const mapa = document.querySelector('.map-card')
 
     chat.classList.toggle('expanded');
 
@@ -3798,10 +3798,44 @@ carregarMissoes();
 // MAPA REAL
 // ======================================
 
+const MAPA_INICIAL = [-24.7368, -48.1106];
+
 const map = L.map("map", {
     zoomControl: false,
     attributionControl: true
-}).setView([-24.7368, -48.1106], 15);
+}).setView(MAPA_INICIAL, 15);
+
+// ======================================
+// LOCALIZAR USUÁRIO
+// ======================================
+
+function localizar() {
+
+    map.locate({
+        setView: true,
+        maxZoom: 17,
+        enableHighAccuracy: true
+    });
+
+}
+
+
+// ======================================
+// ERRO DE LOCALIZAÇÃO
+// ======================================
+
+map.on("locationerror", function(e) {
+
+    console.error(
+        "Erro de localização:",
+        e.message
+    );
+
+    alert(
+        "Não foi possível obter sua localização."
+    );
+
+});
 
 
 // ======================================
@@ -3812,7 +3846,7 @@ L.tileLayer(
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     {
         maxZoom: 19,
-        attribution: "&copy; OpenStreetMap"
+        attribution: "&copy; OpenStreetMap contributors"
     }
 ).addTo(map);
 
@@ -3850,9 +3884,7 @@ function criarIcone(emoji, cor) {
         html: `
             <div
                 class="custom-marker-inner"
-                style="
-                    background:${cor};
-                "
+                style="background:${cor};"
             >
                 <span>${emoji}</span>
             </div>
@@ -3866,129 +3898,305 @@ function criarIcone(emoji, cor) {
 
 
 // ======================================
-// LOCALIZAÇÃO INICIAL
+// MARCADOR DO USUÁRIO
 // ======================================
 
-let userMarker = L.marker(
-    [-24.7368, -48.1106],
-    {
-        icon: userIcon
-    }
-).addTo(map);
-
-userMarker.bindPopup(`
-    <strong>📍 Você</strong><br>
-    <small>Localização atual</small>
-`);
+let userMarker = null;
 
 
 // ======================================
-// LUGARES
+// CAMADA DOS LUGARES
 // ======================================
 
-const lugares = [
+const lugaresLayer = L.layerGroup().addTo(map);
+
+
+// ======================================
+// CATEGORIAS
+// ======================================
+
+const categorias = [
 
     {
-        lat: -24.7335,
-        lng: -48.1080,
+        filtro: '["amenity"="cafe"]',
         emoji: "☕",
         cor: "#2e90fa",
-        nome: "Café próximo",
-        info: "4 min de distância"
+        nome: "Café"
     },
 
     {
-        lat: -24.7400,
-        lng: -48.1140,
-        emoji: "⚽",
-        cor: "#f59e0b",
-        nome: "Evento",
-        info: "Acontecendo hoje"
+        filtro: '["amenity"="restaurant"]',
+        emoji: "🍽️",
+        cor: "#ef4444",
+        nome: "Restaurante"
     },
 
     {
-        lat: -24.7295,
-        lng: -48.1040,
+        filtro: '["leisure"="park"]',
         emoji: "🌳",
         cor: "#22c55e",
-        nome: "Parque",
-        info: "12 min de distância"
-    }
+        nome: "Parque"
+    },
 
+    {
+        filtro: '["shop"="supermarket"]',
+        emoji: "🛒",
+        cor: "#8b5cf6",
+        nome: "Mercado"
+    },
+
+    {
+        filtro: '["amenity"="pharmacy"]',
+        emoji: "💊",
+        cor: "#06b6d4",
+        nome: "Farmácia"
+    },
+
+    {
+        filtro: '["amenity"="hospital"]',
+        emoji: "🏥",
+        cor: "#dc2626",
+        nome: "Hospital"
+    }
 ];
 
 
-lugares.forEach(lugar => {
+// ======================================
+// DISTÂNCIA
+// ======================================
 
-    const marker = L.marker(
-        [lugar.lat, lugar.lng],
-        {
-            icon: criarIcone(
-                lugar.emoji,
-                lugar.cor
-            )
+function calcularDistancia(lat1, lon1, lat2, lon2) {
+
+    const R = 6371000;
+
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+
+    const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(lat1 * Math.PI / 180) *
+        Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) ** 2;
+
+    const c = 2 * Math.atan2(
+        Math.sqrt(a),
+        Math.sqrt(1 - a)
+    );
+
+    return R * c;
+}
+
+
+// ======================================
+// FORMATA DISTÂNCIA
+// ======================================
+
+function formatarDistancia(metros) {
+
+    if (metros < 1000) {
+        return `${Math.round(metros)} m`;
+    }
+
+    return `${(metros / 1000).toFixed(1)} km`;
+}
+
+
+// ======================================
+// BUSCAR LUGARES REAIS
+// ======================================
+
+async function buscarLugaresReais(lat, lng) {
+
+    lugaresLayer.clearLayers();
+
+    const raio = 3000;
+
+    const consultas = categorias.map(categoria => {
+
+        return `
+            nwr
+                (around:${raio},${lat},${lng})
+                ${categoria.filtro};
+
+            out center tags;
+        `;
+
+    }).join("\n");
+
+
+    const query = `
+        [out:json][timeout:25];
+
+        (
+            ${consultas}
+        );
+
+        out center tags;
+    `;
+
+
+        try {
+
+        const resposta = await fetch(
+    "https://overpass.private.coffee/api/interpreter",
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "text/plain;charset=UTF-8"
+        },
+        body: query
+    }
+);
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao consultar o Overpass API.");
         }
-    ).addTo(map);
 
-    marker.bindPopup(`
-        <strong>
-            ${lugar.emoji} ${lugar.nome}
-        </strong>
+        const dados = await resposta.json();
 
-        <br>
+        dados.elements.forEach(elemento => {
 
-        <small>
-            ${lugar.info}
-        </small>
-    `);
+            const tags = elemento.tags || {};
 
-});
+            // Nodes usam lat/lon.
+            // Ways e relations usam center.
+            const lugarLat =
+                elemento.lat ??
+                elemento.center?.lat;
 
+            const lugarLng =
+                elemento.lon ??
+                elemento.center?.lon;
 
-// ======================================
-// ZOOM
-// ======================================
+            if (
+                lugarLat === undefined ||
+                lugarLng === undefined
+            ) {
+                return;
+            }
 
-function zoomIn() {
+            // Descobre qual categoria pertence ao lugar
+            const categoria = categorias.find(categoria => {
 
-    map.zoomIn();
+                const filtro = categoria.filtro;
+
+                if (filtro.includes('amenity="cafe"')) {
+                    return tags.amenity === "cafe";
+                }
+
+                if (filtro.includes('amenity="restaurant"')) {
+                    return tags.amenity === "restaurant";
+                }
+
+                if (filtro.includes('leisure="park"')) {
+                    return tags.leisure === "park";
+                }
+
+                if (filtro.includes('shop="supermarket"')) {
+                    return tags.shop === "supermarket";
+                }
+
+                if (filtro.includes('amenity="pharmacy"')) {
+                    return tags.amenity === "pharmacy";
+                }
+
+                if (filtro.includes('amenity="hospital"')) {
+                    return tags.amenity === "hospital";
+                }
+
+                return false;
+
+            });
+
+            if (!categoria) {
+                return;
+            }
+
+            const nome =
+                tags.name ||
+                categoria.nome;
+
+            const distancia = calcularDistancia(
+                lat,
+                lng,
+                lugarLat,
+                lugarLng
+            );
+
+            const marker = L.marker(
+                [lugarLat, lugarLng],
+                {
+                    icon: criarIcone(
+                        categoria.emoji,
+                        categoria.cor
+                    )
+                }
+            );
+
+            marker.bindPopup(`
+                <div>
+                    <strong>
+                        ${categoria.emoji} ${nome}
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        ${categoria.nome}
+                    </small>
+
+                    <br>
+
+                    <small>
+                        📍 ${formatarDistancia(distancia)}
+                    </small>
+                </div>
+            `);
+
+            marker.addTo(lugaresLayer);
+
+        });
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao buscar lugares:",
+            erro
+        );
+
+        alert(
+            "Não foi possível carregar os lugares reais."
+        );
+    }
 
 }
 
 
-function zoomOut() {
-
-    map.zoomOut();
-
-}
-
-
 // ======================================
-// LOCALIZAR
+// CARREGAR LUGARES INICIAIS
 // ======================================
 
-function localizar() {
-
-    map.locate({
-
-        setView: true,
-
-        maxZoom: 17,
-
-        enableHighAccuracy: true
-
-    });
-
-}
-
-
-// ======================================
-// LOCALIZAÇÃO ENCONTRADA
-// ======================================
+buscarLugaresReais(
+    MAPA_INICIAL[0],
+    MAPA_INICIAL[1]
+);
 
 map.on("locationfound", function(e) {
 
-    userMarker.setLatLng(e.latlng);
+    if (!userMarker) {
+
+        userMarker = L.marker(
+            e.latlng,
+            {
+                icon: userIcon
+            }
+        ).addTo(map);
+
+    } else {
+
+        userMarker.setLatLng(e.latlng);
+
+    }
 
     userMarker
         .bindPopup(`
@@ -3997,21 +4205,20 @@ map.on("locationfound", function(e) {
             <small>
                 Precisão: ${Math.round(e.accuracy)} metros
             </small>
-        `)
-        .openPopup();
+        `);
 
-});
-
-
-// ======================================
-// ERRO
-// ======================================
-
-map.on("locationerror", function() {
-
-    alert(
-        "Não foi possível obter sua localização."
+    // Buscar lugares reais perto do usuário
+    buscarLugaresReais(
+        e.latlng.lat,
+        e.latlng.lng
     );
 
 });
 
+function zoomIn() {
+    map.zoomIn();
+}
+
+function zoomOut() {
+    map.zoomOut();
+}
