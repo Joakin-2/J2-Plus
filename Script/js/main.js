@@ -4164,9 +4164,9 @@ async function buscarLugaresReais(lat, lng) {
             erro
         );
 
-        alert(
-            "Não foi possível carregar os lugares reais."
-        );
+        //alert(
+        //    "Não foi possível carregar os lugares reais."
+        //);
     }
 
 }
