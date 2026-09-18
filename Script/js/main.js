@@ -2203,22 +2203,12 @@ updateDate2();
         function redirecionar(destino) {
             switch (destino) {
                 case 'edit':
-            window.open('https://www.fotor.com/pt/video-enhancer/');
+            window.open('https://flow.google.com/');
             window.open('https://www.lovart.ai/');
             window.open('https://viggle.ai/app/home');
             window.open('https://tunetank.com/');
             window.open('https://picsart.com/');
             window.open('https://www.photopea.com/');
-            break;
-
-        case 'Pulike':
-            window.open('https://discord.com/channels/@me/1066833055723028603');
-            window.open('https://business.facebook.com/latest/?asset_id=603116216208940&business_id=2349354548756195&nav_ref=mfb_get_started_header_cta');
-            window.open('https://voolt3d.com.br/pla/velvet/');
-            window.open('https://www.thingiverse.com/');
-            window.open('https://www.printables.com/');
-            window.open('https://cults3d.com/en?srsltid=AfmBOoru6IJ-IZUXsffDSXnuGviFD9E0l4F7bNU_-UWUbyTgf92XxCDp');
-            window.open('https://www.chitubox.com/en/page/chitubox-price?skuId=17952006&spuId=17952&promoCode=7j414bfj&paytype=year&utm_source=google_paid_search&utm_medium=cpc&utm_campaign=Pmax_month&gad_source=1&gad_campaignid=20102043729&gbraid=0AAAAAo4VGrdqXjoEr3TlOCiR76tHfk5vp&gclid=EAIaIQobChMIuIa8p7WJkgMV2VdIAB3fcxNFEAAYASAAEgIgU_D_BwE');
             break;
                 default:
                     break;
