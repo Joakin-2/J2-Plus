@@ -53,7 +53,7 @@ body {
     align-items: center;
     box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
     border-radius: 8px;
-    left: 130px;
+    left: 180px;
     position: absolute;
 }
 
@@ -363,8 +363,8 @@ input, textarea {
 
 .calenbutton {
     position: absolute;
-    top: 60px;
-    left: 10px;
+    top: 20px;
+    left: 95px;
     background-color: #1f1f1f; /* Roxo para o botão do menu */
     color: #825dff;
     border: none;
@@ -419,7 +419,7 @@ input, textarea {
 
 .clock {
     font-size: 1.2em; /* Tamanho da fonte do relógio */
-    margin-left: 55%;
+    margin-left: 68%;
     margin-top: 1.2%;
 }
 
@@ -698,7 +698,6 @@ h2, h3 {
 }
 
 #recomendacoes {
-    margin-top: -20px;
     margin-bottom: 30px;
 }
 
@@ -1114,24 +1113,20 @@ button:hover {
     font-size: 1em;
 }
 
-#miguel-btn, #rafa-btn {
+#rafa-btn {
   position: absolute;
-  margin-left: 93%;
-  margin-top: 0.9%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-left: 8px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   border: none;
   background: none;
   transition: all 0.3s ease; /* Adicionando transição para suavizar o movimento */
 }
 
-#miguel-btn img, #rafa-btn img {
-  width: 40px;
-  height: 40px;
+#rafa-btn img {
+  width: 30px;
+  height: 30px;
   border-radius: 10px;
   object-fit: contain;
 }
@@ -1161,7 +1156,7 @@ button:hover {
   /* Estilo do botão de perfil */
   button#perfil-btn {
     position: absolute;
-    margin-left: 85%;
+    margin-left: 94%;
     margin-top: 1%;
   }
   /* Estilo da tela de perfil */

@@ -1140,9 +1140,6 @@ header input {
         <textarea id="anotacoes" rows="5" cols="110"></textarea>
     </section>
 
-    <!-- Áudio para ser tocado -->
-    <audio id="som-recarregar" src="/Script/media/som.mp3" preload="auto"></audio>    </div>
-
     <div id="habitosContainer" class="section-container">
         <div id="mensagem-xp"></div>
         <div id="xp-gain" class="xp-gain" style="display: none;">+10 XP</div>
@@ -1164,7 +1161,7 @@ header input {
     </div> 
 
     <div class="button-container">
-        <button onclick="recarregar()">Recarregar Hábitos</button>
+        <button onclick="atualizarDados()">Recarregar Hábitos</button>
         <button id="criarTelaModalBtn" style="display: none;">Adicionar Hábito</button>
         <button id="desmarcarHabitosBtn">Desmarcar Hábitos</button>
         <button id="excluirHabitosBtn">Excluir Hábitos</button>
@@ -1854,9 +1851,7 @@ document.addEventListener("DOMContentLoaded", mostrarTMB);
   }
 
                 function copiarLista() {
-            const listaDeCompras = `Laranja, Maçã, Banana, Limão, Ovo, Frios, Leite, Café, Aveia Farelo, Chá Verde, Pão, Tapioca, Enxágue Bucal, Talco, Gillette, Shampoo, Sabonete, Sabonete Líquido, Caixa de Papelão, Ração, Cotonetes, Lixa de Pé, Pasta de Dente, Escovas`;
-
-            const listaDeCompras0 = `
+            const listaDeCompras = `
 1. Laranja
 2. Maçã
 3. Banana
@@ -2623,6 +2618,28 @@ function loadSavedData() {
 
 }
 
+  // Função para atualizar os dados da página
+function atualizarDados() {
+    ['manha', 'tarde', 'noite'].forEach(secao => {
+        const container = document.getElementById(`habitos-${secao}`);
+
+        if (container) {
+            container.innerHTML = '';
+        }
+    });
+
+    localStorage.removeItem('habitosData');
+
+    if (typeof carregarHabitosDoDia === 'function') {
+        carregarHabitosDoDia();
+    } else {
+        console.error('A função carregarHabitosDoDia() não está definida.');
+    }
+}
+
+// Torna a função acessível pelo onclick do HTML
+window.atualizarDados = atualizarDados;
+
 document.getElementById('desmarcarHabitosBtn').addEventListener('click', () => {
     // Seleciona todos os hábitos (manhã, tarde, noite)
     ['manhaHabitos', 'tardeHabitos', 'noiteHabitos'].forEach(periodoId => {
@@ -2772,45 +2789,6 @@ function importNotes() {
     });
 
     input.click();
-}
-
-function recarregar() {
-    const audio = document.getElementById('som-recarregar');
-    
-    if (audio) {
-        // Tocar o som
-        audio.play().then(() => {
-            // Recarregar os dados quando o áudio terminar
-            audio.addEventListener('ended', () => {
-                atualizarDados();
-            });
-        }).catch(err => {
-            console.error('Erro ao tocar o som:', err);
-            // Caso dê erro, ainda assim tenta atualizar os dados
-            atualizarDados();
-        });
-    } else {
-        console.error('Áudio não encontrado!');
-        atualizarDados(); // Se o áudio não for encontrado, tenta atualizar os dados
-    }
-    setTimeout(() => {
-            location.reload(); // Recarrega a página após o áudio e dados serem atualizados
-        }, 5500);
-}
-
-// Função para atualizar os dados da página
-function atualizarDados() {
-    // Limpa as seções de hábitos
-    ['manha', 'tarde', 'noite'].forEach(secao => {
-        const container = document.getElementById(`habitos-${secao}`);
-        if (container) container.innerHTML = '';
-    });
-
-    // Remove os dados armazenados no localStorage
-    localStorage.removeItem('habitosData');
-
-    // Chama a função para carregar os hábitos do dia
-    carregarHabitosDoDia();
 }
 
 document.getElementById('tituloHabitos').addEventListener('click', function() {

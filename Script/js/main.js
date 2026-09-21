@@ -2141,11 +2141,8 @@ updateDate2();
     // Abre os links da renovação
     buttonClick(
         'https://www.estudantesdabiblia.com.br/cpad-sumario-jovens-2026-3t.htm',
-        'https://www.bibliaonline.com.br/acf'
+        // 'https://www.bibliaonline.com.br/acf'
     );
-
-    // Ganha 10 XP
-    ganharXp(10);
 }
         
     function buttonClick(...urls) {
@@ -2429,7 +2426,7 @@ window.addEventListener("load", () => {
     const video = videoSource.parentElement;
     const hash = location.hash.replace("#", "");
 
-    videoSource.src = hash ? "/Script/media/load2.mp4" : "/Script/media/load.mp4";
+    videoSource.src = hash ? "/Script/media/Fundo/load2.mp4" : "/Script/media/Fundo/load.mp4";
     video.load();
 
     atualizarTitulo(hash);
