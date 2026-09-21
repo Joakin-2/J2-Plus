@@ -2140,7 +2140,7 @@ updateDate2();
         function renovar() {
     // Abre os links da renovação
     buttonClick(
-        'https://www.estudantesdabiblia.com.br/cpad-sumario-jovens-2026-3t.htm',
+        'https://www.estudantesdabiblia.com.br/cpad-sumario-jovens-2026-4t.htm',
         // 'https://www.bibliaonline.com.br/acf'
     );
 }
