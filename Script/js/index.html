@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PH Hub</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #09090b;
+      --bg-card: #111116;
+      --bg-card-hover: #17131f;
+      --border: #27222f;
+      --purple: #8b5cf6;
+      --purple-dark: #6d28d9;
+      --purple-light: #a78bfa;
+      --text: #f4f4f5;
+      --muted: #92929d;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(124, 58, 237, 0.13),
+          transparent 35%
+        ),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    /* =========================
+       HUB
+    ========================= */
+
+    .video-hub {
+      width: 100%;
+      max-width: 1500px;
+      margin: auto;
+    }
+
+    /* =========================
+       CABEÇALHO
+    ========================= */
+
+    .hub-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .title-area h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .title-area p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 7px;
+    }
+
+    .add-button {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(139, 92, 246, .4);
+      border-radius: 12px;
+      background: linear-gradient(
+        135deg,
+        var(--purple),
+        var(--purple-dark)
+      );
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow:
+        0 0 25px rgba(139, 92, 246, .18);
+      transition: .2s;
+    }
+
+    .add-button:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 30px rgba(139, 92, 246, .35);
+    }
+
+    /* =========================
+       GRADE
+    ========================= */
+
+    .video-list {
+      display: grid;
+
+      /*
+        4 vídeos por linha
+      */
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+
+      gap: 20px;
+    }
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition:
+        transform .25s,
+        border-color .25s,
+        box-shadow .25s;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+
+      border-color:
+        rgba(139, 92, 246, .55);
+
+      box-shadow:
+        0 15px 40px rgba(0,0,0,.35),
+        0 0 25px rgba(139,92,246,.08);
+    }
+
+    /* =========================
+       CAPA
+    ========================= */
+
+    .video-cover {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+      background: #18181b;
+    }
+
+    .video-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+
+      transition:
+        transform .4s,
+        filter .4s;
+    }
+
+    .video-card:hover .video-cover img {
+      transform: scale(1.05);
+      filter: brightness(.65);
+    }
+
+    /* =========================
+       PLAY
+    ========================= */
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+      font-size: 25px;
+
+      opacity: 0;
+
+      transition: .25s;
+    }
+
+    .video-card:hover .play-overlay {
+      opacity: 1;
+    }
+
+    .play-circle {
+      width: 54px;
+      height: 54px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        rgba(139,92,246,.92);
+
+      box-shadow:
+        0 0 30px rgba(139,92,246,.5);
+    }
+
+    /* =========================
+       INFORMAÇÕES
+    ========================= */
+
+    .video-info {
+      padding: 15px;
+    }
+
+    .video-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+
+      margin-bottom: 7px;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .video-description {
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.5;
+
+      height: 39px;
+
+      overflow: hidden;
+
+      margin-bottom: 15px;
+    }
+
+    /* =========================
+       AÇÕES
+    ========================= */
+
+    .video-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .watch-button {
+      flex: 1;
+
+      border: none;
+
+      padding: 9px 12px;
+
+      border-radius: 8px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
+
+      color: white;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .watch-button:hover {
+      filter: brightness(1.15);
+    }
+
+    /* =========================
+       OPÇÕES
+    ========================= */
+
+    .options {
+      position: relative;
+    }
+
+    .options-button {
+      height: 36px;
+
+      border: 1px solid var(--border);
+
+      background: #18181d;
+
+      color: #aaa;
+
+      padding: 0 11px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-size: 14px;
+    }
+
+    .options-button:hover {
+      color: white;
+
+      border-color:
+        rgba(139,92,246,.5);
+    }
+
+    .menu {
+      display: none;
+
+      position: absolute;
+
+      right: 0;
+      bottom: 44px;
+
+      width: 150px;
+
+      background: #18181d;
+
+      border: 1px solid var(--border);
+
+      border-radius: 9px;
+
+      box-shadow:
+        0 15px 30px rgba(0,0,0,.5);
+
+      overflow: hidden;
+
+      z-index: 20;
+    }
+
+    .menu.active {
+      display: block;
+    }
+
+    .menu button {
+      width: 100%;
+
+      border: none;
+
+      background: transparent;
+
+      color: #ddd;
+
+      padding: 11px 13px;
+
+      text-align: left;
+
+      cursor: pointer;
+
+      font-size: 13px;
+    }
+
+    .menu button:hover {
+      background:
+        rgba(139,92,246,.12);
+
+      color: white;
+    }
+
+    /* =========================
+       RESPONSIVO
+    ========================= */
+
+    /* 3 por linha */
+
+    @media (max-width: 1150px) {
+
+      .video-list {
+        grid-template-columns:
+          repeat(3, minmax(0, 1fr));
+      }
+
+    }
+
+    /* 2 por linha */
+
+    @media (max-width: 800px) {
+
+      body {
+        padding: 20px;
+      }
+
+      .video-list {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+    /* 1 por linha */
+
+    @media (max-width: 500px) {
+
+      body {
+        padding: 15px;
+      }
+
+      .title-area h1 {
+        font-size: 23px;
+      }
+
+      .video-list {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main class="video-hub">
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header class="hub-header">
+
+      <div class="title-area">
+
+        <h1>PH HUB ESCOLHAS</h1>
+
+        <p>
+          Sua biblioteca de vídeos em um só lugar
+        </p>
+
+      </div>
+
+      <button
+        class="add-button"
+        onclick="adicionarVideo()"
+        title="Adicionar vídeo"
+      >
+        +
+      </button>
+
+    </header>
+
+
+    <!-- =========================
+         LISTA DE VÍDEOS
+    ========================== -->
+
+    <section
+      class="video-list"
+      id="videoList"
+    ></section>
+
+  </main>
+
+
+  <script>
+
+    /*
+    =====================================================
+    SEUS VÍDEOS
+    =====================================================
+
+    Para adicionar um vídeo:
+
+    {
+      titulo: "Nome",
+      descricao: "Descrição",
+      capa: "URL DA CAPA",
+      video: "URL DO VÍDEO"
+    }
+
+    O campo "video" pode ser um LINK.
+    =====================================================
+    */
+
+    const videos = [
+
+      {
+        titulo: "Having sex NTR",
+        descricao: "Having sex with everyone while the father is away NTR",
+        capa: "https://thumb-cdn77.xvideos-cdn.com/d7a256c6-3bf5-4725-8752-ddb56de9a47f/0/xv_1_p.jpg",
+        video: "https://www.xvideos.com/video.okfcotd095d/having_sex_with_everyone_while_the_father_is_away_ntr"
+      },
+
+      {
+        titulo: "Mitsuri :3",
+        descricao: "Mitsuri do sukebe tsuyu gibo shimai cap 2 :3",
+        capa: "https://thumb-cdn77.xvideos-cdn.com/6dbc4ce7-081a-4842-bde6-1c6758e0170b/0/xv_25_p.jpg",
+        video: "https://www.xvideos.com/video.ubfuleodf17/mitsuri_do_sukebe_tsuyu_gibo_shimai_cap_2_3"
+      },
+
+      {
+        titulo: "Sexy Wife",
+        descricao: "Anime Hentai, sexy wife with her b... WatchHentaiX",
+        capa: "https://thumb-cdn77.xvideos-cdn.com/e617874f-7cbb-4939-b778-af4c7dff51cb/3/xv_19_p.avif",
+        video: "https://www.xvideos.com/video.okevhom90ed/anime_hentai_sexy_wife_with_her_b..._watchhentaix#show-related"
+      },
+
+      {
+        titulo: "なさらやた",
+        descricao: "The Onii-san Ohitori.",
+        capa: "https://thumb-cdn77.xvideos-cdn.com/89c93c1b-eda8-4a1a-9d14-d35972057fd5/0/xv_1_p.jpg",
+        video: "https://www.xvideos.com/video.otoidih6c71/the_onii-san_ohitori"
+      },
+
+      {
+        titulo: "Onii-san pirate",
+        descricao: "hentai - Onii-san... Is this a pirate? cap. 01",
+        capa: "https://thumb-cdn77.xvideos-cdn.com/15fff0dc-8413-4ae8-a476-902429d5c4a9/0/xv_21_p.jpg",
+        video: "https://www.xvideos.com/video.othulvmd08f/hentai_-_onii-san..._is_this_a_pirate_cap._01"
+      },
+
+      {
+        titulo: "PHub",
+        descricao: "Log In to access videos from your subscriptions.",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwfoUNVgpC2Rdb2xjJCpgPczgtDTGZIs0qfYD7iRErkA&s=10",
+        video: "https://www.pornhub.com/subscriptions"
+      },
+
+      {
+        titulo: "DickForLily",
+        descricao: "Morning Wood, Cum Filled Throat - Big Tit Teen's Rough Awakening",
+        capa: "https://t.fapcat.com/contents/videos_screenshots/2553000/2553436/336x189/5.jpg",
+        video: "https://www.fapcat.com/models/dickforlily/"
+      },
+
+      {
+        titulo: "Bubblexgun",
+        descricao: "Bubblexgun esfrega sua buceta rosa de perto.",
+        capa: "https://pimpbunny.com/contents/videos_screenshots/570000/570712/800x450/1.jpg",
+        video: "https://pimpbunny.com/pt/onlyfans-creators/bubblexgun-new-leaks/"
+      },
+
+      {
+        titulo: "Gaki Milf",
+        descricao: "Gaki ni Modotte Yarinaoshi!!",
+        capa: "https://hentailegendado.com/wp-content/uploads/2020/01/gaki-ni-modotte-yarinaoshi-episodio-01-300x170.jpg",
+        video: "https://hentailegendado.com/assistir/gaki-ni-modotte-yarinaoshi-episodio-1/"
+      },
+
+      {
+        titulo: "Heihei",
+        descricao: "Boku to Misaki-sensei.",
+        capa: "https://animeshentai.biz/wp-content/uploads/2021/12/ujXbg5JzXcZqH03PhDTHriYcmwy-300x170.jpg",
+        video: "https://animeshentai.biz/episodio/boku-to-misaki-sensei-episodio-1/"
+      },
+
+      {
+        titulo: "Ikkyuu Nyuukon",
+        descricao: "Duas garotas, chantageiam um aluno, ambas resolvem dar seus preciosos buracos.",
+        capa: "https://animeshentai.biz/wp-content/uploads/2022/02/sgVbBU1dKo22jkUDWjv2xf4HmLl-300x170.jpg",
+        video: "https://animeshentai.biz/episodio/ikkyuu-nyuukon-episodio-1/"
+      },
+
+      {
+        titulo: "Yumi_chan",
+        descricao: "JK Bitch Ni Shiboraretai.",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrTo6cnFmue9kSTvkW3XtgJgl6U-BK1YzhxUwPsNVonQ&s=10",
+        video: "https://animeshentai.biz/episodio/jk-bitch-ni-shiboraretai-episodio-1/"
+      },
+
+      {
+        titulo: "Naruto Collection",
+        descricao: "Paródia: Naruto Shippuden",
+        capa: "https://thehentai.net/uploads/img/2026/03/a-new-way-to-motivate-kiba-from-kushina-hentai-pt-br-01-300x400.jpg.webp",
+        video: "https://thehentai.net/tag/parody:naruto-shippuden/page/1/"
+      },
+
+      {
+        titulo: "A Curandeira Peituda",
+        descricao: "Um jovem guerreiro em mais uma de suas aventuras acabou encontrando com essa curandeira peituda, gostosa e muito prestativa.",
+        capa: "https://assets.quadrinhosdesexo.com/wp-content/uploads/2024/04/1-1-1-768x1024.jpg",
+        video: "https://www.quadrinhosdesexo.com/a-curandeira-peituda/"
+      },
+
+      {
+        titulo: "@Goger",
+        descricao: "Gravity Falls Hentai.",
+        capa: "https://thehentai.net/uploads/img/2025/03/gravity-falls-by-goger-hentai-pt-br-01-300x400.jpg.webp",
+        video: "https://thehentai.net/gravity-falls-by-goger/"
+      },
+
+      {
+        titulo: "Ltybtc",
+        descricao: "compilation blowjob anime hentai.",
+        capa: "https://thumbs-gcore.xvideos-cdn.com/55199299-15cd-41e9-bc54-bf2df7e3805d/0/xv_3_p.jpg",
+        video: "https://www.xvideos.com/video.uliafam4408/compilation_compilation_blowjob_anime_hentai_part_21"
+      },
+
+      {
+        titulo: "I love blowjobs",
+        descricao: "(hentai fellatio compilation)",
+        capa: "https://thumb-cdn77.xvideos-cdn.com/846e4efc-3e16-4e3c-8fe4-e085829fa14c/0/xv_27_p.jpg",
+        video: "https://www.xvideos.com/video.ubvvttb6c7d/i_love_blowjobs_hentai_fellatio_compilation_#show-related"
+      },
+
+      {
+        titulo: "Hentai BlowJob",
+        descricao: "Titfuck Compilation (Milfs)",
+        capa: "https://thumb-cdn77.xvideos-cdn.com/69d0f17d-1173-499f-a5b6-6c226128488d/0/xv_15_p.jpg",
+        video: "https://www.xvideos.com/video.kvltlimc486/hentai_blowjob_and_titfuck_compilation_milfs_"
+      },
+
+      {
+        titulo: "Gwen",
+        descricao: "paródia: Ben 10",
+        capa: "https://thehentai.net/uploads/img/2025/07/the-breakfast-hentai-pt-br-01-300x400.jpg.webp",
+        video: "https://thehentai.net/tag/parodia:ben-10/"
+      },
+
+      {
+        titulo: "Wild Ride",
+        descricao: "artista: Applchu",
+        capa: "https://thehentai.net/uploads/img/2023/02/a-dream-cum-true-hentai-pt-br-01-300x400.jpg.webp",
+        video: "https://thehentai.net/tag/artista:applchu/"
+      }
+
+    ];
+
+
+    /*
+    =====================================================
+    CARREGAR VÍDEOS
+    =====================================================
+    */
+
+    const videoList =
+      document.getElementById("videoList");
+
+
+    function carregarVideos() {
+
+      videoList.innerHTML = "";
+
+      videos.forEach((video, index) => {
+
+        const card =
+          document.createElement("article");
+
+        card.className = "video-card";
+
+        card.innerHTML = `
+
+          <div class="video-cover">
+
+            <img
+              src="${video.capa}"
+              alt="${video.titulo}"
+            >
+
+            <div class="play-overlay">
+
+              <div class="play-circle">
+                ▶
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="video-info">
+
+            <h2 class="video-title">
+              ${video.titulo}
+            </h2>
+
+            <p class="video-description">
+              ${video.descricao}
+            </p>
+
+
+            <div class="video-actions">
+
+              <button
+                class="watch-button"
+                onclick="assistirVideo(${index})"
+              >
+                ▶ Assistir
+              </button>
+
+
+              <div class="options">
+
+                <button
+                  class="options-button"
+                  onclick="toggleMenu(this)"
+                >
+                  ⋯
+                </button>
+
+
+                <div class="menu">
+
+                  <button
+                    onclick="abrirVideo(${index})"
+                  >
+                    ▶ Abrir vídeo
+                  </button>
+
+                  <button
+                    onclick="copiarLink(${index})"
+                  >
+                    🔗 Copiar link
+                  </button>
+
+                  <button
+                    onclick="excluirVideo(${index})"
+                  >
+                    🗑️ Excluir
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+        videoList.appendChild(card);
+
+      });
+
+    }
+
+
+    /*
+    =====================================================
+    ASSISTIR
+    =====================================================
+    */
+
+    function assistirVideo(index) {
+
+      window.open(
+        videos[index].video,
+        "_blank"
+      );
+
+    }
+
+
+    /*
+    =====================================================
+    ABRIR
+    =====================================================
+    */
+
+    function abrirVideo(index) {
+
+      window.open(
+        videos[index].video,
+        "_blank"
+      );
+
+    }
+
+
+    /*
+    =====================================================
+    COPIAR LINK
+    =====================================================
+    */
+
+    function copiarLink(index) {
+
+      navigator.clipboard.writeText(
+        videos[index].video
+      );
+
+      alert("Link copiado!");
+
+    }
+
+
+    /*
+    =====================================================
+    MENU
+    =====================================================
+    */
+
+    function toggleMenu(button) {
+
+      const menu =
+        button.nextElementSibling;
+
+      document
+        .querySelectorAll(".menu")
+        .forEach(item => {
+
+          if (item !== menu) {
+            item.classList.remove("active");
+          }
+
+        });
+
+      menu.classList.toggle("active");
+
+    }
+
+
+    /*
+    =====================================================
+    EXCLUIR
+    =====================================================
+    */
+
+    function excluirVideo(index) {
+
+      if (
+        confirm(
+          `Deseja excluir "${videos[index].titulo}"?`
+        )
+      ) {
+
+        videos.splice(index, 1);
+
+        carregarVideos();
+
+      }
+
+    }
+
+
+    /*
+    =====================================================
+    ADICIONAR
+    =====================================================
+    */
+
+    function adicionarVideo() {
+
+      const titulo =
+        prompt("Nome do vídeo:");
+
+      if (!titulo) return;
+
+
+      const descricao =
+        prompt("Descrição:");
+
+      if (!descricao) return;
+
+
+      const capa =
+        prompt("URL da capa:");
+
+      if (!capa) return;
+
+
+      const video =
+        prompt("LINK do vídeo:");
+
+      if (!video) return;
+
+
+      videos.push({
+
+        titulo,
+        descricao,
+        capa,
+        video
+
+      });
+
+
+      carregarVideos();
+
+    }
+
+
+    /*
+    =====================================================
+    FECHAR MENUS
+    =====================================================
+    */
+
+    document.addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          !event.target.closest(".options")
+        ) {
+
+          document
+            .querySelectorAll(".menu")
+            .forEach(menu => {
+
+              menu.classList.remove(
+                "active"
+              );
+
+            });
+
+        }
+
+      }
+    );
+
+
+    /*
+    =====================================================
+    INICIAR
+    =====================================================
+    */
+
+    carregarVideos();
+
+  </script>
+
+</body>
+</html>
