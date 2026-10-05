@@ -2135,6 +2135,8 @@ updateDate2();
                 function Trabalho() {
             window.open('#work', '_blank');
             window.open('#foco', '_blank');
+            window.open('https://app.hub.la/dashboard', '_blank');
+            window.open('https://toolsgoboox.com/', '_blank');
         }
 
         function renovar() {
