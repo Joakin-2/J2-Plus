@@ -1,6 +1,3 @@
-const apiKey = 'AIzaSyAvpvehwHv1RN-vwnmth-3asp0kF0z5kPg';  // Substitua com sua chave de API do Google Gemini
-const apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
-
 const apiKey2 = 'bd2aa057407fb66d24136dab032d5bb8'; // Sua chave de API
 const city = 'Jacupiranga'; // A cidade para a qual você deseja buscar a previsão do tempo
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey2}`;
@@ -915,179 +912,6 @@ async function atualizar() {
 setInterval(atualizar, 5000);
 atualizar();
 
-// Camera
-document.addEventListener('DOMContentLoaded', () => {
-  let isCameraActive = false;
-  let currentStream = null;
-  let labeledDescriptors = [];
-  let modelsLoaded = false;
-
-  const video = document.getElementById('video');
-  const cameraModal = document.getElementById('cameraModal');
-  const cameraOptions = document.getElementById('cameraOptions');
-  const openCameraBtn = document.getElementById('openCamera');
-
-  // Tornar modal arrastável
-  (() => {
-    const modal = cameraModal;
-    const modalContent = document.querySelector('.modal-content');
-    let offsetX = 0, offsetY = 0, isDragging = false;
-
-    modalContent.addEventListener('mousedown', e => {
-      isDragging = true;
-      offsetX = e.clientX - modal.offsetLeft;
-      offsetY = e.clientY - modal.offsetTop;
-      document.body.style.cursor = 'move';
-    });
-
-    document.addEventListener('mousemove', e => {
-      if (isDragging) {
-        modal.style.left = `${e.clientX - offsetX}px`;
-        modal.style.top = `${e.clientY - offsetY}px`;
-      }
-    });
-
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-      document.body.style.cursor = 'default';
-    });
-  })();
-
-  // Carregar modelos e descritor Joaquim
-  async function loadModelsAndDescriptor() {
-    await Promise.all([
-      faceapi.nets.tinyFaceDetector.loadFromUri('Script/js/Facial/models'),
-      faceapi.nets.faceLandmark68Net.loadFromUri('Script/js/Facial/models'),
-      faceapi.nets.faceRecognitionNet.loadFromUri('Script/js/Facial/models'),
-      faceapi.nets.faceExpressionNet.loadFromUri('Script/js/Facial/models'),
-      faceapi.nets.ssdMobilenetv1.loadFromUri('Script/js/Facial/models'), // ✅ ESSENCIAL
-    ]);
-    await loadJoaquimDescriptor();
-    modelsLoaded = true;
-  }  
-
-  async function loadJoaquimDescriptor() {
-    const img = await faceapi.fetchImage('Script/img/joaquim.jpg');
-    const detection = await faceapi
-      .detectSingleFace(img)
-      .withFaceLandmarks()
-      .withFaceDescriptor();
-
-    if (!detection) {
-      console.error("Não foi possível detectar o rosto na imagem de Joaquim.");
-      return;
-    }
-
-    const descriptor = new faceapi.LabeledFaceDescriptors('Joaquim', [detection.descriptor]);
-    labeledDescriptors.push(descriptor);
-  }
-
-  // Abrir câmera
-  openCameraBtn.addEventListener('click', async () => {
-    if (isCameraActive) {
-      // Desligar câmera
-      if (currentStream) {
-        currentStream.getTracks().forEach(track => track.stop());
-        currentStream = null;
-      }
-      cameraModal.style.display = 'none';
-      openCameraBtn.classList.remove('fa-eye');
-      openCameraBtn.classList.add('fa-camera');
-      cameraOptions.style.display = 'none';
-      isCameraActive = false;
-    } else {
-      // Ativar câmera
-      if (!modelsLoaded) await loadModelsAndDescriptor();
-
-      navigator.mediaDevices.enumerateDevices()
-        .then(devices => {
-          const cameras = devices.filter(d => d.kind === 'videoinput');
-          const cameraList = document.getElementById('cameraList');
-          cameraList.innerHTML = '';
-          cameras.forEach((device, i) => {
-            const li = document.createElement('li');
-            li.textContent = device.label || `Câmera ${i + 1}`;
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-              startCamera(device.deviceId);
-              cameraOptions.style.display = 'none';
-            });
-            cameraList.appendChild(li);
-          });
-          cameraOptions.style.display = 'block';
-        });
-
-      openCameraBtn.classList.remove('fa-camera');
-      openCameraBtn.classList.add('fa-eye');
-      isCameraActive = true;
-    }
-  });
-
-  // Função para iniciar a câmera
-  function startCamera(deviceId) {
-    navigator.mediaDevices.getUserMedia({
-      video: { deviceId: { exact: deviceId } }
-    }).then(stream => {
-      video.srcObject = stream;
-      currentStream = stream;
-      cameraModal.style.display = 'block';
-      startDetection();
-    }).catch(err => console.error(err));
-  }
-
-  // Fechar modal
-  document.getElementById('closeModalCamera').addEventListener('click', () => {
-    cameraModal.style.display = 'none';
-  });
-
-  // Face detection + reconhecimento
-  function startDetection() {
-    video.onloadedmetadata = () => {
-      const canvas = faceapi.createCanvasFromMedia(video);
-      document.body.appendChild(canvas);
-  
-      const displaySize = { width: video.videoWidth, height: video.videoHeight };
-      faceapi.matchDimensions(canvas, displaySize);
-  
-      let lastRun = 0;
-      const intervalMs = 1000;
-  
-      async function detectionLoop(timestamp) {
-        if (timestamp - lastRun >= intervalMs) {
-          lastRun = timestamp;
-  
-          const detections = await faceapi
-            .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({ inputSize: 160 }))
-            .withFaceLandmarks()
-            .withFaceExpressions()
-            .withFaceDescriptors();
-  
-          const resized = faceapi.resizeResults(detections, displaySize);
-          const context = canvas.getContext('2d');
-          context.clearRect(0, 0, canvas.width, canvas.height);
-  
-          faceapi.draw.drawDetections(canvas, resized);
-          faceapi.draw.drawFaceLandmarks(canvas, resized);
-          faceapi.draw.drawFaceExpressions(canvas, resized);
-  
-          if (labeledDescriptors.length > 0) {
-            const matcher = new faceapi.FaceMatcher(labeledDescriptors, 0.6);
-            resized.forEach(det => {
-              const match = matcher.findBestMatch(det.descriptor);
-              const box = det.detection.box;
-              const drawBox = new faceapi.draw.DrawBox(box, { label: match.label });
-              drawBox.draw(canvas);
-            });
-          }
-        }
-  
-        requestAnimationFrame(detectionLoop);
-      }
-  
-      requestAnimationFrame(detectionLoop);
-    };
-  }  
-});
 
   let currentSeason = '';
 
@@ -2273,11 +2097,6 @@ const modals = {
     modal: document.getElementById("modal-rafa"),
     fechar: document.getElementById("fechar-rafa")
   },
-  foco: {
-    btn: document.getElementById("foco-btn"),
-    modal: document.getElementById("modal-foco"),
-    fechar: document.getElementById("fechar-foco")
-  },
   work: {
     btn: document.getElementById("work-btn"),
     modal: document.getElementById("modal-work"),
@@ -2293,11 +2112,6 @@ const modals = {
     modal: document.getElementById("modal-manual"),
     fechar: document.getElementById("fechar-manual")
 },
-  youtube: {
-    btn: document.getElementById("youtube-btn"),
-    modal: document.getElementById("modal-youtube"),
-    fechar: document.getElementById("fechar-youtube")
-  },
   streaming: {
     btn: document.getElementById("streaming-btn"),
     modal: document.getElementById("modal-streaming"),
@@ -2307,11 +2121,9 @@ const modals = {
 
 const titulos = {
   rafa: "Rafa",
-  foco: "Modo Foco",
   work: "Work",
   back: "Background",
   manual: "Manual J2",
-  youtube: "YouTube",
   streaming: "Streaming"
 };
 
@@ -2322,14 +2134,6 @@ function atualizarTitulo(hash) {
         document.title = titulos[hash];
     } else {
         document.title = "J2+";
-    }
-
-    if (favicon) {
-        if (hash === "youtube") {
-            favicon.href = "https://www.youtube.com/s/desktop/7330833b/img/favicon_96x96.png";
-        } else {
-            favicon.href = "/Script/img/2+.png";
-        }
     }
 }
 
@@ -2459,9 +2263,6 @@ window.addEventListener("load", () => {
     const headphoneDiv = document.getElementById('headphone');
     const musicNotesContainer = document.getElementById('music-notes-container');
     let isPlaying = false;
-    const defaultMusicSrc = "/Script/media/Music/Fundo/Dev Song.mp3";
-    const christmasMusicSrc = "/Script/media/Music/Fundo/Natal.mp3";
-    const birthdayMusicSrc = "/Script/media/Music/Fundo/Happy birthday.mp3"; // Caminho para a música de aniversário
 
     const birthdays = [
         { name: "Pipoca", month: 1, day: 24 },
@@ -2498,94 +2299,6 @@ window.addEventListener("load", () => {
         return false;
     }
 
-    function loadMusic(src) {
-        backgroundMusic.src = src;
-        backgroundMusic.load();
-    }
-
-    function playOrPauseMusic() {
-        if (isPlaying) {
-            backgroundMusic.pause();
-        } else {
-            backgroundMusic.play();
-        }
-        isPlaying = !isPlaying;
-        updateButtonIcon();
-    }
-
-    function updateButtonIcon() {
-        if (isPlaying) {
-            toggleMusicBtn.classList.remove('fa-volume-mute');
-            toggleMusicBtn.classList.add('fa-volume-up');
-        } else {
-            toggleMusicBtn.classList.remove('fa-volume-up');
-            toggleMusicBtn.classList.add('fa-volume-mute');
-        }
-    }
-
-    function showHeadphoneAndNotes() {
-        if (isPlaying) {
-            // Exibe o fone de ouvido
-            headphoneDiv.style.display = 'block';
-
-            // Exibe 3 notas (ícones de música) e substitui a cada 2 segundos
-            let noteIndex = 0; // Para saber qual nota exibir
-            const notes = [];
-            for (let i = 0; i < 3; i++) {
-                const musicNote = document.createElement('i');
-                musicNote.classList.add('fas', 'fa-music', 'music-note');
-                musicNotesContainer.appendChild(musicNote);
-                notes.push(musicNote);
-            }
-
-            // Função para atualizar as notas
-            const noteInterval = setInterval(() => {
-                // Faz a nota anterior desaparecer
-                notes[noteIndex].style.opacity = 0;
-
-                // Atualiza o índice da nota
-                noteIndex = (noteIndex + 1) % 3;
-
-                // Faz a nova nota aparecer
-                notes[noteIndex].style.opacity = 1;
-
-            }, 2000); // Substitui a cada 2 segundos
-
-            // Exibe o container das notas
-            musicNotesContainer.style.display = 'flex';
-        } else {
-            headphoneDiv.style.display = 'none';
-            musicNotesContainer.style.display = 'none'; // Esconde as notas quando a música parar
-        }
-    }
-
-    // Carrega a música apropriada, mas não a inicia
-    if (isBirthday()) {
-        loadMusic(birthdayMusicSrc);
-    } else if (isChristmasTime()) {
-        loadMusic(christmasMusicSrc);
-    } else {
-        loadMusic(defaultMusicSrc);
-    }
-
-    // Ação do botão para alternar o som
-    toggleMusicBtn.addEventListener('click', function() {
-        if (!isPlaying) {
-            backgroundMusic.play().catch(error => {
-                console.error("Erro ao iniciar a reprodução:", error);
-            });
-            isPlaying = true;
-            updateButtonIcon();
-        } else {
-            playOrPauseMusic();
-        }
-
-        // Mostrar fone e notas enquanto a música estiver tocando
-        showHeadphoneAndNotes();
-    });
-
-    // Inicialmente, define o ícone para mudo, pois a música não está tocando
-    updateButtonIcon();
 });
 
 // Obtendo os elementos
@@ -2989,85 +2702,6 @@ window.onclick = function(event) {
   exibirSaudacao();
 };
 
-const videos = [
-  {
-    link: "https://www.youtube.com/playlist?list=PLZ35j5F1uvxrKqcfkzeCDFdAKGak6ucpc",
-    thumb: "https://creations.panzoid.com/creation-thumbnails/757757.jpg",
-    titulo: "Poops",
-    descricao: "Melhores Videos",
-    canalLogo: "https://yt3.googleusercontent.com/DEo446QWiw7RB5TRUhq_nnZ3F5rICjSqzDFJZpmWvYQEWDse1SYAKD7Z-S37GuFbiT6j7zOCk_I=s88-c-k-c0x00ffffff-no-rj"
-  },
-  {
-    link: "https://www.youtube.com/playlist?list=PLZ35j5F1uvxouidpaltlu3iGSvzPv7JQo",
-    thumb: "https://cdn.pixabay.com/video/2022/01/10/103984-664525664_tiny.jpg",
-    titulo: "Cortes",
-    descricao: "Cortes de Videos",
-    canalLogo: "https://yt3.googleusercontent.com/DEo446QWiw7RB5TRUhq_nnZ3F5rICjSqzDFJZpmWvYQEWDse1SYAKD7Z-S37GuFbiT6j7zOCk_I=s88-c-k-c0x00ffffff-no-rj"
-  },
-{
-  link: "https://www.youtube.com/@Jazzghost/videos",
-  thumb: "https://i.ytimg.com/vi/kbMxDtJX0nA/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBLV7agwcmvC-Lh9A_-rPlkN9NZlw",
-  titulo: "Jazzghost",
-  descricao: "Jogo uns jogos e passo vergonha.",
-  canalLogo: "https://yt3.googleusercontent.com/sAvs5V1ICTt3pLRi2tfuIV3OyIeR_rCi6TZyBAjxF0KyQV86QD_xaY3MEcBCZurIOwI4ewKeets=s120-c-k-c0x00ffffff-no-rj"
-},
-{
-  link: "https://www.youtube.com/@GamesEduUu/videos",
-  thumb: "https://i.ytimg.com/vi/z9RgNPwAvSw/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA6c9x4QH3Q8Z3_NCZx4O4_6RPABg",
-  titulo: "Games EduUu",
-  descricao: "A zoeira não tem limites, não tem!",
-  canalLogo: "https://yt3.googleusercontent.com/ytc/AIdro_mnYfCHCK6zQ1uEVX2IE3tep9N0tf60LuocEFHShXvajTU=s72-c-k-c0x00ffffff-no-rj"
-},
-{
-  link: "https://www.youtube.com/@AndreGuedesCartoon/videos",
-  thumb: "https://i.ytimg.com/vi/75kbn9SEqwo/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBu2_VsZLj0xnp1PxhCJGfswyf6jw",
-  titulo: "André Guedes",
-  descricao: "O MITO fazendo a PROVA DO ENEM!",
-  canalLogo: "https://yt3.googleusercontent.com/ytc/AIdro_n1BStb6rnU3atlIh7-FPUO6wo7AMgV9u13xGVmczjYXQI=s160-c-k-c0x00ffffff-no-rj"
-},
-{
-  link: "https://www.youtube.com/@ColoniaContraAtaca/videos",
-  thumb: "https://i.ytimg.com/vi/rolvjmVDTnA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAnkehgu3Zu_dOfTIrcpeYY3-GX7A",
-  titulo: "Colônia Contra Ataca",
-  descricao: "FFG: Os 10 Principais Defeitos dos Controles!",
-  canalLogo: "https://yt3.googleusercontent.com/Aqyl-FDI2kFSyJMI9XHBnzDWTNOHIUN5hBe2Kb1Hy8pe-DLt2lYEXvJQvzXzK20K098B1oosFdY=s160-c-k-c0x00ffffff-no-rj"
-},
-{
-  link: "https://www.youtube.com/watch?v=GXqUXJKg7K4&list=PLJC6MSkiDOlHpmnU8InCnbW_bMwScK6WW",
-  thumb: "https://i.ytimg.com/vi/GXqUXJKg7K4/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLBwuT9_vLHl6Z2h4RJEtfe-ZzmNhw",
-  titulo: "Mineiro Aranha",
-  descricao: "Com Gruzinho",
-  canalLogo: "https://yt3.ggpht.com/MYEx6ANwCNxncjANiNuNOECuj_dh_yQUoSDs7mI0ux_18VGjy8Pod_bL3OxtTA_jbRnuKZSvPLE=s48-c-k-c0x00ffffff-no-rj"
-},
-{
-  link: "https://www.youtube.com/watch?v=Bm2pYXJS9_o&list=PL86335E6uxZ9Ih05mrtF21_LnuAqanVoW&ab_channel=PaiTroll",
-  thumb: "https://i.ytimg.com/vi/AtoXHcgMfuo/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCHIWqhAzu3Y12oyNiqwRSGGzWzOA",
-  titulo: "Super Mario Maker",
-  descricao: "FUI TORTURADO SEM DÓ!",
-  canalLogo: "https://yt3.ggpht.com/ytc/AIdro_nhyYxNxuN0p1zsdcY9_4N4VIwQfE0F3t7Zc9fsz5cWGrc=s48-c-k-c0x00ffffff-no-rj"
-}
-];
-
-const containeryt = document.getElementById("videoContainer");
-
-videos.forEach(video => {
-    const card = document.createElement("a");
-    card.href = video.link;
-    card.className = "video";
-
-    card.innerHTML = `
-        <img src="${video.thumb}" alt="${video.titulo}">
-        <h2>${video.titulo}</h2>
-        <p>${video.descricao}</p>
-        <div class="channel-logo">
-            <img src="${video.canalLogo}" alt="Canal">
-        </div>
-    `;
-
-    containeryt.appendChild(card);
-});
-
-
 const btnNoite = document.getElementById("btn-noite");
 const btnFundo = document.getElementById("btn-fundo");
 
@@ -3302,69 +2936,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateClock0, 1000);
     setInterval(updateDate0, 60000);
     setInterval(getTemperature0, 600000);
-});
-
-let tempoInicial = 25 * 60; // 25 minutos em segundos
-        let tempoDescanso = 5 * 60; // 5 minutos em segundos
-        let temporizador;
-        let musica = new Audio('Script/media/Music/Fundo/852 Hz.mp3'); // Carregar o áudio da música
-        musica.loop = true; // Definir o áudio para tocar em loop
-
-        function atualizarTemporizador(segundos) {
-            const minutos = Math.floor(segundos / 60);
-            const segundosRestantes = segundos % 60;
-            document.getElementById('temporizador').innerText = `${minutos}:${segundosRestantes < 10 ? '0' : ''}${segundosRestantes}`;
-        }
-
-        function iniciarPomodoro() {
-            clearInterval(temporizador);
-            tempoInicial = 25 * 60;
-            musica.play(); // Iniciar a música quando o Pomodoro começar
-            temporizador = setInterval(function() {
-                if (tempoInicial > 0) {
-                    tempoInicial--;
-                    atualizarTemporizador(tempoInicial);
-                } else {
-                    clearInterval(temporizador);
-                    playAlarm();
-                    iniciarDescanso();
-                }
-            }, 1000);
-        }
-
-        function iniciarDescanso() {
-            clearInterval(temporizador);
-            tempoDescanso = 5 * 60; // 5 minutos em segundos (pode ajustar conforme necessário)
-            musica.pause(); // Pausar a música durante o descanso
-            temporizador = setInterval(function() {
-                if (tempoDescanso > 0) {
-                    tempoDescanso--;
-                    atualizarTemporizador(tempoDescanso);
-                } else {
-                    clearInterval(temporizador);
-                    playAlarm();
-                    musica.play(); // Recomeçar a música quando voltar ao Pomodoro
-                    iniciarPomodoro();
-                }
-            }, 1000);
-        }
-
-        function playAlarm() {
-            var alarmeAudio = new Audio('Script/media/Alarme.wav');
-            alarmeAudio.play();
-        }
-
-        // Adicionar evento para verificar a tecla Enter
-        document.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        // Ocultar mensagem inicial e exibir o temporizador
-        document.getElementById("initialMessage").style.display = "none";
-        document.getElementById("temporizador").style.display = "block";
-        document.getElementById("startButton").style.display = "block";
-
-        // Iniciar automaticamente o foco
-        iniciarPomodoro(); // Chame a função desejada (iniciarPomodoro neste caso)
-    }
 });
 
 document.querySelectorAll('.copy-box pre').forEach(texto => {

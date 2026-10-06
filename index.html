@@ -5,8 +5,6 @@
     <link id="favicon" rel="icon" type="image/x-icon" href="/Script/img/2+.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>J2+</title>
-    <script src="Script/js/Facial/face-api.js"></script>
-    <script src="Script/js/Facial/face-api.min.js"></script>
     <link rel="stylesheet" href="Script/js/styles.css"> <!-- CSS externo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -14,7 +12,6 @@
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 />
-
 <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
 </script>
@@ -104,42 +101,6 @@
 </div>
 </div>
 
-<!-- Modal do YouTube -->
-<div id="modal-youtube" class="modal">
-    <div class="modal-contentyt">
-
-        <button id="fechar-youtube" class="close-modal" style="
-    background: #1f1f1f;
-">
-            &times;
-        </button>
-
-        <header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px;
-    margin-top: -10px;">
-        <h1 style="display: flex; align-items: center; margin-left: 120px; color: white;">Productive Youtube 
-            <span class="yt-icon-shape style-scope yt-icon ytSpecIconShapeHost">
-    <div style="margin-left: 10px; margin-bottom: 5px; width: 150px; height: 100%; display: block;">
-        <svg xmlns="http://www.w3.org/2000/svg" id="yt-ringo2-svg_yt9" width="93" height="20" viewBox="0 0 93 20" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
-            <g>
-                <path d="M14.4848 20C14.4848 20 23.5695 20 25.8229 19.4C27.0917 19.06 28.0459 18.08 28.3808 16.87C29 14.65 29 9.98 29 9.98C29 9.98 29 5.34 28.3808 3.14C28.0459 1.9 27.0917 0.94 25.8229 0.61C23.5695 0 14.4848 0 14.4848 0C14.4848 0 5.42037 0 3.17711 0.61C1.9286 0.94 0.954148 1.9 0.59888 3.14C0 5.34 0 9.98 0 9.98C0 9.98 0 14.65 0.59888 16.87C0.954148 18.08 1.9286 19.06 3.17711 19.4C5.42037 20 14.4848 20 14.4848 20Z" fill="#FF0033"></path>
-                <path d="M19 10L11.5 5.75V14.25L19 10Z" fill="white"></path>
-            </g>
-
-        </svg>
-    </div>
-</span> 
-        </h1>
-        <form action="https://www.youtube.com/results" method="GET" style="position: relative; display: contents;">
-            <input type="text" id="search" name="search_query" placeholder="Pesquisar..." required="" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; background-color: #444; color: #fff;" oninput="toggleSuggestions()"> <!-- Adicione o evento 'oninput' aqui -->
-            <button type="submit" style="padding: 10px;background-color: #2e2e2e;color: white;border: none;border-radius: 5px;cursor: pointer;margin-left: 10px;margin-right: 10px;">Buscar</button>
-        </form>
-    </header>
-
-        <div class="containeryt" id="videoContainer"></div>
-
-    </div>
-</div>
-
 <!-- Modal do Background -->
 <div id="modal-back" class="modal">
     <div class="modal-contentyt">
@@ -189,23 +150,6 @@
 </div>
 
     </div>
-</div>
-
-<!-- Modal Foco -->
-<div id="modal-foco" class="modal">
-    <span id="fechar-foco"
-        class="close-btn"
-        style="position: fixed; color: white; margin-left: 430px; margin-top: 25px; font-size: 30px;">
-        &times;
-    </span>
-
-    <div id="initialMessage">Vamos utilizar o método Pomodoro.</div>
-    <div id="temporizador" style="display: none;">25:00</div>
-
-    <div id="botoes">
-        <button id="startButton" style="display: none; margin-left: 47%;" onclick="iniciarPomodoro()">Iniciar</button>
-    </div>
-
 </div>
 
 <!-- Work -->
@@ -383,16 +327,6 @@
     </div>
 </div>
 
-    <!-- Modal Camera -->
-<div id="cameraModal" class="modal" style="display: none;">
-    <div class="modal-content" style="width: 450px; height: 350px; margin: 0; padding: 0;">
-      <!-- Botão de fechar -->
-      <span id="closeModalCamera" class="close" style="display: none;">×</span>
-      <video id="video" width="450" height="350" autoplay muted></video>
-      <canvas id="overlay" width="450" height="350" style="position: absolute;"></canvas>
-    </div>
-  </div>  
-
   <!-- Tela de perfil -->
   <div class="perfil-container" id="perfil-container" style="display: none;">
     <div class="perfil-content">
@@ -553,9 +487,7 @@
                 <input style="background: #1a1a1c; color: #8c52ff;" type="text" id="urlInput" placeholder="Faça sua pesquisa...">
                 <button id="goButton">Ir</button>
             </div>
-            <i id="toggleMusicBtn" class="fas fa-volume-up" style="cursor: pointer;"></i>
             <i id="muteButton" class="fas fa-volume-up" style="display: none; cursor: pointer;"></i>
-            <i id="openCamera" class="fas fa-camera" style="cursor: pointer;"></i>
             <i id="notificationButton" class="fas fa-bell" style="cursor: pointer;">
                 <span id="notificationCount" style="position: absolute; background: #825dff; color: white; border-radius: 50%; padding: 2px 5px; font-size: 12px;">
                     0
@@ -565,12 +497,6 @@
             <i id="openClock" class="fas fa-clock"></i> <!-- Ícone de relógio -->
             <span id="clock">00:00:00</span>
         </span>    
-        <!-- Lista de câmeras disponíveis -->
-        <div id="cameraOptions" style="background: rgb(18, 18, 18); color: white; display: none; margin-left: 66%;margin-top: 60px; position: fixed; z-index: 1000;">
-            <ul id="cameraList" style="list-style-type: none; padding: 0; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); margin: 0;">
-              <!-- As opções de câmeras serão adicionadas aqui dinamicamente -->
-            </ul>
-        </div>
         <br><br>
         <div id="recomendacoes"></div>
 
@@ -697,10 +623,6 @@
             </div>
         </div>
         <br><br>
-        <audio id="backgroundMusic" loop>
-            <source src="/Script/media/Music/Fundo/Dev Song.mp3" type="audio/mpeg">
-            Seu navegador não suporta o elemento de áudio.
-        </audio>
         <div id="Message" style="display: none;color: rgb(100, 45, 252);padding: 10px;border: 1px solid rgb(100, 45, 252);border-radius: 5px; margin-top: -55px; margin-bottom: -18px; background: #181818;">
              <p id="Text"></p>
             </div>

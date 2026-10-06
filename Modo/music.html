@@ -3127,6 +3127,12 @@ const sugestaoPlaylist = {
     image: "https://i.pinimg.com/1200x/d8/8d/79/d88d79736c1db397a6a8c573ebcd06f2.jpg"
 };
 
+Object.values(playlists).forEach(playlist => {
+  playlist.tracks.sort((a, b) =>
+    a.title.localeCompare(b.title, 'pt-BR', { sensitivity: 'base' })
+  );
+});
+
 function moverCarrossel(direcao) {
     const carousel = document.getElementById("carouselSugestoes");
 
