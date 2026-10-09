@@ -2,11 +2,107 @@
 
 body {
     margin: 0;
-    padding: 0;
+    padding-top: 100px;
     font-family: Arial, sans-serif;
-    background-color: #121212; /* Cor de fundo escura */
+    background-color: #0d0914; /* Cor de fundo escura */
     color: #e0e0e0; /* Cor de texto clara */
 }
+
+/* ===== BARRA SUPERIOR J2 SYSTEM ===== */
+
+.top-footer { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 9999;
+
+width: calc(100% - 36px); min-height: 66px; box-sizing: border-box;
+
+display: flex; align-items: center; gap: 14px; padding: 10px 16px;
+
+background: rgba(20, 13, 30, 0.88); border: 1px solid rgba(140, 82, 255, 0.25); border-radius: 18px;
+
+backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28), 0 0 18px rgba(130, 93, 255, 0.07);
+
+color: #eee7ff; }
+
+/* Botões principais */ .top-footer button { font: inherit; color: #d9c8ff; cursor: pointer; transition: 0.2s ease; }
+
+.menu-button, #perfil-btn { display: flex; align-items: center; justify-content: center; gap: 9px;
+
+min-height: 40px; padding: 0 13px;
+
+background: rgba(140, 82, 255, 0.09); border: 1px solid rgba(140, 82, 255, 0.16); border-radius: 11px; }
+
+#perfil-btn { width: 40px; padding: 0; }
+
+/* Pesquisa */ .top-footer-search { display: flex; align-items: center; gap: 10px;
+
+flex: 1; min-width: 100px; max-width: 540px; height: 42px; padding: 0 7px 0 13px;
+
+background: rgba(13, 9, 20, 0.9); border: 1px solid #30213f; border-radius: 12px;
+
+color: #9d7bff; }
+
+.top-footer-search input { flex: 1; min-width: 0; width: 100%;
+
+background: transparent !important; border: none; outline: none;
+
+color: #f1eaff !important; font-size: 13px; }
+
+.top-footer-search input::placeholder { color: #82758f; }
+
+.top-footer-search #goButton { height: 30px; padding: 0 13px;
+
+background: #825dff; color: white; border: none; border-radius: 8px; }
+
+/* Ícones e ferramentas */ .top-footer-tools { display: flex; align-items: center; gap: 7px; margin-left: auto; }
+
+.top-footer .tool-button { position: relative;
+
+display: flex; align-items: center; justify-content: center;
+
+width: 40px; height: 40px;
+
+background: transparent; border: 1px solid transparent; border-radius: 11px;
+
+font-size: 15px; }
+
+#notificationCount { position: absolute; top: 1px; right: 0;
+
+min-width: 15px; height: 15px; padding: 0 3px;
+
+display: flex; align-items: center; justify-content: center;
+
+background: #825dff; color: white; border: 2px solid #140d1e; border-radius: 20px;
+
+font-size: 9px; line-height: 1; }
+
+/* Relógio */ #clock { color: #bca2ff; font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; padding-left: 5px; }
+
+/* Efeitos hover */ .top-footer button:hover { background-color: rgba(140, 82, 255, 0.17); border-color: rgba(160, 120, 255, 0.35); color: #ffffff; transform: translateY(-1px); }
+
+.top-footer-search #goButton:hover { background: #997aff; }
+
+/* Responsividade */ @media (max-width: 760px) { .top-footer { top: 8px; width: calc(100% - 16px); gap: 7px; padding: 8px; border-radius: 14px; }
+
+.menu-button { padding: 0 10px; }
+
+.menu-button span { display: none; }
+
+.top-footer-search { gap: 6px; padding-left: 9px; }
+
+.top-footer-search input { font-size: 12px; }
+
+.top-footer-tools { gap: 1px; }
+
+.top-footer .tool-button { width: 32px; height: 36px; }
+
+#clock { display: none; } }
+
+@media (max-width: 430px) { .top-footer { flex-wrap: wrap; }
+
+.top-footer-search { order: 3; flex-basis: 100%; max-width: none; }
+
+.top-footer-tools { margin-left: auto; } }
 
 .maximize-button {
     display: none;
@@ -237,19 +333,6 @@ input, textarea {
     text-decoration: none;
     cursor: pointer;
   }  
-
-.menu-button {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-    background-color: #825dff; /* Roxo para o botão do menu */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px; /* Espaço entre o botão e o relógio */
-}
 
 .menu-button2 {
     position: absolute;
@@ -565,6 +648,76 @@ h2, h3 {
     transition: 0.5s;
 }
 
+/* CARD DE EXPERIÊNCIA */ .xp-card { position: absolute; right: 24px;
+
+width: 290px; box-sizing: border-box; padding: 20px;
+
+background: linear-gradient( 145deg, rgba(29, 19, 43, 0.97), rgba(13, 9, 20, 0.98) );
+
+border: 1px solid rgba(160, 115, 255, 0.24); border-radius: 20px;
+
+color: #eee7ff; font-family: inherit;
+
+box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28), 0 0 24px rgba(130, 93, 255, 0.06);
+
+backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+
+/* CABEÇALHO */ .xp-header { display: flex; align-items: center; gap: 12px; }
+
+.xp-icon { width: 48px; height: 48px; flex-shrink: 0;
+
+display: flex; align-items: center; justify-content: center;
+
+background: rgba(140, 82, 255, 0.14); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: 14px;
+
+color: #c5a5ff; font-size: 21px; }
+
+.xp-heading { flex: 1; min-width: 0; }
+
+.xp-caption { color: #ad8bff; font-size: 9px; font-weight: 700; letter-spacing: 1.1px; }
+
+.xp-heading h3 { margin: 5px 0 3px; color: #fff; font-size: 20px; font-weight: 700; }
+
+.xp-heading p { margin: 0; color: #a79ab8; font-size: 11px; }
+
+/* PORCENTAGEM */ .xp-badge { display: flex; flex-direction: column; align-items: center; gap: 3px;
+
+padding: 9px 10px; border-radius: 12px; background: rgba(140, 82, 255, 0.12); }
+
+.xp-badge strong { color: #d0b5ff; font-size: 17px; }
+
+.xp-badge span { color: #a99ab9; font-size: 10px; }
+
+/* DIVISÓRIA */ .xp-divider { height: 1px; margin: 18px 0 14px; background: rgba(167, 139, 250, 0.15); }
+
+/* INFORMAÇÕES DO XP */ .xp-info { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px;
+
+font-size: 11px; color: #bcb0cc; }
+
+.xp-info > span:last-child { color: #d0b5ff; font-weight: 600; white-space: nowrap; }
+
+/* BARRA DE PROGRESSO */ .xp-card .progress-container { width: 100%; height: 10px; overflow: hidden;
+
+background: #292033; border: 1px solid rgba(167, 139, 250, 0.1); border-radius: 20px; }
+
+.xp-card .progress-bar { width: 0%; height: 100%; box-sizing: border-box;
+
+display: flex; align-items: center; justify-content: flex-end;
+
+padding-right: 4px; overflow: hidden; white-space: nowrap;
+
+background: linear-gradient(90deg, #7040d8, #b58aff); border-radius: inherit;
+
+color: #fff; font-size: 0; transition: width 0.5s ease; box-shadow: 0 0 12px rgba(151, 105, 255, 0.35); }
+
+/* RODAPÉ DO CARD */ .xp-footer { display: flex; align-items: flex-start; gap: 8px; margin-top: 14px;
+
+color: #a99ab9; font-size: 10px; line-height: 1.5; }
+
+.xp-footer i { color: #b58aff; margin-top: 1px; }
+
+/* TELAS MENORES */ @media (max-width: 600px) { .xp-card { top: 100px; right: 12px; width: min(290px, calc(100vw - 24px)); padding: 16px; } }
+
 .botao {
     display: inline-block;
     padding: 8px 12px;
@@ -698,7 +851,17 @@ h2, h3 {
 }
 
 #recomendacoes {
-    margin-bottom: 30px;
+    position: fixed;
+    top: 95px;
+    z-index: 1000;
+
+    padding: 15px;
+
+    background: #0d0914;
+    border: 1px solid rgba(140, 82, 255, 0.3);
+    border-radius: 14px;
+
+    color: #eee7ff;
 }
 
 #status {
@@ -994,23 +1157,17 @@ button:hover {
 }
 
 
-/* Efeitos de Estações no Brasil */
+/* 🌸 Efeitos de Estações no Brasil — Dark Theme */
 
-.spring {
-    background-color: #202020; /* Tons suaves de primavera */
-}
+:root { background-color: #0d0914; }
 
-.summer {
-    background-color: #2b2818; /* Tons quentes do verão */
-}
+/* 🌷 Primavera — Roxo floral e verde suave */ .spring { background-color: #171020; }
 
-.autumn {
-    background-color: #1b0e0b; /* Tons de outono com laranja e marrom */
-}
+/* ☀️ Verão — Roxo quente com tons dourados */ .summer { background-color: #1c1420; }
 
-.winter {
-    background-color: #1f2429; /* Tons frios de inverno */
-}
+/* 🍂 Outono — Vinho escuro e marrom avermelhado */ .autumn { background-color: #1b0d12; }
+
+/* ❄️ Inverno — Azul frio com nuances violetas */ .winter { background-color: #10121d; }
 
 .flower {
     position: fixed;
@@ -1152,13 +1309,6 @@ button:hover {
 .hidden {
   z-index: 1; /* Define que o botão escondido ficará abaixo do outro */
 }
-
-  /* Estilo do botão de perfil */
-  button#perfil-btn {
-    position: absolute;
-    margin-left: 94%;
-    margin-top: 1%;
-  }
   /* Estilo da tela de perfil */
   .perfil-container {
     position: fixed;
@@ -2334,11 +2484,9 @@ p {
 
 
 .map-card {
-        top: 10%;
         left: 1%;
         width: 20%;
-        height: 650px;
-        margin: 40px auto;
+        height: 100%;
         background: #111;
         border: 1px solid #34343a;
         border-radius: 20px;

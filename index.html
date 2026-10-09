@@ -31,7 +31,6 @@
     </div>
     <aside class="menu" id="overlayMenu" aria-hidden="true" style="height: -webkit-fill-available;">
         <div class="menu-content">
-            <button class="menu-button" aria-label="Fechar menu" onclick="toggleMenu()">Voltar</button>
             <ul>
                 <li><a href="Modo/habitos.html">Hábitos</a></li>
                 <li><a onclick="renovar()">Renovar</a></li>
@@ -475,41 +474,56 @@
   </div>
   
     <div class="container" id="container">
-        <button class="menu-button" aria-label="Abrir menu" onclick="toggleMenu()">Menu</button>
-        <button class="calenbutton" aria-label="Abrir calendário">
-            <i class="fas fa-calendar-alt"></i> <!-- Ícone de calendário -->
-        </button>
-        <button id="perfil-btn">👤</button>
-        <button onclick="window.location.href='Modo/conselho.html#reflexoes'" style="display:none; position: absolute; margin-top: 385px; margin-left: -28px;" id="botao31Dezembro">Refexão desse Ano!</button>
-        <span class="clock">
-            <div class="address-bar">
-                <i class="fas fa-search" style="margin-right: 10px;"></i>
-                <input style="background: #1a1a1c; color: #8c52ff;" type="text" id="urlInput" placeholder="Faça sua pesquisa...">
-                <button id="goButton">Ir</button>
-            </div>
-            <i id="muteButton" class="fas fa-volume-up" style="display: none; cursor: pointer;"></i>
-            <i id="notificationButton" class="fas fa-bell" style="cursor: pointer;">
-                <span id="notificationCount" style="position: absolute; background: #825dff; color: white; border-radius: 50%; padding: 2px 5px; font-size: 12px;">
-                    0
-                </span>
-              </i>
-            <i id="openWifi" class="fas fa-wifi" style="cursor: pointer;"></i>
-            <i id="openClock" class="fas fa-clock"></i> <!-- Ícone de relógio -->
-            <span id="clock">00:00:00</span>
-        </span>    
-        <br><br>
+        <!-- Barra superior da IA --> <header class="top-footer">
+
+<button class="menu-button" aria-label="Abrir menu" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+
+<button onclick="window.location.href='Modo/conselho.html#reflexoes'" id="botao31Dezembro" style="display: none;"> Reflexão desse Ano! </button>
+
+<div class="top-footer-search"> <i class="fas fa-search"></i> <input type="text" id="urlInput" placeholder="Faça sua pesquisa..." aria-label="Faça sua pesquisa"> <button id="goButton">Ir</button> </div>
+
+<div class="top-footer-tools">
+
+<button class="tool-button" id="calendarButton" aria-label="Calendário" title="Calendário"> <i class="fas fa-calendar-alt"></i> </button>
+
+<button class="tool-button" id="notificationButton" aria-label="Notificações" title="Notificações"> <i class="fas fa-bell"></i> <span id="notificationCount">0</span> </button>
+
+<button class="tool-button" id="openWifi" aria-label="Wi-Fi" title="Wi-Fi"> <i class="fas fa-wifi"></i> </button>
+
+<button class="tool-button" id="openClock" aria-label="Relógio" title="Relógio"> <i class="fas fa-clock"></i> </button>
+
+<span id="clock">00:00:00</span>
+
+<button id="perfil-btn" aria-label="Perfil"> <i class="fas fa-user"></i> </button>
+
+</div>
+
+</header>   
         <div id="recomendacoes"></div>
 
-        <div id="saudacao" style="position: absolute; margin-top: 130px; font-size: 20px; font-weight: bold;">
+        <div id="saudacao" style="position: absolute; margin-top: 380px; font-size: 20px; font-weight: bold;">
             <!-- A saudação será inserida aqui com JavaScript -->
         </div>
 
-        <p style="margin-left: 80%; position: absolute; margin-top: 10%;">Nível Atual: <span id="nivel">1</span></p>
-        <p style="margin-left: 80%; position: absolute; margin-top: 12%;">XP Atual: <span id="xp-atual">0</span> / <span id="xp-necessario">100</span></p>
+        <div class="xp-card">
 
-  <div class="progress-container" style="margin-left: 80%; position: absolute; margin-top: 14%;">
-    <div id="progress-bar" class="progress-bar">0%</div>
-  </div>
+<div class="xp-header"> <div class="xp-icon"> <i class="fas fa-bolt"></i> </div>
+
+<div class="xp-heading"> <span class="xp-caption">J2 SYSTEM • PROGRESSO</span> <h3>Nível <span id="nivel">1</span></h3> <p>Continue evoluindo!</p> </div>
+
+<div class="xp-badge"> <strong id="xp-percentual">0%</strong> <span>XP</span> </div> </div>
+
+<div class="xp-divider"></div>
+
+<div class="xp-info"> <span>Experiência atual</span> <span> <span id="xp-atual">0</span> / <span id="xp-necessario">100</span> XP </span> </div>
+
+<div class="progress-container" role="progressbar" aria-label="Progresso de experiência" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="xp-progress-container">
+
+<div id="progress-bar" class="progress-bar">0%</div> </div>
+
+<div class="xp-footer"> <i class="fas fa-trophy"></i> <span>Continue avançando para alcançar o próximo nível!</span> </div>
+
+</div>
 
   <div class="objetivos-panel">
 

@@ -42,7 +42,6 @@ const modos = [
     "finan",
     "gym",
     "work",
-    "foco",
     "music",
     "melody"
 ];
@@ -1532,7 +1531,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const calenButton = document.querySelector('.calenbutton');
+  const calenButton = document.querySelector('#calendarButton');
   const calendar = document.getElementById('calendar');
   const calendarGrid = document.getElementById('calendarGrid');
   const yearDisplay = document.getElementById('year');
@@ -1721,9 +1720,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   calenButton.addEventListener('click', () => {
-    calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
+    calendar.style.display =
+        calendar.style.display === 'none' ? 'block' : 'none';
+
     renderCalendar();
-  });
+});
 
   prevYear.addEventListener('click', () => {
     currentYear--;
@@ -1777,6 +1778,7 @@ function verificarAniversariosHoje() {
 
   verificarAniversariosHoje();
 });
+
 
 const olhoEsquerdo = document.getElementById("olhoEsquerdo");
 const olhoDireito = document.getElementById("olhoDireito");
@@ -1958,7 +1960,6 @@ updateDate2();
 
                 function Trabalho() {
             window.open('#work', '_blank');
-            window.open('#foco', '_blank');
             window.open('https://app.goboox.com.br/inicio', '_blank');
             window.open('https://app.hub.la/dashboard', '_blank');
             window.open('https://toolsgoboox.com/', '_blank');
@@ -2315,25 +2316,6 @@ const importFileInput = document.getElementById('import-file');
 closeBtn.addEventListener('click', function() {
   modal.style.display = 'none';
 });
-
-        // Função para alternar o som da página
-    document.getElementById('muteButton').addEventListener('click', function () {
-        const mediaElements = document.querySelectorAll('audio, video'); // Seleciona todos os elementos de mídia
-        const muteIcon = this;
-
-        mediaElements.forEach(element => {
-            element.muted = !element.muted; // Alterna o estado de mudo
-        });
-
-        // Alterna o ícone entre "volume-up" e "volume-mute"
-        if (mediaElements.length > 0 && mediaElements[0].muted) {
-            muteIcon.classList.remove('fa-volume-up');
-            muteIcon.classList.add('fa-volume-mute');
-        } else {
-            muteIcon.classList.remove('fa-volume-mute');
-            muteIcon.classList.add('fa-volume-up');
-        }
-    });
 
     document.querySelector('.avatar').addEventListener('click', function(event) {
     event.preventDefault();
