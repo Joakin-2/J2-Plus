@@ -1451,7 +1451,7 @@ function atualizarPerfil() {
 
   // Calcular e exibir idade
   const idade = calcularIdade(perfil.anoNascimento);
-  document.getElementById("idade-perfil").textContent = `${idade} anos`;
+  document.getElementById("idade-perfil").textContent = `${idade}`;
 
   // Altura e peso
   alturaPerfil.value = perfil.altura;
@@ -1921,27 +1921,6 @@ function resetarPosicaoOlhos() {
 // Adiciona o evento de clique para alternar entre seguir e parar de seguir o mouse
 container.addEventListener('click', toggleSeguirMouse);
 
-
-const input = document.getElementById("urlInput");
-  const button = document.getElementById("goButton");
-
-  function pesquisar() {
-    const query = input.value.trim();
-    if (query !== "") {
-      window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(query);
-    }
-  }
-
-  // Clique no botão
-  button.addEventListener("click", pesquisar);
-
-  // Pressionar Enter
-  input.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") {
-      pesquisar();
-    }
-  });
-
         function updateDate2() {
     const now = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -1957,22 +1936,7 @@ const input = document.getElementById("urlInput");
 
 // Chama as funções ao carregar a página e a cada segundo
 updateDate2();
-
-                function Trabalho() {
-            window.open('#work', '_blank');
-            window.open('https://app.goboox.com.br/inicio', '_blank');
-            window.open('https://app.hub.la/dashboard', '_blank');
-            window.open('https://toolsgoboox.com/', '_blank');
-        }
-
-        function renovar() {
-    // Abre os links da renovação
-    buttonClick(
-        'https://www.estudantesdabiblia.com.br/cpad-sumario-jovens-2026-4t.htm',
-        // 'https://www.bibliaonline.com.br/acf'
-    );
-}
-        
+ 
     function buttonClick(...urls) {
     urls.forEach(url => {
         if (url) window.open(url, "_blank");
@@ -2024,21 +1988,6 @@ updateDate2();
                     xpElement.style.display = "none";
                 }, 1500);
             }
-
-        function redirecionar(destino) {
-            switch (destino) {
-                case 'edit':
-            window.open('https://flow.google.com/');
-            window.open('https://www.lovart.ai/');
-            window.open('https://viggle.ai/app/home');
-            window.open('https://tunetank.com/');
-            window.open('https://picsart.com/');
-            window.open('https://www.photopea.com/');
-            break;
-                default:
-                    break;
-            }
-        }
 
 const habitXP = {
             "sunday": 230,
@@ -2228,36 +2177,6 @@ window.addEventListener("hashchange", () => {
   }
 });
 
-window.addEventListener("load", () => {
-    const loader = document.getElementById("loader-container");
-    const videoSource = document.getElementById("loader-video-source");
-    const video = videoSource.parentElement;
-    const hash = location.hash.replace("#", "");
-
-    videoSource.src = hash ? "/Script/media/Fundo/load2.mp4" : "/Script/media/Fundo/load.mp4";
-    video.load();
-
-    atualizarTitulo(hash);
-
-    function finalizar() {
-        if (loader) loader.style.display = "none";
-
-        if (hash.startsWith("study-")) {
-            document.getElementById(hash).style.display = "block";
-        } else if (hash) {
-            abrirModal(hash);
-        }
-    }
-
-    // ✅ espera o vídeo terminar
-    video.onended = finalizar;
-
-    // ✅ fallback caso demore muito
-    video.oncanplaythrough = () => {
-        setTimeout(finalizar, 3500);
-    };
-});
-
         document.addEventListener('DOMContentLoaded', function() {
     const backgroundMusic = document.getElementById('backgroundMusic');
     const toggleMusicBtn = document.getElementById('toggleMusicBtn');
@@ -2371,14 +2290,6 @@ document.querySelector('#maximizeButton').addEventListener('click', function() {
         // Remove #chat da URL
         history.replaceState(null, null, window.location.pathname + window.location.search);
     }
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Remover a tela de loading após 5 segundos (5000 milissegundos)
-    setTimeout(function () {
-        document.getElementById("loader-container").style.display = "none";
-    }, 1000);
 });
 
     // Função para abrir o modal

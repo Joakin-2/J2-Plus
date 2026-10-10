@@ -8,47 +8,9 @@
     <link rel="stylesheet" href="Script/js/styles.css"> <!-- CSS externo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-/>
-<script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-  emailjs.init("RikdzuDK9iDvqmHES");
-</script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 </head>
 <body>
-    <div id="loader-container">
-        <div id="loader-background">
-            <video autoplay loop muted>
-                <source id="loader-video-source" type="video/mp4">
-                Seu navegador não suporta o elemento de vídeo.
-            </video>
-        </div>
-    </div>
-    <aside class="menu" id="overlayMenu" aria-hidden="true" style="height: -webkit-fill-available;">
-        <div class="menu-content">
-            <ul>
-                <li><a href="Modo/habitos.html">Hábitos</a></li>
-                <li><a onclick="renovar()">Renovar</a></li>
-                <li><a onclick="Trabalho()">Work</a></li>
-            </ul>
-            <ul>
-                <li><a id="manual-btn" onclick="openModal('modal-manual')">Manual</a></li>
-                <li><a href="Modo/finan.html">Finanças</a></li>
-                <li><a id="streaming-btn">Streamings</a></li>
-            </ul>
-            <ul>
-                <li><a href="Modo/music.html">Music</a></li>
-                <li><a href="Modo/gym.html">JokGym</a></li>
-                <li><a href="Modo/melody.html">Music Place</a></li>
-            </ul>
-        </div>
-    </aside>
-
     <!-- Modal Streaming -->
 <div id="modal-streaming" class="modal">
     <span id="fechar-streaming"
@@ -97,7 +59,6 @@
 
 </div>
 
-</div>
 </div>
 
 <!-- Modal do Background -->
@@ -151,81 +112,12 @@
     </div>
 </div>
 
-<!-- Work -->
-<div id="modal-work" class="modal">
-
-    <div class="modal-content" style="    margin-top: 80px;
-        margin-left: 25%;
-    width: auto;">
-
-        <span id="fechar-work">&times;</span>
-
-        <div class="copy-container">
-
-            <div class="copy-box">
-                <pre id="text1">👀 Siga-nos para ver mais projetos incríveis!
-🚀 Transformando ideias em realidade!
-.
-.
-#3dprinter #3dprint #geek #impressao3d #fyp</pre>
-            </div>
-
-            <div class="copy-box">
-                <pre id="text2">🔥 Impressão 3D que dá vida às ideias!
-🧠 Criatividade sem limites.
-.
-.
-#3dprinter #3dprint #geek #impressao3d #fyp</pre>
-            </div>
-
-            <div class="copy-box">
-                <pre id="text3">👀 Isso não existe em loja!
-🖨️ Criamos peças únicas em impressão 3D.
-.
-.
-#3dprinter #3dprint #geek #impressao3d #fyp</pre>
-            </div>
-
-            <div class="copy-box">
-                <pre id="text4">🚀 Do digital para o mundo real!
-🖨️ Mais um projeto ganhando vida em 3D.
-.
-.
-#3dprinter #3dprint #geek #impressao3d #fyp</pre>
-            </div>
-
-            <div class="copy-box">
-                <pre id="text5">🔥 Pequenos detalhes, grandes projetos!
-🧩 Cada peça feita para ser única.
-.
-.
-#3dprinter #3dprint #geek #impressao3d #fyp</pre>
-            </div>
-
-            <div class="copy-box">
-                <pre id="text6">🤯 Você imaginou? Nós imprimimos!
-🖨️ Criatividade + tecnologia = impressão 3D.
-.
-.
-#3dprinter #3dprint #geek #impressao3d #fyp</pre>
-            </div>
-
-            <button class="botao" onclick="redirecionar('edit')" style="  
-    width: 202%;
-    height: 60px;
-    margin-top: 10px;
-">
-                <i class="fas fa-edit"></i>
-                Edição
-            </button>
-        </div>
-    </div>
-
-</div>
-
 <!-- Modal do Manual -->
 <div id="modal-manual" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="    margin: 0;
+    padding: 0;
+    width: 80%;
+    margin-left: 10%;">
         
         <section class="hero">
             <h1>J2 SYSTEM</h1>
@@ -326,8 +218,8 @@
     </div>
 </div>
 
-  <!-- Tela de perfil -->
-  <div class="perfil-container" id="perfil-container" style="display: none;">
+<!-- Tela de perfil -->
+<div class="perfil-container" id="perfil-container" style="display: none;">
     <div class="perfil-content">
 
         <div class="perfil-topo">
@@ -338,9 +230,10 @@
             <button id="fechar-btn" class="fechar-btn">✖</button>
         </div>
 
-        <div class="perfil-botoes" style="margin-top: -46px; margin-left: -46px;">
+        <div class="perfil-botoes" style="margin-top: -46px;">
             <button id="toggleEffectButton"><i class="fas fa-leaf"></i></button>
             <button id="toggleEffectButton2"><i class="fas fa-star"></i></button>
+            <button id="manual-btn" onclick="openModal('modal-manual')"><i class="fas fa-book"></i></button>
             <button id="rafa-btn" class="hidden"><img src="Script/img/rafa.png" alt="Ícone de perfil"></button>
         </div>
 
@@ -410,19 +303,73 @@
     </div>
 </div>
 
-        
-        <div class="perfil-botoes" style="display: flex; justify-content: center; align-items: center;">
-            <p id="idade-perfil" style="margin-right: 10px;">Idade: 0 anos</p>
-            <p style="margin-right: -20px;">Altura: <input type="number" id="altura-perfil" step="0.01" style="padding: 5px;width: 60px;background: #202020;border: #202020;color: white;font-size: medium;"></p>
-            <p style="margin-right: -50px;">Kg: <input type="number" id="peso-perfil" step="0.1" style="padding: 5px;width: 60px;background: #202020;border: #202020;color: white;font-size: medium;"></p>
+        <!-- DADOS DO PERFIL -->
+<div class="dados-perfil-grid">
+
+    <!-- IDADE -->
+    <div class="dado-perfil-card idade">
+        <div class="dado-perfil-icone">
+            <i class="fas fa-calendar-alt"></i>
         </div>
+
+        <div class="dado-perfil-info">
+            <span class="dado-perfil-nome">Idade</span>
+            <strong id="idade-perfil">0</strong>
+            <small>anos</small>
+        </div>
+    </div>
+
+    <!-- ALTURA -->
+    <div class="dado-perfil-card altura">
+        <div class="dado-perfil-icone">
+            <i class="fas fa-ruler-vertical"></i>
+        </div>
+
+        <div class="dado-perfil-info">
+            <span class="dado-perfil-nome">Altura</span>
+            <input
+                type="number"
+                id="altura-perfil"
+                step="0.01"
+                placeholder="1.75"
+            >
+            <small>metros</small>
+        </div>
+    </div>
+
+    <!-- PESO -->
+    <div class="dado-perfil-card peso">
+        <div class="dado-perfil-icone">
+            <i class="fas fa-weight"></i>
+        </div>
+
+        <div class="dado-perfil-info">
+            <span class="dado-perfil-nome">Peso</span>
+            <input
+                type="number"
+                id="peso-perfil"
+                step="0.1"
+                placeholder="70"
+            >
+            <small>kg</small>
+        </div>
+    </div>
+
+</div>
 
         <p id="mensagem-perfil" style="margin-top: 1px;color: rgb(130, 93, 255);font-size: 12px;width: 80%;display: inline-block;" data-darkreader-inline-color=""></p>
 
         <div class="perfil-acoes">
-            <button id="importar-btn">Importar</button>
-            <button id="exportar-btn">Salvar</button>
-        </div>
+    <button id="importar-btn">
+        <i class="fas fa-file-import"></i>
+        <span>Importar</span>
+    </button>
+
+    <button id="exportar-btn">
+        <i class="fas fa-save"></i>
+        <span>Salvar</span>
+    </button>
+</div>
 
     </div>
 </div>
@@ -476,13 +423,45 @@
     <div class="container" id="container">
         <!-- Barra superior da IA --> <header class="top-footer">
 
-<button class="menu-button" aria-label="Abrir menu" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-
 <button onclick="window.location.href='Modo/conselho.html#reflexoes'" id="botao31Dezembro" style="display: none;"> Reflexão desse Ano! </button>
 
-<div class="top-footer-search"> <i class="fas fa-search"></i> <input type="text" id="urlInput" placeholder="Faça sua pesquisa..." aria-label="Faça sua pesquisa"> <button id="goButton">Ir</button> </div>
-
 <div class="top-footer-tools">
+
+    <!-- Treino -->
+<a class="tool-button" href="Modo/gym.html"
+        aria-label="Treino" title="Treino">
+    <i class="fas fa-dumbbell"></i>
+</a>
+
+<!-- Hábitos -->
+<a class="tool-button" href="Modo/habitos.html"
+        aria-label="Hábitos" title="Hábitos">
+    <i class="fas fa-calendar-check"></i>
+</a>
+
+<!-- Música -->
+<a class="tool-button" href="Modo/music.html"
+        aria-label="Música" title="Música">
+    <i class="fas fa-music"></i>
+</a>
+
+<!-- Instrumentos -->
+<a class="tool-button" href="Modo/melody.html"
+        aria-label="Instrumentos" title="Instrumentos">
+    <i class="fas fa-guitar"></i>
+</a>
+
+<!-- Streaming -->
+<button class="tool-button" id="streaming-btn"
+        aria-label="Streaming" title="Streaming">
+    <i class="fas fa-play-circle"></i>
+</button>
+
+<!-- Trabalho -->
+<a class="tool-button" href="Modo/work.html"
+        aria-label="Trabalho" title="Trabalho" style="margin-right: 620px;">
+    <i class="fas fa-briefcase"></i>
+</a>
 
 <button class="tool-button" id="calendarButton" aria-label="Calendário" title="Calendário"> <i class="fas fa-calendar-alt"></i> </button>
 
@@ -663,7 +642,13 @@
         </div>
     </div>
 </div>
-    
+    <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("RikdzuDK9iDvqmHES");
+</script>
     <!-- Inclui o script externo -->
     <script src="/Script/js/perfil-data.js"></script>
     <script src="/Script/js/nivel.js"></script>
