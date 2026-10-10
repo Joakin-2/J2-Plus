@@ -34,7 +34,7 @@ background: rgba(140, 82, 255, 0.09); border: 1px solid rgba(140, 82, 255, 0.16)
 
 #perfil-btn { width: 40px; padding: 0; }
 
-/* Ícones e ferramentas */ .top-footer-tools { display: flex; align-items: center; gap: 7px; }
+/* Ícones e ferramentas */ .top-footer-tools { display: flex; align-items: center; gap: 7px; margin-left: auto;}
 
 .tool-button {
     text-decoration: none;
@@ -85,10 +85,6 @@ font-size: 9px; line-height: 1; }
 .menu-button { padding: 0 10px; }
 
 .menu-button span { display: none; }
-
-.top-footer-search { gap: 6px; padding-left: 9px; }
-
-.top-footer-search input { font-size: 12px; }
 
 .top-footer-tools { gap: 1px; }
 
