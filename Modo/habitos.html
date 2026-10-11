@@ -3527,11 +3527,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     iniciarRelogio();
 
-const anotacoesSalvas = localStorage.getItem('anotacoes-' + perfilAtivo);
-if (anotacoesSalvas) {
-    anotacoesTextarea.value = anotacoesSalvas;
-}
-
     // Carregar hábitos salvos do localStorage ao carregar a página
     const habitosSalvos = JSON.parse(localStorage.getItem('habitos')) || [];
     habitosSalvos.forEach(habito => {
