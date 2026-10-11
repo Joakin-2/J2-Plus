@@ -15,6 +15,538 @@
     color: #fff;
 }
 
+.about-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   MUSIC PLACE — PREMIUM DARK / YELLOW
+   ======================================== */
+
+:root {
+    --mp-bg: #0b0b0b;
+    --mp-surface: #151515;
+    --mp-surface-2: #1d1d1d;
+    --mp-yellow: #ffd600;
+    --mp-yellow-hover: #ffe34d;
+    --mp-text: #f5f5f5;
+    --mp-muted: #999999;
+    --mp-border: #2d2d2d;
+    --mp-radius: 18px;
+}
+
+body {
+    margin: 0;
+    background: var(--mp-bg);
+    color: var(--mp-text);
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+/* HEADER PRINCIPAL */
+
+body > header,
+main > header {
+    padding: 26px 24px;
+    background: #101010;
+    border-bottom: 1px solid var(--mp-border);
+}
+
+body > header h1,
+main > header h1 {
+    max-width: 1400px;
+    margin: 0 auto;
+    color: var(--mp-text);
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 850;
+    letter-spacing: -1px;
+}
+
+body > header h1::first-letter,
+main > header h1::first-letter {
+    color: var(--mp-yellow);
+}
+
+/* CONTEÚDO */
+
+main {
+    margin: 0 auto;
+    padding: 28px;
+}
+
+
+#report-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+#mensagem-xp {
+    grid-column: 1 / -1;
+}
+
+/* CARTÕES */
+
+#calendar-section,
+#about-section {
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 25px;
+    background: linear-gradient(145deg, #191919, #121212);
+    border: 1px solid var(--mp-border);
+    border-radius: var(--mp-radius);
+    box-shadow: 0 12px 35px rgb(0 0 0 / 15%);
+}
+
+#calendar-section h2,
+#about-section h2 {
+    margin: 0 0 16px;
+    color: var(--mp-text);
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+#calendar,
+#about-section p {
+    color: var(--mp-muted);
+    line-height: 1.7;
+}
+
+#about-section {
+    width: 100% !important;
+    margin: 0;
+}
+
+#about-section p {
+    margin: 0;
+}
+
+/* MENSAGEM DE XP */
+
+#mensagem-xp:not(:empty) {
+    padding: 16px 20px;
+    color: var(--mp-yellow);
+    background: #1d1a0b;
+    border: 1px solid #51460c;
+    border-radius: 14px;
+}
+
+/* GALERIA */
+
+.modal-content {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    margin: 28px 0;
+    padding: 28px;
+    overflow: hidden;
+    color: var(--mp-text);
+    background: var(--mp-surface);
+    border: 1px solid var(--mp-border);
+    border-radius: 22px;
+    box-shadow: 0 15px 45px rgb(0 0 0 / 20%);
+}
+
+/* CABEÇALHO DA GALERIA */
+.header-title h1 {
+    margin: 0;
+    color: var(--mp-text);
+    font-size: clamp(25px, 3vw, 34px);
+    font-weight: 850;
+    letter-spacing: -1px;
+}
+
+.header-title h1 i {
+    margin-right: 10px;
+    color: var(--mp-yellow);
+}
+
+/* FILTROS */
+
+.filter-buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 190px;
+    margin-right: auto;
+}
+
+.filter-container label {
+    color: var(--mp-muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+#instrument-filter {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 14px;
+    color: var(--mp-text);
+    background: #202020;
+    border: 1px solid #383838;
+    border-radius: 11px;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+}
+
+#instrument-filter:focus {
+    border-color: var(--mp-yellow);
+}
+
+#instrument-filter option {
+    color: var(--mp-text);
+    background: #191919;
+}
+
+.filter-button {
+    min-height: 42px;
+    padding: 0 20px;
+    color: #dddddd;
+    background: #222222;
+    border: 1px solid #373737;
+    border-radius: 11px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.filter-button:hover,
+.filter-button.active,
+.filter-button[aria-pressed="true"] {
+    color: #111111;
+    background: var(--mp-yellow);
+    border-color: var(--mp-yellow);
+}
+
+/* BOTÕES EXTERNOS */
+
+.pinterest-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 42px;
+    margin: 0 8px 0 0;
+    padding: 0 17px;
+    color: #111111;
+    background: var(--mp-yellow);
+    border: 1px solid var(--mp-yellow);
+    border-radius: 11px;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.pinterest-button:hover {
+    background: var(--mp-yellow-hover);
+    transform: translateY(-2px);
+}
+
+/* TIMER E METRÔNOMO */
+
+.tools-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.tool-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    min-width: 0;
+    padding: 26px 18px;
+    background: #101010;
+    border: 1px solid #333333;
+    border-radius: 16px;
+}
+
+#timer,
+#metronome {
+    color: var(--mp-yellow);
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 850;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+}
+
+.tool-box button {
+    min-width: 120px;
+    padding: 12px 22px;
+    color: #111111;
+    background: var(--mp-yellow);
+    border: none;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.tool-box button:hover {
+    background: var(--mp-yellow-hover);
+    transform: translateY(-2px);
+}
+
+/* BIBLIOTECA */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 16px;
+    align-items: stretch;
+    margin-top: 24px;
+}
+
+/* CARTÕES DE PDF */
+
+.pdf-icon {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    min-height: 86px;
+    padding: 17px;
+    color: var(--mp-text);
+    background: #1b1b1b;
+    border: 1px solid #303030;
+    border-radius: 14px;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.pdf-icon i {
+    flex-shrink: 0;
+    color: var(--mp-yellow);
+    font-size: 27px;
+}
+
+.pdf-icon span {
+    margin-left: 0 !important;
+    overflow-wrap: anywhere;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.pdf-icon:hover {
+    transform: translateY(-3px);
+    background: #252525;
+    border-color: var(--mp-yellow);
+}
+
+/* CARTÕES DE IMAGEM */
+
+.gallery .image {
+    display: block;
+    width: 100%;
+    height: 250px;
+    min-width: 0;
+    object-fit: contain;
+    padding: 8px;
+    background: #1a1a1a;
+    border: 1px solid #303030;
+    border-radius: 14px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.gallery .image:hover {
+    transform: translateY(-4px);
+    background: #242424;
+    border-color: var(--mp-yellow);
+}
+
+/* MODAIS DE VISUALIZAÇÃO */
+
+.modal {
+    color: var(--mp-text);
+    background: rgb(0 0 0 / 94%);
+    backdrop-filter: blur(10px);
+}
+
+.modal .close,
+.modal .prev,
+.modal .next {
+    color: var(--mp-yellow);
+    transition: color 0.2s ease;
+}
+
+.modal .close:hover,
+.modal .prev:hover,
+.modal .next:hover {
+    color: #ffffff;
+}
+
+.modal .play-button,
+.modal .zoom-controls button {
+    color: #111111;
+    background: var(--mp-yellow);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.modal .play-button:hover,
+.modal .zoom-controls button:hover {
+    background: var(--mp-yellow-hover);
+    transform: scale(1.05);
+}
+
+/* SCROLLBAR */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #51460c #101010;
+}
+
+*::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #101010;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #51460c;
+    border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: var(--mp-yellow);
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 850px) {
+    main {
+        padding: 20px;
+    }
+
+    #report-section {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+    }
+
+    .gallery .image {
+        height: 220px;
+    }
+}
+
+@media (max-width: 520px) {
+    main {
+        padding: 14px;
+    }
+
+    body > header,
+    main > header {
+        padding: 22px 16px;
+    }
+
+    #calendar-section,
+    #about-section,
+    .modal-content {
+        padding: 17px;
+        border-radius: 15px;
+    }
+
+    .filter-buttons {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .filter-container {
+        grid-column: 1 / -1;
+        min-width: 0;
+        margin: 0 0 4px;
+    }
+
+    .filter-button {
+        padding: 0 8px;
+        font-size: 12px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .pdf-icon {
+        min-height: 82px;
+        padding: 12px 10px;
+        gap: 9px;
+    }
+
+    .pdf-icon i {
+        font-size: 22px;
+    }
+
+    .pdf-icon span {
+        font-size: 12px;
+    }
+
+    .gallery .image {
+        height: 190px;
+        border-radius: 11px;
+    }
+
+    .tools-container {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-header {
+        gap: 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
+
 header {
     background-color: #282828;
     color: #ffd755;
@@ -70,11 +602,6 @@ main {
     font-size: 20px;
     color: #fff;
     cursor: pointer;
-}
-
-#top-sections {
-    display: flex;
-    justify-content: space-between;
 }
 
 #report-section, #instrument-buttons {
@@ -628,184 +1155,32 @@ textarea {
     </style>
 </head>
 <body>
-
-    <div id="loader-container">
-        <div id="loader-background">
-            <video autoplay loop muted>
-                <source src="/Script/media/Fundo/melody.mp4" type="video/mp4">
-                Seu navegador não suporta o elemento de vídeo.
-            </video>
-        </div>
-    </div>
-
-    <header>
-        <h1>Bem-vindo ao Music Place</h1>
-    </header>
-
     <main>
         <div id="top-sections">
             <section id="report-section">
-                <h2>Relatório</h2>
-                <div id="notes-section">
-                    <div class="button-group"> 
-                        <button class="btn-export" onclick="exportNotes()" style="margin-left: 15px; display: none;"><i class="fas fa-file-export"></i></button>
-                        <button class="btn-import" onclick="importNotes()" style="display: none;"><i class="fas fa-file-import"></i></button>
-                    </div>
-                    <textarea id="notes1" placeholder="Faça suas anotações aqui..."></textarea>
-                </div>
                 <div id="mensagem-xp"></div>
                 <div id="calendar-section">
                     <h2 style="margin-top: -5px;">Calendário</h2>
                     <div id="calendar"></div>
                 </div>
-                <section id="about-section" style="width: 98%;">
-                    <h2>Sobre</h2>
-                    <p>Bem-vindo ao Music Place! Uma área feita especialmente para aprender e ensaiar com o Instrumento da sua escolha.</p>
-                </section>
+                <section id="about-section" class="about-section">
+    <h2>Sobre o Music Place</h2>
+    <p>
+        Bem-vindo ao <strong>Music Place</strong>! 🎵
+        Um espaço dedicado a quem ama música e deseja aprender,
+        praticar e aperfeiçoar suas habilidades no instrumento
+        musical de sua preferência.
+    </p>
+</section>
             </section>
 
-            <section id="instrument-buttons">
-                <h2>O que vamos Tocar hoje?</h2>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
-    <button id="piano-button" class="instrument-button" onclick="openModal0('piano')">
-        <i class="fa-solid fa-keyboard" style="margin-right: 10px; font-size: 20px;"></i> Teclado
-    </button>
-
-    <button id="saxophone-button" class="instrument-button" onclick="openModal0('saxophone')">
-        <i class="fa-solid fa-music" style="margin-right: 10px;"></i> Saxofone
-    </button>
-
-    <button id="violao-button" class="instrument-button" onclick="openModal0('violao')">
-        <i class="fa-solid fa-guitar" style="margin-right: 10px;"></i> Violão
-    </button>
-
-    <button id="clarinet-button" class="instrument-button" onclick="openModal0('clarinet')">
-        <i class="fa-solid fa-music" style="margin-right: 10px;"></i> Clarinete
-    </button>
-
-    <button id="bass-button" class="instrument-button" onclick="openModal0('bass')">
-        <i class="fa-solid fa-guitar" style="margin-right: 10px;"></i> Baixo
-    </button>
-
-    <button id="voz-button" class="instrument-button" onclick="openModal0('voz')">
-        <i class="fa-solid fa-microphone" style="margin-right: 10px;"></i> Voz
-    </button>
-</div>
-            <h2>Limpeza de Instrumentos</h2>
-            <button id="clean-instruments" class="clean-instruments" onclick="openModal0('cleaning')">Como Limpar</button>
-            </section>
-        </div>
-
-        <!-- Modal Teclado -->
-    <div id="pianoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('piano')">&times;</span>
-            <h2>Área do Teclado</h2>
-            <div class="container">
-                <button class="botao" onclick="redirecionar('Teclado')">
-                    <i class="fas fa-keyboard" style="margin-right: 5px;"></i> Teclado
-                </button>
-                <button class="botao" onclick="location.hash='partituras'">
-                    <i class="fas fa-music" style="margin-right: 5px;"></i> Partituras
-                </button>
-            </div>            
-        </div>
-    </div>
-
-        <!-- Modal Saxofone -->
-    <div id="saxophoneModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('saxophone')">&times;</span>
-            <h2>Área do Saxofone</h2>
-            <div class="container">
-                <button class="botao" onclick="redirecionar('Lições-Sax')"><i class="fas fa-file" style="margin-right: 5px;"></i> Lições</button>
-                <button class="botao" onclick="location.hash='partituras'"><i class="fas fa-music" style="margin-right: 5px;"></i> Partituras</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Clarinete -->
-    <div id="clarinetModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('clarinet')">&times;</span>
-            <h2>Área do Clarinete</h2>
-            <div class="container">
-                <button class="botao" onclick="redirecionar('Lições-Cla')"><i class="fas fa-file" style="margin-right: 5px;"></i> Lições</button>
-                <button class="botao" onclick="location.hash='partituras'"><i class="fas fa-music" style="margin-right: 5px;"></i> Partituras</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Violão -->
-    <div id="violaoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('violao')">&times;</span>
-            <h2>Área do Violão</h2>
-            <div class="container">
-                <button class="botao" onclick="redirecionar('Lições-Vio')"><i class="fas fa-file" style="margin-right: 5px;"></i> Lições</button>
-                <button class="botao" onclick="location.hash='partituras'"><i class="fas fa-music" style="margin-right: 5px;"></i> Partituras</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Baixo -->
-    <div id="bassModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('bass')">&times;</span>
-            <h2>Área do Baixo</h2>
-            <div class="container">
-                <button class="botao" onclick="redirecionar('Lições')"><i class="fas fa-file" style="margin-right: 5px;"></i> Lições</button>
-                <button class="botao" onclick="location.hash='partituras'"><i class="fas fa-music" style="margin-right: 5px;"></i> Partituras</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Voz -->
-    <div id="vozModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('voz')">&times;</span>
-            <h2>Área de Voz</h2>
-            <div id="button-container">
-                <!-- Botões com links -->
-                 <button onclick="window.location.href='play.html'">Voice Play</button>
-                <button onclick="window.location.href='https://www.youtube.com/watch?v=jCk_ZLejOxY&list=WL&index=11&t=315s&ab_channel=CantarBem'">Cantar Bem</button>
-                <button onclick="window.location.href='https://youtu.be/yXw7PrBb8ok?si=VMy0Trc8n7yRqXf6'">3 Exercícios</button>
-                <button onclick="window.location.href='https://youtu.be/gsMq3eBaFi4?si=S2bxOEOS45crlctp'">Voz bonita</button>
-                <button onclick="window.location.href='https://youtu.be/CHjsg8ZJ9C0?si=oK_lNZEBmh_okbE0'">Treino Vocal</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Limpeza de Instrumentos -->
-    <div id="cleaningModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('cleaning')">&times;</span>
-            <h2>Área de Limpeza</h2>
-            <section id="instrument-buttons2">
             
-                <button id="piano-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/HNrAskBRvG8?si=4mE8W0nguouubmpH'">Teclado</button>
-                
-                <button id="saxophone-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/INPBH8sbtRo?si=aSaVknzlFf_7jT0u'">Saxofone</button>
-                
-                <button id="clarinet-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/Ap3b3czkYXU?si=IHZFTChJy67Vo5hB'">Clarinete</button>
-                
-                <button id="bass-button" class="instrument-button2" onclick="window.location.href='https://youtu.be/eVCCizvslmo?si=oHfzGeLLrGsdP18n'">Baixo</button>
-                                  
-            </section>     
-        </div>
-    </div>
-    </main>
-
-    <div id="modalPartitura" class="modal">
     <div class="modal-content" style="height: 100%;">
-        <span class="close" onclick="fecharPartituras()">&times;</span>
-
         <header class="gallery-header">
 
         <div class="filter-buttons">
 
         <div class="filter-container">
-            <label for="instrument-filter">Filtrar Instrumento:</label>
             <select id="instrument-filter" onchange="filtrarInstrumentos(this.value)">
                 <option value="todos">Todos</option>
                 <option value="sax-alto">🎷 Sax Alto</option>
@@ -821,10 +1196,6 @@ textarea {
         <button class="filter-button" onclick="showPDFs()">PDFs</button>
         <button class="filter-button" onclick="showImages()">Imagens</button>
 
-    </div>
-
-    <div class="header-title">
-        <h1><i class="fas fa-music"></i> Galeria de Imagens</h1>
     </div>
 
     <div>
@@ -1039,28 +1410,12 @@ textarea {
     </div>
 
     </div>
-</div>
+    </main>
     
     <script src="/Script/js/perfil-data.js"></script>
     <script>
-        function verificarHash() {
-
-    const hash = window.location.hash;
-
-    if (hash === "#partituras") {
-        abrirPartituras();
-    } else {
-        document.getElementById("modalPartitura").style.display = "none";
-    }
-
-}
-
-window.addEventListener("load", verificarHash);
-window.addEventListener("hashchange", verificarHash);
-
         document.addEventListener("DOMContentLoaded", function () {
     createCalendar();
-    setTimeout(() => document.getElementById("loader-container").style.display = "none", 1000);
     restoreMarkedDays();
 });
 
@@ -1236,20 +1591,6 @@ window.onclick = function(event) {
 
 const notesTextarea2 = document.getElementById("notes1");
     const storageKey = "savedNotes2"; // Chave única para armazenar o conteúdo
-
-    // Carrega o texto salvo no localStorage ao abrir a página
-    window.onload = () => {
-        const savedNotes2 = localStorage.getItem(storageKey);
-        if (savedNotes2) {
-            notesTextarea2.value = savedNotes2; // Preenche o textarea com o conteúdo salvo
-        }
-    };
-
-    // Salva o conteúdo do textarea no localStorage automaticamente
-    notesTextarea2.addEventListener("input", () => {
-        localStorage.setItem(storageKey, notesTextarea2.value);
-    });
-
     // Função para exportar o conteúdo como arquivo .txt
     function exportNotes() {
         const blob = new Blob([notesTextarea2.value], { type: "text/plain" });
@@ -1284,48 +1625,6 @@ const notesTextarea2 = document.getElementById("notes1");
         document.body.removeChild(fileInput); // Remove o input após o uso
     }
 
-function redirecionar(destino) {
-    switch (destino) {
-        case 'Lições':
-                window.open('https://www.youtube.com/watch?v=Sz6rLemlvxc');
-                window.open('https://youtu.be/arSPEDXQG-I?si=AbqnBjoEPqj4D3o9');
-                window.open('https://promus.musica.ufrj.br/wp-content/uploads/2022/07/Omar-Pacheco-prod.-pedagogico-cadernobrasileiroparacontrabaixo.pdf');
-                window.open('https://www.google.com.br/search?q=can+i+kick+it+bass&sca_esv=70821a11ccbed8f3&authuser=4&sxsrf=ACQVn0_s3qvTQTq84WxFpqq9Os4Y6LsD4A%3A1711309701419&source=hp&ei=hYMAZsveFs225OUPyJmIgAs&iflsig=ANes7DEAAAAAZgCRlYoDFsLXkKPhTQcZlyA_SbvZXw6Q&udm=&ved=0ahUKEwiLtee21Y2FAxVNG7kGHcgMArAQ4dUDCBU&uact=5&oq=can+i+kick+it+bass&gs_lp=Egdnd3Mtd2l6IhJjYW4gaSBraWNrIGl0IGJhc3MyBxAAGIAEGBMyBxAAGIAEGBMyCBAAGBYYHhgTMggQABgWGB4YEzIIEAAYFhgeGBMyCBAAGBYYHhgTMgoQABgWGB4YDxgTMggQABgWGB4YE0izwQFQAFifwAFwBngAkAEAmAGLAqABiBmqAQYwLjEyLje4AQPIAQD4AQGYAhmgApIbwgIIEC4YgAQYsQPCAgsQABiABBixAxiDAcICFBAuGIAEGIoFGLEDGIMBGMcBGNEDwgIFEAAYgATCAg4QLhiABBixAxjHARjRA8ICCxAuGIAEGLEDGIMBwgIIEAAYgAQYsQPCAhEQLhiABBixAxiDARjHARjRA8ICDhAuGMcBGLEDGNEDGIAEwgILEC4YgwEYsQMYgATCAg4QLhiABBiKBRixAxiDAcICBRAuGIAEwgIIEC4YgAQY1ALCAg4QABiABBiKBRixAxiDAcICDhAuGIAEGLEDGIMBGNQCwgIHEAAYgAQYCsICBhAAGBYYHsICBxAuGBMYgATCAgcQLhiABBgTmAMAkgcGNi4xMi43oAfSvgE&sclient=gws-wiz');
-                break;
-        case 'Lições-Vio':
-                window.open('https://www.youtube.com/watch?v=RpIAIHUEGBM');
-                window.open('https://www.youtube.com/watch?v=2TD3u30oQtM');
-                window.open('https://www.viamusical.com.br/cursos/motivacional/como-aprender-a-tocar-violao:-10-dicas-para-acelerar-seu-aprendizado');
-                break;
-        case 'Lições-Cla':
-                window.open('/Script/img/Partituras/clarinete.pdf');
-                break;
-        case 'Lições-Sax':
-                window.open('/Script/img/Partituras/sax-alto.pdf');
-                window.open('/Script/img/Partituras/sax-tenor.pdf');
-                window.open('https://www.youtube.com/watch?v=8pvaCHGdBgk&list=WL&index=6&ab_channel=LanderSax');
-                window.open('https://www.youtube.com/watch?v=mCm2xcsoVFE&list=WL&index=7&ab_channel=LanderSax');
-                break;
-        case 'Teclado':
-            window.open('https://www.pianoeletronico.com.br/');
-            break;
-            break;
-        case 'Partituras':
-            abrirGaleria();
-            break;
-        default:
-            break;
-    }
-}
-
-function abrirGaleria() {
-    document.getElementById("modalPartitura").style.display = "block";
-}
-
-function closeGaleria() {
-    document.getElementById("modalPartitura").style.display = "none";
-}
-
 // Recupera o perfil ativo do localStorage
 perfilAtivo = localStorage.getItem('perfilAtivo') || 'Main';
 
@@ -1343,17 +1642,6 @@ function loadNotes() {
         document.getElementById('notes1').value = savedNotes;
     }
 }
-
-// Adicionar evento para salvar automaticamente ao digitar
-document.getElementById('notes1').addEventListener('input', function () {
-    saveNotes();
-});
-
-// Carregar as anotações ao iniciar a página
-document.addEventListener('DOMContentLoaded', function () {
-    loadNotes();
-});
-
 
         function toggleTools(){
     const tools = document.getElementById("toolsContainer");

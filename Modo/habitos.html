@@ -20,6 +20,545 @@ body {
     margin: 0;
 }
 
+/* ===== TEMA GERAL ===== */
+
+:root {
+    --fundo: #0b0d12;
+    --painel: #121720;
+    --cartao: #171e29;
+    --borda: #2a3547;
+    --texto: #e8eef8;
+    --texto-suave: #91a0b7;
+    --azul: #60a5fa;
+    --azul-forte: #3478f6;
+    --roxo: #8b5cf6;
+    --verde: #34d399;
+    --vermelho: #fb7185;
+}
+
+body {
+    margin: 0;
+    padding: 24px;
+    background:
+        radial-gradient(
+            ellipse at top,
+            #172033 0%,
+            var(--fundo) 55%
+        );
+    color: var(--texto);
+    font-family: "Inter", "Segoe UI", sans-serif;
+    line-height: 1.5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* ===== CABEÇALHO ===== */
+
+.header-container {
+    width: min(100%, 1150px);
+    margin: 0 auto 28px;
+    display: grid;
+    grid-template-columns: 64px 1fr 150px;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-comer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px !important;
+    height: 60px;
+    margin: 0 !important;
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    background: var(--cartao);
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.btn-comer:hover {
+    background: #25334a;
+    border-color: var(--azul);
+    transform: translateY(-3px);
+}
+
+.header-titulo {
+    text-align: center;
+}
+
+.subtitulo {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--azul);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+#tituloHabitos {
+    margin: 0;
+    font-size: clamp(25px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.relogio-container {
+    text-align: right;
+}
+
+.relogio-label {
+    color: var(--texto-suave);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+#relogio {
+    margin: 4px 0 0;
+    color: var(--azul);
+    font-size: 24px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ===== ANOTAÇÕES ===== */
+
+.caixa-anotacao {
+    width: min(100%, 1150px);
+    margin: 0 auto 28px !important;
+    padding: 22px;
+    border: 1px solid var(--borda);
+    border-radius: 18px;
+    background: linear-gradient(145deg, #171e29, #11161f);
+    box-shadow: 0 12px 35px #00000020;
+}
+
+.anotacao-header,
+.anotacao-header > div {
+    display: flex;
+    align-items: center;
+}
+
+.anotacao-header {
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.anotacao-header > div {
+    gap: 10px;
+}
+
+.anotacao-icone {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+    background: #1d3555;
+    color: #93c5fd;
+    font-size: 23px;
+}
+
+.anotacao-header h2 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.anotacao-dica {
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+#anotacoes {
+    display: block;
+    width: 100%;
+    min-height: 125px;
+    padding: 16px;
+    resize: vertical;
+    border: 1px solid #303d50;
+    border-radius: 12px;
+    outline: none;
+    background: #0c1119;
+    color: var(--texto);
+    font: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#anotacoes::placeholder {
+    color: #69778d;
+}
+
+#anotacoes:focus {
+    border-color: var(--azul-forte);
+    box-shadow: 0 0 0 3px #3478f620;
+}
+
+/* ===== CARTÕES DE HÁBITOS ===== */
+
+.section-container {
+    width: min(100%, 1150px);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+}
+
+#mensagem-xp,
+#xp-gain {
+    grid-column: 1 / -1;
+}
+
+.caixa {
+    min-width: 0;
+    padding: 20px;
+    overflow: hidden;
+    border: 1px solid var(--borda);
+    border-radius: 17px;
+    background: linear-gradient(160deg, #1a2230, #121720);
+    box-shadow: 0 8px 24px #00000018;
+    transition: transform 0.25s, border-color 0.25s,
+        box-shadow 0.25s;
+}
+
+.caixa:hover {
+    transform: translateY(-4px);
+    border-color: #506989;
+    box-shadow: 0 14px 32px #00000030;
+}
+
+.caixa-manha {
+    border-top: 3px solid #fbbf24;
+}
+
+.caixa-tarde {
+    border-top: 3px solid #60a5fa;
+}
+
+.caixa-noite {
+    border-top: 3px solid #a78bfa;
+}
+
+/* Títulos dos períodos */
+
+.titulo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 16px;
+    padding: 0 0 14px;
+    border-bottom: 1px solid #354052;
+    color: var(--texto);
+    font-size: 19px;
+    font-weight: 750;
+    cursor: pointer;
+}
+
+.periodo-icone {
+    font-size: 20px;
+}
+
+.periodo-horario {
+    margin-left: auto;
+    color: var(--texto-suave);
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.titulo-seta {
+    color: var(--texto-suave);
+    font-size: 15px;
+    transition: transform 0.2s;
+}
+
+.titulo:hover .titulo-seta {
+    color: var(--azul);
+    transform: translate(2px, -2px);
+}
+
+/* Listas de hábitos */
+
+.caixa ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.caixa li {
+    margin: 0 0 7px;
+    padding: 9px 11px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    color: #dce5f3;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.caixa li:hover {
+    border-color: #34445b;
+    background: #202b3b;
+}
+
+/*
+   Os hábitos podem conter checkbox, label ou outros
+   elementos criados pelo seu JavaScript.
+*/
+
+.caixa li:has(input:checked) {
+    border-color: #23684f;
+    background: #123328;
+    color: #86efac;
+}
+
+.caixa li input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    margin-right: 9px;
+    accent-color: var(--verde);
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.caixa li label {
+    cursor: pointer;
+}
+
+/* ===== MENSAGENS E XP ===== */
+
+#mensagem-xp {
+    color: var(--verde);
+    font-weight: 700;
+}
+
+.xp-gain {
+    color: #fbbf24;
+    font-size: 24px;
+    font-weight: 800;
+    animation: subirXP 0.7s ease;
+}
+
+@keyframes subirXP {
+    0% {
+        opacity: 0;
+        transform: translateY(12px) scale(0.9);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ===== BOTÕES ===== */
+
+.button-container {
+    width: min(100%, 1150px);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.btn-acao {
+    flex: 1 1 200px;
+    min-height: 52px;
+    padding: 13px 18px;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    background: #151c27;
+    color: var(--texto);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s,
+        border-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-acao:hover {
+    transform: translateY(-2px);
+    border-color: #6688b5;
+    box-shadow: 0 8px 20px #00000025;
+}
+
+.btn-acao:active {
+    transform: scale(0.98);
+}
+
+.btn-recarregar {
+    background: linear-gradient(135deg, #174a85, #2563eb);
+    border-color: transparent;
+}
+
+.btn-adicionar {
+    background: linear-gradient(135deg, #087f70, #059669);
+    border-color: transparent;
+}
+
+.btn-desmarcar {
+    background: #242333;
+    border-color: #51477a;
+}
+
+.btn-excluir {
+    background: #301b25;
+    border-color: #713044;
+    color: #fda4af;
+}
+
+.btn-excluir:hover {
+    background: #48202d;
+    border-color: var(--vermelho);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+@media (max-width: 850px) {
+    body {
+        padding: 18px;
+    }
+
+    .section-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .caixa-noite {
+        grid-column: 1 / -1;
+    }
+
+    .header-container {
+        grid-template-columns: 52px 1fr auto;
+        gap: 12px;
+    }
+
+    .btn-comer {
+        width: 50px !important;
+        height: 50px;
+    }
+
+    #relogio {
+        font-size: 18px;
+    }
+
+    .relogio-label {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: 12px;
+    }
+
+    .header-container {
+        grid-template-columns: 46px 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .btn-comer {
+        width: 44px !important;
+        height: 44px;
+        border-radius: 12px;
+        font-size: 21px;
+    }
+
+    .header-titulo {
+        text-align: left;
+    }
+
+    .subtitulo {
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+
+    #tituloHabitos {
+        font-size: 23px;
+        letter-spacing: -0.6px;
+    }
+
+    .relogio-container {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 12px;
+        border: 1px solid var(--borda);
+        border-radius: 10px;
+        background: var(--painel);
+        text-align: left;
+    }
+
+    .caixa-anotacao {
+        padding: 15px;
+        margin-bottom: 18px !important;
+    }
+
+    .anotacao-header {
+        align-items: flex-start;
+    }
+
+    .anotacao-header h2 {
+        font-size: 15px;
+    }
+
+    .anotacao-dica {
+        display: none;
+    }
+
+    #anotacoes {
+        min-height: 110px;
+        font-size: 14px;
+    }
+
+    .section-container {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .caixa-noite {
+        grid-column: auto;
+    }
+
+    .caixa {
+        padding: 16px;
+    }
+
+    .titulo {
+        font-size: 17px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-acao {
+        flex: auto;
+        width: 100%;
+    }
+}
+
+/* Respeita quem prefere menos animações */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -362,7 +901,6 @@ ul li {
 
 .section-container {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -371,7 +909,7 @@ ul li {
     color: white;
     border: 1px solid #555;
     padding: 20px;
-    width: 254px;
+    width: 361px;
     margin-bottom: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -1087,7 +1625,6 @@ ul li {
 }
 
 #relogio {
-        margin-right: 30px; /* Posiciona 20px a partir da borda direita */
     font-size: 24px;
     color: white;
 }
@@ -1321,18 +1858,11 @@ ul li {
     margin-bottom: 10px;
 }
 
-.section-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
 .caixa {
     background-color: #2b2b2b;
     color: white;
     border: 1px solid #555;
     padding: 20px;
-    width: 254px;
     margin-bottom: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -2161,42 +2691,88 @@ header input {
     </style>
 </head>
 <body>
-    <header class="header-container">
-        <button id="abrirModalComer" style="width: auto; margin-left: 24px;">🍽️</button>
-        <h1 id="tituloHabitos">Monitor de Hábitos</h1>
-        <p id="relogio"></p>
-    </header>
+    
+<header class="header-container">
+    <button
+        id="abrirModalComer"
+        class="btn-comer"
+        aria-label="Abrir alimentação"
+        title="Registrar alimentação"
+    >
+        🍽️
+    </button>
 
-    <section class="caixa-anotacao" style="margin-bottom: 30px;">
-        <textarea id="anotacoes" rows="5" cols="110"></textarea>
+    <div class="header-titulo">
+        <span class="subtitulo">SUA ROTINA, SEU PROGRESSO</span>
+        <h1 id="tituloHabitos">Monitor de Hábitos</h1>
+    </div>
+
+    <div class="relogio-container">
+        <span class="relogio-label">HORÁRIO ATUAL</span>
+        <p id="relogio"></p>
+    </div>
+</header>
+
+<div id="habitosContainer" class="section-container">
+
+    <div id="mensagem-xp"></div>
+
+    <div id="xp-gain" class="xp-gain" style="display: none;">
+        +10 XP
+    </div>
+
+    <section id="manha" class="caixa caixa-manha">
+        <div class="titulo" onclick="abrirSitesManha()">
+            <span class="periodo-icone">☀️</span>
+            <span>Manhã</span>
+            <span class="periodo-horario">06h — 12h</span>
+            <span class="titulo-seta">↗</span>
+        </div>
+        <ul id="manhaHabitos"></ul>
     </section>
 
-    <div id="habitosContainer" class="section-container">
-        <div id="mensagem-xp"></div>
-        <div id="xp-gain" class="xp-gain" style="display: none;">+10 XP</div>
-        <div id="manha" class="caixa">
-            <div class="titulo" onclick="abrirSitesManha()">Manhã: 6h - 12h</div>
-            <ul id="manhaHabitos">
-            </ul>
+    <section id="tarde" class="caixa caixa-tarde">
+        <div class="titulo" onclick="abrirSitesTarde()">
+            <span class="periodo-icone">🌤️</span>
+            <span>Tarde</span>
+            <span class="periodo-horario">12h — 18h</span>
+            <span class="titulo-seta">↗</span>
         </div>
-        <div id="tarde" class="caixa">
-            <div class="titulo" onclick="abrirSitesTarde()">Tarde: 12h - 18h</div>
-            <ul id="tardeHabitos">
-            </ul>
-        </div>
-        <div id="noite" class="caixa">
-            <div class="titulo" onclick="abrirSitesNoite()">Noite: 18h - 0h</div>
-            <ul id="noiteHabitos">
-            </ul>
-        </div>
-    </div> 
+        <ul id="tardeHabitos"></ul>
+    </section>
 
-    <div class="button-container">
-        <button onclick="atualizarDados()">Recarregar Hábitos</button>
-        <button id="criarTelaModalBtn" style="display: none;">Adicionar Hábito</button>
-        <button id="desmarcarHabitosBtn">Desmarcar Hábitos</button>
-        <button id="excluirHabitosBtn">Excluir Hábitos</button>
-    </div>    
+    <section id="noite" class="caixa caixa-noite">
+        <div class="titulo" onclick="abrirSitesNoite()">
+            <span class="periodo-icone">🌙</span>
+            <span>Noite</span>
+            <span class="periodo-horario">18h — 00h</span>
+            <span class="titulo-seta">↗</span>
+        </div>
+        <ul id="noiteHabitos"></ul>
+    </section>
+
+</div>
+
+<div class="button-container">
+    <button onclick="atualizarDados()" class="btn-acao btn-recarregar">
+        ↻ Recarregar hábitos
+    </button>
+
+    <button id="criarTelaModalBtn"
+        class="btn-acao btn-adicionar"
+        style="display: none;">
+        + Adicionar hábito
+    </button>
+
+    <button id="desmarcarHabitosBtn" class="btn-acao btn-desmarcar">
+        ↺ Desmarcar hábitos
+    </button>
+
+    <button id="excluirHabitosBtn" class="btn-acao btn-excluir">
+        🗑 Excluir hábitos
+    </button>
+</div>
+
 
     <!-- Modal Comer -->
 <div id="modalComer" class="modal pagina-refeicoes">
@@ -2951,12 +3527,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     iniciarRelogio();
 
-// Campo 'Anotações'
-const anotacoesTextarea = document.getElementById('anotacoes');
-anotacoesTextarea.addEventListener('input', function() {
-    localStorage.setItem('anotacoes-' + perfilAtivo, this.value);
-});
-
 const anotacoesSalvas = localStorage.getItem('anotacoes-' + perfilAtivo);
 if (anotacoesSalvas) {
     anotacoesTextarea.value = anotacoesSalvas;
@@ -2993,8 +3563,8 @@ function carregarHabitosDoDia() {
         Joaquim: {
         domingo: {
             manha: ['Orar','Gelo','Cama','Vácuo','Alongar','Escola Dominical'],
-            tarde: ['Ler','Pele','Águas','Ensaiar','Desenhar','Ovo e Amendoim','Ensaio dos Jovens'],
-            noite: ['Chá Verde','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Culto da Família']
+            tarde: ['Ler','Pele','Águas','Ensaiar','Desenhar','Ovo e Amendoim'],
+            noite: ['Chá Verde','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Culto da Família','Ensaio dos Jovens']
         },
         segunda: {
             manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Devocional'],
@@ -3377,8 +3947,8 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
         Joaquim: {
         domingo: {
             manha: ['Orar','Gelo','Cama','Vácuo','Alongar','Escola Dominical'],
-            tarde: ['Ler','Pele','Águas','Ensaiar','Desenhar','Ovo e Amendoim','Ensaio dos Jovens'],
-            noite: ['Chá Verde','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Culto da Família']
+            tarde: ['Ler','Pele','Águas','Ensaiar','Desenhar','Ovo e Amendoim'],
+            noite: ['Chá Verde','Arrumar Café', 'Frutas e Limão','Stories e Tiktok','Culto da Família','Ensaio dos Jovens']
         },
         segunda: {
             manha: ['Orar','Gelo','Cama','Vácuo','Treinar','Alongar','Devocional'],
@@ -3500,13 +4070,11 @@ function abrirSitesManha() {
         window.open('https://www.tiktok.com/messages', '_blank');
         window.open('https://j2plus.netlify.app/modo/gym.html', '_blank');
         window.open('https://j2plus.netlify.app/modo/melody.html', '_blank');
-        window.open('https://mail.google.com/mail/u/4/?ogbl#inbox', '_blank');
 
     } else if (diaSemana === 0) {
         // Domingo
         window.open('https://www.tiktok.com/messages', '_blank');
         window.open('https://j2plus.netlify.app/modo/melody.html', '_blank');
-        window.open('https://mail.google.com/mail/u/4/?ogbl#inbox', '_blank');
 
     } else if (diaSemana === 5) {
         // Sexta-feira
@@ -3517,7 +4085,6 @@ function abrirSitesManha() {
         window.open('https://j2plus.netlify.app/modo/gym.html', '_blank');
         window.open('https://j2plus.netlify.app/modo/melody.html', '_blank');
         window.open('https://j2plus.netlify.app/work.html', '_blank');
-        window.open('https://mail.google.com/mail/u/4/?ogbl#inbox', '_blank');
 
     } else {
         // Segunda a Quinta
@@ -3525,7 +4092,6 @@ function abrirSitesManha() {
         window.open('https://www.tiktok.com/messages', '_blank');
         window.open('https://j2plus.netlify.app/modo/gym.html', '_blank');
         window.open('https://j2plus.netlify.app/modo/melody.html', '_blank');
-        window.open('https://mail.google.com/mail/u/4/?ogbl#inbox', '_blank');
     }
 }
 
@@ -3535,7 +4101,7 @@ function abrirSitesTarde() {
 }
 
 function abrirSitesNoite() {
-    window.open('https://j2plus.netlify.app/modo/gym.html/#alongar', '_blank');
+    window.open('https://mail.google.com/mail/u/4/?ogbl#inbox', '_blank');
     window.open('https://web.whatsapp.com/', '_blank');
 }
 

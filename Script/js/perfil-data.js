@@ -18,7 +18,7 @@ const perfis = {
     // melodyStat: parseInt(localStorage.getItem("melodyStat-Joaquim")) || 0,
     // gymNotes: localStorage.getItem("gymNotes-Joaquim") || "",
     // gymStat: parseInt(localStorage.getItem("gymStat-Joaquim")) || 0, 
-    anotacoes: localStorage.getItem("anotacoes-Joaquim") || "",
+    // anotacoes: localStorage.getItem("anotacoes-Joaquim") || "",
   }
 };
 

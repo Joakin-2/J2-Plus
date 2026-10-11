@@ -7,6 +7,412 @@
     <title>JokGym</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* ==============================
+   JOKGYM — DARK + YELLOW
+   ============================== */
+
+:root {
+    --gym-bg: #0b0b0b;
+    --gym-card: #151515;
+    --gym-card-hover: #1c1c1c;
+    --gym-yellow: #ffd600;
+    --gym-yellow-hover: #ffe44d;
+    --gym-text: #f5f5f5;
+    --gym-muted: #929292;
+    --gym-border: #292929;
+    --gym-radius: 20px;
+}
+
+/* BASE */
+
+.gym-main {
+    padding: 32px 24px;
+    color: var(--gym-text);
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+body {
+    background: var(--gym-bg);
+    color: var(--gym-text);
+}
+
+.gym-main * {
+    box-sizing: border-box;
+}
+
+.gym-main h2 {
+    margin: 0 0 8px;
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 800;
+    letter-spacing: -0.7px;
+}
+
+.gym-main p {
+    margin: 0;
+    color: var(--gym-muted);
+    line-height: 1.65;
+}
+
+/* CARDS */
+
+.gym-card {
+    position: relative;
+    padding: 28px;
+    margin-bottom: 24px;
+    background: linear-gradient(145deg, #191919, #121212);
+    border: 1px solid var(--gym-border);
+    border-radius: var(--gym-radius);
+    box-shadow: 0 12px 32px rgb(0 0 0 / 18%);
+    transition: border-color 0.25s, transform 0.25s;
+}
+
+.gym-card:hover {
+    border-color: #383838;
+}
+
+/* TÍTULOS E ÍCONES */
+
+.gym-section-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.gym-title-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    color: var(--gym-yellow);
+    background: rgb(255 214 0 / 10%);
+    border: 1px solid rgb(255 214 0 / 20%);
+    border-radius: 16px;
+    font-size: 22px;
+}
+
+.gym-title-icon-large {
+    width: 66px;
+    height: 66px;
+    font-size: 28px;
+    background: var(--gym-yellow);
+    color: #111;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgb(255 214 0 / 12%);
+}
+
+/* RELATÓRIO */
+
+#report-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 24px;
+}
+
+#mensagem-xp {
+    grid-column: 1 / -1;
+}
+
+#calendar-section,
+#weight-height {
+    min-width: 0;
+    margin-bottom: 0;
+}
+
+/* CALENDÁRIO E RESULTADOS */
+
+#calendar,
+#result {
+    width: 100%;
+    min-width: 0;
+    color: var(--gym-text);
+}
+
+#calendar button,
+#result button {
+    transition: background 0.2s, color 0.2s;
+}
+
+/* SEÇÃO DE EXERCÍCIOS */
+
+.exercise-section {
+    padding: 32px;
+    overflow: hidden;
+}
+
+.exercise-heading {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.gym-eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--gym-yellow);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.exercise-heading h2 {
+    font-size: clamp(27px, 4vw, 38px);
+    margin-bottom: 10px;
+}
+
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+/* BOTÕES PRINCIPAIS */
+
+.exercise-button {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    width: 100%;
+    min-width: 0;
+    padding: 20px;
+    overflow: hidden;
+    color: var(--gym-text);
+    background:
+        linear-gradient(135deg, #202020 0%, #141414 100%);
+    border: 1px solid #303030;
+    border-radius: 16px;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Detalhe amarelo no canto */
+
+.exercise-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gym-yellow);
+    transform: scaleY(0.35);
+    transform-origin: bottom;
+    transition: transform 0.25s ease;
+}
+
+.exercise-button:hover {
+    transform: translateY(-4px);
+    background: #222;
+    border-color: var(--gym-yellow);
+    box-shadow: 0 10px 25px rgb(255 214 0 / 7%);
+}
+
+.exercise-button:hover::before {
+    transform: scaleY(1);
+}
+
+.exercise-button:active,
+.exercise-button2:active {
+    transform: scale(0.98);
+}
+
+/* BOTÕES SECUNDÁRIOS */
+
+.exercise-button2 {
+    width: 100%;
+    min-width: 0;
+    padding: 15px 12px;
+    color: #dedede;
+    background: #111;
+    border: 1px solid #303030;
+    border-radius: 12px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.exercise-button2:hover {
+    color: #111;
+    background: var(--gym-yellow);
+    border-color: var(--gym-yellow);
+    transform: translateY(-2px);
+}
+
+/* FOCO DE TECLADO */
+
+.exercise-button:focus-visible,
+.exercise-button2:focus-visible {
+    outline: 2px solid var(--gym-yellow);
+    outline-offset: 4px;
+}
+
+/* SOBRE */
+
+.about-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 30px;
+}
+
+.about-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    color: #111;
+    background: var(--gym-yellow);
+    border-radius: 16px;
+    font-size: 24px;
+}
+
+.about-section h2 {
+    margin-bottom: 12px;
+}
+
+.about-section p {
+    max-width: 760px;
+}
+
+/* RODAPÉ */
+
+.gym-footer {
+    padding: 28px 12px;
+    color: var(--gym-muted);
+    font-size: 13px;
+    text-align: center;
+}
+
+.gym-footer span {
+    color: var(--gym-yellow);
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+/* MENSAGEM DE XP */
+
+#mensagem-xp:not(:empty) {
+    padding: 16px 20px;
+    margin-bottom: 0;
+    color: var(--gym-yellow);
+    background: rgb(255 214 0 / 7%);
+    border: 1px solid rgb(255 214 0 / 20%);
+    border-radius: 14px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 800px) {
+    .gym-main {
+        padding: 22px 16px;
+    }
+
+    #report-section {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .exercise-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .gym-card,
+    .exercise-section {
+        padding: 22px;
+    }
+
+    .exercise-button {
+        padding: 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gym-main {
+        padding: 16px 12px;
+    }
+
+    .gym-card,
+    .exercise-section {
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .gym-section-title {
+        gap: 12px;
+    }
+
+    .gym-title-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 19px;
+        border-radius: 13px;
+    }
+
+    .gym-title-icon-large {
+        width: 48px;
+        height: 48px;
+    }
+
+    .exercise-heading {
+        align-items: flex-start;
+    }
+
+    .exercise-heading h2 {
+        font-size: 27px;
+    }
+
+    .exercise-grid {
+        gap: 9px;
+    }
+
+    .exercise-button {
+        height: 110px !important;
+        padding: 13px;
+        border-radius: 12px;
+        font-size: 13px;
+    }
+
+    .exercise-button2 {
+        padding: 13px 6px;
+        font-size: 12px;
+    }
+
+    .about-section {
+        gap: 14px;
+        padding: 20px;
+    }
+
+    .about-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 19px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gym-main *,
+    .gym-main *::before,
+    .gym-main *::after {
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
         .exercicio-item {
     display: flex;
     align-items: center;
@@ -285,7 +691,6 @@ main {
     flex-direction: column;
     align-items: center;
     margin-right: 30px;
-    padding: 20px;
 }
 
 #training-buttons {
@@ -444,8 +849,7 @@ textarea {
 }
 
 #weight-height {
-    width: 410px;
-    margin-top: 80px;
+    width: 480px;
     background-color: #2c2c2c; /* Cor de fundo do bloco de peso e altura */
     padding: 5px;
     border-radius: 10px;
@@ -475,6 +879,8 @@ textarea {
 }
 
 #calendar {
+    margin-bottom: 10px;
+    margin-top: -10px;
     width: 420px;
     height: 180px;
     display: grid;
@@ -581,6 +987,7 @@ textarea {
 
 #exercise-buttons {
     display: flex;
+    margin-bottom: 45px;
     flex-direction: column;
     align-items: center;
     padding: 0px 20px;
@@ -664,118 +1071,99 @@ textarea {
     </style>
 </head>
 <body>
-    <header style="padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); margin-bottom: 20px;">
-        <h1>Bem-vindo ao JokGym</h1>
-    </header>
-    
-    <main>
-        <section id="report-section">
-            <div id="notes-section">
-                <div class="button-group" style="display: flex;justify-content: center;align-items: center;margin-top: 22px;"> 
-                    <h2>Relatório</h2>
+
+<main class="gym-main">
+
+    <!-- RELATÓRIO -->
+    <section id="report-section">
+        <div id="mensagem-xp"></div>
+
+        <!-- CALENDÁRIO -->
+        <div id="calendar-section" class="gym-card">
+            <div class="gym-section-title">
+                <div class="gym-title-icon">
+                    <i class="fa-regular fa-calendar-days"></i>
                 </div>
-                <textarea id="notesgym" placeholder="Registre suas anotações aqui..."></textarea>
-            </div>
-            <div id="mensagem-xp"></div>
-            <div id="calendar-section">
-                <div id="calendar" style="margin-bottom: 4px;"></div>
-            </div>
 
-            <div id="weight-height">
-                <div id="result"></div>
-            </div>    
-        </section>
-        
-        <section id="exercise-buttons">
-            <h2>Quais exercícios vamos realizar hoje?</h2>
-        
-            <div class="row">
-                <button id="vacuum-button" class="exercise-button" onclick="abrirModal('vacuoModal')">
-                    <i class="fa-solid fa-wind" style="margin-right: 20px;font-size: 30px;"></i> Vácuo
-                </button>
-
-                <button id="weightlifting-button" class="exercise-button" onclick="abrirModal('modalTreinos')">
-                    <i class="fa-solid fa-dumbbell" style="margin-right: 20px;font-size: 30px;"></i> Exercícios
-                </button>
+                <div>
+                    <h2>Minha jornada</h2>
+                    <p>Acompanhe seus dias de treino.</p>
+                </div>
             </div>
 
-            <div class="row">
-                <button id="running-button" class="exercise-button" onclick="abrirModal('corridaModal')">
-                    <i class="fa-solid fa-person-running" style="margin-right: 20px;font-size: 30px;"></i> Corrida
-                </button>
-
-                <button id="stretching-button" class="exercise-button" onclick="abrirModal('alongarModal')">
-                    <i class="fa-solid fa-person" style="margin-right: 20px;font-size: 30px;"></i> Alongamento
-                </button>
-            </div>
-
-            <button style="height: 100px; width: 520px;" onclick="abrirTreino('Meta')"><i class="fas fa-bullseye"></i>Meta
-                    </button>          
-
-            <section id="about-section">
-                <h2 style="text-align: center;">Sobre</h2>
-                <p>Bem-vindo ao JokGym! Um espaço dedicado a prática de exercícios para manter seu corpo ativo.</p>
-            </section>
-        </section>
-    </main>
-
-    <!-- Modal Corrida -->
-    <div id="corridaModal" class="modal">
-      <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <span class="close" onclick="fecharModal('corridaModal')">&times;</span>
-
-        <div id="timer">00:00:00</div>
-    <button id="startButton" onclick="toggleTimer0()">Iniciar</button>
-    <div id="calories">Calorias queimadas: 0</div>
-      </div>
-    </div>
-
-    <!-- Modal Alongar -->
-    <div id="alongarModal" class="modal">
-      <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <span class="close" onclick="fecharModal('alongarModal')">&times;</span>
-<div class="wrapper">
-        <div class="image-container">
-            <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/17582369-conjunto-de-homem-de-treino-homem-fazendo-exercicios-de-fitness-alongamento-de-corpo-inteiro-aquecimento-e-alongamento-ilustracaoial-plana-isolada-no-fundo-branco-vetor.jpg" alt="Imagem de Alongamento" style="border-radius: 8px;">
+            <div id="calendar"></div>
         </div>
 
-        <div class="video-container" style="margin-left: 20px;">
-            <iframe id="youtubePlayer" width="560" height="315" src="https://www.youtube.com/embed/CS0UOeyLKNA?si=rGlhvmgzzVYxHJQc" title="YouTube video player" frameborder="0" allowfullscreen="" style="border-radius: 8px;"></iframe>
-        </div>
+        <!-- RESULTADOS -->
+        <div id="weight-height" class="gym-card">
+            <div class="gym-section-title">
+                <div class="gym-title-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
 
-        <div class="content-container" style="position: fixed; margin-left: 750px; margin-top: 300px;">
-            <div style="display: flex;">
-                <h1><i id="iconePeriodo" class="fas fa-moon" style="margin-right: 10px;"></i>Alongamentos</h1>
-
-                <!-- Botão para copiar -->
-                <button onclick="copiarTexto()" class="flex gap-1 items-center select-none py-1" aria-label="Copy" style="width: 75px; height: 10px; background: #181818; border: rgb(51, 51, 51); color: white; margin-top: 21px; --darkreader-inline-bgimage: initial; --darkreader-inline-bgcolor: var(--darkreader-background-2b2b2b, #202324); --darkreader-inline-border-top: var(--darkreader-border-333333, #7b7265); --darkreader-inline-border-right: var(--darkreader-border-333333, #7b7265); --darkreader-inline-border-bottom: var(--darkreader-border-333333, #7b7265); --darkreader-inline-border-left: var(--darkreader-border-333333, #7b7265); --darkreader-inline-color: var(--darkreader-text-ffffff, #e8e6e3);" data-darkreader-inline-bgimage="" data-darkreader-inline-bgcolor="" data-darkreader-inline-border-top="" data-darkreader-inline-border-right="" data-darkreader-inline-border-bottom="" data-darkreader-inline-border-left="" data-darkreader-inline-color="">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 5C7 3.34315 8.34315 2 10 2H19C20.6569 2 22 3.34315 22 5V14C22 15.6569 20.6569 17 19 17H17V19C17 20.6569 15.6569 22 14 22H5C3.34315 22 2 20.6569 2 19V10C2 8.34315 3.34315 7 5 7H7V5ZM9 7H14C15.6569 7 17 8.34315 17 10V15H19C19.5523 15 20 14.5523 20 14V5C20 4.44772 19.5523 4 19 4H10C9.44772 4 9 4.44772 9 5V7ZM5 9C4.44772 9 4 9.44772 4 10V19C4 19.5523 4.44772 20 5 20H14C14.5523 20 15 19.5523 15 19V10C15 9.44772 14.5523 9 14 9H5Z" fill="currentColor"></path>
-                </svg></button>
+                <div>
+                    <h2>Meus resultados</h2>
+                    <p>Acompanhe suas medidas e seu progresso.</p>
+                </div>
             </div>
 
-            <p id="alongamento1" style="margin: 10px;">Alongamento de quadríceps</p>
-            <p id="alongamento2" style="margin: 10px;">Alongamento de pescoço</p>
-            <p id="alongamento3" style="margin: 10px;">Alongamento das pernas</p>
-            <p id="alongamento4" style="margin: 10px;">Alongamento de costas</p>
-            <p id="alongamento5" style="margin: 10px;">Alongamento Ponte</p>
+            <div id="result"></div>
         </div>
-    </div>
-      </div>
-    </div>
 
-    <!-- Modal Vácuo -->
-    <div id="vacuoModal" class="modal">
-      <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <span class="close" onclick="fecharModal('vacuoModal')">&times;</span>
+        <!-- SOBRE -->
+    <section id="about-section" class="gym-card about-section">
+        <div class="about-icon">
+            <i class="fa-solid fa-heart-pulse"></i>
+        </div>
 
-        <div id="video-container">
-        <img src="https://totalpass.com/wp-content/uploads/2024/07/vacuum-abdominal-homem.jpg" alt="Exercício Stomach Vacuum">
-    </div>
-    <div id="timerVacuo">00:00:00</div>
-    <button id="startButtonVacuo" onclick="toggleTimerVacuo()">Iniciar</button>
-      </div>
-    </div>
+        <div>
+            <h2>Sobre o JokGym</h2>
+            <p style="font-size: smaller; text-align: left;">
+                Um espaço dedicado à sua evolução física, à criação
+                de bons hábitos e à construção de uma rotina mais ativa.
+                Um treino de cada vez, um passo mais perto dos seus objetivos.
+            </p>
+        </div>
+    </section>
+
+    </section>
+
+    <!-- EXERCÍCIOS -->
+    <section id="exercise-buttons" class="gym-card exercise-section">
+
+        <div class="gym-section-title exercise-heading">
+            <div>
+                <span class="gym-eyebrow">SEU TREINO COMEÇA AQUI</span>
+                <h2>Hora de evoluir!</h2>
+                <p>Escolha a atividade que você quer realizar hoje.</p>
+            </div>
+
+            <div class="gym-title-icon gym-title-icon-large">
+                <i class="fa-solid fa-fire"></i>
+            </div>
+        </div>
+
+        <div class="exercise-grid">
+
+            <button class="exercise-button" onclick="abrirTreino('Seg')" style="    height: 120px;">Seg: Peito e Tríceps</button>
+                <button class="exercise-button" onclick="abrirTreino('Ter')" style="    height: 120px;">Ter: Costas e Bíceps</button>
+<button class="exercise-button" onclick="abrirTreino('Qua')" style="    height: 120px;">Qua: Pernas e Abdômen</button>
+                <button class="exercise-button" onclick="abrirTreino('Qui')" style="    height: 120px;">Qui: Ombros e Trapézio</button>
+            <button class="exercise-button" onclick="fecharPesos(); abrirModal('alongarModal')" style="    height: 120px;">Sex: Alongamentos</button>
+                <button class="exercise-button" onclick="fecharPesos(); abrirModal('corridaModal')" style="    height: 120px;">Sáb: Corrida</button>
+                <button class="exercise-button" onclick="abrirTreino('Braços')">Braços</button>
+                    <button class="exercise-button" onclick="abrirTreino('Ombros')">Ombros</button>
+                <button class="exercise-button" onclick="abrirTreino('Abdômen')">Abdômen</button>
+                    <button class="exercise-button" onclick="abrirTreino('Peito')">Peito</button>
+                <button class="exercise-button" onclick="abrirTreino('Costas')">Costas</button>
+                    <button class="exercise-button" onclick="abrirTreino('Perna')">Perna</button>
+                
+
+        </div>
+
+    </section>
+
+</main>
 
     <!-- Modal Treino Individual -->
 <div id="treinoModal" class="modal" style="z-index: 10000000;">
@@ -786,83 +1174,8 @@ textarea {
     <div id="treinoLista" style="width: 100%; max-width: 600px;"></div>
   </div>
 </div>
-
-    <!-- Modal Gym Pesos -->
-<div id="modalTreinos" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="fecharPesos()">&times;</span>
-
-        <main>
-            <section id="weekly-schedule" style="padding: 40px 70px;">
-                <h2 style="color: #fff">Programação Semanal</h2>
-
-                <div class="row2" style="display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    width: 100%; margin-bottom: -7px;">
-                <button class="exercise-button" onclick="abrirTreino('Seg')" style="    height: 120px;">Seg: Peito e Tríceps</button>
-                <button class="exercise-button" onclick="abrirTreino('Ter')" style="    height: 120px;">Ter: Costas e Bíceps</button>
-                </div>
-
-                <div class="row2" style="display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    width: 100%;     margin-bottom: -7px;">
-                <button class="exercise-button" onclick="abrirTreino('Qua')" style="    height: 120px;">Qua: Pernas e Abdômen</button>
-                <button class="exercise-button" onclick="abrirTreino('Qui')" style="    height: 120px;">Qui: Ombros e Trapézio</button>
-            </div>
-
-                <div class="row2" style="display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    width: 100%;     margin-bottom: -7px;">
-                <button class="exercise-button" onclick="fecharPesos(); abrirModal('alongarModal')" style="    height: 120px;">Sex: Alongamentos</button>
-                <button class="exercise-button" onclick="fecharPesos(); abrirModal('corridaModal')" style="    height: 120px;">Sáb: Corrida</button>
-                 </div>
-            </section>
-
-            <section id="exercise-buttons" style="padding: 40px 70px;">
-                <h2 style="color: #fff">O que vamos treinar hoje?</h2>
-
-                <div class="row2">
-                    <button class="exercise-button2" onclick="abrirTreino('Braços')">Braços</button>
-                    <button class="exercise-button2" onclick="abrirTreino('Ombros')">Ombros</button>
-                </div>
-
-                <div class="row2">
-                    <button class="exercise-button2" onclick="abrirTreino('Abdômen')">Abdômen</button>
-                    <button class="exercise-button2" onclick="abrirTreino('Peito')">Peito</button>
-                </div>
-
-                <div class="row2">
-                    <button class="exercise-button2" onclick="abrirTreino('Costas')">Costas</button>
-                    <button class="exercise-button2" onclick="abrirTreino('Perna')">Perna</button>
-                </div>
-            </section>
-        </main>
-
-    </div>
-</div>
-
     <script src="/Script/js/perfil-data.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    // Criar o calendário
-    createCalendar();
-
-    // Remover a tela de loading após 5 segundos (5000 milissegundos)
-    setTimeout(function () {
-        document.getElementById("loader-container").style.display = "none";
-    }, 1000);
-
-    // Carregue as anotações salvas, se houver
-    loadNotes();
-
-    // Restaurar os dias marcados ao carregar a página
-    restoreMarkedDays2();
-});
-
-
 function saveMarkedDay(dayNumber) {
     const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
@@ -943,22 +1256,6 @@ function loadNotes() {
     }
 }
 
-// Adicionar evento para salvar automaticamente as anotações ao digitar
-document.getElementById('notesgym').addEventListener('input', function() {
-    saveNotes();
-});
-
-// Carregar as anotações ao iniciar a página
-document.addEventListener('DOMContentLoaded', function() {
-    loadNotes();
-});
-
-
-document.getElementById("notesgym").addEventListener("input", function () {
-    // Salve as anotações sempre que houver uma alteração
-    saveNotes();
-});
-
 function createCalendar() {
     const calendarContainer = document.getElementById("calendar");
     calendarContainer.innerHTML = ""; // Limpa o calendário
@@ -1025,107 +1322,6 @@ setInterval(function () {
         createCalendar(); // Recria o calendário para o novo mês
     }
 }, 60000); // Verifica a cada 60 segundos
-
-function definirPeriodo(){
-
-    let hora = new Date().getHours();
-    let icone = document.getElementById("iconePeriodo");
-    let player = document.getElementById("youtubePlayer");
-
-    // Dia (5h até 17h)
-    if(hora >= 5 && hora < 17){
-
-        icone.className = "fas fa-sun";
-        player.src = "https://www.youtube.com/embed/CS0UOeyLKNA?si=rGlhvmgzzVYxHJQc";
-
-    }
-
-    // Noite (17h até 5h)
-    else{
-
-        icone.className = "fas fa-moon";
-        player.src = "https://www.youtube.com/embed/_Wq2EB_ZsRc?si=BIhGuR2MNzJoE_tA";
-
-    }
-
-}
-
-// roda automaticamente quando a página abre
-definirPeriodo();
-
-        function copiarTexto() {
-        // Seleciona o texto dos parágrafos
-        let texto = '';
-        texto += document.getElementById('alongamento1').innerText + '\n';
-        texto += document.getElementById('alongamento2').innerText + '\n';
-        texto += document.getElementById('alongamento3').innerText + '\n';
-        texto += document.getElementById('alongamento4').innerText + '\n';
-        texto += document.getElementById('alongamento5').innerText + '\n';
-
-        // Cria um elemento temporário para copiar o texto
-        let tempTextArea = document.createElement('textarea');
-        tempTextArea.value = texto;
-        document.body.appendChild(tempTextArea);
-
-        // Seleciona e copia o texto
-        tempTextArea.select();
-        document.execCommand('copy');
-
-        // Remove o elemento temporário
-        document.body.removeChild(tempTextArea);
-
-        // Alerta ou notificação que o texto foi copiado
-        alert("Lista de alongamentos copiada!");
-    }
-
-        const timer = document.getElementById("timer");
-
-if (timer) {
-    timer.addEventListener("click", () => {
-        window.location.href = "music.html#cardio";
-    });
-}
-let segundos = 0;
-let timerInterval = null;
-let rodando = false;
-
-function toggleTimer0() {
-    if (!rodando) {
-        rodando = true;
-        document.getElementById("startButton").textContent = "Parar";
-
-        timerInterval = setInterval(() => {
-            segundos++;
-
-            // Atualiza o timer
-            let horas = String(Math.floor(segundos / 3600)).padStart(2, '0');
-            let minutos = String(Math.floor((segundos % 3600) / 60)).padStart(2, '0');
-            let secs = String(segundos % 60).padStart(2, '0');
-
-            document.getElementById("timer").textContent =
-                `${horas}:${minutos}:${secs}`;
-
-            // Atualiza as calorias (1 caloria a cada 8 segundos)
-            let calorias = Math.floor(segundos / 8);
-            document.getElementById("calories").textContent =
-                `Calorias queimadas: ${calorias}`;
-
-        }, 1000);
-
-    } else {
-        rodando = false;
-        clearInterval(timerInterval);
-        document.getElementById("startButton").textContent = "Iniciar";
-    }
-}
-
-        function abrirPesos() {
-    document.getElementById("modalTreinos").style.display = "block";
-}
-
-function fecharPesos() {
-    document.getElementById("modalTreinos").style.display = "none";
-}
 
         const treinos = {
     Seg: { titulo: "Peito e Tríceps", exercicios: [
@@ -1365,7 +1561,7 @@ function gerarRelatorioCompleto() {
         : "Mulheres possuem metabolismo levemente diferente devido a fatores hormonais.";
 
     const html = `
-    <div style="display: flex; justify-content: center; gap: 4px;">
+    <div style="display: flex; justify-content: center; gap: 4px; margin-top: -10px; margin-bottom: 10px;">
         <div>
             <p><strong>Gênero:</strong> ${perfil.genero}</p>
             <p><strong>Idade:</strong> ${idade} anos</p>
@@ -1379,33 +1575,7 @@ function gerarRelatorioCompleto() {
     </div>
     <p style="color: #ff6600; text-align: center; font-weight: bold; font-size: 13px; margin-top: -5px;">${mensagemSexo}</p>
 `;
-
-/* =========================================================
-   🔥 Futuro: Gasto calórico por nível de atividade
-   🔹 sedentário: TMB × 1.2
-   🔹 leve: TMB × 1.375
-   🔹 moderado: TMB × 1.55
-   🔹 ativo: TMB × 1.725
-   🔹 extremo: TMB × 1.9
-========================================================= */
-
-/* =========================================================
-   📊 Futuro: Gráfico de IMC com Chart.js
-========================================================= */
-
-    //  <p><em>Obs: Este relatório é apenas informativo e não substitui avaliação médica.</em></p>
-
     document.getElementById("result").innerHTML = html;
-
-    // Carrega notas do perfil ativo
-    const notesTextarea = document.getElementById("notesgym");
-    const savedNotes = localStorage.getItem(`gymNotes-${perfilAtivo}`);
-    if (savedNotes) notesTextarea.value = savedNotes;
-
-    // Salva automaticamente quando digitar
-    notesTextarea.addEventListener("input", () => {
-        localStorage.setItem(`gymNotes-${perfilAtivo}`, notesTextarea.value);
-    });
 }
 
 // Chama a função quando a página carrega
