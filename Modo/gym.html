@@ -1176,6 +1176,12 @@ textarea {
 </div>
     <script src="/Script/js/perfil-data.js"></script>
     <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+    createCalendar();
+    restoreMarkedDays2();
+});
+
 function saveMarkedDay(dayNumber) {
     const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
