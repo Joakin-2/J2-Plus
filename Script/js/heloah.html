@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Um cantinho para Heloah ♡</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>">
+    <style>
+        /* ========================================
+   HELOAH ♡ — NOVA IDENTIDADE VISUAL
+   ======================================== */
+
+        :root {
+            --bg: #f5f7fc;
+            --pink: #e4eaf8;
+            --rose: #40577f;
+            --purple: #eeedfa;
+            --green: #eaf2f0;
+            --text: #35425b;
+            --white: #ffffff;
+            --blue-dark: #30476e;
+            --blue-soft: #dfe8f8;
+            --lavender: #eeebfa;
+            --border: #e4e8f2;
+            --muted: #8791a8;
+            --shadow: 0 10px 35px rgba(57, 75, 115, .07);
+            --shadow-hover: 0 15px 35px rgba(57, 75, 115, .13);
+            --radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            font-family: "Trebuchet MS", sans-serif;
+            line-height: 1.75;
+            background-color: var(--bg);
+            background-image: radial-gradient(#d5dff1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        ::selection {
+            background: #dce5f7;
+            color: var(--blue-dark);
+        }
+
+        /* CABEÇALHO */
+
+        .site-header {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            padding: 52px 20px 32px;
+            background: radial-gradient(ellipse at 15% 15%, #ffffff 0%, transparent 38%), radial-gradient(ellipse at 85% 20%, #eeebfa 0%, transparent 40%), linear-gradient(145deg, #e9effb, #f8f7ff 55%, #f2f5fc);
+            border-bottom: 1px solid #e3e8f4;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 6px 14px;
+            border: 1px solid #dce4f3;
+            border-radius: 30px;
+            background: #ffffffa8;
+            color: var(--blue-dark);
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .site-header h1 {
+            margin: 10px 0 4px;
+            color: var(--blue-dark);
+            font: normal clamp(45px, 9vw, 76px)/1.2 Georgia, serif;
+            letter-spacing: -2px;
+        }
+
+        .site-header > p {
+            max-width: 440px;
+            margin: 8px auto 20px;
+            color: #697792;
+            font-size: 15px;
+        }
+
+        .header-decoration {
+            position: absolute;
+            color: #9aaed3;
+            pointer-events: none;
+        }
+
+        .decoration-one {
+            top: 24%;
+            left: 12%;
+            font-size: 42px;
+            transform: rotate(-15deg);
+        }
+
+        .decoration-two {
+            top: 17%;
+            right: 13%;
+            font-size: 32px;
+        }
+
+        .header-bottom {
+            margin-top: 24px;
+            color: #929bb1;
+            font: italic 13px Georgia, serif;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 11px 20px;
+            border: 1px solid #dce4f2;
+            border-radius: 30px;
+            background: #fff;
+            color: var(--blue-dark);
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 5px 15px #40577f0b;
+            transition: transform .2s, box-shadow .2s, background .2s;
+        }
+
+            .instagram-link:hover {
+                transform: translateY(-3px);
+                background: #f5f7ff;
+                box-shadow: var(--shadow);
+            }
+
+        .cover-polaroid {
+            width: min(190px, 65vw);
+            margin: 28px auto 18px;
+        }
+
+        /* POLAROIDS */
+
+        .polaroid {
+            position: relative;
+            padding: 10px 10px 17px;
+            border: 1px solid #edf0f6;
+            background: #fff;
+            box-shadow: 0 9px 25px #34496d14;
+            transform: rotate(-2deg);
+            transition: transform .3s, box-shadow .3s;
+        }
+
+            .polaroid:hover {
+                transform: rotate(0) translateY(-4px);
+                box-shadow: var(--shadow-hover);
+            }
+
+        .drawing {
+            height: 155px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            background: linear-gradient(140deg, #e5edfb, #efebfa);
+            font-size: 55px;
+        }
+
+            .drawing img {
+                width: 100%;
+                height: 100%;
+                display: block;
+                object-fit: cover;
+            }
+
+        .caption {
+            margin-top: 10px;
+            color: #71809e;
+            font: italic 16px Georgia, serif;
+            text-align: center;
+        }
+
+        /* MENU */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e9f2;
+            background: #ffffffed;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        button {
+            min-height: 40px;
+            padding: 9px 16px;
+            border: 1px solid #e1e6f1;
+            border-radius: 13px;
+            background: #fff;
+            color: var(--blue-dark);
+            font: inherit;
+            font-size: 13px;
+            cursor: pointer;
+            transition: transform .2s, background .2s, border-color .2s, box-shadow .2s;
+        }
+
+            button:hover {
+                transform: translateY(-2px);
+                border-color: #cbd7ed;
+                background: #f3f6fd;
+            }
+
+        nav button {
+            border-color: transparent;
+            border-radius: 30px;
+            background: transparent;
+            white-space: nowrap;
+        }
+
+            nav button.active {
+                border-color: #dce5f5;
+                background: var(--blue-soft);
+                color: var(--blue-dark);
+                font-weight: bold;
+                box-shadow: 0 3px 9px #40577f0a;
+            }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        select:focus-visible {
+            outline: 3px solid #aebfe3;
+            outline-offset: 3px;
+        }
+
+        /* CONTEÚDO */
+
+        main {
+            width: min(100%, 940px);
+            margin: 0 auto;
+            padding: 30px 22px 55px;
+        }
+
+        .page {
+            display: none;
+        }
+
+            .page.active {
+                display: block;
+                animation: page-in .35s ease both;
+            }
+
+        @keyframes page-in {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            margin: 20px 0;
+            padding: clamp(20px, 4vw, 32px);
+            border: 1px solid #e8ebf4;
+            border-radius: var(--radius);
+            background: #ffffffed;
+            box-shadow: var(--shadow);
+        }
+
+            .card h2 {
+                margin-top: 0;
+                margin-bottom: 10px;
+                color: var(--blue-dark);
+                font: normal clamp(23px, 4vw, 30px)/1.4 Georgia, serif;
+            }
+
+        h3 {
+            color: var(--blue-dark);
+            font: normal 19px/1.5 Georgia, serif;
+        }
+
+        .card > p {
+            color: #78839b;
+            font-size: 14px;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 38px 24px;
+            text-align: center;
+            background: radial-gradient(ellipse at 0% 0%, #f0effb, transparent 55%), radial-gradient(ellipse at 100% 100%, #e9f0fc, transparent 50%), #fff;
+        }
+
+            .hero .polaroid {
+                width: 190px;
+            }
+
+        .heart {
+            color: #7087b4;
+        }
+
+        #quote {
+            max-width: 550px;
+            margin: 24px auto 0;
+            color: var(--blue-dark);
+            font: italic clamp(17px, 3vw, 21px)/1.7 Georgia, serif;
+        }
+
+        /* GRIDS E ANOTAÇÕES */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+            gap: 16px;
+        }
+
+        .note {
+            min-width: 0;
+            padding: 21px;
+            overflow-wrap: anywhere;
+            border: 1px solid #e5eaf4;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #fff, #f8faff);
+            transition: transform .25s, box-shadow .25s;
+        }
+
+            .note:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow);
+            }
+
+            .note:nth-child(3n + 2) {
+                background: linear-gradient(145deg, #fff, #f7f4ff);
+            }
+
+            .note:nth-child(3n) {
+                background: linear-gradient(145deg, #fff, #f2f7f8);
+            }
+
+            .note h3 {
+                margin: 0 0 9px;
+            }
+
+            .note p {
+                margin: 0 0 15px;
+                color: #6d7890;
+                font-size: 14px;
+                white-space: pre-wrap;
+            }
+
+            .note button {
+                margin-top: 5px;
+            }
+
+        /* DETALHES E MEMÓRIAS */
+
+        .entry {
+            position: relative;
+            margin: 17px 0;
+            padding: 21px;
+            border: 1px solid #e5eaf3;
+            border-left: 4px solid #a9b9dc;
+            border-radius: 6px 17px 17px 6px;
+            background: linear-gradient(100deg, #f7f9ff, #fff);
+            overflow-wrap: anywhere;
+        }
+
+            .entry h3 {
+                margin: 5px 0 8px;
+            }
+
+            .entry p {
+                margin: 0 0 16px;
+                color: #606e87;
+                font-size: 14px;
+                white-space: pre-wrap;
+            }
+
+            .entry button,
+            .note [data-delete] {
+                border-color: #eee3e9;
+                color: #9a687d;
+                background: #fff9fb;
+                font-size: 12px;
+            }
+
+                .entry button:hover,
+                .note [data-delete]:hover {
+                    background: #fceff4;
+                }
+
+        .small {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .empty {
+            padding: 18px 0;
+            color: #929cb0;
+            font: italic 15px Georgia, serif;
+        }
+
+        /* FORMULÁRIOS */
+
+        form {
+            margin: 20px 0 0;
+        }
+
+        label {
+            display: block;
+            margin: 17px 0 7px;
+            color: #52627e;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            min-height: 45px;
+            padding: 12px 14px;
+            border: 1px solid #e0e6f0;
+            border-radius: 12px;
+            outline: none;
+            background: #fbfcff;
+            color: var(--text);
+            font: inherit;
+            font-size: 14px;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+            input:focus,
+            textarea:focus,
+            select:focus {
+                border-color: #a8b9dd;
+                box-shadow: 0 0 0 4px #dce5f655;
+            }
+
+            input::placeholder,
+            textarea::placeholder {
+                color: #a2aabd;
+            }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        form button,
+        button.primary {
+            margin-top: 20px;
+            padding: 12px 19px;
+            border: 1px solid #cdd9ef;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #e5ecfa, #efedfa);
+            color: var(--blue-dark);
+            font-weight: bold;
+        }
+
+            form button:hover,
+            button.primary:hover {
+                background: #dce6f8;
+                box-shadow: 0 5px 15px #40577f13;
+            }
+
+        /* AÇÕES E BACKUP */
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        #export,
+        #import {
+            margin: 8px 8px 0 0;
+        }
+
+        #file {
+            display: none;
+        }
+
+        /* RODAPÉ */
+
+        footer {
+            padding: 30px 20px;
+            border-top: 1px solid #e5eaf3;
+            background: #fff9;
+            color: #8490a8;
+            text-align: center;
+            font: italic 14px Georgia, serif;
+        }
+
+            footer .heart {
+                color: #728bb9;
+            }
+
+        /* CELULARES */
+
+        @media (max-width: 600px) {
+            .site-header {
+                padding: 38px 17px 26px;
+            }
+
+            .decoration-one {
+                left: 5%;
+                font-size: 29px;
+            }
+
+            .decoration-two {
+                right: 6%;
+                font-size: 25px;
+            }
+
+            .site-header > p {
+                max-width: 310px;
+                font-size: 14px;
+            }
+
+            nav {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 10px 12px;
+                scrollbar-width: none;
+            }
+
+                nav::-webkit-scrollbar {
+                    display: none;
+                }
+
+                nav button {
+                    flex: 0 0 auto;
+                    padding: 9px 13px;
+                    font-size: 12px;
+                }
+
+            main {
+                padding: 15px 13px 35px;
+            }
+
+            .card {
+                margin: 14px 0;
+                padding: 20px 17px;
+                border-radius: 19px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .note {
+                padding: 18px;
+            }
+
+            .hero {
+                padding: 28px 16px;
+            }
+
+            .entry {
+                padding: 17px;
+            }
+
+            form button {
+                width: 100%;
+            }
+
+            .cover-polaroid {
+                width: 165px;
+            }
+
+            .drawing {
+                height: 140px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <header class="site-header">
+        <div class="header-decoration decoration-one">♡</div>
+        <div class="header-decoration decoration-two">✧</div>
+
+        <div class="polaroid cover-polaroid">
+            <div class="drawing">
+                <img src="/Script/img/H.png" alt="Pequenos detalhes da Heloah">
+            </div>
+            <div class="caption">pequenos detalhes ♡</div>
+        </div>
+
+        <h1 id="siteName">Heloah</h1>
+
+        <p id="siteIntro">
+            Um cantinho cheio de curiosidades, gostos,
+            sonhos e pequenos detalhes sobre ela.
+        </p>
+
+        <a class="instagram-link"
+           href="https://www.instagram.com/heloahdhp/"
+           target="_blank"
+           rel="noopener noreferrer">
+            <span>♡</span> Conheça o Instagram <span>↗</span>
+        </a>
+
+        <div class="header-bottom">feito de lembranças e pequenos encantos ✧</div>
+    </header>
+
+    <nav>
+        <button class="active" data-page="home">Início ♡</button>
+        <button data-page="about">Sobre ela</button>
+        <button data-page="details">Detalhes</button>
+        <button data-page="memories">Memórias</button>
+        <button data-page="favorites">Favoritos</button>
+        <button data-page="edit">Editar ✎</button>
+    </nav>
+
+    <main>
+        <section class="page active" id="home">
+            <div class="card hero">
+                
+                <p class="heart" id="quote">"Os pequenos detalhes merecem ser lembrados."</p>
+            </div>
+
+            <div class="grid">
+                <div class="note">
+                    <h3>🌷 Sobre ela</h3>
+                    <p>Pequenas coisas que fazem dela quem ela é.</p>
+                    <button data-go="about">Conhecer</button>
+                </div>
+                <div class="note">
+                    <h3>🧸 Detalhes</h3>
+                    <p>Coisas que você não quer esquecer.</p>
+                    <button data-go="details">Ver detalhes</button>
+                </div>
+                <div class="note">
+                    <h3>💌 Memórias</h3>
+                    <p>Momentos que merecem ficar guardados.</p>
+                    <button data-go="memories">Abrir diário</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="about">
+            <div class="card">
+                <h2>Sobre a Heloah 🌷</h2>
+                <p class="small">Preencha aos poucos, conforme for conhecendo mais sobre ela.</p>
+                <div id="profileView" class="grid"></div>
+            </div>
+        </section>
+
+        <section class="page" id="details">
+            <div class="card">
+                <h2>Pequenos detalhes 🎀</h2>
+                <p>Às vezes, são as coisinhas mais simples que tornam alguém especial.</p>
+                <div id="detailList"></div>
+            </div>
+        </section>
+
+        <section class="page" id="memories">
+            <div class="card">
+                <h2>Nosso diário de memórias 💌</h2>
+                <p>Conversas, momentos engraçados, passeios e lembranças importantes.</p>
+                <div id="memoryList"></div>
+            </div>
+        </section>
+
+        <section class="page" id="favorites">
+            <div class="card">
+                <h2>Coisas favoritas 🍓</h2>
+                <p>Uma coleção dos gostos dela, para você lembrar.</p>
+                <div id="favoriteList" class="grid"></div>
+            </div>
+        </section>
+
+        <section class="page" id="edit">
+            <div class="card">
+                <h2>Editar o cantinho ✎</h2>
+                <p class="small">Tudo o que você salvar fica neste navegador.</p>
+                <form id="profileForm">
+                    <label>Nome ou apelido</label>
+                    <input id="name" placeholder="Heloah">
+                    <label>Aniversário</label>
+                    <input id="birthday" placeholder="Dia e mês">
+                    <label>Cor favorita</label>
+                    <input id="color" placeholder="Rosa, lilás...">
+                    <label>Comida favorita</label>
+                    <input id="food" placeholder="O que ela gosta de comer">
+                    <label>Música ou artista favorito</label>
+                    <input id="music" placeholder="Uma música especial">
+                    <label>Passatempos</label>
+                    <input id="hobby" placeholder="O que ela gosta de fazer">
+                    <label>Sonhos dela</label>
+                    <textarea id="dream" placeholder="Coisas que ela quer realizar"></textarea>
+                    <label>Texto da página inicial</label>
+                    <textarea id="introInput"></textarea>
+                    <label>Frase em destaque</label>
+                    <input id="quoteInput">
+                    <button class="primary">Salvar informações ♡</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>Guardar um detalhe 🌼</h2>
+                <form id="detailForm">
+                    <label>Título</label>
+                    <input id="detailTitle" required placeholder="Algo que você quer lembrar">
+                    <label>Descrição</label>
+                    <textarea id="detailText" placeholder="Conte mais..."></textarea>
+                    <button class="primary">Guardar detalhe</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>Adicionar uma memória 📸</h2>
+                <form id="memoryForm">
+                    <label>Título da memória</label>
+                    <input id="memoryTitle" required placeholder="Ex.: Uma conversa">
+                    <label>Data</label>
+                    <input id="memoryDate" type="date">
+                    <label>O que aconteceu?</label>
+                    <textarea id="memoryText" required placeholder="Escreva para não esquecer..."></textarea>
+                    <button class="primary">Salvar memória ♡</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>Adicionar favorito 🍓</h2>
+                <form id="favoriteForm">
+                    <label>Categoria</label>
+                    <select id="favCategory">
+                        <option>Comida</option>
+                        <option>Bebida</option>
+                        <option>Música</option>
+                        <option>Filme ou série</option>
+                        <option>Cor</option>
+                        <option>Passatempo</option>
+                        <option>Outro</option>
+                    </select>
+                    <label>Qual é o favorito?</label>
+                    <input id="favValue" required placeholder="Escreva aqui...">
+                    <button class="primary">Adicionar favorito</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>Backup dos dados 💾</h2>
+
+                <button type="button" id="export" class="primary">
+                    Exportar backup
+                </button>
+
+                <button type="button" id="import">
+                    Importar backup
+                </button>
+
+                <input type="file"
+                       id="file"
+                       accept=".json,application/json"
+                       hidden>
+            </div>
+        </section>
+    </main>
+
+    <footer>feito com carinho, um detalhe de cada vez <span class="heart">♡</span></footer>
+
+    <script>
+        const KEY = "cantinho_heloah_v1";
+
+        const defaults = {
+            profile: {
+                name: "Heloah da Hora Pontes",
+                birthday: "05/06/2008",
+                color: "Azul-marinho",
+                food: "Prefere doces e sabe fazer macarrão. Come pouco... só às vezes exagera kkkkkk",
+                music: "",
+                hobby: "Ler clássicos, distopias, fanfics, romances e dark romance; gosta de bichinhos de crochê, filmes de terror e séries policiais.",
+                dream: "Fazer estágio durante a faculdade de ADS e, futuramente, talvez seguir para a Polícia Civil ou para a Enfermagem.",
+                intro: "Um cantinho cheio de curiosidades, gostos, sonhos e pequenos detalhes sobre a Heloah.",
+                quote: "Corintiana (palmeirense disfarçada), leitora nas horas vagas e cheia de detalhes únicos ♡"
+            },
+            details: [],
+            memories: [],
+            favorites: [
+                {
+                    id: "fav1",
+                    category: "📚 Livros",
+                    value: "Clássicos, distopias, fanfics, romances e dark romance"
+                },
+                {
+                    id: "fav2",
+                    category: "☕ Bebidas",
+                    value: "Café com leite e sem açúcar. Não gosta de chá."
+                },
+                {
+                    id: "fav3",
+                    category: "🎬 Filmes e séries",
+                    value: "Filmes de terror, séries policiais, Chicago e Operação: Lioness"
+                },
+                {
+                    id: "fav4",
+                    category: "🧸 Decoração",
+                    value: "Bichinhos de crochê"
+                },
+                {
+                    id: "fav5",
+                    category: "🐶 Animais",
+                    value: "Já teve uma gata, mas prefere cachorros"
+                },
+                {
+                    id: "fav6",
+                    category: "⚽ Futebol",
+                    value: "Corintiana (palmeirense disfarçada) kkkkk"
+                }
+            ]
+        };
+
+
+        function clone(obj) {
+            return JSON.parse(JSON.stringify(obj));
+        }
+
+        let data;
+        try {
+            data = JSON.parse(localStorage.getItem(KEY)) || clone(defaults);
+        } catch {
+            data = clone(defaults);
+        }
+
+        function save() {
+            try {
+                localStorage.setItem(KEY, JSON.stringify(data));
+            } catch {
+                alert("Não foi possível salvar os dados neste navegador.");
+            }
+        }
+
+        function esc(value) {
+            return String(value ?? "").replace(/[&<>"']/g, c => ({
+                "&": "&amp;", "<": "&lt;", ">": "&gt;",
+                '"': "&quot;", "'": "&#39;"
+            })[c]);
+        }
+
+        function id() {
+            return Date.now().toString(36) + Math.random().toString(36).slice(2);
+        }
+
+        function go(page) {
+            document.querySelectorAll(".page").forEach(el =>
+                el.classList.toggle("active", el.id === page));
+            document.querySelectorAll("nav button").forEach(el =>
+                el.classList.toggle("active", el.dataset.page === page));
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        document.querySelectorAll("[data-page]").forEach(btn =>
+            btn.addEventListener("click", () => go(btn.dataset.page)));
+
+        document.querySelectorAll("[data-go]").forEach(btn =>
+            btn.addEventListener("click", () => go(btn.dataset.go)));
+
+        function render() {
+            const p = data.profile;
+            document.getElementById("siteName").textContent =
+                p.name || "Heloah";
+
+            document.getElementById("siteIntro").textContent =
+                p.intro || "Um cantinho feito com carinho ♡";
+
+            document.getElementById("quote").textContent =
+                p.quote ? '"' + p.quote + '"' : "";
+
+            const fields = [
+                ["🎂", "Aniversário", p.birthday],
+                ["🎨", "Cor favorita", p.color],
+                ["🍓", "Comida", p.food],
+                ["🎧", "Música favorita", p.music],
+                ["📚", "Passatempos", p.hobby],
+                ["✨", "Sonhos", p.dream],
+                ["📏", "Altura", "1,70 m"],
+                ["⚖️", "Peso", "70 kg"],
+                ["⚽", "Time", "Corintiana (palmeirense disfarçada)"],
+                ["🐱", "Pets", "Já teve uma gata, mas prefere cachorros"],
+                ["🥋", "Jiu-jítsu", "Já praticou e chegou à faixa verde"],
+                ["🩰", "Balé", "Já fez balé"],
+                ["💻", "Estudos", "Faz DS e pretende cursar ADS"],
+                ["🧶", "Decoração", "Ama bichinhos de crochê"]
+            ];
+
+            document.getElementById("profileView").innerHTML = fields.map(f =>
+                `<div class="note"><h3>${f[0]} ${esc(f[1])}</h3><p>${f[2] ? esc(f[2]) : '<span class="empty">Ainda não sei...</span>'}</p></div>`
+            ).join("");
+
+            document.getElementById("detailList").innerHTML = data.details.length
+                ? data.details.map(x => `
+                                      <div class="entry">
+                                        <h3>${esc(x.title)}</h3><p>${esc(x.text)}</p>
+                                        <button data-delete="details" data-id="${esc(x.id)}">Excluir</button>
+                                      </div>`).join("")
+                : '<p class="empty">Seus detalhes especiais aparecerão aqui</p>';
+
+            document.getElementById("memoryList").innerHTML = data.memories.length
+                ? [...data.memories].reverse().map(x => `
+                                      <div class="entry">
+                                        <span class="small">${esc(x.date || "Data não informada")}</span>
+                                        <h3>${esc(x.title)}</h3><p>${esc(x.text)}</p>
+                                        <button data-delete="memories" data-id="${esc(x.id)}">Excluir</button>
+                                      </div>`).join("")
+                : '<p class="empty">Toda história começa com uma memória</p>';
+
+            document.getElementById("favoriteList").innerHTML = data.favorites.length
+                ? data.favorites.map(x => `
+                                      <div class="note">
+                                        <h3>♡ ${esc(x.category)}</h3><p>${esc(x.value)}</p>
+                                        <button data-delete="favorites" data-id="${esc(x.id)}">Excluir</button>
+                                      </div>`).join("")
+                : '<p class="empty">Os favoritos dela aparecerão aqui</p>';
+
+            document.querySelectorAll("[data-delete]").forEach(btn =>
+                btn.addEventListener("click", () => {
+                    if (!confirm("Excluir este item?")) return;
+                    const list = btn.dataset.delete;
+                    data[list] = data[list].filter(x => String(x.id) !== btn.dataset.id);
+                    save();
+                    render();
+                }));
+
+            const fieldsToInputs = {
+                name: "name",
+                birthday: "birthday",
+                color: "color",
+                food: "food",
+                music: "music",
+                hobby: "hobby",
+                dream: "dream",
+                intro: "introInput",
+                quote: "quoteInput"
+            };
+
+            Object.entries(fieldsToInputs).forEach(([key, elementId]) => {
+                document.getElementById(elementId).value = p[key] || "";
+            });
+        }
+
+        document.getElementById("profileForm").addEventListener("submit", e => {
+            e.preventDefault();
+
+            const map = {
+                name: "name",
+                birthday: "birthday",
+                color: "color",
+                food: "food",
+                music: "music",
+                hobby: "hobby",
+                dream: "dream",
+                intro: "introInput",
+                quote: "quoteInput"
+            };
+
+            Object.entries(map).forEach(([key, elementId]) => {
+                data.profile[key] = document.getElementById(elementId).value.trim();
+            });
+
+            save();
+            render();
+            alert("Informações salvas com carinho! ♡");
+        });
+
+        document.getElementById("detailForm").addEventListener("submit", e => {
+            e.preventDefault();
+            data.details.push({
+                id: id(),
+                title: document.getElementById("detailTitle").value.trim(),
+                text: document.getElementById("detailText").value.trim()
+            });
+            save();
+            e.target.reset();
+            render();
+        });
+
+        document.getElementById("memoryForm").addEventListener("submit", e => {
+            e.preventDefault();
+            data.memories.push({
+                id: id(),
+                title: document.getElementById("memoryTitle").value.trim(),
+                date: document.getElementById("memoryDate").value,
+                text: document.getElementById("memoryText").value.trim()
+            });
+            save();
+            e.target.reset();
+            render();
+        });
+
+        document.getElementById("export").addEventListener("click", () => {
+            const blob = new Blob([JSON.stringify(data, null, 2)], {
+                type: "application/json"
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "heloah-backup.json";
+            a.click();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        });
+
+        document.getElementById("import").addEventListener("click", () =>
+            document.getElementById("file").click());
+
+        document.getElementById("file").addEventListener("change", async e => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            try {
+                const imported = JSON.parse(await file.text());
+                if (!imported.profile || !Array.isArray(imported.details) ||
+                    !Array.isArray(imported.memories) ||
+                    !Array.isArray(imported.favorites)) {
+                    throw new Error("Arquivo inválido");
+                }
+
+                if (confirm("Restaurar o backup e substituir os dados atuais?")) {
+                    data = imported;
+                    save();
+                    render();
+                    alert("Backup restaurado!");
+                }
+            } catch {
+                alert("Não foi possível ler esse backup.");
+            }
+            e.target.value = "";
+        });
+
+        document.getElementById("favoriteForm").addEventListener("submit", e => {
+            e.preventDefault();
+
+            data.favorites.push({
+                id: id(),
+                category: document.getElementById("favCategory").value,
+                value: document.getElementById("favValue").value.trim()
+            });
+
+            save();
+            e.target.reset();
+            render();
+        });
+
+        render();
+    </script>
+</body>
+</html>
