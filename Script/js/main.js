@@ -1544,12 +1544,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const birthdays = [
-    { name: "Pipoca", month: 1, day: 24 },
-    { name: "Joaquim", month: 2, day: 5 },
-    { name: "Joaquim Batismo", month: 2, day: 22 },
-    { name: "Vitória", month: 6, day: 4 },
-    { name: "Adeir", month: 9, day: 7 },
-    { name: "Paula", month: 10, day: 24 },
+        { name: "Pipoca", month: 1, day: 24 },     // 24 de janeiro
+        { name: "Joaquim", month: 2, day: 5 },     // 5 de fevereiro
+        { name: "Heloah", month: 6, day: 5 },     // 5 de julho
+        { name: "Joaquim, pelo Aniversário de Batismo", month: 2, day: 22 },     // 22 de fevereiro
+        { name: "Vitória", month: 6, day: 4 },     // 4 de julho
+        { name: "Adeir", month: 9, day: 7 },       // 7 de setembro
+        { name: "Paula", month: 10, day: 24 },     // 24 de outubro
+        { name: "Namoro", month: 10, day: 24 },     // 24 de outubro
 
     { name: "J2+", month: 9, day: 2 },   // 2 Setembro 2024
     { name: "J2: Nova", month: 5, day: 12 },   // 12 Maio 2023
@@ -2185,12 +2187,14 @@ window.addEventListener("hashchange", () => {
     let isPlaying = false;
 
     const birthdays = [
-        { name: "Pipoca", month: 1, day: 24 },
-        { name: "Joaquim", month: 2, day: 5 },
-        { name: "Joaquim Batismo", month: 2, day: 22 },
-        { name: "Vitória", month: 6, day: 4 },
-        { name: "Adeir", month: 9, day: 7 },
-        { name: "Paula", month: 10, day: 24 },
+        { name: "Pipoca", month: 1, day: 24 },     // 24 de janeiro
+        { name: "Joaquim", month: 2, day: 5 },     // 5 de fevereiro
+        { name: "Heloah", month: 6, day: 5 },     // 5 de julho
+        { name: "Joaquim, pelo Aniversário de Batismo", month: 2, day: 22 },     // 22 de fevereiro
+        { name: "Vitória", month: 6, day: 4 },     // 4 de julho
+        { name: "Adeir", month: 9, day: 7 },       // 7 de setembro
+        { name: "Paula", month: 10, day: 24 },     // 24 de outubro
+        { name: "Namoro", month: 10, day: 24 },     // 24 de outubro
 
         { name: "J2+", month: 9, day: 2 }, // 2 Setembro 2024
         { name: "J2", month: 5, day: 12 }, // 12 Maio 2023
