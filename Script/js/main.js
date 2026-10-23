@@ -2369,10 +2369,12 @@ window.onclick = function(event) {
     const birthdays = [
         { name: "Pipoca", month: 1, day: 24 },     // 24 de janeiro
         { name: "Joaquim", month: 2, day: 5 },     // 5 de fevereiro
+        { name: "Heloah", month: 6, day: 5 },     // 5 de julho
         { name: "Joaquim, pelo Aniversário de Batismo", month: 2, day: 22 },     // 22 de fevereiro
         { name: "Vitória", month: 6, day: 4 },     // 4 de julho
         { name: "Adeir", month: 9, day: 7 },       // 7 de setembro
         { name: "Paula", month: 10, day: 24 },     // 24 de outubro
+        { name: "Namoro", month: 10, day: 24 },     // 24 de outubro
     ];
 
     // Obtém a data atual
