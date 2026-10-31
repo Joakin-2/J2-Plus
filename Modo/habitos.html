@@ -2688,6 +2688,42 @@ header input {
                 margin: auto;
             }
         }
+
+        #btnCopiarHabitos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+    padding: 5px;
+
+    background: transparent;
+    color: #7c3aed;
+
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#btnCopiarHabitos:hover {
+    color: #6366f1;
+    transform: scale(1.15);
+    filter: none;
+}
+
+#btnCopiarHabitos:active {
+    transform: scale(0.9);
+}
+
+.habitos-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
     </style>
 </head>
 <body>
@@ -2702,9 +2738,23 @@ header input {
         🍽️
     </button>
 
-    <div class="header-titulo">
+    <div class="habitos-header">
+    <div>
         <span class="subtitulo">SUA ROTINA, SEU PROGRESSO</span>
-        <h1 id="tituloHabitos">Monitor de Hábitos</h1>
+    <h1 id="tituloHabitos" onclick="abrirSites()">
+        Monitor de Hábitos
+    </h1>
+    </div>
+
+    <button id="btnCopiarHabitos" title="Copiar hábitos">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="8" width="13" height="13" rx="2"/>
+            <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+        </svg>
+    </button>
+</div>
     </div>
 
     <div class="relogio-container">
@@ -2722,31 +2772,28 @@ header input {
     </div>
 
     <section id="manha" class="caixa caixa-manha">
-        <div class="titulo" onclick="abrirSitesManha()">
+        <div class="titulo">
             <span class="periodo-icone">☀️</span>
             <span>Manhã</span>
             <span class="periodo-horario">06h — 12h</span>
-            <span class="titulo-seta">↗</span>
         </div>
         <ul id="manhaHabitos"></ul>
     </section>
 
     <section id="tarde" class="caixa caixa-tarde">
-        <div class="titulo" onclick="abrirSitesTarde()">
+        <div class="titulo">
             <span class="periodo-icone">🌤️</span>
             <span>Tarde</span>
             <span class="periodo-horario">12h — 18h</span>
-            <span class="titulo-seta">↗</span>
         </div>
         <ul id="tardeHabitos"></ul>
     </section>
 
     <section id="noite" class="caixa caixa-noite">
-        <div class="titulo" onclick="abrirSitesNoite()">
+        <div class="titulo">
             <span class="periodo-icone">🌙</span>
             <span>Noite</span>
             <span class="periodo-horario">18h — 00h</span>
-            <span class="titulo-seta">↗</span>
         </div>
         <ul id="noiteHabitos"></ul>
     </section>
@@ -3588,8 +3635,8 @@ function carregarHabitosDoDia() {
         },
         sábado: {
             manha: ['Orar e Cama','Fazer Faxina','Gelo e Cárdio','Vácuo e Alongar', 'Desenhar e Correr'],
-            tarde: ['Pele e Águas','Ovo e Amendoim','Lavar Roupas e Banheiro', 'Lavar Carro e Moto'],
-            noite: ['Arrumar Café','Stories e Tiktok','Depilar, Ouvido e Pé', 'Frutas e Chá c/ Limão', 'Limpar Escritório']
+            tarde: ['Pele e Águas','Ovo e Amendoim', 'Lavar Carro e Moto','Lavar Roupas e Banheiro'],
+            noite: ['Arrumar Café','Stories e Tiktok', 'Limpar Escritório','Depilar, Ouvido e Pé', 'Frutas e Chá c/ Limão']
         },
     },
     };
@@ -3933,7 +3980,7 @@ function importNotes() {
     input.click();
 }
 
-document.getElementById('tituloHabitos').addEventListener('click', function() {
+document.getElementById('btnCopiarHabitos').addEventListener('click', function() {
     // Obter o perfil ativo
     const perfilAtivo = localStorage.getItem("perfilAtivo") || "Main";
     
@@ -3972,8 +4019,8 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
         },
         sábado: {
             manha: ['Orar e Cama','Fazer Faxina','Gelo e Cárdio','Vácuo e Alongar', 'Desenhar e Correr'],
-            tarde: ['Pele e Águas','Ovo e Amendoim','Lavar Roupas e Banheiro', 'Lavar Carro e Moto'],
-            noite: ['Arrumar Café','Stories e Tiktok','Depilar, Ouvido e Pé', 'Frutas e Chá c/ Limão', 'Limpar Escritório']
+            tarde: ['Pele e Águas','Ovo e Amendoim', 'Lavar Carro e Moto','Lavar Roupas e Banheiro'],
+            noite: ['Arrumar Café','Stories e Tiktok', 'Limpar Escritório','Depilar, Ouvido e Pé', 'Frutas e Chá c/ Limão']
         },
     },
     };
@@ -4056,7 +4103,8 @@ document.getElementById('tituloHabitos').addEventListener('click', function() {
     alert('Hábitos copiados com sucesso!');
 });
 
-function abrirSitesManha() {
+
+function abrirSites() {
     const hoje = new Date();
     const diaSemana = hoje.getDay(); // 0 = Domingo, 6 = Sábado
 
@@ -4065,11 +4113,19 @@ function abrirSitesManha() {
         window.open('https://www.tiktok.com/messages', '_blank');
         window.open('https://j2plus.netlify.app/modo/gym.html', '_blank');
         window.open('https://j2plus.netlify.app/modo/melody.html', '_blank');
+        window.open('https://j2plus.netlify.app/modo/conselho.html#relatorio', '_blank');
+        window.open('https://j2plus.netlify.app/modo/habitos.html#refeicao', '_blank');
+        window.open('https://mail.google.com/mail/u/4/?ogbl#inbox', '_blank');
+        window.open('https://web.whatsapp.com/', '_blank');
 
     } else if (diaSemana === 0) {
         // Domingo
         window.open('https://www.tiktok.com/messages', '_blank');
         window.open('https://j2plus.netlify.app/modo/melody.html', '_blank');
+        window.open('https://j2plus.netlify.app/modo/conselho.html#relatorio', '_blank');
+        window.open('https://j2plus.netlify.app/modo/habitos.html#refeicao', '_blank');
+        window.open('https://mail.google.com/mail/u/4/?ogbl#inbox', '_blank');
+        window.open('https://web.whatsapp.com/', '_blank');
 
     } else if (diaSemana === 5) {
         // Sexta-feira
@@ -4080,24 +4136,22 @@ function abrirSitesManha() {
         window.open('https://j2plus.netlify.app/modo/gym.html', '_blank');
         window.open('https://j2plus.netlify.app/modo/melody.html', '_blank');
         window.open('https://j2plus.netlify.app/modo/work.html', '_blank');
+        window.open('https://j2plus.netlify.app/modo/conselho.html#relatorio', '_blank');
+        window.open('https://j2plus.netlify.app/modo/habitos.html#refeicao', '_blank');
+        window.open('https://mail.google.com/mail/u/4/?ogbl#inbox', '_blank');
+        window.open('https://web.whatsapp.com/', '_blank');
 
     } else {
-        // Segunda a Quinta
+        // Segunda a quinta
         window.open('https://seller.shopee.com.br/', '_blank');
         window.open('https://www.tiktok.com/messages', '_blank');
         window.open('https://j2plus.netlify.app/modo/gym.html', '_blank');
         window.open('https://j2plus.netlify.app/modo/melody.html', '_blank');
+        window.open('https://j2plus.netlify.app/modo/conselho.html#relatorio', '_blank');
+        window.open('https://j2plus.netlify.app/modo/habitos.html#refeicao', '_blank');
+        window.open('https://mail.google.com/mail/u/4/?ogbl#inbox', '_blank');
+        window.open('https://web.whatsapp.com/', '_blank');
     }
-}
-
-function abrirSitesTarde() {
-    window.open('https://j2plus.netlify.app/modo/conselho.html#relatorio', '_blank');
-    window.open('https://j2plus.netlify.app/modo/habitos.html#refeicao', '_blank');
-}
-
-function abrirSitesNoite() {
-    window.open('https://mail.google.com/mail/u/4/?ogbl#inbox', '_blank');
-    window.open('https://web.whatsapp.com/', '_blank');
 }
 
     </script>

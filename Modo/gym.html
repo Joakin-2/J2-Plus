@@ -1145,12 +1145,12 @@ textarea {
 
         <div class="exercise-grid">
 
-            <button class="exercise-button" onclick="abrirTreino('Seg')" style="    height: 120px;">Seg: Peito e Tríceps</button>
-                <button class="exercise-button" onclick="abrirTreino('Ter')" style="    height: 120px;">Ter: Costas e Bíceps</button>
-<button class="exercise-button" onclick="abrirTreino('Qua')" style="    height: 120px;">Qua: Pernas e Abdômen</button>
-                <button class="exercise-button" onclick="abrirTreino('Qui')" style="    height: 120px;">Qui: Ombros e Trapézio</button>
-            <button class="exercise-button" onclick="fecharPesos(); abrirModal('alongarModal')" style="    height: 120px;">Sex: Alongamentos</button>
-                <button class="exercise-button" onclick="fecharPesos(); abrirModal('corridaModal')" style="    height: 120px;">Sáb: Corrida</button>
+            <button class="exercise-button" onclick="abrirTreino('Seg')" style="    height: 120px;">Seg: Peito e Braços</button>
+                <button class="exercise-button" onclick="abrirTreino('Qua')" style="    height: 120px;">Qua: Costas e Ombros</button>
+<button class="exercise-button" onclick="abrirTreino('Sex')" style="    height: 120px;">Sex: Pernas e Abdômen</button>
+            <button class="exercise-button" onclick="abrirTreino('Alongamentos')">Alongamentos</button>
+                <button class="exercise-button" onclick="abrirTreino('Lombar')">Lombar</button>
+                <button class="exercise-button" onclick="abrirTreino('Core')">Core</button>
                 <button class="exercise-button" onclick="abrirTreino('Braços')">Braços</button>
                     <button class="exercise-button" onclick="abrirTreino('Ombros')">Ombros</button>
                 <button class="exercise-button" onclick="abrirTreino('Abdômen')">Abdômen</button>
@@ -1330,34 +1330,35 @@ setInterval(function () {
 }, 60000); // Verifica a cada 60 segundos
 
         const treinos = {
-    Seg: { titulo: "Peito e Tríceps", exercicios: [
-            { nome: "Cross", detalhe: "3x12", kcal: 25 },
+    Seg: { titulo: "Peito e Braços", exercicios: [
+        { nome: "Cross", detalhe: "3x12", kcal: 25 },
         { nome: "Flexão", detalhe: "4x15", kcal: 30 },
         { nome: "Supino reto", detalhe: "4x10", kcal: 45 },
         { nome: "Crucifixo", detalhe: "3x12", kcal: 30 },
+
+        { nome: "Rosca Direta", detalhe: "3x12", kcal: 20 },
+        { nome: "Rosca Inversa", detalhe: "3x12", kcal: 18 },
+        { nome: "Rosca alternada", detalhe: "3x12", kcal: 18 },
         { nome: "Tríceps corda", detalhe: "4x12", kcal: 25 },
         { nome: "Tríceps francês", detalhe: "3x12", kcal: 20 }
     ]},
-    Ter: { titulo: "Costas e Bíceps", exercicios: [
+    Qua: { titulo: "Costas e Ombros", exercicios: [
         { nome: "Desenvolvimento Atrás", detalhe: "4x10", kcal: 40 },
         { nome: "Remada curvada", detalhe: "4x10", kcal: 40 },
         { nome: "Remada baixa", detalhe: "3x12", kcal: 30 },
-    { nome: "Rosca Direta", detalhe: "3x12", kcal: 20 },
-    { nome: "Rosca Inversa", detalhe: "3x12", kcal: 18 },
-        { nome: "Rosca alternada", detalhe: "3x12", kcal: 18 }
-    ]},
-    Qua: { titulo: "Pernas e Abdômen", exercicios: [
-        { nome: "Agachamento", detalhe: "4x10", kcal: 55 },
-        { nome: "Afundo", detalhe: "3x12 (cada perna)", kcal: 45 },
-        { nome: "Abdominal supra", detalhe: "3x20", kcal: 20 },
-        { nome: "Abdominal infra", detalhe: "3x20", kcal: 20 },
-        { nome: "Prancha", detalhe: "3x40s", kcal: 15 }
-    ]},
-    Qui: { titulo: "Ombros e Trapézio", exercicios: [
+
         { nome: "Desenvolvimento", detalhe: "4x10", kcal: 40 },
         { nome: "Elevação lateral", detalhe: "3x12", kcal: 25 },
         { nome: "Elevação frontal", detalhe: "3x12", kcal: 25 },
         { nome: "Encolhimento", detalhe: "4x12", kcal: 20 }
+    ]},
+    Sex: { titulo: "Pernas e Abdômen", exercicios: [
+        { nome: "Agachamento", detalhe: "4x10", kcal: 55 },
+        { nome: "Afundo", detalhe: "3x12 (cada perna)", kcal: 45 },
+        
+        { nome: "Abdominal supra", detalhe: "3x20", kcal: 20 },
+        { nome: "Abdominal infra", detalhe: "3x20", kcal: 20 },
+        { nome: "Prancha", detalhe: "3x40s", kcal: 15 }
     ]},
     "Braços": { titulo: "Braços", exercicios: [
         { nome: "Tríceps francês", detalhe: "3x12", kcal: 20 },
@@ -1392,13 +1393,25 @@ setInterval(function () {
         { nome: "Agachamento", detalhe: "4x10", kcal: 55 },
         { nome: "Afundo", detalhe: "3x12 (cada perna)", kcal: 45 }
     ]},
-    "Meta": { titulo: "Core", exercicios: [
+    "Core": { titulo: "Core", exercicios: [
         { nome: "Prancha", detalhe: "3x40s", kcal: 15 },
         { nome: "Abdominal supra", detalhe: "3x20", kcal: 20 },
         { nome: "Abdominal infra", detalhe: "3x20", kcal: 20 },
         { nome: "Prancha lateral", detalhe: "3x30s (cada lado)", kcal: 15 },
         { nome: "Elevação de pernas", detalhe: "3x15", kcal: 18 }
-    ]}
+    ]},
+    "Lombar": { titulo: "Lombar", exercicios: [
+        { nome: "Extensão lombar", detalhe: "3x15", kcal: 20 },
+        { nome: "Superman", detalhe: "3x12", kcal: 15 },
+        { nome: "Prancha", detalhe: "3x30s", kcal: 12 }
+    ]},
+    "Alongamentos": {titulo: "Alongamentos", exercicios: [
+        { nome: "Alongamento lombar", detalhe: "3x20s", kcal: 8 },
+        { nome: "Alongamento de costas", detalhe: "3x30s", kcal: 8 },
+        { nome: "Alongamento de ombros", detalhe: "3x20s (cada braço)", kcal: 5 },
+        { nome: "Alongamento de pescoço", detalhe: "3x20s (cada lado)", kcal: 5 },
+        { nome: "Alongamento de quadríceps", detalhe: "3x30s (cada perna)", kcal: 10 },
+    ]},
 };
 
 function abrirTreino(destino) {

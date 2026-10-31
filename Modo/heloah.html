@@ -510,6 +510,411 @@
                 color: #728bb9;
             }
 
+
+        
+/* PERÍODO FÉRTIL — LILÁS */
+.cycle-day.fertile {
+    background: #e6e0fa;
+    border-radius: 0;
+}
+
+.cycle-day.fertile.first {
+    border-radius: 50% 0 0 50%;
+}
+
+.cycle-day.fertile.last {
+    border-radius: 0 50% 50% 0;
+}
+
+.cycle-day.fertile.single {
+    border-radius: 50%;
+}
+
+/* DIA DA OVULAÇÃO — ROXO ESCURO */
+.cycle-day.ovulation {
+    background: #7965b5;
+    color: white;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* DIA ATUAL */
+.cycle-day.today {
+    background: #d691f7;
+    color: white;
+    border-radius: 50%;
+    z-index: 3;
+}
+
+.cycle-day.today.predicted {
+    background: #bd477c;
+}
+
+.fertile-dot,
+.ovulation-dot {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.fertile-dot {
+    background: #c9bce9;
+}
+
+.ovulation-dot {
+    background: #7965b5;
+}
+
+
+/* =====================================
+   CICLO MENSTRUAL — HELOAH ♡
+===================================== */
+
+.cycle-hero {
+    text-align: center;
+    padding: 32px 20px;
+    background:
+        radial-gradient(circle at 10% 10%, #f0edfc, transparent 40%),
+        radial-gradient(circle at 90% 90%, #e8f1fc, transparent 45%),
+        #fff;
+}
+
+.cycle-label,
+.cycle-section-label {
+    color: #8995b2;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.cycle-flower {
+    margin: 12px 0 0;
+    font-size: 38px;
+}
+
+.cycle-greeting {
+    color: #7885a2;
+    font: italic 16px Georgia, serif;
+}
+
+.cycle-circle {
+    width: 190px;
+    height: 190px;
+    margin: 22px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e3e0f4;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #f4f0ff, #edf3fc);
+    box-shadow: 0 8px 25px #6675a51a;
+}
+
+.cycle-count-label {
+    color: #9193b2;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+#cycleCountdown {
+    color: #6f659e;
+    font: normal 64px/1.2 Georgia, serif;
+}
+
+#cycleCountdownText {
+    color: #8991a8;
+    font-size: 12px;
+}
+
+.cycle-next {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #e3eaf5;
+    border-radius: 16px;
+    background: #ffffffc9;
+    text-align: left;
+}
+
+.cycle-next > span {
+    font-size: 25px;
+}
+
+.cycle-next div {
+    display: flex;
+    flex-direction: column;
+}
+
+.cycle-next small {
+    color: #929bb0;
+    font-size: 11px;
+}
+
+.cycle-next strong {
+    color: #53668c;
+    font-size: 13px;
+}
+
+.cycle-footer {
+    margin: 20px 0 0;
+    color: #9a9db2;
+    font: italic 13px Georgia, serif;
+}
+
+/* CALENDÁRIO */
+
+.cycle-calendar-card {
+    padding: 25px 18px;
+}
+
+.cycle-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.cycle-calendar-header h2 {
+    margin: 4px 0 0;
+    color: var(--blue-dark);
+    font: normal 23px Georgia, serif;
+    text-transform: capitalize;
+}
+
+.cycle-calendar-header button {
+    width: 38px;
+    height: 38px;
+    min-height: 38px;
+    padding: 0;
+    border: 1px solid #e4e8f3;
+    border-radius: 50%;
+    background: #f8f9fe;
+    font-size: 23px;
+}
+
+.cycle-weekdays,
+.cycle-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 7px;
+    text-align: center;
+}
+
+.cycle-weekdays {
+    margin-bottom: 12px;
+}
+
+.cycle-weekdays span {
+    color: #a0a7b9;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.cycle-day {
+    position: relative;
+    min-width: 0;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #586680;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.cycle-day.other-month {
+    color: #d5d9e3;
+}
+
+/* Menstruação */
+.cycle-day.predicted {
+    background: #f5dfe9;
+    color: #a65f80;
+}
+
+.cycle-day.predicted.first {
+    border-radius: 50% 0 0 50%;
+}
+
+.cycle-day.predicted.last {
+    border-radius: 0 50% 50% 0;
+}
+
+/* Período fértil */
+.cycle-day.fertile {
+    background: #e9e3fa;
+    color: #7968ad;
+}
+
+.cycle-day.fertile.first {
+    border-radius: 50% 0 0 50%;
+}
+
+.cycle-day.fertile.last {
+    border-radius: 0 50% 50% 0;
+}
+
+/* Ovulação */
+.cycle-day.ovulation {
+    z-index: 2;
+    border: 2px solid #7965b5;
+    background: #7965b5;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 3px 9px #7965b544;
+}
+
+/* Hoje */
+.cycle-day.today {
+    outline: 2px solid #7189b6;
+    outline-offset: 2px;
+    font-weight: bold;
+}
+
+/* LEGENDA */
+
+.cycle-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 25px;
+    padding-top: 18px;
+    border-top: 1px solid #edf0f6;
+}
+
+.cycle-legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #78839a;
+    font-size: 10px;
+}
+
+.period-dot,
+.fertile-dot,
+.ovulation-dot,
+.today-dot {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.period-dot { background: #e9b8cd; }
+.fertile-dot { background: #c9bce9; }
+.ovulation-dot { background: #7965b5; }
+.today-dot {
+    border: 2px solid #7189b6;
+}
+
+/* RESUMO */
+
+.cycle-info-card h2,
+.cycle-settings h2 {
+    margin-top: 7px;
+}
+
+.cycle-phase {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    padding: 14px;
+    border: 1px solid #edf0f6;
+    border-radius: 15px;
+}
+
+.phase-icon {
+    width: 35px;
+    height: 35px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: #ffffffa8;
+    font-size: 17px;
+}
+
+.cycle-phase div {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cycle-phase strong {
+    color: #566580;
+    font-size: 13px;
+}
+
+.cycle-phase small {
+    color: #929bb0;
+    font-size: 10px;
+}
+
+.cycle-phase > span:last-child {
+    color: #697694;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.period-phase { background: #fcf2f6; }
+.fertile-phase { background: #f5f2fc; }
+.ovulation-phase { background: #f0eef9; }
+
+.cycle-disclaimer {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #f8f9fd;
+}
+
+.cycle-disclaimer > span {
+    color: #9b8bc6;
+    font-size: 22px;
+}
+
+.cycle-disclaimer p {
+    margin: 0;
+    color: #8791a7;
+    font-size: 12px;
+}
+
+/* CELULAR */
+
+@media (max-width: 400px) {
+    .cycle-weekdays,
+    .cycle-calendar {
+        gap: 4px;
+    }
+
+    .cycle-day {
+        font-size: 12px;
+    }
+
+    .cycle-phase {
+        gap: 8px;
+        padding: 11px 9px;
+    }
+
+    .cycle-phase > span:last-child {
+        font-size: 10px;
+    }
+
+    .cycle-calendar-header h2 {
+        font-size: 20px;
+    }
+}
+
+
         /* CELULARES */
 
         @media (max-width: 600px) {
@@ -637,6 +1042,7 @@
         <button data-page="about">Sobre ela</button>
         <button data-page="details">Detalhes</button>
         <button data-page="memories">Memórias</button>
+        <button data-page="cycle">Ciclo</button>
         <button data-page="favorites">Favoritos</button>
         <button data-page="edit">Editar ✎</button>
     </nav>
@@ -690,6 +1096,155 @@
                 <div id="memoryList"></div>
             </div>
         </section>
+ 
+
+<section class="page" id="cycle">
+
+    <!-- DESTAQUE PRINCIPAL -->
+    <div class="card cycle-hero">
+        <span class="cycle-label">♡ CICLO HELOAH ♡</span>
+
+        <div class="cycle-flower">🌸</div>
+
+        <p class="cycle-greeting">Um tempinho para cuidar da Heloah</p>
+
+        <div class="cycle-circle">
+            <span class="cycle-count-label">FALTAM</span>
+            <div id="cycleCountdown">--</div>
+            <span id="cycleCountdownText">dias até a menstruação</span>
+        </div>
+
+        <div class="cycle-next">
+            <span>🩵</span>
+            <div>
+                <small>Próxima menstruação prevista</small>
+                <strong id="cycleNextDate">Registre a última menstruação</strong>
+            </div>
+        </div>
+
+        <p class="cycle-footer">Cuide da Heloah com carinho. O bem-estar dela importa ♡</p>
+    </div>
+
+    <!-- CALENDÁRIO -->
+    <div class="card cycle-calendar-card">
+
+        <div class="cycle-calendar-header">
+            <button type="button" id="prevCycleMonth">‹</button>
+
+            <div>
+                <span class="cycle-section-label">CALENDÁRIO DO CICLO</span>
+                <h2 id="cycleMonthTitle">Outubro de 2026</h2>
+            </div>
+
+            <button type="button" id="nextCycleMonth">›</button>
+        </div>
+
+        <div class="cycle-weekdays">
+            <span>DOM</span>
+            <span>SEG</span>
+            <span>TER</span>
+            <span>QUA</span>
+            <span>QUI</span>
+            <span>SEX</span>
+            <span>SÁB</span>
+        </div>
+
+        <div id="cycleCalendar" class="cycle-calendar"></div>
+
+        <!-- LEGENDA -->
+        <div class="cycle-legend">
+            <span><i class="period-dot"></i> Menstruação</span>
+            <span><i class="fertile-dot"></i> Período fértil</span>
+            <span><i class="ovulation-dot"></i> Ovulação</span>
+            <span><i class="today-dot"></i> Hoje</span>
+        </div>
+    </div>
+
+    <!-- RESUMO DAS FASES -->
+    <div class="card cycle-info-card">
+        <span class="cycle-section-label">SEU CICLO EM RESUMO</span>
+        <h2>Fases do ciclo 🌷</h2>
+
+        <div class="cycle-phase period-phase">
+            <span class="phase-icon">🌸</span>
+            <div>
+                <strong>Menstruação</strong>
+                <small>Período menstrual previsto</small>
+            </div>
+            <span id="periodSummary">Dias 7 a 12</span>
+        </div>
+
+        <div class="cycle-phase fertile-phase">
+            <span class="phase-icon">💜</span>
+            <div>
+                <strong>Período fértil</strong>
+                <small>Janela fértil estimada</small>
+            </div>
+            <span id="fertileSummary">Dias 14 a 20</span>
+        </div>
+
+        <div class="cycle-phase ovulation-phase">
+            <span class="phase-icon">✦</span>
+            <div>
+                <strong>Ovulação estimada</strong>
+                <small>Dia de maior destaque no calendário</small>
+            </div>
+            <span id="ovulationSummary">Dia 18</span>
+        </div>
+    </div>
+
+    <!-- CONFIGURAÇÕES -->
+    <div class="card cycle-settings">
+    <span class="cycle-section-label">PERSONALIZE CALENDÁRIO</span>
+    <h2>Configurar ciclo ✎</h2>
+    <p>Você pode atualizar essas informações sempre que precisar ♡</p>
+
+    <form id="cycleForm">
+
+        <label for="lastPeriodDate">
+            🌸 Primeiro dia da última menstruação
+        </label>
+        <input type="date" id="lastPeriodDate" required>
+
+        <label for="cycleLength">
+            💗 Duração média do ciclo (dias)
+        </label>
+        <input type="number"
+               id="cycleLength"
+               min="15"
+               max="60"
+               value="26"
+               required>
+
+        <label for="periodDuration">
+            🩷 Quantos dias dura a menstruação?
+        </label>
+        <input type="number"
+               id="periodDuration"
+               min="1"
+               max="15"
+               value="6"
+               required>
+
+        <button type="submit" class="primary">
+            Salvar configurações ♡
+        </button>
+
+    </form>
+</div>
+
+    <div class="card cycle-disclaimer">
+        <span>♡</span>
+        <p>
+            As datas são estimativas calculadas com base nas informações
+            registradas. O ciclo pode variar de um mês para outro.
+            O calendário não substitui métodos contraceptivos nem
+            confirma a ovulação.
+        </p>
+    </div>
+
+</section>
+
 
         <section class="page" id="favorites">
             <div class="card">
@@ -798,8 +1353,8 @@
                 name: "Heloah da Hora Pontes",
                 birthday: "05/06/2008",
                 color: "Azul-marinho",
-                food: "Prefere doces e sabe fazer macarrão. Come pouco... só às vezes exagera kkkkkk",
-                music: "",
+                food: "Ama sushi, prefere doces e sabe fazer macarrão. Come pouco... só às vezes exagera kkkkkk",
+                music: "Feminina, Latino Americano, Eres Tú, 'Sofá, Breja e Netflix' e outras do Baco",
                 hobby: "Ler clássicos, distopias, fanfics, romances e dark romance; gosta de bichinhos de crochê, filmes de terror e séries policiais.",
                 dream: "Fazer estágio durante a faculdade de ADS e, futuramente, talvez seguir para a Polícia Civil ou para a Enfermagem.",
                 intro: "Um cantinho cheio de curiosidades, gostos, sonhos e pequenos detalhes sobre a Heloah.",
@@ -807,6 +1362,12 @@
             },
             details: [],
             memories: [],
+            cycle: {
+                lastPeriod: "2026-10-07",
+                cycleLength: 26,
+                periodDuration: 6,
+                ovulationDay: 12
+            },
             favorites: [
                 {
                     id: "fav1",
@@ -853,6 +1414,9 @@
             data = clone(defaults);
         }
 
+        // Compatibilidade com os dados já salvos
+        data.cycle ||= clone(defaults.cycle);
+
         function save() {
             try {
                 localStorage.setItem(KEY, JSON.stringify(data));
@@ -879,6 +1443,335 @@
                 el.classList.toggle("active", el.dataset.page === page));
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
+
+        
+/* ========================================
+   CICLO MENSTRUAL HELOAH ♡
+======================================== */
+
+let cycleViewDate = new Date();
+cycleViewDate.setDate(1);
+
+const cycleToday = () => {
+    const now = new Date();
+    return new Date(Date.UTC(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+    ));
+};
+
+function cycleParseDate(value) {
+    if (!value) return null;
+
+    const [y, m, d] = value.split("-").map(Number);
+
+    if (!y || !m || !d) return null;
+
+    return new Date(Date.UTC(y, m - 1, d));
+}
+
+function cycleFormatDate(date) {
+    return date.toLocaleDateString("pt-BR", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        timeZone: "UTC"
+    });
+}
+
+function cycleAddDays(date, days) {
+    const result = new Date(date);
+    result.setUTCDate(result.getUTCDate() + days);
+    return result;
+}
+
+function cycleDateKey(date) {
+    return date.toISOString().slice(0, 10);
+}
+
+function renderCycle() {
+    const cycle = data.cycle;
+
+    const calendar = document.getElementById("cycleCalendar");
+    if (!calendar) return;
+
+    const lastPeriodInput = document.getElementById("lastPeriodDate");
+    const cycleLengthInput = document.getElementById("cycleLength");
+    const periodDurationInput = document.getElementById("periodDuration");
+
+    if (lastPeriodInput)
+        lastPeriodInput.value = cycle.lastPeriod || "";
+
+    if (cycleLengthInput)
+        cycleLengthInput.value = cycle.cycleLength || 26;
+
+    if (periodDurationInput)
+        periodDurationInput.value = cycle.periodDuration || 6;
+
+    const lastPeriod = cycleParseDate(cycle.lastPeriod);
+
+    if (!lastPeriod) {
+        document.getElementById("cycleCountdown").textContent = "--";
+        document.getElementById("cycleCountdownText").textContent =
+            "dias até a menstruação";
+
+        document.getElementById("cycleNextDate").textContent =
+            "Registre a última menstruação";
+
+        calendar.innerHTML =
+            '<p class="empty">Registre uma data para visualizar o calendário.</p>';
+
+        return;
+    }
+
+    const today = cycleToday();
+    const cycleLength = Number(cycle.cycleLength);
+    const periodDuration = Number(cycle.periodDuration);
+
+    if (
+        !Number.isInteger(cycleLength) ||
+        !Number.isInteger(periodDuration) ||
+        cycleLength < 15 ||
+        cycleLength > 60 ||
+        periodDuration < 1 ||
+        periodDuration > 15
+    ) return;
+
+    // Encontrar a próxima data prevista
+    let nextPeriod = new Date(lastPeriod);
+
+    while (nextPeriod < today) {
+        nextPeriod = cycleAddDays(nextPeriod, cycleLength);
+    }
+
+    const daysRemaining = Math.round(
+        (nextPeriod - today) / 86400000
+    );
+
+    document.getElementById("cycleCountdown").textContent =
+        daysRemaining;
+
+    document.getElementById("cycleCountdownText").textContent =
+        daysRemaining === 0
+            ? "previsão para hoje"
+            : daysRemaining === 1
+                ? "dia até a menstruação"
+                : "dias até a menstruação";
+
+    document.getElementById("cycleNextDate").textContent =
+        cycleFormatDate(nextPeriod);
+
+    // Cabeçalho do calendário
+    const year = cycleViewDate.getFullYear();
+    const month = cycleViewDate.getMonth();
+
+    document.getElementById("cycleMonthTitle").textContent =
+        new Date(year, month, 1).toLocaleDateString("pt-BR", {
+            month: "long",
+            year: "numeric"
+        });
+
+    const firstDay = new Date(Date.UTC(year, month, 1));
+    const lastDay = new Date(Date.UTC(year, month + 1, 0));
+
+    const daysInMonth = lastDay.getUTCDate();
+    const offset = firstDay.getUTCDay();
+
+    // Calcular menstruação, período fértil e ovulação
+const predictedDays = new Set();
+const fertileDays = new Set();
+const ovulationDays = new Set();
+
+let periodStart = new Date(lastPeriod);
+
+// Voltar ciclos para encontrar o período correspondente
+while (periodStart > lastDay) {
+    periodStart = cycleAddDays(periodStart, -cycleLength);
+}
+
+// Avançar até o mês que está sendo exibido
+while (
+    cycleAddDays(periodStart, periodDuration - 1) < firstDay
+) {
+    periodStart = cycleAddDays(periodStart, cycleLength);
+}
+
+// Calcular cada ciclo
+while (periodStart <= lastDay) {
+
+    // Menstruação
+    for (let i = 0; i < periodDuration; i++) {
+        predictedDays.add(
+            cycleDateKey(cycleAddDays(periodStart, i))
+        );
+    }
+
+    // Próxima menstruação prevista
+    const nextPeriod = cycleAddDays(
+        periodStart,
+        cycleLength
+    );
+
+    // Ovulação estimada: aproximadamente 14 dias antes
+    const ovulation = cycleAddDays(nextPeriod, -14);
+
+    // Janela fértil: 5 dias antes até o dia da ovulação
+    const fertileStart = cycleAddDays(ovulation, -5);
+
+    for (let i = 0; i <= 5; i++) {
+        fertileDays.add(
+            cycleDateKey(cycleAddDays(fertileStart, i))
+        );
+    }
+
+    // Dia específico da ovulação
+    ovulationDays.add(cycleDateKey(ovulation));
+
+    // Próximo ciclo
+    periodStart = nextPeriod;
+}
+
+    // Construir calendário
+    calendar.innerHTML = "";
+
+    const totalCells = Math.ceil((offset + daysInMonth) / 7) * 7;
+
+    for (let i = 0; i < totalCells; i++) {
+        const dayNumber = i - offset + 1;
+
+        const date = new Date(Date.UTC(year, month, dayNumber));
+        const key = cycleDateKey(date);
+
+        const isCurrentMonth = date.getUTCMonth() === month;
+        const isToday = key === cycleDateKey(today);
+        const isPredicted = predictedDays.has(key);
+        const isFertile = fertileDays.has(key);
+        const isOvulation = ovulationDays.has(key);
+
+        const previousDay = cycleDateKey(cycleAddDays(date, -1));
+        const nextDay = cycleDateKey(cycleAddDays(date, 1));
+
+        const previousPredicted = predictedDays.has(previousDay);
+        const nextPredicted = predictedDays.has(nextDay);
+
+        const previousFertile = fertileDays.has(previousDay);
+        const nextFertile = fertileDays.has(nextDay);
+
+        const cell = document.createElement("div");
+
+        cell.className = "cycle-day";
+
+        if (!isCurrentMonth) cell.classList.add("other-month");
+
+        // Menstruação — rosa
+if (isPredicted) {
+    cell.classList.add("predicted");
+
+    if (!previousPredicted) cell.classList.add("first");
+    if (!nextPredicted) cell.classList.add("last");
+
+    if (!previousPredicted && !nextPredicted) {
+        cell.classList.add("single");
+    }
+}
+
+// Período fértil — lilás
+if (isFertile && !isPredicted) {
+    cell.classList.add("fertile");
+
+    if (!previousFertile) cell.classList.add("first");
+    if (!nextFertile) cell.classList.add("last");
+
+    if (!previousFertile && !nextFertile) {
+        cell.classList.add("single");
+    }
+}
+
+// Ovulação — círculo roxo escuro
+if (isOvulation) {
+    cell.classList.add("ovulation");
+}
+
+// Dia atual
+if (isToday) {
+    cell.classList.add("today");
+}
+
+cell.textContent = date.getUTCDate();
+
+cell.title = isPredicted
+    ? "Menstruação prevista"
+    : isOvulation
+        ? "Ovulação estimada"
+        : isFertile
+            ? "Período fértil estimado"
+            : cycleFormatDate(date);
+
+        cell.textContent = date.getUTCDate();
+
+        cell.title = isPredicted
+            ? "Menstruação prevista"
+            : cycleFormatDate(date);
+
+        calendar.appendChild(cell);
+    }
+}
+
+// Registrar informações
+document.getElementById("cycleForm").addEventListener("submit", e => {
+    e.preventDefault();
+
+    const lastPeriod = document.getElementById("lastPeriodDate").value;
+    const cycleLength = Number(document.getElementById("cycleLength").value);
+    const periodDuration = Number(document.getElementById("periodDuration").value);
+
+    if (!cycleParseDate(lastPeriod)) {
+        alert("Informe uma data válida.");
+        return;
+    }
+
+    if (
+        !Number.isInteger(cycleLength) ||
+        cycleLength < 15 ||
+        cycleLength > 60
+    ) {
+        alert("Informe um intervalo entre 15 e 60 dias.");
+        return;
+    }
+
+    if (
+        !Number.isInteger(periodDuration) ||
+        periodDuration < 1 ||
+        periodDuration > 15
+    ) {
+        alert("Informe uma duração entre 1 e 15 dias.");
+        return;
+    }
+
+    data.cycle = {
+        lastPeriod,
+        cycleLength,
+        periodDuration
+    };
+
+    save();
+    renderCycle();
+
+    alert("Informações do ciclo salvas! ♡");
+});
+
+// Navegação entre meses
+document.getElementById("prevCycleMonth").addEventListener("click", () => {
+    cycleViewDate.setMonth(cycleViewDate.getMonth() - 1);
+    renderCycle();
+});
+
+document.getElementById("nextCycleMonth").addEventListener("click", () => {
+    cycleViewDate.setMonth(cycleViewDate.getMonth() + 1);
+    renderCycle();
+});
+
 
         document.querySelectorAll("[data-page]").forEach(btn =>
             btn.addEventListener("click", () => go(btn.dataset.page)));
@@ -967,6 +1860,8 @@
             Object.entries(fieldsToInputs).forEach(([key, elementId]) => {
                 document.getElementById(elementId).value = p[key] || "";
             });
+
+            renderCycle();
         }
 
         document.getElementById("profileForm").addEventListener("submit", e => {

@@ -648,6 +648,7 @@ function atualizarConselho() {
 
 window.addEventListener("DOMContentLoaded", atualizarConselho);
 
+
 function exibirRelatorioDiario() {
     const conteudo = document.getElementById("conteudo-conselho");
 
@@ -664,20 +665,21 @@ function exibirRelatorioDiario() {
                     <option value="5">5 vezes</option>
                 </select>
 
-                <label>Quanto tempo de ensaio hoje?</label>
-                <select id="tempoEnsaio">
-                    <option value="5">5 minutos</option>
-                    <option value="10">10 minutos</option>
-                    <option value="20">20 minutos</option>
-                    <option value="30">30 minutos</option>
-                    <option value="60">1 hora</option>
-                </select>
+                <div id="campoEnsaio" style="display:none">
+                    <label>Você ensaiou hoje?</label>
+                    <select id="ensaio">
+                        <option value="nao">Não</option>
+                        <option value="sim">Sim</option>
+                    </select>
+                </div>
 
-                <label id="labelTreino">Você treinou hoje?</label>
-                <select id="treino">
-                    <option value="nao">Não</option>
-                    <option value="sim">Sim</option>
-                </select>
+                <div id="campoTreino" style="display:none">
+                    <label>Você treinou hoje?</label>
+                    <select id="treino">
+                        <option value="nao">Não</option>
+                        <option value="sim">Sim</option>
+                    </select>
+                </div>
 
                 <label>Você orou hoje?</label>
                 <select id="oracao">
@@ -689,11 +691,13 @@ function exibirRelatorioDiario() {
 
             <section id="formulario-direita">
 
-                <label>Teve momento de leitura hoje?</label>
-                <select id="leitura">
-                    <option value="nao">Não</option>
-                    <option value="sim">Sim</option>
-                </select>
+                <div id="campoLeitura" style="display:none">
+                    <label>Teve momento de leitura hoje?</label>
+                    <select id="leitura">
+                        <option value="nao">Não</option>
+                        <option value="sim">Sim</option>
+                    </select>
+                </div>
 
                 <label>Você se alongou hoje?</label>
                 <select id="alongamento">
@@ -724,10 +728,10 @@ function exibirRelatorioDiario() {
         <div id="resultado" class="resultado" style="display:none">
             <h2>Relatório Gerado</h2>
             <p><strong>Escovação:</strong> <span id="resEscovouDentes"></span></p>
-            <p><strong>Tempo de ensaio:</strong> <span id="resTempoEnsaio"></span></p>
-            <p><strong>Treino:</strong> <span id="resTreino"></span></p>
+            <p id="linhaEnsaio" style="display:none"><strong>Ensaio:</strong> <span id="resEnsaio"></span></p>
+            <p id="linhaTreino" style="display:none"><strong>Treino:</strong> <span id="resTreino"></span></p>
             <p><strong>Oração:</strong> <span id="resOracao"></span></p>
-            <p><strong>Leitura:</strong> <span id="resLeitura"></span></p>
+            <p id="linhaLeitura" style="display:none"><strong>Leitura:</strong> <span id="resLeitura"></span></p>
             <p><strong>Xingou:</strong> <span id="resXingar"></span></p>
             <p><strong>Alongamento:</strong> <span id="resAlongamento"></span></p>
             <p><strong>Água:</strong> <span id="resAgua"></span></p>
@@ -737,6 +741,24 @@ function exibirRelatorioDiario() {
     `;
 
     verificarTreino();
+}
+
+function verificarTreino() {
+    const diaSemana = new Date().getDay();
+
+    // 0 = Domingo, 1 = Segunda, 2 = Terça...
+    const diasTreino = [1, 3, 5];
+    const diasEnsaio = [2, 4];
+    const diasLeitura = [2, 4];
+
+    document.getElementById("campoTreino").style.display =
+        diasTreino.includes(diaSemana) ? "block" : "none";
+
+    document.getElementById("campoEnsaio").style.display =
+        diasEnsaio.includes(diaSemana) ? "block" : "none";
+
+    document.getElementById("campoLeitura").style.display =
+        diasLeitura.includes(diaSemana) ? "block" : "none";
 }
 
 let xpTotal = 0; // Definir o XP total globalmente
@@ -793,21 +815,6 @@ function gerarPDF() {
 
             doc.save(`Reflexão de Fim de Ano (${obterDataAtual()}).pdf`);
         }
-
-function verificarTreino() {
-    const hoje = new Date();
-    const diaSemana = hoje.getDay(); // 0 = Domingo, 6 = Sábado
-
-    const labelTreino = document.getElementById("labelTreino");
-
-    if (diaSemana === 0) {
-        labelTreino.textContent = "Foi à Escola Dominical?";
-    } else if (diaSemana === 6) {
-        labelTreino.textContent = "Já correu hoje?";
-    }
-}
-
-verificarTreino();
     
 function gerarRelatorio() {
         const escovouDentes = parseInt(document.getElementById("escovouDentes").value) || 0;
