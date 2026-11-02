@@ -379,7 +379,7 @@ button:active {
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             padding: 20px;
-            width: 90%;
+            width: 100%;
             max-width: 800px;
             margin-top: 5px;
             text-align: center;
@@ -658,7 +658,7 @@ function exibirRelatorioDiario() {
         <div class="formulario-duas-colunas">
             <section id="formulario-esquerda">
 
-                <label>Quantas vezes escovou os dentes hoje?</label>
+                <label>Quantas vezes escovou os dentes?</label>
                 <select id="escovouDentes">
                     <option value="3">3 vezes</option>
                     <option value="4">4 vezes</option>
@@ -711,7 +711,7 @@ function exibirRelatorioDiario() {
                     <option value="sim">Sim</option>
                 </select>
 
-                <label>Quantos litros de água você tomou hoje?</label>
+                <label>Quantos litros de água você tomou?</label>
                 <select id="agua">
                     <option value="2">2 litros</option>
                     <option value="3">3 litros</option>
@@ -817,61 +817,112 @@ function gerarPDF() {
         }
     
 function gerarRelatorio() {
-        const escovouDentes = parseInt(document.getElementById("escovouDentes").value) || 0;
-        const tempoEnsaio = parseInt(document.getElementById("tempoEnsaio").value) || 0;
-        const treino = document.getElementById("treino").value === "sim";
-        const oracao = document.getElementById("oracao").value === "sim";
-        const leitura = document.getElementById("leitura").value === "sim";
-        const xingar = document.getElementById("xingar").value === "não";
-        const alongamento = document.getElementById("alongamento").value === "sim";
-const agua = parseInt(document.getElementById("agua").value);
+    let respostasCorretas = 0;
+    let xp = 0;
+    let totalPerguntas = 0;
 
+    const avaliar = (id, criterio, pontos) => {
+        const campo = document.getElementById(id);
 
-if (agua === 3) {
-    respostasCorretas++;
-    xp += 10;
-} else if (agua === 4) {
-    respostasCorretas++;
-    xp += 20;
+        if (!campo) return null;
+
+        totalPerguntas++;
+
+        const correto = criterio(campo.value);
+
+        if (correto) {
+            respostasCorretas++;
+            xp += pontos;
+        }
+
+        return {
+            resposta: campo.value,
+            correto
+        };
+    };
+
+    const escovacao = avaliar(
+        "escovouDentes",
+        v => Number(v) >= 4,
+        10
+    );
+
+    const ensaio = document.getElementById("campoEnsaio").style.display !== "none"
+    ? avaliar("ensaio", v => v === "sim", 20)
+    : null;
+
+    const treino = document.getElementById("campoTreino").style.display !== "none"
+    ? avaliar("treino", v => v === "sim", 10)
+    : null;
+
+    const leitura = document.getElementById("campoLeitura").style.display !== "none"
+    ? avaliar("leitura", v => v === "sim", 10)
+    : null;
+
+    const oracao = avaliar(
+        "oracao",
+        v => v === "sim",
+        10
+    );
+
+    const xingar = avaliar(
+        "xingar",
+        v => v === "nao",
+        20
+    );
+
+    const alongamento = avaliar(
+        "alongamento",
+        v => v === "sim",
+        10
+    );
+
+    const agua = avaliar(
+        "agua",
+        v => Number(v) >= 3,
+        10
+    );
+
+    const classificacao =
+        respostasCorretas === 0 ? "Vergonha" :
+        respostasCorretas / totalPerguntas >= 0.85 ? "Dia Prime" :
+        respostasCorretas / totalPerguntas >= 0.60 ? "Dia Bom" :
+        "Dia Ruim";
+
+    const exibir = (id, resultado, formato = v => v) => {
+        if (!resultado) return;
+
+        document.getElementById(id).textContent =
+            formato(resultado.resposta);
+    };
+
+    exibir("resEscovouDentes", escovacao, v => v + " vezes");
+    exibir("resEnsaio", ensaio, v => v === "sim" ? "Sim" : "Não");
+    exibir("resTreino", treino, v => v === "sim" ? "Sim" : "Não");
+    exibir("resOracao", oracao, v => v === "sim" ? "Sim" : "Não");
+    exibir("resLeitura", leitura, v => v === "sim" ? "Sim" : "Não");
+    exibir("resXingar", xingar, v => v === "sim" ? "Sim" : "Não");
+    exibir("resAlongamento", alongamento, v => v === "sim" ? "Sim" : "Não");
+    exibir("resAgua", agua, v => v + " litros");
+
+    document.getElementById("linhaEnsaio").style.display =
+        ensaio ? "block" : "none";
+
+    document.getElementById("linhaTreino").style.display =
+        treino ? "block" : "none";
+
+    document.getElementById("linhaLeitura").style.display =
+        leitura ? "block" : "none";
+
+    document.getElementById("classificacao").textContent =
+        classificacao;
+
+    document.getElementById("xpTotal").textContent = xp;
+
+    document.getElementById("resultado").style.display = "block";
+
+    ganharXp(xp);
 }
-        let respostasCorretas = 0;
-        let xp = 0;
-    
-        if (escovouDentes >= 4) { 
-    respostasCorretas++; 
-    xp += 10; 
-}
-
-if (tempoEnsaio >= 10) { 
-    respostasCorretas++; 
-    xp += 20; 
-}
-
-        if (treino) { respostasCorretas++; xp += 10; }
-        if (oracao) { respostasCorretas++; xp += 10; }
-        if (leitura) { respostasCorretas++; xp += 10; }
-        if (xingar) { respostasCorretas++; xp += 20; }
-        if (alongamento) { respostasCorretas++; xp += 10; }
-        if (agua) { respostasCorretas++; xp += 10; }
-    
-        const classificacoes = ["Vergonha", "Dia Ruim", "Dia Bom", "Dia Prime"];
-        const classificacao = classificacoes[Math.min(respostasCorretas, 3)];
-    
-        document.getElementById("resEscovouDentes").textContent = escovouDentes;
-        document.getElementById("resTempoEnsaio").textContent = tempoEnsaio;
-        document.getElementById("resTreino").textContent = treino ? "Sim" : "Não";
-        document.getElementById("resOracao").textContent = oracao ? "Sim" : "Não";
-        document.getElementById("resLeitura").textContent = leitura ? "Sim" : "Não";
-        document.getElementById("resXingar").textContent = xingar ? "Sim" : "Não";
-        document.getElementById("resAlongamento").textContent = alongamento ? "Sim" : "Não";
-        document.getElementById("resAgua").textContent = agua ? "Sim" : "Não";
-        document.getElementById("classificacao").textContent = classificacao;
-        document.getElementById("xpTotal").textContent = xp;
-        document.getElementById("resultado").style.display = "block";
-    
-        ganharXp(xp);
-    }
-
 
 // Função chamada quando o usuário responde corretamente
 function respostaCerta() {
@@ -942,7 +993,8 @@ function exibirConselhoSemanal() {
                 }
 
                 questionarioElement.innerHTML = `
-                    <section>
+    <div class="formulario-duas-colunas">
+        <section>
                         <label>Você escovou seus dentes quantas vezes por dia?</label>
                         <select id="escovouDentes">
                             <option value="3">3 vez</option>
@@ -1007,7 +1059,8 @@ function exibirConselhoSemanal() {
                             <option value="nao">Não</option>
                             <option value="sim">Sim</option>
                         </select>
-
+</section>
+<section>
                         <label>Você fez refeições nutritivas todos os dias?</label>
                         <select id="refeicoes">
                             <option value="nao">Não</option>
@@ -1068,9 +1121,11 @@ function exibirConselhoSemanal() {
                             <option value="sim">Sim</option>
                         </select>
 
-                        <button onclick="gerarPDF()">Gerar PDF</button>
-                    </section>
-                `;
+                            </section>
+    </div>
+                            <button onclick="gerarPDF()" style="width: 100%;">Gerar PDF</button>
+
+`;
             } else {
             }
         }

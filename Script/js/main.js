@@ -2049,11 +2049,6 @@ const modals = {
     modal: document.getElementById("modal-rafa"),
     fechar: document.getElementById("fechar-rafa")
   },
-  work: {
-    btn: document.getElementById("work-btn"),
-    modal: document.getElementById("modal-work"),
-    fechar: document.getElementById("fechar-work")
-  },
   back: {
     btn: document.getElementById("back-btn"),
     modal: document.getElementById("modal-back"),
@@ -2063,20 +2058,13 @@ const modals = {
     btn: document.getElementById("manual-btn"),
     modal: document.getElementById("modal-manual"),
     fechar: document.getElementById("fechar-manual")
-},
-  streaming: {
-    btn: document.getElementById("streaming-btn"),
-    modal: document.getElementById("modal-streaming"),
-    fechar: document.getElementById("fechar-streaming")
-  }
+}
 };
 
 const titulos = {
   rafa: "Rafa",
-  work: "Work",
   back: "Background",
   manual: "Manual J2",
-  streaming: "Streaming"
 };
 
 function atualizarTitulo(hash) {
