@@ -1994,7 +1994,7 @@ updateDate2();
 const habitXP = {
             "sunday": 100,
             "monday": 100,
-            "tuesday": 110,
+            "tuesday": 120,
             "wednesday": 130,
             "thursday": 110,
             "friday": 110,
