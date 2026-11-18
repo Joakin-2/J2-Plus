@@ -1992,13 +1992,13 @@ updateDate2();
             }
 
 const habitXP = {
-            "sunday": 100,
-            "monday": 100,
-            "tuesday": 120,
-            "wednesday": 130,
-            "thursday": 110,
-            "friday": 110,
-            "saturday": 140
+            "sunday": 90,
+            "monday": 90,
+            "tuesday": 110,
+            "wednesday": 110,
+            "thursday": 100,
+            "friday": 100,
+            "saturday": 110
         };
 
         function mostrarXP(day) {

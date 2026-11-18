@@ -619,7 +619,6 @@ section button {
     </style>
 </head>
 <body>
-
     
 <div class="container">
     <div class="menu-relogio-container">
@@ -647,7 +646,6 @@ function atualizarConselho() {
 }
 
 window.addEventListener("DOMContentLoaded", atualizarConselho);
-
 
 function exibirRelatorioDiario() {
     const conteudo = document.getElementById("conteudo-conselho");
@@ -1002,29 +1000,25 @@ function exibirConselhoSemanal() {
                             <option value="5">5 vezes</option>
                         </select>
 
-                        <label>Quanto tempo de ensaio?</label>
+                        <label>Você fez os ensaios?</label>
                         <select id="tempoEnsaio">
-                            <option value="5">5 minutos</option>
-                            <option value="10">10 minutos</option>
-                            <option value="20">20 minutos</option>
-                            <option value="30">30 minutos</option>
-                            <option value="60">1 hora</option>
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
                         </select>
 
-                        <label>Você treinou quantos dias?</label>
+                        <label>Você fez os treinos?</label>
                         <select id="treinoDias">
-                            <option value="3">3 dias</option>
-                            <option value="4">4 dias</option>
-                            <option value="5">5 dias</option>
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
                         </select>
 
-                        <label for="cultosSemana">Você foi em todos os Cultos da Semana?</label>
+                        <label for="cultosSemana">Você aos cultos?</label>
                         <select id="cultosSemana">
                             <option value="nao">Não</option>
                             <option value="sim">Sim</option>
                         </select>
 
-                        <label>Você fez os devocionais todos os dias?</label>
+                        <label>Você fez os devocionais?</label>
                         <select id="devocionaisDiarios">
                             <option value="nao">Não</option>
                             <option value="sim">Sim</option>
@@ -1054,7 +1048,7 @@ function exibirConselhoSemanal() {
                             <option value="sim">Sim</option>
                         </select>
 
-                        <label>Você bebeu 4 litros de água todos os dias?</label>
+                        <label>Você bebeu pelo menos 2 litros de água?</label>
                         <select id="bebeuAgua">
                             <option value="nao">Não</option>
                             <option value="sim">Sim</option>
@@ -1158,20 +1152,15 @@ function gerarPDF() {
             // condição: 4 ou mais é certo
             acertou: function() { return parseInt(this.respostaUsuario) >= 4; }
         },
-        {
-            pergunta: "Você ensaiou quanto tempo?",
-            respostaUsuario: document.getElementById('tempoEnsaio').value,
-            // condição: 10 minutos ou mais é certo
-            acertou: function() { return parseInt(this.respostaUsuario) >= 10; }
-        },
-        { pergunta: "Você treinou quantos dias?", respostaCorreta: "5", respostaUsuario: document.getElementById('treinoDias').value },
-        { pergunta: "Você foi em todos os Cultos da Semana?", respostaCorreta: "sim", respostaUsuario: document.getElementById('cultosSemana').value },
-        { pergunta: "Você fez os devocionais todos os dias?", respostaCorreta: "sim", respostaUsuario: document.getElementById('devocionaisDiarios').value },
+        { pergunta: "Você fez os ensaios?", respostaCorreta: "sim", respostaUsuario: document.getElementById('tempoEnsaio').value },
+        { pergunta: "Você fez os treinos?", respostaCorreta: "sim", respostaUsuario: document.getElementById('treinoDias').value },
+        { pergunta: "Você aos cultos?", respostaCorreta: "sim", respostaUsuario: document.getElementById('cultosSemana').value },
+        { pergunta: "Você fez os devocionais?", respostaCorreta: "sim", respostaUsuario: document.getElementById('devocionaisDiarios').value },
         { pergunta: "Você deu o seu melhor todos os dias?", respostaCorreta: "sim", respostaUsuario: document.getElementById('deuOMelhor').value },
         { pergunta: "Você fez o vácuo todos os dias?", respostaCorreta: "sim", respostaUsuario: document.getElementById('fezVacuo').value },
         { pergunta: "Você se alongou todos os dias?", respostaCorreta: "sim", respostaUsuario: document.getElementById('alongou').value },
         { pergunta: "Você correu ou vai correr hoje?", respostaCorreta: "sim", respostaUsuario: document.getElementById('correuHoje').value },
-        { pergunta: "Você bebeu 4 litros de água todos os dias?", respostaCorreta: "sim", respostaUsuario: document.getElementById('bebeuAgua').value },
+        { pergunta: "Você bebeu pelo menos 2 litros de água?", respostaCorreta: "sim", respostaUsuario: document.getElementById('bebeuAgua').value },
         { pergunta: "Você fez refeições nutritivas todos os dias?", respostaCorreta: "sim", respostaUsuario: document.getElementById('refeicoes').value },
         { pergunta: "Você cuidou da sua pele?", respostaCorreta: "sim", respostaUsuario: document.getElementById('cuidouDaPele').value },
         { pergunta: "Você tomou banhos rápidos?", respostaCorreta: "sim", respostaUsuario: document.getElementById('banhosRapidos').value },
